@@ -1,6 +1,7 @@
 import 'package:flutter_svg/svg.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:kakaomap_webview/kakaomap_webview.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 import 'package:withconi/controller/hospital/hospital_page_controller.dart';
 import 'package:withconi/import_basic.dart';
 
@@ -27,169 +28,167 @@ class HospitalMainPage extends StatelessWidget {
           ),
         ),
         backgroundColor: WcColors.white,
-        body: SingleChildScrollView(
-          child: Center(
-            child: SizedBox(
-              width: WcWidth,
-              child: Stack(
-                children: [
-                  KakaoMapView(
-                      width: WcWidth,
-                      height: WcHeight,
-                      kakaoMapKey: '09dc12869d70b6db27305c80f7309e32',
-                      lat: 333,
-                      lng: 430,
-                      showMapTypeControl: false,
-                      showZoomControl: false,
-                      markerImageURL:
-                          'https://firebasestorage.googleapis.com/v0/b/withconi.appspot.com/o/map_markers%2Fblue_marker_clicked.png?alt=media&token=995dccfa-8baa-4029-88f1-73f1c01d86ee',
-                      onTapMarker: (message) async {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('Marker is clicked')));
-                      },
-                      mapController: ((controller) =>
-                          webviewController = controller)),
-                  Center(
-                    child: Container(
-                      height: 45,
-                      width: WcWidth - 40,
-                      margin: EdgeInsets.symmetric(vertical: 30),
-                      decoration: BoxDecoration(
-                        color: WcColors.white,
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Color.fromARGB(70, 0, 0, 0),
-                            spreadRadius: 0,
-                            blurRadius: 5,
-                            offset: Offset(0, 0),
-                          ),
-                        ],
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: Row(
-                        children: [
-                          GestureDetector(
-                            onTap: () {},
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 13, right: 12),
-                              child: SvgPicture.asset(
-                                'assets/icons/search.svg',
-                                color: WcColors.grey100,
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                              child: TextField(
-                            controller: null,
-                            onChanged: (index) {},
-                            style: GoogleFonts.notoSans(
-                                color: WcColors.black,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500),
-                            decoration: InputDecoration(
-                              hintText: '게시판을 검색해보세요',
-                              hintStyle: GoogleFonts.notoSans(
-                                  color: WcColors.grey100,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w400),
-                              border: InputBorder.none,
-                            ),
-                          )),
-                          Container(
-                            height: 45,
-                            width: 1.2,
-                            color: WcColors.grey80,
-                          ),
-                          GestureDetector(
-                            onTap: () {},
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 12, right: 14),
-                              child: SvgPicture.asset(
-                                'assets/icons/cancle.svg',
-                                color: WcColors.grey100,
-                                height: 16,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    top: 85,
-                    left: 20,
-                    child: Container(
-                      height: 45,
-                      decoration: BoxDecoration(
-                        color: WcColors.white,
-                        borderRadius: BorderRadius.circular(50),
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Color.fromARGB(70, 0, 0, 0),
-                            spreadRadius: 0,
-                            blurRadius: 5,
-                            offset: Offset(0, 1),
-                          ),
-                        ],
-                      ),
-                      child: ToggleButtons(
-                        constraints: BoxConstraints.tight(Size(54, 45)),
-                        borderRadius: BorderRadius.circular(30),
-                        // color: WcColors.white,
-                        fillColor: WcColors.blue100,
-                        selectedColor: WcColors.white,
-                        selectedBorderColor: WcColors.blue100,
-                        disabledBorderColor: WcColors.green100,
-                        renderBorder: false,
-                        children: <Widget>[
-                          // Icon(Icons.ac_unit),
-                          // Icon(Icons.call),
-                          // Icon(Icons.cake),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 3),
-                            child: Text('전체'),
-                          ),
-                          Text('병원'),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 3),
-                            child: Text('약국'),
-                          ),
-                        ],
-                        onPressed: (int index) {
-                          // setState(() {
-                          //   isSelected[index] = !isSelected[index];
-                          // });
-                        },
-                        isSelected: [true, false, false],
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    right: 20,
-                    bottom: 100,
-                    child: GestureDetector(
-                        onTap: () async {
-                          Position position =
-                              await _controller.determinePosition();
-                          print(position.latitude);
-                          print(position.longitude);
-                          _controller.currentPosition.value = position;
-
-                          // webviewController!.runJavascript(
-                          //     'createCurrentMarker(${position.latitude},${position.longitude})');
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: WcColors.black, shape: BoxShape.circle),
-                          width: 40,
-                          height: 40,
-                        )),
-                  )
-                ],
+        body: Center(
+          child: Stack(
+            children: [
+              Obx(
+                () => KakaoMapView(
+                    width: WcWidth,
+                    height: WcHeight,
+                    kakaoMapKey: '8bab8fc7d06a916d15e2418a8e2f2439',
+                    lat: _controller.currentPosition.value!.latitude,
+                    lng: _controller.currentPosition.value!.longitude,
+                    showMapTypeControl: false,
+                    showZoomControl: false,
+                    markerImageURL: '',
+                    onTapMarker: (message) async {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('Marker is clicked')));
+                    },
+                    mapController: ((controller) =>
+                        webviewController = controller)),
               ),
-            ),
+              Positioned(
+                top: 0,
+                left: 20,
+                child: Center(
+                  child: Container(
+                    height: 45,
+                    width: WcWidth - 40,
+                    margin: EdgeInsets.symmetric(vertical: 30),
+                    decoration: BoxDecoration(
+                      color: WcColors.white,
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Color.fromARGB(70, 0, 0, 0),
+                          spreadRadius: 0,
+                          blurRadius: 5,
+                          offset: Offset(0, 0),
+                        ),
+                      ],
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () {},
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 13, right: 12),
+                            child: SvgPicture.asset(
+                              'assets/icons/search.svg',
+                              color: WcColors.grey100,
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                            child: TextField(
+                          controller: null,
+                          onChanged: (index) {},
+                          style: GoogleFonts.notoSans(
+                              color: WcColors.black,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500),
+                          decoration: InputDecoration(
+                            hintText: '게시판을 검색해보세요',
+                            hintStyle: GoogleFonts.notoSans(
+                                color: WcColors.grey100,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400),
+                            border: InputBorder.none,
+                          ),
+                        )),
+                        Container(
+                          height: 45,
+                          width: 1.2,
+                          color: WcColors.grey80,
+                        ),
+                        GestureDetector(
+                          onTap: () {},
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 12, right: 14),
+                            child: SvgPicture.asset(
+                              'assets/icons/cancle.svg',
+                              color: WcColors.grey100,
+                              height: 16,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 85,
+                left: 20,
+                child: Container(
+                  height: 45,
+                  decoration: BoxDecoration(
+                    color: WcColors.white,
+                    borderRadius: BorderRadius.circular(50),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Color.fromARGB(70, 0, 0, 0),
+                        spreadRadius: 0,
+                        blurRadius: 5,
+                        offset: Offset(0, 1),
+                      ),
+                    ],
+                  ),
+                  child: ToggleButtons(
+                    constraints: BoxConstraints.tight(Size(54, 45)),
+                    borderRadius: BorderRadius.circular(30),
+                    // color: WcColors.white,
+                    fillColor: WcColors.blue100,
+                    selectedColor: WcColors.white,
+                    selectedBorderColor: WcColors.blue100,
+                    disabledBorderColor: WcColors.green100,
+                    renderBorder: false,
+                    children: <Widget>[
+                      // Icon(Icons.ac_unit),
+                      // Icon(Icons.call),
+                      // Icon(Icons.cake),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 3),
+                        child: Text('전체'),
+                      ),
+                      Text('병원'),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 3),
+                        child: Text('약국'),
+                      ),
+                    ],
+                    onPressed: (int index) {
+                      // setState(() {
+                      //   isSelected[index] = !isSelected[index];
+                      // });
+                    },
+                    isSelected: [true, false, false],
+                  ),
+                ),
+              ),
+              Positioned(
+                right: 20,
+                bottom: 100,
+                child: GestureDetector(
+                    onTap: () async {
+                      Position position = await _controller.determinePosition();
+                      print(position.latitude);
+                      print(position.longitude);
+                      _controller.currentPosition.value = position;
+
+                      webviewController!.runJavascript('''
+                                map.panTo(new kakao.maps.LatLng(${position.latitude},${position.longitude}));           
+                          ''');
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: WcColors.black, shape: BoxShape.circle),
+                      width: 40,
+                      height: 40,
+                    )),
+              )
+            ],
           ),
         ),
       ),
