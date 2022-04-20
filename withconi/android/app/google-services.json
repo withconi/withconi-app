@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "955745601928",
+    "project_id": "withconi",
+    "storage_bucket": "withconi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:955745601928:android:e5cd9861edd0f96769923d",
+        "android_client_info": {
+          "package_name": "com.example.withconi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "955745601928-d5h3s4tk0j5vgris027ke9777m3qjjlk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYgcxKAHthAmqtSfzP6G-9nd9PVeMvw0Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "955745601928-d5h3s4tk0j5vgris027ke9777m3qjjlk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
