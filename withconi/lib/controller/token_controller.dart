@@ -1,40 +1,55 @@
-// ignore_for_file: constant_identifier_names
+import 'package:withconi/configs/enum.dart';
+import 'package:withconi/configs/helpers/extension.dart';
+import 'package:withconi/controller/cache_manager.dart';
 
-import 'package:get_storage/get_storage.dart';
+import 'kakao_auth_controller.dart';
 
-mixin TokenController {
-  Future<bool> saveToken(String? accessToken, String? refreshToken,
-      TokenProviderOptions tokenProvider) async {
-    final box = GetStorage();
-    await box.write(TokenControllerKey.ACCESS_TOKEN.toString(), accessToken);
-    await box.write(TokenControllerKey.REFRESH_TOKEN.toString(), refreshToken);
-    await box.write(
-        TokenControllerKey.PROVIDER.toString(), tokenProvider.toString());
-    return true;
-  }
-
-  String? getAccessToken() {
-    final box = GetStorage();
-    return box.read(TokenControllerKey.ACCESS_TOKEN.toString());
-  }
-
-  String? getRefreshToken() {
-    final box = GetStorage();
-    return box.read(TokenControllerKey.REFRESH_TOKEN.toString());
-  }
-
+@override
+class TokenController with CacheManager {
   String? getTokenProvider() {
-    final box = GetStorage();
-    return box.read(TokenControllerKey.PROVIDER.toString());
+    String? tokenProvider = getCache(CacheControllerKey.TOKEN_PROVIDER);
+    return (tokenProvider == null) ? '' : tokenProvider;
   }
 
-  Future<void> removeToken() async {
-    final box = GetStorage();
-    await box.remove(TokenControllerKey.ACCESS_TOKEN.toString());
-    await box.remove(TokenControllerKey.REFRESH_TOKEN.toString());
-    await box.remove(TokenControllerKey.PROVIDER.toString());
+  void getToken(CacheControllerKey cacheControllerKey) {
+    getCache(cacheControllerKey);
+  }
+
+  void saveAccessToken(String token) {
+    saveCache(CacheControllerKey.ACCESS_TOKEN, token);
+  }
+
+  void saveRefreshToken(String token) {
+    saveCache(CacheControllerKey.REFRESH_TOKEN, token);
+  }
+
+  void saveTokenProvider(String tokenProvider) {
+    saveCache(CacheControllerKey.TOKEN_PROVIDER, tokenProvider);
+  }
+
+  validateToken() {
+    String tokenProviderString = getCache(CacheControllerKey.TOKEN_PROVIDER);
+
+    if (tokenProviderString.isEmpty) {
+      // _isLoggedIn = false.obs;
+    } else {
+      TokenProviderOptions tokenProvider =
+          TokenProviderOptions.values.enumFromString(tokenProviderString);
+      switch (tokenProvider) {
+        case TokenProviderOptions.KAKAO:
+          KakaoAuthController().tokenValidation();
+          break;
+        case TokenProviderOptions.GOOGLE:
+          break;
+        case TokenProviderOptions.NAVER:
+          break;
+        case TokenProviderOptions.EMAIL:
+          break;
+        case TokenProviderOptions.APPLE:
+          break;
+
+        default:
+      }
+    }
   }
 }
-
-enum TokenControllerKey { ACCESS_TOKEN, REFRESH_TOKEN, PROVIDER }
-enum TokenProviderOptions { KAKAO, NAVER, GOOGLE, APPLE, EMAIL }
