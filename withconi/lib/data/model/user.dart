@@ -14,7 +14,7 @@ class UserModel {
     return UserModel(
         email: json['email'],
         name: json['name'],
-        accessToken: json['body'],
+        accessToken: json['accessToken'],
         refreshToken: json['refreshToken']);
   }
 

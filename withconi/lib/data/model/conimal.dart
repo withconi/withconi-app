@@ -1,23 +1,26 @@
 import 'package:withconi/data/model/diseases.dart';
 
 class ConimalModel {
-  String birthDate;
+  int birthDate;
   String name;
-  String adoptedDate;
+  int adoptedDate;
   DiseaseModel disease;
+  int createdAt;
 
   ConimalModel(
       {required this.birthDate,
       required this.name,
       required this.adoptedDate,
-      required this.disease});
+      required this.disease,
+      required this.createdAt});
 
   factory ConimalModel.fromJson(Map<String, dynamic> json) {
     return ConimalModel(
         birthDate: json['birthDate'],
         name: json['name'],
         adoptedDate: json['adoptedDate'],
-        disease: json['disease']);
+        disease: json['disease'],
+        createdAt: json['createdAt']);
   }
 
   Map<String, dynamic> toJson() => {
@@ -25,5 +28,6 @@ class ConimalModel {
         'name': name,
         'adoptedDate': adoptedDate,
         'disease': disease.toJson(),
+        'createdAt': createdAt,
       };
 }

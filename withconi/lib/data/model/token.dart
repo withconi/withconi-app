@@ -1,23 +1,23 @@
 class TokenModel {
   TokenModel({
     required this.success,
-    required this.expiresAt,
-    required this.requestToken,
+    required this.expiresIn,
+    required this.accessToken,
   });
 
   final bool success;
-  final String expiresAt;
-  final String requestToken;
+  final String expiresIn;
+  final String accessToken;
 
   factory TokenModel.fromJson(Map<String, dynamic> json) => TokenModel(
         success: json["success"],
-        expiresAt: json["expires_at"],
-        requestToken: json["request_token"],
+        expiresIn: json["expiresIn"],
+        accessToken: json["accessToken"],
       );
 
   Map<String, dynamic> toJson() => {
         "success": success,
-        "expires_at": expiresAt,
-        "request_token": requestToken,
+        "expiresIn": expiresIn,
+        "accessToken": accessToken,
       };
 }
