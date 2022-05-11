@@ -1,45 +1,33 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:withconi/controller/cache_manager.dart';
-import 'package:withconi/controller/token_controller.dart';
-
+import 'package:withconi/configs/constants/enum.dart';
+import 'package:withconi/configs/constants/firebase_auth_constants.dart';
+import 'package:withconi/data/repository/auth_repository.dart';
+import 'package:withconi/ui/pages/start/start_page.dart';
 import '../import_basic.dart';
 
-class AuthController extends GetxController with CacheManager {
+class AuthController extends GetxController {
   static AuthController instance = Get.find();
-  // late Rx<User?> firebaseUser;
-  // late Rx<GoogleSignInAccount?> googleSignInAccount;
-  late RxBool _isLoggedIn;
+  final AuthRepository _authRepository = Get.find<AuthRepository>();
+  late Rx<ProviderOptions> _provider;
+  final FirebaseAuth _auth = auth;
+  final RxBool _isLoggedIn = false.obs;
 
   @override
   void onReady() {
     super.onReady();
-    TokenController().validateToken();
-    ever(_isLoggedIn, _setInitialScreen);
+    _provider.value = _authRepository.getAuthTokenProvider();
+    _isLoggedIn.value =
+        _authRepository.isUserLoggedIn(provider: _provider.value);
 
-    // firebaseUser = Rx<User?>(auth.currentUser);
-    // googleSignInAccount = Rx<GoogleSignInAccount?>(googleSign.currentUser);
-
-    // firebaseUser.bindStream(auth.userChanges());
-    // ever(firebaseUser, _setInitialScreen);
-
-    // googleSignInAccount.bindStream(googleSign.onCurrentUserChanged);
-    // ever(googleSignInAccount, _setInitialScreenGoogle);
+    once(_isLoggedIn, _setInitialPage);
   }
 
-  _setInitialScreen(_isLoggedIn) {
+  _setInitialPage(_isLoggedIn) async {
     if (_isLoggedIn) {
-      // Get.offAll(() => const Register());
+      Get.offAll(() => const StartPage());
     } else {
-      // Get.offAll(() => Home());
-    }
-  }
-
-  _setInitialScreenGoogle(GoogleSignInAccount? googleSignInAccount) {
-    print(googleSignInAccount);
-    if (googleSignInAccount == null) {
-      // Get.offAll(() => const Register());
-    } else {
-      // Get.offAll(() => Home());
+      //  Get.offAll(() => const HomePage());
     }
   }
 }
