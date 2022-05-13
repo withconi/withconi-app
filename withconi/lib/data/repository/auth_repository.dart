@@ -6,28 +6,30 @@ import 'package:withconi/data/model/token.dart';
 import 'package:withconi/data/provider/auth_api.dart';
 
 class AuthRepository {
-  final AuthAPI _api = Get.find<AuthAPI>();
-  final TokenManager _tokenManager = Get.find<TokenManager>();
+  final AuthAPI _api = AuthAPI();
+  final TokenManager _tokenManager = TokenManager();
 
   // Future<TokenModel> newToken() => _api.newCustomAuthToken();
 
   ProviderOptions getAuthTokenProvider() => _tokenManager.getTokenProvider();
 
-  Future<UserCredential?> signUpWithEmail() => _api.signUpWithEmail();
+  Future<UserCredential?> signUpWithEmail(
+          {required String email, required String password}) =>
+      _api.signUpWithEmail(email: email, password: password);
 
-  Future<UserCredential?> signInWithEmail() => _api.signInWithEmail();
+  Future<UserCredential?> signInWithEmail(
+          {required String email, required String password}) =>
+      _api.signInWithEmail(email: email, password: password);
 
   Future<UserCredential?> signInWithGoogle() => _api.signInWithGoogle();
 
-  Future<UserCredential?> signInWithToken() => _api.signInWithToken();
+  Future<UserCredential?> signInWithToken(
+          {required ProviderOptions provider}) =>
+      _api.signInWithToken(provider: provider);
 
-  bool isUserLoggedIn({required ProviderOptions provider}) =>
+  Future<bool> isUserLoggedIn({required ProviderOptions provider}) =>
       _api.isUserLoggedIn(provider: provider);
 
-  Future<TokenModel> authWithLogin({
-    required String email,
-    required String password,
-    required String token,
-  }) =>
-      _api.validateWithLogin(email: email, password: password, token: token);
+  Future<bool> verifyEmail({required String email}) =>
+      _api.verifyEmail(email: email);
 }
