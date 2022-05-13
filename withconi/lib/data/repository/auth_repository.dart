@@ -30,6 +30,6 @@ class AuthRepository {
   Future<bool> isUserLoggedIn({required ProviderOptions provider}) =>
       _api.isUserLoggedIn(provider: provider);
 
-  Future<bool> verifyEmail({required String email}) =>
-      _api.verifyEmail(email: email);
+  Future<bool> checkDuplicateEmail({required String email}) =>
+      _api.checkDuplicateEmail(email: email);
 }
