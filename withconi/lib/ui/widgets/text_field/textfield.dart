@@ -25,17 +25,17 @@ class WcTextFieldWidget extends StatelessWidget {
       controller: textController,
       keyboardType: keyboardType,
       style: GoogleFonts.notoSans(
-          color: black, fontSize: 17, fontWeight: FontWeight.w500),
+          color: black, fontSize: 18, fontWeight: FontWeight.w500),
       onChanged: onChanged,
       cursorColor: blue100,
       decoration: InputDecoration(
         floatingLabelStyle: GoogleFonts.notoSans(
             color: black, fontSize: 17, fontWeight: FontWeight.w500),
         alignLabelWithHint: true,
-        enabledBorder: UnderlineInputBorder(
+        enabledBorder: const UnderlineInputBorder(
           borderSide: BorderSide(color: grey100, width: 1),
         ),
-        focusedBorder: UnderlineInputBorder(
+        focusedBorder: const UnderlineInputBorder(
           borderSide: BorderSide(color: blue100, width: 1.5),
         ),
         hintText: hintText,
