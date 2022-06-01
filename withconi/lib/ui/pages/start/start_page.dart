@@ -1,6 +1,11 @@
+// ignore_for_file: prefer_const_constructors_in_immutables
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:withconi/configs/constants/enum.dart';
+import 'package:withconi/controller/signup/signup_data.dart';
+import 'package:withconi/controller/start_controller.dart';
 import 'package:withconi/routes/withconi_routes.dart';
 import 'package:withconi/ui/pages/start/widgets/sns_button.dart';
 import 'package:withconi/ui/theme/colors.dart';
@@ -8,13 +13,14 @@ import 'package:withconi/ui/theme/sizes.dart';
 import 'package:withconi/ui/widgets/button/wide_button.dart';
 import 'package:withconi/ui/widgets/text_field/textfield.dart';
 
-import '../../widgets/text_field/label_textfield.dart';
-
 class StartPage extends StatelessWidget {
-  const StartPage({Key? key}) : super(key: key);
+  StartPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    StartPageController _controller = Get.put(StartPageController());
+    SignUpData _userData = Get.put(SignUpData());
+
     return Scaffold(
       body: SafeArea(
         child: SizedBox(
@@ -25,14 +31,14 @@ class StartPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                SizedBox(
+                const SizedBox(
                   height: 75,
                 ),
                 Image.asset(
                   'assets/icons/withconi.png',
                   height: 51,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 16,
                 ),
                 Text(
@@ -40,28 +46,28 @@ class StartPage extends StatelessWidget {
                   style: GoogleFonts.notoSans(
                       fontSize: 25, fontWeight: FontWeight.w600),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 60,
                 ),
                 WcTextFieldWidget(
                   hintText: '이메일을 입력해주세요',
-                  onChanged: (String) {},
+                  onChanged: _controller.onEmailChange,
                   textController: TextEditingController(),
                   keyboardType: TextInputType.emailAddress,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 40,
                 ),
-                WcWideButtonWidget(
-                  active: true,
-                  activeButtonColor: blue100,
-                  activeTextColor: white,
-                  buttonText: '다음',
-                  buttonWidth: WcWidth - 40,
-                  onTap: () {
-                    Get.toNamed(Routes.SIGNUP_NAME_PW);
-                  },
-                ),
+                Obx(() => WcWideButtonWidget(
+                      active: _controller.validateButton.value,
+                      activeButtonColor: blue100,
+                      activeTextColor: white,
+                      buttonText: '다음',
+                      buttonWidth: WcWidth - 40,
+                      onTap: () {
+                        _controller.nextStep();
+                      },
+                    )),
                 Expanded(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -75,7 +81,9 @@ class StartPage extends StatelessWidget {
                       SnsButtonWidget(
                         imageSrc: 'assets/icons/google.png',
                         label: '구글',
-                        onTap: () {},
+                        onTap: () {
+                          _controller.signIn(ProviderOptions.GOOGLE);
+                        },
                       ),
                       SnsButtonWidget(
                         imageSrc: 'assets/icons/naver.png',
@@ -90,7 +98,7 @@ class StartPage extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 )
               ],
