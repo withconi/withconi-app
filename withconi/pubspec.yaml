@@ -53,6 +53,7 @@ dependencies:
   dartz: ^0.10.1
   json_serializable: ^6.2.0
   freezed_annotation: ^2.0.3
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
