@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:withconi/ui/theme/colors.dart';
 
-class WcLabelTextField extends StatelessWidget {
-  WcLabelTextField({
+class WcTextFormField extends StatelessWidget {
+  WcTextFormField({
     Key? key,
     required this.hintText,
     required this.onChanged,
@@ -12,7 +12,7 @@ class WcLabelTextField extends StatelessWidget {
     required this.keyboardType,
     this.textObscure = false,
     this.enabled = true,
-    this.errorText,
+    this.validator,
   }) : super(key: key);
 
   String hintText;
@@ -22,11 +22,14 @@ class WcLabelTextField extends StatelessWidget {
   TextInputType keyboardType;
   bool textObscure;
   bool enabled;
-  String? errorText;
+
+  String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      validator: validator,
       enabled: enabled,
       obscuringCharacter: '●',
       obscureText: textObscure,
@@ -37,7 +40,7 @@ class WcLabelTextField extends StatelessWidget {
       onChanged: onChanged,
       cursorColor: WcColors.blue100,
       decoration: InputDecoration(
-        errorText: errorText,
+        // errorText: errorText,
         labelText: labelText,
         labelStyle: GoogleFonts.notoSans(
             color: WcColors.grey100, fontSize: 18, fontWeight: FontWeight.w300),
@@ -52,7 +55,7 @@ class WcLabelTextField extends StatelessWidget {
         ),
         hintText: hintText,
         hintStyle: GoogleFonts.notoSans(
-            color: WcColors.grey100, fontSize: 18, fontWeight: FontWeight.w400),
+            color: WcColors.grey100, fontSize: 17, fontWeight: FontWeight.w400),
       ),
     );
   }

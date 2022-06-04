@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:withconi/ui/theme/colors.dart';
 
-class WcTextFieldWidget extends StatelessWidget {
-  WcTextFieldWidget({
+class WcTextField extends StatelessWidget {
+  WcTextField({
     Key? key,
     required this.hintText,
     required this.onChanged,
@@ -25,22 +25,22 @@ class WcTextFieldWidget extends StatelessWidget {
       controller: textController,
       keyboardType: keyboardType,
       style: GoogleFonts.notoSans(
-          color: black, fontSize: 18, fontWeight: FontWeight.w500),
+          color: WcColors.black, fontSize: 18, fontWeight: FontWeight.w500),
       onChanged: onChanged,
-      cursorColor: blue100,
+      cursorColor: WcColors.blue100,
       decoration: InputDecoration(
         floatingLabelStyle: GoogleFonts.notoSans(
-            color: black, fontSize: 17, fontWeight: FontWeight.w500),
+            color: WcColors.black, fontSize: 17, fontWeight: FontWeight.w500),
         alignLabelWithHint: true,
         enabledBorder: const UnderlineInputBorder(
-          borderSide: BorderSide(color: grey100, width: 1),
+          borderSide: BorderSide(color: WcColors.grey100, width: 1),
         ),
         focusedBorder: const UnderlineInputBorder(
-          borderSide: BorderSide(color: blue100, width: 1.5),
+          borderSide: BorderSide(color: WcColors.blue100, width: 1.5),
         ),
         hintText: hintText,
         hintStyle: GoogleFonts.notoSans(
-            color: grey100, fontSize: 17, fontWeight: FontWeight.w300),
+            color: WcColors.grey100, fontSize: 17, fontWeight: FontWeight.w300),
       ),
     );
   }
