@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:withconi/configs/constants/enum.dart';
-import 'package:withconi/controller/signup/signup_data.dart';
+import 'package:withconi/controller/signup/user_data.dart';
 import 'package:withconi/controller/start_controller.dart';
 import 'package:withconi/routes/withconi_routes.dart';
 import 'package:withconi/ui/pages/start/widgets/sns_button.dart';
@@ -19,7 +19,7 @@ class StartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     StartPageController _controller = Get.put(StartPageController());
-    SignUpData _userData = Get.put(SignUpData());
+    UserData _userData = Get.put(UserData());
 
     return Scaffold(
       body: SafeArea(
@@ -49,7 +49,7 @@ class StartPage extends StatelessWidget {
                 const SizedBox(
                   height: 60,
                 ),
-                WcTextFieldWidget(
+                WcTextField(
                   hintText: '이메일을 입력해주세요',
                   onChanged: _controller.onEmailChange,
                   textController: TextEditingController(),
@@ -60,8 +60,8 @@ class StartPage extends StatelessWidget {
                 ),
                 Obx(() => WcWideButtonWidget(
                       active: _controller.validateButton.value,
-                      activeButtonColor: blue100,
-                      activeTextColor: white,
+                      activeButtonColor: WcColors.blue100,
+                      activeTextColor: WcColors.white,
                       buttonText: '다음',
                       buttonWidth: WcWidth - 40,
                       onTap: () {
