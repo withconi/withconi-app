@@ -8,13 +8,13 @@ class WcWideButtonWidget extends StatelessWidget {
       {Key? key,
       required this.buttonText,
       required this.onTap,
-      this.inactiveButtonColor = grey80,
+      this.inactiveButtonColor = WcColors.grey80,
       required this.activeButtonColor,
       required this.buttonWidth,
       this.buttonHeight = 50,
       required this.active,
       required this.activeTextColor,
-      this.inactiveTextColor = grey120})
+      this.inactiveTextColor = WcColors.grey120})
       : super(key: key);
   String buttonText;
   double buttonHeight;
