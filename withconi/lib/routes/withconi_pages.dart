@@ -8,7 +8,7 @@ class WCPages {
   static final pages = [
     GetPage(
         name: Routes.SPLASH,
-        page: () => SplashPage(),
+        page: () => const SplashPage(),
         transition: Transition.fade
         //  binding: HomeBinding()
         ),
