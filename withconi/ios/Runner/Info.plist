@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -20,10 +22,48 @@
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.955745601928-10tpc48stffksv2v3g0fnudmjhp67al7</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>naversearchapp</string>
+		<string>naversearchthirdlogin</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>naver.com</key>
+			<dict>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<false/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
+			<key>naver.net</key>
+			<dict>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<false/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
+		</dict>
+	</dict>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -43,73 +83,13 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<!-- Put me in the [my_project]/ios/Runner/Info.plist file -->
-	<!-- Google Sign-in Section -->
-	<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<!-- TODO Replace this value: -->
-				<!-- Copied from GoogleService-Info.plist key REVERSED_CLIENT_ID -->
-				<string>com.googleusercontent.apps.861823949799-vc35cprkp249096uujjn0vvnmcvjppkn</string>
-			</array>
-		</dict>
-	</array>
-	<!-- End of the Google Sign-in Section -->
-
-	<key>CFBundleURLTypes</key>
-        <array>
-            <dict>
-                <key>CFBundleTypeRole</key>
-                <string>Editor</string>
-                <key>CFBundleURLSchemes</key>
-                <array>
-                    <string>[UrlScheme]</string>
-                </array>
-            </dict>
-        </array>
-
-        <key>LSApplicationQueriesSchemes</key>
-        <array>
-            <string>naversearchapp</string>
-            <string>naversearchthirdlogin</string>
-        </array>
-        <key>naverServiceAppUrlScheme</key>
-        <string>[UrlScheme]</string>
-        <key>naverConsumerKey</key>
-        <string>[ConsumerKey]</string>
-        <key>naverConsumerSecret</key>
-        <string>[ConsumerSecret]</string>
-        <key>naverServiceAppName</key>
-        <string>[ServiceAppName]</string>
-
-        <!-- http allows configurations -->
-        <key>NSAppTransportSecurity</key>
-        <dict>
-           <key>NSAllowsArbitraryLoads</key>
-           <true/>
-           <key>NSExceptionDomains</key>
-           <dict>
-              <key>naver.com</key>
-              <dict>
-                 <key>NSExceptionRequiresForwardSecrecy</key>
-                 <false/>
-                 <key>NSIncludesSubdomains</key>
-                 <true/>
-              </dict>
-              <key>naver.net</key>
-              <dict>
-                 <key>NSExceptionRequiresForwardSecrecy</key>
-                 <false/>
-                 <key>NSIncludesSubdomains</key>
-                 <true/>
-              </dict>
-           </dict>
-        </dict>
-	<key>CADisableMinimumFrameDurationOnPhone</key>
-	<true/>
+	<key>naverConsumerKey</key>
+	<string>[ConsumerKey]</string>
+	<key>naverConsumerSecret</key>
+	<string>[ConsumerSecret]</string>
+	<key>naverServiceAppName</key>
+	<string>[ServiceAppName]</string>
+	<key>naverServiceAppUrlScheme</key>
+	<string>[UrlScheme]</string>
 </dict>
 </plist>
