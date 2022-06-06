@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:withconi/ui/theme/colors.dart';
@@ -29,13 +31,15 @@ class SnsButtonWidget extends StatelessWidget {
               height: iconHeight,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 9,
           ),
           Text(
             label,
             style: GoogleFonts.notoSans(
-                color: black, fontSize: 12, fontWeight: FontWeight.w500),
+                color: WcColors.black,
+                fontSize: 12,
+                fontWeight: FontWeight.w500),
           )
         ],
       ),
