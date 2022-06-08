@@ -5,10 +5,16 @@ class UserData extends GetxController {
   late RxString _email;
   late RxString _name;
   late RxString _password;
+  late RxString _nickName;
+  late RxString _profileSrc;
+  Rxn<dynamic> _oAuthObject = Rxn<dynamic>();
 
   String get email => _email.value;
   String get name => _name.value;
   String get password => _password.value;
+  String get nickName => _nickName.value;
+  String get profileSrc => _profileSrc.value;
+  dynamic get oAuthObject => _oAuthObject.value;
 
   @override
   void onInit() {
@@ -16,22 +22,31 @@ class UserData extends GetxController {
     _email = ''.obs;
     _name = ''.obs;
     _password = ''.obs;
+    _nickName = ''.obs;
+    _profileSrc = ''.obs;
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  void onEmailChange(String email) {
+  void saveEmail(String email) {
     _email.value = email;
   }
 
-  void onNameChange(String name) {
+  void saveName(String name) {
     _name.value = name;
   }
 
-  void onPasswordChange(String password) {
+  void savePassword(String password) {
     _password.value = password;
+  }
+
+  void saveNickName(String nickName) {
+    _nickName.value = nickName;
+  }
+
+  void saveProfileSrc(String profileSrc) {
+    _profileSrc.value = profileSrc;
+  }
+
+  void saveOAuthObject(dynamic oAuthObject) {
+    _oAuthObject.value = oAuthObject;
   }
 }
