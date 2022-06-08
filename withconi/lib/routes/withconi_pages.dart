@@ -1,6 +1,8 @@
 import 'package:withconi/import_basic.dart';
-import 'package:withconi/ui/pages/signup/signup_name_pw.dart';
-import 'package:withconi/ui/pages/signup/signup_conimal_step1.dart';
+import 'package:withconi/ui/pages/signin/signin_email_page.dart';
+import 'package:withconi/ui/pages/signup/signup_profile_page.dart';
+import 'package:withconi/ui/pages/signup/signup_pw_page.dart';
+import 'package:withconi/ui/pages/signup/signup_conimal_1_page.dart';
 import 'package:withconi/ui/pages/splash.dart';
 import 'package:withconi/ui/pages/start/start_page.dart';
 
@@ -19,12 +21,17 @@ class WCPages {
       //  binding: HomeBinding()
     ),
     GetPage(
-      name: Routes.SIGNUP_NAME_PW,
-      page: () => SignupPageNamePw(),
+      name: Routes.SIGNUP_PW,
+      page: () => SignupPwPage(),
+    ),
+    GetPage(
+      name: Routes.SIGNUP_PROFILE,
+      page: () => SignupProfilePage(),
     ),
     GetPage(
       name: Routes.SIGNUP_CONIMAL_STEP1,
       page: () => SignupPageConimalStep1(),
     ),
+    GetPage(name: Routes.SIGNIN_EMAIL, page: () => SigninEmailPage())
   ];
 }
