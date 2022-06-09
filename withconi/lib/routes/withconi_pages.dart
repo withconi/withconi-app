@@ -1,4 +1,5 @@
 import 'package:withconi/import_basic.dart';
+import 'package:withconi/ui/pages/home/home_page.dart';
 import 'package:withconi/ui/pages/signin/signin_email_page.dart';
 import 'package:withconi/ui/pages/signup/signup_profile_page.dart';
 import 'package:withconi/ui/pages/signup/signup_pw_page.dart';
@@ -9,6 +10,12 @@ import 'package:withconi/ui/pages/start/start_page.dart';
 class WCPages {
   static final pages = [
     GetPage(
+        name: Routes.HOME,
+        page: () => const HomePage(),
+        transition: Transition.fade
+        //  binding: HomeBinding()
+        ),
+    GetPage(
         name: Routes.SPLASH,
         page: () => const SplashPage(),
         transition: Transition.fade
@@ -17,8 +24,6 @@ class WCPages {
     GetPage(
       name: Routes.START,
       page: () => StartPage(),
-
-      //  binding: HomeBinding()
     ),
     GetPage(
       name: Routes.SIGNUP_PW,
