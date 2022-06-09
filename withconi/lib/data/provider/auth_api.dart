@@ -1,16 +1,20 @@
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:get/get.dart';
+import 'package:flutter_naver_login/flutter_naver_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
-import 'package:withconi/configs/constants/constants.dart';
+import 'package:withconi/configs/constants/api_url.dart';
 import 'package:withconi/configs/constants/enum.dart';
+import 'package:withconi/configs/constants/auth_variables.dart';
+import 'package:withconi/core/auth_info.dart';
 import 'package:withconi/data/model/token.dart';
 
 class AuthAPI {
-  final Dio _dio = Get.find<Dio>();
+  final Dio _dio = Dio();
 
-  Future<UserCredential> signInWithGoogle() async {
+  Future<AuthInfo> signInWithGoogle() async {
+    late final AuthInfo authInfo;
+
     // Trigger the authentication flow
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
@@ -24,33 +28,20 @@ class AuthAPI {
       idToken: googleAuth?.idToken,
     );
 
-    // Once signed in, return the UserCredential
-    return await FirebaseAuth.instance.signInWithCredential(credential);
+    String? email = googleUser?.email;
+    authInfo = AuthInfo(
+        authObject: credential,
+        email: email!,
+        provider: ProviderOptions.GOOGLE);
+    return authInfo;
   }
 
-  Future<UserCredential?> signUpWithEmail() async {
+  Future<UserCredential?> signInWithEmail(
+      {required String email, required String password}) async {
     try {
-      final credential =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: 'emailAddress',
-        password: 'password',
-      );
-      return credential;
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
-      } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
-      }
-    } catch (e) {
-      print(e);
-    }
-  }
+      final credential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: email);
 
-  Future<UserCredential?> signInWithEmail() async {
-    try {
-      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: 'emailAddress', password: 'password');
       return credential;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
@@ -59,100 +50,150 @@ class AuthAPI {
         print('Wrong password provided for that user.');
       }
     }
+    return null;
   }
 
-  signInWithToken() async {
-    try {
-      // 카카오 계정으로 로그인
-      OAuthToken token = await UserApi.instance.loginWithKakaoAccount();
-      print('로그인 성공 ${token.accessToken}');
-    } catch (error) {
-      print('로그인 실패 $error');
-    }
-  }
+  signInWithApple() {}
 
-  validateProviderToken({required ProviderOptions provider}) async {
-    switch (provider) {
-      case ProviderOptions.KAKAO:
-        if (await AuthApi.instance.hasToken()) {
-          try {
-            AccessTokenInfo tokenInfo =
-                await UserApi.instance.accessTokenInfo();
-            print('토큰 유효성 체크 성공 ${tokenInfo.id} ${tokenInfo.expiresIn}');
-          } catch (error) {
-            if (error is KakaoException && error.isInvalidTokenError()) {
-              print('토큰 만료 $error');
-            } else {
-              print('토큰 정보 조회 실패 $error');
-            }
-          }
+  Future<AuthInfo> signInWithKakao() async {
+    late String accessToken;
+    late AuthInfo authInfo;
+    if (await AuthApi.instance.hasToken()) {
+      try {
+        AccessTokenInfo tokenInfo = await UserApi.instance.accessTokenInfo();
+        print('토큰 유효성 체크 성공 ${tokenInfo.id} ${tokenInfo.expiresIn}');
+      } catch (error) {
+        if (error is KakaoException && error.isInvalidTokenError()) {
+          print('토큰 만료 $error');
         } else {
-          print('발급된 토큰 없음');
+          print('토큰 정보 조회 실패 $error');
         }
-        break;
 
-      case ProviderOptions.NAVER:
-        break;
-      default:
+        try {
+          // 카카오 계정으로 로그인
+          OAuthToken token = await UserApi.instance.loginWithKakaoAccount();
+          print('로그인 성공 ${token.accessToken}');
+          accessToken = token.accessToken;
+        } catch (error) {
+          print('로그인 실패 $error');
+          accessToken = '';
+        }
+      }
+    } else {
+      print('발급된 토큰 없음');
+      try {
+        OAuthToken token = await UserApi.instance.loginWithKakaoAccount();
+        print('로그인 성공 ${token.accessToken}');
+        accessToken = token.accessToken;
+      } catch (error) {
+        print('로그인 실패 $error');
+        accessToken = '';
+      }
     }
+
+    var user = await UserApi.instance.me();
+    String? email = user.kakaoAccount?.email;
+
+    authInfo = AuthInfo(
+        authObject: accessToken,
+        email: email!,
+        provider: ProviderOptions.KAKAO);
+
+    return authInfo;
   }
 
-  validateCustomToken() {}
+  Future<AuthInfo> signInWithNaver() async {
+    late String accessToken;
+    late final NaverLoginResult result;
+    late final NaverAccessToken tokenInfo;
+    late final AuthInfo authInfo;
+    if (await FlutterNaverLogin.isLoggedIn) {
+      tokenInfo = await FlutterNaverLogin.currentAccessToken;
+      if (tokenInfo.isValid()) {
+        print('토큰 유효성 체크 성공 ${tokenInfo.isValid()} ${tokenInfo.expiresAt}');
+        accessToken = tokenInfo.accessToken;
+      } else {
+        print('토큰 유효하지 않음');
+        result = await FlutterNaverLogin.logIn();
+        accessToken = result.accessToken.accessToken;
+      }
+    } else {
+      print('토큰 유효하지 않음');
+      result = await FlutterNaverLogin.logIn();
+    }
+    authInfo = AuthInfo(
+        authObject: accessToken,
+        email: result.account.email,
+        provider: ProviderOptions.NAVER);
+    return authInfo;
+  }
 
-  Future<TokenModel> newCustomToken(
-      {required String provider, required String token}) async {
-    final response = await _dio.get(
-      '/authentication/token/new/',
-      queryParameters: {
-        "api_key": Constants.WITHCONI_DB_API_KEY,
-      },
+  Future<UserCredential?> signInWithCustomToken(
+      {required String accessToken, required ProviderOptions provider}) async {
+    String customToken =
+        await getNewCustomToken(provider: 'kakao', token: accessToken);
+    return await FirebaseAuth.instance.signInWithCustomToken(customToken);
+  }
+
+  Future<UserCredential?> signInWithCredential(
+      {required OAuthCredential credential}) async {
+    return await FirebaseAuth.instance.signInWithCredential(credential);
+  }
+
+  getNewCustomToken({required String provider, required String token}) async {
+    final response = await _dio.post(
+      HttpUrl.SIGN_IN,
+      data: {"accessToken": token, "provider": provider},
     );
     // print('[API SUCCESS] ==== ${response.data.toString()}');
     return TokenModel.fromJson(response.data);
   }
 
-  signInWithCustomToken() {}
+  signUpUserDB() {}
 
-  createUserDB() {}
+  Future<bool> checkDuplicateEmail({required email}) async {
+    // final response = await _dio.post(
+    //   HttpUrl.VERIFY_EMAIL,
+    //   data: {
+    //     "email": email,
+    //   },
+    // );
+    // print('[API SUCCESS] ==== ${response.data.toString()}');
 
-  checkDuplicateEmail() {}
-
-  Future<TokenModel> validateWithLogin({
-    required String email,
-    required String password,
-    required String token,
-  }) async {
-    final response = await _dio.post(
-      '/authentication/token/validate_with_login',
-      queryParameters: {
-        "api_key": Constants.WITHCONI_DB_API_KEY,
-      },
-      data: {
-        "email": email,
-        "password": password,
-        "request_token": token,
-      },
-    );
-    return TokenModel.fromJson(response.data);
+    if (email == 'kjh9519@naver.com') {
+      return true;
+    } else {
+      return false;
+    }
   }
 
-  bool isUserLoggedIn({required ProviderOptions provider}) {
-    switch (provider) {
-      case ProviderOptions.NONE:
-        break;
-      case ProviderOptions.KAKAO:
-        break;
-      case ProviderOptions.NAVER:
-        break;
-      case ProviderOptions.GOOGLE:
-        break;
-      case ProviderOptions.EMAIL:
-        break;
-      case ProviderOptions.APPLE:
-        break;
+  Future<bool> isUserLoggedIn({required ProviderOptions provider}) async {
+    late bool _isLoggedIn;
 
-      default:
+    if (auth.currentUser == null || provider == ProviderOptions.NONE) {
+      _isLoggedIn = false;
+    } else {
+      switch (provider) {
+        case ProviderOptions.KAKAO:
+          break;
+        case ProviderOptions.NAVER:
+          _isLoggedIn = await FlutterNaverLogin.isLoggedIn;
+          break;
+        case ProviderOptions.GOOGLE:
+          GoogleSignInAccount? googleSignInAccount =
+              await googleSignIn.signIn();
+          (googleSignInAccount != null)
+              ? _isLoggedIn = true
+              : _isLoggedIn = false;
+          break;
+        case ProviderOptions.EMAIL:
+          break;
+        case ProviderOptions.APPLE:
+          break;
+
+        default:
+      }
     }
-    return true;
+    return _isLoggedIn;
   }
 }
