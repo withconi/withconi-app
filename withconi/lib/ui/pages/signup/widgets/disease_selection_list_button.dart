@@ -32,10 +32,14 @@ class WcDiseaseSelectListButton extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                name,
-                style:
-                    GoogleFonts.notoSans(fontSize: 15, color: WcColors.black),
+              SizedBox(
+                width: width - 100,
+                child: Text(
+                  name,
+                  style:
+                      GoogleFonts.notoSans(fontSize: 15, color: WcColors.black),
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
               (selected)
                   ? SvgPicture.asset(
