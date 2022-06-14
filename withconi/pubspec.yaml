@@ -53,7 +53,10 @@ dependencies:
   flutter_naver_login: ^1.6.0
   intl: ^0.17.0
   equatable: ^2.0.3
-
+  dartz: ^0.10.1
+  json_serializable: ^6.2.0
+  json_annotation: ^4.5.0
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
