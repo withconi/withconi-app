@@ -1,33 +1,35 @@
-import 'package:withconi/data/model/diseases.dart';
+import 'package:equatable/equatable.dart';
+import 'package:withconi/data/model/disease.dart';
+import 'package:json_annotation/json_annotation.dart';
+part 'conimal.g.dart';
 
-class ConimalModel {
-  int birthDate;
-  String name;
-  int adoptedDate;
-  DiseaseModel disease;
-  int createdAt;
-
+@JsonSerializable(explicitToJson: true)
+class ConimalModel extends Equatable {
   ConimalModel(
       {required this.birthDate,
       required this.name,
       required this.adoptedDate,
-      required this.disease,
+      required this.diseases,
       required this.createdAt});
 
-  factory ConimalModel.fromJson(Map<String, dynamic> json) {
-    return ConimalModel(
-        birthDate: json['birthDate'],
-        name: json['name'],
-        adoptedDate: json['adoptedDate'],
-        disease: json['disease'],
-        createdAt: json['createdAt']);
-  }
+  int birthDate;
+  String name;
+  int adoptedDate;
+  List<DiseaseModel> diseases;
+  int createdAt;
 
-  Map<String, dynamic> toJson() => {
-        'birthDate': birthDate,
-        'name': name,
-        'adoptedDate': adoptedDate,
-        'disease': disease.toJson(),
-        'createdAt': createdAt,
-      };
+  factory ConimalModel.fromJson(Map<String, dynamic> json) =>
+      _$ConimalModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ConimalModelToJson(this);
+
+  @override
+  List<Object> get props => [this.name, this.createdAt];
+}
+
+List<ConimalModel> parseConimal(Map<String, dynamic> data) {
+  final conimalList = data['data']['list']
+      .map<ConimalModel>((json) => ConimalModel.fromJson(json))
+      .toList();
+  return conimalList;
 }
