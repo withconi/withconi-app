@@ -1,6 +1,7 @@
-import 'package:withconi/data/model/diseases.dart';
+import 'package:withconi/data/model/disease.dart';
 import 'package:withconi/data/repository/disease_search_repository.dart';
 import '../../import_basic.dart';
+import 'conimal_data.dart';
 
 class DiseaseSearchController extends GetxController {
   late RxString _disease;
@@ -50,5 +51,10 @@ class DiseaseSearchController extends GetxController {
           await _diseaseRepository.getDiseaseList(diseaseName: val);
       diseaseListSearched.assignAll(newResultList);
     }
+  }
+
+  saveDiseases() {
+    ConimalData.to.onDiseasesChange(diseaseListSelected.toList());
+    Get.back(result: diseaseListSelected.value.toList());
   }
 }
