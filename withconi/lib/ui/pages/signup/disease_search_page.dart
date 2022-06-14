@@ -1,9 +1,9 @@
 import 'package:flutter_svg/svg.dart';
 import 'package:withconi/controller/signup/disease_search_controller.dart';
 import 'package:withconi/import_basic.dart';
-import 'package:withconi/ui/pages/signup/widgets/disease_selection_list_button.dart';
+import 'package:withconi/ui/pages/signup/signup_widgets/disease_selection_list_button.dart';
 import '../../widgets/button/wide_button.dart';
-import 'widgets/disease_item_box.dart';
+import 'signup_widgets/disease_item_box.dart';
 
 class DiseaseSearchPage extends StatelessWidget {
   const DiseaseSearchPage({Key? key}) : super(key: key);
@@ -19,7 +19,9 @@ class DiseaseSearchPage extends StatelessWidget {
         activeTextColor: WcColors.white,
         buttonText: '질병 등록',
         buttonWidth: WcWidth - 40,
-        onTap: () {},
+        onTap: () {
+          _controller.saveDiseases();
+        },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: SafeArea(
