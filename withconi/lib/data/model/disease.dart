@@ -1,34 +1,43 @@
-import 'package:equatable/equatable.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+part 'disease.freezed.dart';
 part 'disease.g.dart';
 
-@JsonSerializable()
-class DiseaseModel extends Equatable {
-  DiseaseModel({
-    required this.createdAt,
-    required this.code,
-    required this.name,
-    required this.symptoms,
-    required this.description,
-  });
+@freezed
+class Disease with _$Disease {
+  factory Disease({
+    required int createdAt,
+    required String code,
+    required String name,
+    required List<String> symptoms,
+    required String description,
+  }) = _Disease;
 
-  String code;
-  String name;
-  List<String> symptoms;
-  String description;
-  int createdAt;
-
-  factory DiseaseModel.fromJson(Map<String, dynamic> json) =>
-      _$DiseaseModelFromJson(json);
-  Map<String, dynamic> toJson() => _$DiseaseModelToJson(this);
-
-  @override
-  List<Object> get props => [this.code, this.name];
+  factory Disease.fromJson(Map<String, dynamic> json) =>
+      _$DiseaseFromJson(json);
 }
 
-List<DiseaseModel> parseDisease(Map<String, dynamic> data) {
-  final diseaseList = data['list']
-      .map<DiseaseModel>((json) => DiseaseModel.fromJson(json))
-      .toList();
-  return diseaseList;
+// List<Disease> parseDisease(Map<String, dynamic> data) {
+//   final diseaseList =
+//       data['list'].map<Disease>((json) => Disease.fromJson(json)).toList();
+//   return diseaseList;
+// }
+
+class DiseaseResponse {
+  DiseaseResponse({required this.totalResults, required this.results});
+
+  int totalResults;
+  List<Disease> results;
+
+  factory DiseaseResponse.fromJson(Map<String, dynamic> json) {
+    List<Disease> list = [];
+    int totalDocuments = json['totalDocuments'];
+    if (json['list'] != null) {
+      list =
+          json['list'].map<Disease>((json) => Disease.fromJson(json)).toList();
+    }
+    return DiseaseResponse(
+      totalResults: totalDocuments,
+      results: list,
+    );
+  }
 }
