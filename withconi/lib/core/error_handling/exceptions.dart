@@ -62,3 +62,31 @@ class TimeOutException extends DioError implements Exception {
     return 'The connection has timed out, please try again.';
   }
 }
+
+class NoDataException implements Exception {
+  @override
+  String toString() {
+    return 'Success, but empty list';
+  }
+}
+
+class DataParsingException implements Exception {
+  @override
+  String toString() {
+    return 'Success, but empty list';
+  }
+}
+
+class MaxListException implements Exception {
+  @override
+  String toString() {
+    return 'Success, but empty list';
+  }
+}
+
+class PlatformException implements Exception {
+  @override
+  String toString() {
+    return 'Success, but empty list';
+  }
+}
