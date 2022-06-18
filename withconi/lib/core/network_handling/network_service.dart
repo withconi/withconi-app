@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:withconi/configs/constants/api_url.dart';
 import 'package:withconi/configs/constants/enum.dart';
 import '../../configs/helpers/token_manager.dart';
+import '../error_handling/exceptions.dart';
 import 'network_response.dart';
 
 enum RequestType { GET, POST, PUT, PATCH, DELETE }
@@ -26,18 +27,22 @@ class Api {
     dio.interceptors.addAll({
       AuthInterceptor(dio),
     });
-    dio.interceptors.addAll({
-      Logging(dio),
-    });
 
+    // dio.interceptors.addAll({
+    //   Logging(dio),
+    // });
+
+    dio.interceptors.addAll({
+      ErrorInterceptors(dio),
+    });
     return dio;
   }
 
-  Future<NetworkResponse?> apiCall(
-      String url,
+  Future<Map<String, dynamic>> apiCall(
+      {required String url,
       Map<String, dynamic>? queryParameters,
       Map<String, dynamic>? body,
-      RequestType requestType) async {
+      required RequestType requestType}) async {
     Response? result;
     try {
       switch (requestType) {
@@ -62,15 +67,13 @@ class Api {
             break;
           }
       }
-      if (result != null) {
-        return NetworkResponse.success(result.data);
+      if (result != null && result.data['success'] == true) {
+        return result.data['data'] as Map<String, dynamic>;
       } else {
-        return const NetworkResponse.error("Data is null");
+        throw NoDataException();
       }
-    } on DioError catch (error) {
-      return NetworkResponse.error(error.message);
-    } catch (error) {
-      return NetworkResponse.error(error.toString());
+    } catch (exception) {
+      rethrow;
     }
   }
 }
@@ -124,7 +127,7 @@ class ErrorInterceptors extends Interceptor {
           case 400:
             throw BadRequestException(err.requestOptions);
           case 403:
-            throw WrongTokenException(err.requestOptions);
+            throw UnauthorizedException(err.requestOptions);
           case 404:
             throw NotFoundException(err.requestOptions);
           case 500:
@@ -141,68 +144,68 @@ class ErrorInterceptors extends Interceptor {
   }
 }
 
-class BadRequestException extends DioError {
-  BadRequestException(RequestOptions r) : super(requestOptions: r);
+// class BadRequestException extends DioError {
+//   BadRequestException(RequestOptions r) : super(requestOptions: r);
 
-  @override
-  String toString() {
-    return 'Invalid request';
-  }
-}
+//   @override
+//   String toString() {
+//     return 'Invalid request';
+//   }
+// }
 
-class InternalServerErrorException extends DioError {
-  InternalServerErrorException(RequestOptions r) : super(requestOptions: r);
+// class InternalServerErrorException extends DioError {
+//   InternalServerErrorException(RequestOptions r) : super(requestOptions: r);
 
-  @override
-  String toString() {
-    return 'Unknown error occurred, please try again later.';
-  }
-}
+//   @override
+//   String toString() {
+//     return 'Unknown error occurred, please try again later.';
+//   }
+// }
 
-class ConflictException extends DioError {
-  ConflictException(RequestOptions r) : super(requestOptions: r);
+// class ConflictException extends DioError {
+//   ConflictException(RequestOptions r) : super(requestOptions: r);
 
-  @override
-  String toString() {
-    return 'Conflict occurred';
-  }
-}
+//   @override
+//   String toString() {
+//     return 'Conflict occurred';
+//   }
+// }
 
-class WrongTokenException extends DioError {
-  WrongTokenException(RequestOptions r) : super(requestOptions: r);
+// class UnauthorizedException extends DioError {
+//   UnauthorizedException(RequestOptions r) : super(requestOptions: r);
 
-  @override
-  String toString() {
-    return 'Access denied, wrong token';
-  }
-}
+//   @override
+//   String toString() {
+//     return 'Access denied, wrong token';
+//   }
+// }
 
-class NotFoundException extends DioError {
-  NotFoundException(RequestOptions r) : super(requestOptions: r);
+// class NotFoundException extends DioError {
+//   NotFoundException(RequestOptions r) : super(requestOptions: r);
 
-  @override
-  String toString() {
-    return 'The requested information could not be found';
-  }
-}
+//   @override
+//   String toString() {
+//     return 'The requested information could not be found';
+//   }
+// }
 
-class NoInternetConnectionException extends DioError {
-  NoInternetConnectionException(RequestOptions r) : super(requestOptions: r);
+// class NoInternetConnectionException extends DioError {
+//   NoInternetConnectionException(RequestOptions r) : super(requestOptions: r);
 
-  @override
-  String toString() {
-    return 'No internet connection detected, please try again.';
-  }
-}
+//   @override
+//   String toString() {
+//     return 'No internet connection detected, please try again.';
+//   }
+// }
 
-class TimeOutException extends DioError {
-  TimeOutException(RequestOptions r) : super(requestOptions: r);
+// class TimeOutException extends DioError {
+//   TimeOutException(RequestOptions r) : super(requestOptions: r);
 
-  @override
-  String toString() {
-    return 'The connection has timed out, please try again.';
-  }
-}
+//   @override
+//   String toString() {
+//     return 'The connection has timed out, please try again.';
+//   }
+// }
 
 class Logging extends Interceptor {
   final Dio dio;
@@ -226,6 +229,7 @@ class Logging extends Interceptor {
     print(
       'ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path}',
     );
+    print(err);
     return super.onError(err, handler);
   }
 }
