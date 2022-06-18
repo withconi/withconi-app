@@ -5,10 +5,9 @@ import '../../core/network_handling/network_service.dart';
 import '../model/disease.dart';
 
 class DiseaseAPI {
-  final Dio _dio = Dio();
-  List<DiseaseModel> diseaseList = [];
+  final Api _dio = Api();
 
-  getDiseaseList(
+  Future<Map<String, dynamic>> getDiseaseList(
       {required String diseaseName,
       required int page,
       required int listSize}) async {
@@ -18,19 +17,12 @@ class DiseaseAPI {
       'keyword': diseaseName,
     };
 
-    NetworkResponse? userData = await Api()
-        .apiCall(HttpUrl.GET_DISEASE, requestData, null, RequestType.GET);
-    print(userData);
+    Map<String, dynamic> userData = await _dio.apiCall(
+        url: HttpUrl.GET_DISEASE,
+        queryParameters: requestData,
+        body: null,
+        requestType: RequestType.GET);
 
-    return userData?.maybeWhen(success: (data) {
-      List<DiseaseModel> list = parseDisease(data);
-      return list;
-    }, loading: (message) {
-      print("sasa -  $message");
-    }, error: (message) {
-      print("sasa -  ${message}");
-    }, orElse: () {
-      print("sasa -  on error");
-    });
+    return userData;
   }
 }
