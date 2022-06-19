@@ -4,9 +4,11 @@ import 'package:withconi/ui/pages/signin/signin_email_page.dart';
 import 'package:withconi/ui/pages/signup/disease_search_page.dart';
 import 'package:withconi/ui/pages/signup/signup_profile_page.dart';
 import 'package:withconi/ui/pages/signup/signup_pw_page.dart';
-import 'package:withconi/ui/pages/signup/signup_conimal_1_page.dart';
+import 'package:withconi/ui/pages/signup/signup_conimal_page_1.dart';
 import 'package:withconi/ui/pages/splash.dart';
 import 'package:withconi/ui/pages/start/start_page.dart';
+
+import '../ui/pages/signup/signup_conimal_page_2.dart';
 
 class WCPages {
   static final pages = [
@@ -37,7 +39,11 @@ class WCPages {
     GetPage(name: Routes.SIGNIN_EMAIL, page: () => SigninEmailPage()),
     GetPage(
       name: Routes.SIGNUP_CONIMAL_STEP1,
-      page: () => SignupPageConimalStep1(),
+      page: () => SignupConimalPage1(),
+    ),
+    GetPage(
+      name: Routes.SIGNUP_CONIMAL_STEP2,
+      page: () => SignupConimalPage2(),
     ),
     GetPage(
       name: Routes.SIGNUP_DISEASE_SEARCH,
