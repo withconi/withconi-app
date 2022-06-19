@@ -1,3 +1,5 @@
+import 'package:withconi/core/error_handling/error_message_object.dart';
+
 import '../core/error_handling/failures.dart';
 import '../ui/widgets/snackbar.dart';
 
@@ -6,51 +8,24 @@ class ExceptionController {
   static final _singleton = ExceptionController._internal();
   factory ExceptionController() => _singleton;
 
-  mapFailureToDialog(Failure? _failure) {
-    if (_failure == null) {
-      return;
-    }
+  mapFailureToDialog(Failure _failure) {
+    ErrorMessage errorMessage =
+        ErrorMessage.mapFailureToErrorMessage(failure: _failure);
 
-    return _failure.when(
-      dataParsingFailure: (title, message) => print(title),
-      noConnectionFailure: (title, message) => showSnackbar(text: message),
-      serverFailure: (title, message) => print(title),
-      noUserDataFailure: (String? title, String message) =>
-          showSnackbar(text: message),
-      maxListFailure: (String? title, String message) =>
-          showSnackbar(text: message),
-    );
+    return showSnackbar(text: errorMessage.message);
   }
 
-  mapFailureToSnackbar(Failure? _failure) {
-    if (_failure == null) {
-      return;
-    }
+  mapFailureToSnackbar(Failure _failure) {
+    ErrorMessage errorMessage =
+        ErrorMessage.mapFailureToErrorMessage(failure: _failure);
 
-    return _failure.when(
-      dataParsingFailure: (title, message) => showSnackbar(text: message),
-      noConnectionFailure: (title, message) => showSnackbar(text: message),
-      serverFailure: (title, message) => showSnackbar(text: message),
-      noUserDataFailure: (String? title, String message) =>
-          showSnackbar(text: message),
-      maxListFailure: (String? title, String message) =>
-          showSnackbar(text: message),
-    );
+    return showSnackbar(text: errorMessage.message);
   }
 
-  mapFailureToPage(Failure? _failure) {
-    if (_failure == null) {
-      return;
-    }
+  mapFailureToPage(Failure _failure) {
+    ErrorMessage errorMessage =
+        ErrorMessage.mapFailureToErrorMessage(failure: _failure);
 
-    return _failure.when(
-      dataParsingFailure: (title, message) => print(title),
-      noConnectionFailure: (title, message) => showSnackbar(text: message),
-      serverFailure: (title, message) => print(title),
-      noUserDataFailure: (String? title, String message) =>
-          showSnackbar(text: message),
-      maxListFailure: (String? title, String message) =>
-          showSnackbar(text: message),
-    );
+    return showSnackbar(text: errorMessage.message);
   }
 }
