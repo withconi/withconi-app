@@ -8,6 +8,7 @@ abstract class Routes {
   static const SIGNUP_PROFILE = '/signup/profile';
   static const SIGNUP_CONIMAL_STEP1 = '/signup/conimal/1';
   static const SIGNUP_CONIMAL_STEP2 = '/signup/conimal/2';
+  static const SIGNUP_CONIMAL_EDIT = '/signup/conimal/edit';
   static const SIGNIN_EMAIL = '/signin/email';
   static const SIGNUP_DISEASE_SEARCH = '/signup/conimal/1/disease';
 }
