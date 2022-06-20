@@ -9,7 +9,6 @@ class SignupConimalPage2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SignupConimal2Controller _controller = Get.put(SignupConimal2Controller());
-
     return Scaffold(
       body: SafeArea(
         child: SizedBox(
@@ -62,9 +61,13 @@ class SignupConimalPage2 extends StatelessWidget {
                             ),
                             SlidableAction(
                               onPressed: (context) {
-                                print('hello');
+                                Get.toNamed(Routes.SIGNUP_CONIMAL_EDIT,
+                                    arguments: {
+                                      'controllerTag': _controller
+                                          .getConimalControllerTag(index)
+                                    });
                               },
-                              backgroundColor: Color(0xFF21B7CA),
+                              backgroundColor: WcColors.blue80,
                               foregroundColor: Colors.white,
                               icon: Icons.edit,
                               label: '수정',
@@ -77,9 +80,17 @@ class SignupConimalPage2 extends StatelessWidget {
                         // The child of the Slidable is what the user sees when the
                         // component is not dragged.
                         child: ConimalListTile(
-                          age: 2,
-                          diseaseName: 'adf',
-                          diseaseNum: '2',
+                          age: _controller.calculateConimalAge(index),
+                          diseaseName: (_controller
+                                  .conimalList[index].diseases.isNotEmpty)
+                              ? _controller.conimalList[index].diseases[0].name
+                                  .substring(0, 10)
+                              : '질병 없음',
+                          diseaseNum: (_controller
+                                      .conimalList[index].diseases.length >
+                                  1)
+                              ? _controller.conimalList[index].diseases.length
+                              : null,
                           name: _controller.conimalList[index].name,
                           species:
                               (_controller.conimalList[index].species == 'cat')
@@ -89,6 +100,14 @@ class SignupConimalPage2 extends StatelessWidget {
                       ),
                     ))),
               ),
+              InkWell(
+                onTap: _controller.addConimal,
+                child: Container(
+                  width: 105,
+                  height: 36,
+                  decoration: BoxDecoration(color: WcColors.grey100),
+                ),
+              )
             ],
           ),
         ),
@@ -110,7 +129,7 @@ class ConimalListTile extends StatelessWidget {
   String name;
   int age;
   String diseaseName;
-  String? diseaseNum;
+  int? diseaseNum;
 
   @override
   Widget build(BuildContext context) {
@@ -123,12 +142,12 @@ class ConimalListTile extends StatelessWidget {
             (species == Species.CAT)
                 ? Image.asset(
                     'assets/icons/cat.png',
-                    height: 43,
+                    width: 42,
                     alignment: Alignment.centerLeft,
                   )
                 : Image.asset(
                     'assets/icons/dog.png',
-                    height: 43,
+                    width: 42,
                     alignment: Alignment.centerLeft,
                   ),
             SizedBox(
@@ -140,56 +159,72 @@ class ConimalListTile extends StatelessWidget {
                 name,
                 style: GoogleFonts.notoSans(
                     fontSize: 17, fontWeight: FontWeight.w600),
+                overflow: TextOverflow.ellipsis,
               ),
             ),
             SizedBox(
-              width: 35,
-              child: Row(children: [
-                Text(
-                  age.toString(),
-                  style: GoogleFonts.montserrat(
-                      fontSize: 16, fontWeight: FontWeight.w400),
-                ),
-                Text(
-                  '살',
-                  style: GoogleFonts.notoSans(
-                      fontSize: 16, fontWeight: FontWeight.w500),
-                ),
-              ]),
+              width: 10,
+            ),
+            SizedBox(
+              width: 55,
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.baseline,
+                  textBaseline: TextBaseline.alphabetic,
+                  children: [
+                    Text(
+                      '만 ',
+                      style: GoogleFonts.notoSans(
+                          fontSize: 16, fontWeight: FontWeight.w500),
+                    ),
+                    Text(
+                      age.toString(),
+                      style: GoogleFonts.montserrat(
+                          fontSize: 16, fontWeight: FontWeight.w400),
+                    ),
+                    Text(
+                      '살',
+                      style: GoogleFonts.notoSans(
+                          fontSize: 16, fontWeight: FontWeight.w500),
+                    ),
+                  ]),
+            ),
+            SizedBox(
+              width: 10,
             ),
             Expanded(
-                flex: 7,
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text(
-                        diseaseName,
-                        style: GoogleFonts.notoSans(
-                            fontSize: 16, fontWeight: FontWeight.w500),
-                      ),
-                      (diseaseNum != null)
-                          ? Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              crossAxisAlignment: CrossAxisAlignment.baseline,
-                              textBaseline: TextBaseline.ideographic,
-                              children: [
-                                Text(
-                                  '+$diseaseNum',
-                                  style: GoogleFonts.montserrat(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400),
-                                ),
-                                Text(
-                                  '개 질병',
-                                  style: GoogleFonts.notoSans(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                              ],
-                            )
-                          : SizedBox.shrink(),
-                    ])),
+              flex: 7,
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      diseaseName,
+                      style: GoogleFonts.notoSans(
+                          fontSize: 16, fontWeight: FontWeight.w500),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    (diseaseNum != null)
+                        ? Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            crossAxisAlignment: CrossAxisAlignment.baseline,
+                            textBaseline: TextBaseline.ideographic,
+                            children: [
+                              Text(
+                                '+$diseaseNum',
+                                style: GoogleFonts.montserrat(
+                                    fontSize: 16, fontWeight: FontWeight.w400),
+                              ),
+                              Text(
+                                '개 질병',
+                                style: GoogleFonts.notoSans(
+                                    fontSize: 16, fontWeight: FontWeight.w500),
+                              ),
+                            ],
+                          )
+                        : SizedBox.shrink(),
+                  ]),
+            ),
           ],
         ));
   }

@@ -10,10 +10,13 @@ import 'signup_widgets/species_radio_button.dart';
 
 class SignupConimalPage1 extends StatelessWidget {
   SignupConimalPage1({Key? key}) : super(key: key);
+  String controllerId = DateTime.now().millisecondsSinceEpoch.toString();
 
   @override
   Widget build(BuildContext context) {
-    SignupConimal1Controller _controller = Get.put(SignupConimal1Controller());
+    SignupConimal1Controller _controller =
+        Get.put(SignupConimal1Controller(), tag: controllerId, permanent: true);
+    _controller.controllerTag.value = controllerId;
 
     return Scaffold(
       body: SafeArea(
@@ -182,7 +185,7 @@ class SignupConimalPage1 extends StatelessWidget {
                 ),
                 Obx(
                   () => IgnorePointer(
-                    ignoring: _controller.showAddConimalButton.value,
+                    ignoring: !_controller.showAddConimalButton.value,
                     child: AnimatedOpacity(
                       curve: Curves.easeIn,
                       opacity:
@@ -194,7 +197,7 @@ class SignupConimalPage1 extends StatelessWidget {
                           activeTextColor: WcColors.grey200,
                           buttonText: '더 추가하기',
                           buttonWidth: WcWidth - 40,
-                          onTap: _controller.addMoreConimal),
+                          onTap: _controller.addConimal),
                     ),
                   ),
                 ),
@@ -208,7 +211,7 @@ class SignupConimalPage1 extends StatelessWidget {
                     activeTextColor: WcColors.white,
                     buttonText: '등록',
                     buttonWidth: WcWidth - 40,
-                    onTap: _controller.finishRegister,
+                    onTap: _controller.finishAddConimal,
                   ),
                 ),
               ],
