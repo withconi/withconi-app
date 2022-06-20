@@ -9,6 +9,7 @@ import '../../import_basic.dart';
 import 'shared_data/disease_data.dart';
 
 class SignupConimal1Controller extends GetxController {
+  RxString controllerTag = ''.obs;
   final ConimalRepository _conimalRepository = ConimalRepository();
   RxString _userName = ''.obs;
   RxString _conimalName = ''.obs;
@@ -25,7 +26,6 @@ class SignupConimal1Controller extends GetxController {
   RxBool diseaseSelected = false.obs;
   final Rxn<DateTime> _birthDate = Rxn<DateTime>();
   final Rxn<DateTime> _adoptedDate = Rxn<DateTime>();
-
   RxList<bool> genderSelectionList = [false, false].obs;
   RxnString conimalNameErrorText = RxnString();
   TextEditingController conimalNameTextController = TextEditingController();
@@ -45,6 +45,12 @@ class SignupConimal1Controller extends GetxController {
   void onInit() {
     super.onInit();
     final DiseaseData _diseaseData = Get.put(DiseaseData());
+  }
+
+  @override
+  void onClose() {
+    super.onClose();
+    _conimalRepository.removeTempConimal();
   }
 
   @override
@@ -159,18 +165,32 @@ class SignupConimal1Controller extends GetxController {
     }
   }
 
-  finishRegister() {
-    _conimalRepository.addConimal(
+  finishAddConimal() {
+    _conimalRepository.addTempConimal(
       conimalName: conimalName,
       adoptedDate: adoptedDate!,
       birthDate: birthDate!,
       gender: conimalGender.value!,
       species: conimalSpecies.value!,
+      controllerId: controllerTag.value,
     );
-    Get.toNamed(Routes.SIGNUP_CONIMAL_STEP2);
+
+    Get.offNamedUntil(Routes.SIGNUP_CONIMAL_STEP2,
+        ModalRoute.withName(Routes.SIGNUP_PROFILE));
   }
 
-  addMoreConimal() {
-    Get.offNamed(Routes.SIGNUP_CONIMAL_STEP1, preventDuplicates: false);
+  addConimal() {
+    _conimalRepository.addTempConimal(
+      conimalName: conimalName,
+      adoptedDate: adoptedDate!,
+      birthDate: birthDate!,
+      gender: conimalGender.value!,
+      species: conimalSpecies.value!,
+      controllerId: controllerTag.value,
+    );
+    Get.toNamed(
+      Routes.SIGNUP_CONIMAL_STEP1,
+      preventDuplicates: false,
+    );
   }
 }
