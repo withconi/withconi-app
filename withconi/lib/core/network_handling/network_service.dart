@@ -28,9 +28,9 @@ class Api {
       AuthInterceptor(dio),
     });
 
-    // dio.interceptors.addAll({
-    //   Logging(dio),
-    // });
+    dio.interceptors.addAll({
+      Logging(dio),
+    });
 
     dio.interceptors.addAll({
       ErrorInterceptors(dio),

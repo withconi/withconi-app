@@ -25,6 +25,10 @@ mixin _$Failure {
     required TResult Function() maxDiseaseFailure,
     required TResult Function() maxConimalFailure,
     required TResult Function() emptyListFailure,
+    required TResult Function() noSuchDataInListFailure,
+    required TResult Function() registerConimalFaiure,
+    required TResult Function() removeConimalFailure,
+    required TResult Function() getConimalListFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -36,6 +40,10 @@ mixin _$Failure {
     TResult Function()? maxDiseaseFailure,
     TResult Function()? maxConimalFailure,
     TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -47,6 +55,10 @@ mixin _$Failure {
     TResult Function()? maxDiseaseFailure,
     TResult Function()? maxConimalFailure,
     TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -59,6 +71,13 @@ mixin _$Failure {
     required TResult Function(MaxDiseaseFailure value) maxDiseaseFailure,
     required TResult Function(MaxConimalFailure value) maxConimalFailure,
     required TResult Function(EmptyListFailure value) emptyListFailure,
+    required TResult Function(NoSuchDataInListFailure value)
+        noSuchDataInListFailure,
+    required TResult Function(RegisterConimalFailure value)
+        registerConimalFaiure,
+    required TResult Function(RemoveConimalFailure value) removeConimalFailure,
+    required TResult Function(GetConimalListFailure value)
+        getConimalListFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -70,6 +89,10 @@ mixin _$Failure {
     TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
     TResult Function(MaxConimalFailure value)? maxConimalFailure,
     TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -81,6 +104,10 @@ mixin _$Failure {
     TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
     TResult Function(MaxConimalFailure value)? maxConimalFailure,
     TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -148,6 +175,10 @@ class _$ServerFailure extends ServerFailure {
     required TResult Function() maxDiseaseFailure,
     required TResult Function() maxConimalFailure,
     required TResult Function() emptyListFailure,
+    required TResult Function() noSuchDataInListFailure,
+    required TResult Function() registerConimalFaiure,
+    required TResult Function() removeConimalFailure,
+    required TResult Function() getConimalListFailure,
   }) {
     return serverFailure();
   }
@@ -162,6 +193,10 @@ class _$ServerFailure extends ServerFailure {
     TResult Function()? maxDiseaseFailure,
     TResult Function()? maxConimalFailure,
     TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
   }) {
     return serverFailure?.call();
   }
@@ -176,6 +211,10 @@ class _$ServerFailure extends ServerFailure {
     TResult Function()? maxDiseaseFailure,
     TResult Function()? maxConimalFailure,
     TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
     required TResult orElse(),
   }) {
     if (serverFailure != null) {
@@ -194,6 +233,13 @@ class _$ServerFailure extends ServerFailure {
     required TResult Function(MaxDiseaseFailure value) maxDiseaseFailure,
     required TResult Function(MaxConimalFailure value) maxConimalFailure,
     required TResult Function(EmptyListFailure value) emptyListFailure,
+    required TResult Function(NoSuchDataInListFailure value)
+        noSuchDataInListFailure,
+    required TResult Function(RegisterConimalFailure value)
+        registerConimalFaiure,
+    required TResult Function(RemoveConimalFailure value) removeConimalFailure,
+    required TResult Function(GetConimalListFailure value)
+        getConimalListFailure,
   }) {
     return serverFailure(this);
   }
@@ -208,6 +254,10 @@ class _$ServerFailure extends ServerFailure {
     TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
     TResult Function(MaxConimalFailure value)? maxConimalFailure,
     TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
   }) {
     return serverFailure?.call(this);
   }
@@ -222,6 +272,10 @@ class _$ServerFailure extends ServerFailure {
     TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
     TResult Function(MaxConimalFailure value)? maxConimalFailure,
     TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
     required TResult orElse(),
   }) {
     if (serverFailure != null) {
@@ -284,6 +338,10 @@ class _$DataParsingFailure extends DataParsingFailure {
     required TResult Function() maxDiseaseFailure,
     required TResult Function() maxConimalFailure,
     required TResult Function() emptyListFailure,
+    required TResult Function() noSuchDataInListFailure,
+    required TResult Function() registerConimalFaiure,
+    required TResult Function() removeConimalFailure,
+    required TResult Function() getConimalListFailure,
   }) {
     return dataParsingFailure();
   }
@@ -298,6 +356,10 @@ class _$DataParsingFailure extends DataParsingFailure {
     TResult Function()? maxDiseaseFailure,
     TResult Function()? maxConimalFailure,
     TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
   }) {
     return dataParsingFailure?.call();
   }
@@ -312,6 +374,10 @@ class _$DataParsingFailure extends DataParsingFailure {
     TResult Function()? maxDiseaseFailure,
     TResult Function()? maxConimalFailure,
     TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
     required TResult orElse(),
   }) {
     if (dataParsingFailure != null) {
@@ -330,6 +396,13 @@ class _$DataParsingFailure extends DataParsingFailure {
     required TResult Function(MaxDiseaseFailure value) maxDiseaseFailure,
     required TResult Function(MaxConimalFailure value) maxConimalFailure,
     required TResult Function(EmptyListFailure value) emptyListFailure,
+    required TResult Function(NoSuchDataInListFailure value)
+        noSuchDataInListFailure,
+    required TResult Function(RegisterConimalFailure value)
+        registerConimalFaiure,
+    required TResult Function(RemoveConimalFailure value) removeConimalFailure,
+    required TResult Function(GetConimalListFailure value)
+        getConimalListFailure,
   }) {
     return dataParsingFailure(this);
   }
@@ -344,6 +417,10 @@ class _$DataParsingFailure extends DataParsingFailure {
     TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
     TResult Function(MaxConimalFailure value)? maxConimalFailure,
     TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
   }) {
     return dataParsingFailure?.call(this);
   }
@@ -358,6 +435,10 @@ class _$DataParsingFailure extends DataParsingFailure {
     TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
     TResult Function(MaxConimalFailure value)? maxConimalFailure,
     TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
     required TResult orElse(),
   }) {
     if (dataParsingFailure != null) {
@@ -420,6 +501,10 @@ class _$NoConnectionFailure extends NoConnectionFailure {
     required TResult Function() maxDiseaseFailure,
     required TResult Function() maxConimalFailure,
     required TResult Function() emptyListFailure,
+    required TResult Function() noSuchDataInListFailure,
+    required TResult Function() registerConimalFaiure,
+    required TResult Function() removeConimalFailure,
+    required TResult Function() getConimalListFailure,
   }) {
     return noConnectionFailure();
   }
@@ -434,6 +519,10 @@ class _$NoConnectionFailure extends NoConnectionFailure {
     TResult Function()? maxDiseaseFailure,
     TResult Function()? maxConimalFailure,
     TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
   }) {
     return noConnectionFailure?.call();
   }
@@ -448,6 +537,10 @@ class _$NoConnectionFailure extends NoConnectionFailure {
     TResult Function()? maxDiseaseFailure,
     TResult Function()? maxConimalFailure,
     TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
     required TResult orElse(),
   }) {
     if (noConnectionFailure != null) {
@@ -466,6 +559,13 @@ class _$NoConnectionFailure extends NoConnectionFailure {
     required TResult Function(MaxDiseaseFailure value) maxDiseaseFailure,
     required TResult Function(MaxConimalFailure value) maxConimalFailure,
     required TResult Function(EmptyListFailure value) emptyListFailure,
+    required TResult Function(NoSuchDataInListFailure value)
+        noSuchDataInListFailure,
+    required TResult Function(RegisterConimalFailure value)
+        registerConimalFaiure,
+    required TResult Function(RemoveConimalFailure value) removeConimalFailure,
+    required TResult Function(GetConimalListFailure value)
+        getConimalListFailure,
   }) {
     return noConnectionFailure(this);
   }
@@ -480,6 +580,10 @@ class _$NoConnectionFailure extends NoConnectionFailure {
     TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
     TResult Function(MaxConimalFailure value)? maxConimalFailure,
     TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
   }) {
     return noConnectionFailure?.call(this);
   }
@@ -494,6 +598,10 @@ class _$NoConnectionFailure extends NoConnectionFailure {
     TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
     TResult Function(MaxConimalFailure value)? maxConimalFailure,
     TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
     required TResult orElse(),
   }) {
     if (noConnectionFailure != null) {
@@ -556,6 +664,10 @@ class _$NoUserDataFailure extends NoUserDataFailure {
     required TResult Function() maxDiseaseFailure,
     required TResult Function() maxConimalFailure,
     required TResult Function() emptyListFailure,
+    required TResult Function() noSuchDataInListFailure,
+    required TResult Function() registerConimalFaiure,
+    required TResult Function() removeConimalFailure,
+    required TResult Function() getConimalListFailure,
   }) {
     return noUserDataFailure();
   }
@@ -570,6 +682,10 @@ class _$NoUserDataFailure extends NoUserDataFailure {
     TResult Function()? maxDiseaseFailure,
     TResult Function()? maxConimalFailure,
     TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
   }) {
     return noUserDataFailure?.call();
   }
@@ -584,6 +700,10 @@ class _$NoUserDataFailure extends NoUserDataFailure {
     TResult Function()? maxDiseaseFailure,
     TResult Function()? maxConimalFailure,
     TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
     required TResult orElse(),
   }) {
     if (noUserDataFailure != null) {
@@ -602,6 +722,13 @@ class _$NoUserDataFailure extends NoUserDataFailure {
     required TResult Function(MaxDiseaseFailure value) maxDiseaseFailure,
     required TResult Function(MaxConimalFailure value) maxConimalFailure,
     required TResult Function(EmptyListFailure value) emptyListFailure,
+    required TResult Function(NoSuchDataInListFailure value)
+        noSuchDataInListFailure,
+    required TResult Function(RegisterConimalFailure value)
+        registerConimalFaiure,
+    required TResult Function(RemoveConimalFailure value) removeConimalFailure,
+    required TResult Function(GetConimalListFailure value)
+        getConimalListFailure,
   }) {
     return noUserDataFailure(this);
   }
@@ -616,6 +743,10 @@ class _$NoUserDataFailure extends NoUserDataFailure {
     TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
     TResult Function(MaxConimalFailure value)? maxConimalFailure,
     TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
   }) {
     return noUserDataFailure?.call(this);
   }
@@ -630,6 +761,10 @@ class _$NoUserDataFailure extends NoUserDataFailure {
     TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
     TResult Function(MaxConimalFailure value)? maxConimalFailure,
     TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
     required TResult orElse(),
   }) {
     if (noUserDataFailure != null) {
@@ -692,6 +827,10 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
     required TResult Function() maxDiseaseFailure,
     required TResult Function() maxConimalFailure,
     required TResult Function() emptyListFailure,
+    required TResult Function() noSuchDataInListFailure,
+    required TResult Function() registerConimalFaiure,
+    required TResult Function() removeConimalFailure,
+    required TResult Function() getConimalListFailure,
   }) {
     return maxDiseaseFailure();
   }
@@ -706,6 +845,10 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
     TResult Function()? maxDiseaseFailure,
     TResult Function()? maxConimalFailure,
     TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
   }) {
     return maxDiseaseFailure?.call();
   }
@@ -720,6 +863,10 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
     TResult Function()? maxDiseaseFailure,
     TResult Function()? maxConimalFailure,
     TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
     required TResult orElse(),
   }) {
     if (maxDiseaseFailure != null) {
@@ -738,6 +885,13 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
     required TResult Function(MaxDiseaseFailure value) maxDiseaseFailure,
     required TResult Function(MaxConimalFailure value) maxConimalFailure,
     required TResult Function(EmptyListFailure value) emptyListFailure,
+    required TResult Function(NoSuchDataInListFailure value)
+        noSuchDataInListFailure,
+    required TResult Function(RegisterConimalFailure value)
+        registerConimalFaiure,
+    required TResult Function(RemoveConimalFailure value) removeConimalFailure,
+    required TResult Function(GetConimalListFailure value)
+        getConimalListFailure,
   }) {
     return maxDiseaseFailure(this);
   }
@@ -752,6 +906,10 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
     TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
     TResult Function(MaxConimalFailure value)? maxConimalFailure,
     TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
   }) {
     return maxDiseaseFailure?.call(this);
   }
@@ -766,6 +924,10 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
     TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
     TResult Function(MaxConimalFailure value)? maxConimalFailure,
     TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
     required TResult orElse(),
   }) {
     if (maxDiseaseFailure != null) {
@@ -828,6 +990,10 @@ class _$MaxConimalFailure extends MaxConimalFailure {
     required TResult Function() maxDiseaseFailure,
     required TResult Function() maxConimalFailure,
     required TResult Function() emptyListFailure,
+    required TResult Function() noSuchDataInListFailure,
+    required TResult Function() registerConimalFaiure,
+    required TResult Function() removeConimalFailure,
+    required TResult Function() getConimalListFailure,
   }) {
     return maxConimalFailure();
   }
@@ -842,6 +1008,10 @@ class _$MaxConimalFailure extends MaxConimalFailure {
     TResult Function()? maxDiseaseFailure,
     TResult Function()? maxConimalFailure,
     TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
   }) {
     return maxConimalFailure?.call();
   }
@@ -856,6 +1026,10 @@ class _$MaxConimalFailure extends MaxConimalFailure {
     TResult Function()? maxDiseaseFailure,
     TResult Function()? maxConimalFailure,
     TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
     required TResult orElse(),
   }) {
     if (maxConimalFailure != null) {
@@ -874,6 +1048,13 @@ class _$MaxConimalFailure extends MaxConimalFailure {
     required TResult Function(MaxDiseaseFailure value) maxDiseaseFailure,
     required TResult Function(MaxConimalFailure value) maxConimalFailure,
     required TResult Function(EmptyListFailure value) emptyListFailure,
+    required TResult Function(NoSuchDataInListFailure value)
+        noSuchDataInListFailure,
+    required TResult Function(RegisterConimalFailure value)
+        registerConimalFaiure,
+    required TResult Function(RemoveConimalFailure value) removeConimalFailure,
+    required TResult Function(GetConimalListFailure value)
+        getConimalListFailure,
   }) {
     return maxConimalFailure(this);
   }
@@ -888,6 +1069,10 @@ class _$MaxConimalFailure extends MaxConimalFailure {
     TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
     TResult Function(MaxConimalFailure value)? maxConimalFailure,
     TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
   }) {
     return maxConimalFailure?.call(this);
   }
@@ -902,6 +1087,10 @@ class _$MaxConimalFailure extends MaxConimalFailure {
     TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
     TResult Function(MaxConimalFailure value)? maxConimalFailure,
     TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
     required TResult orElse(),
   }) {
     if (maxConimalFailure != null) {
@@ -963,6 +1152,10 @@ class _$EmptyListFailure extends EmptyListFailure {
     required TResult Function() maxDiseaseFailure,
     required TResult Function() maxConimalFailure,
     required TResult Function() emptyListFailure,
+    required TResult Function() noSuchDataInListFailure,
+    required TResult Function() registerConimalFaiure,
+    required TResult Function() removeConimalFailure,
+    required TResult Function() getConimalListFailure,
   }) {
     return emptyListFailure();
   }
@@ -977,6 +1170,10 @@ class _$EmptyListFailure extends EmptyListFailure {
     TResult Function()? maxDiseaseFailure,
     TResult Function()? maxConimalFailure,
     TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
   }) {
     return emptyListFailure?.call();
   }
@@ -991,6 +1188,10 @@ class _$EmptyListFailure extends EmptyListFailure {
     TResult Function()? maxDiseaseFailure,
     TResult Function()? maxConimalFailure,
     TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
     required TResult orElse(),
   }) {
     if (emptyListFailure != null) {
@@ -1009,6 +1210,13 @@ class _$EmptyListFailure extends EmptyListFailure {
     required TResult Function(MaxDiseaseFailure value) maxDiseaseFailure,
     required TResult Function(MaxConimalFailure value) maxConimalFailure,
     required TResult Function(EmptyListFailure value) emptyListFailure,
+    required TResult Function(NoSuchDataInListFailure value)
+        noSuchDataInListFailure,
+    required TResult Function(RegisterConimalFailure value)
+        registerConimalFaiure,
+    required TResult Function(RemoveConimalFailure value) removeConimalFailure,
+    required TResult Function(GetConimalListFailure value)
+        getConimalListFailure,
   }) {
     return emptyListFailure(this);
   }
@@ -1023,6 +1231,10 @@ class _$EmptyListFailure extends EmptyListFailure {
     TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
     TResult Function(MaxConimalFailure value)? maxConimalFailure,
     TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
   }) {
     return emptyListFailure?.call(this);
   }
@@ -1037,6 +1249,10 @@ class _$EmptyListFailure extends EmptyListFailure {
     TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
     TResult Function(MaxConimalFailure value)? maxConimalFailure,
     TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
     required TResult orElse(),
   }) {
     if (emptyListFailure != null) {
@@ -1049,4 +1265,659 @@ class _$EmptyListFailure extends EmptyListFailure {
 abstract class EmptyListFailure extends Failure {
   const factory EmptyListFailure() = _$EmptyListFailure;
   const EmptyListFailure._() : super._();
+}
+
+/// @nodoc
+abstract class _$$NoSuchDataInListFailureCopyWith<$Res> {
+  factory _$$NoSuchDataInListFailureCopyWith(_$NoSuchDataInListFailure value,
+          $Res Function(_$NoSuchDataInListFailure) then) =
+      __$$NoSuchDataInListFailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$NoSuchDataInListFailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res>
+    implements _$$NoSuchDataInListFailureCopyWith<$Res> {
+  __$$NoSuchDataInListFailureCopyWithImpl(_$NoSuchDataInListFailure _value,
+      $Res Function(_$NoSuchDataInListFailure) _then)
+      : super(_value, (v) => _then(v as _$NoSuchDataInListFailure));
+
+  @override
+  _$NoSuchDataInListFailure get _value =>
+      super._value as _$NoSuchDataInListFailure;
+}
+
+/// @nodoc
+
+class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
+  const _$NoSuchDataInListFailure() : super._();
+
+  @override
+  String toString() {
+    return 'Failure.noSuchDataInListFailure()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$NoSuchDataInListFailure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() serverFailure,
+    required TResult Function() dataParsingFailure,
+    required TResult Function() noConnectionFailure,
+    required TResult Function() noUserDataFailure,
+    required TResult Function() maxDiseaseFailure,
+    required TResult Function() maxConimalFailure,
+    required TResult Function() emptyListFailure,
+    required TResult Function() noSuchDataInListFailure,
+    required TResult Function() registerConimalFaiure,
+    required TResult Function() removeConimalFailure,
+    required TResult Function() getConimalListFailure,
+  }) {
+    return noSuchDataInListFailure();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? serverFailure,
+    TResult Function()? dataParsingFailure,
+    TResult Function()? noConnectionFailure,
+    TResult Function()? noUserDataFailure,
+    TResult Function()? maxDiseaseFailure,
+    TResult Function()? maxConimalFailure,
+    TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
+  }) {
+    return noSuchDataInListFailure?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? serverFailure,
+    TResult Function()? dataParsingFailure,
+    TResult Function()? noConnectionFailure,
+    TResult Function()? noUserDataFailure,
+    TResult Function()? maxDiseaseFailure,
+    TResult Function()? maxConimalFailure,
+    TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
+    required TResult orElse(),
+  }) {
+    if (noSuchDataInListFailure != null) {
+      return noSuchDataInListFailure();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ServerFailure value) serverFailure,
+    required TResult Function(DataParsingFailure value) dataParsingFailure,
+    required TResult Function(NoConnectionFailure value) noConnectionFailure,
+    required TResult Function(NoUserDataFailure value) noUserDataFailure,
+    required TResult Function(MaxDiseaseFailure value) maxDiseaseFailure,
+    required TResult Function(MaxConimalFailure value) maxConimalFailure,
+    required TResult Function(EmptyListFailure value) emptyListFailure,
+    required TResult Function(NoSuchDataInListFailure value)
+        noSuchDataInListFailure,
+    required TResult Function(RegisterConimalFailure value)
+        registerConimalFaiure,
+    required TResult Function(RemoveConimalFailure value) removeConimalFailure,
+    required TResult Function(GetConimalListFailure value)
+        getConimalListFailure,
+  }) {
+    return noSuchDataInListFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ServerFailure value)? serverFailure,
+    TResult Function(DataParsingFailure value)? dataParsingFailure,
+    TResult Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
+  }) {
+    return noSuchDataInListFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ServerFailure value)? serverFailure,
+    TResult Function(DataParsingFailure value)? dataParsingFailure,
+    TResult Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
+    required TResult orElse(),
+  }) {
+    if (noSuchDataInListFailure != null) {
+      return noSuchDataInListFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class NoSuchDataInListFailure extends Failure {
+  const factory NoSuchDataInListFailure() = _$NoSuchDataInListFailure;
+  const NoSuchDataInListFailure._() : super._();
+}
+
+/// @nodoc
+abstract class _$$RegisterConimalFailureCopyWith<$Res> {
+  factory _$$RegisterConimalFailureCopyWith(_$RegisterConimalFailure value,
+          $Res Function(_$RegisterConimalFailure) then) =
+      __$$RegisterConimalFailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$RegisterConimalFailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res>
+    implements _$$RegisterConimalFailureCopyWith<$Res> {
+  __$$RegisterConimalFailureCopyWithImpl(_$RegisterConimalFailure _value,
+      $Res Function(_$RegisterConimalFailure) _then)
+      : super(_value, (v) => _then(v as _$RegisterConimalFailure));
+
+  @override
+  _$RegisterConimalFailure get _value =>
+      super._value as _$RegisterConimalFailure;
+}
+
+/// @nodoc
+
+class _$RegisterConimalFailure extends RegisterConimalFailure {
+  const _$RegisterConimalFailure() : super._();
+
+  @override
+  String toString() {
+    return 'Failure.registerConimalFaiure()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$RegisterConimalFailure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() serverFailure,
+    required TResult Function() dataParsingFailure,
+    required TResult Function() noConnectionFailure,
+    required TResult Function() noUserDataFailure,
+    required TResult Function() maxDiseaseFailure,
+    required TResult Function() maxConimalFailure,
+    required TResult Function() emptyListFailure,
+    required TResult Function() noSuchDataInListFailure,
+    required TResult Function() registerConimalFaiure,
+    required TResult Function() removeConimalFailure,
+    required TResult Function() getConimalListFailure,
+  }) {
+    return registerConimalFaiure();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? serverFailure,
+    TResult Function()? dataParsingFailure,
+    TResult Function()? noConnectionFailure,
+    TResult Function()? noUserDataFailure,
+    TResult Function()? maxDiseaseFailure,
+    TResult Function()? maxConimalFailure,
+    TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
+  }) {
+    return registerConimalFaiure?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? serverFailure,
+    TResult Function()? dataParsingFailure,
+    TResult Function()? noConnectionFailure,
+    TResult Function()? noUserDataFailure,
+    TResult Function()? maxDiseaseFailure,
+    TResult Function()? maxConimalFailure,
+    TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
+    required TResult orElse(),
+  }) {
+    if (registerConimalFaiure != null) {
+      return registerConimalFaiure();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ServerFailure value) serverFailure,
+    required TResult Function(DataParsingFailure value) dataParsingFailure,
+    required TResult Function(NoConnectionFailure value) noConnectionFailure,
+    required TResult Function(NoUserDataFailure value) noUserDataFailure,
+    required TResult Function(MaxDiseaseFailure value) maxDiseaseFailure,
+    required TResult Function(MaxConimalFailure value) maxConimalFailure,
+    required TResult Function(EmptyListFailure value) emptyListFailure,
+    required TResult Function(NoSuchDataInListFailure value)
+        noSuchDataInListFailure,
+    required TResult Function(RegisterConimalFailure value)
+        registerConimalFaiure,
+    required TResult Function(RemoveConimalFailure value) removeConimalFailure,
+    required TResult Function(GetConimalListFailure value)
+        getConimalListFailure,
+  }) {
+    return registerConimalFaiure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ServerFailure value)? serverFailure,
+    TResult Function(DataParsingFailure value)? dataParsingFailure,
+    TResult Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
+  }) {
+    return registerConimalFaiure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ServerFailure value)? serverFailure,
+    TResult Function(DataParsingFailure value)? dataParsingFailure,
+    TResult Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
+    required TResult orElse(),
+  }) {
+    if (registerConimalFaiure != null) {
+      return registerConimalFaiure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class RegisterConimalFailure extends Failure {
+  const factory RegisterConimalFailure() = _$RegisterConimalFailure;
+  const RegisterConimalFailure._() : super._();
+}
+
+/// @nodoc
+abstract class _$$RemoveConimalFailureCopyWith<$Res> {
+  factory _$$RemoveConimalFailureCopyWith(_$RemoveConimalFailure value,
+          $Res Function(_$RemoveConimalFailure) then) =
+      __$$RemoveConimalFailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$RemoveConimalFailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res>
+    implements _$$RemoveConimalFailureCopyWith<$Res> {
+  __$$RemoveConimalFailureCopyWithImpl(_$RemoveConimalFailure _value,
+      $Res Function(_$RemoveConimalFailure) _then)
+      : super(_value, (v) => _then(v as _$RemoveConimalFailure));
+
+  @override
+  _$RemoveConimalFailure get _value => super._value as _$RemoveConimalFailure;
+}
+
+/// @nodoc
+
+class _$RemoveConimalFailure extends RemoveConimalFailure {
+  const _$RemoveConimalFailure() : super._();
+
+  @override
+  String toString() {
+    return 'Failure.removeConimalFailure()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$RemoveConimalFailure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() serverFailure,
+    required TResult Function() dataParsingFailure,
+    required TResult Function() noConnectionFailure,
+    required TResult Function() noUserDataFailure,
+    required TResult Function() maxDiseaseFailure,
+    required TResult Function() maxConimalFailure,
+    required TResult Function() emptyListFailure,
+    required TResult Function() noSuchDataInListFailure,
+    required TResult Function() registerConimalFaiure,
+    required TResult Function() removeConimalFailure,
+    required TResult Function() getConimalListFailure,
+  }) {
+    return removeConimalFailure();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? serverFailure,
+    TResult Function()? dataParsingFailure,
+    TResult Function()? noConnectionFailure,
+    TResult Function()? noUserDataFailure,
+    TResult Function()? maxDiseaseFailure,
+    TResult Function()? maxConimalFailure,
+    TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
+  }) {
+    return removeConimalFailure?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? serverFailure,
+    TResult Function()? dataParsingFailure,
+    TResult Function()? noConnectionFailure,
+    TResult Function()? noUserDataFailure,
+    TResult Function()? maxDiseaseFailure,
+    TResult Function()? maxConimalFailure,
+    TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
+    required TResult orElse(),
+  }) {
+    if (removeConimalFailure != null) {
+      return removeConimalFailure();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ServerFailure value) serverFailure,
+    required TResult Function(DataParsingFailure value) dataParsingFailure,
+    required TResult Function(NoConnectionFailure value) noConnectionFailure,
+    required TResult Function(NoUserDataFailure value) noUserDataFailure,
+    required TResult Function(MaxDiseaseFailure value) maxDiseaseFailure,
+    required TResult Function(MaxConimalFailure value) maxConimalFailure,
+    required TResult Function(EmptyListFailure value) emptyListFailure,
+    required TResult Function(NoSuchDataInListFailure value)
+        noSuchDataInListFailure,
+    required TResult Function(RegisterConimalFailure value)
+        registerConimalFaiure,
+    required TResult Function(RemoveConimalFailure value) removeConimalFailure,
+    required TResult Function(GetConimalListFailure value)
+        getConimalListFailure,
+  }) {
+    return removeConimalFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ServerFailure value)? serverFailure,
+    TResult Function(DataParsingFailure value)? dataParsingFailure,
+    TResult Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
+  }) {
+    return removeConimalFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ServerFailure value)? serverFailure,
+    TResult Function(DataParsingFailure value)? dataParsingFailure,
+    TResult Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
+    required TResult orElse(),
+  }) {
+    if (removeConimalFailure != null) {
+      return removeConimalFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class RemoveConimalFailure extends Failure {
+  const factory RemoveConimalFailure() = _$RemoveConimalFailure;
+  const RemoveConimalFailure._() : super._();
+}
+
+/// @nodoc
+abstract class _$$GetConimalListFailureCopyWith<$Res> {
+  factory _$$GetConimalListFailureCopyWith(_$GetConimalListFailure value,
+          $Res Function(_$GetConimalListFailure) then) =
+      __$$GetConimalListFailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GetConimalListFailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res>
+    implements _$$GetConimalListFailureCopyWith<$Res> {
+  __$$GetConimalListFailureCopyWithImpl(_$GetConimalListFailure _value,
+      $Res Function(_$GetConimalListFailure) _then)
+      : super(_value, (v) => _then(v as _$GetConimalListFailure));
+
+  @override
+  _$GetConimalListFailure get _value => super._value as _$GetConimalListFailure;
+}
+
+/// @nodoc
+
+class _$GetConimalListFailure extends GetConimalListFailure {
+  const _$GetConimalListFailure() : super._();
+
+  @override
+  String toString() {
+    return 'Failure.getConimalListFailure()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$GetConimalListFailure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() serverFailure,
+    required TResult Function() dataParsingFailure,
+    required TResult Function() noConnectionFailure,
+    required TResult Function() noUserDataFailure,
+    required TResult Function() maxDiseaseFailure,
+    required TResult Function() maxConimalFailure,
+    required TResult Function() emptyListFailure,
+    required TResult Function() noSuchDataInListFailure,
+    required TResult Function() registerConimalFaiure,
+    required TResult Function() removeConimalFailure,
+    required TResult Function() getConimalListFailure,
+  }) {
+    return getConimalListFailure();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? serverFailure,
+    TResult Function()? dataParsingFailure,
+    TResult Function()? noConnectionFailure,
+    TResult Function()? noUserDataFailure,
+    TResult Function()? maxDiseaseFailure,
+    TResult Function()? maxConimalFailure,
+    TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
+  }) {
+    return getConimalListFailure?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? serverFailure,
+    TResult Function()? dataParsingFailure,
+    TResult Function()? noConnectionFailure,
+    TResult Function()? noUserDataFailure,
+    TResult Function()? maxDiseaseFailure,
+    TResult Function()? maxConimalFailure,
+    TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
+    required TResult orElse(),
+  }) {
+    if (getConimalListFailure != null) {
+      return getConimalListFailure();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ServerFailure value) serverFailure,
+    required TResult Function(DataParsingFailure value) dataParsingFailure,
+    required TResult Function(NoConnectionFailure value) noConnectionFailure,
+    required TResult Function(NoUserDataFailure value) noUserDataFailure,
+    required TResult Function(MaxDiseaseFailure value) maxDiseaseFailure,
+    required TResult Function(MaxConimalFailure value) maxConimalFailure,
+    required TResult Function(EmptyListFailure value) emptyListFailure,
+    required TResult Function(NoSuchDataInListFailure value)
+        noSuchDataInListFailure,
+    required TResult Function(RegisterConimalFailure value)
+        registerConimalFaiure,
+    required TResult Function(RemoveConimalFailure value) removeConimalFailure,
+    required TResult Function(GetConimalListFailure value)
+        getConimalListFailure,
+  }) {
+    return getConimalListFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ServerFailure value)? serverFailure,
+    TResult Function(DataParsingFailure value)? dataParsingFailure,
+    TResult Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
+  }) {
+    return getConimalListFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ServerFailure value)? serverFailure,
+    TResult Function(DataParsingFailure value)? dataParsingFailure,
+    TResult Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
+    required TResult orElse(),
+  }) {
+    if (getConimalListFailure != null) {
+      return getConimalListFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetConimalListFailure extends Failure {
+  const factory GetConimalListFailure() = _$GetConimalListFailure;
+  const GetConimalListFailure._() : super._();
 }

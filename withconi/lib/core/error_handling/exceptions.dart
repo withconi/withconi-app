@@ -80,7 +80,14 @@ class DataParsingException implements Exception {
 class MaxListException implements Exception {
   @override
   String toString() {
-    return 'Success, but empty list';
+    return 'Max list';
+  }
+}
+
+class EmptyListException implements Exception {
+  @override
+  String toString() {
+    return 'Empty list';
   }
 }
 

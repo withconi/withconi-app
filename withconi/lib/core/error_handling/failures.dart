@@ -11,4 +11,8 @@ class Failure with _$Failure {
   const factory Failure.maxDiseaseFailure() = MaxDiseaseFailure;
   const factory Failure.maxConimalFailure() = MaxConimalFailure;
   const factory Failure.emptyListFailure() = EmptyListFailure;
+  const factory Failure.noSuchDataInListFailure() = NoSuchDataInListFailure;
+  const factory Failure.registerConimalFaiure() = RegisterConimalFailure;
+  const factory Failure.removeConimalFailure() = RemoveConimalFailure;
+  const factory Failure.getConimalListFailure() = GetConimalListFailure;
 }
