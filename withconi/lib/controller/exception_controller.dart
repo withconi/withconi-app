@@ -3,10 +3,10 @@ import 'package:withconi/core/error_handling/error_message_object.dart';
 import '../core/error_handling/failures.dart';
 import '../ui/widgets/snackbar.dart';
 
-class ExceptionController {
-  ExceptionController._internal();
-  static final _singleton = ExceptionController._internal();
-  factory ExceptionController() => _singleton;
+class FailureInterpreter {
+  FailureInterpreter._internal();
+  static final _singleton = FailureInterpreter._internal();
+  factory FailureInterpreter() => _singleton;
 
   mapFailureToDialog(Failure _failure) {
     ErrorMessage errorMessage =
