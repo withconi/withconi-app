@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:withconi/controller/exception_controller.dart';
 import 'package:withconi/controller/signup/shared_data/disease_data.dart';
+import 'package:withconi/core/error_handling/error_message_object.dart';
 import 'package:withconi/core/error_handling/exceptions.dart';
 import 'package:withconi/data/model/disease.dart';
 import 'package:withconi/data/repository/disease_repository.dart';
@@ -11,12 +12,12 @@ import 'shared_data/conimal_data.dart';
 
 class DiseaseSearchController extends GetxController
     with StateMixin<List<Disease>> {
-  late RxString _disease;
+  RxString _disease = ''.obs;
   final DiseaseSearchRepository _diseaseRepository = DiseaseSearchRepository();
   TextEditingController diseaseTextController = TextEditingController();
   RxBool listLoaded = false.obs;
   String get disease => _disease.value;
-
+  Rxn<Failure> failure = Rxn<Failure>();
   RxList<Disease> diseaseListSelected = RxList<Disease>();
   RxList<Disease> diseaseListSearched = RxList<Disease>();
   Set<Disease> resultSet = {};
@@ -26,9 +27,8 @@ class DiseaseSearchController extends GetxController
   @override
   void onInit() {
     super.onInit();
+    diseaseListSelected.assignAll(Get.arguments);
     change(null, status: RxStatus.empty());
-    _disease = ''.obs;
-    diseaseListSelected.assignAll(DiseaseData.to.selectedDiseases);
   }
 
   @override
@@ -59,27 +59,36 @@ class DiseaseSearchController extends GetxController
       Either<Failure, List<Disease>> newResultListEither =
           await _diseaseRepository.getDiseaseList(diseaseName: val);
 
-      newResultListEither.fold(
-          (failure) => ExceptionController().mapFailureToDialog(failure),
-          (list) => diseaseListSearched.assignAll(list));
-
-      change(diseaseListSearched, status: RxStatus.success());
+      newResultListEither.fold((failure) {
+        ErrorMessage errorMessage =
+            ErrorMessage.mapFailureToErrorMessage(failure: failure);
+        change(null, status: RxStatus.error(errorMessage.message));
+      }, (list) {
+        diseaseListSearched.assignAll(list);
+        change(diseaseListSearched, status: RxStatus.success());
+      });
     }
   }
 
+  // onDiseaseClicked(Disease disease) {
+  //   if (diseaseListSelected.contains(disease)) {
+  //     var diseaseRemoveEither = _diseaseRepository.removeDisease(disease);
+  //     diseaseRemoveEither.fold(
+  //         (fail) => ExceptionController().mapFailureToSnackbar(fail),
+  //         (success) => diseaseListSelected.remove(disease));
+  //   } else {
+  //     var diseaseAddEither = _diseaseRepository.addDisease(disease);
+  //     diseaseAddEither.fold(
+  //         (fail) => ExceptionController().mapFailureToSnackbar(fail),
+  //         (success) => diseaseListSelected.add(disease));
+  //   }
+  // }
   onDiseaseClicked(Disease disease) {
     if (diseaseListSelected.contains(disease)) {
-      var diseaseRemoveEither = _diseaseRepository.removeDisease(disease);
-      diseaseRemoveEither.fold(
-          (fail) => ExceptionController().mapFailureToSnackbar(fail),
-          (success) => diseaseListSelected.remove(disease));
+      diseaseListSelected.remove(disease);
     } else {
-      var diseaseAddEither = _diseaseRepository.addDisease(disease);
-      diseaseAddEither.fold(
-          (fail) => ExceptionController().mapFailureToSnackbar(fail),
-          (success) => diseaseListSelected.add(disease));
+      diseaseListSelected.add(disease);
     }
-    print(diseaseListSelected);
   }
 
   // Either<Failure, bool> addDisease(Disease disease) {
@@ -95,7 +104,7 @@ class DiseaseSearchController extends GetxController
   // }
 
   saveDiseases() {
-    Get.back(result: getDiseaseInfo());
+    Get.back(result: diseaseListSelected.toList());
   }
 
   getDiseaseInfo() {
