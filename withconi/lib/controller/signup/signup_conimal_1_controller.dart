@@ -1,23 +1,26 @@
+import 'package:dartz/dartz.dart';
 import 'package:intl/intl.dart';
-import 'package:withconi/controller/signup/shared_data/conimal_data.dart';
+import 'package:withconi/controller/exception_controller.dart';
 import 'package:withconi/controller/signup/shared_data/user_data.dart';
 import 'package:withconi/data/repository/conimal_repository.dart';
 import '../../configs/constants/enum.dart';
 import '../../configs/constants/regex.dart';
 import '../../configs/constants/strings.dart';
+import '../../core/error_handling/failures.dart';
+import '../../data/model/disease.dart';
 import '../../import_basic.dart';
-import 'shared_data/disease_data.dart';
 
 class SignupConimal1Controller extends GetxController {
-  RxString controllerTag = ''.obs;
   final ConimalRepository _conimalRepository = ConimalRepository();
-  RxString _userName = ''.obs;
-  RxString _conimalName = ''.obs;
+  RxBool isConimalAdded = false.obs;
+  final RxString _userName = ''.obs;
+  final RxString _conimalName = ''.obs;
   RxString diseaseText = ''.obs;
   RxString diseaseSuffixText = ''.obs;
   RxBool showAddConimalButton = false.obs;
   Rxn<Gender> conimalGender = Rxn<Gender>();
   Rxn<Species> conimalSpecies = Rxn<Species>();
+  List<Disease> _diseaseList = [];
   RxBool isButtonValid = false.obs;
   RxBool birthDateSelected = false.obs;
   RxBool speciesSelected = false.obs;
@@ -42,29 +45,17 @@ class SignupConimal1Controller extends GetxController {
       : DateFormat('yyyy-MM-dd').format(_adoptedDate.value!);
 
   @override
-  void onInit() {
-    super.onInit();
-    final DiseaseData _diseaseData = Get.put(DiseaseData());
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-    _conimalRepository.removeTempConimal();
-  }
-
-  @override
   void onReady() {
     super.onReady();
 
     _userName.value = UserData.to.name;
-
     debounce(_conimalName, validateName,
         time: const Duration(milliseconds: 400));
 
     ever(isButtonValid, (value) async {
       await Future.delayed(const Duration(milliseconds: 200));
-      if (value == true) {
+
+      if (value == true && _conimalRepository.checkConimalNum() < 2) {
         showAddConimalButton.value = true;
       } else {
         showAddConimalButton.value = false;
@@ -86,7 +77,22 @@ class SignupConimal1Controller extends GetxController {
     speciesSelected.value = true;
   }
 
-  validateButton() {
+  void onBirthDateChanged(DateTime birthDate) {
+    _birthDate.value = birthDate;
+    birthDateSelected.value = true;
+  }
+
+  void onAdoptedDateChanged(DateTime adoptedDate) {
+    _adoptedDate.value = adoptedDate;
+    adoptedDateSelected.value = true;
+  }
+
+  void onDiseaseListChanged(List<Disease> diseaseList) {
+    _diseaseList = diseaseList;
+    setSelectedDiseaseText(_diseaseList);
+  }
+
+  bool validateButton() {
     if (conimalNameErrorText.value == null &&
         conimalName.isNotEmpty &&
         birthDateSelected.value &&
@@ -100,10 +106,8 @@ class SignupConimal1Controller extends GetxController {
     return isButtonValid.value;
   }
 
-  nextStep() {}
-
   validateName(String value) {
-    final nameRegExp = Regex.name;
+    final nameRegExp = Regex.nickName;
     conimalNameErrorText.value = null;
     if (!nameRegExp.hasMatch(value)) {
       conimalNameErrorText.value = Strings.validator.name;
@@ -120,8 +124,7 @@ class SignupConimal1Controller extends GetxController {
         lastDate: DateTime.now());
 
     if (pickedDate != null) {
-      _birthDate.value = pickedDate;
-      birthDateSelected.value = true;
+      onBirthDateChanged(pickedDate);
     } else {
       birthDateSelected.value = false;
     }
@@ -135,29 +138,27 @@ class SignupConimal1Controller extends GetxController {
         lastDate: DateTime.now());
 
     if (pickedDate != null) {
-      _adoptedDate.value = pickedDate;
-      adoptedDateSelected.value = true;
+      onAdoptedDateChanged(pickedDate);
     } else {
       adoptedDateSelected.value = false;
     }
   }
 
   selectDisease() async {
-    Map<String, dynamic> selectedDiseaseInfo =
-        await Get.toNamed(Routes.SIGNUP_DISEASE_SEARCH);
-    setSelectedDiseaseText(selectedDiseaseInfo);
+    List<Disease> newDiseaseList = await Get.toNamed(
+        Routes.SIGNUP_DISEASE_SEARCH,
+        arguments: _diseaseList);
+    onDiseaseListChanged(newDiseaseList);
   }
 
-  setSelectedDiseaseText(Map<String, dynamic> diseaseInfo) {
-    if (diseaseInfo['diseaseNum'] != 0) {
+  setSelectedDiseaseText(List<Disease> diseaseInfo) {
+    if (diseaseInfo.isNotEmpty) {
       diseaseSelected.value = true;
-      if (diseaseInfo['diseaseNum'] > 1) {
-        diseaseText.value =
-            '${diseaseInfo['diseaseNameList'][0].substring(0, 10)}';
-        diseaseSuffixText.value = ' 외 ${diseaseInfo['diseaseNum'] - 1}개';
+      if (diseaseInfo.length > 1) {
+        diseaseText.value = diseaseInfo[0].name.substring(0, 10);
+        diseaseSuffixText.value = ' 외 ${diseaseInfo.length - 1}개';
       } else {
-        diseaseText.value =
-            '${diseaseInfo['diseaseNameList'][0].substring(0, 10)}';
+        diseaseText.value = diseaseInfo[0].name.substring(0, 10);
         diseaseSuffixText.value = '';
       }
     } else {
@@ -165,32 +166,49 @@ class SignupConimal1Controller extends GetxController {
     }
   }
 
-  finishAddConimal() {
-    _conimalRepository.addTempConimal(
+  void addConimal() {
+    Either<Failure, bool> addResultEither = _conimalRepository.addTempConimal(
       conimalName: conimalName,
       adoptedDate: adoptedDate!,
       birthDate: birthDate!,
       gender: conimalGender.value!,
       species: conimalSpecies.value!,
-      controllerId: controllerTag.value,
+      diseaseList: _diseaseList,
     );
-
-    Get.offNamedUntil(Routes.SIGNUP_CONIMAL_STEP2,
-        ModalRoute.withName(Routes.SIGNUP_PROFILE));
+    addResultEither.fold((fail) {
+      FailureInterpreter().mapFailureToSnackbar(fail);
+    }, (success) {
+      isConimalAdded.value = true;
+      Get.toNamed(
+        Routes.SIGNUP_CONIMAL_STEP1,
+        preventDuplicates: false,
+      );
+    });
   }
 
-  addConimal() {
-    _conimalRepository.addTempConimal(
+  // removeThisConimal() {
+  //   Either<Failure, String> removeLastConimaEither =
+  //       _conimalRepository.removeLastTempConimal();
+  //   removeLastConimaEither.fold(
+  //       (fail) => FailureInterpreter().mapFailureToDialog(fail),
+  //       (str) => print(str));
+  // }
+
+  void finishAddConimal() {
+    Either<Failure, bool> addResultEither = _conimalRepository.addTempConimal(
       conimalName: conimalName,
       adoptedDate: adoptedDate!,
       birthDate: birthDate!,
       gender: conimalGender.value!,
       species: conimalSpecies.value!,
-      controllerId: controllerTag.value,
+      diseaseList: _diseaseList,
     );
-    Get.toNamed(
-      Routes.SIGNUP_CONIMAL_STEP1,
-      preventDuplicates: false,
-    );
+    addResultEither.fold(
+        (fail) => FailureInterpreter().mapFailureToDialog(fail), (success) {
+      isConimalAdded.value = true;
+
+      Get.offNamedUntil(Routes.SIGNUP_CONIMAL_STEP2,
+          ModalRoute.withName(Routes.SIGNUP_PROFILE));
+    });
   }
 }
