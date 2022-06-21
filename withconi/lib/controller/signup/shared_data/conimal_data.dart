@@ -10,7 +10,7 @@ class ConimalData extends GetxController {
   final List<Conimal> _registeredConimals = [];
   List<Conimal> get registeredConimals => _registeredConimals;
 
-  addNewConimal(Conimal newConimal) {
+  registerConimal(Conimal newConimal) {
     if (registeredConimals.length < 3) {
       _registeredConimals.add(newConimal);
       print(registeredConimals);
@@ -20,12 +20,30 @@ class ConimalData extends GetxController {
     }
   }
 
-  removeConimal(Conimal conimal) {
-    if (registeredConimals.contains(conimal)) {
-      _registeredConimals.remove(conimal);
+  // removeConimal(Conimal conimal) {
+  //   if (registeredConimals.contains(conimal)) {
+  //     _registeredConimals.remove(conimal);
+  //     return true;
+  //   } else {
+  //     throw EmptyListException();
+  //   }
+  // }
+
+  removeConimal() {
+    if (registeredConimals.isNotEmpty) {
+      _registeredConimals.removeLast();
       return true;
     } else {
       throw EmptyListException();
+    }
+  }
+
+  removeAllConimal() {
+    if (registeredConimals.isNotEmpty) {
+      _registeredConimals.clear();
+      return true;
+    } else {
+      return true;
     }
   }
 }
