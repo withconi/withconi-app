@@ -1,67 +1,143 @@
-import 'dart:async';
-
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/physics.dart';
+import 'package:dartz/dartz.dart';
 import 'package:withconi/configs/constants/enum.dart';
-import 'package:withconi/configs/helpers/token_manager.dart';
 import 'package:withconi/controller/signup/shared_data/conimal_data.dart';
-import 'package:withconi/controller/signup/shared_data/disease_data.dart';
 import 'package:withconi/core/error_handling/exceptions.dart';
-import 'package:withconi/data/model/disease.dart';
-import 'package:withconi/data/provider/auth_api.dart';
-import 'package:withconi/data/provider/disease_api.dart';
-import 'package:withconi/ui/widgets/snackbar.dart';
-
+import '../../core/error_handling/failures.dart';
 import '../model/conimal.dart';
+import '../model/disease.dart';
 
 class ConimalRepository {
-  // final DiseaseAPI _api = DiseaseAPI();
+  ConimalRepository._internal();
+  static final _singleton = ConimalRepository._internal();
+  factory ConimalRepository() => _singleton;
+  List<Conimal> tempConimalList = [];
+  bool visitedConimal2Page = false;
 
-  bool addConimal({
+  Either<Failure, bool> addTempConimal({
     required String conimalName,
     required Gender gender,
     required Species species,
     required DateTime birthDate,
     required DateTime adoptedDate,
+    required List<Disease> diseaseList,
   }) {
     try {
-      if (checkConimalNum() < 100) {
-        // throw MaxConimalException();
-      }
-
       Conimal newConimal = Conimal(
           name: conimalName,
-          gender: (gender == Gender.FEMALE) ? 'female' : 'male',
-          species: (species == Species.CAT) ? 'cat' : 'dog',
-          birthDate: birthDate.millisecondsSinceEpoch,
-          adoptedDate: adoptedDate.millisecondsSinceEpoch,
-          diseases: DiseaseData.to.selectedDiseases,
-          createdAt: DateTime.now().millisecondsSinceEpoch);
+          gender: gender,
+          species: species,
+          birthDate: birthDate,
+          adoptedDate: adoptedDate,
+          diseases: diseaseList,
+          createdAt: DateTime.now());
 
-      ConimalData.to.addNewConimal(newConimal);
-      return true;
+      if (tempConimalList.length > 3) {
+        throw MaxListException();
+      } else {
+        tempConimalList.add(newConimal);
+      }
+
+      return Right(true);
+    } on MaxListException {
+      return Left(MaxConimalFailure());
     } catch (e) {
-      print(e);
-      showSnackbar(text: '3마리의 코니멀까지만 등록 가능합니다');
-      return false;
+      return Left(DataParsingFailure());
     }
   }
 
-  bool editConimal(Conimal conimal) {
-    return true;
-  }
-
-  bool removeConimal(Conimal conimal) {
+  Either<Failure, bool> registerConimals() {
     try {
-      ConimalData.to.removeConimal(conimal);
-      return true;
+      if (tempConimalList.length > 3) {
+        throw MaxListException();
+      } else {
+        for (var conimal in tempConimalList) {
+          ConimalData.to.registerConimal(conimal);
+        }
+      }
+
+      return Right(true);
+    } on MaxListException {
+      return Left(MaxConimalFailure());
     } catch (e) {
-      return false;
+      return Left(RegisterConimalFailure());
     }
   }
 
-  int checkConimalNum() {
-    int conimalNum = ConimalData.to.registeredConimals.length;
-    return conimalNum;
+  Either<Failure, bool> editTempConimal(Conimal conimal, int index) {
+    try {
+      tempConimalList.removeAt(index);
+      tempConimalList.insert(index, conimal);
+      return Right(true);
+    } catch (e) {
+      return Left(NoSuchDataInListFailure());
+    }
+  }
+
+  Either<Failure, Conimal> getTempConimal(int index) {
+    try {
+      return Right(tempConimalList[index]);
+    } catch (e) {
+      return Left(NoSuchDataInListFailure());
+    }
+  }
+
+  Either<Failure, List<Conimal>> getAllTempConimal() {
+    try {
+      return Right(tempConimalList);
+    } catch (e) {
+      return Left(GetConimalListFailure());
+    }
+  }
+  // Either<Failure, bool> removeConimal() {
+  //   try {
+  //     ConimalData.to.removeConimal();
+  //     return Right(true);
+  //   } on EmptyListException {
+  //     return Left(EmptyListFailure());
+  //   } catch (e) {
+  //     return Left(RemoveConimalFailure());
+  //   }
+  // }
+
+  Either<Failure, bool> removeTempConimal(int index) {
+    try {
+      tempConimalList.removeAt(index);
+      return Right(true);
+    } on EmptyListException {
+      return Left(EmptyListFailure());
+    } catch (e) {
+      return Left(RemoveConimalFailure());
+    }
+  }
+
+  Either<Failure, String> removeLastTempConimal() {
+    try {
+      tempConimalList.removeLast();
+      return Right('남은 코니멀은 총 ${tempConimalList.length}입니다');
+    } on EmptyListException {
+      return Left(EmptyListFailure());
+    } catch (e) {
+      return Left(RemoveConimalFailure());
+    }
+  }
+
+  Either<Failure, bool> removeAllTempConimal() {
+    try {
+      tempConimalList.clear();
+      return Right(true);
+    } on EmptyListException {
+      return Left(EmptyListFailure());
+    } catch (e) {
+      return Left(RemoveConimalFailure());
+    }
+  }
+
+  // List<Conimal> getConimalList() {
+  //   List<Conimal> conimalList = ConimalData.to.registeredConimals;
+  //   return conimalList;
+  // }
+
+  checkConimalNum() {
+    return tempConimalList.length;
   }
 }
