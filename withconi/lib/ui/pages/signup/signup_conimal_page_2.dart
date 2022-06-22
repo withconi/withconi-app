@@ -20,7 +20,7 @@ class SignupConimalPage2 extends StatelessWidget {
         }
       },
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
+        // resizeToAvoidBottomInset: false,
         body: SafeArea(
           child: SizedBox(
             width: WcWidth,
@@ -119,13 +119,15 @@ class SignupConimalPage2 extends StatelessWidget {
                 SizedBox(
                   height: 50,
                 ),
-                WcWideButtonWidget(
-                  active: true,
-                  activeButtonColor: WcColors.blue100,
-                  activeTextColor: WcColors.white,
-                  buttonText: '등록',
-                  buttonWidth: WcWidth - 40,
-                  onTap: () {},
+                Center(
+                  child: WcWideButtonWidget(
+                    active: true,
+                    activeButtonColor: WcColors.blue100,
+                    activeTextColor: WcColors.white,
+                    buttonText: '등록',
+                    buttonWidth: WcWidth - 40,
+                    onTap: () {},
+                  ),
                 ),
               ],
             ),
