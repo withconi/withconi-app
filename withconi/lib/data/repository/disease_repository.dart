@@ -1,16 +1,12 @@
-import 'dart:async';
+// ignore_for_file: prefer_const_constructors
 
+import 'dart:async';
 import 'package:dartz/dartz.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:withconi/configs/constants/enum.dart';
-import 'package:withconi/configs/helpers/token_manager.dart';
 import 'package:withconi/core/error_handling/exceptions.dart';
 import 'package:withconi/data/model/disease.dart';
-import 'package:withconi/data/provider/auth_api.dart';
 import 'package:withconi/data/provider/disease_api.dart';
-
-import '../../controller/signup/shared_data/disease_data.dart';
 import '../../core/error_handling/failures.dart';
+import '../../core/network_handling/response_model/response_model.dart';
 
 class DiseaseSearchRepository {
   final DiseaseAPI _api = DiseaseAPI();
@@ -23,55 +19,33 @@ class DiseaseSearchRepository {
       List<Disease> diseaseList = DiseaseResponse.fromJson(data).results;
       return Right(diseaseList);
     } on NoInternetConnectionException {
-      return Left(NoConnectionFailure(message: '인터넷에 연결되어있지 않습니다'));
+      return Left(NoConnectionFailure());
     } on DataParsingException {
-      return Left(DataParsingFailure(message: '질병 데이터를 불러올 수 없습니다'));
+      return Left(DataParsingFailure());
     }
   }
 
-  // bool setDiseaseList(List<Disease> diseaseList) {
+  // Either<Failure, bool> addDisease(Disease disease) {
   //   try {
-  //     DiseaseData.to.setDiseaseList(diseaseList);
-  //     return true;
-  //   } catch (e) {
-  //     return false;
+  //     return Right(DiseaseData.to.addDisease(disease));
+  //   } on MaxListException {
+  //     return Left(MaxDiseaseFailure());
   //   }
   // }
 
-  Either<Failure, bool> addDisease(Disease disease) {
-    try {
-      return Right(DiseaseData.to.addDisease(disease));
-    } on MaxListException {
-      return Left(MaxListFailure(message: '질병은 4개까지만 추가 가능합니다'));
-    }
-  }
-
-  Either<Failure, bool> removeDisease(Disease disease) {
-    try {
-      return Right(DiseaseData.to.removeDisease(disease));
-    } on MaxListException {
-      return Left(MaxListFailure(message: '삭제할 질병이 없습니다'));
-    }
-  }
-
-  Either<Failure, List<Disease>> getSelectedDiseaseList(Disease disease) {
-    try {
-      return Right(DiseaseData.to.selectedDiseases);
-    } on MaxListException {
-      return Left(MaxListFailure(message: '리스트 저장에 실패했습니다'));
-    }
-  }
-
-  // bool editDisease(Disease disease) {
-  //   return true;
+  // Either<Failure, bool> removeDisease(Disease disease) {
+  //   try {
+  //     return Right(DiseaseData.to.removeDisease(disease));
+  //   } on MaxListException {
+  //     return Left(MaxDiseaseFailure());
+  //   }
   // }
 
-  // bool removeDisease(Disease disease) {
+  // Either<Failure, List<Disease>> getSelectedDiseaseList(Disease disease) {
   //   try {
-  //     // DiseaseData.to.removeDisease(Disease);
-  //     return true;
-  //   } catch (e) {
-  //     return false;
+  //     return Right(DiseaseData.to.selectedDiseases);
+  //   } on NoDataException {
+  //     return Left(DataParsingFailure());
   //   }
   // }
 }
