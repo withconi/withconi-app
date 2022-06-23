@@ -1,27 +1,19 @@
-class UserModel {
-  String email;
-  String name;
-  String accessToken;
-  String refreshToken;
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:withconi/configs/constants/enum.dart';
+import 'conimal.dart';
+part 'user.freezed.dart';
+part 'user.g.dart';
 
-  UserModel(
-      {required this.email,
-      required this.name,
-      required this.accessToken,
-      required this.refreshToken});
+@freezed
+class WcUser with _$WcUser {
+  factory WcUser(
+      {required String uid,
+      required String email,
+      required String displayName,
+      required String nickname,
+      required ProviderOptions provider,
+      String? photoURL,
+      required List<Conimal> conimals}) = _WcUser;
 
-  factory UserModel.fromJson(Map<String, dynamic> json) {
-    return UserModel(
-        email: json['email'],
-        name: json['name'],
-        accessToken: json['accessToken'],
-        refreshToken: json['refreshToken']);
-  }
-
-  Map<String, dynamic> toJson() => {
-        'email': email,
-        'name': name,
-        'accessToken': accessToken,
-        'refreshToken': refreshToken,
-      };
+  factory WcUser.fromJson(Map<String, dynamic> json) => _$WcUserFromJson(json);
 }
