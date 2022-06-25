@@ -1,14 +1,18 @@
 import 'package:dartz/dartz.dart';
 import 'package:withconi/configs/helpers/calculator.dart';
-import 'package:withconi/controller/exception_controller.dart';
+import 'package:withconi/controller/failure_ui_interpreter.dart';
+import 'package:withconi/data/repository/auth_repository.dart';
 import 'package:withconi/data/repository/conimal_repository.dart';
+import 'package:withconi/data/repository/user_repository.dart';
 import '../../core/error_handling/failures.dart';
 import '../../data/model/conimal.dart';
 import '../../import_basic.dart';
 import 'shared_data/user_data.dart';
 
 class SignupConimal2Controller extends GetxController {
+  final UserRepository _userRepository = UserRepository();
   final ConimalRepository _conimalRepository = ConimalRepository();
+  final AuthRepository _authRepository = AuthRepository();
   final RxString _userName = ''.obs;
   RxList<Conimal> conimalList = RxList<Conimal>();
   String get userName => _userName.value;
@@ -16,7 +20,7 @@ class SignupConimal2Controller extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    _userName.value = UserData.to.name;
+    _userName.value = _userRepository.getUserName();
     _conimalRepository.visitedConimal2Page = true;
     getConimalList();
   }
@@ -56,8 +60,10 @@ class SignupConimal2Controller extends GetxController {
         _conimalRepository.registerConimals();
     registerConimalEither.fold(
         (fail) => FailureInterpreter().mapFailureToDialog(fail),
-        (success) => signUpDB());
+        (success) => signUp());
   }
 
-  signUpDB() {}
+  signUp() {
+    _authRepository.signUp();
+  }
 }

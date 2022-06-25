@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:intl/intl.dart';
-import 'package:withconi/controller/exception_controller.dart';
-import 'package:withconi/controller/signup/shared_data/user_data.dart';
+import 'package:withconi/controller/failure_ui_interpreter.dart';
 import 'package:withconi/data/repository/conimal_repository.dart';
+import 'package:withconi/data/repository/user_repository.dart';
 import '../../configs/constants/enum.dart';
 import '../../configs/constants/regex.dart';
 import '../../configs/constants/strings.dart';
@@ -12,6 +12,7 @@ import '../../import_basic.dart';
 
 class SignupConimal1Controller extends GetxController {
   final ConimalRepository _conimalRepository = ConimalRepository();
+  final UserRepository _userRepository = UserRepository();
   RxBool isConimalAdded = false.obs;
   final RxString _userName = ''.obs;
   final RxString _conimalName = ''.obs;
@@ -48,7 +49,7 @@ class SignupConimal1Controller extends GetxController {
   void onReady() {
     super.onReady();
 
-    _userName.value = UserData.to.name;
+    _userName.value = _userRepository.getUserName();
     debounce(_conimalName, validateName,
         time: const Duration(milliseconds: 400));
 
@@ -206,7 +207,6 @@ class SignupConimal1Controller extends GetxController {
     addResultEither.fold(
         (fail) => FailureInterpreter().mapFailureToDialog(fail), (success) {
       isConimalAdded.value = true;
-
       Get.offNamedUntil(Routes.SIGNUP_CONIMAL_STEP2,
           ModalRoute.withName(Routes.SIGNUP_PROFILE));
     });
