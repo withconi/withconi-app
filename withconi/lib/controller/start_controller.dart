@@ -1,25 +1,37 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:dartz/dartz.dart';
 import 'package:withconi/configs/constants/enum.dart';
-import 'package:withconi/controller/exception_controller.dart';
+import 'package:withconi/controller/failure_ui_interpreter.dart';
 import 'package:withconi/controller/signup/shared_data/user_data.dart';
 import 'package:withconi/core/error_handling/failures.dart';
 import 'package:withconi/data/repository/auth_repository.dart';
-import 'package:withconi/ui/widgets/snackbar.dart';
+import 'package:withconi/data/repository/conimal_repository.dart';
+import 'package:withconi/data/repository/user_repository.dart';
 import '../configs/constants/regex.dart';
 import '../configs/constants/strings.dart';
+import '../core/auth_info.dart';
 import '../import_basic.dart';
 import 'signup/shared_data/conimal_data.dart';
 
 class StartPageController extends GetxController with StateMixin<UserState> {
-  final AuthRepository _repository = AuthRepository();
+  final AuthRepository _authRepository = AuthRepository();
+  final UserRepository _userRepository = UserRepository();
+  final ConimalRepository _conimalRepository = ConimalRepository();
+
   final RxString _email = ''.obs;
   final RxBool isButtonValid = false.obs;
   final RxString buttonText = '다음'.obs;
   final Rx<UserState> _userState = UserState.NONE.obs;
+  final Rxn<AuthInfo> _authInfo = Rxn<AuthInfo>();
+
   RxnString emailErrorText = RxnString();
   TextEditingController emailTextController = TextEditingController();
   String nextRoute = '';
+
   String get email => _email.value;
+  AuthInfo? get authInfo => _authInfo.value;
+  UserState get userState => _userState.value;
 
   @override
   void onInit() {
@@ -31,32 +43,85 @@ class StartPageController extends GetxController with StateMixin<UserState> {
   void onReady() {
     super.onReady();
     debounce(_email, validateEmail, time: const Duration(microseconds: 400));
-    ever(_userState, setNextStep);
+    ever(_authInfo, checkDuplicateAuthInfo);
+    // ever(_userState, setStepByUserState);
   }
 
   void onEmailChange(String email) {
     _email.value = email;
   }
 
-  signIn(ProviderOptions provider) async {
-    late Either<Failure, UserState> userStateEither;
+  void onAuthInfoChange(AuthInfo authInfo) {
+    _authInfo.value = authInfo;
+  }
+
+  void onUserStateChange(UserState userState) {
+    _userState.value = userState;
+    setStepByUserState(userState);
+  }
+
+  getAuthInfo(ProviderOptions provider) async {
+    late Either<Failure, AuthInfo> authInfoEither;
     switch (provider) {
-      case ProviderOptions.GOOGLE:
-        userStateEither = await _repository.signInWithGoogle();
+      case ProviderOptions.email:
+        authInfoEither = await _authRepository.getEmailAuthInfo(email);
         break;
-      case ProviderOptions.KAKAO:
-        userStateEither = await _repository.signInWithKakao();
+      case ProviderOptions.google:
+        authInfoEither = await _authRepository.getGoogleAuthInfo();
         break;
-      case ProviderOptions.NAVER:
-        userStateEither = await _repository.signInWithNaver();
+      case ProviderOptions.kakao:
+        authInfoEither = await _authRepository.getKakaoAuthInfo();
         break;
-      case ProviderOptions.APPLE:
-        userStateEither = await _repository.signInWithApple();
+      case ProviderOptions.naver:
+        authInfoEither = await _authRepository.getNaverAuthInfo();
+        break;
+      case ProviderOptions.apple:
+        authInfoEither = await _authRepository.getAppleAuthInfo();
         break;
       default:
     }
+    authInfoEither.fold((fail) {
+      FailureInterpreter().mapFailureToDialog(fail);
+      change(null, status: RxStatus.empty());
+    }, (authInfo) {
+      onAuthInfoChange(authInfo);
+    });
+  }
 
-    changePageState(userStateEither);
+  checkDuplicateAuthInfo(_authInfo) async {
+    Either<Failure, bool> duplicateUserEither =
+        await _authRepository.checkDuplicateUser(
+            email: _authInfo.email, provider: _authInfo.provider);
+
+    duplicateUserEither
+        .fold((fail) => FailureInterpreter().mapFailureToDialog(fail),
+            (isDuplicateUser) {
+      UserState newUserState =
+          setUserState(isDuplicateUser, _authInfo.provider);
+      onUserStateChange(newUserState);
+    });
+  }
+
+  UserState setUserState(bool isDuplicateUser, ProviderOptions provider) {
+    UserState userState;
+    if (isDuplicateUser) {
+      if (provider == ProviderOptions.email) {
+        userState = UserState.SIGN_IN_EMAIL;
+      } else if (provider == ProviderOptions.none) {
+        userState = UserState.NONE;
+      } else {
+        userState = UserState.SIGN_IN_SNS;
+      }
+    } else {
+      if (provider == ProviderOptions.email) {
+        userState = UserState.SIGN_UP_EMAIL;
+      } else if (provider == ProviderOptions.none) {
+        userState = UserState.NONE;
+      } else {
+        userState = UserState.SIGN_UP_SNS;
+      }
+    }
+    return userState;
   }
 
   validateEmail(_email) async {
@@ -68,69 +133,68 @@ class StartPageController extends GetxController with StateMixin<UserState> {
           ? emailErrorText.value = null
           : emailErrorText.value = Strings.validator.email;
       _userState.value = UserState.NONE;
+      change(null, status: RxStatus.empty());
     } else {
       emailErrorText.value = null;
-      checkUserState(_email);
+      change(null, status: RxStatus.loading());
+      getAuthInfo(ProviderOptions.email);
     }
   }
 
-  checkUserState(String email) async {
-    change(null, status: RxStatus.loading());
-    Either<Failure, UserState> userStateEither = await _repository
-        .checkUserStateByEmail(email: email, provider: ProviderOptions.EMAIL);
-    changePageState(userStateEither);
-  }
-
-  setNextStep(_userState) {
+  setStepByUserState(UserState _userState) {
     switch (_userState) {
       case UserState.NONE:
         isButtonValid.value = false;
-        buttonText.value = '다음';
-
+        buttonText.value = '입력';
+        change(userState, status: RxStatus.success());
         break;
       case UserState.SIGN_IN_EMAIL:
         isButtonValid.value = true;
         buttonText.value = '로그인';
         nextRoute = Routes.SIGNIN_EMAIL;
-
+        change(userState, status: RxStatus.success());
+        break;
+      case UserState.SIGN_IN_SNS:
+        //바로 가면 안되고 로그인 해야함 token이나 credential로
+        isButtonValid.value = true;
+        buttonText.value = 'SNS 로그인';
+        nextRoute = Routes.HOME;
+        change(userState, status: RxStatus.success());
         break;
       case UserState.SIGN_UP_EMAIL:
         isButtonValid.value = true;
         buttonText.value = '회원가입';
         nextRoute = Routes.SIGNUP_PW;
-
-        break;
-      case UserState.SIGN_IN_SNS:
-        //바로 가면 안되고 로그인 해야함 token이나 credential로
-        nextRoute = Routes.HOME;
+        change(userState, status: RxStatus.success());
         break;
       case UserState.SIGN_UP_SNS:
+        isButtonValid.value = true;
+        buttonText.value = 'SNS 회원가입';
         nextRoute = Routes.SIGNUP_PROFILE;
-        nextStep();
+        change(userState, status: RxStatus.success());
+        goNext();
         break;
       default:
     }
   }
 
-  nextStep() {
+  // setPageState(UserState _userState) {
+  //   if (_userState == UserState.NONE) {
+  //     change(null, status: RxStatus.empty());
+  //   } else {
+  //     change(_userState, status: RxStatus.success());
+  //   }
+  // }
+
+  setSharedData() {
     final UserData _userData = Get.put(UserData());
     final ConimalData _conimalData = Get.put(ConimalData());
-    UserData.to.saveEmail(email);
-    Get.toNamed(nextRoute);
   }
 
-  changePageState(Either<Failure, UserState> userStateEither) {
-    userStateEither.fold((failure) {
-      ExceptionController().mapFailureToDialog(failure);
-      change(UserState.NONE, status: RxStatus.empty());
-    }, (userState) {
-      if (userState == UserState.NONE) {
-        _userState.value = userState;
-        change(userState, status: RxStatus.empty());
-      } else {
-        _userState.value = userState;
-        change(userState, status: RxStatus.success());
-      }
-    });
+  goNext() {
+    setSharedData();
+    _userRepository.saveUserEmail(email);
+    _userRepository.saveUserAuthInfo(authInfo!);
+    Get.toNamed(nextRoute);
   }
 }
