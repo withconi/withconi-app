@@ -24,6 +24,7 @@ class WcWideButtonWidget extends StatelessWidget {
   Color inactiveTextColor;
   Color activeTextColor;
   void Function()? onTap;
+
   bool active;
 
   @override
