@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:withconi/configs/constants/enum.dart';
-import 'package:withconi/controller/exception_controller.dart';
+import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
 import 'package:withconi/controller/start_controller.dart';
 import 'package:withconi/ui/pages/start/start_widgets/sns_button.dart';
 import 'package:withconi/ui/theme/colors.dart';
@@ -59,7 +59,7 @@ class StartPage extends StatelessWidget {
                     height: 60,
                   ),
                   Obx(() => WcTextField(
-                        hintText: '이메일을 입력해주세요',
+                        hintText: '이메일을 입력하여 진행해보세요',
                         onChanged: _controller.onEmailChange,
                         textController: _controller.emailTextController,
                         keyboardType: TextInputType.emailAddress,
@@ -75,7 +75,7 @@ class StartPage extends StatelessWidget {
                       activeTextColor: WcColors.white,
                       buttonText: _controller.buttonText.value,
                       buttonWidth: WcWidth - 40,
-                      onTap: _controller.nextStep,
+                      onTap: _controller.goNext,
                     ),
                     onLoading: WcLoadingButtonWidget(),
                     onEmpty: WcWideButtonWidget(
@@ -84,7 +84,7 @@ class StartPage extends StatelessWidget {
                       activeTextColor: WcColors.white,
                       buttonText: _controller.buttonText.value,
                       buttonWidth: WcWidth - 40,
-                      onTap: _controller.nextStep,
+                      onTap: _controller.goNext,
                     ),
                   ),
                   Expanded(
@@ -96,28 +96,28 @@ class StartPage extends StatelessWidget {
                           imageSrc: 'assets/icons/kakao.png',
                           label: '카카오톡',
                           onTap: () {
-                            _controller.signIn(ProviderOptions.kakao);
+                            _controller.getAuthInfo(ProviderOptions.kakao);
                           },
                         ),
                         SnsButtonWidget(
                           imageSrc: 'assets/icons/google.png',
                           label: '구글',
                           onTap: () {
-                            _controller.signIn(ProviderOptions.google);
+                            _controller.getAuthInfo(ProviderOptions.google);
                           },
                         ),
                         SnsButtonWidget(
                           imageSrc: 'assets/icons/naver.png',
                           label: '네이버',
                           onTap: () {
-                            _controller.signIn(ProviderOptions.naver);
+                            _controller.getAuthInfo(ProviderOptions.naver);
                           },
                         ),
                         SnsButtonWidget(
                           imageSrc: 'assets/icons/apple.png',
                           label: '애플',
                           onTap: () {
-                            _controller.signIn(ProviderOptions.apple);
+                            _controller.getAuthInfo(ProviderOptions.apple);
                           },
                         ),
                       ],
