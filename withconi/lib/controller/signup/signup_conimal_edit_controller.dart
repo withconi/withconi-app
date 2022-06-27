@@ -1,10 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:intl/intl.dart';
-import 'package:withconi/controller/exception_controller.dart';
+import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
 import 'package:withconi/controller/signup/shared_data/conimal_data.dart';
 import 'package:withconi/controller/signup/shared_data/user_data.dart';
 import 'package:withconi/core/error_handling/error_message_object.dart';
-import 'package:withconi/data/repository/conimal_repository.dart';
+import 'package:withconi/data/repository/signup_conimal_data_repository.dart';
+import 'package:withconi/data/repository/signup_user_data_repository.dart';
 import '../../configs/constants/enum.dart';
 import '../../configs/constants/regex.dart';
 import '../../configs/constants/strings.dart';
@@ -12,12 +13,13 @@ import '../../core/error_handling/failures.dart';
 import '../../data/model/conimal.dart';
 import '../../data/model/disease.dart';
 import '../../import_basic.dart';
-import 'shared_data/disease_data.dart';
 
 class SignupConimalEditController extends GetxController {
+  final ConimalRepository _conimalRepository = ConimalRepository();
+  final SignupUserRepository _userRepository = SignupUserRepository();
   late int conimalIndex;
   RxString controllerTag = ''.obs;
-  final ConimalRepository _conimalRepository = ConimalRepository();
+
   RxString _userName = ''.obs;
   RxString _conimalName = ''.obs;
   RxString diseaseText = ''.obs;
@@ -65,7 +67,7 @@ class SignupConimalEditController extends GetxController {
   void onReady() {
     super.onReady();
 
-    _userName.value = UserData.to.name;
+    _userName.value = _userRepository.getUserName();
 
     debounce(_conimalName, validateName,
         time: const Duration(milliseconds: 400));

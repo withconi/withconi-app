@@ -2,12 +2,12 @@
 
 import 'package:dartz/dartz.dart';
 import 'package:withconi/configs/constants/enum.dart';
-import 'package:withconi/controller/failure_ui_interpreter.dart';
+import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
 import 'package:withconi/controller/signup/shared_data/user_data.dart';
 import 'package:withconi/core/error_handling/failures.dart';
 import 'package:withconi/data/repository/auth_repository.dart';
-import 'package:withconi/data/repository/conimal_repository.dart';
-import 'package:withconi/data/repository/user_repository.dart';
+import 'package:withconi/data/repository/signup_conimal_data_repository.dart';
+import 'package:withconi/data/repository/signup_user_data_repository.dart';
 import '../configs/constants/regex.dart';
 import '../configs/constants/strings.dart';
 import '../core/auth_info.dart';
@@ -16,7 +16,7 @@ import 'signup/shared_data/conimal_data.dart';
 
 class StartPageController extends GetxController with StateMixin<UserState> {
   final AuthRepository _authRepository = AuthRepository();
-  final UserRepository _userRepository = UserRepository();
+  final SignupUserRepository _userRepository = SignupUserRepository();
   final ConimalRepository _conimalRepository = ConimalRepository();
 
   final RxString _email = ''.obs;
@@ -44,7 +44,6 @@ class StartPageController extends GetxController with StateMixin<UserState> {
     super.onReady();
     debounce(_email, validateEmail, time: const Duration(microseconds: 400));
     ever(_authInfo, checkDuplicateAuthInfo);
-    // ever(_userState, setStepByUserState);
   }
 
   void onEmailChange(String email) {
@@ -107,10 +106,14 @@ class StartPageController extends GetxController with StateMixin<UserState> {
     if (isDuplicateUser) {
       if (provider == ProviderOptions.email) {
         userState = UserState.SIGN_IN_EMAIL;
-      } else if (provider == ProviderOptions.none) {
-        userState = UserState.NONE;
+      } else if ((provider == ProviderOptions.apple) ||
+          (provider == ProviderOptions.google)) {
+        userState = UserState.SIGN_IN_CREDENTIAL;
+      } else if ((provider == ProviderOptions.naver) ||
+          (provider == ProviderOptions.kakao)) {
+        userState = UserState.SIGN_IN_TOKEN;
       } else {
-        userState = UserState.SIGN_IN_SNS;
+        userState = UserState.NONE;
       }
     } else {
       if (provider == ProviderOptions.email) {
@@ -141,7 +144,7 @@ class StartPageController extends GetxController with StateMixin<UserState> {
     }
   }
 
-  setStepByUserState(UserState _userState) {
+  setStepByUserState(UserState _userState) async {
     switch (_userState) {
       case UserState.NONE:
         isButtonValid.value = false;
@@ -154,11 +157,13 @@ class StartPageController extends GetxController with StateMixin<UserState> {
         nextRoute = Routes.SIGNIN_EMAIL;
         change(userState, status: RxStatus.success());
         break;
-      case UserState.SIGN_IN_SNS:
+      case UserState.SIGN_IN_CREDENTIAL:
         //바로 가면 안되고 로그인 해야함 token이나 credential로
-        isButtonValid.value = true;
-        buttonText.value = 'SNS 로그인';
-        nextRoute = Routes.HOME;
+        await _authRepository.signInWithSnsCredential(authInfo: authInfo!);
+        change(userState, status: RxStatus.success());
+        break;
+      case UserState.SIGN_IN_TOKEN:
+        await _authRepository.signInWithSnsToken(authInfo: authInfo!);
         change(userState, status: RxStatus.success());
         break;
       case UserState.SIGN_UP_EMAIL:
@@ -177,14 +182,6 @@ class StartPageController extends GetxController with StateMixin<UserState> {
       default:
     }
   }
-
-  // setPageState(UserState _userState) {
-  //   if (_userState == UserState.NONE) {
-  //     change(null, status: RxStatus.empty());
-  //   } else {
-  //     change(_userState, status: RxStatus.success());
-  //   }
-  // }
 
   setSharedData() {
     final UserData _userData = Get.put(UserData());

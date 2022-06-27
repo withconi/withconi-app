@@ -1,16 +1,16 @@
 import 'package:dartz/dartz.dart';
 import 'package:withconi/configs/helpers/calculator.dart';
-import 'package:withconi/controller/failure_ui_interpreter.dart';
+import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
 import 'package:withconi/data/repository/auth_repository.dart';
-import 'package:withconi/data/repository/conimal_repository.dart';
-import 'package:withconi/data/repository/user_repository.dart';
+import 'package:withconi/data/repository/signup_conimal_data_repository.dart';
+import 'package:withconi/data/repository/signup_user_data_repository.dart';
 import '../../core/error_handling/failures.dart';
 import '../../data/model/conimal.dart';
 import '../../import_basic.dart';
 import 'shared_data/user_data.dart';
 
 class SignupConimal2Controller extends GetxController {
-  final UserRepository _userRepository = UserRepository();
+  final SignupUserRepository _userRepository = SignupUserRepository();
   final ConimalRepository _conimalRepository = ConimalRepository();
   final AuthRepository _authRepository = AuthRepository();
   final RxString _userName = ''.obs;

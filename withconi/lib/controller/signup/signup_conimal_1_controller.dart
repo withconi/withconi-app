@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:intl/intl.dart';
-import 'package:withconi/controller/failure_ui_interpreter.dart';
-import 'package:withconi/data/repository/conimal_repository.dart';
-import 'package:withconi/data/repository/user_repository.dart';
+import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
+import 'package:withconi/data/repository/signup_conimal_data_repository.dart';
+import 'package:withconi/data/repository/signup_user_data_repository.dart';
 import '../../configs/constants/enum.dart';
 import '../../configs/constants/regex.dart';
 import '../../configs/constants/strings.dart';
@@ -12,7 +12,7 @@ import '../../import_basic.dart';
 
 class SignupConimal1Controller extends GetxController {
   final ConimalRepository _conimalRepository = ConimalRepository();
-  final UserRepository _userRepository = UserRepository();
+  final SignupUserRepository _userRepository = SignupUserRepository();
   RxBool isConimalAdded = false.obs;
   final RxString _userName = ''.obs;
   final RxString _conimalName = ''.obs;
