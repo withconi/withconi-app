@@ -1,9 +1,12 @@
-import 'package:withconi/controller/signup/user_data.dart';
+import 'package:withconi/controller/signup/shared_data/user_data.dart';
+import 'package:withconi/data/repository/signup_user_data_repository.dart';
 import '../../configs/constants/regex.dart';
 import '../../configs/constants/strings.dart';
 import '../../import_basic.dart';
 
 class SignupPwController extends GetxController {
+  SignupUserRepository _userRepository = SignupUserRepository();
+
   late RxString _email;
   late RxString _password;
   late RxString _confirmPassword;
@@ -39,18 +42,13 @@ class SignupPwController extends GetxController {
   void onReady() {
     super.onReady();
 
-    _email.value = UserData.to.email;
+    _email.value = _userRepository.getUserEmail();
     emailTextController.text = _email.value;
 
-    debounce(_name, validateName, time: const Duration(milliseconds: 400));
     debounce(_password, validatePassword,
         time: const Duration(milliseconds: 400));
     debounce(_confirmPassword, validateConfirmPassword,
         time: const Duration(milliseconds: 400));
-  }
-
-  void onNameChanged(String val) {
-    _name.value = val;
   }
 
   void onPasswordChanged(String password) {
@@ -74,8 +72,7 @@ class SignupPwController extends GetxController {
   }
 
   nextStep() {
-    UserData.to.savePassword(password);
-    UserData.to.saveName(name);
+    _userRepository.saveUserName(name);
     Get.toNamed(Routes.SIGNUP_PROFILE);
   }
 

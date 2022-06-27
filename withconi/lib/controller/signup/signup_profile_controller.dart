@@ -1,12 +1,22 @@
-import 'package:withconi/controller/signup/user_data.dart';
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
+import 'package:withconi/data/repository/signup_conimal_data_repository.dart';
+import 'package:withconi/data/repository/signup_user_data_repository.dart';
 import '../../configs/constants/regex.dart';
 import '../../configs/constants/strings.dart';
 import '../../import_basic.dart';
 
 class SignupProfileController extends GetxController {
-  late RxString _name;
-  late RxString _nickName;
-  late RxBool isButtonValid;
+  final ConimalRepository _conimalRepository = ConimalRepository();
+  final SignupUserRepository _userRepository = SignupUserRepository();
+
+  final RxString _name = ''.obs;
+  final RxString _nickName = ''.obs;
+  RxBool isButtonValid = false.obs;
+
+  Rxn<dynamic> profileImg = Rxn<dynamic>();
+
+  RxBool profileSelected = false.obs;
 
   RxnString nameErrorText = RxnString();
   RxnString nickNameErrorText = RxnString();
@@ -15,15 +25,6 @@ class SignupProfileController extends GetxController {
   TextEditingController nickNameTextController = TextEditingController();
   String get name => _name.value;
   String get nickName => _nickName.value;
-
-  @override
-  void onInit() {
-    super.onInit();
-
-    _name = ''.obs;
-    _nickName = ''.obs;
-    isButtonValid = false.obs;
-  }
 
   @override
   void onReady() {
@@ -41,6 +42,11 @@ class SignupProfileController extends GetxController {
     _nickName.value = val;
   }
 
+  void onImageChanged(dynamic image) {
+    profileImg.value = image;
+    profileSelected.value = true;
+  }
+
   validateButton() {
     if (nameErrorText.value == null &&
         name.isNotEmpty &&
@@ -53,13 +59,6 @@ class SignupProfileController extends GetxController {
     return isButtonValid.value;
   }
 
-  nextStep() {
-    UserData.to.saveName(name);
-    UserData.to.saveNickName(nickName);
-    // UserData.to.saveProfileSrc();
-    Get.toNamed(Routes.SIGNUP_CONIMAL_STEP1);
-  }
-
   validateName(String value) {
     final nameRegExp = Regex.name;
     nameErrorText.value = null;
@@ -67,6 +66,27 @@ class SignupProfileController extends GetxController {
       nameErrorText.value = Strings.validator.name;
     } else {
       nameErrorText.value = null;
+    }
+  }
+
+  pickImage() async {
+    final ImagePicker _picker = ImagePicker();
+    // Pick an image
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      print('image selected');
+      onImageChanged(File(image.path));
+    }
+  }
+
+  nextStep() {
+    _userRepository.saveUserName(name);
+    _userRepository.saveUserNickname(nickName);
+    _userRepository.saveUserProfile(profileImg.value);
+    if (_conimalRepository.visitedConimal2Page) {
+      Get.toNamed(Routes.SIGNUP_CONIMAL_STEP2);
+    } else {
+      Get.toNamed(Routes.SIGNUP_CONIMAL_STEP1);
     }
   }
 }
