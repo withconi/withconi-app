@@ -3,7 +3,11 @@
 class HttpUrl {
   static const WITHCONI_API_BASE_URL =
       'https://asia-northeast3-withconi.cloudfunctions.net/api';
-  static const VERIFY_EMAIL = WITHCONI_API_BASE_URL + '/auth/verifyEmail';
-  static const SIGN_IN = WITHCONI_API_BASE_URL + '/auth/signIn';
-  static const SIGN_UP = WITHCONI_API_BASE_URL + '/auth/signUp';
+  static const VERIFY_EMAIL = '/auth/verifyEmail';
+  static const SIGN_IN = '/auth/signIn';
+  static const SIGN_UP = '/auth/signUp';
+  static const GET_USER = '/auth/getUser';
+  static const UPDATE_USER = '/auth/updateUser';
+  static const GET_CUSTOM_TOKEN = '/auth/getCustomToken';
+  static const GET_DISEASE = '/disease/listDiseases';
 }
