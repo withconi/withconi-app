@@ -1,8 +1,5 @@
-import 'package:dio/dio.dart';
 import 'package:withconi/configs/constants/api_url.dart';
-import '../../core/network_handling/network_response.dart';
 import '../../core/network_handling/network_service.dart';
-import '../model/disease.dart';
 
 class DiseaseAPI {
   final Api _dio = Api();
