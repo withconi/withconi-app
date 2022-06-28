@@ -25,13 +25,13 @@ Map<String, dynamic> _$$_WcUserToJson(_$_WcUser instance) => <String, dynamic>{
       'nickname': instance.nickname,
       'provider': _$ProviderOptionsEnumMap[instance.provider],
       'photoURL': instance.photoURL,
-      'conimals': instance.conimals,
+      'conimals': instance.conimals.map((e) => e.toJson()).toList(),
     };
 
 const _$ProviderOptionsEnumMap = {
   ProviderOptions.kakao: 'kakao',
   ProviderOptions.naver: 'naver',
-  ProviderOptions.google: 'google',
+  ProviderOptions.google: 'kakao',
   ProviderOptions.apple: 'apple',
   ProviderOptions.email: 'email',
   ProviderOptions.none: 'none',

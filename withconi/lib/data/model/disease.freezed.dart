@@ -20,7 +20,8 @@ Disease _$DiseaseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Disease {
-  int get createdAt => throw _privateConstructorUsedError;
+  @DateTimeConverter()
+  DateTime get createdAt => throw _privateConstructorUsedError;
   String get code => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   List<String> get symptoms => throw _privateConstructorUsedError;
@@ -36,7 +37,7 @@ abstract class $DiseaseCopyWith<$Res> {
   factory $DiseaseCopyWith(Disease value, $Res Function(Disease) then) =
       _$DiseaseCopyWithImpl<$Res>;
   $Res call(
-      {int createdAt,
+      {@DateTimeConverter() DateTime createdAt,
       String code,
       String name,
       List<String> symptoms,
@@ -63,7 +64,7 @@ class _$DiseaseCopyWithImpl<$Res> implements $DiseaseCopyWith<$Res> {
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as int,
+              as DateTime,
       code: code == freezed
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
@@ -91,7 +92,7 @@ abstract class _$$_DiseaseCopyWith<$Res> implements $DiseaseCopyWith<$Res> {
       __$$_DiseaseCopyWithImpl<$Res>;
   @override
   $Res call(
-      {int createdAt,
+      {@DateTimeConverter() DateTime createdAt,
       String code,
       String name,
       List<String> symptoms,
@@ -119,7 +120,7 @@ class __$$_DiseaseCopyWithImpl<$Res> extends _$DiseaseCopyWithImpl<$Res>
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as int,
+              as DateTime,
       code: code == freezed
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
@@ -141,10 +142,11 @@ class __$$_DiseaseCopyWithImpl<$Res> extends _$DiseaseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_Disease implements _Disease {
   _$_Disease(
-      {required this.createdAt,
+      {@DateTimeConverter() required this.createdAt,
       required this.code,
       required this.name,
       required final List<String> symptoms,
@@ -155,7 +157,8 @@ class _$_Disease implements _Disease {
       _$$_DiseaseFromJson(json);
 
   @override
-  final int createdAt;
+  @DateTimeConverter()
+  final DateTime createdAt;
   @override
   final String code;
   @override
@@ -211,7 +214,7 @@ class _$_Disease implements _Disease {
 
 abstract class _Disease implements Disease {
   factory _Disease(
-      {required final int createdAt,
+      {@DateTimeConverter() required final DateTime createdAt,
       required final String code,
       required final String name,
       required final List<String> symptoms,
@@ -220,7 +223,8 @@ abstract class _Disease implements Disease {
   factory _Disease.fromJson(Map<String, dynamic> json) = _$_Disease.fromJson;
 
   @override
-  int get createdAt => throw _privateConstructorUsedError;
+  @DateTimeConverter()
+  DateTime get createdAt => throw _privateConstructorUsedError;
   @override
   String get code => throw _privateConstructorUsedError;
   @override

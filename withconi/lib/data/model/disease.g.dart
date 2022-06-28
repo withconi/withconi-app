@@ -7,7 +7,7 @@ part of 'disease.dart';
 // **************************************************************************
 
 _$_Disease _$$_DiseaseFromJson(Map<String, dynamic> json) => _$_Disease(
-      createdAt: json['createdAt'] as int,
+      createdAt: const DateTimeConverter().fromJson(json['createdAt'] as int),
       code: json['code'] as String,
       name: json['name'] as String,
       symptoms:
@@ -17,7 +17,7 @@ _$_Disease _$$_DiseaseFromJson(Map<String, dynamic> json) => _$_Disease(
 
 Map<String, dynamic> _$$_DiseaseToJson(_$_Disease instance) =>
     <String, dynamic>{
-      'createdAt': instance.createdAt,
+      'createdAt': const DateTimeConverter().toJson(instance.createdAt),
       'code': instance.code,
       'name': instance.name,
       'symptoms': instance.symptoms,

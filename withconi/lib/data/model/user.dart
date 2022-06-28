@@ -6,6 +6,7 @@ part 'user.g.dart';
 
 @freezed
 class WcUser with _$WcUser {
+  @JsonSerializable(explicitToJson: true)
   factory WcUser(
       {required String uid,
       required String email,

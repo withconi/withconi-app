@@ -166,7 +166,8 @@ class __$$_WcUserCopyWithImpl<$Res> extends _$WcUserCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_WcUser implements _WcUser {
   _$_WcUser(
       {required this.uid,

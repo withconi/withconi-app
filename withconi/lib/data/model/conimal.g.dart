@@ -6,21 +6,36 @@ part of 'conimal.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ConimalModel _$ConimalModelFromJson(Map<String, dynamic> json) => ConimalModel(
-      birthDate: json['birthDate'] as int,
+_$_Conimal _$$_ConimalFromJson(Map<String, dynamic> json) => _$_Conimal(
+      conimalId: json['conimalId'] as String,
       name: json['name'] as String,
-      adoptedDate: json['adoptedDate'] as int,
-      diseases: (json['diseases'] as List<dynamic>)
-          .map((e) => DiseaseModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      createdAt: json['createdAt'] as int,
+      species: $enumDecode(_$SpeciesEnumMap, json['species']),
+      gender: $enumDecode(_$GenderEnumMap, json['gender']),
+      birthDate: const DateTimeConverter().fromJson(json['birthDate'] as int),
+      adoptedDate:
+          const DateTimeConverter().fromJson(json['adoptedDate'] as int),
+      diseases:
+          const DiseaseIdConverter().fromJson(json['diseases'] as List<String>),
     );
 
-Map<String, dynamic> _$ConimalModelToJson(ConimalModel instance) =>
+Map<String, dynamic> _$$_ConimalToJson(_$_Conimal instance) =>
     <String, dynamic>{
-      'birthDate': instance.birthDate,
+      'conimalId': instance.conimalId,
       'name': instance.name,
-      'adoptedDate': instance.adoptedDate,
-      'diseases': instance.diseases.map((e) => e.toJson()).toList(),
-      'createdAt': instance.createdAt,
+      'species': _$SpeciesEnumMap[instance.species],
+      'gender': _$GenderEnumMap[instance.gender],
+      'birthDate': const DateTimeConverter().toJson(instance.birthDate),
+      'adoptedDate': const DateTimeConverter().toJson(instance.adoptedDate),
+      'diseases': const DiseaseIdConverter().toJson(instance.diseases),
     };
+
+const _$SpeciesEnumMap = {
+  Species.cat: 'cat',
+  Species.dog: 'dog',
+  Species.none: 'none',
+};
+
+const _$GenderEnumMap = {
+  Gender.female: 'female',
+  Gender.male: 'male',
+};

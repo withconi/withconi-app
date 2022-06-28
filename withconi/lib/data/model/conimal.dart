@@ -1,35 +1,47 @@
-import 'package:equatable/equatable.dart';
-import 'package:withconi/data/model/disease.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:withconi/configs/constants/enum.dart';
+import 'disease.dart';
+part 'conimal.freezed.dart';
 part 'conimal.g.dart';
 
-@JsonSerializable(explicitToJson: true)
-class ConimalModel extends Equatable {
-  ConimalModel(
-      {required this.birthDate,
-      required this.name,
-      required this.adoptedDate,
-      required this.diseases,
-      required this.createdAt});
+@freezed
+class Conimal with _$Conimal {
+  factory Conimal({
+    required String conimalId,
+    required String name,
+    required Species species,
+    required Gender gender,
+    @DateTimeConverter() required DateTime birthDate,
+    @DateTimeConverter() required DateTime adoptedDate,
+    @DiseaseIdConverter() required List<Disease> diseases,
+  }) = _Conimal;
 
-  int birthDate;
-  String name;
-  int adoptedDate;
-  List<DiseaseModel> diseases;
-  int createdAt;
-
-  factory ConimalModel.fromJson(Map<String, dynamic> json) =>
-      _$ConimalModelFromJson(json);
-
-  Map<String, dynamic> toJson() => _$ConimalModelToJson(this);
-
-  @override
-  List<Object> get props => [this.name, this.createdAt];
+  factory Conimal.fromJson(Map<String, dynamic> json) =>
+      _$ConimalFromJson(json);
 }
 
-List<ConimalModel> parseConimal(Map<String, dynamic> data) {
-  final conimalList = data['data']['list']
-      .map<ConimalModel>((json) => ConimalModel.fromJson(json))
-      .toList();
-  return conimalList;
+class DateTimeConverter implements JsonConverter<DateTime, int> {
+  const DateTimeConverter();
+
+  @override
+  DateTime fromJson(int milliseconds) {
+    return DateTime.fromMillisecondsSinceEpoch(milliseconds);
+  }
+
+  @override
+  int toJson(DateTime date) => date.millisecondsSinceEpoch;
+}
+
+class DiseaseIdConverter implements JsonConverter<List<Disease>, List<String>> {
+  const DiseaseIdConverter();
+
+  @override
+  List<Disease> fromJson(List<dynamic> diseaseMap) {
+    return diseaseMap.map((data) => Disease.fromJson(data)).toList();
+  }
+
+  @override
+  List<String> toJson(List<Disease> diseases) {
+    return diseases.map((disease) => disease.code).toList();
+  }
 }
