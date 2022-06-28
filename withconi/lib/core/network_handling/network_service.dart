@@ -3,7 +3,6 @@ import 'package:withconi/configs/constants/api_url.dart';
 import 'package:withconi/configs/constants/enum.dart';
 import '../../configs/helpers/token_manager.dart';
 import '../error_handling/exceptions.dart';
-import 'network_response.dart';
 
 enum RequestType { GET, POST, PUT, PATCH, DELETE }
 
@@ -40,6 +39,7 @@ class Api {
 
   Future<Map<String, dynamic>> apiCall(
       {required String url,
+      Map<String, dynamic>? header,
       Map<String, dynamic>? queryParameters,
       Map<String, dynamic>? body,
       required RequestType requestType}) async {
@@ -48,20 +48,22 @@ class Api {
       switch (requestType) {
         case RequestType.GET:
           {
-            Options options = Options(headers: header);
+            Options options = Options(headers: header ?? default_header);
             result = await dio.get(url,
                 queryParameters: queryParameters, options: options);
             break;
           }
         case RequestType.POST:
           {
-            Options options = Options(headers: header);
+            Options options = Options(headers: header ?? default_header);
             result = await dio.post(url, data: body, options: options);
+            print('data body 결과 : ');
+            print(body);
             break;
           }
         case RequestType.DELETE:
           {
-            Options options = Options(headers: header);
+            Options options = Options(headers: header ?? default_header);
             result =
                 await dio.delete(url, data: queryParameters, options: options);
             break;
@@ -144,82 +146,20 @@ class ErrorInterceptors extends Interceptor {
   }
 }
 
-// class BadRequestException extends DioError {
-//   BadRequestException(RequestOptions r) : super(requestOptions: r);
-
-//   @override
-//   String toString() {
-//     return 'Invalid request';
-//   }
-// }
-
-// class InternalServerErrorException extends DioError {
-//   InternalServerErrorException(RequestOptions r) : super(requestOptions: r);
-
-//   @override
-//   String toString() {
-//     return 'Unknown error occurred, please try again later.';
-//   }
-// }
-
-// class ConflictException extends DioError {
-//   ConflictException(RequestOptions r) : super(requestOptions: r);
-
-//   @override
-//   String toString() {
-//     return 'Conflict occurred';
-//   }
-// }
-
-// class UnauthorizedException extends DioError {
-//   UnauthorizedException(RequestOptions r) : super(requestOptions: r);
-
-//   @override
-//   String toString() {
-//     return 'Access denied, wrong token';
-//   }
-// }
-
-// class NotFoundException extends DioError {
-//   NotFoundException(RequestOptions r) : super(requestOptions: r);
-
-//   @override
-//   String toString() {
-//     return 'The requested information could not be found';
-//   }
-// }
-
-// class NoInternetConnectionException extends DioError {
-//   NoInternetConnectionException(RequestOptions r) : super(requestOptions: r);
-
-//   @override
-//   String toString() {
-//     return 'No internet connection detected, please try again.';
-//   }
-// }
-
-// class TimeOutException extends DioError {
-//   TimeOutException(RequestOptions r) : super(requestOptions: r);
-
-//   @override
-//   String toString() {
-//     return 'The connection has timed out, please try again.';
-//   }
-// }
-
 class Logging extends Interceptor {
   final Dio dio;
   Logging(this.dio);
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    print('REQUEST[${options.method}] => PATH: ${options.path}');
+    print(
+        'REQUEST[${options.method}] => PATH: ${options.path} // DATA: ${options.data}');
     return super.onRequest(options, handler);
   }
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
     print(
-      'RESPONSE[${response.statusCode}] => PATH: ${response.requestOptions.path}',
+      'RESPONSE[${response.statusCode}] => PATH: ${response.requestOptions.path} // DATA: ${response.data}',
     );
     return super.onResponse(response, handler);
   }
@@ -227,19 +167,19 @@ class Logging extends Interceptor {
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) {
     print(
-      'ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path}',
+      'ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path} // ERROR_INFO: ${err.response?.data['error']}',
     );
-    print(err);
+
     return super.onError(err, handler);
   }
 }
 
-final Map<String, String> header = {
+final Map<String, String> default_header = {
   'Content-type': 'application/json',
   'Accept': 'application/json',
   'client-secret': 'xyz',
   'client-id': 'abc',
   'package-name': 'com.sasa.abc',
   'platform': 'android',
-  'Authorization': "access_token"
+  'accessToken': "access_token"
 };
