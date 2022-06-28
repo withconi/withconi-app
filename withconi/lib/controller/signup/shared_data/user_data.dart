@@ -18,7 +18,6 @@ class UserData extends GetxController {
   RxString _name = ''.obs;
   RxString _password = ''.obs;
   RxString _nickName = ''.obs;
-  Rx<ProviderOptions> _provider = ProviderOptions.none.obs;
   Rxn<File> _profileImg = Rxn<File>();
   final Rxn<AuthInfo> _authInfo = Rxn<AuthInfo>();
 
@@ -28,17 +27,12 @@ class UserData extends GetxController {
   String get nickName => _nickName.value;
   File? get profileImg =>
       (_profileImg.value == null) ? null : _profileImg.value;
-  String? get profileImgPath =>
-      (_profileImg.value == null) ? null : _profileImg.value!.path;
+  String get profileImgPath =>
+      (_profileImg.value == null) ? '' : _profileImg.value!.path;
   AuthInfo? get authInfo => _authInfo.value;
-  ProviderOptions get provider => _provider.value;
 
   void saveEmail(String email) {
     _email.value = email;
-  }
-
-  void saveProvider(ProviderOptions provider) {
-    _provider.value = provider;
   }
 
   void saveName(String name) {
