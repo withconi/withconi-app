@@ -1,9 +1,8 @@
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:withconi/configs/constants/enum.dart';
 import 'package:withconi/import_basic.dart';
 import '../../../controller/signup/signup_conimal_2_controller.dart';
 import '../../widgets/button/wide_button.dart';
-import 'signup_widgets/conimal_listtile.dart';
+import 'signup_widgets/conimal_list_tile.dart';
 
 class SignupConimalPage2 extends StatelessWidget {
   SignupConimalPage2({Key? key}) : super(key: key);
@@ -126,7 +125,7 @@ class SignupConimalPage2 extends StatelessWidget {
                     activeTextColor: WcColors.white,
                     buttonText: '등록',
                     buttonWidth: WcWidth - 40,
-                    onTap: () {},
+                    onTap: _controller.signUp,
                   ),
                 ),
               ],
