@@ -181,13 +181,14 @@ class AuthAPI {
   }
 
   Future<String?> signUpDB(WcUser user) async {
+    print('user toJson 결과 => ${user.toJson()} ');
     Map<String, dynamic> data = await _dio.apiCall(
       url: HttpUrl.SIGN_UP,
       queryParameters: null,
       body: user.toJson(),
       requestType: RequestType.POST,
     );
-    print(data);
+
     // return data['uid'];
   }
 
@@ -204,7 +205,7 @@ class AuthAPI {
     return customToken;
   }
 
-  Future<bool> checkDuplicateEmail({required email}) async {
+  Future<bool> checkUserEmail({required email}) async {
     late bool isDuplicateUser;
     Map<String, dynamic> data = await _dio.apiCall(
       url: HttpUrl.VERIFY_EMAIL,
@@ -230,6 +231,7 @@ class AuthAPI {
       userLoggedIn = false;
     } else {
       userLoggedIn = true;
+
       switch (provider) {
         case ProviderOptions.kakao:
           userLoggedIn = await checkKakaoTokenValid();

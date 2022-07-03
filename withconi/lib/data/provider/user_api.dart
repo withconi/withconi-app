@@ -11,9 +11,9 @@ class UserAPI {
 
     Map<String, dynamic> userData = await _dio.apiCall(
         url: HttpUrl.GET_USER,
-        queryParameters: null,
-        body: requestData,
-        requestType: RequestType.POST);
+        queryParameters: requestData,
+        body: null,
+        requestType: RequestType.GET);
 
     return userData;
   }
