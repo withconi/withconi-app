@@ -13,7 +13,7 @@ class Disease with _$Disease {
     required String code,
     required String name,
     required List<String> symptoms,
-    required String description,
+    @Default('') String? description,
   }) = _Disease;
 
   factory Disease.fromJson(Map<String, dynamic> json) =>

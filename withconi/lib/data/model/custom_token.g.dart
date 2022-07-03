@@ -23,7 +23,7 @@ Map<String, dynamic> _$$_CustomTokenToJson(_$_CustomToken instance) =>
 const _$ProviderOptionsEnumMap = {
   ProviderOptions.kakao: 'kakao',
   ProviderOptions.naver: 'naver',
-  ProviderOptions.google: 'google',
+  ProviderOptions.google: 'kakao',
   ProviderOptions.apple: 'apple',
   ProviderOptions.email: 'email',
   ProviderOptions.none: 'none',

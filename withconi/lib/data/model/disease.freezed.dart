@@ -25,7 +25,7 @@ mixin _$Disease {
   String get code => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   List<String> get symptoms => throw _privateConstructorUsedError;
-  String get description => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,7 +41,7 @@ abstract class $DiseaseCopyWith<$Res> {
       String code,
       String name,
       List<String> symptoms,
-      String description});
+      String? description});
 }
 
 /// @nodoc
@@ -80,7 +80,7 @@ class _$DiseaseCopyWithImpl<$Res> implements $DiseaseCopyWith<$Res> {
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -96,7 +96,7 @@ abstract class _$$_DiseaseCopyWith<$Res> implements $DiseaseCopyWith<$Res> {
       String code,
       String name,
       List<String> symptoms,
-      String description});
+      String? description});
 }
 
 /// @nodoc
@@ -136,7 +136,7 @@ class __$$_DiseaseCopyWithImpl<$Res> extends _$DiseaseCopyWithImpl<$Res>
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -150,7 +150,7 @@ class _$_Disease implements _Disease {
       required this.code,
       required this.name,
       required final List<String> symptoms,
-      required this.description})
+      this.description = ''})
       : _symptoms = symptoms;
 
   factory _$_Disease.fromJson(Map<String, dynamic> json) =>
@@ -171,7 +171,8 @@ class _$_Disease implements _Disease {
   }
 
   @override
-  final String description;
+  @JsonKey()
+  final String? description;
 
   @override
   String toString() {
@@ -218,7 +219,7 @@ abstract class _Disease implements Disease {
       required final String code,
       required final String name,
       required final List<String> symptoms,
-      required final String description}) = _$_Disease;
+      final String? description}) = _$_Disease;
 
   factory _Disease.fromJson(Map<String, dynamic> json) = _$_Disease.fromJson;
 
@@ -232,7 +233,7 @@ abstract class _Disease implements Disease {
   @override
   List<String> get symptoms => throw _privateConstructorUsedError;
   @override
-  String get description => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_DiseaseCopyWith<_$_Disease> get copyWith =>

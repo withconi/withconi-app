@@ -32,16 +32,18 @@ class DateTimeConverter implements JsonConverter<DateTime, int> {
   int toJson(DateTime date) => date.millisecondsSinceEpoch;
 }
 
-class DiseaseIdConverter implements JsonConverter<List<Disease>, List<String>> {
+class DiseaseIdConverter
+    implements JsonConverter<List<Disease>, List<dynamic>> {
   const DiseaseIdConverter();
 
   @override
   List<Disease> fromJson(List<dynamic> diseaseMap) {
+    print(diseaseMap);
     return diseaseMap.map((data) => Disease.fromJson(data)).toList();
   }
 
   @override
-  List<String> toJson(List<Disease> diseases) {
-    return diseases.map((disease) => disease.code).toList();
+  List<String> toJson(List<dynamic> diseases) {
+    return diseases.map((disease) => disease.code.toString()).toList();
   }
 }
