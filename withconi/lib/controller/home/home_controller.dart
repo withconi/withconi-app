@@ -15,39 +15,38 @@ class HomeController extends GetxController {
 
   @override
   onInit() {
+    super.onInit();
     _setWcUser();
     _setConimalList();
     _setSelectedConimal(selectedConimalIndex.value);
     _setAllDiseases();
   }
 
-  _setWcUser() {
-    wcUser = AuthController.to.wcUser;
+  void _setWcUser() {
+    wcUser.value = Get.arguments as WcUser;
   }
 
-  _setConimalList() {
+  void _setConimalList() {
     conimalList.assignAll(wcUser.value!.conimals);
     conimalCount.value = conimalList.length;
   }
 
-  _setSelectedConimal(int conimalNum) {
+  void _setSelectedConimal(int conimalNum) {
     selectedConimalIndex.value = conimalNum;
     selectedConimal.value = conimalList[conimalNum];
     daysAfterAdoption.value =
         daysBetween(selectedConimal.value!.adoptedDate, DateTime.now());
   }
 
-  _setAllDiseases() {
+  void _setAllDiseases() {
     Set<Disease> diseaseSet = {};
-
     for (Conimal conimal in conimalList) {
       diseaseSet.addAll(conimal.diseases.toSet());
     }
-
     caredDiseasesList.addAll(diseaseSet.toList());
   }
 
-  onSelectedConimalChanged(int index) {
+  void onSelectedConimalChanged(int index) {
     _setSelectedConimal(index);
   }
 

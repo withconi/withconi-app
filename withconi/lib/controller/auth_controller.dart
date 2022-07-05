@@ -7,24 +7,29 @@ import 'package:withconi/controller/signup/shared_data/user_data.dart';
 import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
 import 'package:withconi/core/error_handling/failures.dart';
 import 'package:withconi/data/repository/auth_repository.dart';
+import 'package:withconi/data/repository/signup_conimal_data_repository.dart';
+import 'package:withconi/data/repository/signup_user_repository.dart';
 import 'package:withconi/data/repository/user_repository.dart';
 import '../configs/constants/auth_variables.dart';
 import '../data/model/user.dart';
 import '../import_basic.dart';
+import '../ui/widgets/loading.dart';
 
 class AuthController extends GetxController {
   static AuthController get to => Get.find();
   final AuthRepository _authRepository = AuthRepository();
   final UserRepository _userRepository = UserRepository();
+
   final RxBool _isLoggedIn = false.obs;
   final Rxn<WcUser> wcUser = Rxn<WcUser>();
+  bool _init = true;
 
   @override
   onReady() async {
     super.onReady();
-    await Future.delayed(const Duration(milliseconds: 1300), () async {
-      await setUserState(firebaseAuth.currentUser);
-    });
+
+    await Future.delayed(const Duration(milliseconds: 1300), () {});
+    await setUserState(firebaseAuth.currentUser);
   }
 
   setUserState(User? firebaseUser) async {
@@ -52,11 +57,17 @@ class AuthController extends GetxController {
     if (wcUser == null) {
       Get.offAllNamed(Routes.START);
     } else {
-      Get.offAllNamed(Routes.HOME);
+      Get.offAllNamed(Routes.HOME, arguments: wcUser);
     }
   }
 
-  signOut() {
-    _authRepository.signOut();
+  _disposeSavedData() {
+    SignupUserRepository.to.dispose();
+    ConimalRepository.to.dispose();
+  }
+
+  signOut() async {
+    await _authRepository.signOut();
+    await setUserState(firebaseAuth.currentUser);
   }
 }
