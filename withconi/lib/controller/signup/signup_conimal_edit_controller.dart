@@ -5,7 +5,7 @@ import 'package:withconi/controller/signup/shared_data/conimal_data.dart';
 import 'package:withconi/controller/signup/shared_data/user_data.dart';
 import 'package:withconi/core/error_handling/error_message_object.dart';
 import 'package:withconi/data/repository/signup_conimal_data_repository.dart';
-import 'package:withconi/data/repository/signup_user_data_repository.dart';
+import 'package:withconi/data/repository/signup_user_repository.dart';
 import '../../configs/constants/enum.dart';
 import '../../configs/constants/regex.dart';
 import '../../configs/constants/strings.dart';
@@ -15,8 +15,8 @@ import '../../data/model/disease.dart';
 import '../../import_basic.dart';
 
 class SignupConimalEditController extends GetxController {
-  final ConimalRepository _conimalRepository = ConimalRepository();
-  final SignupUserRepository _userRepository = SignupUserRepository();
+  final ConimalRepository _conimalRepository = ConimalRepository.to;
+  final SignupUserRepository _userRepository = SignupUserRepository.to;
   late int conimalIndex;
   RxString controllerTag = ''.obs;
 
@@ -67,7 +67,7 @@ class SignupConimalEditController extends GetxController {
   void onReady() {
     super.onReady();
 
-    _userName.value = _userRepository.getUserName();
+    _userName.value = _userRepository.name;
 
     debounce(_conimalName, validateName,
         time: const Duration(milliseconds: 400));
@@ -189,13 +189,14 @@ class SignupConimalEditController extends GetxController {
 
   editConimal() {
     Conimal newConimal = Conimal(
+      conimalId: DateTime.now().millisecondsSinceEpoch.toString(),
       name: conimalName,
       adoptedDate: adoptedDate!,
       birthDate: birthDate!,
       gender: conimalGender.value!,
       species: conimalSpecies.value!,
       diseases: _diseaseList,
-      createdAt: DateTime.now(),
+      // createdAt: DateTime.now(),
     );
     _conimalRepository.editTempConimal(newConimal, conimalIndex);
 

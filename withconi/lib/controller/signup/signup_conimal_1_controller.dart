@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:intl/intl.dart';
 import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
 import 'package:withconi/data/repository/signup_conimal_data_repository.dart';
-import 'package:withconi/data/repository/signup_user_data_repository.dart';
+import 'package:withconi/data/repository/signup_user_repository.dart';
 import '../../configs/constants/enum.dart';
 import '../../configs/constants/regex.dart';
 import '../../configs/constants/strings.dart';
@@ -11,8 +11,8 @@ import '../../data/model/disease.dart';
 import '../../import_basic.dart';
 
 class SignupConimal1Controller extends GetxController {
-  final ConimalRepository _conimalRepository = ConimalRepository();
-  final SignupUserRepository _userRepository = SignupUserRepository();
+  final ConimalRepository _conimalRepository = ConimalRepository.to;
+  final SignupUserRepository _userRepository = SignupUserRepository.to;
   RxBool isConimalAdded = false.obs;
   final RxString _userName = ''.obs;
   final RxString _conimalName = ''.obs;
@@ -49,7 +49,7 @@ class SignupConimal1Controller extends GetxController {
   void onReady() {
     super.onReady();
 
-    _userName.value = _userRepository.getUserName();
+    _userName.value = _userRepository.name;
     debounce(_conimalName, validateName,
         time: const Duration(milliseconds: 400));
 

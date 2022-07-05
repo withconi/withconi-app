@@ -1,18 +1,20 @@
 import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/controller/signup/shared_data/user_data.dart';
 import 'package:withconi/data/repository/auth_repository.dart';
-import 'package:withconi/data/repository/signup_user_data_repository.dart';
+import 'package:withconi/data/repository/signup_user_repository.dart';
+import 'package:withconi/ui/widgets/loading.dart';
 import '../../configs/constants/regex.dart';
 import '../../configs/constants/strings.dart';
 import '../../import_basic.dart';
 
 class SigninEmailController extends GetxController {
   final AuthRepository _authRepository = AuthRepository();
-  final SignupUserRepository _userRepository = SignupUserRepository();
+  final SignupUserRepository _signupUserRepository = SignupUserRepository.to;
 
-  late RxString _email;
-  late RxString _password;
-  late RxBool isButtonValid;
+  final RxString _email = ''.obs;
+  final RxString _password = ''.obs;
+
+  RxBool isButtonValid = false.obs;
 
   RxnString passwordErrorText = RxnString();
   TextEditingController emailTextController = TextEditingController();
@@ -22,18 +24,9 @@ class SigninEmailController extends GetxController {
   String get password => _password.value;
 
   @override
-  void onInit() {
-    super.onInit();
-
-    _email = ''.obs;
-    _password = ''.obs;
-    isButtonValid = false.obs;
-  }
-
-  @override
   void onReady() {
     super.onReady();
-    _email.value = UserData.to.email;
+    _email.value = _signupUserRepository.email;
     emailTextController.text = _email.value;
 
     debounce(_password, validatePassword,
@@ -65,7 +58,6 @@ class SigninEmailController extends GetxController {
   }
 
   nextStep() async {
-    await _authRepository.signInWithEmail(
-        authInfo: _userRepository.getAuthInfo(), password: password);
+    showLoading(() => _authRepository.signInWithEmail(password: password));
   }
 }
