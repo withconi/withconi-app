@@ -14,7 +14,9 @@ _$_Conimal _$$_ConimalFromJson(Map<String, dynamic> json) => _$_Conimal(
       birthDate: const DateTimeConverter().fromJson(json['birthDate'] as int),
       adoptedDate:
           const DateTimeConverter().fromJson(json['adoptedDate'] as int),
-      diseases: const DiseaseIdConverter().fromJson(json['diseases'] as List),
+      diseases: json['diseases'] == null
+          ? const []
+          : const DiseaseIdConverter().fromJson(json['diseases'] as List),
     );
 
 Map<String, dynamic> _$$_ConimalToJson(_$_Conimal instance) =>

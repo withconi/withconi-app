@@ -170,7 +170,8 @@ class __$$_ConimalCopyWithImpl<$Res> extends _$ConimalCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_Conimal implements _Conimal {
   _$_Conimal(
       {required this.conimalId,
@@ -179,7 +180,7 @@ class _$_Conimal implements _Conimal {
       required this.gender,
       @DateTimeConverter() required this.birthDate,
       @DateTimeConverter() required this.adoptedDate,
-      @DiseaseIdConverter() required final List<Disease> diseases})
+      @DiseaseIdConverter() final List<Disease> diseases = const []})
       : _diseases = diseases;
 
   factory _$_Conimal.fromJson(Map<String, dynamic> json) =>
@@ -201,6 +202,7 @@ class _$_Conimal implements _Conimal {
   final DateTime adoptedDate;
   final List<Disease> _diseases;
   @override
+  @JsonKey()
   @DiseaseIdConverter()
   List<Disease> get diseases {
     // ignore: implicit_dynamic_type
@@ -252,14 +254,13 @@ class _$_Conimal implements _Conimal {
 
 abstract class _Conimal implements Conimal {
   factory _Conimal(
-          {required final String conimalId,
-          required final String name,
-          required final Species species,
-          required final Gender gender,
-          @DateTimeConverter() required final DateTime birthDate,
-          @DateTimeConverter() required final DateTime adoptedDate,
-          @DiseaseIdConverter() required final List<Disease> diseases}) =
-      _$_Conimal;
+      {required final String conimalId,
+      required final String name,
+      required final Species species,
+      required final Gender gender,
+      @DateTimeConverter() required final DateTime birthDate,
+      @DateTimeConverter() required final DateTime adoptedDate,
+      @DiseaseIdConverter() final List<Disease> diseases}) = _$_Conimal;
 
   factory _Conimal.fromJson(Map<String, dynamic> json) = _$_Conimal.fromJson;
 
