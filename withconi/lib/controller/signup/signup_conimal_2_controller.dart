@@ -69,8 +69,11 @@ class SignupConimal2Controller extends GetxController {
   signUp() {
     List<Conimal> conimalList = _conimalRepository.tempConimalList;
     showLoading((() async {
-      await _authRepository.signUp(
+      Either<Failure, String> signUpEither = await _authRepository.signUp(
           conimalList: conimalList, password: _signupUserRepository.password);
+
+      signUpEither.fold(
+          (fail) => FailureInterpreter().mapFailureToDialog(fail), (r) => null);
     }));
   }
 }

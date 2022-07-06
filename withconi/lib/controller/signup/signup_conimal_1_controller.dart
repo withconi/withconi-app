@@ -50,8 +50,7 @@ class SignupConimal1Controller extends GetxController {
     super.onReady();
 
     _userName.value = _userRepository.name;
-    debounce(_conimalName, validateName,
-        time: const Duration(milliseconds: 400));
+    ever(_conimalName, validateName);
 
     ever(isButtonValid, (value) async {
       await Future.delayed(const Duration(milliseconds: 200));
