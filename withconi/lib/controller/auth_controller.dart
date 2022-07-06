@@ -27,7 +27,7 @@ class AuthController extends GetxController {
   @override
   onReady() async {
     super.onReady();
-
+    signOut();
     await Future.delayed(const Duration(milliseconds: 1300), () {});
     await setUserState(firebaseAuth.currentUser);
   }
@@ -57,6 +57,7 @@ class AuthController extends GetxController {
     if (wcUser == null) {
       Get.offAllNamed(Routes.START);
     } else {
+      _disposeSavedData();
       Get.offAllNamed(Routes.HOME, arguments: wcUser);
     }
   }

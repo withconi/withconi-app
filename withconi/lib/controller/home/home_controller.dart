@@ -11,7 +11,7 @@ class HomeController extends GetxController {
   RxInt selectedConimalIndex = 0.obs;
   RxInt daysAfterAdoption = 0.obs;
   RxInt conimalCount = 0.obs;
-  RxList<Disease> caredDiseasesList = RxList<Disease>();
+  RxList<Disease> allDiseasesList = RxList<Disease>();
 
   @override
   onInit() {
@@ -43,7 +43,7 @@ class HomeController extends GetxController {
     for (Conimal conimal in conimalList) {
       diseaseSet.addAll(conimal.diseases.toSet());
     }
-    caredDiseasesList.addAll(diseaseSet.toList());
+    allDiseasesList.addAll(diseaseSet.toList());
   }
 
   void onSelectedConimalChanged(int index) {
