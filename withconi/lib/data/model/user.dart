@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:withconi/configs/constants/enum.dart';
 import 'conimal.dart';
 part 'user.freezed.dart';

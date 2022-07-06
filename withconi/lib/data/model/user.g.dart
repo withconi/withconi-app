@@ -31,7 +31,7 @@ Map<String, dynamic> _$$_WcUserToJson(_$_WcUser instance) => <String, dynamic>{
 const _$ProviderOptionsEnumMap = {
   ProviderOptions.kakao: 'kakao',
   ProviderOptions.naver: 'naver',
-  ProviderOptions.google: 'kakao',
+  ProviderOptions.google: 'google',
   ProviderOptions.apple: 'apple',
   ProviderOptions.email: 'email',
   ProviderOptions.none: 'none',
