@@ -1,14 +1,14 @@
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:withconi/data/repository/signup_conimal_data_repository.dart';
-import 'package:withconi/data/repository/signup_user_data_repository.dart';
+import 'package:withconi/data/repository/signup_user_repository.dart';
 import '../../configs/constants/regex.dart';
 import '../../configs/constants/strings.dart';
 import '../../import_basic.dart';
 
 class SignupProfileController extends GetxController {
-  final ConimalRepository _conimalRepository = ConimalRepository();
-  final SignupUserRepository _userRepository = SignupUserRepository();
+  final ConimalRepository _conimalRepository = ConimalRepository.to;
+  final SignupUserRepository _userRepository = SignupUserRepository.to;
 
   final RxString _name = ''.obs;
   final RxString _nickName = ''.obs;
