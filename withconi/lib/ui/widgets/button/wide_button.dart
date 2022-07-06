@@ -41,7 +41,7 @@ class WcWideButtonWidget extends StatelessWidget {
             decoration: BoxDecoration(
                 color: (active) ? activeButtonColor : inactiveButtonColor),
             child: InkWell(
-              onTap: onTap,
+              onTap: (active) ? onTap : () {},
               child: Center(
                 child: Text(
                   buttonText,
