@@ -6,9 +6,9 @@ import 'package:withconi/core/error_handling/exceptions.dart';
 import 'package:withconi/data/model/disease.dart';
 import 'package:withconi/data/provider/disease_api.dart';
 import '../../core/error_handling/failures.dart';
-import '../../core/network_handling/response_model/response_model.dart';
+import '../../core/network_handling/response_model.dart';
 
-class DiseaseSearchRepository {
+class DiseaseRepository {
   final DiseaseAPI _api = DiseaseAPI();
 
   Future<Either<Failure, List<Disease>>> getDiseaseList(
@@ -24,28 +24,4 @@ class DiseaseSearchRepository {
       return Left(DataParsingFailure());
     }
   }
-
-  // Either<Failure, bool> addDisease(Disease disease) {
-  //   try {
-  //     return Right(DiseaseData.to.addDisease(disease));
-  //   } on MaxListException {
-  //     return Left(MaxDiseaseFailure());
-  //   }
-  // }
-
-  // Either<Failure, bool> removeDisease(Disease disease) {
-  //   try {
-  //     return Right(DiseaseData.to.removeDisease(disease));
-  //   } on MaxListException {
-  //     return Left(MaxDiseaseFailure());
-  //   }
-  // }
-
-  // Either<Failure, List<Disease>> getSelectedDiseaseList(Disease disease) {
-  //   try {
-  //     return Right(DiseaseData.to.selectedDiseases);
-  //   } on NoDataException {
-  //     return Left(DataParsingFailure());
-  //   }
-  // }
 }
