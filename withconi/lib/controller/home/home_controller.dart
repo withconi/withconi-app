@@ -5,13 +5,15 @@ import '../../data/model/disease.dart';
 import '../../data/model/user.dart';
 
 class HomeController extends GetxController {
-  Rxn<WcUser> wcUser = Rxn<WcUser>();
+  Rxn<WcUser> _wcUser = Rxn<WcUser>();
   RxList<Conimal> conimalList = RxList<Conimal>();
   Rxn<Conimal> selectedConimal = Rxn<Conimal>();
   RxInt selectedConimalIndex = 0.obs;
   RxInt daysAfterAdoption = 0.obs;
   RxInt conimalCount = 0.obs;
   RxList<Disease> allDiseasesList = RxList<Disease>();
+
+  WcUser? get wcUser => _wcUser.value;
 
   @override
   onInit() {
@@ -23,11 +25,11 @@ class HomeController extends GetxController {
   }
 
   void _setWcUser() {
-    wcUser.value = Get.arguments as WcUser;
+    _wcUser.value = Get.arguments as WcUser;
   }
 
   void _setConimalList() {
-    conimalList.assignAll(wcUser.value!.conimals);
+    conimalList.assignAll(_wcUser.value!.conimals);
     conimalCount.value = conimalList.length;
   }
 

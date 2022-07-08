@@ -1,7 +1,7 @@
 import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/controller/signup/shared_data/user_data.dart';
 import 'package:withconi/data/repository/auth_repository.dart';
-import 'package:withconi/data/repository/signup_user_repository.dart';
+import 'package:withconi/data/repository/signup_repository.dart';
 import 'package:withconi/ui/widgets/loading.dart';
 import '../../configs/constants/regex.dart';
 import '../../configs/constants/strings.dart';
@@ -9,7 +9,7 @@ import '../../import_basic.dart';
 
 class SigninEmailController extends GetxController {
   final AuthRepository _authRepository = AuthRepository();
-  final SignupUserRepository _signupUserRepository = SignupUserRepository.to;
+  final SignupRepository _signupUserRepository = SignupRepository.to;
 
   final RxString _email = ''.obs;
   final RxString _password = ''.obs;
@@ -58,6 +58,7 @@ class SigninEmailController extends GetxController {
   }
 
   nextStep() async {
-    showLoading(() => _authRepository.signInWithEmail(password: password));
+    showLoading(() => _authRepository.signInWithEmail(
+        password: password, authInfo: AuthController.to.authInfo!));
   }
 }

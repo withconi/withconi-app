@@ -1,8 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:intl/intl.dart';
 import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
-import 'package:withconi/data/repository/signup_conimal_data_repository.dart';
-import 'package:withconi/data/repository/signup_user_repository.dart';
+import 'package:withconi/data/repository/signup_repository.dart';
 import '../../configs/constants/enum.dart';
 import '../../configs/constants/regex.dart';
 import '../../configs/constants/strings.dart';
@@ -11,8 +10,7 @@ import '../../data/model/disease.dart';
 import '../../import_basic.dart';
 
 class SignupConimal1Controller extends GetxController {
-  final ConimalRepository _conimalRepository = ConimalRepository.to;
-  final SignupUserRepository _userRepository = SignupUserRepository.to;
+  final SignupRepository _signUpRepository = SignupRepository.to;
   RxBool isConimalAdded = false.obs;
   final RxString _userName = ''.obs;
   final RxString _conimalName = ''.obs;
@@ -49,13 +47,13 @@ class SignupConimal1Controller extends GetxController {
   void onReady() {
     super.onReady();
 
-    _userName.value = _userRepository.name;
+    _userName.value = _signUpRepository.name;
     ever(_conimalName, validateName);
 
     ever(isButtonValid, (value) async {
       await Future.delayed(const Duration(milliseconds: 200));
 
-      if (value == true && _conimalRepository.checkConimalNum() < 2) {
+      if (value == true && _signUpRepository.checkConimalNum < 2) {
         showAddConimalButton.value = true;
       } else {
         showAddConimalButton.value = false;
@@ -167,7 +165,7 @@ class SignupConimal1Controller extends GetxController {
   }
 
   void addConimal() {
-    Either<Failure, bool> addResultEither = _conimalRepository.addTempConimal(
+    Either<Failure, bool> addResultEither = _signUpRepository.addConimal(
       conimalName: conimalName,
       adoptedDate: adoptedDate!,
       birthDate: birthDate!,
@@ -176,7 +174,7 @@ class SignupConimal1Controller extends GetxController {
       diseaseList: _diseaseList,
     );
     addResultEither.fold((fail) {
-      FailureInterpreter().mapFailureToSnackbar(fail);
+      FailureInterpreter().mapFailureToSnackbar(fail, 'addConimal');
     }, (success) {
       isConimalAdded.value = true;
       Get.toNamed(
@@ -195,7 +193,7 @@ class SignupConimal1Controller extends GetxController {
   // }
 
   void finishAddConimal() {
-    Either<Failure, bool> addResultEither = _conimalRepository.addTempConimal(
+    Either<Failure, bool> addResultEither = _signUpRepository.addConimal(
       conimalName: conimalName,
       adoptedDate: adoptedDate!,
       birthDate: birthDate!,
@@ -204,7 +202,9 @@ class SignupConimal1Controller extends GetxController {
       diseaseList: _diseaseList,
     );
     addResultEither.fold(
-        (fail) => FailureInterpreter().mapFailureToDialog(fail), (success) {
+        (fail) =>
+            FailureInterpreter().mapFailureToDialog(fail, 'finishAddConimal'),
+        (success) {
       isConimalAdded.value = true;
       Get.offNamedUntil(Routes.SIGNUP_CONIMAL_STEP2,
           ModalRoute.withName(Routes.SIGNUP_PROFILE));
