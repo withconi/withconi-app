@@ -119,13 +119,15 @@ class SignupConimalPage2 extends StatelessWidget {
                   height: 50,
                 ),
                 Center(
-                  child: WcWideButtonWidget(
-                    active: true,
-                    activeButtonColor: WcColors.blue100,
-                    activeTextColor: WcColors.white,
-                    buttonText: '등록',
-                    buttonWidth: WcWidth - 40,
-                    onTap: _controller.signUp,
+                  child: Obx(
+                    () => WcWideButtonWidget(
+                      active: _controller.isButtonValid.value,
+                      activeButtonColor: WcColors.blue100,
+                      activeTextColor: WcColors.white,
+                      buttonText: '등록',
+                      buttonWidth: WcWidth - 40,
+                      onTap: _controller.signUp,
+                    ),
                   ),
                 ),
               ],

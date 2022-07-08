@@ -1,5 +1,6 @@
 import 'package:flutter_svg/svg.dart';
 import 'package:withconi/configs/constants/enum.dart';
+import 'package:withconi/data/repository/conimal_repository.dart';
 import 'package:withconi/import_basic.dart';
 import 'package:withconi/ui/widgets/button/wide_button.dart';
 import '../../../controller/signup/signup_conimal_1_controller.dart';
@@ -87,17 +88,20 @@ class SignupConimalPage1 extends StatelessWidget {
                         height: 20,
                       ),
                       Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          WcTextField(
-                            width: (WcWidth) / 1.65,
-                            labelText: '코니멀 이름',
-                            hintText: '코니멀 이름',
-                            onChanged: _controller.onConimalNameChanged,
-                            textController:
-                                _controller.conimalNameTextController,
-                            keyboardType: TextInputType.name,
+                          Obx(
+                            () => WcTextField(
+                              width: (WcWidth) / 1.65,
+                              labelText: '코니멀 이름',
+                              hintText: '코니멀 이름',
+                              errorText: _controller.conimalNameErrorText.value,
+                              onChanged: _controller.onConimalNameChanged,
+                              textController:
+                                  _controller.conimalNameTextController,
+                              keyboardType: TextInputType.name,
+                            ),
                           ),
                           Obx(
                             () => GenderToggleButton(
