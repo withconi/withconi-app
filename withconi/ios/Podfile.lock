@@ -18,6 +18,9 @@ PODS:
   - Firebase/Messaging (8.15.0):
     - Firebase/CoreOnly
     - FirebaseMessaging (~> 8.15.0)
+  - Firebase/Storage (8.15.0):
+    - Firebase/CoreOnly
+    - FirebaseStorage (~> 8.15.0)
   - firebase_analytics (9.1.6):
     - Firebase/Analytics (= 8.15.0)
     - firebase_core
@@ -31,6 +34,10 @@ PODS:
     - Flutter
   - firebase_messaging (11.2.15):
     - Firebase/Messaging (= 8.15.0)
+    - firebase_core
+    - Flutter
+  - firebase_storage (10.2.18):
+    - Firebase/Storage (= 8.15.0)
     - firebase_core
     - Flutter
   - FirebaseAnalytics (8.15.0):
@@ -79,6 +86,9 @@ PODS:
     - GoogleUtilities/Reachability (~> 7.7)
     - GoogleUtilities/UserDefaults (~> 7.7)
     - nanopb (~> 2.30908.0)
+  - FirebaseStorage (8.15.0):
+    - FirebaseCore (~> 8.0)
+    - GTMSessionFetcher/Core (~> 1.5)
   - Flutter (1.0.0)
   - flutter_naver_login (0.0.1):
     - Flutter
@@ -137,7 +147,9 @@ PODS:
     - AppAuth/Core (~> 1.4)
     - GTMSessionFetcher/Core (~> 1.5)
   - GTMSessionFetcher/Core (1.7.2)
-  - kakao_flutter_sdk_common (1.1.0):
+  - image_picker_ios (0.0.1):
+    - Flutter
+  - kakao_flutter_sdk_common (1.2.1):
     - Flutter
   - nanopb (2.30908.0):
     - nanopb/decode (= 2.30908.0)
@@ -162,9 +174,11 @@ DEPENDENCIES:
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
+  - firebase_storage (from `.symlinks/plugins/firebase_storage/ios`)
   - Flutter (from `Flutter`)
   - flutter_naver_login (from `.symlinks/plugins/flutter_naver_login/ios`)
   - google_sign_in_ios (from `.symlinks/plugins/google_sign_in_ios/ios`)
+  - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
   - kakao_flutter_sdk_common (from `.symlinks/plugins/kakao_flutter_sdk_common/ios`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
   - path_provider_ios (from `.symlinks/plugins/path_provider_ios/ios`)
@@ -182,6 +196,7 @@ SPEC REPOS:
     - FirebaseCoreDiagnostics
     - FirebaseInstallations
     - FirebaseMessaging
+    - FirebaseStorage
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleSignIn
@@ -201,12 +216,16 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_core/ios"
   firebase_messaging:
     :path: ".symlinks/plugins/firebase_messaging/ios"
+  firebase_storage:
+    :path: ".symlinks/plugins/firebase_storage/ios"
   Flutter:
     :path: Flutter
   flutter_naver_login:
     :path: ".symlinks/plugins/flutter_naver_login/ios"
   google_sign_in_ios:
     :path: ".symlinks/plugins/google_sign_in_ios/ios"
+  image_picker_ios:
+    :path: ".symlinks/plugins/image_picker_ios/ios"
   kakao_flutter_sdk_common:
     :path: ".symlinks/plugins/kakao_flutter_sdk_common/ios"
   package_info_plus:
@@ -227,12 +246,14 @@ SPEC CHECKSUMS:
   firebase_auth: 4f80bfd9e8814edc0dc6a135f9c4d5e1b1d67347
   firebase_core: fa19947d8db1c0a62d8872c45039b3113829cd2e
   firebase_messaging: 20522334f609978f782cff8c141f294bb2ca39c7
+  firebase_storage: a41b8aebf817b5c798069d8251111063907d7d70
   FirebaseAnalytics: 7761cbadb00a717d8d0939363eb46041526474fa
   FirebaseAuth: 3e73bf8abf4fbb40f8b421f361f4cc48ee57388c
   FirebaseCore: 5743c5785c074a794d35f2fff7ecc254a91e08b1
   FirebaseCoreDiagnostics: 92e07a649aeb66352b319d43bdd2ee3942af84cb
   FirebaseInstallations: 40bd9054049b2eae9a2c38ef1c3dd213df3605cd
   FirebaseMessaging: 5e5118a2383b3531e730d974680954c679ca0a13
+  FirebaseStorage: 8019af461599b2c3bc61c6a5dbdfa3d2de66a4d9
   Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
   flutter_naver_login: 1dbf6d21aae5235cdf76a28ac79cf6871899282f
   google_sign_in_ios: ed71c0dbddfba8b1ea9aa210dbda695f46bf51bd
@@ -242,7 +263,8 @@ SPEC CHECKSUMS:
   GoogleUtilities: e0913149f6b0625b553d70dae12b49fc62914fd1
   GTMAppAuth: 4d8f864896f3646f0c33baf38a28362f4c601e15
   GTMSessionFetcher: 5595ec75acf5be50814f81e9189490412bad82ba
-  kakao_flutter_sdk_common: b077b7da99ade3d0ce5990d3f35e0a1dc50a24b2
+  image_picker_ios: b786a5dcf033a8336a657191401bfdf12017dabb
+  kakao_flutter_sdk_common: 3113c6a6747b2a88b484a1de798debfb01e5c5c1
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   naveridlogin-sdk-ios: b9d7c20677981177ed994ecb1c8c2b49f223277d
   package_info_plus: 6c92f08e1f853dc01228d6f553146438dafcd14e
@@ -252,6 +274,6 @@ SPEC CHECKSUMS:
   sign_in_with_apple: f3bf75217ea4c2c8b91823f225d70230119b8440
   url_launcher_ios: 839c58cdb4279282219f5e248c3321761ff3c4de
 
-PODFILE CHECKSUM: 0aa2e31b63e7cff91b90b4118cd3eb0e1e748e28
+PODFILE CHECKSUM: 5b22d8c4280fc0de4e4216e456e53c2d9942dc5d
 
 COCOAPODS: 1.11.2

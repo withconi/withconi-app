@@ -1,6 +1,7 @@
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:withconi/configs/constants/auth_variables.dart';
+import 'package:withconi/routes/withconi_bindings.dart';
 import 'import_basic.dart';
 
 Future<void> main() async {
@@ -11,12 +12,17 @@ Future<void> main() async {
     debugShowCheckedModeBanner: false,
     theme: ThemeData(scaffoldBackgroundColor: WcColors.white),
     initialRoute: Routes.SPLASH,
+    initialBinding: InitialBinding(),
     defaultTransition: Transition.cupertino,
     getPages: WCPages.pages,
+    // ignore: prefer_const_literals_to_create_immutables
     localizationsDelegates: [
       GlobalMaterialLocalizations.delegate,
       GlobalWidgetsLocalizations.delegate,
+      GlobalCupertinoLocalizations.delegate,
     ],
+
+    // ignore: prefer_const_literals_to_create_immutables
     supportedLocales: [
       const Locale('ko', 'KR'),
     ],
