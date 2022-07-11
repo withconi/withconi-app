@@ -2,12 +2,13 @@
 import 'package:dartz/dartz.dart';
 import 'package:lottie/lottie.dart';
 import 'package:withconi/configs/constants/enum.dart';
+import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
 import 'package:withconi/controller/signup/shared_data/user_data.dart';
 import 'package:withconi/core/error_handling/failures.dart';
 import 'package:withconi/data/repository/auth_repository.dart';
-import 'package:withconi/data/repository/signup_conimal_data_repository.dart';
-import 'package:withconi/data/repository/signup_user_repository.dart';
+import 'package:withconi/data/repository/conimal_repository.dart';
+import 'package:withconi/data/repository/signup_repository.dart';
 import 'package:withconi/ui/widgets/loading.dart';
 import 'signup/shared_data/conimal_data.dart';
 import '../configs/constants/regex.dart';
@@ -18,28 +19,23 @@ import '../import_basic.dart';
 enum ButtonState { sucess, none, loading }
 
 class StartPageController extends GetxController with StateMixin<ButtonState> {
-  final AuthRepository _authRepository = AuthRepository();
-  final SignupUserRepository _userRepository = SignupUserRepository.to;
+  final AuthRepository _authRepository = AuthRepository.to;
+  final SignupRepository _signupUserRepository = SignupRepository.to;
 
   final RxString _email = ''.obs;
   final RxBool isButtonValid = false.obs;
   final RxString buttonText = '다음'.obs;
   // final Rx<UserState> _userState = UserState.NONE.obs;
   Rx<ButtonState> buttonState = ButtonState.none.obs;
-  Rxn<AuthInfo> _authInfo = Rxn<AuthInfo>();
+  // Rxn<AuthInfo> _authInfo = Rxn<AuthInfo>();
 
   RxnString emailErrorText = RxnString();
   TextEditingController emailTextController = TextEditingController();
   String nextRoute = '';
 
   String get email => _email.value;
-  AuthInfo? get authInfo => _authInfo.value;
+  // AuthInfo? get authInfo => _authInfo.value;
   // UserState get userState => _userState.value;
-
-  @override
-  void onInit() {
-    super.onInit();
-  }
 
   @override
   void onReady() {
@@ -56,7 +52,7 @@ class StartPageController extends GetxController with StateMixin<ButtonState> {
     userStateEither = await _authRepository.getUserState(authInfo: authInfo);
 
     userStateEither.fold((fail) {
-      FailureInterpreter().mapFailureToDialog(fail);
+      FailureInterpreter().mapFailureToDialog(fail, 'getSnsUserState');
     }, (userState) {
       return userState;
     });
@@ -67,7 +63,7 @@ class StartPageController extends GetxController with StateMixin<ButtonState> {
     userStateEither = await _authRepository.getUserState(authInfo: authInfo);
 
     userStateEither.fold((fail) {
-      FailureInterpreter().mapFailureToDialog(fail);
+      FailureInterpreter().mapFailureToDialog(fail, 'getEmailUserState');
       buttonState.value = ButtonState.none;
     }, (userState) {
       return userState;
@@ -96,10 +92,10 @@ class StartPageController extends GetxController with StateMixin<ButtonState> {
         provider: ProviderOptions.email, email: email);
 
     authInfoEither.fold((fail) {
-      FailureInterpreter().mapFailureToDialog(fail);
+      FailureInterpreter().mapFailureToDialog(fail, 'nextStepWithEmail');
       buttonState.value = ButtonState.none;
     }, (authInfo) async {
-      _authInfo.value = authInfo;
+      AuthController.to.onAuthInfoChanged(authInfo: authInfo);
 
       UserState userState = await setUserStateByAuthInfo(authInfo: authInfo);
       setNextStepByUserState(userState);
@@ -113,9 +109,9 @@ class StartPageController extends GetxController with StateMixin<ButtonState> {
 
     userStateEither.fold((fail) {
       userState = UserState.NONE;
-      FailureInterpreter().mapFailureToDialog(fail);
-    }, (userState) {
-      userState = userState;
+      FailureInterpreter().mapFailureToDialog(fail, 'setUserStateByAuthInfo');
+    }, (_userState) {
+      userState = _userState;
     });
     return userState;
   }
@@ -141,11 +137,13 @@ class StartPageController extends GetxController with StateMixin<ButtonState> {
         break;
 
       case UserState.SIGN_IN_CREDENTIAL:
-        await _authRepository.signInWithSnsCredential();
+        await _authRepository.signInWithSnsCredential(
+            authInfo: AuthController.to.authInfo!);
         break;
 
       case UserState.SIGN_IN_TOKEN:
-        _authRepository.signInWithSnsToken();
+        _authRepository.signInWithSnsToken(
+            authInfo: AuthController.to.authInfo!);
         break;
       case UserState.SIGN_UP_SNS:
         nextRoute = Routes.SIGNUP_PROFILE;
@@ -161,9 +159,10 @@ class StartPageController extends GetxController with StateMixin<ButtonState> {
         await _authRepository.getAuthInfo(provider: provider, email: email);
 
     authInfoEither.fold((fail) {
-      FailureInterpreter().mapFailureToDialog(fail);
+      FailureInterpreter().mapFailureToDialog(fail, 'nextStepWithSns');
       buttonState.value = ButtonState.none;
     }, (authInfo) {
+      AuthController.to.onAuthInfoChanged(authInfo: authInfo);
       showLoading(() async {
         UserState userState = await setUserStateByAuthInfo(authInfo: authInfo);
         setNextStepByUserState(userState);
@@ -172,7 +171,8 @@ class StartPageController extends GetxController with StateMixin<ButtonState> {
   }
 
   goNext() {
-    _userRepository.saveAuthInfo(authInfo!);
+    _signupUserRepository.saveEmail(email);
+    AuthController.to.onAuthInfoChanged(authInfo: AuthController.to.authInfo!);
     Get.toNamed(nextRoute);
   }
 }
