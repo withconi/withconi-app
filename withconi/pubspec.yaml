@@ -35,13 +35,13 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  get: ^4.6.1
+  get: 4.6.1
   google_fonts: ^2.3.1
   firebase_messaging: ^11.2.13
   url_launcher: ^6.0.20
   http: ^0.13.4
   flutter_svg: ^1.0.3
-  kakao_flutter_sdk: ^1.1.0
+  kakao_flutter_sdk: ^1.2.1
   firebase_auth: ^3.3.14
   google_sign_in: ^5.3.0
   firebase_analytics: ^9.1.5
@@ -54,8 +54,13 @@ dependencies:
   intl: ^0.17.0
   equatable: ^2.0.3
   dartz: ^0.10.1
-  json_serializable: ^6.2.0
+  freezed_annotation: ^2.0.3
   json_annotation: ^4.5.0
+  lottie: ^1.3.0
+  flutter_spinkit: ^5.1.0
+  flutter_slidable: ^1.3.0
+  image_picker: ^0.8.5+3
+  firebase_storage: ^10.2.18
   
 dev_dependencies:
   flutter_test:
@@ -69,6 +74,7 @@ dev_dependencies:
   flutter_lints: ^1.0.0
   build_runner: ^2.1.11
   freezed: ^2.0.3+1
+  json_serializable: ^6.2.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -85,6 +91,8 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+    - assets/json/
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

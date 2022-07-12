@@ -45,20 +45,27 @@ android {
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.example.withconi"
-        minSdkVersion flutter.minSdkVersion
+        minSdkVersion 21
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        multiDexEnabled true
     }
 
     signingConfigs {
         debug {
-            storeFile file('key.jks')
-            storePassword 'helloworld1004'
-            keyAlias 'androiddebugkey'
-            keyPassword 'helloworld1004'
+            storeFile file('withconi-keystore.jks')
+            storePassword 'withconi'
+            keyAlias 'withconi'
+            keyPassword 'withconi'
         }
     }
+    
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+    
 
     buildTypes {
         release {

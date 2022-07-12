@@ -1,6 +1,6 @@
-import '../../../data/model/conimal.dart';
-import '../../../data/model/disease.dart';
-import '../../error_handling/exceptions.dart';
+import '../../data/model/conimal.dart';
+import '../../data/model/disease.dart';
+import '../error_handling/exceptions.dart';
 
 class UserStateResponse {
   bool? isUserInAuth;

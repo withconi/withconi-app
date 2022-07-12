@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:math';
 import 'package:crypto/crypto.dart';
+import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_naver_login/flutter_naver_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -16,6 +17,7 @@ import 'package:withconi/core/error_handling/exceptions.dart';
 import 'package:withconi/core/network_handling/network_service.dart';
 import 'package:withconi/data/model/custom_token.dart';
 
+import '../../core/error_handling/failures.dart';
 import '../model/user.dart';
 
 class AuthAPI {
@@ -49,24 +51,23 @@ class AuthAPI {
     }
   }
 
-  Future<UserCredential?> signInWithEmail(
+  Future<Either<Failure, UserCredential?>> signInWithEmail(
       {required String email, required String password}) async {
     try {
-      try {
-        final credential = await firebaseAuth.signInWithEmailAndPassword(
-            email: email, password: email);
+      final credential = await firebaseAuth.signInWithEmailAndPassword(
+          email: email, password: password);
 
-        return credential;
-      } on FirebaseAuthException catch (e) {
-        if (e.code == 'user-not-found') {
-          print('No user found for that email.');
-        } else if (e.code == 'wrong-password') {
-          print('Wrong password provided for that user.');
-        }
+      return Right(credential);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        return Left(NoEmailUserFailure());
+      } else if (e.code == 'wrong-password') {
+        return Left(WrongPasswordFailure());
+      } else {
+        return Left(NoUserDataFailure());
       }
-      return null;
     } catch (e) {
-      rethrow;
+      return Left(NoUserDataFailure());
     }
   }
 
@@ -166,8 +167,16 @@ class AuthAPI {
     try {
       return await firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
-    } catch (e) {
-      throw SignInCredentialException();
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'email-already-in-use') {
+        throw (CustomFirebaseAuthException(type: CREATE_EMAIL.existingEmail));
+      } else if (e.code == 'operation-not-allowed') {
+        throw (CustomFirebaseAuthException(type: CREATE_EMAIL.accountEnabled));
+      } else if (e.code == 'weak-password') {
+        throw (CustomFirebaseAuthException(type: CREATE_EMAIL.weakPassword));
+      } else {
+        throw SignInCredentialException();
+      }
     }
   }
 
@@ -188,8 +197,6 @@ class AuthAPI {
       body: user.toJson(),
       requestType: RequestType.POST,
     );
-
-    // return data['uid'];
   }
 
   getNewCustomToken(
@@ -205,7 +212,7 @@ class AuthAPI {
     return customToken;
   }
 
-  Future<bool> checkUserEmail({required email}) async {
+  Future<bool> checkUserEmail({required String email}) async {
     late bool isDuplicateUser;
     Map<String, dynamic> data = await _dio.apiCall(
       url: HttpUrl.VERIFY_EMAIL,

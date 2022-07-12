@@ -70,6 +70,20 @@ class NoDataException implements Exception {
   }
 }
 
+class WrongPasswordException implements Exception {
+  @override
+  String toString() {
+    return 'Success, but empty list';
+  }
+}
+
+class NoUserException implements Exception {
+  @override
+  String toString() {
+    return 'Success, but empty list';
+  }
+}
+
 class DataParsingException implements Exception {
   @override
   String toString() {
@@ -92,6 +106,45 @@ class EmptyListException implements Exception {
 }
 
 class PlatformException implements Exception {
+  @override
+  String toString() {
+    return 'Success, but empty list';
+  }
+}
+
+class SignInCredentialException implements Exception {
+  @override
+  String toString() {
+    return 'Success, but empty list';
+  }
+}
+
+class CustomFirebaseAuthException implements Exception {
+  final CREATE_EMAIL type;
+  CustomFirebaseAuthException({required this.type});
+}
+
+enum CREATE_EMAIL {
+  existingEmail,
+  weakPassword,
+  accountEnabled,
+}
+
+class CreateUserEmailException implements Exception {
+  @override
+  String toString() {
+    return 'Success, but empty list';
+  }
+}
+
+class SignInTokenException implements Exception {
+  @override
+  String toString() {
+    return 'Success, but empty list';
+  }
+}
+
+class PlatformSignInException implements Exception {
   @override
   String toString() {
     return 'Success, but empty list';

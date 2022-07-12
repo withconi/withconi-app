@@ -12,6 +12,10 @@ import 'package:withconi/ui/theme/sizes.dart';
 import 'package:withconi/ui/widgets/button/loading_button.dart';
 import 'package:withconi/ui/widgets/button/wide_button.dart';
 import 'package:withconi/ui/widgets/snackbar.dart';
+import '../../../data/repository/conimal_repository.dart';
+import '../../../data/repository/signup_repository.dart';
+import '../../widgets/button/state_button.dart';
+import '../../widgets/loading.dart';
 import '../../widgets/text_field/textfield.dart';
 
 class StartPage extends StatelessWidget {
@@ -68,25 +72,76 @@ class StartPage extends StatelessWidget {
                   const SizedBox(
                     height: 40,
                   ),
-                  _controller.obx(
-                    (state) => WcWideButtonWidget(
+                  Obx(
+                    () => WcStateButtonWidget(
                       active: _controller.isButtonValid.value,
                       activeButtonColor: WcColors.blue100,
                       activeTextColor: WcColors.white,
                       buttonText: _controller.buttonText.value,
                       buttonWidth: WcWidth - 40,
                       onTap: _controller.goNext,
-                    ),
-                    onLoading: WcLoadingButtonWidget(),
-                    onEmpty: WcWideButtonWidget(
-                      active: _controller.isButtonValid.value,
-                      activeButtonColor: WcColors.blue100,
-                      activeTextColor: WcColors.white,
-                      buttonText: _controller.buttonText.value,
-                      buttonWidth: WcWidth - 40,
-                      onTap: _controller.goNext,
+                      buttonState: _controller.buttonState.value,
                     ),
                   ),
+                  // _controller.obx(
+                  //   (state) {
+                  //     switch (state) {
+                  //       case ButtonState.none:
+                  //         return WcStateButtonWidget(
+                  //           active: _controller.isButtonValid.value,
+                  //           activeButtonColor: WcColors.blue100,
+                  //           activeTextColor: WcColors.white,
+                  //           buttonText: _controller.buttonText.value,
+                  //           buttonWidth: WcWidth - 40,
+                  //           onTap: _controller.goNext,
+                  //         );
+                  //       case ButtonState.loading:
+                  //         return WcStateButtonWidget(
+                  //           active: _controller.isButtonValid.value,
+                  //           activeButtonColor: WcColors.blue100,
+                  //           activeTextColor: WcColors.white,
+                  //           buttonText: _controller.buttonText.value,
+                  //           buttonWidth: WcWidth - 40,
+                  //           onTap: _controller.goNext,
+                  //         );
+                  //       case ButtonState.sucess:
+                  //         return WcStateButtonWidget(
+                  //           active: _controller.isButtonValid.value,
+                  //           activeButtonColor: WcColors.blue100,
+                  //           activeTextColor: WcColors.white,
+                  //           buttonText: _controller.buttonText.value,
+                  //           buttonWidth: WcWidth - 40,
+                  //           onTap: _controller.goNext,
+                  //         );
+                  //       default:
+                  //         return WcStateButtonWidget(
+                  //           active: _controller.isButtonValid.value,
+                  //           activeButtonColor: WcColors.blue100,
+                  //           activeTextColor: WcColors.white,
+                  //           buttonText: _controller.buttonText.value,
+                  //           buttonWidth: WcWidth - 40,
+                  //           onTap: _controller.goNext,
+                  //         );
+                  //     }
+                  //   },
+                  //   // WcWideButtonWidget(
+                  //   //   active: _controller.isButtonValid.value,
+                  //   //   activeButtonColor: WcColors.blue100,
+                  //   //   activeTextColor: WcColors.white,
+                  //   //   buttonText: _controller.buttonText.value,
+                  //   //   buttonWidth: WcWidth - 40,
+                  //   //   onTap: _controller.goNext,
+                  //   // ),
+                  //   // onLoading: WcLoadingButtonWidget(),
+                  //   // onEmpty: WcWideButtonWidget(
+                  //   //   active: _controller.isButtonValid.value,
+                  //   //   activeButtonColor: WcColors.blue100,
+                  //   //   activeTextColor: WcColors.white,
+                  //   //   buttonText: _controller.buttonText.value,
+                  //   //   buttonWidth: WcWidth - 40,
+                  //   //   onTap: _controller.goNext,
+                  //   // ),
+                  // ),
                   Expanded(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -96,28 +151,32 @@ class StartPage extends StatelessWidget {
                           imageSrc: 'assets/icons/kakao.png',
                           label: '카카오톡',
                           onTap: () {
-                            _controller.getAuthInfo(ProviderOptions.kakao);
+                            showLoading(() => _controller.nextStepWithSns(
+                                provider: ProviderOptions.kakao));
                           },
                         ),
                         SnsButtonWidget(
                           imageSrc: 'assets/icons/google.png',
                           label: '구글',
                           onTap: () {
-                            _controller.getAuthInfo(ProviderOptions.google);
+                            showLoading(() => _controller.nextStepWithSns(
+                                provider: ProviderOptions.google));
                           },
                         ),
                         SnsButtonWidget(
                           imageSrc: 'assets/icons/naver.png',
                           label: '네이버',
                           onTap: () {
-                            _controller.getAuthInfo(ProviderOptions.naver);
+                            showLoading(() => _controller.nextStepWithSns(
+                                provider: ProviderOptions.naver));
                           },
                         ),
                         SnsButtonWidget(
                           imageSrc: 'assets/icons/apple.png',
                           label: '애플',
                           onTap: () {
-                            _controller.getAuthInfo(ProviderOptions.apple);
+                            showLoading(() => _controller.nextStepWithSns(
+                                provider: ProviderOptions.apple));
                           },
                         ),
                       ],

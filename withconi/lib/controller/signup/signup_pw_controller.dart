@@ -1,11 +1,11 @@
 import 'package:withconi/controller/signup/shared_data/user_data.dart';
-import 'package:withconi/data/repository/signup_user_repository.dart';
+import 'package:withconi/data/repository/signup_repository.dart';
 import '../../configs/constants/regex.dart';
 import '../../configs/constants/strings.dart';
 import '../../import_basic.dart';
 
 class SignupPwController extends GetxController {
-  final SignupUserRepository _userRepository = SignupUserRepository.to;
+  final SignupRepository _userRepository = SignupRepository.to;
 
   late RxString _email;
   late RxString _password;

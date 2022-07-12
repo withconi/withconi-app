@@ -14,13 +14,10 @@ import '../../data/model/conimal.dart';
 import '../../data/model/disease.dart';
 import '../../import_basic.dart';
 
-class SignupConimalEditController extends GetxController {
-  // final ConimalRepository _signUpRepository = ConimalRepository.to;
-  final SignupRepository _signUpRepository = SignupRepository.to;
+class EditConimalController extends GetxController {
+  final ConimalRepository _conimalRepository = Get.put(ConimalRepository());
   late int conimalIndex;
   RxString controllerTag = ''.obs;
-
-  RxString _userName = ''.obs;
   RxString _conimalName = ''.obs;
   RxString diseaseText = ''.obs;
   RxString diseaseSuffixText = ''.obs;
@@ -40,7 +37,6 @@ class SignupConimalEditController extends GetxController {
   RxnString conimalNameErrorText = RxnString();
   TextEditingController conimalNameTextController = TextEditingController();
 
-  String get userName => _userName.value;
   String get conimalName => _conimalName.value;
   DateTime? get birthDate => _birthDate.value;
   DateTime? get adoptedDate => _adoptedDate.value;
@@ -59,10 +55,13 @@ class SignupConimalEditController extends GetxController {
   }
 
   @override
+  void onClose() {
+    super.onClose();
+  }
+
+  @override
   void onReady() {
     super.onReady();
-
-    _userName.value = _signUpRepository.name;
 
     debounce(_conimalName, validateName,
         time: const Duration(milliseconds: 400));
@@ -193,19 +192,18 @@ class SignupConimalEditController extends GetxController {
       diseases: _diseaseList,
       // createdAt: DateTime.now(),
     );
-    _signUpRepository.editTempConimal(newConimal, conimalIndex);
+    // _conimalRepository.editTempConimal(newConimal, conimalIndex);
 
     Get.offNamedUntil(Routes.SIGNUP_CONIMAL_STEP2,
         ModalRoute.withName(Routes.SIGNUP_PROFILE));
   }
 
   getConimalToEdit(int conimalIndex) {
-    Either<Failure, Conimal> conimalEither =
-        _signUpRepository.getTempConimal(conimalIndex);
-    conimalEither.fold(
-        (fail) => FailureInterpreter()
-            .mapFailureToSnackbar(fail, StackTrace.current.toString()),
-        (conimal) => setConimalInfo(conimal));
+    // Either<Failure, Conimal> conimalEither =
+    //     _conimalRepository.getTempConimal(conimalIndex);
+    // conimalEither.fold(
+    //     (fail) => FailureInterpreter().mapFailureToSnackbar(fail),
+    //     (conimal) => setConimalInfo(conimal));
   }
 
   setConimalInfo(Conimal editConimal) {

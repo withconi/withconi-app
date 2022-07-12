@@ -1,83 +1,331 @@
+import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:withconi/configs/constants/enum.dart';
 import 'package:withconi/configs/helpers/token_manager.dart';
-import 'package:withconi/controller/signup/user_data.dart';
+import 'package:withconi/controller/auth_controller.dart';
+import 'package:withconi/controller/signup/shared_data/user_data.dart';
+import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
+import 'package:withconi/core/error_handling/exceptions.dart';
+import 'package:withconi/core/error_handling/failures.dart';
 import 'package:withconi/data/provider/auth_api.dart';
-
+import 'package:withconi/data/repository/signup_repository.dart';
+import 'package:withconi/import_basic.dart';
+import 'package:withconi/ui/widgets/loading.dart';
+import '../../configs/constants/auth_variables.dart';
 import '../../core/auth_info.dart';
+import '../model/conimal.dart';
 
-class AuthRepository {
+class AuthRepository extends GetxController {
   final AuthAPI _api = AuthAPI();
+  static AuthRepository get to => Get.find<AuthRepository>();
+  final SignupRepository _signUpUserRepository = SignupRepository.to;
   final WcTokenManager _tokenManager = WcTokenManager();
-  // Future<TokenModel> newToken() => _api.newCustomAuthToken();
 
   ProviderOptions getAuthTokenProvider() => _tokenManager.getTokenProvider();
 
-  // Future<UserCredential?> signInWithEmail(
-  //         {required String email, required String password}) =>
-  //     _api.signInWithEmail(email: email, password: password);
-
-  Future<UserState> signInWithGoogle() async {
-    late UserState userState;
-    AuthInfo authInfo = await _api.signInWithGoogle();
-    userState = await checkUserStateByEmail(
-        email: authInfo.email, provider: ProviderOptions.GOOGLE);
-    saveUserNativeAuthInfo(
-        provider: ProviderOptions.GOOGLE, authObject: authInfo);
-    return userState;
-  }
-
-  Future<UserState> signInWithApple() async {
-    late UserState userState;
-    AuthInfo authInfo = await _api.signInWithApple();
-    userState = await checkUserStateByEmail(
-        email: authInfo.email, provider: ProviderOptions.APPLE);
-    saveUserNativeAuthInfo(
-        provider: ProviderOptions.APPLE, authObject: authInfo);
-    return userState;
-  }
-
-  Future<UserState> signInWithKakao() async {
-    late UserState userState;
-    AuthInfo authInfo = await _api.signInWithKakao();
-    userState = await checkUserStateByEmail(
-        email: authInfo.email, provider: ProviderOptions.KAKAO);
-    saveUserNativeAuthInfo(
-        provider: ProviderOptions.KAKAO, authObject: authInfo);
-    return userState;
-  }
-
-  Future<UserState> signInWithNaver() async {
-    late UserState userState;
-    AuthInfo authInfo = await _api.signInWithNaver();
-    userState = await checkUserStateByEmail(
-        email: authInfo.email, provider: ProviderOptions.NAVER);
-    saveUserNativeAuthInfo(
-        provider: ProviderOptions.NAVER, authObject: authInfo);
-    return userState;
-  }
-
-  Future<bool> isUserLoggedIn({required ProviderOptions provider}) =>
-      _api.isUserLoggedIn(provider: provider);
-
-  Future<UserState> checkUserStateByEmail(
-      {required String email, required ProviderOptions provider}) async {
-    final bool isDuplicateUser = await _api.checkDuplicateEmail(email: email);
-    if (isDuplicateUser && provider == ProviderOptions.EMAIL) {
-      return UserState.SIGN_IN_EMAIL;
-    } else {
-      if (provider == ProviderOptions.EMAIL) {
-        return UserState.SIGN_UP_EMAIL;
-      } else {
-        return UserState.SIGN_UP_SNS;
-      }
+  Future<Either<Failure, AuthInfo>> getGoogleAuthInfo() async {
+    try {
+      AuthInfo authInfo = await _api.getGoogleAuthInfo();
+      return Right(authInfo);
+    } on NoInternetConnectionException {
+      return Left(NoConnectionFailure());
+    } on PlatformException {
+      return Left(NoUserDataFailure());
+    } catch (e) {
+      return Left(NoUserDataFailure());
     }
   }
 
-  Future<bool> saveUserNativeAuthInfo(
-      {required ProviderOptions provider, required AuthInfo authObject}) async {
-    _tokenManager.saveTokenProvider(ProviderOptions.KAKAO);
-    UserData.to.saveAuthInfo(authObject);
-    return true;
+  // Future<Either<Failure, UserState>> getUserState(
+  //     {required ProviderOptions provider, String? email}) async {
+  //   try {
+  //     if (provider == ProviderOptions.email) {
+  //       _authInfo = await _api.getEmailAuthInfo(email!);
+  //     } else {
+  //       switch (provider) {
+  //         case ProviderOptions.google:
+  //           _authInfo = await _api.getGoogleAuthInfo();
+  //           break;
+  //         case ProviderOptions.kakao:
+  //           _authInfo = await _api.getKakaoAuthInfo();
+  //           break;
+  //         case ProviderOptions.naver:
+  //           _authInfo = await _api.getNaverAuthInfo();
+  //           break;
+  //         case ProviderOptions.apple:
+  //           _authInfo = await _api.getAppleAuthInfo();
+  //           break;
+  //         default:
+  //       }
+  //     }
+
+  //     final bool isDuplicateUser =
+  //         await _api.checkUserEmail(email: _authInfo.email);
+
+  //     final UserState userState = determineUserState(isDuplicateUser, provider);
+  //     return Right(userState);
+  //   } on NoInternetConnectionException {
+  //     return Left(NoConnectionFailure());
+  //   } on PlatformException {
+  //     return Left(NoUserDataFailure());
+  //   } catch (e) {
+  //     return Left(NoUserDataFailure());
+  //   }
+  // }
+
+  Future<Either<Failure, UserState>> getUserState(
+      {required AuthInfo authInfo}) async {
+    try {
+      final bool isDuplicateUser =
+          await _api.checkUserEmail(email: authInfo.email);
+
+      final UserState userState =
+          determineUserState(isDuplicateUser, authInfo.provider);
+      return Right(userState);
+    } on NoInternetConnectionException {
+      return Left(NoConnectionFailure());
+    } on PlatformException {
+      return Left(NoUserDataFailure());
+    } catch (e) {
+      return Left(NoUserDataFailure());
+    }
+  }
+
+  Future<Either<Failure, AuthInfo>> getAuthInfo(
+      {required ProviderOptions provider, String? email}) async {
+    try {
+      late AuthInfo _authInfo;
+      if (provider == ProviderOptions.email) {
+        _authInfo = await _api.getEmailAuthInfo(email!);
+      } else {
+        switch (provider) {
+          case ProviderOptions.google:
+            _authInfo = await _api.getGoogleAuthInfo();
+            break;
+          case ProviderOptions.kakao:
+            _authInfo = await _api.getKakaoAuthInfo();
+            break;
+          case ProviderOptions.naver:
+            _authInfo = await _api.getNaverAuthInfo();
+            break;
+          case ProviderOptions.apple:
+            _authInfo = await _api.getAppleAuthInfo();
+            break;
+          default:
+        }
+      }
+
+      return Right(_authInfo);
+    } on NoInternetConnectionException {
+      return Left(NoConnectionFailure());
+    } on PlatformException {
+      return Left(NoUserDataFailure());
+    } catch (e) {
+      return Left(NoUserDataFailure());
+    }
+  }
+
+  UserState determineUserState(bool isDuplicateUser, ProviderOptions provider) {
+    UserState userState;
+    if (isDuplicateUser) {
+      if (provider == ProviderOptions.email) {
+        userState = UserState.SIGN_IN_EMAIL;
+      } else if ((provider == ProviderOptions.apple) ||
+          (provider == ProviderOptions.google)) {
+        userState = UserState.SIGN_IN_CREDENTIAL;
+      } else if ((provider == ProviderOptions.naver) ||
+          (provider == ProviderOptions.kakao)) {
+        userState = UserState.SIGN_IN_TOKEN;
+      } else {
+        userState = UserState.NONE;
+      }
+    } else {
+      if (provider == ProviderOptions.email) {
+        userState = UserState.SIGN_UP_EMAIL;
+      } else if (provider == ProviderOptions.none) {
+        userState = UserState.NONE;
+      } else {
+        userState = UserState.SIGN_UP_SNS;
+      }
+    }
+    return userState;
+  }
+
+  Future<Either<Failure, AuthInfo>> getAppleAuthInfo() async {
+    try {
+      AuthInfo authInfo = await _api.getAppleAuthInfo();
+      return Right(authInfo);
+    } on NoInternetConnectionException {
+      return Left(NoConnectionFailure());
+    } on PlatformException {
+      return Left(NoUserDataFailure());
+    } catch (e) {
+      return Left(NoUserDataFailure());
+    }
+  }
+
+  Future<Either<Failure, AuthInfo>> getEmailAuthInfo(email) async {
+    try {
+      AuthInfo authInfo = await _api.getEmailAuthInfo(email);
+      return Right(authInfo);
+    } on NoInternetConnectionException {
+      return Left(NoConnectionFailure());
+    } on PlatformException {
+      return Left(NoUserDataFailure());
+    } catch (e) {
+      return Left(NoUserDataFailure());
+    }
+  }
+
+  Future<Either<Failure, AuthInfo>> getKakaoAuthInfo() async {
+    try {
+      AuthInfo authInfo = await _api.getKakaoAuthInfo();
+      return Right(authInfo);
+    } on NoInternetConnectionException {
+      return Left(NoConnectionFailure());
+    } on PlatformException {
+      return Left(NoUserDataFailure());
+    } catch (e) {
+      print('getKakaoAuthInfo error');
+      return Left(NoUserDataFailure());
+    }
+  }
+
+  Future<Either<Failure, AuthInfo>> getNaverAuthInfo() async {
+    try {
+      AuthInfo authInfo = await _api.getNaverAuthInfo();
+      return Right(authInfo);
+    } on NoInternetConnectionException {
+      return Left(NoConnectionFailure());
+    } on PlatformException {
+      return Left(NoUserDataFailure());
+    } on PlatformSignInException {
+      return Left(NaverSigninFailure());
+    } catch (e) {
+      return Left(NoUserDataFailure());
+    }
+  }
+
+  Future<bool> isUserLoggedIn() async {
+    ProviderOptions provider = WcTokenManager().getTokenProvider();
+    return await _api.isUserLoggedIn(provider: provider);
+  }
+
+  Future<Either<Failure, bool>> checkDuplicateUser(
+      {required String email, required ProviderOptions provider}) async {
+    try {
+      final bool isDuplicateUser = await _api.checkUserEmail(email: email);
+      return Right(isDuplicateUser);
+    } on NoInternetConnectionException {
+      print('NoInternetConnectionException');
+      return Left(NoConnectionFailure());
+    } catch (e) {
+      print('NoUserDataFailure');
+      return Left(NoUserDataFailure());
+    }
+  }
+
+  Future<Either<Failure, String>> signUp(
+      {String? password,
+      required List<Conimal> conimalList,
+      required AuthInfo authInfo}) async {
+    late UserCredential userCredential;
+    print('signup 당시 provider option => ${authInfo.provider}');
+
+    try {
+      switch (authInfo.provider) {
+        case ProviderOptions.email:
+          userCredential = await _api.creatUserWithEmail(
+              email: authInfo.email, password: password!);
+          break;
+        case ProviderOptions.google:
+          userCredential =
+              await _api.signInWithCredential(credential: authInfo.authObject);
+          break;
+        case ProviderOptions.apple:
+          userCredential =
+              await _api.signInWithCredential(credential: authInfo.authObject);
+          break;
+        case ProviderOptions.kakao:
+          userCredential = await _api.signInWithCustomToken(authInfo: authInfo);
+          break;
+        case ProviderOptions.naver:
+          userCredential =
+              await _api.signInWithCustomToken(authInfo: authInfo.authObject);
+          break;
+
+        default:
+      }
+
+      await _signUpUserRepository.signUpUserDB(
+          uid: userCredential.user!.uid, authInfo: AuthController.to.authInfo!);
+
+      setUserAuthInfo(
+          provider: authInfo.provider, userCredential: userCredential);
+
+      return Right(userCredential.user!.uid);
+    } on SignInTokenException {
+      return Left(SignInTokenFailure());
+    } on SignInCredentialException {
+      return Left(SignInCredentialFailure());
+    } on CustomFirebaseAuthException catch (e) {
+      switch (e.type) {
+        case CREATE_EMAIL.accountEnabled:
+          return Left(UserEnabledFailure());
+
+        case CREATE_EMAIL.existingEmail:
+          return Left(ExistingEmailFailure());
+        case CREATE_EMAIL.weakPassword:
+          return Left(WeakPasswordFailure());
+        default:
+          return Left(SignInCredentialFailure());
+      }
+    } catch (e) {
+      return Left(SignInCredentialFailure());
+    }
+  }
+
+  signInWithEmail(
+      {required String password, required AuthInfo authInfo}) async {
+    late Either<Failure, UserCredential?> userCredentialEither;
+    userCredentialEither =
+        await _api.signInWithEmail(email: authInfo.email, password: password);
+
+    userCredentialEither.fold(
+        (fail) =>
+            FailureInterpreter().mapFailureToDialog(fail, 'signInWithEmail'),
+        (userCredential) {
+      setUserAuthInfo(
+          provider: authInfo.provider, userCredential: userCredential!);
+    });
+  }
+
+  signInWithSnsCredential({required AuthInfo authInfo}) async {
+    showLoading(() async {
+      late UserCredential _userCredential;
+      _userCredential =
+          await _api.signInWithCredential(credential: authInfo.authObject);
+      await setUserAuthInfo(
+          provider: authInfo.provider, userCredential: _userCredential);
+    });
+  }
+
+  signInWithSnsToken({required AuthInfo authInfo}) async {
+    late UserCredential _userCredential;
+    _userCredential =
+        await _api.signInWithCustomToken(authInfo: authInfo.authObject);
+    await setUserAuthInfo(
+        provider: authInfo.provider, userCredential: _userCredential);
+  }
+
+  setUserAuthInfo(
+      {required ProviderOptions provider,
+      required UserCredential userCredential}) async {
+    WcTokenManager().saveTokenProvider(provider);
+    await AuthController.to.setUserState(userCredential.user);
+  }
+
+  signOut() async {
+    await firebaseAuth.signOut();
   }
 }

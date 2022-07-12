@@ -1,14 +1,14 @@
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
-import 'package:withconi/data/repository/signup_conimal_data_repository.dart';
-import 'package:withconi/data/repository/signup_user_repository.dart';
+import 'package:withconi/data/repository/conimal_repository.dart';
+import 'package:withconi/data/repository/signup_repository.dart';
 import '../../configs/constants/regex.dart';
 import '../../configs/constants/strings.dart';
 import '../../import_basic.dart';
 
 class SignupProfileController extends GetxController {
-  final ConimalRepository _conimalRepository = ConimalRepository.to;
-  final SignupUserRepository _userRepository = SignupUserRepository.to;
+  // final ConimalRepository _signUpRepository = ConimalRepository.to;
+  final SignupRepository _signUpRepository = SignupRepository.to;
 
   final RxString _name = ''.obs;
   final RxString _nickName = ''.obs;
@@ -80,10 +80,10 @@ class SignupProfileController extends GetxController {
   }
 
   nextStep() {
-    _userRepository.saveUserName(name);
-    _userRepository.saveUserNickname(nickName);
-    _userRepository.saveUserProfile(profileImg.value);
-    if (_conimalRepository.visitedConimal2Page) {
+    _signUpRepository.saveUserName(name);
+    _signUpRepository.saveUserNickname(nickName);
+    _signUpRepository.saveUserProfile(profileImg.value);
+    if (_signUpRepository.visitedConimal2Page) {
       Get.toNamed(Routes.SIGNUP_CONIMAL_STEP2);
     } else {
       Get.toNamed(Routes.SIGNUP_CONIMAL_STEP1);

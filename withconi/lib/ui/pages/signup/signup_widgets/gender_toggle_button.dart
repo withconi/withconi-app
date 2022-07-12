@@ -11,8 +11,9 @@ class GenderToggleButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 43,
+    return Container(
+      height: 46,
+      margin: EdgeInsets.only(top: 14),
       child: ToggleButtons(
         onPressed: onPressed,
         borderRadius: BorderRadius.circular(10),

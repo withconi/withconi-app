@@ -1,18 +1,20 @@
 import 'package:dartz/dartz.dart';
 import 'package:withconi/configs/helpers/calculator.dart';
+import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
 import 'package:withconi/data/repository/auth_repository.dart';
-import 'package:withconi/data/repository/signup_conimal_data_repository.dart';
-import 'package:withconi/data/repository/signup_user_repository.dart';
+
+import 'package:withconi/data/repository/signup_repository.dart';
 import 'package:withconi/ui/widgets/loading.dart';
 import '../../core/error_handling/failures.dart';
 import '../../data/model/conimal.dart';
+import '../../data/repository/conimal_repository.dart';
 import '../../import_basic.dart';
 import 'shared_data/user_data.dart';
 
 class SignupConimal2Controller extends GetxController {
-  final SignupUserRepository _signupUserRepository = SignupUserRepository.to;
-  final ConimalRepository _conimalRepository = ConimalRepository.to;
+  final SignupRepository _signUpRepository = SignupRepository.to;
+  // final ConimalRepository _signUpRepository = ConimalRepository.to;
   final AuthRepository _authRepository = AuthRepository();
   final RxString _userName = ''.obs;
   RxList<Conimal> conimalList = RxList<Conimal>();
@@ -22,9 +24,9 @@ class SignupConimal2Controller extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    _userName.value = _signupUserRepository.name;
-    _conimalRepository.visitedConimal2Page = true;
+    _userName.value = _signUpRepository.name;
     getConimalList();
+    print(conimalList);
     ever(conimalList, validateButton);
   }
 
@@ -37,11 +39,7 @@ class SignupConimal2Controller extends GetxController {
   }
 
   getConimalList() {
-    Either<Failure, List<Conimal>> getListResultEither =
-        _conimalRepository.getAllTempConimal();
-    getListResultEither.fold(
-        (fail) => FailureInterpreter().mapFailureToDialog(fail),
-        (list) => conimalList.assignAll(list));
+    conimalList.value = _signUpRepository.conimalList;
   }
 
   calculateConimalAge(int index) {
@@ -60,20 +58,24 @@ class SignupConimal2Controller extends GetxController {
 
   deleteConimal(int index) {
     Either<Failure, bool> removeResultEither =
-        _conimalRepository.removeTempConimal(index);
+        _signUpRepository.removeConimalIndex(index);
     removeResultEither.fold(
-        (fail) => FailureInterpreter().mapFailureToDialog(fail),
+        (fail) =>
+            FailureInterpreter().mapFailureToDialog(fail, 'deleteConimal'),
         (success) => getConimalList());
   }
 
   signUp() {
-    List<Conimal> conimalList = _conimalRepository.tempConimalList;
+    List<Conimal> conimalList = _signUpRepository.conimalList;
     showLoading((() async {
       Either<Failure, String> signUpEither = await _authRepository.signUp(
-          conimalList: conimalList, password: _signupUserRepository.password);
+          conimalList: conimalList,
+          password: _signUpRepository.password,
+          authInfo: AuthController.to.authInfo!);
 
       signUpEither.fold(
-          (fail) => FailureInterpreter().mapFailureToDialog(fail), (r) => null);
+          (fail) => FailureInterpreter().mapFailureToDialog(fail, 'signUp'),
+          (r) => null);
     }));
   }
 }

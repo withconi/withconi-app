@@ -11,4 +11,11 @@ abstract class Routes {
   static const SIGNUP_CONIMAL_EDIT = '/signup/conimal/edit';
   static const SIGNIN_EMAIL = '/signin/email';
   static const SIGNUP_DISEASE_SEARCH = '/signup/conimal/1/disease';
+  static const ADD_CONIMAL = '/home/addConimal';
+  static const EDIT_CONIMAL = '/home/editConimal';
+  static const COMMUNITY_MAIN = '/community/main';
+  static const COMMUNITY_DETAIL = '/community/detail';
+  static const COMMUNITY_NEW_POST = '/community/new_post';
+  static const COMMUNITY_POST_DETAIL = '/community/post/detail';
+  static const COMMUNITY_SEARCH = '/community/search';
 }

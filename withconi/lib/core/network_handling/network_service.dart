@@ -1,4 +1,8 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:withconi/configs/constants/api_url.dart';
 import 'package:withconi/configs/constants/enum.dart';
 import '../../configs/helpers/token_manager.dart';
@@ -151,24 +155,34 @@ class Logging extends Interceptor {
   Logging(this.dio);
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    print(
-        'REQUEST[${options.method}] => PATH: ${options.path} // DATA: ${options.data}');
+    if (kDebugMode) {
+      var prettyQuery =
+          JsonEncoder.withIndent('  ').convert(options.queryParameters);
+      var prettyBody = JsonEncoder.withIndent('  ').convert(options.data);
+      log('\n🧡 REQUEST[${options.method}] => PATH: ${options.path}\n🔸 QUERY: $prettyQuery\n🔸 BODY: $prettyBody');
+    }
     return super.onRequest(options, handler);
   }
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
-    print(
-      'RESPONSE[${response.statusCode}] => PATH: ${response.requestOptions.path} // DATA: ${response.data}',
-    );
+    if (kDebugMode) {
+      var prettyData = JsonEncoder.withIndent('  ').convert(response.data);
+
+      log(
+        '\n💙 RESPONSE[${response.statusCode}] => PATH: ${response.requestOptions.path}\n🔹 DATA: $prettyData',
+      );
+    }
     return super.onResponse(response, handler);
   }
 
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) {
-    print(
-      'ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path} // ERROR_INFO: ${err.response?.data['error']}',
-    );
+    if (kDebugMode) {
+      log(
+        '\n💔 ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path}\n🔻 ERROR_INFO: ${err.response?.data['error']}',
+      );
+    }
 
     return super.onError(err, handler);
   }

@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
 import 'package:withconi/core/error_handling/error_message_object.dart';
 import 'package:withconi/data/model/disease.dart';
 import 'package:withconi/data/repository/disease_repository.dart';
@@ -69,7 +70,12 @@ class DiseaseSearchController extends GetxController
     if (diseaseListSelected.contains(disease)) {
       diseaseListSelected.remove(disease);
     } else {
-      diseaseListSelected.add(disease);
+      if (diseaseListSelected.length < 4) {
+        diseaseListSelected.add(disease);
+      } else {
+        FailureInterpreter().mapFailureToDialog(
+            Failure.maxDiseaseFailure(), 'onDiseaseClicked');
+      }
     }
   }
 

@@ -67,6 +67,22 @@ class ErrorMessage extends Equatable {
           const ErrorMessage(title: '카카오 로그인 실패', message: '카카오 정보를 불러올 수 없어요'),
       notFoundFailure: () => const ErrorMessage(
           title: '404 not found 에러', message: '사용자 정보를 불러올 수 없어요'),
+      noEmailUserFailure: () => const ErrorMessage(
+          title: '이메일 로그인 no User error', message: '이메일로 등록된 유저를 찾을 수 없어요'),
+      wrongPasswordFailure: () => const ErrorMessage(
+          title: '이메일 wrong password 에러', message: '비밀번호가 맞지 않네요'),
+      existingEmailFailure: () => const ErrorMessage(
+        title: '이미 존재하는 이메일입니다',
+        message: '이미 등록된 이메일이에요',
+      ),
+      userEnabledFailure: () => const ErrorMessage(
+        title: ' 비활성화된 사용자',
+        message: '비활성화된 사용자에요',
+      ),
+      weakPasswordFailure: () => const ErrorMessage(
+        title: '비밀번호가 약해요',
+        message: '비밀번호가 취약하네요',
+      ),
     );
   }
 }
