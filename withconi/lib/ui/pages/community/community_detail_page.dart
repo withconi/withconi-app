@@ -1,30 +1,15 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:lottie/lottie.dart';
-import 'package:withconi/controller/community/community_main_controller.dart';
-import 'package:withconi/controller/signup/disease_search_controller.dart';
 import 'package:withconi/import_basic.dart';
-import 'package:withconi/ui/pages/signup/signup_widgets/disease_selection_list_button.dart';
-import '../../widgets/button/wide_button.dart';
+import '../../../controller/community/community_detail_controller.dart';
+import '../../widgets/appbar/appbar.dart';
+import '../../widgets/button/text_radio_button.dart';
+import '../../widgets/post/user_postbox.dart';
 
 class CommunityDetailPage extends StatelessWidget {
   CommunityDetailPage({Key? key}) : super(key: key);
-
-  List<String> postUser = [
-    'a',
-    'b',
-    'c',
-    'd',
-    'e',
-    'f',
-    'g',
-    'H',
-    'I',
-    'b',
-    // 'a',
-    // 'b',
-    // 'a',
-    // 'b'
-  ];
+  final CommunityDetailController _controller =
+      Get.put(CommunityDetailController());
 
   @override
   Widget build(BuildContext context) {
@@ -32,65 +17,60 @@ class CommunityDetailPage extends StatelessWidget {
       persistentFooterButtons: [
         Container(
           padding: EdgeInsets.symmetric(horizontal: 10),
-          height: 53,
+          height: 50,
           width: WcWidth,
           child: Row(
             children: [
               CircleAvatar(
-                radius: 22,
+                radius: 21,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 15,
               ),
-              Text(
-                '새로운 글을 남겨보세요',
-                style:
-                    GoogleFonts.notoSans(fontSize: 16, color: WcColors.grey120),
+              Expanded(
+                child: GestureDetector(
+                  onTap: () {
+                    Get.toNamed(Routes.COMMUNITY_NEW_POST);
+                  },
+                  child: Container(
+                    alignment: Alignment.centerLeft,
+                    height: 50,
+                    color: WcColors.white,
+                    child: Text(
+                      '새로운 글을 남겨보세요',
+                      style: GoogleFonts.notoSans(
+                          fontSize: 16, color: WcColors.grey120),
+                    ),
+                  ),
+                ),
               )
             ],
           ),
         )
       ],
-      appBar: AppBar(
-          scrolledUnderElevation: 5,
-          // surfaceTintColor: WcColors.blue80,
-          shadowColor: Colors.black12,
-          elevation: 0,
-          foregroundColor: WcColors.grey200,
-          backgroundColor: WcColors.white,
-          title: Text(
-            '커뮤니티',
-            style:
-                GoogleFonts.notoSans(fontSize: 15, fontWeight: FontWeight.w600),
-          ),
-          actions: [
-            Container(
-                height: 20,
-                alignment: Alignment.centerRight,
-                padding: EdgeInsets.only(left: 20, right: 20),
-                child: SvgPicture.asset(
-                  'assets/icons/search.svg',
-                  color: WcColors.grey200,
-                ))
-          ],
-          leading: Container(
-              alignment: Alignment.centerRight,
-              padding:
-                  EdgeInsets.only(left: 20, right: 20, bottom: 10, top: 10),
-              child: SvgPicture.asset(
-                'assets/icons/arrow_back.svg',
-                color: WcColors.grey200,
-              ))
-
-          // Padding(
-          //     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 0),
-          //     child: SvgPicture.asset('assets/icons/arrow_back.svg')),
-          ),
+      appBar: WcAppBar(
+        title: '커뮤니티',
+        leading: SvgPicture.asset(
+          'assets/icons/arrow_back.svg',
+          color: WcColors.grey200,
+        ),
+        action: SvgPicture.asset(
+          'assets/icons/search.svg',
+          color: WcColors.grey200,
+        ),
+        onActionTap: () {
+          print('action');
+        },
+        onLeadingTap: () {
+          print('leading');
+        },
+      ),
       backgroundColor: WcColors.white,
       body: SingleChildScrollView(
         child: SafeArea(
           bottom: false,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
                 width: WcWidth,
@@ -117,132 +97,100 @@ class CommunityDetailPage extends StatelessWidget {
                               padding: EdgeInsets.only(left: 5, top: 6),
                               child: SvgPicture.asset(
                                 'assets/icons/info.svg',
+                                color: WcColors.grey100,
                               ),
                             )),
                       )
                     ]),
               ),
-              Column(
-                children: postUser
-                    .map((e) => Container(
-                          decoration: BoxDecoration(
-                              // color: WcColors.grey100,
-                              border: Border(
-                                  bottom: BorderSide(
-                                      width: 1, color: WcColors.grey80))),
-                          height: 208,
-                          width: WcWidth,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SizedBox(
-                                width: WcWidth - 40,
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    CircleAvatar(
-                                      radius: 18,
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                          alignment: Alignment.topLeft,
-                                          height: 33,
-                                          child: Row(
-                                            children: [
-                                              Text('먼지 * 1시간 전'),
-                                              Container(
-                                                alignment: Alignment.center,
-                                                margin:
-                                                    EdgeInsets.only(left: 8),
-                                                height: 22,
-                                                width: 50,
-                                                decoration: BoxDecoration(
-                                                    color: WcColors.blue40,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            5)),
-                                                child: Text(
-                                                  '고양이',
-                                                  style: GoogleFonts.notoSans(
-                                                      color: WcColors.blue100,
-                                                      fontSize: 12,
-                                                      fontWeight:
-                                                          FontWeight.w600),
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: WcWidth - 100,
-                                          child: Text(
-                                            '한국어로 합니다 어ㅓㅉ구 한국어로 합니다 어ㅓㅉ구 한국어로 합니다 어ㅓㅉ구 한국어로 합니다 어ㅓㅉ구 한국어로 합니다 어ㅓㅉ구 한국어로 합니다 어ㅓㅉ구 ',
-                                            overflow: TextOverflow.fade,
-                                            style: GoogleFonts.notoSans(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w500,
-                                                height: 1.5),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 38,
-                                          child: Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.end,
-                                            children: [
-                                              Row(
-                                                children: [
-                                                  SvgPicture.asset(
-                                                    'assets/icons/heart.svg',
-                                                    height: 20,
-                                                  ),
-                                                  SizedBox(
-                                                    width: 5,
-                                                  ),
-                                                  Text(
-                                                    '34',
-                                                    style:
-                                                        GoogleFonts.montserrat(
-                                                            fontSize: 14),
-                                                  ),
-                                                ],
-                                              ),
-                                              SizedBox(
-                                                width: 25,
-                                              ),
-                                              Row(
-                                                children: [
-                                                  SvgPicture.asset(
-                                                    'assets/icons/comment.svg',
-                                                    height: 20,
-                                                  ),
-                                                  SizedBox(
-                                                    width: 5,
-                                                  ),
-                                                  Text(
-                                                    '34',
-                                                    style:
-                                                        GoogleFonts.montserrat(
-                                                            fontSize: 14),
-                                                  ),
-                                                ],
-                                              )
-                                            ],
-                                          ),
-                                        )
-                                      ],
-                                    )
-                                  ],
+              Obx(
+                () => Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Row(
+                    children: _controller.postType
+                        .map((type) => WcTextRadioButton(
+                              onTap: () {
+                                _controller.onPostTypeChanged(type);
+                              },
+                              selectedValue: _controller.selectedPostType.value,
+                              value: type,
+                            ))
+                        .toList(),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              Obx(
+                () => Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton2(
+                      // dropdownElevation: 2,
+                      buttonPadding: const EdgeInsets.only(left: 10, right: 10),
+                      itemPadding: const EdgeInsets.only(left: 10, right: 10),
+                      dropdownDecoration: const BoxDecoration(
+                          color: WcColors.white,
+                          boxShadow: [
+                            BoxShadow(
+                                color: Color.fromARGB(69, 124, 124, 124),
+                                blurRadius: 8,
+                                offset: Offset(
+                                  0.0, // Move to right 10  horizontally
+                                  8.0,
+                                )),
+                          ]),
+                      icon: SvgPicture.asset('assets/icons/arrow_down.svg'),
+                      isExpanded: true,
+                      hint: Text(
+                        'Select Item',
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: Theme.of(context).hintColor,
+                        ),
+                      ),
+                      items: _controller.postSort
+                          .map((item) => DropdownMenuItem<String>(
+                                value: item,
+                                child: Text(
+                                  item,
+                                  style: GoogleFonts.notoSans(
+                                      color: WcColors.black,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w100,
+                                      height: 1.5),
                                 ),
-                              ),
-                            ],
-                          ),
+                              ))
+                          .toList(),
+                      value: _controller.selectedPostSort.value,
+                      onChanged: _controller.onPostSortingChanged,
+                      buttonHeight: 45,
+                      buttonWidth: 90,
+                      itemHeight: 45,
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              Column(
+                children: _controller.postUser
+                    .map((userName) => WcUserPostBox(
+                          commentsNum: 23,
+                          contents:
+                              '고양이가 잘먹는 사요ㅓㅓ먄어래냐ㅓㅐㅓㅑㅐㅓㅑㅓㅑㅐㅓㅑㅓㅑㅐㅓㅓㅑㅐ머 입니다 머머먹이먹미거먇뱓거ㅐㅁ러미ㅓㄱ뱌거갸ㅓ먀ㅏㅍ퍟ㅁ ㅓㅁㄱ임 ㅓㅇㄹㄹ머ㅑㅇㄴ러랴랼냐',
+                          likesNum: 12,
+                          badgeText: '고양이',
+                          uploadAt: '1',
+                          userLiked: true,
+                          userName: userName,
+                          onLikeTap: () {},
+                          badgeBackgroundColor: WcColors.blue40,
+                          badgeTextColor: WcColors.blue100,
+                          onCommentTap: () {},
+                          onPostTap: () {},
                         ))
                     .toList(),
               )

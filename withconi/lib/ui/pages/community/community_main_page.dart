@@ -4,7 +4,9 @@ import 'package:withconi/controller/community/community_main_controller.dart';
 import 'package:withconi/controller/signup/disease_search_controller.dart';
 import 'package:withconi/import_basic.dart';
 import 'package:withconi/ui/pages/signup/signup_widgets/disease_selection_list_button.dart';
+import '../../../controller/nav_controller.dart';
 import '../../widgets/button/wide_button.dart';
+import '../../widgets/navbar/bottom_navbar.dart';
 
 class CommunityMainPage extends StatelessWidget {
   const CommunityMainPage({Key? key}) : super(key: key);
@@ -16,6 +18,14 @@ class CommunityMainPage extends StatelessWidget {
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
+        bottomNavigationBar: Obx(
+          () => WcBottomNavBar(
+            navIndex: NavController.to.navBarIndex.value,
+            onTap: (index) {
+              NavController.to.onNavChanged(navIndex: index);
+            },
+          ),
+        ),
         backgroundColor: WcColors.white,
         body: SingleChildScrollView(
           child: SafeArea(
