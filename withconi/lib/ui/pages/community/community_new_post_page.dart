@@ -25,20 +25,23 @@ class CommunityNewPostPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: WcAppBar(
-          title: '',
-          action: Text(
-            '남기기',
-            style: GoogleFonts.notoSans(
-                fontSize: 16,
-                color: WcColors.blue100,
-                fontWeight: FontWeight.bold),
-          ),
-          leading: SvgPicture.asset(
-            'assets/icons/arrow_back.svg',
-            color: WcColors.grey200,
-          ),
-          onActionTap: () {},
-          onLeadingTap: () {}),
+        title: '',
+        action: Text(
+          '남기기',
+          style: GoogleFonts.notoSans(
+              fontSize: 16,
+              color: WcColors.blue100,
+              fontWeight: FontWeight.bold),
+        ),
+        leading: SvgPicture.asset(
+          'assets/icons/arrow_back.svg',
+          color: WcColors.grey200,
+        ),
+        onActionTap: () {},
+        onLeadingTap: () {
+          Get.back();
+        },
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),

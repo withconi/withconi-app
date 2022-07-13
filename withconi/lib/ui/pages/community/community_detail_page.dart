@@ -39,7 +39,7 @@ class CommunityDetailPage extends StatelessWidget {
                     child: Text(
                       '새로운 글을 남겨보세요',
                       style: GoogleFonts.notoSans(
-                          fontSize: 16, color: WcColors.grey120),
+                          fontSize: 15, color: WcColors.grey120),
                     ),
                   ),
                 ),
@@ -58,11 +58,11 @@ class CommunityDetailPage extends StatelessWidget {
           'assets/icons/search.svg',
           color: WcColors.grey200,
         ),
+        onLeadingTap: () {
+          Get.back();
+        },
         onActionTap: () {
           print('action');
-        },
-        onLeadingTap: () {
-          print('leading');
         },
       ),
       backgroundColor: WcColors.white,
@@ -143,13 +143,7 @@ class CommunityDetailPage extends StatelessWidget {
                           ]),
                       icon: SvgPicture.asset('assets/icons/arrow_down.svg'),
                       isExpanded: true,
-                      hint: Text(
-                        'Select Item',
-                        style: TextStyle(
-                          fontSize: 15,
-                          color: Theme.of(context).hintColor,
-                        ),
-                      ),
+
                       items: _controller.postSort
                           .map((item) => DropdownMenuItem<String>(
                                 value: item,
@@ -157,9 +151,9 @@ class CommunityDetailPage extends StatelessWidget {
                                   item,
                                   style: GoogleFonts.notoSans(
                                       color: WcColors.black,
-                                      fontSize: 15,
+                                      fontSize: 14,
                                       fontWeight: FontWeight.w100,
-                                      height: 1.5),
+                                      height: 1.3),
                                 ),
                               ))
                           .toList(),
@@ -175,24 +169,34 @@ class CommunityDetailPage extends StatelessWidget {
               const SizedBox(
                 height: 8,
               ),
-              Column(
-                children: _controller.postUser
-                    .map((userName) => WcUserPostBox(
-                          commentsNum: 23,
-                          contents:
-                              '고양이가 잘먹는 사요ㅓㅓ먄어래냐ㅓㅐㅓㅑㅐㅓㅑㅓㅑㅐㅓㅑㅓㅑㅐㅓㅓㅑㅐ머 입니다 머머먹이먹미거먇뱓거ㅐㅁ러미ㅓㄱ뱌거갸ㅓ먀ㅏㅍ퍟ㅁ ㅓㅁㄱ임 ㅓㅇㄹㄹ머ㅑㅇㄴ러랴랼냐',
-                          likesNum: 12,
-                          badgeText: '고양이',
-                          uploadAt: '1',
-                          userLiked: true,
-                          userName: userName,
-                          onLikeTap: () {},
-                          badgeBackgroundColor: WcColors.blue40,
-                          badgeTextColor: WcColors.blue100,
-                          onCommentTap: () {},
-                          onPostTap: () {},
-                        ))
-                    .toList(),
+              Obx(
+                () => Column(
+                  children: _controller.postList
+                      .map((userName) => WcUserPostListTile(
+                            commentsNum: 23,
+                            contents:
+                                '고양이가 밥을 안 먹으려고 할 때 단순히 식사 투정이라고 생각하고 그냥 넘어가면 안돼요. 질병이 원인일 수도 있기 때문이죠. 코가 막히거나 감기가 걸려 불편해서 밥을 안 먹을 수도 있고, 위장에 염증이 있거나 기생충에 감염되었을 수도 있어요. 아니면 이물질을 삼켜 식사 중 구토를 하거나 음식을 제대로 먹지 못하고, 치아나 잇몸에 염증이 있어 통증을 느낄 수도 있습니다.',
+                            likesNum: 12,
+                            badgeText: '고양이',
+                            uploadAt: '1',
+                            userLiked:
+                                _controller.userLikedPost.contains(userName),
+                            userName: userName,
+                            onLikeTap: () {
+                              if (_controller.userLikedPost
+                                  .contains(userName)) {
+                                _controller.userLikedPost.remove(userName);
+                              } else {
+                                _controller.userLikedPost.add(userName);
+                              }
+                            },
+                            badgeBackgroundColor: WcColors.blue40,
+                            badgeTextColor: WcColors.blue100,
+                            onCommentTap: () {},
+                            onPostTap: () {},
+                          ))
+                      .toList(),
+                ),
               )
             ],
           ),

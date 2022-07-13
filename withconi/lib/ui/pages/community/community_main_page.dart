@@ -55,10 +55,10 @@ class CommunityMainPage extends StatelessWidget {
                         color: WcColors.white,
                         boxShadow: [
                           BoxShadow(
-                            color: WcColors.grey100.withOpacity(0.4),
-                            spreadRadius: -3,
-                            blurRadius: 10,
-                            offset: const Offset(1, 1),
+                            color: Color.fromARGB(28, 0, 0, 0),
+                            spreadRadius: -2,
+                            blurRadius: 7,
+                            offset: const Offset(0, 1),
                           ),
                         ],
                         borderRadius: BorderRadius.circular(30),
