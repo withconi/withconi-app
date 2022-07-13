@@ -3,7 +3,7 @@ import 'package:lottie/lottie.dart';
 import '../../import_basic.dart';
 
 Future<dynamic> showLoading(Future<dynamic> Function() asyncFunction) async {
-  Get.showOverlay(
+  return Get.showOverlay(
       opacityColor: Colors.white,
       asyncFunction: asyncFunction,
       loadingWidget: SizedBox(

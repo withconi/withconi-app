@@ -24,7 +24,7 @@ class WcColors {
 
   static const Color grey140 = Color(0xff7C7C7C);
   static const Color grey160 = Color(0xff676767);
-  static const Color grey180 = Color(0xff5B626E);
+  static const Color grey180 = Color.fromARGB(255, 82, 88, 98);
   static const Color grey200 = Color.fromARGB(255, 54, 54, 54);
   static const Color red20 = Color.fromARGB(255, 255, 238, 236);
   // static const Color red40 = Color.fromARGB(255, 253, 232, 229);

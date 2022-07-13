@@ -1,0 +1,55 @@
+import '../../../import_basic.dart';
+
+class WcTextRadioButton extends StatelessWidget {
+  WcTextRadioButton(
+      {Key? key,
+      required this.selectedValue,
+      required this.value,
+      required this.onTap,
+      this.height = 28,
+      this.width = 65})
+      : super(key: key);
+
+  String selectedValue;
+  String value;
+  void Function() onTap;
+  double? height;
+  double? width;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(children: [
+      Material(
+        child: Ink(
+          height: height,
+          width: width,
+          decoration: BoxDecoration(
+              color:
+                  (selectedValue == value) ? WcColors.blue100 : WcColors.grey80,
+              borderRadius: BorderRadius.circular(5)),
+          child: InkWell(
+            onTap: onTap,
+            customBorder: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5),
+            ),
+            child: Container(
+              alignment: Alignment.center,
+              child: Text(
+                value,
+                style: GoogleFonts.notoSans(
+                    color: (selectedValue == value)
+                        ? WcColors.white
+                        : WcColors.grey200,
+                    fontSize: 14,
+                    fontWeight: FontWeight.normal),
+              ),
+            ),
+          ),
+        ),
+      ),
+      SizedBox(
+        width: 8,
+      )
+    ]);
+  }
+}
