@@ -24,7 +24,7 @@ class AuthController extends GetxController {
   final RxBool _isLoggedIn = false.obs;
   final Rxn<WcUser> wcUser = Rxn<WcUser>();
   final Rxn<AuthInfo> _authInfo = Rxn<AuthInfo>();
-  // final Rx<String> _name = ''.obs;
+  RxInt homeNavIndex = 0.obs;
 
   AuthInfo? get authInfo => _authInfo.value;
   // String get name => _name.value;
@@ -41,10 +41,6 @@ class AuthController extends GetxController {
     _authInfo.value = authInfo;
   }
 
-  // ontNameChanged({required AuthInfo authInfo}) {
-  //   _authInfo.value = authInfo;
-  // }
-
   setUserState(User? firebaseUser) async {
     _isLoggedIn.value = await _authRepository.isUserLoggedIn();
     setUserInfo(_isLoggedIn.value);
@@ -52,9 +48,10 @@ class AuthController extends GetxController {
 
   setUserInfo(bool isLoggedIn) async {
     if (isLoggedIn) {
-      Either<Failure, WcUser> wcUserEither = await _userRepository
-          .getUserInfoWithUid(uid: firebaseAuth.currentUser!.uid);
-      print(firebaseAuth.currentUser!.uid);
+      Either<Failure, WcUser> wcUserEither = await showLoading(() =>
+          _userRepository.getUserInfoWithUid(
+              uid: firebaseAuth.currentUser!.uid));
+
       wcUserEither.fold((fail) {
         wcUser.value = null;
         FailureInterpreter().mapFailureToDialog(fail, 'setUserInfo');

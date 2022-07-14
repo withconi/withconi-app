@@ -161,12 +161,13 @@ class StartPageController extends GetxController with StateMixin<ButtonState> {
     authInfoEither.fold((fail) {
       FailureInterpreter().mapFailureToDialog(fail, 'nextStepWithSns');
       buttonState.value = ButtonState.none;
-    }, (authInfo) {
+    }, (authInfo) async {
       AuthController.to.onAuthInfoChanged(authInfo: authInfo);
-      showLoading(() async {
-        UserState userState = await setUserStateByAuthInfo(authInfo: authInfo);
-        setNextStepByUserState(userState);
-      });
+
+      UserState userState =
+          await showLoading(() => setUserStateByAuthInfo(authInfo: authInfo));
+
+      setNextStepByUserState(userState);
     });
   }
 
