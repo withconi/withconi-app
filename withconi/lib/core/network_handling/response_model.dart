@@ -1,5 +1,6 @@
 import '../../data/model/conimal.dart';
 import '../../data/model/disease.dart';
+import '../../data/model/post.dart';
 import '../error_handling/exceptions.dart';
 
 class UserStateResponse {
@@ -53,6 +54,30 @@ class DiseaseResponse {
             .toList();
       }
       return DiseaseResponse(
+        totalResults: totalDocuments,
+        results: list,
+      );
+    } catch (e) {
+      throw DataParsingException();
+    }
+  }
+}
+
+class PostResponse {
+  PostResponse({required this.totalResults, required this.results});
+
+  int totalResults;
+  List<Post> results;
+
+  factory PostResponse.fromJson(Map<String, dynamic> json) {
+    List<Post> list = [];
+
+    try {
+      int totalDocuments = json['totalDocuments'];
+      if (json['list'] != null) {
+        list = json['list'].map<Post>((json) => Post.fromJson(json)).toList();
+      }
+      return PostResponse(
         totalResults: totalDocuments,
         results: list,
       );
