@@ -18,4 +18,7 @@ abstract class Routes {
   static const COMMUNITY_NEW_POST = '/community/new_post';
   static const COMMUNITY_POST_DETAIL = '/community/post/detail';
   static const COMMUNITY_SEARCH = '/community/search';
+  static const HOSPITAL_MAIN = '/hospital/main';
+  static const DICTIONARY_MAIN = '/dictionary/main';
+  static const DIAGNOSIS_MAIN = '/diagnosis/main';
 }

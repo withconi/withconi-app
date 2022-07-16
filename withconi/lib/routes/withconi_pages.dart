@@ -1,9 +1,14 @@
 import 'package:withconi/import_basic.dart';
+import 'package:withconi/routes/withconi_bindings.dart';
 import 'package:withconi/ui/pages/community/community_detail_page.dart';
 import 'package:withconi/ui/pages/community/community_main_page.dart';
+import 'package:withconi/ui/pages/community/community_post_detail_page.dart';
+import 'package:withconi/ui/pages/diagnosis/diagnosis_main_page.dart';
+import 'package:withconi/ui/pages/dictionary/dictionary_main_page.dart';
 import 'package:withconi/ui/pages/home/add_conimal_page.dart';
 import 'package:withconi/ui/pages/home/edit_conimal_page.dart';
 import 'package:withconi/ui/pages/home/home_page.dart';
+import 'package:withconi/ui/pages/hospital/hospital_main_page.dart';
 import 'package:withconi/ui/pages/signin/signin_email_page.dart';
 import 'package:withconi/ui/pages/signup/disease_search_page.dart';
 import 'package:withconi/ui/pages/signup/signup_conimal_edit_page.dart';
@@ -13,20 +18,21 @@ import 'package:withconi/ui/pages/signup/signup_conimal_page_1.dart';
 import 'package:withconi/ui/pages/splash.dart';
 import 'package:withconi/ui/pages/start/start_page.dart';
 
+import '../ui/pages/community/community_new_post_page.dart';
 import '../ui/pages/signup/signup_conimal_page_2.dart';
 
-class WCPages {
+class WcPages {
   static final pages = [
     GetPage(
-      name: Routes.HOME, page: () => HomePage(),
-      //  binding: HomeBinding()
-    ),
+        name: Routes.HOME,
+        page: () => HomePage(),
+        binding: HomeBinding(),
+        transition: Transition.noTransition),
     GetPage(
-        name: Routes.SPLASH,
-        page: () => const SplashPage(),
-        transition: Transition.fade
-        //  binding: HomeBinding()
-        ),
+      name: Routes.SPLASH,
+      page: () => const SplashPage(),
+      transition: Transition.fade,
+    ),
     GetPage(
       name: Routes.START,
       page: () => StartPage(),
@@ -65,24 +71,39 @@ class WCPages {
       page: () => AddConimalpage(),
     ),
     GetPage(
-      name: Routes.COMMUNITY_MAIN,
-      page: () => CommunityMainPage(),
-    ),
+        name: Routes.COMMUNITY_MAIN,
+        page: () => CommunityMainPage(),
+        transition: Transition.noTransition),
     GetPage(
       name: Routes.COMMUNITY_DETAIL,
       page: () => CommunityDetailPage(),
     ),
     GetPage(
-      name: Routes.COMMUNITY_NEW_POST,
-      page: () => CommunityMainPage(),
-    ),
+        name: Routes.COMMUNITY_NEW_POST,
+        page: () => CommunityNewPostPage(),
+        transition: Transition.topLevel),
     GetPage(
       name: Routes.COMMUNITY_POST_DETAIL,
-      page: () => CommunityMainPage(),
+      page: () => CommunityPostDetailPage(),
     ),
     GetPage(
       name: Routes.COMMUNITY_SEARCH,
       page: () => CommunityMainPage(),
+    ),
+    GetPage(
+      name: Routes.DIAGNOSIS_MAIN,
+      page: () => DiagnosisMainPage(),
+      transition: Transition.noTransition,
+    ),
+    GetPage(
+      name: Routes.HOSPITAL_MAIN,
+      page: () => HospitalMainPage(),
+      transition: Transition.noTransition,
+    ),
+    GetPage(
+      name: Routes.DICTIONARY_MAIN,
+      page: () => DictionaryMainPage(),
+      transition: Transition.noTransition,
     ),
   ];
 }
