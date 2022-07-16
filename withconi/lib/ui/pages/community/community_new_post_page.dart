@@ -149,37 +149,33 @@ class CommunityNewPostPage extends StatelessWidget {
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(10),
                                   child: Stack(children: [
-                                    Image.network(
-                                      'https://www.dailygaewon.com/news/photo/202107/11483_12056_1547.jpg',
-                                      fit: BoxFit.cover,
-                                      width: 100,
-                                      height: 100,
-                                    ),
                                     Container(
                                       width: 100,
                                       height: 100,
-                                      decoration: BoxDecoration(
-                                          gradient: LinearGradient(
-                                              begin: Alignment.topCenter,
-                                              end: Alignment.bottomCenter,
-                                              colors: [
-                                            Color.fromARGB(43, 0, 0, 0),
-                                            Color.fromARGB(22, 0, 0, 0),
+                                      foregroundDecoration: const BoxDecoration(
+                                        gradient: LinearGradient(
+                                          colors: [
+                                            Color.fromARGB(70, 21, 12, 12),
                                             Colors.transparent,
-                                            Color.fromARGB(11, 0, 0, 0),
-                                            Color.fromARGB(23, 0, 0, 0),
                                           ],
-                                              stops: [
-                                            0.0,
-                                            0.3,
-                                            0.7,
-                                            0.8,
-                                            1
-                                          ])),
+                                          begin: Alignment.topCenter,
+                                          end: Alignment.bottomCenter,
+                                          stops: [0, 0.3],
+                                        ),
+                                      ),
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                            // colorFilter: ColorFilter.mode(
+                                            //     Colors.red.withOpacity(0.4),
+                                            //     BlendMode.srcOut),
+                                            fit: BoxFit.cover,
+                                            image: NetworkImage(
+                                                'https://blog.kakaocdn.net/dn/rtgCl/btq6QthUvct/raf0kBKf6zELmZHR5XzDI1/img.jpg')),
+                                      ),
                                     ),
                                     Positioned(
-                                        right: -6,
-                                        top: -6,
+                                        right: -7,
+                                        top: -7,
                                         child: GestureDetector(
                                           onTap: () {
                                             print('delete');
@@ -213,7 +209,7 @@ class CommunityNewPostPage extends StatelessWidget {
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
                       height: 1.5),
-                  maxLines: 20,
+                  maxLines: 100,
                   minLines: 8,
                   decoration: InputDecoration(
                       border: InputBorder.none,

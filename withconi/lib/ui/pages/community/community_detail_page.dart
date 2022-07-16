@@ -2,6 +2,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:withconi/import_basic.dart';
 import '../../../controller/community/community_detail_controller.dart';
+import '../../../controller/ui_helper/infinite_scroll.dart';
 import '../../widgets/appbar/appbar.dart';
 import '../../widgets/button/text_radio_button.dart';
 import '../../widgets/post/user_postbox.dart';
@@ -66,7 +67,9 @@ class CommunityDetailPage extends StatelessWidget {
         },
       ),
       backgroundColor: WcColors.white,
-      body: SingleChildScrollView(
+      body: DataLoadScrollView(
+        onEndOfPage: _controller.loadNextPage,
+        isLoading: _controller.lastPage,
         child: SafeArea(
           bottom: false,
           child: Column(
@@ -172,28 +175,29 @@ class CommunityDetailPage extends StatelessWidget {
               Obx(
                 () => Column(
                   children: _controller.postList
-                      .map((userName) => WcUserPostListTile(
+                      .map((post) => WcUserPostListTile(
                             commentsNum: 23,
-                            contents:
-                                '고양이가 밥을 안 먹으려고 할 때 단순히 식사 투정이라고 생각하고 그냥 넘어가면 안돼요. 질병이 원인일 수도 있기 때문이죠. 코가 막히거나 감기가 걸려 불편해서 밥을 안 먹을 수도 있고, 위장에 염증이 있거나 기생충에 감염되었을 수도 있어요. 아니면 이물질을 삼켜 식사 중 구토를 하거나 음식을 제대로 먹지 못하고, 치아나 잇몸에 염증이 있어 통증을 느낄 수도 있습니다.',
+                            contents: post.content,
                             likesNum: 12,
                             badgeText: '고양이',
                             uploadAt: '1',
-                            userLiked:
-                                _controller.userLikedPost.contains(userName),
-                            userName: userName,
+                            liked:
+                                _controller.userLikedPost.contains(post.itemId),
+                            authorName: post.nickname,
                             onLikeTap: () {
                               if (_controller.userLikedPost
-                                  .contains(userName)) {
-                                _controller.userLikedPost.remove(userName);
+                                  .contains(post.itemId)) {
+                                _controller.userLikedPost.remove(post.itemId);
                               } else {
-                                _controller.userLikedPost.add(userName);
+                                _controller.userLikedPost.add(post.itemId);
                               }
                             },
                             badgeBackgroundColor: WcColors.blue40,
                             badgeTextColor: WcColors.blue100,
                             onCommentTap: () {},
-                            onPostTap: () {},
+                            onPostTap: () {
+                              Get.toNamed(Routes.COMMUNITY_POST_DETAIL);
+                            },
                           ))
                       .toList(),
                 ),
