@@ -11,22 +11,24 @@ class WcBottomNavBar extends StatelessWidget {
   }) : super(key: key);
   int navIndex;
   void Function(int)? onTap;
+
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      elevation: 7,
       backgroundColor: WcColors.white,
       type: BottomNavigationBarType.fixed,
       showUnselectedLabels: true,
       unselectedItemColor: WcColors.grey120,
       unselectedLabelStyle: GoogleFonts.notoSans(
-        color: WcColors.grey100,
+        color: WcColors.grey110,
         fontSize: 11,
-        height: 1.6,
+        height: 1.7,
       ),
       selectedLabelStyle: GoogleFonts.notoSans(
         color: WcColors.black,
         fontSize: 11,
-        height: 1.6,
+        height: 1.7,
       ),
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(

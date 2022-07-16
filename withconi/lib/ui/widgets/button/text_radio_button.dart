@@ -6,7 +6,7 @@ class WcTextRadioButton extends StatelessWidget {
       required this.selectedValue,
       required this.value,
       required this.onTap,
-      this.height = 28,
+      this.height = 29,
       this.width = 65})
       : super(key: key);
 
@@ -41,7 +41,8 @@ class WcTextRadioButton extends StatelessWidget {
                         ? WcColors.white
                         : WcColors.grey200,
                     fontSize: 14,
-                    fontWeight: FontWeight.normal),
+                    fontWeight: FontWeight.normal,
+                    height: 1.2),
               ),
             ),
           ),

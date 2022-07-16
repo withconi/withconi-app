@@ -4,20 +4,21 @@ class WcAppBar extends StatelessWidget with PreferredSizeWidget {
   WcAppBar({
     Key? key,
     required this.title,
-    required this.action,
-    required this.leading,
-    required this.onActionTap,
-    required this.onLeadingTap,
+    this.action,
+    this.leading,
+    this.onActionTap,
+    this.onLeadingTap,
   }) : super(key: key);
 
   String title;
-  Widget leading;
-  Widget action;
+  Widget? leading;
+  Widget? action;
   void Function()? onActionTap;
   void Function()? onLeadingTap;
   @override
   Widget build(BuildContext context) {
     return AppBar(
+        centerTitle: true,
         scrolledUnderElevation: 5,
         shadowColor: Color.fromARGB(34, 0, 0, 0),
         elevation: 0,

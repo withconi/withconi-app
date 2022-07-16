@@ -5,34 +5,34 @@ import '../../pages/community/community_detail_page.dart';
 import '../badge/badge.dart';
 import '../button/icon_text_button.dart';
 
-class WcUserPostBox extends StatelessWidget {
-  WcUserPostBox({
+class WcUserPostListTile extends StatelessWidget {
+  WcUserPostListTile({
     Key? key,
-    required this.userName,
+    required this.authorName,
     required this.uploadAt,
     required this.contents,
-    required this.userLiked,
+    required this.liked,
     required this.likesNum,
     required this.commentsNum,
-    required this.badgeText,
-    required this.badgeBackgroundColor,
-    required this.badgeTextColor,
+    this.badgeText,
+    this.badgeBackgroundColor,
+    this.badgeTextColor,
     this.userProfile,
     required this.onLikeTap,
-    required this.onCommentTap,
-    required this.onPostTap,
+    this.onCommentTap,
+    this.onPostTap,
     this.activeBadge = true,
     this.activeComment = true,
     this.activeLike = true,
   }) : super(key: key);
 
-  String userName;
+  String authorName;
   String uploadAt;
-  String badgeText;
-  Color badgeBackgroundColor;
-  Color badgeTextColor;
+  String? badgeText;
+  Color? badgeBackgroundColor;
+  Color? badgeTextColor;
   String contents;
-  bool userLiked;
+  bool liked;
   int likesNum;
   int commentsNum;
   void Function()? onLikeTap;
@@ -74,31 +74,33 @@ class WcUserPostBox extends StatelessWidget {
                     children: [
                       Container(
                         alignment: Alignment.topLeft,
-                        height: 27,
+                        height: 23,
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              userName,
+                              authorName,
                               style: GoogleFonts.notoSans(
                                   color: WcColors.grey200,
-                                  fontSize: 14,
+                                  fontSize: 13,
                                   fontWeight: FontWeight.w600,
-                                  height: 1.4),
+                                  height: 1.5),
                             ),
                             Text(
                               ' • $uploadAt시간 전',
                               style: GoogleFonts.notoSans(
-                                  color: WcColors.grey180,
-                                  fontSize: 14,
+                                  color: WcColors.grey140,
+                                  fontSize: 13,
                                   fontWeight: FontWeight.w500,
-                                  height: 1.4),
+                                  height: 1.5),
                             ),
                             (activeBadge)
                                 ? WcBadge(
-                                    text: badgeText,
-                                    backgroundColor: badgeBackgroundColor,
-                                    textColor: badgeTextColor,
+                                    text: badgeText ?? '',
+                                    backgroundColor: badgeBackgroundColor ??
+                                        Colors.transparent,
+                                    textColor:
+                                        badgeTextColor ?? Colors.transparent,
                                   )
                                 : SizedBox.shrink()
                           ],
@@ -123,7 +125,7 @@ class WcUserPostBox extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: 35,
+                        height: 36,
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
@@ -131,7 +133,7 @@ class WcUserPostBox extends StatelessWidget {
                                 ? Row(
                                     children: [
                                       WcIconTextButton(
-                                        active: true,
+                                        active: liked,
                                         activeIconColor: WcColors.red100,
                                         iconSrc: 'assets/icons/heart.svg',
                                         inactiveIconColor: WcColors.grey100,

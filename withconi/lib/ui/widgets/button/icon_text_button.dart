@@ -25,13 +25,13 @@ class WcIconTextButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.fromLTRB(0, 5, 8, 5),
+        padding: const EdgeInsets.fromLTRB(0, 5, 9, 4),
         color: WcColors.white,
         child: Row(
           children: [
             SvgPicture.asset(
               iconSrc,
-              height: 18,
+              height: 19,
               color: (active) ? activeIconColor : inactiveIconColor,
             ),
             SizedBox(
@@ -41,7 +41,7 @@ class WcIconTextButton extends StatelessWidget {
               text,
               style: GoogleFonts.montserrat(
                 fontSize: 14,
-                color: WcColors.grey160,
+                color: WcColors.grey140,
               ),
             ),
           ],
