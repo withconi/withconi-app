@@ -8,7 +8,7 @@ class CommunityNewPostController extends GetxController {
   ];
   RxString selectedPostType = '모두'.obs;
 
-  RxList<String> pictureFileList = ['', '', ''].obs;
+  RxList<String> pictureFileList = ['', '', '', "", ''].obs;
 
   void onPostTypeChanged(String postType) {
     selectedPostType.value = postType;
