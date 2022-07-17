@@ -5,7 +5,7 @@ import '../../../controller/community/community_detail_controller.dart';
 import '../../../controller/ui_helper/infinite_scroll.dart';
 import '../../widgets/appbar/appbar.dart';
 import '../../widgets/button/text_radio_button.dart';
-import '../../widgets/post/user_postbox.dart';
+import '../../widgets/listtile/post_list_tile.dart';
 
 class CommunityDetailPage extends StatelessWidget {
   CommunityDetailPage({Key? key}) : super(key: key);
@@ -19,6 +19,7 @@ class CommunityDetailPage extends StatelessWidget {
         Container(
           padding: EdgeInsets.symmetric(horizontal: 10),
           height: 50,
+          color: WcColors.white,
           width: WcWidth,
           child: Row(
             children: [
@@ -67,9 +68,8 @@ class CommunityDetailPage extends StatelessWidget {
         },
       ),
       backgroundColor: WcColors.white,
-      body: DataLoadScrollView(
-        onEndOfPage: _controller.loadNextPage,
-        isLoading: _controller.lastPage,
+      body: SingleChildScrollView(
+        controller: _controller.scrollController,
         child: SafeArea(
           bottom: false,
           child: Column(
@@ -173,34 +173,38 @@ class CommunityDetailPage extends StatelessWidget {
                 height: 8,
               ),
               Obx(
-                () => Column(
-                  children: _controller.postList
-                      .map((post) => WcUserPostListTile(
-                            commentsNum: 23,
-                            contents: post.content,
-                            likesNum: 12,
-                            badgeText: '고양이',
-                            uploadAt: '1',
-                            liked:
-                                _controller.userLikedPost.contains(post.itemId),
-                            authorName: post.nickname,
-                            onLikeTap: () {
-                              if (_controller.userLikedPost
-                                  .contains(post.itemId)) {
-                                _controller.userLikedPost.remove(post.itemId);
-                              } else {
-                                _controller.userLikedPost.add(post.itemId);
-                              }
-                            },
-                            badgeBackgroundColor: WcColors.blue40,
-                            badgeTextColor: WcColors.blue100,
-                            onCommentTap: () {},
-                            onPostTap: () {
-                              Get.toNamed(Routes.COMMUNITY_POST_DETAIL);
-                            },
-                          ))
-                      .toList(),
-                ),
+                () => ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: _controller.postList.length,
+                    shrinkWrap: true,
+                    itemBuilder: ((context, index) {
+                      return WcUserPostListTile(
+                        commentsNum: 23,
+                        contents: _controller.postList[index].content,
+                        likesNum: 12,
+                        badgeText: '고양이',
+                        uploadAt: '1',
+                        liked: _controller.userLikedPost
+                            .contains(_controller.postList[index].itemId),
+                        authorName: _controller.postList[index].nickname,
+                        onLikeTap: () {
+                          if (_controller.userLikedPost
+                              .contains(_controller.postList[index].itemId)) {
+                            _controller.userLikedPost
+                                .remove(_controller.postList[index].itemId);
+                          } else {
+                            _controller.userLikedPost
+                                .add(_controller.postList[index].itemId);
+                          }
+                        },
+                        badgeBackgroundColor: WcColors.blue40,
+                        badgeTextColor: WcColors.blue100,
+                        onCommentTap: () {},
+                        onPostTap: () {
+                          Get.toNamed(Routes.COMMUNITY_POST_DETAIL);
+                        },
+                      );
+                    })),
               )
             ],
           ),

@@ -141,68 +141,72 @@ class CommunityNewPostPage extends StatelessWidget {
                   ? Container(
                       height: 135,
                       margin: EdgeInsets.only(left: 20),
-                      child: Row(
-                        children: _controller.pictureFileList
-                            .map(
-                              (picture) => Container(
-                                margin: EdgeInsets.only(right: 10),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(10),
-                                  child: Stack(children: [
-                                    Container(
-                                      width: 100,
-                                      height: 100,
-                                      foregroundDecoration: const BoxDecoration(
-                                        gradient: LinearGradient(
-                                          colors: [
-                                            Color.fromARGB(70, 21, 12, 12),
-                                            Colors.transparent,
-                                          ],
-                                          begin: Alignment.topCenter,
-                                          end: Alignment.bottomCenter,
-                                          stops: [0, 0.3],
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: _controller.pictureFileList
+                              .map(
+                                (picture) => Container(
+                                  margin: EdgeInsets.only(right: 10),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(10),
+                                    child: Stack(children: [
+                                      Container(
+                                        width: 100,
+                                        height: 100,
+                                        foregroundDecoration:
+                                            const BoxDecoration(
+                                          gradient: LinearGradient(
+                                            colors: [
+                                              Color.fromARGB(70, 21, 12, 12),
+                                              Colors.transparent,
+                                            ],
+                                            begin: Alignment.topCenter,
+                                            end: Alignment.bottomCenter,
+                                            stops: [0, 0.3],
+                                          ),
+                                        ),
+                                        decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                              // colorFilter: ColorFilter.mode(
+                                              //     Colors.red.withOpacity(0.4),
+                                              //     BlendMode.srcOut),
+                                              fit: BoxFit.cover,
+                                              image: NetworkImage(
+                                                  'https://blog.kakaocdn.net/dn/rtgCl/btq6QthUvct/raf0kBKf6zELmZHR5XzDI1/img.jpg')),
                                         ),
                                       ),
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                            // colorFilter: ColorFilter.mode(
-                                            //     Colors.red.withOpacity(0.4),
-                                            //     BlendMode.srcOut),
-                                            fit: BoxFit.cover,
-                                            image: NetworkImage(
-                                                'https://blog.kakaocdn.net/dn/rtgCl/btq6QthUvct/raf0kBKf6zELmZHR5XzDI1/img.jpg')),
-                                      ),
-                                    ),
-                                    Positioned(
-                                        right: -7,
-                                        top: -7,
-                                        child: GestureDetector(
-                                          onTap: () {
-                                            print('delete');
-                                          },
-                                          child: Container(
-                                            color: Colors.transparent,
-                                            width: 50,
-                                            height: 50,
-                                            padding: EdgeInsets.all(16),
-                                            child: SvgPicture.asset(
-                                              "assets/icons/delete_circle.svg",
-                                              color: WcColors.grey60,
-                                              fit: BoxFit.none,
+                                      Positioned(
+                                          right: -7,
+                                          top: -7,
+                                          child: GestureDetector(
+                                            onTap: () {
+                                              print('delete');
+                                            },
+                                            child: Container(
+                                              color: Colors.transparent,
+                                              width: 50,
+                                              height: 50,
+                                              padding: EdgeInsets.all(16),
+                                              child: SvgPicture.asset(
+                                                "assets/icons/delete_circle.svg",
+                                                color: WcColors.grey60,
+                                                fit: BoxFit.none,
+                                              ),
                                             ),
-                                          ),
-                                        )),
-                                  ]),
+                                          )),
+                                    ]),
+                                  ),
                                 ),
-                              ),
-                            )
-                            .toList(),
+                              )
+                              .toList(),
+                        ),
                       ),
                     )
                   : SizedBox.shrink(),
               Container(
                 width: WcWidth - 40,
-                margin: EdgeInsets.symmetric(horizontal: 20, vertical: 4),
+                margin: EdgeInsets.symmetric(horizontal: 20, vertical: 6),
                 child: TextField(
                   style: GoogleFonts.notoSans(
                       color: WcColors.black,
@@ -212,6 +216,7 @@ class CommunityNewPostPage extends StatelessWidget {
                   maxLines: 100,
                   minLines: 8,
                   decoration: InputDecoration(
+                      isDense: true,
                       border: InputBorder.none,
                       hintStyle: GoogleFonts.notoSans(
                           color: WcColors.grey120,

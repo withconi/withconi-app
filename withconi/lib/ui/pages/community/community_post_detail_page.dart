@@ -2,11 +2,14 @@ import 'package:carousel_indicator/carousel_indicator.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:withconi/import_basic.dart';
+import 'package:withconi/ui/widgets/button/icon_button.dart';
+import 'package:withconi/ui/widgets/listtile/comment_list_tile.dart';
+import 'package:withconi/ui/widgets/photo_gallary/image_item.dart';
 import '../../../controller/community/community_post_detail_controller.dart';
 import '../../widgets/appbar/appbar.dart';
 import '../../widgets/badge/badge.dart';
 import '../../widgets/button/icon_text_button.dart';
-import '../../widgets/post/user_postbox.dart';
+import '../../widgets/photo_gallary/photo_gallary.dart';
 
 class CommunityPostDetailPage extends StatelessWidget {
   CommunityPostDetailPage({Key? key}) : super(key: key);
@@ -32,7 +35,7 @@ class CommunityPostDetailPage extends StatelessWidget {
               Expanded(
                 child: GestureDetector(
                   onTap: () {
-                    // Get.toNamed(Routes.COMMUNITY_NEW_POST);
+                    _controller.addComment();
                   },
                   child: Container(
                     alignment: Alignment.centerLeft,
@@ -89,7 +92,7 @@ class CommunityPostDetailPage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               CircleAvatar(
-                                radius: 18,
+                                radius: 15,
                               ),
                               SizedBox(
                                 width: 10,
@@ -98,7 +101,7 @@ class CommunityPostDetailPage extends StatelessWidget {
                                 _controller.thisPost.value.nickname,
                                 style: GoogleFonts.notoSans(
                                     color: WcColors.grey200,
-                                    fontSize: 17,
+                                    fontSize: 16,
                                     fontWeight: FontWeight.w600,
                                     height: 0.8),
                               ),
@@ -119,7 +122,7 @@ class CommunityPostDetailPage extends StatelessWidget {
                                 backgroundColor: WcColors.blue40,
                                 textColor: WcColors.blue100,
                                 width: 60,
-                                height: 28,
+                                height: 26,
                               ),
                             ],
                           ),
@@ -136,75 +139,64 @@ class CommunityPostDetailPage extends StatelessWidget {
                                       BorderRadius.all(Radius.circular(13.0))),
                               child: Stack(
                                 children: [
-                                  SizedBox(
-                                    height: 200,
-                                    width: WcWidth - 40,
-                                    child: CarouselSlider(
-                                      options: CarouselOptions(
-                                          height: 200.0, viewportFraction: 1),
-                                      items: [1, 2, 3, 4, 5].map((i) {
-                                        return Builder(
-                                          builder: (BuildContext context) {
-                                            return Container(
-                                              width: WcWidth - 40,
-                                              foregroundDecoration:
-                                                  const BoxDecoration(
-                                                gradient: LinearGradient(
-                                                    begin: Alignment.topCenter,
-                                                    end: Alignment.bottomCenter,
-                                                    colors: [
-                                                      Color.fromARGB(
-                                                          20, 0, 0, 0),
-                                                      Colors.transparent,
-                                                      Colors.transparent,
-                                                      Color.fromARGB(
-                                                          70, 0, 0, 0),
-                                                    ],
-                                                    stops: [
-                                                      0.0,
-                                                      0.2,
-                                                      0.8,
-                                                      1
-                                                      // 1
-                                                    ]),
-                                              ),
-                                              decoration: BoxDecoration(
-                                                image: DecorationImage(
-                                                    fit: BoxFit.cover,
-                                                    image: NetworkImage(
-                                                        'https://blog.kakaocdn.net/dn/rtgCl/btq6QthUvct/raf0kBKf6zELmZHR5XzDI1/img.jpg')),
-                                              ),
-                                            );
-                                          },
-                                        );
-                                      }).toList(),
+                                  GestureDetector(
+                                    onTap: () {
+                                      open(
+                                          context,
+                                          _controller.currentImageIndex.value,
+                                          _controller.images);
+                                    },
+                                    child: SizedBox(
+                                      height: 200,
+                                      width: WcWidth - 40,
+                                      child: CarouselSlider(
+                                        options: CarouselOptions(
+                                            onPageChanged: (index, reason) =>
+                                                _controller.currentImageIndex
+                                                    .value = index,
+                                            height: 200.0,
+                                            viewportFraction: 1),
+                                        items: _controller.images.map((image) {
+                                          return Builder(
+                                            builder: (BuildContext context) {
+                                              return Container(
+                                                width: WcWidth - 40,
+                                                foregroundDecoration:
+                                                    const BoxDecoration(
+                                                  gradient: LinearGradient(
+                                                      begin:
+                                                          Alignment.topCenter,
+                                                      end: Alignment
+                                                          .bottomCenter,
+                                                      colors: [
+                                                        Color.fromARGB(
+                                                            20, 0, 0, 0),
+                                                        Colors.transparent,
+                                                        Colors.transparent,
+                                                        Color.fromARGB(
+                                                            70, 0, 0, 0),
+                                                      ],
+                                                      stops: [
+                                                        0.0,
+                                                        0.2,
+                                                        0.8,
+                                                        1
+                                                        // 1
+                                                      ]),
+                                                ),
+                                                decoration: BoxDecoration(
+                                                  image: DecorationImage(
+                                                      fit: BoxFit.cover,
+                                                      image: getImageByType(
+                                                          image)),
+                                                ),
+                                              );
+                                            },
+                                          );
+                                        }).toList(),
+                                      ),
                                     ),
                                   ),
-                                  // AbsorbPointer(
-                                  //   absorbing: false,
-                                  //   child: Container(
-                                  //     width: WcWidth - 40,
-                                  //     decoration: BoxDecoration(
-                                  //       gradient: LinearGradient(
-                                  //           begin: Alignment.topCenter,
-                                  //           end: Alignment.bottomCenter,
-                                  //           colors: [
-                                  //             Color.fromARGB(33, 0, 0, 0),
-                                  //             Color.fromARGB(11, 0, 0, 0),
-                                  //             Colors.transparent,
-                                  //             Color.fromARGB(11, 0, 0, 0),
-                                  //             Color.fromARGB(53, 0, 0, 0),
-                                  //           ],
-                                  //           stops: [
-                                  //             0.0,
-                                  //             0.1,
-                                  //             0.1,
-                                  //             0.8,
-                                  //             1
-                                  //           ]),
-                                  //     ),
-                                  //   ),
-                                  // ),
                                   Positioned(
                                       top: 7,
                                       right: 7,
@@ -214,16 +206,19 @@ class CommunityPostDetailPage extends StatelessWidget {
                                         width: 32,
                                       )),
                                   Positioned(
-                                    bottom: 17,
+                                    bottom: 16,
                                     child: Container(
                                       alignment: Alignment.center,
                                       width: WcWidth - 40,
-                                      child: CarouselIndicator(
-                                        color:
-                                            Color.fromARGB(119, 255, 255, 255),
-                                        width: 13,
-                                        count: 4,
-                                        index: 2,
+                                      child: Obx(
+                                        () => CarouselIndicator(
+                                          color: Color.fromARGB(
+                                              119, 255, 255, 255),
+                                          width: 13,
+                                          count: _controller.images.length,
+                                          index: _controller
+                                              .currentImageIndex.value,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -241,9 +236,9 @@ class CommunityPostDetailPage extends StatelessWidget {
                                       '저희집 고양이가 잘 먹는 사료 소개합니다.\n어쩌구 저쩌구 이건 제목이 아니고 글입니다,저희집 고양이가 잘 먹는 사료 소개합니다. \n어쩌구 저쩌구 이건 제목이 아니고 글입니다,\n저희집 고양이가 잘 먹는 사료 소개합니다. 어쩌구 저쩌구 이건 제목이 아니고 글입니다.저희집 고양이가 잘 먹는 사료 소개합니다. 어쩌구 저쩌구 이건 제목이 아니고 글입니다.저희집 고양이가 잘 먹는 사료 소개합니다. 어쩌구 저쩌구 이건 제목이 아니고 글입니다'),
                               style: GoogleFonts.notoSans(
                                   color: WcColors.black,
-                                  fontSize: 16,
+                                  fontSize: 15.5,
                                   fontWeight: FontWeight.w500,
-                                  height: 1.5),
+                                  height: 1.6),
                               maxLines: 100,
                               minLines: 1,
                               decoration: InputDecoration(
@@ -253,26 +248,43 @@ class CommunityPostDetailPage extends StatelessWidget {
                             height: 50,
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.end,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                WcIconTextButton(
-                                  active: false,
-                                  activeIconColor: WcColors.red100,
-                                  iconSrc: 'assets/icons/heart.svg',
-                                  inactiveIconColor: WcColors.grey100,
-                                  onTap: () {},
-                                  text: '34',
+                                Row(
+                                  children: [
+                                    WcIconTextButton(
+                                      active: false,
+                                      activeIconColor: WcColors.red100,
+                                      iconSrc: 'assets/icons/heart.svg',
+                                      inactiveIconColor: WcColors.grey100,
+                                      onTap: () {},
+                                      text: '34',
+                                    ),
+                                    SizedBox(
+                                      width: 18,
+                                    ),
+                                    WcIconTextButton(
+                                      active: true,
+                                      activeIconColor: WcColors.grey100,
+                                      iconSrc: 'assets/icons/comment.svg',
+                                      inactiveIconColor: WcColors.grey100,
+                                      onTap: () {},
+                                      text: '34',
+                                    ),
+                                  ],
                                 ),
-                                SizedBox(
-                                  width: 18,
-                                ),
-                                WcIconTextButton(
+                                WcIconButton(
                                   active: true,
                                   activeIconColor: WcColors.grey100,
-                                  iconSrc: 'assets/icons/comment.svg',
+                                  iconSrc: 'assets/icons/dots.svg',
+                                  iconHeight: 23,
                                   inactiveIconColor: WcColors.grey100,
-                                  onTap: () {},
-                                  text: '34',
-                                )
+                                  onTap: () {
+                                    print('dots');
+                                  },
+                                  touchWidth: 50,
+                                  touchHeight: 30,
+                                ),
                               ],
                             ),
                           ),
@@ -285,6 +297,9 @@ class CommunityPostDetailPage extends StatelessWidget {
                   ],
                 ),
               ),
+              SizedBox(
+                height: 10,
+              ),
               Container(
                 alignment: Alignment.bottomLeft,
                 margin: EdgeInsets.only(top: 20, left: 20),
@@ -292,32 +307,31 @@ class CommunityPostDetailPage extends StatelessWidget {
                     style: GoogleFonts.notoSans(
                         fontWeight: FontWeight.w600, fontSize: 19)),
               ),
-              Obx(
-                () => Column(
-                  children: _controller.commentList
-                      .map((post) => WcUserPostListTile(
-                            activeBadge: false,
-                            activeComment: false,
-                            commentsNum: 23,
-                            contents: post.content,
-                            likesNum: 12,
-                            uploadAt: '1',
-                            liked: false,
-                            authorName: post.nickname,
-                            onLikeTap: () {
-                              // if (_controller.userLikedPost
-                              //     .contains(post.itemId)) {
-                              //   _controller.userLikedPost.remove(post.itemId);
-                              // } else {
-                              //   _controller.userLikedPost.add(post.itemId);
-                              // }
-                            },
-                            badgeBackgroundColor: WcColors.blue40,
-                            badgeTextColor: WcColors.blue100,
-                          ))
-                      .toList(),
-                ),
-              )
+              SizedBox(
+                height: 20,
+              ),
+              Obx(() => ListView.builder(
+                  itemCount: _controller.commentList.length,
+                  itemBuilder: ((context, index) => WcCommentListTile(
+                        activeBadge: false,
+                        activeComment: false,
+                        commentsNum: 23,
+                        contents: _controller.commentList[index].content,
+                        likesNum: 12,
+                        uploadAt: '1',
+                        liked: false,
+                        authorName: _controller.commentList[index].nickname,
+                        onLikeTap: () {
+                          // if (_controller.userLikedPost
+                          //     .contains(post.itemId)) {
+                          //   _controller.userLikedPost.remove(post.itemId);
+                          // } else {
+                          //   _controller.userLikedPost.add(post.itemId);
+                          // }
+                        },
+                        badgeBackgroundColor: WcColors.blue40,
+                        badgeTextColor: WcColors.blue100,
+                      ))))
             ],
           ),
         ),
