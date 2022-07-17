@@ -3,15 +3,17 @@ import 'package:flutter_svg/svg.dart';
 import '../../../import_basic.dart';
 
 class WcIconTextButton extends StatelessWidget {
-  WcIconTextButton({
-    Key? key,
-    required this.active,
-    required this.onTap,
-    required this.iconSrc,
-    required this.activeIconColor,
-    required this.inactiveIconColor,
-    required this.text,
-  }) : super(key: key);
+  WcIconTextButton(
+      {Key? key,
+      required this.active,
+      required this.onTap,
+      required this.iconSrc,
+      required this.activeIconColor,
+      required this.inactiveIconColor,
+      required this.text,
+      this.iconWidth = double.infinity,
+      this.iconHeight = 19})
+      : super(key: key);
 
   final void Function()? onTap;
   String iconSrc;
@@ -19,6 +21,8 @@ class WcIconTextButton extends StatelessWidget {
   Color inactiveIconColor;
   String text;
   bool active;
+  double iconHeight;
+  double iconWidth;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +35,7 @@ class WcIconTextButton extends StatelessWidget {
           children: [
             SvgPicture.asset(
               iconSrc,
-              height: 19,
+              height: iconHeight,
               color: (active) ? activeIconColor : inactiveIconColor,
             ),
             SizedBox(
