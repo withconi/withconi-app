@@ -5,6 +5,7 @@ import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
 import 'package:withconi/data/repository/auth_repository.dart';
 import 'package:withconi/data/repository/conimal_repository.dart';
 import 'package:withconi/data/repository/signup_repository.dart';
+import 'package:withconi/ui/widgets/loading.dart';
 import '../../configs/constants/enum.dart';
 import '../../configs/constants/regex.dart';
 import '../../configs/constants/strings.dart';
@@ -170,15 +171,15 @@ class AddConimalController extends GetxController {
 
   Future<void> addConimal() async {
     Either<Failure, bool> addResultEither =
-        await _conimalRepository.addConimalDB(
-      existingConimals: AuthController.to.wcUser.value!.conimals,
-      conimalName: conimalName,
-      adoptedDate: adoptedDate!,
-      birthDate: birthDate!,
-      gender: conimalGender.value!,
-      species: conimalSpecies.value!,
-      diseaseList: _diseaseList,
-    );
+        await showLoading(() => _conimalRepository.createConimalDB(
+              conimalName: conimalName,
+              adoptedDate: adoptedDate!,
+              birthDate: birthDate!,
+              gender: conimalGender.value!,
+              species: conimalSpecies.value!,
+              diseaseList: _diseaseList,
+            ));
+
     addResultEither.fold(
         (fail) => FailureInterpreter().mapFailureToDialog(fail, 'addConimal'),
         (success) {
