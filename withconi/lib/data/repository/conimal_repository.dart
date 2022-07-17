@@ -193,13 +193,14 @@ import 'package:withconi/import_basic.dart';
 import '../../core/error_handling/failures.dart';
 import '../model/conimal.dart';
 import '../model/disease.dart';
+import '../provider/conimal_api.dart';
 import '../provider/user_api.dart';
 
 class ConimalRepository extends GetxController {
   static ConimalRepository get to => Get.find<ConimalRepository>();
   List<Conimal> conimalList = [];
   // bool visitedConimal2Page = false;
-  UserAPI _api = UserAPI();
+  ConimalAPI _api = ConimalAPI();
 
   // removeAllData() {
   //   conimalList.clear();
@@ -240,8 +241,7 @@ class ConimalRepository extends GetxController {
   //   }
   // }
 
-  Future<Either<Failure, bool>> addConimalDB({
-    required List<Conimal> existingConimals,
+  Future<Either<Failure, bool>> createConimalDB({
     required String conimalName,
     required Gender gender,
     required Species species,
@@ -258,18 +258,11 @@ class ConimalRepository extends GetxController {
         birthDate: birthDate,
         adoptedDate: adoptedDate,
         diseases: diseaseList,
+        uid: firebaseAuth.currentUser!.uid.toString(),
         // createdAt: DateTime.now(),
       );
-      List<Conimal> existingConimalList = [];
-      existingConimalList.assignAll(existingConimals);
 
-      if (conimalList.length > 3) {
-        throw MaxListException();
-      } else {
-        existingConimalList.add(newConimal);
-      }
-
-      await updateConimal(conimalList: existingConimalList);
+      await _api.createConimal(conimal: newConimal.toJson());
 
       return Right(true);
     } on MaxListException {
@@ -289,24 +282,14 @@ class ConimalRepository extends GetxController {
   //   }
   // }
 
-  Future<Either<Failure, bool>> updateConimal(
-      {required List<Conimal> conimalList}) async {
-    try {
-      List<Map<String, dynamic>> conimalListToJson =
-          conimalList.map((conimals) => conimals.toJson()).toList();
-
-      print(conimalListToJson);
-
-      await _api.updateUser(updateData: {
-        "uid": firebaseAuth.currentUser!.uid,
-        "conimals": conimalListToJson
-      });
-
-      return Right(true);
-    } catch (e) {
-      return Left(NoSuchDataInListFailure());
-    }
-  }
+  // Future<Either<Failure, bool>> createConimal(
+  //     {required Conimal conimal}) async {
+  //   try {
+  //     return Right(true);
+  //   } catch (e) {
+  //     return Left(NoSuchDataInListFailure());
+  //   }
+  // }
 
   // Either<Failure, Conimal> getTempConimal(int index) {
   //   try {
