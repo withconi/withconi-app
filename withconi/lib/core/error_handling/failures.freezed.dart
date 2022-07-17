@@ -43,6 +43,7 @@ mixin _$Failure {
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
+    required TResult Function() maxImageSizeFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -72,6 +73,7 @@ mixin _$Failure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -101,6 +103,7 @@ mixin _$Failure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -135,6 +138,7 @@ mixin _$Failure {
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
+    required TResult Function(MaxImageSizeFailure value) maxImageSizeFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -164,6 +168,7 @@ mixin _$Failure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -193,6 +198,7 @@ mixin _$Failure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -278,6 +284,7 @@ class _$ServerFailure extends ServerFailure {
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
+    required TResult Function() maxImageSizeFailure,
   }) {
     return serverFailure();
   }
@@ -310,6 +317,7 @@ class _$ServerFailure extends ServerFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
   }) {
     return serverFailure?.call();
   }
@@ -342,6 +350,7 @@ class _$ServerFailure extends ServerFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (serverFailure != null) {
@@ -382,6 +391,7 @@ class _$ServerFailure extends ServerFailure {
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
+    required TResult Function(MaxImageSizeFailure value) maxImageSizeFailure,
   }) {
     return serverFailure(this);
   }
@@ -414,6 +424,7 @@ class _$ServerFailure extends ServerFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
   }) {
     return serverFailure?.call(this);
   }
@@ -446,6 +457,7 @@ class _$ServerFailure extends ServerFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (serverFailure != null) {
@@ -526,6 +538,7 @@ class _$DataParsingFailure extends DataParsingFailure {
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
+    required TResult Function() maxImageSizeFailure,
   }) {
     return dataParsingFailure();
   }
@@ -558,6 +571,7 @@ class _$DataParsingFailure extends DataParsingFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
   }) {
     return dataParsingFailure?.call();
   }
@@ -590,6 +604,7 @@ class _$DataParsingFailure extends DataParsingFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (dataParsingFailure != null) {
@@ -630,6 +645,7 @@ class _$DataParsingFailure extends DataParsingFailure {
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
+    required TResult Function(MaxImageSizeFailure value) maxImageSizeFailure,
   }) {
     return dataParsingFailure(this);
   }
@@ -662,6 +678,7 @@ class _$DataParsingFailure extends DataParsingFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
   }) {
     return dataParsingFailure?.call(this);
   }
@@ -694,6 +711,7 @@ class _$DataParsingFailure extends DataParsingFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (dataParsingFailure != null) {
@@ -774,6 +792,7 @@ class _$NoConnectionFailure extends NoConnectionFailure {
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
+    required TResult Function() maxImageSizeFailure,
   }) {
     return noConnectionFailure();
   }
@@ -806,6 +825,7 @@ class _$NoConnectionFailure extends NoConnectionFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
   }) {
     return noConnectionFailure?.call();
   }
@@ -838,6 +858,7 @@ class _$NoConnectionFailure extends NoConnectionFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (noConnectionFailure != null) {
@@ -878,6 +899,7 @@ class _$NoConnectionFailure extends NoConnectionFailure {
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
+    required TResult Function(MaxImageSizeFailure value) maxImageSizeFailure,
   }) {
     return noConnectionFailure(this);
   }
@@ -910,6 +932,7 @@ class _$NoConnectionFailure extends NoConnectionFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
   }) {
     return noConnectionFailure?.call(this);
   }
@@ -942,6 +965,7 @@ class _$NoConnectionFailure extends NoConnectionFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (noConnectionFailure != null) {
@@ -1021,6 +1045,7 @@ class _$NotFoundFailure extends NotFoundFailure {
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
+    required TResult Function() maxImageSizeFailure,
   }) {
     return notFoundFailure();
   }
@@ -1053,6 +1078,7 @@ class _$NotFoundFailure extends NotFoundFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
   }) {
     return notFoundFailure?.call();
   }
@@ -1085,6 +1111,7 @@ class _$NotFoundFailure extends NotFoundFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (notFoundFailure != null) {
@@ -1125,6 +1152,7 @@ class _$NotFoundFailure extends NotFoundFailure {
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
+    required TResult Function(MaxImageSizeFailure value) maxImageSizeFailure,
   }) {
     return notFoundFailure(this);
   }
@@ -1157,6 +1185,7 @@ class _$NotFoundFailure extends NotFoundFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
   }) {
     return notFoundFailure?.call(this);
   }
@@ -1189,6 +1218,7 @@ class _$NotFoundFailure extends NotFoundFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (notFoundFailure != null) {
@@ -1269,6 +1299,7 @@ class _$NoUserDataFailure extends NoUserDataFailure {
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
+    required TResult Function() maxImageSizeFailure,
   }) {
     return noUserDataFailure();
   }
@@ -1301,6 +1332,7 @@ class _$NoUserDataFailure extends NoUserDataFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
   }) {
     return noUserDataFailure?.call();
   }
@@ -1333,6 +1365,7 @@ class _$NoUserDataFailure extends NoUserDataFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (noUserDataFailure != null) {
@@ -1373,6 +1406,7 @@ class _$NoUserDataFailure extends NoUserDataFailure {
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
+    required TResult Function(MaxImageSizeFailure value) maxImageSizeFailure,
   }) {
     return noUserDataFailure(this);
   }
@@ -1405,6 +1439,7 @@ class _$NoUserDataFailure extends NoUserDataFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
   }) {
     return noUserDataFailure?.call(this);
   }
@@ -1437,6 +1472,7 @@ class _$NoUserDataFailure extends NoUserDataFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (noUserDataFailure != null) {
@@ -1517,6 +1553,7 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
+    required TResult Function() maxImageSizeFailure,
   }) {
     return maxDiseaseFailure();
   }
@@ -1549,6 +1586,7 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
   }) {
     return maxDiseaseFailure?.call();
   }
@@ -1581,6 +1619,7 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (maxDiseaseFailure != null) {
@@ -1621,6 +1660,7 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
+    required TResult Function(MaxImageSizeFailure value) maxImageSizeFailure,
   }) {
     return maxDiseaseFailure(this);
   }
@@ -1653,6 +1693,7 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
   }) {
     return maxDiseaseFailure?.call(this);
   }
@@ -1685,6 +1726,7 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (maxDiseaseFailure != null) {
@@ -1765,6 +1807,7 @@ class _$MaxConimalFailure extends MaxConimalFailure {
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
+    required TResult Function() maxImageSizeFailure,
   }) {
     return maxConimalFailure();
   }
@@ -1797,6 +1840,7 @@ class _$MaxConimalFailure extends MaxConimalFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
   }) {
     return maxConimalFailure?.call();
   }
@@ -1829,6 +1873,7 @@ class _$MaxConimalFailure extends MaxConimalFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (maxConimalFailure != null) {
@@ -1869,6 +1914,7 @@ class _$MaxConimalFailure extends MaxConimalFailure {
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
+    required TResult Function(MaxImageSizeFailure value) maxImageSizeFailure,
   }) {
     return maxConimalFailure(this);
   }
@@ -1901,6 +1947,7 @@ class _$MaxConimalFailure extends MaxConimalFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
   }) {
     return maxConimalFailure?.call(this);
   }
@@ -1933,6 +1980,7 @@ class _$MaxConimalFailure extends MaxConimalFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (maxConimalFailure != null) {
@@ -2012,6 +2060,7 @@ class _$EmptyListFailure extends EmptyListFailure {
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
+    required TResult Function() maxImageSizeFailure,
   }) {
     return emptyListFailure();
   }
@@ -2044,6 +2093,7 @@ class _$EmptyListFailure extends EmptyListFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
   }) {
     return emptyListFailure?.call();
   }
@@ -2076,6 +2126,7 @@ class _$EmptyListFailure extends EmptyListFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (emptyListFailure != null) {
@@ -2116,6 +2167,7 @@ class _$EmptyListFailure extends EmptyListFailure {
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
+    required TResult Function(MaxImageSizeFailure value) maxImageSizeFailure,
   }) {
     return emptyListFailure(this);
   }
@@ -2148,6 +2200,7 @@ class _$EmptyListFailure extends EmptyListFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
   }) {
     return emptyListFailure?.call(this);
   }
@@ -2180,6 +2233,7 @@ class _$EmptyListFailure extends EmptyListFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (emptyListFailure != null) {
@@ -2262,6 +2316,7 @@ class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
+    required TResult Function() maxImageSizeFailure,
   }) {
     return noSuchDataInListFailure();
   }
@@ -2294,6 +2349,7 @@ class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
   }) {
     return noSuchDataInListFailure?.call();
   }
@@ -2326,6 +2382,7 @@ class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (noSuchDataInListFailure != null) {
@@ -2366,6 +2423,7 @@ class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
+    required TResult Function(MaxImageSizeFailure value) maxImageSizeFailure,
   }) {
     return noSuchDataInListFailure(this);
   }
@@ -2398,6 +2456,7 @@ class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
   }) {
     return noSuchDataInListFailure?.call(this);
   }
@@ -2430,6 +2489,7 @@ class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (noSuchDataInListFailure != null) {
@@ -2511,6 +2571,7 @@ class _$RegisterConimalFailure extends RegisterConimalFailure {
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
+    required TResult Function() maxImageSizeFailure,
   }) {
     return registerConimalFaiure();
   }
@@ -2543,6 +2604,7 @@ class _$RegisterConimalFailure extends RegisterConimalFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
   }) {
     return registerConimalFaiure?.call();
   }
@@ -2575,6 +2637,7 @@ class _$RegisterConimalFailure extends RegisterConimalFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (registerConimalFaiure != null) {
@@ -2615,6 +2678,7 @@ class _$RegisterConimalFailure extends RegisterConimalFailure {
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
+    required TResult Function(MaxImageSizeFailure value) maxImageSizeFailure,
   }) {
     return registerConimalFaiure(this);
   }
@@ -2647,6 +2711,7 @@ class _$RegisterConimalFailure extends RegisterConimalFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
   }) {
     return registerConimalFaiure?.call(this);
   }
@@ -2679,6 +2744,7 @@ class _$RegisterConimalFailure extends RegisterConimalFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (registerConimalFaiure != null) {
@@ -2759,6 +2825,7 @@ class _$RemoveConimalFailure extends RemoveConimalFailure {
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
+    required TResult Function() maxImageSizeFailure,
   }) {
     return removeConimalFailure();
   }
@@ -2791,6 +2858,7 @@ class _$RemoveConimalFailure extends RemoveConimalFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
   }) {
     return removeConimalFailure?.call();
   }
@@ -2823,6 +2891,7 @@ class _$RemoveConimalFailure extends RemoveConimalFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (removeConimalFailure != null) {
@@ -2863,6 +2932,7 @@ class _$RemoveConimalFailure extends RemoveConimalFailure {
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
+    required TResult Function(MaxImageSizeFailure value) maxImageSizeFailure,
   }) {
     return removeConimalFailure(this);
   }
@@ -2895,6 +2965,7 @@ class _$RemoveConimalFailure extends RemoveConimalFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
   }) {
     return removeConimalFailure?.call(this);
   }
@@ -2927,6 +2998,7 @@ class _$RemoveConimalFailure extends RemoveConimalFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (removeConimalFailure != null) {
@@ -3007,6 +3079,7 @@ class _$GetConimalListFailure extends GetConimalListFailure {
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
+    required TResult Function() maxImageSizeFailure,
   }) {
     return getConimalListFailure();
   }
@@ -3039,6 +3112,7 @@ class _$GetConimalListFailure extends GetConimalListFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
   }) {
     return getConimalListFailure?.call();
   }
@@ -3071,6 +3145,7 @@ class _$GetConimalListFailure extends GetConimalListFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (getConimalListFailure != null) {
@@ -3111,6 +3186,7 @@ class _$GetConimalListFailure extends GetConimalListFailure {
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
+    required TResult Function(MaxImageSizeFailure value) maxImageSizeFailure,
   }) {
     return getConimalListFailure(this);
   }
@@ -3143,6 +3219,7 @@ class _$GetConimalListFailure extends GetConimalListFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
   }) {
     return getConimalListFailure?.call(this);
   }
@@ -3175,6 +3252,7 @@ class _$GetConimalListFailure extends GetConimalListFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (getConimalListFailure != null) {
@@ -3257,6 +3335,7 @@ class _$SignInCredentialFailure extends SignInCredentialFailure {
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
+    required TResult Function() maxImageSizeFailure,
   }) {
     return signInCredentialFailure();
   }
@@ -3289,6 +3368,7 @@ class _$SignInCredentialFailure extends SignInCredentialFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
   }) {
     return signInCredentialFailure?.call();
   }
@@ -3321,6 +3401,7 @@ class _$SignInCredentialFailure extends SignInCredentialFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (signInCredentialFailure != null) {
@@ -3361,6 +3442,7 @@ class _$SignInCredentialFailure extends SignInCredentialFailure {
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
+    required TResult Function(MaxImageSizeFailure value) maxImageSizeFailure,
   }) {
     return signInCredentialFailure(this);
   }
@@ -3393,6 +3475,7 @@ class _$SignInCredentialFailure extends SignInCredentialFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
   }) {
     return signInCredentialFailure?.call(this);
   }
@@ -3425,6 +3508,7 @@ class _$SignInCredentialFailure extends SignInCredentialFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (signInCredentialFailure != null) {
@@ -3505,6 +3589,7 @@ class _$SignInTokenFailure extends SignInTokenFailure {
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
+    required TResult Function() maxImageSizeFailure,
   }) {
     return signInTokenFailure();
   }
@@ -3537,6 +3622,7 @@ class _$SignInTokenFailure extends SignInTokenFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
   }) {
     return signInTokenFailure?.call();
   }
@@ -3569,6 +3655,7 @@ class _$SignInTokenFailure extends SignInTokenFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (signInTokenFailure != null) {
@@ -3609,6 +3696,7 @@ class _$SignInTokenFailure extends SignInTokenFailure {
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
+    required TResult Function(MaxImageSizeFailure value) maxImageSizeFailure,
   }) {
     return signInTokenFailure(this);
   }
@@ -3641,6 +3729,7 @@ class _$SignInTokenFailure extends SignInTokenFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
   }) {
     return signInTokenFailure?.call(this);
   }
@@ -3673,6 +3762,7 @@ class _$SignInTokenFailure extends SignInTokenFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (signInTokenFailure != null) {
@@ -3753,6 +3843,7 @@ class _$NaverSigninFailure extends NaverSigninFailure {
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
+    required TResult Function() maxImageSizeFailure,
   }) {
     return naverSigninFailure();
   }
@@ -3785,6 +3876,7 @@ class _$NaverSigninFailure extends NaverSigninFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
   }) {
     return naverSigninFailure?.call();
   }
@@ -3817,6 +3909,7 @@ class _$NaverSigninFailure extends NaverSigninFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (naverSigninFailure != null) {
@@ -3857,6 +3950,7 @@ class _$NaverSigninFailure extends NaverSigninFailure {
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
+    required TResult Function(MaxImageSizeFailure value) maxImageSizeFailure,
   }) {
     return naverSigninFailure(this);
   }
@@ -3889,6 +3983,7 @@ class _$NaverSigninFailure extends NaverSigninFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
   }) {
     return naverSigninFailure?.call(this);
   }
@@ -3921,6 +4016,7 @@ class _$NaverSigninFailure extends NaverSigninFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (naverSigninFailure != null) {
@@ -4001,6 +4097,7 @@ class _$KakaoSigninFailure extends KakaoSigninFailure {
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
+    required TResult Function() maxImageSizeFailure,
   }) {
     return kakaoSigninFailure();
   }
@@ -4033,6 +4130,7 @@ class _$KakaoSigninFailure extends KakaoSigninFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
   }) {
     return kakaoSigninFailure?.call();
   }
@@ -4065,6 +4163,7 @@ class _$KakaoSigninFailure extends KakaoSigninFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (kakaoSigninFailure != null) {
@@ -4105,6 +4204,7 @@ class _$KakaoSigninFailure extends KakaoSigninFailure {
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
+    required TResult Function(MaxImageSizeFailure value) maxImageSizeFailure,
   }) {
     return kakaoSigninFailure(this);
   }
@@ -4137,6 +4237,7 @@ class _$KakaoSigninFailure extends KakaoSigninFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
   }) {
     return kakaoSigninFailure?.call(this);
   }
@@ -4169,6 +4270,7 @@ class _$KakaoSigninFailure extends KakaoSigninFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (kakaoSigninFailure != null) {
@@ -4249,6 +4351,7 @@ class _$GoogleSigninFailure extends GoogleSigninFailure {
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
+    required TResult Function() maxImageSizeFailure,
   }) {
     return googleSigninFailure();
   }
@@ -4281,6 +4384,7 @@ class _$GoogleSigninFailure extends GoogleSigninFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
   }) {
     return googleSigninFailure?.call();
   }
@@ -4313,6 +4417,7 @@ class _$GoogleSigninFailure extends GoogleSigninFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (googleSigninFailure != null) {
@@ -4353,6 +4458,7 @@ class _$GoogleSigninFailure extends GoogleSigninFailure {
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
+    required TResult Function(MaxImageSizeFailure value) maxImageSizeFailure,
   }) {
     return googleSigninFailure(this);
   }
@@ -4385,6 +4491,7 @@ class _$GoogleSigninFailure extends GoogleSigninFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
   }) {
     return googleSigninFailure?.call(this);
   }
@@ -4417,6 +4524,7 @@ class _$GoogleSigninFailure extends GoogleSigninFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (googleSigninFailure != null) {
@@ -4497,6 +4605,7 @@ class _$AppleSigninFailure extends AppleSigninFailure {
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
+    required TResult Function() maxImageSizeFailure,
   }) {
     return appleSigninFailure();
   }
@@ -4529,6 +4638,7 @@ class _$AppleSigninFailure extends AppleSigninFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
   }) {
     return appleSigninFailure?.call();
   }
@@ -4561,6 +4671,7 @@ class _$AppleSigninFailure extends AppleSigninFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (appleSigninFailure != null) {
@@ -4601,6 +4712,7 @@ class _$AppleSigninFailure extends AppleSigninFailure {
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
+    required TResult Function(MaxImageSizeFailure value) maxImageSizeFailure,
   }) {
     return appleSigninFailure(this);
   }
@@ -4633,6 +4745,7 @@ class _$AppleSigninFailure extends AppleSigninFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
   }) {
     return appleSigninFailure?.call(this);
   }
@@ -4665,6 +4778,7 @@ class _$AppleSigninFailure extends AppleSigninFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (appleSigninFailure != null) {
@@ -4745,6 +4859,7 @@ class _$EmailSigninFailure extends EmailSigninFailure {
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
+    required TResult Function() maxImageSizeFailure,
   }) {
     return emailSigninFailure();
   }
@@ -4777,6 +4892,7 @@ class _$EmailSigninFailure extends EmailSigninFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
   }) {
     return emailSigninFailure?.call();
   }
@@ -4809,6 +4925,7 @@ class _$EmailSigninFailure extends EmailSigninFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (emailSigninFailure != null) {
@@ -4849,6 +4966,7 @@ class _$EmailSigninFailure extends EmailSigninFailure {
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
+    required TResult Function(MaxImageSizeFailure value) maxImageSizeFailure,
   }) {
     return emailSigninFailure(this);
   }
@@ -4881,6 +4999,7 @@ class _$EmailSigninFailure extends EmailSigninFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
   }) {
     return emailSigninFailure?.call(this);
   }
@@ -4913,6 +5032,7 @@ class _$EmailSigninFailure extends EmailSigninFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (emailSigninFailure != null) {
@@ -4993,6 +5113,7 @@ class _$GetUserInfoFailure extends GetUserInfoFailure {
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
+    required TResult Function() maxImageSizeFailure,
   }) {
     return getUserFailure();
   }
@@ -5025,6 +5146,7 @@ class _$GetUserInfoFailure extends GetUserInfoFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
   }) {
     return getUserFailure?.call();
   }
@@ -5057,6 +5179,7 @@ class _$GetUserInfoFailure extends GetUserInfoFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (getUserFailure != null) {
@@ -5097,6 +5220,7 @@ class _$GetUserInfoFailure extends GetUserInfoFailure {
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
+    required TResult Function(MaxImageSizeFailure value) maxImageSizeFailure,
   }) {
     return getUserFailure(this);
   }
@@ -5129,6 +5253,7 @@ class _$GetUserInfoFailure extends GetUserInfoFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
   }) {
     return getUserFailure?.call(this);
   }
@@ -5161,6 +5286,7 @@ class _$GetUserInfoFailure extends GetUserInfoFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (getUserFailure != null) {
@@ -5241,6 +5367,7 @@ class _$WrongPasswordFailure extends WrongPasswordFailure {
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
+    required TResult Function() maxImageSizeFailure,
   }) {
     return wrongPasswordFailure();
   }
@@ -5273,6 +5400,7 @@ class _$WrongPasswordFailure extends WrongPasswordFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
   }) {
     return wrongPasswordFailure?.call();
   }
@@ -5305,6 +5433,7 @@ class _$WrongPasswordFailure extends WrongPasswordFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (wrongPasswordFailure != null) {
@@ -5345,6 +5474,7 @@ class _$WrongPasswordFailure extends WrongPasswordFailure {
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
+    required TResult Function(MaxImageSizeFailure value) maxImageSizeFailure,
   }) {
     return wrongPasswordFailure(this);
   }
@@ -5377,6 +5507,7 @@ class _$WrongPasswordFailure extends WrongPasswordFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
   }) {
     return wrongPasswordFailure?.call(this);
   }
@@ -5409,6 +5540,7 @@ class _$WrongPasswordFailure extends WrongPasswordFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (wrongPasswordFailure != null) {
@@ -5489,6 +5621,7 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
+    required TResult Function() maxImageSizeFailure,
   }) {
     return noEmailUserFailure();
   }
@@ -5521,6 +5654,7 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
   }) {
     return noEmailUserFailure?.call();
   }
@@ -5553,6 +5687,7 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (noEmailUserFailure != null) {
@@ -5593,6 +5728,7 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
+    required TResult Function(MaxImageSizeFailure value) maxImageSizeFailure,
   }) {
     return noEmailUserFailure(this);
   }
@@ -5625,6 +5761,7 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
   }) {
     return noEmailUserFailure?.call(this);
   }
@@ -5657,6 +5794,7 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (noEmailUserFailure != null) {
@@ -5737,6 +5875,7 @@ class _$ExistingEmailFailure extends ExistingEmailFailure {
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
+    required TResult Function() maxImageSizeFailure,
   }) {
     return existingEmailFailure();
   }
@@ -5769,6 +5908,7 @@ class _$ExistingEmailFailure extends ExistingEmailFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
   }) {
     return existingEmailFailure?.call();
   }
@@ -5801,6 +5941,7 @@ class _$ExistingEmailFailure extends ExistingEmailFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (existingEmailFailure != null) {
@@ -5841,6 +5982,7 @@ class _$ExistingEmailFailure extends ExistingEmailFailure {
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
+    required TResult Function(MaxImageSizeFailure value) maxImageSizeFailure,
   }) {
     return existingEmailFailure(this);
   }
@@ -5873,6 +6015,7 @@ class _$ExistingEmailFailure extends ExistingEmailFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
   }) {
     return existingEmailFailure?.call(this);
   }
@@ -5905,6 +6048,7 @@ class _$ExistingEmailFailure extends ExistingEmailFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (existingEmailFailure != null) {
@@ -5985,6 +6129,7 @@ class _$UserEnabledFailure extends UserEnabledFailure {
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
+    required TResult Function() maxImageSizeFailure,
   }) {
     return userEnabledFailure();
   }
@@ -6017,6 +6162,7 @@ class _$UserEnabledFailure extends UserEnabledFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
   }) {
     return userEnabledFailure?.call();
   }
@@ -6049,6 +6195,7 @@ class _$UserEnabledFailure extends UserEnabledFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (userEnabledFailure != null) {
@@ -6089,6 +6236,7 @@ class _$UserEnabledFailure extends UserEnabledFailure {
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
+    required TResult Function(MaxImageSizeFailure value) maxImageSizeFailure,
   }) {
     return userEnabledFailure(this);
   }
@@ -6121,6 +6269,7 @@ class _$UserEnabledFailure extends UserEnabledFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
   }) {
     return userEnabledFailure?.call(this);
   }
@@ -6153,6 +6302,7 @@ class _$UserEnabledFailure extends UserEnabledFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (userEnabledFailure != null) {
@@ -6233,6 +6383,7 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
+    required TResult Function() maxImageSizeFailure,
   }) {
     return weakPasswordFailure();
   }
@@ -6265,6 +6416,7 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
   }) {
     return weakPasswordFailure?.call();
   }
@@ -6297,6 +6449,7 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (weakPasswordFailure != null) {
@@ -6337,6 +6490,7 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
+    required TResult Function(MaxImageSizeFailure value) maxImageSizeFailure,
   }) {
     return weakPasswordFailure(this);
   }
@@ -6369,6 +6523,7 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
   }) {
     return weakPasswordFailure?.call(this);
   }
@@ -6401,6 +6556,7 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
     required TResult orElse(),
   }) {
     if (weakPasswordFailure != null) {
@@ -6413,4 +6569,258 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
 abstract class WeakPasswordFailure extends Failure {
   const factory WeakPasswordFailure() = _$WeakPasswordFailure;
   const WeakPasswordFailure._() : super._();
+}
+
+/// @nodoc
+abstract class _$$MaxImageSizeFailureCopyWith<$Res> {
+  factory _$$MaxImageSizeFailureCopyWith(_$MaxImageSizeFailure value,
+          $Res Function(_$MaxImageSizeFailure) then) =
+      __$$MaxImageSizeFailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$MaxImageSizeFailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res>
+    implements _$$MaxImageSizeFailureCopyWith<$Res> {
+  __$$MaxImageSizeFailureCopyWithImpl(
+      _$MaxImageSizeFailure _value, $Res Function(_$MaxImageSizeFailure) _then)
+      : super(_value, (v) => _then(v as _$MaxImageSizeFailure));
+
+  @override
+  _$MaxImageSizeFailure get _value => super._value as _$MaxImageSizeFailure;
+}
+
+/// @nodoc
+
+class _$MaxImageSizeFailure extends MaxImageSizeFailure {
+  const _$MaxImageSizeFailure() : super._();
+
+  @override
+  String toString() {
+    return 'Failure.maxImageSizeFailure()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$MaxImageSizeFailure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() serverFailure,
+    required TResult Function() dataParsingFailure,
+    required TResult Function() noConnectionFailure,
+    required TResult Function() notFoundFailure,
+    required TResult Function() noUserDataFailure,
+    required TResult Function() maxDiseaseFailure,
+    required TResult Function() maxConimalFailure,
+    required TResult Function() emptyListFailure,
+    required TResult Function() noSuchDataInListFailure,
+    required TResult Function() registerConimalFaiure,
+    required TResult Function() removeConimalFailure,
+    required TResult Function() getConimalListFailure,
+    required TResult Function() signInCredentialFailure,
+    required TResult Function() signInTokenFailure,
+    required TResult Function() naverSigninFailure,
+    required TResult Function() kakaoSigninFailure,
+    required TResult Function() googleSigninFailure,
+    required TResult Function() appleSigninFailure,
+    required TResult Function() emailSigninFailure,
+    required TResult Function() getUserFailure,
+    required TResult Function() wrongPasswordFailure,
+    required TResult Function() noEmailUserFailure,
+    required TResult Function() existingEmailFailure,
+    required TResult Function() userEnabledFailure,
+    required TResult Function() weakPasswordFailure,
+    required TResult Function() maxImageSizeFailure,
+  }) {
+    return maxImageSizeFailure();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? serverFailure,
+    TResult Function()? dataParsingFailure,
+    TResult Function()? noConnectionFailure,
+    TResult Function()? notFoundFailure,
+    TResult Function()? noUserDataFailure,
+    TResult Function()? maxDiseaseFailure,
+    TResult Function()? maxConimalFailure,
+    TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
+    TResult Function()? signInCredentialFailure,
+    TResult Function()? signInTokenFailure,
+    TResult Function()? naverSigninFailure,
+    TResult Function()? kakaoSigninFailure,
+    TResult Function()? googleSigninFailure,
+    TResult Function()? appleSigninFailure,
+    TResult Function()? emailSigninFailure,
+    TResult Function()? getUserFailure,
+    TResult Function()? wrongPasswordFailure,
+    TResult Function()? noEmailUserFailure,
+    TResult Function()? existingEmailFailure,
+    TResult Function()? userEnabledFailure,
+    TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
+  }) {
+    return maxImageSizeFailure?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? serverFailure,
+    TResult Function()? dataParsingFailure,
+    TResult Function()? noConnectionFailure,
+    TResult Function()? notFoundFailure,
+    TResult Function()? noUserDataFailure,
+    TResult Function()? maxDiseaseFailure,
+    TResult Function()? maxConimalFailure,
+    TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
+    TResult Function()? signInCredentialFailure,
+    TResult Function()? signInTokenFailure,
+    TResult Function()? naverSigninFailure,
+    TResult Function()? kakaoSigninFailure,
+    TResult Function()? googleSigninFailure,
+    TResult Function()? appleSigninFailure,
+    TResult Function()? emailSigninFailure,
+    TResult Function()? getUserFailure,
+    TResult Function()? wrongPasswordFailure,
+    TResult Function()? noEmailUserFailure,
+    TResult Function()? existingEmailFailure,
+    TResult Function()? userEnabledFailure,
+    TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
+    required TResult orElse(),
+  }) {
+    if (maxImageSizeFailure != null) {
+      return maxImageSizeFailure();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ServerFailure value) serverFailure,
+    required TResult Function(DataParsingFailure value) dataParsingFailure,
+    required TResult Function(NoConnectionFailure value) noConnectionFailure,
+    required TResult Function(NotFoundFailure value) notFoundFailure,
+    required TResult Function(NoUserDataFailure value) noUserDataFailure,
+    required TResult Function(MaxDiseaseFailure value) maxDiseaseFailure,
+    required TResult Function(MaxConimalFailure value) maxConimalFailure,
+    required TResult Function(EmptyListFailure value) emptyListFailure,
+    required TResult Function(NoSuchDataInListFailure value)
+        noSuchDataInListFailure,
+    required TResult Function(RegisterConimalFailure value)
+        registerConimalFaiure,
+    required TResult Function(RemoveConimalFailure value) removeConimalFailure,
+    required TResult Function(GetConimalListFailure value)
+        getConimalListFailure,
+    required TResult Function(SignInCredentialFailure value)
+        signInCredentialFailure,
+    required TResult Function(SignInTokenFailure value) signInTokenFailure,
+    required TResult Function(NaverSigninFailure value) naverSigninFailure,
+    required TResult Function(KakaoSigninFailure value) kakaoSigninFailure,
+    required TResult Function(GoogleSigninFailure value) googleSigninFailure,
+    required TResult Function(AppleSigninFailure value) appleSigninFailure,
+    required TResult Function(EmailSigninFailure value) emailSigninFailure,
+    required TResult Function(GetUserInfoFailure value) getUserFailure,
+    required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
+    required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(ExistingEmailFailure value) existingEmailFailure,
+    required TResult Function(UserEnabledFailure value) userEnabledFailure,
+    required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
+    required TResult Function(MaxImageSizeFailure value) maxImageSizeFailure,
+  }) {
+    return maxImageSizeFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ServerFailure value)? serverFailure,
+    TResult Function(DataParsingFailure value)? dataParsingFailure,
+    TResult Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult Function(NotFoundFailure value)? notFoundFailure,
+    TResult Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult Function(GetUserInfoFailure value)? getUserFailure,
+    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+  }) {
+    return maxImageSizeFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ServerFailure value)? serverFailure,
+    TResult Function(DataParsingFailure value)? dataParsingFailure,
+    TResult Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult Function(NotFoundFailure value)? notFoundFailure,
+    TResult Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult Function(GetUserInfoFailure value)? getUserFailure,
+    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    required TResult orElse(),
+  }) {
+    if (maxImageSizeFailure != null) {
+      return maxImageSizeFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MaxImageSizeFailure extends Failure {
+  const factory MaxImageSizeFailure() = _$MaxImageSizeFailure;
+  const MaxImageSizeFailure._() : super._();
 }

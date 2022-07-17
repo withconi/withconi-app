@@ -29,4 +29,5 @@ class Failure with _$Failure {
   const factory Failure.existingEmailFailure() = ExistingEmailFailure;
   const factory Failure.userEnabledFailure() = UserEnabledFailure;
   const factory Failure.weakPasswordFailure() = WeakPasswordFailure;
+  const factory Failure.maxImageSizeFailure() = MaxImageSizeFailure;
 }
