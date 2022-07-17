@@ -29,10 +29,10 @@ class ConimalToggleButton extends StatelessWidget {
               width: 3),
           boxShadow: [
             BoxShadow(
-                color: Color.fromARGB(58, 49, 49, 49),
-                blurRadius: 10,
+                color: Color.fromARGB(38, 0, 0, 0),
+                blurRadius: 2,
                 spreadRadius: -2,
-                offset: Offset(-1, 3)),
+                offset: Offset(-0.9, 2.3)),
           ]),
       child: ClipOval(
         child: Material(
