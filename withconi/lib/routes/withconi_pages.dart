@@ -1,6 +1,6 @@
 import 'package:withconi/import_basic.dart';
 import 'package:withconi/routes/withconi_bindings.dart';
-import 'package:withconi/ui/pages/community/community_detail_page.dart';
+import 'package:withconi/ui/pages/community/community_board_detail_page.dart';
 import 'package:withconi/ui/pages/community/community_main_page.dart';
 import 'package:withconi/ui/pages/community/community_post_detail_page.dart';
 import 'package:withconi/ui/pages/diagnosis/diagnosis_main_page.dart';
@@ -76,7 +76,7 @@ class WcPages {
         transition: Transition.noTransition),
     GetPage(
       name: Routes.COMMUNITY_DETAIL,
-      page: () => CommunityDetailPage(),
+      page: () => CommunityBoardDetailPage(),
     ),
     GetPage(
         name: Routes.COMMUNITY_NEW_POST,
