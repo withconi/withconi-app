@@ -58,7 +58,7 @@ class DiseaseSearchPage extends StatelessWidget {
                         GestureDetector(
                           onTap: () {},
                           child: Padding(
-                            padding: const EdgeInsets.only(left: 13, right: 10),
+                            padding: const EdgeInsets.only(left: 13, right: 12),
                             child: SvgPicture.asset(
                               'assets/icons/search.svg',
                               color: WcColors.grey120,
@@ -90,10 +90,11 @@ class DiseaseSearchPage extends StatelessWidget {
                         GestureDetector(
                           onTap: _controller.clearResult,
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 13),
+                            padding: const EdgeInsets.only(left: 12, right: 14),
                             child: SvgPicture.asset(
                               'assets/icons/cancle.svg',
                               color: WcColors.grey120,
+                              height: 16,
                             ),
                           ),
                         ),
@@ -130,7 +131,7 @@ class DiseaseSearchPage extends StatelessWidget {
                                     children: onSuccessResult
                                         .map(
                                           (disease) => Obx(
-                                            () => DiseaseSelectListButton(
+                                            () => DiseaseListTileButton(
                                               name: disease.name,
                                               onTap: () {
                                                 _controller

@@ -3,7 +3,12 @@ import 'package:withconi/configs/constants/auth_variables.dart';
 import 'package:withconi/configs/constants/enum.dart';
 import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/controller/home/home_controller.dart';
+import 'package:withconi/controller/nav_controller.dart';
 import 'package:withconi/import_basic.dart';
+import 'package:withconi/ui/pages/home/widgets/circular_add_button.dart';
+import 'package:withconi/ui/pages/home/widgets/cominal_toggle_button.dart';
+
+import '../../widgets/navbar/bottom_navbar.dart';
 
 enum PAGE_ACTION { EDIT, NEW }
 
@@ -12,54 +17,20 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    HomeController _controller = Get.put(HomeController());
+    HomeController _controller = Get.find();
 
     double heightSection1 = (WcHeight / 7) * 2.7;
     double heightSection3 = (WcHeight / 7) * 3.2;
     double maxSection1Height = 285;
 
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        showUnselectedLabels: true,
-        unselectedItemColor: WcColors.grey120,
-        unselectedLabelStyle: GoogleFonts.notoSans(
-          color: WcColors.grey100,
-          fontSize: 11,
-          height: 1.6,
+      bottomNavigationBar: Obx(
+        () => WcBottomNavBar(
+          navIndex: NavController.to.navBarIndex.value,
+          onTap: (index) {
+            NavController.to.onNavChanged(navIndex: index);
+          },
         ),
-        selectedLabelStyle: GoogleFonts.notoSans(
-          color: WcColors.black,
-          fontSize: 11,
-          height: 1.6,
-        ),
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset('assets/icons/nav_home.svg'),
-            label: '홈',
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              'assets/icons/nav_diagnosis.svg',
-            ),
-            label: '자가진단',
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset('assets/icons/nav_hospital.svg'),
-            label: '병원/약국',
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset('assets/icons/nav_dictionary.svg'),
-            label: '질병백과',
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset('assets/icons/nav_community.svg'),
-            label: '커뮤니티',
-          ),
-        ],
-        currentIndex: 0, // 지정 인덱스로 이동
-        selectedItemColor: WcColors.black,
-        onTap: (idex) {}, // 선언했던 onItemTapped
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: WcColors.blue100,
@@ -94,7 +65,7 @@ class HomePage extends StatelessWidget {
                           ),
                           boxShadow: [
                             BoxShadow(
-                                color: Color.fromARGB(79, 124, 124, 124),
+                                color: Color.fromARGB(28, 0, 0, 0),
                                 blurRadius: 15,
                                 spreadRadius: -6,
                                 offset: Offset(2, 2)),
@@ -103,12 +74,15 @@ class HomePage extends StatelessWidget {
                         children: [
                           Padding(
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 15),
+                                horizontal: 20, vertical: 17),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Image.asset('assets/icons/withconi.png',
-                                    width: 35),
+                                Image.asset(
+                                  'assets/icons/withconi.png',
+                                  width: 35,
+                                  isAntiAlias: true,
+                                ),
                                 SvgPicture.asset(
                                   'assets/icons/user.svg',
                                   width: 24,
@@ -207,7 +181,7 @@ class HomePage extends StatelessWidget {
                                     ],
                                   ),
                                   const SizedBox(
-                                    height: 33,
+                                    height: 35,
                                   ),
                                 ],
                               ),
@@ -299,11 +273,22 @@ class HomePage extends StatelessWidget {
                               tilePadding: const EdgeInsets.symmetric(
                                   vertical: 0, horizontal: 16),
                               backgroundColor: Colors.transparent,
-                              title: Text(
-                                '${_controller.selectedConimal.value!.name}의 관리중인 질병',
-                                style: GoogleFonts.notoSans(
-                                    fontSize: 16, fontWeight: FontWeight.w500),
-                              ),
+                              title: Text.rich(TextSpan(children: [
+                                TextSpan(
+                                  text: _controller.selectedConimal.value!.name,
+                                  style: GoogleFonts.notoSans(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                      color: WcColors.black),
+                                ),
+                                TextSpan(
+                                  text: '의 관리중인 질병',
+                                  style: GoogleFonts.notoSans(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                      color: WcColors.black),
+                                ),
+                              ])),
                               children: (_controller
                                       .selectedConimal.value!.diseases.isEmpty)
                                   ? [
@@ -600,30 +585,12 @@ class HomePage extends StatelessWidget {
                             children: [
                               Expanded(
                                 flex: 1,
-                                child: Container(
-                                  padding: EdgeInsets.all(20),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Image.asset(
-                                        'assets/icons/diagnosis.png',
-                                        height: 45,
-                                      ),
-                                      SizedBox(
-                                        height: 13,
-                                      ),
-                                      Text(
-                                        '자가진단',
-                                        style: GoogleFonts.notoSans(
-                                            color: WcColors.grey180,
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w600),
-                                      )
-                                    ],
-                                  ),
-                                  decoration: BoxDecoration(
-                                      color: WcColors.blue60,
-                                      borderRadius: BorderRadius.circular(10)),
+                                child: IconBigButton(
+                                  imageSrc: 'assets/icons/diagnosis.png',
+                                  text: '자가진단',
+                                  onTap: () {
+                                    NavController.to.onNavChanged(navIndex: 1);
+                                  },
                                 ),
                               ),
                               SizedBox(
@@ -631,30 +598,12 @@ class HomePage extends StatelessWidget {
                               ),
                               Expanded(
                                 flex: 1,
-                                child: Container(
-                                  padding: EdgeInsets.all(20),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Image.asset(
-                                        'assets/icons/dictionary.png',
-                                        height: 45,
-                                      ),
-                                      SizedBox(
-                                        height: 13,
-                                      ),
-                                      Text(
-                                        '질병백과',
-                                        style: GoogleFonts.notoSans(
-                                            color: WcColors.grey180,
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w600),
-                                      )
-                                    ],
-                                  ),
-                                  decoration: BoxDecoration(
-                                      color: WcColors.blue60,
-                                      borderRadius: BorderRadius.circular(10)),
+                                child: IconBigButton(
+                                  imageSrc: 'assets/icons/location.png',
+                                  text: '병원/약국찾기',
+                                  onTap: () {
+                                    NavController.to.onNavChanged(navIndex: 2);
+                                  },
                                 ),
                               ),
                             ],
@@ -667,30 +616,12 @@ class HomePage extends StatelessWidget {
                           children: [
                             Expanded(
                               flex: 1,
-                              child: Container(
-                                padding: EdgeInsets.all(20),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Image.asset(
-                                      'assets/icons/location.png',
-                                      height: 45,
-                                    ),
-                                    SizedBox(
-                                      height: 13,
-                                    ),
-                                    Text(
-                                      '병원/약국찾기',
-                                      style: GoogleFonts.notoSans(
-                                          color: WcColors.grey180,
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w600),
-                                    )
-                                  ],
-                                ),
-                                decoration: BoxDecoration(
-                                    color: WcColors.blue60,
-                                    borderRadius: BorderRadius.circular(10)),
+                              child: IconBigButton(
+                                imageSrc: 'assets/icons/community.png',
+                                text: '커뮤니티',
+                                onTap: () {
+                                  NavController.to.onNavChanged(navIndex: 3);
+                                },
                               ),
                             ),
                             SizedBox(
@@ -698,35 +629,12 @@ class HomePage extends StatelessWidget {
                             ),
                             Expanded(
                               flex: 1,
-                              child: Container(
-                                padding: EdgeInsets.all(20),
-                                child: InkWell(
-                                  onTap: () {
-                                    Get.toNamed(Routes.COMMUNITY_MAIN);
-                                  },
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Image.asset(
-                                        'assets/icons/community.png',
-                                        height: 45,
-                                      ),
-                                      SizedBox(
-                                        height: 13,
-                                      ),
-                                      Text(
-                                        '커뮤니티',
-                                        style: GoogleFonts.notoSans(
-                                            color: WcColors.grey180,
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w600),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                decoration: BoxDecoration(
-                                    color: WcColors.blue60,
-                                    borderRadius: BorderRadius.circular(10)),
+                              child: IconBigButton(
+                                imageSrc: 'assets/icons/dictionary.png',
+                                text: '질병백과',
+                                onTap: () {
+                                  NavController.to.onNavChanged(navIndex: 4);
+                                },
                               ),
                             ),
                           ],
@@ -744,99 +652,44 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class ConimalToggleButton extends StatelessWidget {
-  ConimalToggleButton({
-    Key? key,
-    required this.onTap,
-    required this.backgroundColor,
-    required this.species,
-    required this.index,
-    required this.selectedIndex,
-  }) : super(key: key);
-
-  void Function() onTap;
-  Color backgroundColor;
-  Species species;
-  int index;
-  int selectedIndex;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          border: Border.all(
-              color: (index == selectedIndex)
-                  ? WcColors.white
-                  : Colors.transparent,
-              width: 3),
-          boxShadow: [
-            BoxShadow(
-                color: Color.fromARGB(58, 49, 49, 49),
-                blurRadius: 10,
-                spreadRadius: -2,
-                offset: Offset(-1, 3)),
-          ]),
-      child: ClipOval(
-        child: Material(
-          color: (species == Species.cat)
-              ? WcColors.grey110
-              : WcColors.green20, // Button color
-          child: InkWell(
-            splashColor: WcColors.grey100, // Splash color
-            onTap: onTap,
-            child: SizedBox(
-                width: (index == selectedIndex) ? 45 : 40,
-                height: (index == selectedIndex) ? 45 : 40,
-                child: Padding(
-                  padding: (index == selectedIndex)
-                      ? EdgeInsets.all(8)
-                      : EdgeInsets.all(8),
-                  child: Image.asset(
-                    (species == Species.cat)
-                        ? 'assets/icons/cat_black.png'
-                        : 'assets/icons/dog.png',
-                    fit: BoxFit.cover,
-                  ),
-                )),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class CircularAddButton extends StatelessWidget {
-  CircularAddButton({
-    Key? key,
-    this.onTap,
-  }) : super(key: key);
-
+class IconBigButton extends StatelessWidget {
+  IconBigButton(
+      {Key? key, required this.imageSrc, required this.text, this.onTap})
+      : super(key: key);
+  String imageSrc;
+  String text;
   void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          border: Border.all(color: Colors.transparent, width: 3),
-          boxShadow: [
-            BoxShadow(
-                color: Color.fromARGB(54, 49, 49, 49),
-                blurRadius: 7,
-                spreadRadius: -5,
-                offset: Offset(0, 2)),
-          ]),
-      child: ClipOval(
-        child: Material(
-          color: WcColors.white, // Button color
-          child: InkWell(
-            splashColor: WcColors.grey100, // Splash color
-            onTap: onTap,
-            child: SvgPicture.asset(
-              'assets/icons/add.svg',
-              fit: BoxFit.cover,
-              height: 40,
+    return Material(
+      child: Ink(
+        decoration: BoxDecoration(
+            color: WcColors.blue60, borderRadius: BorderRadius.circular(10)),
+        child: InkWell(
+          borderRadius: BorderRadius.circular(10),
+          splashColor: Color.fromARGB(255, 218, 225, 237),
+          onTap: onTap,
+          child: Container(
+            padding: EdgeInsets.all(20),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  imageSrc,
+                  height: 45,
+                ),
+                SizedBox(
+                  height: 13,
+                ),
+                Text(
+                  text,
+                  style: GoogleFonts.notoSans(
+                      color: WcColors.grey180,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600),
+                )
+              ],
             ),
           ),
         ),
