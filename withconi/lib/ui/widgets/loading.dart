@@ -11,8 +11,8 @@ Future<dynamic> showLoading(Future<dynamic> Function() asyncFunction) async {
         child: SizedBox(
           height: WcHeight - 380,
           child: OverflowBox(
-            minHeight: 160,
-            maxHeight: 160,
+            minHeight: 150,
+            maxHeight: 150,
             child: Lottie.asset('assets/json/loading.json'),
           ),
         ),

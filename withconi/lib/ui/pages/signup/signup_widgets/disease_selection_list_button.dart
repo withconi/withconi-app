@@ -2,8 +2,8 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../../import_basic.dart';
 
-class DiseaseSelectListButton extends StatelessWidget {
-  DiseaseSelectListButton({
+class DiseaseListTileButton extends StatelessWidget {
+  DiseaseListTileButton({
     Key? key,
     required this.width,
     required this.name,
@@ -26,9 +26,10 @@ class DiseaseSelectListButton extends StatelessWidget {
       onTap: onTap,
       child: Padding(
         padding: padding,
-        child: SizedBox(
+        child: Container(
           width: width,
           height: height,
+          color: Colors.transparent,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
