@@ -10,11 +10,13 @@ Future<void> main() async {
   await firebaseInitialization;
   runApp(GetMaterialApp(
     debugShowCheckedModeBanner: false,
-    theme: ThemeData(scaffoldBackgroundColor: WcColors.white),
+    theme: ThemeData(
+      scaffoldBackgroundColor: WcColors.white,
+    ),
     initialRoute: Routes.SPLASH,
     initialBinding: InitialBinding(),
     defaultTransition: Transition.cupertino,
-    getPages: WCPages.pages,
+    getPages: WcPages.pages,
     // ignore: prefer_const_literals_to_create_immutables
     localizationsDelegates: [
       GlobalMaterialLocalizations.delegate,

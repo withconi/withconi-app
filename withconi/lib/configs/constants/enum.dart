@@ -7,16 +7,24 @@ enum Gender {
   male,
 }
 
+enum PostType {
+  @JsonValue("cat")
+  cat,
+  @JsonValue("dog")
+  dog,
+  @JsonValue("both")
+  both,
+}
+
 enum Species {
   @JsonValue("cat")
   cat,
   @JsonValue("dog")
   dog,
-  @JsonValue("none")
-  none,
+  @JsonValue("all")
+  all,
 }
 
-//TODO: kakao를 google로 고치기
 enum ProviderOptions {
   @JsonValue("kakao")
   kakao,

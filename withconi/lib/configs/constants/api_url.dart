@@ -10,4 +10,8 @@ class HttpUrl {
   static const UPDATE_USER = '/auth/updateUser';
   static const GET_CUSTOM_TOKEN = '/auth/getCustomToken';
   static const GET_DISEASE = '/disease/listDiseases';
+  static const CREATE_CONIMAL = '/auth/createConimal';
+  static const UPDATE_CONIMAL = '/auth/updateConimal';
+  static const DELETE_CONIMAL = '/auth/deleteConimal';
+  static const GET_POST = '/board/listPost';
 }
