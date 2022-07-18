@@ -130,7 +130,7 @@ class CommunityPostDetailPage extends StatelessWidget {
                             height: 17,
                           ),
                           SizedBox(
-                            height: 200,
+                            height: 180,
                             child: Material(
                               clipBehavior: Clip.antiAlias,
                               shape: RoundedRectangleBorder(
@@ -147,14 +147,14 @@ class CommunityPostDetailPage extends StatelessWidget {
                                           _controller.images);
                                     },
                                     child: SizedBox(
-                                      height: 200,
+                                      height: 180,
                                       width: WcWidth - 40,
                                       child: CarouselSlider(
                                         options: CarouselOptions(
                                             onPageChanged: (index, reason) =>
                                                 _controller.currentImageIndex
                                                     .value = index,
-                                            height: 200.0,
+                                            height: 180.0,
                                             viewportFraction: 1),
                                         items: _controller.images.map((image) {
                                           return Builder(
@@ -203,7 +203,7 @@ class CommunityPostDetailPage extends StatelessWidget {
                                       child: SvgPicture.asset(
                                         'assets/icons/image_multiple.svg',
                                         color: WcColors.grey60,
-                                        width: 32,
+                                        width: 28,
                                       )),
                                   Positioned(
                                     bottom: 16,
@@ -212,9 +212,11 @@ class CommunityPostDetailPage extends StatelessWidget {
                                       width: WcWidth - 40,
                                       child: Obx(
                                         () => CarouselIndicator(
+                                          animationDuration: 200,
                                           color: Color.fromARGB(
                                               119, 255, 255, 255),
                                           width: 13,
+                                          height: 6,
                                           count: _controller.images.length,
                                           index: _controller
                                               .currentImageIndex.value,
@@ -261,7 +263,7 @@ class CommunityPostDetailPage extends StatelessWidget {
                                       text: '34',
                                     ),
                                     SizedBox(
-                                      width: 18,
+                                      width: 20,
                                     ),
                                     WcIconTextButton(
                                       active: true,
@@ -270,6 +272,7 @@ class CommunityPostDetailPage extends StatelessWidget {
                                       inactiveIconColor: WcColors.grey100,
                                       onTap: () {},
                                       text: '34',
+                                      iconHeight: 19,
                                     ),
                                   ],
                                 ),
@@ -311,6 +314,8 @@ class CommunityPostDetailPage extends StatelessWidget {
                 height: 20,
               ),
               Obx(() => ListView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
                   itemCount: _controller.commentList.length,
                   itemBuilder: ((context, index) => WcCommentListTile(
                         activeBadge: false,

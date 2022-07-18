@@ -168,9 +168,6 @@ class CommunityNewPostPage extends StatelessWidget {
                                         ),
                                         decoration: BoxDecoration(
                                           image: DecorationImage(
-                                              // colorFilter: ColorFilter.mode(
-                                              //     Colors.red.withOpacity(0.4),
-                                              //     BlendMode.srcOut),
                                               fit: BoxFit.cover,
                                               image: NetworkImage(
                                                   'https://blog.kakaocdn.net/dn/rtgCl/btq6QthUvct/raf0kBKf6zELmZHR5XzDI1/img.jpg')),
