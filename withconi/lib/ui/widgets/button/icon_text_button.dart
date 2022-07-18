@@ -12,7 +12,7 @@ class WcIconTextButton extends StatelessWidget {
       required this.inactiveIconColor,
       required this.text,
       this.iconWidth = double.infinity,
-      this.iconHeight = 19})
+      this.iconHeight = 19.5})
       : super(key: key);
 
   final void Function()? onTap;

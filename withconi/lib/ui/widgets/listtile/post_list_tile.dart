@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import '../../../import_basic.dart';
-import '../../pages/community/community_detail_page.dart';
+import '../../pages/community/community_board_detail_page.dart';
 import '../badge/badge.dart';
 import '../button/icon_text_button.dart';
 
@@ -154,6 +154,7 @@ class WcUserPostListTile extends StatelessWidget {
                                     inactiveIconColor: WcColors.grey100,
                                     onTap: onCommentTap,
                                     text: '34',
+                                    iconHeight: 19,
                                   )
                                 : SizedBox.shrink(),
                           ],

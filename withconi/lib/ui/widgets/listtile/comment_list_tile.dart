@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:withconi/ui/widgets/button/icon_button.dart';
 
 import '../../../import_basic.dart';
-import '../../pages/community/community_detail_page.dart';
+import '../../pages/community/community_board_detail_page.dart';
 import '../badge/badge.dart';
 import '../button/icon_text_button.dart';
 
