@@ -15,10 +15,11 @@ class CommunityRepository {
   final CommunityAPI _api = CommunityAPI();
 
   Future<Either<Failure, List<Post>>> getPostList(
-      {required PaginationFilter paginationFilter}) async {
+      {required PaginationFilter paginationFilter,
+      required String boardId}) async {
     try {
-      Map<String, dynamic> data =
-          await _api.getPosts(paginationFilter: paginationFilter);
+      Map<String, dynamic> data = await _api.getPosts(
+          paginationFilter: paginationFilter, boardId: boardId);
       List<Post> postList = PostResponse.fromJson(data).results;
       return Right(postList);
     } on NoInternetConnectionException {
