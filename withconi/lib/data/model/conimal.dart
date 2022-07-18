@@ -13,6 +13,7 @@ class Conimal with _$Conimal {
     required String name,
     required Species species,
     required Gender gender,
+    @Default('') String uid,
     @DateTimeConverter() required DateTime birthDate,
     @DateTimeConverter() required DateTime adoptedDate,
     @DiseaseIdConverter() @Default([]) List<Disease> diseases,

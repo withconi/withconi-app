@@ -24,6 +24,7 @@ mixin _$Conimal {
   String get name => throw _privateConstructorUsedError;
   Species get species => throw _privateConstructorUsedError;
   Gender get gender => throw _privateConstructorUsedError;
+  String get uid => throw _privateConstructorUsedError;
   @DateTimeConverter()
   DateTime get birthDate => throw _privateConstructorUsedError;
   @DateTimeConverter()
@@ -45,6 +46,7 @@ abstract class $ConimalCopyWith<$Res> {
       String name,
       Species species,
       Gender gender,
+      String uid,
       @DateTimeConverter() DateTime birthDate,
       @DateTimeConverter() DateTime adoptedDate,
       @DiseaseIdConverter() List<Disease> diseases});
@@ -64,6 +66,7 @@ class _$ConimalCopyWithImpl<$Res> implements $ConimalCopyWith<$Res> {
     Object? name = freezed,
     Object? species = freezed,
     Object? gender = freezed,
+    Object? uid = freezed,
     Object? birthDate = freezed,
     Object? adoptedDate = freezed,
     Object? diseases = freezed,
@@ -85,6 +88,10 @@ class _$ConimalCopyWithImpl<$Res> implements $ConimalCopyWith<$Res> {
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as Gender,
+      uid: uid == freezed
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
       birthDate: birthDate == freezed
           ? _value.birthDate
           : birthDate // ignore: cast_nullable_to_non_nullable
@@ -112,6 +119,7 @@ abstract class _$$_ConimalCopyWith<$Res> implements $ConimalCopyWith<$Res> {
       String name,
       Species species,
       Gender gender,
+      String uid,
       @DateTimeConverter() DateTime birthDate,
       @DateTimeConverter() DateTime adoptedDate,
       @DiseaseIdConverter() List<Disease> diseases});
@@ -132,6 +140,7 @@ class __$$_ConimalCopyWithImpl<$Res> extends _$ConimalCopyWithImpl<$Res>
     Object? name = freezed,
     Object? species = freezed,
     Object? gender = freezed,
+    Object? uid = freezed,
     Object? birthDate = freezed,
     Object? adoptedDate = freezed,
     Object? diseases = freezed,
@@ -153,6 +162,10 @@ class __$$_ConimalCopyWithImpl<$Res> extends _$ConimalCopyWithImpl<$Res>
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as Gender,
+      uid: uid == freezed
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
       birthDate: birthDate == freezed
           ? _value.birthDate
           : birthDate // ignore: cast_nullable_to_non_nullable
@@ -178,6 +191,7 @@ class _$_Conimal implements _Conimal {
       required this.name,
       required this.species,
       required this.gender,
+      this.uid = '',
       @DateTimeConverter() required this.birthDate,
       @DateTimeConverter() required this.adoptedDate,
       @DiseaseIdConverter() final List<Disease> diseases = const []})
@@ -195,6 +209,9 @@ class _$_Conimal implements _Conimal {
   @override
   final Gender gender;
   @override
+  @JsonKey()
+  final String uid;
+  @override
   @DateTimeConverter()
   final DateTime birthDate;
   @override
@@ -211,7 +228,7 @@ class _$_Conimal implements _Conimal {
 
   @override
   String toString() {
-    return 'Conimal(conimalId: $conimalId, name: $name, species: $species, gender: $gender, birthDate: $birthDate, adoptedDate: $adoptedDate, diseases: $diseases)';
+    return 'Conimal(conimalId: $conimalId, name: $name, species: $species, gender: $gender, uid: $uid, birthDate: $birthDate, adoptedDate: $adoptedDate, diseases: $diseases)';
   }
 
   @override
@@ -223,6 +240,7 @@ class _$_Conimal implements _Conimal {
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.species, species) &&
             const DeepCollectionEquality().equals(other.gender, gender) &&
+            const DeepCollectionEquality().equals(other.uid, uid) &&
             const DeepCollectionEquality().equals(other.birthDate, birthDate) &&
             const DeepCollectionEquality()
                 .equals(other.adoptedDate, adoptedDate) &&
@@ -237,6 +255,7 @@ class _$_Conimal implements _Conimal {
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(species),
       const DeepCollectionEquality().hash(gender),
+      const DeepCollectionEquality().hash(uid),
       const DeepCollectionEquality().hash(birthDate),
       const DeepCollectionEquality().hash(adoptedDate),
       const DeepCollectionEquality().hash(_diseases));
@@ -258,6 +277,7 @@ abstract class _Conimal implements Conimal {
       required final String name,
       required final Species species,
       required final Gender gender,
+      final String uid,
       @DateTimeConverter() required final DateTime birthDate,
       @DateTimeConverter() required final DateTime adoptedDate,
       @DiseaseIdConverter() final List<Disease> diseases}) = _$_Conimal;
@@ -272,6 +292,8 @@ abstract class _Conimal implements Conimal {
   Species get species => throw _privateConstructorUsedError;
   @override
   Gender get gender => throw _privateConstructorUsedError;
+  @override
+  String get uid => throw _privateConstructorUsedError;
   @override
   @DateTimeConverter()
   DateTime get birthDate => throw _privateConstructorUsedError;
