@@ -7,17 +7,19 @@ import 'package:withconi/ui/widgets/button/icon_button.dart';
 
 import 'image_item.dart';
 
-void open(BuildContext context, final int index, List<ImageItem> galleryItems) {
-  Get.to(
-    GalleryPhotoViewWrapper(
-      galleryItems: galleryItems,
-      backgroundDecoration: const BoxDecoration(
-        color: Colors.black,
+class PhotoView {
+  void openPhotoView(final int index, List<ImageItem> galleryItems) {
+    Get.to(
+      GalleryPhotoViewWrapper(
+        galleryItems: galleryItems,
+        backgroundDecoration: const BoxDecoration(
+          color: Colors.black,
+        ),
+        initialIndex: index,
+        scrollDirection: Axis.horizontal,
       ),
-      initialIndex: index,
-      scrollDirection: Axis.horizontal,
-    ),
-  );
+    );
+  }
 }
 
 class GalleryPhotoViewWrapper extends StatefulWidget {
@@ -58,62 +60,65 @@ class _GalleryPhotoViewWrapperState extends State<GalleryPhotoViewWrapper> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: GestureDetector(
         onVerticalDragEnd: (DragEndDetails drag) {
           if (drag.velocity.pixelsPerSecond.dy > 1000) {
             Get.back();
           }
         },
-        child: Container(
-          decoration: widget.backgroundDecoration,
-          constraints: BoxConstraints.expand(
-            height: MediaQuery.of(context).size.height,
-          ),
-          child: Stack(
-            alignment: Alignment.bottomRight,
-            children: <Widget>[
-              PhotoViewGallery.builder(
-                scrollPhysics: const BouncingScrollPhysics(),
-                builder: _buildItem,
-                itemCount: widget.galleryItems.length,
-                loadingBuilder: widget.loadingBuilder,
-                backgroundDecoration: widget.backgroundDecoration,
-                pageController: widget.pageController,
-                onPageChanged: onPageChanged,
-                scrollDirection: widget.scrollDirection,
-              ),
-              Container(
-                height: 35,
-                width: 64,
-                margin: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                    color: Color.fromARGB(154, 82, 88, 98),
-                    borderRadius: BorderRadius.circular(20)),
-                child: Text(
-                  "${currentIndex + 1} / ${widget.galleryItems.length}",
-                  style: GoogleFonts.montserrat(
-                      fontSize: 16, color: WcColors.white),
+        child: SafeArea(
+          child: Container(
+            decoration: widget.backgroundDecoration,
+            constraints: BoxConstraints.expand(
+              height: MediaQuery.of(context).size.height,
+            ),
+            child: Stack(
+              alignment: Alignment.bottomRight,
+              children: <Widget>[
+                PhotoViewGallery.builder(
+                  scrollPhysics: const BouncingScrollPhysics(),
+                  builder: _buildItem,
+                  itemCount: widget.galleryItems.length,
+                  loadingBuilder: widget.loadingBuilder,
+                  backgroundDecoration: widget.backgroundDecoration,
+                  pageController: widget.pageController,
+                  onPageChanged: onPageChanged,
+                  scrollDirection: widget.scrollDirection,
                 ),
-              ),
-              Positioned(
-                top: 0,
-                left: 0,
-                child: WcIconButton(
-                    touchHeight: 70,
-                    touchWidth: 50,
-                    iconHeight: 23,
-                    iconMainAxisAlignment: MainAxisAlignment.center,
-                    backgroundColor: Colors.transparent,
-                    active: true,
-                    onTap: () {
-                      Get.back();
-                    },
-                    iconSrc: 'assets/icons/cancle.svg',
-                    activeIconColor: WcColors.white,
-                    inactiveIconColor: WcColors.white),
-              )
-            ],
+                Container(
+                  height: 35,
+                  width: 64,
+                  margin: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                      color: Color.fromARGB(154, 82, 88, 98),
+                      borderRadius: BorderRadius.circular(20)),
+                  child: Text(
+                    "${currentIndex + 1} / ${widget.galleryItems.length}",
+                    style: GoogleFonts.montserrat(
+                        fontSize: 16, color: WcColors.white),
+                  ),
+                ),
+                Positioned(
+                  top: 0,
+                  left: 5,
+                  child: WcIconButton(
+                      touchHeight: 70,
+                      touchWidth: 50,
+                      iconHeight: 23,
+                      iconMainAxisAlignment: MainAxisAlignment.center,
+                      backgroundColor: Colors.transparent,
+                      active: true,
+                      onTap: () {
+                        Get.back();
+                      },
+                      iconSrc: 'assets/icons/cancle.svg',
+                      activeIconColor: WcColors.white,
+                      inactiveIconColor: WcColors.white),
+                )
+              ],
+            ),
           ),
         ),
       ),
