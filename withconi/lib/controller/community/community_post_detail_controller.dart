@@ -29,9 +29,9 @@ class CommunityPostDetailController extends GetxController {
 
   Rx<Post> thisPost = Post(
           boardId: "boardId",
-          itemId: "itemId",
+          postId: "postId",
           nickname: "nickname",
-          speciesType: Species.cat,
+          speciesType: PostType.cat,
           content:
               "고양이가 밥을 안 먹으려고 할 때 단순히 식사 투정이라고 생각하고 그냥 넘어가면 안돼요. 질병이 원인일 수도 있기 때문이죠. 코가 막히거나 감기가 걸려 불편해서 밥을 안 먹을 수도 있고, 위장에 염증이 있거나 기생충에 감염되었을 수도 있어요. 아니면 이물질을 삼켜 식사 중 구토를 하거나 음식을 제대로 먹지 못하고, 치아나 잇몸에 염증이 있어 통증을 느낄 수도 있습니다.",
           createdAt: DateTime.now())
@@ -75,18 +75,19 @@ class CommunityPostDetailController extends GetxController {
     selectedPostType.value = postType;
   }
 
-  void addComment() {
-    Get.bottomSheet(
+  Future<void> addComment() async {
+    TextEditingController textEditingController = TextEditingController();
+    Comment? newComment = await Get.bottomSheet(
       Container(
         height: 280,
-        padding: EdgeInsets.symmetric(vertical: 0, horizontal: 20),
+        padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 20),
         child: Column(
           children: [
-            SizedBox(
-              height: 30,
+            const SizedBox(
+              height: 25,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5),
+              padding: const EdgeInsets.symmetric(horizontal: 5),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -95,15 +96,27 @@ class CommunityPostDetailController extends GetxController {
                           fontSize: 17,
                           color: WcColors.black,
                           fontWeight: FontWeight.bold)),
-                  Text('남기기',
-                      style: GoogleFonts.notoSans(
-                          fontSize: 16,
-                          color: WcColors.blue100,
-                          fontWeight: FontWeight.bold))
+                  GestureDetector(
+                    onTap: () {
+                      Comment newComment = Comment(
+                          postId: 'postId',
+                          commentId: 'commentId',
+                          nickname: '댓글닉네임',
+                          content: textEditingController.text,
+                          createdAt: DateTime.now());
+
+                      Get.back(result: newComment);
+                    },
+                    child: Text('남기기',
+                        style: GoogleFonts.notoSans(
+                            fontSize: 16,
+                            color: WcColors.blue100,
+                            fontWeight: FontWeight.bold)),
+                  )
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Container(
@@ -112,12 +125,13 @@ class CommunityPostDetailController extends GetxController {
                   borderRadius: BorderRadius.circular(25),
                   color: WcColors.blue20),
               child: TextField(
+                controller: textEditingController,
                 style: GoogleFonts.notoSans(
                     color: WcColors.black,
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
                     height: 1.5),
-                maxLines: 100,
+                maxLines: 20,
                 minLines: 5,
                 decoration: InputDecoration(
                     contentPadding: EdgeInsets.all(20),
@@ -135,16 +149,19 @@ class CommunityPostDetailController extends GetxController {
           ],
         ),
       ),
-      enterBottomSheetDuration: Duration(milliseconds: 170),
-      exitBottomSheetDuration: Duration(milliseconds: 170),
+      enterBottomSheetDuration: const Duration(milliseconds: 170),
+      exitBottomSheetDuration: const Duration(milliseconds: 170),
       backgroundColor: Colors.white,
       elevation: 0,
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(20),
           topRight: Radius.circular(20),
         ),
       ),
     );
+    if (newComment != null) {
+      commentList.add(newComment);
+    }
   }
 }
