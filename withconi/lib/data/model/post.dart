@@ -9,10 +9,10 @@ class Post with _$Post {
   @JsonSerializable(explicitToJson: true)
   factory Post({
     required String boardId,
-    required String postId,
+    @Default('') String? postId,
     @Default('') String? authorId,
     required String nickname,
-    required Species speciesType,
+    required PostType speciesType,
     required String content,
     @DateTimeConverter() required DateTime createdAt,
   }) = _Post;

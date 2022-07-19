@@ -21,10 +21,10 @@ Post _$PostFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Post {
   String get boardId => throw _privateConstructorUsedError;
-  String get postId => throw _privateConstructorUsedError;
+  String? get postId => throw _privateConstructorUsedError;
   String? get authorId => throw _privateConstructorUsedError;
   String get nickname => throw _privateConstructorUsedError;
-  Species get speciesType => throw _privateConstructorUsedError;
+  PostType get speciesType => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
   @DateTimeConverter()
   DateTime get createdAt => throw _privateConstructorUsedError;
@@ -40,10 +40,10 @@ abstract class $PostCopyWith<$Res> {
       _$PostCopyWithImpl<$Res>;
   $Res call(
       {String boardId,
-      String postId,
+      String? postId,
       String? authorId,
       String nickname,
-      Species speciesType,
+      PostType speciesType,
       String content,
       @DateTimeConverter() DateTime createdAt});
 }
@@ -74,7 +74,7 @@ class _$PostCopyWithImpl<$Res> implements $PostCopyWith<$Res> {
       postId: postId == freezed
           ? _value.postId
           : postId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       authorId: authorId == freezed
           ? _value.authorId
           : authorId // ignore: cast_nullable_to_non_nullable
@@ -86,7 +86,7 @@ class _$PostCopyWithImpl<$Res> implements $PostCopyWith<$Res> {
       speciesType: speciesType == freezed
           ? _value.speciesType
           : speciesType // ignore: cast_nullable_to_non_nullable
-              as Species,
+              as PostType,
       content: content == freezed
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -106,10 +106,10 @@ abstract class _$$_PostCopyWith<$Res> implements $PostCopyWith<$Res> {
   @override
   $Res call(
       {String boardId,
-      String postId,
+      String? postId,
       String? authorId,
       String nickname,
-      Species speciesType,
+      PostType speciesType,
       String content,
       @DateTimeConverter() DateTime createdAt});
 }
@@ -141,7 +141,7 @@ class __$$_PostCopyWithImpl<$Res> extends _$PostCopyWithImpl<$Res>
       postId: postId == freezed
           ? _value.postId
           : postId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       authorId: authorId == freezed
           ? _value.authorId
           : authorId // ignore: cast_nullable_to_non_nullable
@@ -153,7 +153,7 @@ class __$$_PostCopyWithImpl<$Res> extends _$PostCopyWithImpl<$Res>
       speciesType: speciesType == freezed
           ? _value.speciesType
           : speciesType // ignore: cast_nullable_to_non_nullable
-              as Species,
+              as PostType,
       content: content == freezed
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -172,7 +172,7 @@ class __$$_PostCopyWithImpl<$Res> extends _$PostCopyWithImpl<$Res>
 class _$_Post implements _Post {
   _$_Post(
       {required this.boardId,
-      required this.postId,
+      this.postId = '',
       this.authorId = '',
       required this.nickname,
       required this.speciesType,
@@ -184,14 +184,15 @@ class _$_Post implements _Post {
   @override
   final String boardId;
   @override
-  final String postId;
+  @JsonKey()
+  final String? postId;
   @override
   @JsonKey()
   final String? authorId;
   @override
   final String nickname;
   @override
-  final Species speciesType;
+  final PostType speciesType;
   @override
   final String content;
   @override
@@ -244,10 +245,10 @@ class _$_Post implements _Post {
 abstract class _Post implements Post {
   factory _Post(
       {required final String boardId,
-      required final String postId,
+      final String? postId,
       final String? authorId,
       required final String nickname,
-      required final Species speciesType,
+      required final PostType speciesType,
       required final String content,
       @DateTimeConverter() required final DateTime createdAt}) = _$_Post;
 
@@ -256,13 +257,13 @@ abstract class _Post implements Post {
   @override
   String get boardId => throw _privateConstructorUsedError;
   @override
-  String get postId => throw _privateConstructorUsedError;
+  String? get postId => throw _privateConstructorUsedError;
   @override
   String? get authorId => throw _privateConstructorUsedError;
   @override
   String get nickname => throw _privateConstructorUsedError;
   @override
-  Species get speciesType => throw _privateConstructorUsedError;
+  PostType get speciesType => throw _privateConstructorUsedError;
   @override
   String get content => throw _privateConstructorUsedError;
   @override
