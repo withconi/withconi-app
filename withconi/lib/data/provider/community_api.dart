@@ -1,6 +1,7 @@
 import 'package:withconi/controller/ui_helper/infinite_scroll.dart';
 import 'package:withconi/core/network_handling/network_service.dart';
 import '../../configs/constants/api_url.dart';
+import '../model/post.dart';
 
 class CommunityAPI {
   final Api _dio = Api();
@@ -38,5 +39,16 @@ class CommunityAPI {
       requestType: RequestType.GET,
     );
     return postsData;
+  }
+
+  Future<Map<String, dynamic>> newPost(
+      {required Map<String, dynamic> newPostJson}) async {
+    Map<String, dynamic> postedData = await _dio.apiCall(
+      url: HttpUrl.CREATE_POST,
+      queryParameters: null,
+      body: newPostJson,
+      requestType: RequestType.POST,
+    );
+    return postedData;
   }
 }
