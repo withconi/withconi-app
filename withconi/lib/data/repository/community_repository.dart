@@ -28,4 +28,22 @@ class CommunityRepository {
       return Left(DataParsingFailure());
     }
   }
+
+  Future<Either<Failure, Post>> newPost({required Post newPost}) async {
+    try {
+      Map<String, dynamic> postJson = newPost.toJson();
+      postJson.remove('postId');
+      Map<String, dynamic> data = await _api.newPost(newPostJson: postJson);
+      if (data['board'] != null) {
+        Post addedPost = Post.fromJson(data['board']);
+        return Right(addedPost);
+      } else {
+        return Left(DataParsingFailure());
+      }
+    } on NoInternetConnectionException {
+      return Left(NoConnectionFailure());
+    } on DataParsingException {
+      return Left(DataParsingFailure());
+    }
+  }
 }
