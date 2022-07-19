@@ -32,6 +32,43 @@ class ImagePickHelper {
     }
   }
 
+  Future<Either<Failure, List<File>>?> pickMultipleImages(
+      {required int maxImageNum, required int selectedImageNum}) async {
+    final ImagePicker _picker = ImagePicker();
+    final List<XFile>? _pickedImages =
+        await _picker.pickMultiImage(maxHeight: 500, imageQuality: 80);
+    List<File> _filteredImages = [];
+
+    if (_pickedImages != null) {
+      if (_pickedImages.length + selectedImageNum > maxImageNum) {
+        return Left(MaxImageNumFailure());
+      }
+      _pickedImages.forEach((image) {
+        Map<String, dynamic> pictureSizeMap =
+            getFileSizeMap(bytes: File(image.path).lengthSync());
+
+        if (pictureSizeMap['suffix'] == "GB" ||
+            pictureSizeMap['suffix'] == "TB") {
+        } else if (pictureSizeMap['suffix'] == "MB") {
+          if (pictureSizeMap['size'] < 2) {
+            _filteredImages.add(File(image.path));
+          }
+        } else {
+          _filteredImages.add(File(image.path));
+        }
+      });
+
+      if (_filteredImages.isEmpty) {
+        return Left(MaxImageSizeFailure());
+      } else {
+        print(_filteredImages);
+        return Right(_filteredImages);
+      }
+    } else {
+      return Right([]);
+    }
+  }
+
   // Either<Failure, List<File>> pickMultipleImage() {}
 
   Map<String, dynamic> getFileSizeMap({required int bytes, int decimals = 0}) {
