@@ -141,7 +141,8 @@ class CommunityMainPage extends StatelessWidget {
                       children: hotBoard
                           .map((boardName) => InkWell(
                                 onTap: () {
-                                  Get.toNamed(Routes.COMMUNITY_DETAIL);
+                                  Get.toNamed(Routes.COMMUNITY_DETAIL,
+                                      arguments: '0');
                                 },
                                 child: Container(
                                   alignment: Alignment.centerLeft,

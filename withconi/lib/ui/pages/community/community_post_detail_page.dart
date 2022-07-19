@@ -141,8 +141,7 @@ class CommunityPostDetailPage extends StatelessWidget {
                                 children: [
                                   GestureDetector(
                                     onTap: () {
-                                      open(
-                                          context,
+                                      PhotoView().openPhotoView(
                                           _controller.currentImageIndex.value,
                                           _controller.images);
                                     },
@@ -206,7 +205,7 @@ class CommunityPostDetailPage extends StatelessWidget {
                                         width: 28,
                                       )),
                                   Positioned(
-                                    bottom: 16,
+                                    bottom: 15,
                                     child: Container(
                                       alignment: Alignment.center,
                                       width: WcWidth - 40,
@@ -215,8 +214,8 @@ class CommunityPostDetailPage extends StatelessWidget {
                                           animationDuration: 200,
                                           color: Color.fromARGB(
                                               119, 255, 255, 255),
-                                          width: 13,
-                                          height: 6,
+                                          width: 12,
+                                          height: 5,
                                           count: _controller.images.length,
                                           index: _controller
                                               .currentImageIndex.value,
