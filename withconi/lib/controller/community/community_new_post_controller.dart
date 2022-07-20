@@ -15,16 +15,13 @@ import '../ui_interpreter/failure_ui_interpreter.dart';
 
 class CommunityNewPostController extends GetxController {
   CommunityRepository _communityRepository = CommunityRepository();
-  Map<PostType, String> postType = {
-    PostType.all: '모두',
-    PostType.dog: '강아지',
-    PostType.cat: '고양이',
-  };
-  Rx<PostType> selectedPostType = PostType.all.obs;
+  List<PostType> postType = [PostType.cat, PostType.dog];
+  Rxn<PostType> selectedPostType = Rxn<PostType>();
   final int maxImageNum = 4;
   RxInt selectedImageNum = 0.obs;
   RxList<File> imageFileList = <File>[].obs;
   late String _boardId;
+  RxBool validatePostButton = false.obs;
 
   TextEditingController textController = TextEditingController();
   @override
@@ -66,20 +63,28 @@ class CommunityNewPostController extends GetxController {
   }
 
   addNewPost() async {
-    var newPostResultEither = await showLoading(() =>
-        _communityRepository.newPost(
-            newPost: Post(
-                authorId: AuthController.to.wcUser.value!.uid,
-                nickname: AuthController.to.wcUser.value!.nickname,
-                boardId: _boardId,
-                content: textController.text,
-                createdAt: DateTime.now(),
-                speciesType: selectedPostType.value)));
+    if (selectedPostType.value == null) {
+      return FailureInterpreter()
+          .mapFailureToSnackbar(NoPostTypeSelectedFailure(), 'addNewPost');
+    } else if (textController.text.isEmpty) {
+      return FailureInterpreter()
+          .mapFailureToSnackbar(NoPostContentsFailure(), 'addNewPost');
+    } else {
+      var newPostResultEither = await showLoading(() =>
+          _communityRepository.newPost(
+              newPost: Post(
+                  authorId: AuthController.to.wcUser.value!.uid,
+                  nickname: AuthController.to.wcUser.value!.nickname,
+                  boardId: _boardId,
+                  content: textController.text,
+                  createdAt: DateTime.now(),
+                  speciesType: selectedPostType.value!)));
 
-    newPostResultEither.fold(
-        (fail) => FailureInterpreter()
-            .mapFailureToSnackbar(fail, 'pickMultipleImages'), (addedPost) {
-      Get.back(result: addedPost);
-    });
+      newPostResultEither.fold(
+          (fail) => FailureInterpreter()
+              .mapFailureToSnackbar(fail, 'pickMultipleImages'), (addedPost) {
+        Get.back(result: addedPost);
+      });
+    }
   }
 }

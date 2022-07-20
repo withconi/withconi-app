@@ -16,14 +16,13 @@ class CommunityBoardDetailController extends GetxController {
 
   List<PostType> postType = [
     PostType.all,
-    PostType.dog,
     PostType.cat,
+    PostType.dog,
   ];
   Rx<PostType> selectedPostType = PostType.all.obs;
-  Rx<SortType> selectedPostSort = SortType.recent.obs;
+  Rx<SortType> selectedSortType = SortType.recent.obs;
   List<SortType> postSort = [SortType.recent, SortType.popular];
   RxList<String> userLikedPost = <String>[].obs;
-  RxString thisBoardId = '0'.obs;
   Rx<ScrollController> scrollController = ScrollController().obs;
 
   final Rx<PaginationFilter> _paginationFilter = PaginationFilter(
@@ -39,6 +38,7 @@ class CommunityBoardDetailController extends GetxController {
   int get _page => _paginationFilter.value.page!;
 
   void loadNextPage() => _changePaginationFilter(_page + 1, limit);
+  void loadNewPage() => _changePaginationFilter(1, limit);
 
   String uploadAtStr(int postIndex) =>
       TimeCalculator().calculateUploadAt(postList[postIndex].createdAt);
@@ -94,7 +94,7 @@ class CommunityBoardDetailController extends GetxController {
   onClose() {
     super.onClose();
     scrollController.value.dispose();
-    selectedPostSort.value = SortType.recent;
+    selectedSortType.value = SortType.recent;
     selectedPostType.value = PostType.all;
   }
 
@@ -116,26 +116,28 @@ class CommunityBoardDetailController extends GetxController {
   Future<void> _getPostList() async {
     _isLoading.value = true;
     final postDataEither = await _communityRepository.getPostList(
-        paginationFilter: _paginationFilter.value, boardId: thisBoardId.value);
+        paginationFilter: _paginationFilter.value,
+        boardId: _boardId,
+        postType: selectedPostType.value);
 
     postDataEither.fold(
         (fail) => FailureInterpreter()
             .mapFailureToSnackbar(fail, '_getPostListByPage'), (newPostList) {
+      if (_paginationFilter.value.page == 1) {
+        postList.clear();
+      }
       if (newPostList.isEmpty) {
         _lastPage.value = true;
       } else {
-        if (_paginationFilter.value.page == 1) {
-          postList.clear();
-        }
         postList.addAll(newPostList);
-        _isLoading.value = false;
       }
+      _isLoading.value = false;
     });
   }
 
-  Future<void> refreshPage() async {
-    selectedPostSort.value = SortType.recent;
-    selectedPostType.value = PostType.all;
+  Future<void> resetPage({SortType? sortType, PostType? postType}) async {
+    selectedSortType.value = sortType ?? SortType.recent;
+    selectedPostType.value = postType ?? PostType.all;
     _lastPage.value = false;
     _changePaginationFilter(1, 15);
   }
@@ -153,22 +155,26 @@ class CommunityBoardDetailController extends GetxController {
     });
   }
 
-  void onPostSortingChanged(String? sortingType) {
+  void onSortTypeChanged(String? sortingType) {
     if (sortingType != null) {
-      selectedPostSort.value = koreanToSortType(sortingType);
+      selectedSortType.value = koreanToSortType(sortingType);
     }
+    resetPage(
+        sortType: selectedSortType.value, postType: selectedPostType.value);
   }
 
   void onPostTypeChanged(PostType postType) {
     selectedPostType.value = postType;
+    resetPage(
+        sortType: selectedSortType.value, postType: selectedPostType.value);
   }
 
   void addNewPost() async {
-    var newPost =
-        await Get.toNamed(Routes.COMMUNITY_NEW_POST, arguments: _boardId);
-    if (newPost != null) {
-      postList.insert(0, newPost);
-      postList.refresh();
-    }
+    resetPage();
+    Get.toNamed(Routes.COMMUNITY_NEW_POST, arguments: _boardId);
+    // if (newPost != null) {
+    //   postList.insert(0, newPost);
+    //   postList.refresh();
+    // }
   }
 }
