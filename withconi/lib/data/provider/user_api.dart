@@ -10,7 +10,7 @@ class UserAPI {
     };
 
     Map<String, dynamic> userData = await _dio.apiCall(
-        url: HttpUrl.GET_USER,
+        url: HttpUrl.USER_GET,
         queryParameters: requestData,
         body: null,
         requestType: RequestType.GET);
@@ -21,7 +21,7 @@ class UserAPI {
   Future<String?> updateUser({required Map<String, dynamic> updateData}) async {
     print(updateData);
     Map<String, dynamic> data = await _dio.apiCall(
-      url: HttpUrl.UPDATE_USER,
+      url: HttpUrl.USER_UPDATE,
       queryParameters: null,
       body: updateData,
       requestType: RequestType.POST,

@@ -6,7 +6,7 @@ class ConimalAPI {
 
   Future<String?> createConimal({required Map<String, dynamic> conimal}) async {
     Map<String, dynamic> data = await _dio.apiCall(
-      url: HttpUrl.CREATE_CONIMAL,
+      url: HttpUrl.CONIMAL_CREATE,
       queryParameters: null,
       body: conimal,
       requestType: RequestType.POST,

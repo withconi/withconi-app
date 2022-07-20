@@ -15,7 +15,7 @@ class DiseaseAPI {
     };
 
     Map<String, dynamic> userData = await _dio.apiCall(
-        url: HttpUrl.GET_DISEASE,
+        url: HttpUrl.DISEASE_GET,
         queryParameters: requestData,
         body: null,
         requestType: RequestType.GET);
