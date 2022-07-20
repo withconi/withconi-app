@@ -30,4 +30,7 @@ class Failure with _$Failure {
   const factory Failure.userEnabledFailure() = UserEnabledFailure;
   const factory Failure.weakPasswordFailure() = WeakPasswordFailure;
   const factory Failure.maxImageSizeFailure() = MaxImageSizeFailure;
+  const factory Failure.maxImageNumFailure() = MaxImageNumFailure;
+  const factory Failure.noPostTypeSelectedFailure() = NoPostTypeSelectedFailure;
+  const factory Failure.noPostContentsFailure() = NoPostContentsFailure;
 }

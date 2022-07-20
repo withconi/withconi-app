@@ -83,6 +83,22 @@ class ErrorMessage extends Equatable {
         title: '비밀번호가 약해요',
         message: '비밀번호가 취약하네요',
       ),
+      maxImageSizeFailure: () => const ErrorMessage(
+        title: '이미지 사이즈 크기 에러',
+        message: '이미지 사이즈가 너무 크네요',
+      ),
+      maxImageNumFailure: () => const ErrorMessage(
+        title: '이미지 갯수 초과',
+        message: '이미지는 4개까지만 추가 가능해요',
+      ),
+      noPostContentsFailure: () => const ErrorMessage(
+        title: '글쓰기 post contents 오류',
+        message: '글 내용을 입력해주세요',
+      ),
+      noPostTypeSelectedFailure: () => const ErrorMessage(
+        title: '글쓰기 post Type 선택 오류',
+        message: '관련된 코니멀을 선택해주세요',
+      ),
     );
   }
 }
