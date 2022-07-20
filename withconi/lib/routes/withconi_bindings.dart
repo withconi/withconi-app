@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:withconi/controller/auth_controller.dart';
+import 'package:withconi/controller/community/community_main_controller.dart';
 import 'package:withconi/controller/home/home_controller.dart';
 import 'package:withconi/controller/nav_controller.dart';
 import 'package:withconi/data/model/conimal.dart';
@@ -19,5 +20,7 @@ class HomeBinding implements Bindings {
   void dependencies() {
     Get.put<NavController>(NavController(), permanent: true);
     Get.put<HomeController>(HomeController(), permanent: false);
+    Get.put<CommunityMainController>(CommunityMainController(),
+        permanent: true);
   }
 }
