@@ -13,8 +13,8 @@ class CommunityMainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CommunityMainController _controller = Get.put(CommunityMainController());
-    List<String> hotBoard = ['갑상선 항진증1', '갑상선 항진증2', '갑상선 항진증3', '갑상선 항진증4'];
+    CommunityMainController _controller = Get.find();
+
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
@@ -137,25 +137,28 @@ class CommunityMainPage extends StatelessWidget {
                     SizedBox(
                       height: 10,
                     ),
-                    Column(
-                      children: hotBoard
-                          .map((boardName) => InkWell(
-                                onTap: () {
-                                  Get.toNamed(Routes.COMMUNITY_DETAIL,
-                                      arguments: '0');
-                                },
-                                child: Container(
-                                  alignment: Alignment.centerLeft,
-                                  height: 50,
-                                  width: WcWidth,
-                                  padding: EdgeInsets.symmetric(horizontal: 30),
-                                  child: Text(
-                                    boardName + ' 게시판',
-                                    style: GoogleFonts.notoSans(fontSize: 15),
+                    Obx(
+                      () => Column(
+                        children: _controller.boardList
+                            .map((board) => InkWell(
+                                  onTap: () {
+                                    _controller.toBoard(
+                                        boardId: board.boardId.toString());
+                                  },
+                                  child: Container(
+                                    alignment: Alignment.centerLeft,
+                                    height: 50,
+                                    width: WcWidth,
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 30),
+                                    child: Text(
+                                      board.title,
+                                      style: GoogleFonts.notoSans(fontSize: 15),
+                                    ),
                                   ),
-                                ),
-                              ))
-                          .toList(),
+                                ))
+                            .toList(),
+                      ),
                     ),
                     const SizedBox(
                       height: 30,
@@ -174,22 +177,28 @@ class CommunityMainPage extends StatelessWidget {
                     SizedBox(
                       height: 10,
                     ),
-                    Column(
-                      children: hotBoard
-                          .map((boardName) => InkWell(
-                                onTap: () {},
-                                child: Container(
-                                  alignment: Alignment.centerLeft,
-                                  height: 50,
-                                  width: WcWidth,
-                                  padding: EdgeInsets.symmetric(horizontal: 30),
-                                  child: Text(
-                                    boardName + ' 게시판',
-                                    style: GoogleFonts.notoSans(fontSize: 15),
+                    Obx(
+                      () => Column(
+                        children: _controller.boardList
+                            .map((board) => InkWell(
+                                  onTap: () {
+                                    _controller.toBoard(
+                                        boardId: board.boardId.toString());
+                                  },
+                                  child: Container(
+                                    alignment: Alignment.centerLeft,
+                                    height: 50,
+                                    width: WcWidth,
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 30),
+                                    child: Text(
+                                      board.title,
+                                      style: GoogleFonts.notoSans(fontSize: 15),
+                                    ),
                                   ),
-                                ),
-                              ))
-                          .toList(),
+                                ))
+                            .toList(),
+                      ),
                     ),
                     SizedBox(
                       height: 30,

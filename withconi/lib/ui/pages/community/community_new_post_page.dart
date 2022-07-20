@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lottie/lottie.dart';
+import 'package:withconi/configs/constants/enum.dart';
 import 'package:withconi/controller/community/community_main_controller.dart';
 import 'package:withconi/controller/community/community_new_post_controller.dart';
 import 'package:withconi/controller/signup/disease_search_controller.dart';
@@ -130,15 +131,15 @@ class CommunityNewPostPage extends StatelessWidget {
                 () => Container(
                   margin: EdgeInsets.only(left: 20, bottom: 10),
                   child: Row(
-                      children: _controller.postType.entries
+                      children: _controller.postType
                           .map((postType) => WcTextRadioButton(
                                 height: 35,
                                 onTap: () {
-                                  _controller.onPostTypeChanged(postType.key);
+                                  _controller.onPostTypeChanged(postType);
                                 },
-                                selectedValue: _controller.postType[
-                                    _controller.selectedPostType.value],
-                                value: postType.value,
+                                selectedValue: postTypeToKorean(
+                                    _controller.selectedPostType.value),
+                                value: postTypeToKorean(postType),
                               ))
                           .toList()),
                 ),
