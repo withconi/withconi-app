@@ -42,19 +42,14 @@ class ConimalToggleButton extends StatelessWidget {
           child: InkWell(
             splashColor: WcColors.grey100, // Splash color
             onTap: onTap,
-            child: SizedBox(
-                width: (index == selectedIndex) ? 45 : 40,
-                height: (index == selectedIndex) ? 45 : 40,
-                child: Padding(
-                  padding: (index == selectedIndex)
-                      ? EdgeInsets.all(8)
-                      : EdgeInsets.all(8),
-                  child: Image.asset(
-                    (species == Species.cat)
-                        ? 'assets/icons/cat_black.png'
-                        : 'assets/icons/dog.png',
-                    fit: BoxFit.cover,
-                  ),
+            child: Container(
+                width: (index == selectedIndex) ? 47 : 40,
+                height: (index == selectedIndex) ? 47 : 40,
+                child: Image.asset(
+                  (species == Species.cat)
+                      ? 'assets/icons/cat_black.png'
+                      : 'assets/icons/dog.png',
+                  scale: (index == selectedIndex) ? 14.5 : 18,
                 )),
           ),
         ),
