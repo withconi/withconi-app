@@ -9,6 +9,8 @@ import 'package:withconi/ui/pages/home/add_conimal_page.dart';
 import 'package:withconi/ui/pages/home/edit_conimal_page.dart';
 import 'package:withconi/ui/pages/home/home_page.dart';
 import 'package:withconi/ui/pages/hospital/hospital_main_page.dart';
+import 'package:withconi/ui/pages/settings/setting_main_page.dart';
+import 'package:withconi/ui/pages/settings/user/edit_user.dart';
 import 'package:withconi/ui/pages/signin/signin_email_page.dart';
 import 'package:withconi/ui/pages/signup/disease_search_page.dart';
 import 'package:withconi/ui/pages/signup/signup_conimal_edit_page.dart';
@@ -63,11 +65,11 @@ class WcPages {
       page: () => DiseaseSearchPage(),
     ),
     GetPage(
-      name: Routes.EDIT_CONIMAL,
+      name: Routes.CONIMAL_EDIT,
       page: () => EditConimalPage(),
     ),
     GetPage(
-      name: Routes.ADD_CONIMAL,
+      name: Routes.CONIMAL_ADD,
       page: () => AddConimalpage(),
     ),
     GetPage(
@@ -103,6 +105,16 @@ class WcPages {
     GetPage(
       name: Routes.DICTIONARY_MAIN,
       page: () => DictionaryMainPage(),
+      transition: Transition.noTransition,
+    ),
+    GetPage(
+      name: Routes.SETTING_MAIN,
+      page: () => SettingPage(),
+      transition: Transition.noTransition,
+    ),
+    GetPage(
+      name: Routes.USER_EDIT,
+      page: () => EditUserPage(),
       transition: Transition.noTransition,
     ),
   ];

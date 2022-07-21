@@ -19,7 +19,7 @@ class HomeBinding implements Bindings {
   @override
   void dependencies() {
     Get.put<NavController>(NavController(), permanent: true);
-    Get.put<HomeController>(HomeController(), permanent: false);
+    Get.put<HomeController>(HomeController());
     Get.put<CommunityMainController>(CommunityMainController(),
         permanent: true);
   }

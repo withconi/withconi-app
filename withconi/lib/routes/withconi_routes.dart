@@ -11,8 +11,8 @@ abstract class Routes {
   static const SIGNUP_CONIMAL_EDIT = '/signup/conimal/edit';
   static const SIGNIN_EMAIL = '/signin/email';
   static const SIGNUP_DISEASE_SEARCH = '/signup/conimal/1/disease';
-  static const ADD_CONIMAL = '/home/addConimal';
-  static const EDIT_CONIMAL = '/home/editConimal';
+  static const CONIMAL_ADD = '/addConimal';
+  static const CONIMAL_EDIT = '/editConimal';
   static const COMMUNITY_MAIN = '/community/main';
   static const COMMUNITY_DETAIL = '/community/detail';
   static const COMMUNITY_NEW_POST = '/community/new_post';
@@ -21,4 +21,9 @@ abstract class Routes {
   static const HOSPITAL_MAIN = '/hospital/main';
   static const DICTIONARY_MAIN = '/dictionary/main';
   static const DIAGNOSIS_MAIN = '/diagnosis/main';
+  static const SETTING_MAIN = '/setting/main';
+  static const USER_EDIT = '/user/edit';
+  static const USER_MYPOST = '/user/mypost';
+  static const USER_LIKEPOST = '/user/likepost';
+  static const USER_MYCONIMAL = '/user/myconimal';
 }
