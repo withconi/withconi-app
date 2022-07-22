@@ -99,6 +99,14 @@ class ErrorMessage extends Equatable {
         title: '글쓰기 post Type 선택 오류',
         message: '관련된 코니멀을 선택해주세요',
       ),
+      notEditablePasswordFailure: () => const ErrorMessage(
+        title: 'sns로그인 비밀번호 변경 불가',
+        message: 'SNS 로그인은 비밀번호를 바꿀 수 없어요',
+      ),
+      userInfoUpdateFailure: () => const ErrorMessage(
+        title: '유저정보 업데이트 실패',
+        message: '사용자 정보를 수정할 수 없었어요',
+      ),
     );
   }
 }

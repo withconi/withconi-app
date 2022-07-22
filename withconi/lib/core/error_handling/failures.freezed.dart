@@ -47,6 +47,8 @@ mixin _$Failure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notEditablePasswordFailure,
+    required TResult Function() userInfoUpdateFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -80,6 +82,8 @@ mixin _$Failure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -113,6 +117,8 @@ mixin _$Failure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -153,6 +159,10 @@ mixin _$Failure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotEditablePasswordFailure value)
+        notEditablePasswordFailure,
+    required TResult Function(UserInfoUpdateFailure value)
+        userInfoUpdateFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -187,6 +197,9 @@ mixin _$Failure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -221,6 +234,9 @@ mixin _$Failure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -310,6 +326,8 @@ class _$ServerFailure extends ServerFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notEditablePasswordFailure,
+    required TResult Function() userInfoUpdateFailure,
   }) {
     return serverFailure();
   }
@@ -346,6 +364,8 @@ class _$ServerFailure extends ServerFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
   }) {
     return serverFailure?.call();
   }
@@ -382,6 +402,8 @@ class _$ServerFailure extends ServerFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (serverFailure != null) {
@@ -428,6 +450,10 @@ class _$ServerFailure extends ServerFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotEditablePasswordFailure value)
+        notEditablePasswordFailure,
+    required TResult Function(UserInfoUpdateFailure value)
+        userInfoUpdateFailure,
   }) {
     return serverFailure(this);
   }
@@ -465,6 +491,9 @@ class _$ServerFailure extends ServerFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
   }) {
     return serverFailure?.call(this);
   }
@@ -502,6 +531,9 @@ class _$ServerFailure extends ServerFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (serverFailure != null) {
@@ -586,6 +618,8 @@ class _$DataParsingFailure extends DataParsingFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notEditablePasswordFailure,
+    required TResult Function() userInfoUpdateFailure,
   }) {
     return dataParsingFailure();
   }
@@ -622,6 +656,8 @@ class _$DataParsingFailure extends DataParsingFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
   }) {
     return dataParsingFailure?.call();
   }
@@ -658,6 +694,8 @@ class _$DataParsingFailure extends DataParsingFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (dataParsingFailure != null) {
@@ -704,6 +742,10 @@ class _$DataParsingFailure extends DataParsingFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotEditablePasswordFailure value)
+        notEditablePasswordFailure,
+    required TResult Function(UserInfoUpdateFailure value)
+        userInfoUpdateFailure,
   }) {
     return dataParsingFailure(this);
   }
@@ -741,6 +783,9 @@ class _$DataParsingFailure extends DataParsingFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
   }) {
     return dataParsingFailure?.call(this);
   }
@@ -778,6 +823,9 @@ class _$DataParsingFailure extends DataParsingFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (dataParsingFailure != null) {
@@ -862,6 +910,8 @@ class _$NoConnectionFailure extends NoConnectionFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notEditablePasswordFailure,
+    required TResult Function() userInfoUpdateFailure,
   }) {
     return noConnectionFailure();
   }
@@ -898,6 +948,8 @@ class _$NoConnectionFailure extends NoConnectionFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
   }) {
     return noConnectionFailure?.call();
   }
@@ -934,6 +986,8 @@ class _$NoConnectionFailure extends NoConnectionFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (noConnectionFailure != null) {
@@ -980,6 +1034,10 @@ class _$NoConnectionFailure extends NoConnectionFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotEditablePasswordFailure value)
+        notEditablePasswordFailure,
+    required TResult Function(UserInfoUpdateFailure value)
+        userInfoUpdateFailure,
   }) {
     return noConnectionFailure(this);
   }
@@ -1017,6 +1075,9 @@ class _$NoConnectionFailure extends NoConnectionFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
   }) {
     return noConnectionFailure?.call(this);
   }
@@ -1054,6 +1115,9 @@ class _$NoConnectionFailure extends NoConnectionFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (noConnectionFailure != null) {
@@ -1137,6 +1201,8 @@ class _$NotFoundFailure extends NotFoundFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notEditablePasswordFailure,
+    required TResult Function() userInfoUpdateFailure,
   }) {
     return notFoundFailure();
   }
@@ -1173,6 +1239,8 @@ class _$NotFoundFailure extends NotFoundFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
   }) {
     return notFoundFailure?.call();
   }
@@ -1209,6 +1277,8 @@ class _$NotFoundFailure extends NotFoundFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (notFoundFailure != null) {
@@ -1255,6 +1325,10 @@ class _$NotFoundFailure extends NotFoundFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotEditablePasswordFailure value)
+        notEditablePasswordFailure,
+    required TResult Function(UserInfoUpdateFailure value)
+        userInfoUpdateFailure,
   }) {
     return notFoundFailure(this);
   }
@@ -1292,6 +1366,9 @@ class _$NotFoundFailure extends NotFoundFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
   }) {
     return notFoundFailure?.call(this);
   }
@@ -1329,6 +1406,9 @@ class _$NotFoundFailure extends NotFoundFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (notFoundFailure != null) {
@@ -1413,6 +1493,8 @@ class _$NoUserDataFailure extends NoUserDataFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notEditablePasswordFailure,
+    required TResult Function() userInfoUpdateFailure,
   }) {
     return noUserDataFailure();
   }
@@ -1449,6 +1531,8 @@ class _$NoUserDataFailure extends NoUserDataFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
   }) {
     return noUserDataFailure?.call();
   }
@@ -1485,6 +1569,8 @@ class _$NoUserDataFailure extends NoUserDataFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (noUserDataFailure != null) {
@@ -1531,6 +1617,10 @@ class _$NoUserDataFailure extends NoUserDataFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotEditablePasswordFailure value)
+        notEditablePasswordFailure,
+    required TResult Function(UserInfoUpdateFailure value)
+        userInfoUpdateFailure,
   }) {
     return noUserDataFailure(this);
   }
@@ -1568,6 +1658,9 @@ class _$NoUserDataFailure extends NoUserDataFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
   }) {
     return noUserDataFailure?.call(this);
   }
@@ -1605,6 +1698,9 @@ class _$NoUserDataFailure extends NoUserDataFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (noUserDataFailure != null) {
@@ -1689,6 +1785,8 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notEditablePasswordFailure,
+    required TResult Function() userInfoUpdateFailure,
   }) {
     return maxDiseaseFailure();
   }
@@ -1725,6 +1823,8 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
   }) {
     return maxDiseaseFailure?.call();
   }
@@ -1761,6 +1861,8 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (maxDiseaseFailure != null) {
@@ -1807,6 +1909,10 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotEditablePasswordFailure value)
+        notEditablePasswordFailure,
+    required TResult Function(UserInfoUpdateFailure value)
+        userInfoUpdateFailure,
   }) {
     return maxDiseaseFailure(this);
   }
@@ -1844,6 +1950,9 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
   }) {
     return maxDiseaseFailure?.call(this);
   }
@@ -1881,6 +1990,9 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (maxDiseaseFailure != null) {
@@ -1965,6 +2077,8 @@ class _$MaxConimalFailure extends MaxConimalFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notEditablePasswordFailure,
+    required TResult Function() userInfoUpdateFailure,
   }) {
     return maxConimalFailure();
   }
@@ -2001,6 +2115,8 @@ class _$MaxConimalFailure extends MaxConimalFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
   }) {
     return maxConimalFailure?.call();
   }
@@ -2037,6 +2153,8 @@ class _$MaxConimalFailure extends MaxConimalFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (maxConimalFailure != null) {
@@ -2083,6 +2201,10 @@ class _$MaxConimalFailure extends MaxConimalFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotEditablePasswordFailure value)
+        notEditablePasswordFailure,
+    required TResult Function(UserInfoUpdateFailure value)
+        userInfoUpdateFailure,
   }) {
     return maxConimalFailure(this);
   }
@@ -2120,6 +2242,9 @@ class _$MaxConimalFailure extends MaxConimalFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
   }) {
     return maxConimalFailure?.call(this);
   }
@@ -2157,6 +2282,9 @@ class _$MaxConimalFailure extends MaxConimalFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (maxConimalFailure != null) {
@@ -2240,6 +2368,8 @@ class _$EmptyListFailure extends EmptyListFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notEditablePasswordFailure,
+    required TResult Function() userInfoUpdateFailure,
   }) {
     return emptyListFailure();
   }
@@ -2276,6 +2406,8 @@ class _$EmptyListFailure extends EmptyListFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
   }) {
     return emptyListFailure?.call();
   }
@@ -2312,6 +2444,8 @@ class _$EmptyListFailure extends EmptyListFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (emptyListFailure != null) {
@@ -2358,6 +2492,10 @@ class _$EmptyListFailure extends EmptyListFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotEditablePasswordFailure value)
+        notEditablePasswordFailure,
+    required TResult Function(UserInfoUpdateFailure value)
+        userInfoUpdateFailure,
   }) {
     return emptyListFailure(this);
   }
@@ -2395,6 +2533,9 @@ class _$EmptyListFailure extends EmptyListFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
   }) {
     return emptyListFailure?.call(this);
   }
@@ -2432,6 +2573,9 @@ class _$EmptyListFailure extends EmptyListFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (emptyListFailure != null) {
@@ -2518,6 +2662,8 @@ class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notEditablePasswordFailure,
+    required TResult Function() userInfoUpdateFailure,
   }) {
     return noSuchDataInListFailure();
   }
@@ -2554,6 +2700,8 @@ class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
   }) {
     return noSuchDataInListFailure?.call();
   }
@@ -2590,6 +2738,8 @@ class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (noSuchDataInListFailure != null) {
@@ -2636,6 +2786,10 @@ class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotEditablePasswordFailure value)
+        notEditablePasswordFailure,
+    required TResult Function(UserInfoUpdateFailure value)
+        userInfoUpdateFailure,
   }) {
     return noSuchDataInListFailure(this);
   }
@@ -2673,6 +2827,9 @@ class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
   }) {
     return noSuchDataInListFailure?.call(this);
   }
@@ -2710,6 +2867,9 @@ class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (noSuchDataInListFailure != null) {
@@ -2795,6 +2955,8 @@ class _$RegisterConimalFailure extends RegisterConimalFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notEditablePasswordFailure,
+    required TResult Function() userInfoUpdateFailure,
   }) {
     return registerConimalFaiure();
   }
@@ -2831,6 +2993,8 @@ class _$RegisterConimalFailure extends RegisterConimalFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
   }) {
     return registerConimalFaiure?.call();
   }
@@ -2867,6 +3031,8 @@ class _$RegisterConimalFailure extends RegisterConimalFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (registerConimalFaiure != null) {
@@ -2913,6 +3079,10 @@ class _$RegisterConimalFailure extends RegisterConimalFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotEditablePasswordFailure value)
+        notEditablePasswordFailure,
+    required TResult Function(UserInfoUpdateFailure value)
+        userInfoUpdateFailure,
   }) {
     return registerConimalFaiure(this);
   }
@@ -2950,6 +3120,9 @@ class _$RegisterConimalFailure extends RegisterConimalFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
   }) {
     return registerConimalFaiure?.call(this);
   }
@@ -2987,6 +3160,9 @@ class _$RegisterConimalFailure extends RegisterConimalFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (registerConimalFaiure != null) {
@@ -3071,6 +3247,8 @@ class _$RemoveConimalFailure extends RemoveConimalFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notEditablePasswordFailure,
+    required TResult Function() userInfoUpdateFailure,
   }) {
     return removeConimalFailure();
   }
@@ -3107,6 +3285,8 @@ class _$RemoveConimalFailure extends RemoveConimalFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
   }) {
     return removeConimalFailure?.call();
   }
@@ -3143,6 +3323,8 @@ class _$RemoveConimalFailure extends RemoveConimalFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (removeConimalFailure != null) {
@@ -3189,6 +3371,10 @@ class _$RemoveConimalFailure extends RemoveConimalFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotEditablePasswordFailure value)
+        notEditablePasswordFailure,
+    required TResult Function(UserInfoUpdateFailure value)
+        userInfoUpdateFailure,
   }) {
     return removeConimalFailure(this);
   }
@@ -3226,6 +3412,9 @@ class _$RemoveConimalFailure extends RemoveConimalFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
   }) {
     return removeConimalFailure?.call(this);
   }
@@ -3263,6 +3452,9 @@ class _$RemoveConimalFailure extends RemoveConimalFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (removeConimalFailure != null) {
@@ -3347,6 +3539,8 @@ class _$GetConimalListFailure extends GetConimalListFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notEditablePasswordFailure,
+    required TResult Function() userInfoUpdateFailure,
   }) {
     return getConimalListFailure();
   }
@@ -3383,6 +3577,8 @@ class _$GetConimalListFailure extends GetConimalListFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
   }) {
     return getConimalListFailure?.call();
   }
@@ -3419,6 +3615,8 @@ class _$GetConimalListFailure extends GetConimalListFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (getConimalListFailure != null) {
@@ -3465,6 +3663,10 @@ class _$GetConimalListFailure extends GetConimalListFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotEditablePasswordFailure value)
+        notEditablePasswordFailure,
+    required TResult Function(UserInfoUpdateFailure value)
+        userInfoUpdateFailure,
   }) {
     return getConimalListFailure(this);
   }
@@ -3502,6 +3704,9 @@ class _$GetConimalListFailure extends GetConimalListFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
   }) {
     return getConimalListFailure?.call(this);
   }
@@ -3539,6 +3744,9 @@ class _$GetConimalListFailure extends GetConimalListFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (getConimalListFailure != null) {
@@ -3625,6 +3833,8 @@ class _$SignInCredentialFailure extends SignInCredentialFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notEditablePasswordFailure,
+    required TResult Function() userInfoUpdateFailure,
   }) {
     return signInCredentialFailure();
   }
@@ -3661,6 +3871,8 @@ class _$SignInCredentialFailure extends SignInCredentialFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
   }) {
     return signInCredentialFailure?.call();
   }
@@ -3697,6 +3909,8 @@ class _$SignInCredentialFailure extends SignInCredentialFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (signInCredentialFailure != null) {
@@ -3743,6 +3957,10 @@ class _$SignInCredentialFailure extends SignInCredentialFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotEditablePasswordFailure value)
+        notEditablePasswordFailure,
+    required TResult Function(UserInfoUpdateFailure value)
+        userInfoUpdateFailure,
   }) {
     return signInCredentialFailure(this);
   }
@@ -3780,6 +3998,9 @@ class _$SignInCredentialFailure extends SignInCredentialFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
   }) {
     return signInCredentialFailure?.call(this);
   }
@@ -3817,6 +4038,9 @@ class _$SignInCredentialFailure extends SignInCredentialFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (signInCredentialFailure != null) {
@@ -3901,6 +4125,8 @@ class _$SignInTokenFailure extends SignInTokenFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notEditablePasswordFailure,
+    required TResult Function() userInfoUpdateFailure,
   }) {
     return signInTokenFailure();
   }
@@ -3937,6 +4163,8 @@ class _$SignInTokenFailure extends SignInTokenFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
   }) {
     return signInTokenFailure?.call();
   }
@@ -3973,6 +4201,8 @@ class _$SignInTokenFailure extends SignInTokenFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (signInTokenFailure != null) {
@@ -4019,6 +4249,10 @@ class _$SignInTokenFailure extends SignInTokenFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotEditablePasswordFailure value)
+        notEditablePasswordFailure,
+    required TResult Function(UserInfoUpdateFailure value)
+        userInfoUpdateFailure,
   }) {
     return signInTokenFailure(this);
   }
@@ -4056,6 +4290,9 @@ class _$SignInTokenFailure extends SignInTokenFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
   }) {
     return signInTokenFailure?.call(this);
   }
@@ -4093,6 +4330,9 @@ class _$SignInTokenFailure extends SignInTokenFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (signInTokenFailure != null) {
@@ -4177,6 +4417,8 @@ class _$NaverSigninFailure extends NaverSigninFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notEditablePasswordFailure,
+    required TResult Function() userInfoUpdateFailure,
   }) {
     return naverSigninFailure();
   }
@@ -4213,6 +4455,8 @@ class _$NaverSigninFailure extends NaverSigninFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
   }) {
     return naverSigninFailure?.call();
   }
@@ -4249,6 +4493,8 @@ class _$NaverSigninFailure extends NaverSigninFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (naverSigninFailure != null) {
@@ -4295,6 +4541,10 @@ class _$NaverSigninFailure extends NaverSigninFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotEditablePasswordFailure value)
+        notEditablePasswordFailure,
+    required TResult Function(UserInfoUpdateFailure value)
+        userInfoUpdateFailure,
   }) {
     return naverSigninFailure(this);
   }
@@ -4332,6 +4582,9 @@ class _$NaverSigninFailure extends NaverSigninFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
   }) {
     return naverSigninFailure?.call(this);
   }
@@ -4369,6 +4622,9 @@ class _$NaverSigninFailure extends NaverSigninFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (naverSigninFailure != null) {
@@ -4453,6 +4709,8 @@ class _$KakaoSigninFailure extends KakaoSigninFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notEditablePasswordFailure,
+    required TResult Function() userInfoUpdateFailure,
   }) {
     return kakaoSigninFailure();
   }
@@ -4489,6 +4747,8 @@ class _$KakaoSigninFailure extends KakaoSigninFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
   }) {
     return kakaoSigninFailure?.call();
   }
@@ -4525,6 +4785,8 @@ class _$KakaoSigninFailure extends KakaoSigninFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (kakaoSigninFailure != null) {
@@ -4571,6 +4833,10 @@ class _$KakaoSigninFailure extends KakaoSigninFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotEditablePasswordFailure value)
+        notEditablePasswordFailure,
+    required TResult Function(UserInfoUpdateFailure value)
+        userInfoUpdateFailure,
   }) {
     return kakaoSigninFailure(this);
   }
@@ -4608,6 +4874,9 @@ class _$KakaoSigninFailure extends KakaoSigninFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
   }) {
     return kakaoSigninFailure?.call(this);
   }
@@ -4645,6 +4914,9 @@ class _$KakaoSigninFailure extends KakaoSigninFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (kakaoSigninFailure != null) {
@@ -4729,6 +5001,8 @@ class _$GoogleSigninFailure extends GoogleSigninFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notEditablePasswordFailure,
+    required TResult Function() userInfoUpdateFailure,
   }) {
     return googleSigninFailure();
   }
@@ -4765,6 +5039,8 @@ class _$GoogleSigninFailure extends GoogleSigninFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
   }) {
     return googleSigninFailure?.call();
   }
@@ -4801,6 +5077,8 @@ class _$GoogleSigninFailure extends GoogleSigninFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (googleSigninFailure != null) {
@@ -4847,6 +5125,10 @@ class _$GoogleSigninFailure extends GoogleSigninFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotEditablePasswordFailure value)
+        notEditablePasswordFailure,
+    required TResult Function(UserInfoUpdateFailure value)
+        userInfoUpdateFailure,
   }) {
     return googleSigninFailure(this);
   }
@@ -4884,6 +5166,9 @@ class _$GoogleSigninFailure extends GoogleSigninFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
   }) {
     return googleSigninFailure?.call(this);
   }
@@ -4921,6 +5206,9 @@ class _$GoogleSigninFailure extends GoogleSigninFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (googleSigninFailure != null) {
@@ -5005,6 +5293,8 @@ class _$AppleSigninFailure extends AppleSigninFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notEditablePasswordFailure,
+    required TResult Function() userInfoUpdateFailure,
   }) {
     return appleSigninFailure();
   }
@@ -5041,6 +5331,8 @@ class _$AppleSigninFailure extends AppleSigninFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
   }) {
     return appleSigninFailure?.call();
   }
@@ -5077,6 +5369,8 @@ class _$AppleSigninFailure extends AppleSigninFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (appleSigninFailure != null) {
@@ -5123,6 +5417,10 @@ class _$AppleSigninFailure extends AppleSigninFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotEditablePasswordFailure value)
+        notEditablePasswordFailure,
+    required TResult Function(UserInfoUpdateFailure value)
+        userInfoUpdateFailure,
   }) {
     return appleSigninFailure(this);
   }
@@ -5160,6 +5458,9 @@ class _$AppleSigninFailure extends AppleSigninFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
   }) {
     return appleSigninFailure?.call(this);
   }
@@ -5197,6 +5498,9 @@ class _$AppleSigninFailure extends AppleSigninFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (appleSigninFailure != null) {
@@ -5281,6 +5585,8 @@ class _$EmailSigninFailure extends EmailSigninFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notEditablePasswordFailure,
+    required TResult Function() userInfoUpdateFailure,
   }) {
     return emailSigninFailure();
   }
@@ -5317,6 +5623,8 @@ class _$EmailSigninFailure extends EmailSigninFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
   }) {
     return emailSigninFailure?.call();
   }
@@ -5353,6 +5661,8 @@ class _$EmailSigninFailure extends EmailSigninFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (emailSigninFailure != null) {
@@ -5399,6 +5709,10 @@ class _$EmailSigninFailure extends EmailSigninFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotEditablePasswordFailure value)
+        notEditablePasswordFailure,
+    required TResult Function(UserInfoUpdateFailure value)
+        userInfoUpdateFailure,
   }) {
     return emailSigninFailure(this);
   }
@@ -5436,6 +5750,9 @@ class _$EmailSigninFailure extends EmailSigninFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
   }) {
     return emailSigninFailure?.call(this);
   }
@@ -5473,6 +5790,9 @@ class _$EmailSigninFailure extends EmailSigninFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (emailSigninFailure != null) {
@@ -5557,6 +5877,8 @@ class _$GetUserInfoFailure extends GetUserInfoFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notEditablePasswordFailure,
+    required TResult Function() userInfoUpdateFailure,
   }) {
     return getUserFailure();
   }
@@ -5593,6 +5915,8 @@ class _$GetUserInfoFailure extends GetUserInfoFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
   }) {
     return getUserFailure?.call();
   }
@@ -5629,6 +5953,8 @@ class _$GetUserInfoFailure extends GetUserInfoFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (getUserFailure != null) {
@@ -5675,6 +6001,10 @@ class _$GetUserInfoFailure extends GetUserInfoFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotEditablePasswordFailure value)
+        notEditablePasswordFailure,
+    required TResult Function(UserInfoUpdateFailure value)
+        userInfoUpdateFailure,
   }) {
     return getUserFailure(this);
   }
@@ -5712,6 +6042,9 @@ class _$GetUserInfoFailure extends GetUserInfoFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
   }) {
     return getUserFailure?.call(this);
   }
@@ -5749,6 +6082,9 @@ class _$GetUserInfoFailure extends GetUserInfoFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (getUserFailure != null) {
@@ -5833,6 +6169,8 @@ class _$WrongPasswordFailure extends WrongPasswordFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notEditablePasswordFailure,
+    required TResult Function() userInfoUpdateFailure,
   }) {
     return wrongPasswordFailure();
   }
@@ -5869,6 +6207,8 @@ class _$WrongPasswordFailure extends WrongPasswordFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
   }) {
     return wrongPasswordFailure?.call();
   }
@@ -5905,6 +6245,8 @@ class _$WrongPasswordFailure extends WrongPasswordFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (wrongPasswordFailure != null) {
@@ -5951,6 +6293,10 @@ class _$WrongPasswordFailure extends WrongPasswordFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotEditablePasswordFailure value)
+        notEditablePasswordFailure,
+    required TResult Function(UserInfoUpdateFailure value)
+        userInfoUpdateFailure,
   }) {
     return wrongPasswordFailure(this);
   }
@@ -5988,6 +6334,9 @@ class _$WrongPasswordFailure extends WrongPasswordFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
   }) {
     return wrongPasswordFailure?.call(this);
   }
@@ -6025,6 +6374,9 @@ class _$WrongPasswordFailure extends WrongPasswordFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (wrongPasswordFailure != null) {
@@ -6109,6 +6461,8 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notEditablePasswordFailure,
+    required TResult Function() userInfoUpdateFailure,
   }) {
     return noEmailUserFailure();
   }
@@ -6145,6 +6499,8 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
   }) {
     return noEmailUserFailure?.call();
   }
@@ -6181,6 +6537,8 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (noEmailUserFailure != null) {
@@ -6227,6 +6585,10 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotEditablePasswordFailure value)
+        notEditablePasswordFailure,
+    required TResult Function(UserInfoUpdateFailure value)
+        userInfoUpdateFailure,
   }) {
     return noEmailUserFailure(this);
   }
@@ -6264,6 +6626,9 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
   }) {
     return noEmailUserFailure?.call(this);
   }
@@ -6301,6 +6666,9 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (noEmailUserFailure != null) {
@@ -6385,6 +6753,8 @@ class _$ExistingEmailFailure extends ExistingEmailFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notEditablePasswordFailure,
+    required TResult Function() userInfoUpdateFailure,
   }) {
     return existingEmailFailure();
   }
@@ -6421,6 +6791,8 @@ class _$ExistingEmailFailure extends ExistingEmailFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
   }) {
     return existingEmailFailure?.call();
   }
@@ -6457,6 +6829,8 @@ class _$ExistingEmailFailure extends ExistingEmailFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (existingEmailFailure != null) {
@@ -6503,6 +6877,10 @@ class _$ExistingEmailFailure extends ExistingEmailFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotEditablePasswordFailure value)
+        notEditablePasswordFailure,
+    required TResult Function(UserInfoUpdateFailure value)
+        userInfoUpdateFailure,
   }) {
     return existingEmailFailure(this);
   }
@@ -6540,6 +6918,9 @@ class _$ExistingEmailFailure extends ExistingEmailFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
   }) {
     return existingEmailFailure?.call(this);
   }
@@ -6577,6 +6958,9 @@ class _$ExistingEmailFailure extends ExistingEmailFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (existingEmailFailure != null) {
@@ -6661,6 +7045,8 @@ class _$UserEnabledFailure extends UserEnabledFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notEditablePasswordFailure,
+    required TResult Function() userInfoUpdateFailure,
   }) {
     return userEnabledFailure();
   }
@@ -6697,6 +7083,8 @@ class _$UserEnabledFailure extends UserEnabledFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
   }) {
     return userEnabledFailure?.call();
   }
@@ -6733,6 +7121,8 @@ class _$UserEnabledFailure extends UserEnabledFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (userEnabledFailure != null) {
@@ -6779,6 +7169,10 @@ class _$UserEnabledFailure extends UserEnabledFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotEditablePasswordFailure value)
+        notEditablePasswordFailure,
+    required TResult Function(UserInfoUpdateFailure value)
+        userInfoUpdateFailure,
   }) {
     return userEnabledFailure(this);
   }
@@ -6816,6 +7210,9 @@ class _$UserEnabledFailure extends UserEnabledFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
   }) {
     return userEnabledFailure?.call(this);
   }
@@ -6853,6 +7250,9 @@ class _$UserEnabledFailure extends UserEnabledFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (userEnabledFailure != null) {
@@ -6937,6 +7337,8 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notEditablePasswordFailure,
+    required TResult Function() userInfoUpdateFailure,
   }) {
     return weakPasswordFailure();
   }
@@ -6973,6 +7375,8 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
   }) {
     return weakPasswordFailure?.call();
   }
@@ -7009,6 +7413,8 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (weakPasswordFailure != null) {
@@ -7055,6 +7461,10 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotEditablePasswordFailure value)
+        notEditablePasswordFailure,
+    required TResult Function(UserInfoUpdateFailure value)
+        userInfoUpdateFailure,
   }) {
     return weakPasswordFailure(this);
   }
@@ -7092,6 +7502,9 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
   }) {
     return weakPasswordFailure?.call(this);
   }
@@ -7129,6 +7542,9 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (weakPasswordFailure != null) {
@@ -7213,6 +7629,8 @@ class _$MaxImageSizeFailure extends MaxImageSizeFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notEditablePasswordFailure,
+    required TResult Function() userInfoUpdateFailure,
   }) {
     return maxImageSizeFailure();
   }
@@ -7249,6 +7667,8 @@ class _$MaxImageSizeFailure extends MaxImageSizeFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
   }) {
     return maxImageSizeFailure?.call();
   }
@@ -7285,6 +7705,8 @@ class _$MaxImageSizeFailure extends MaxImageSizeFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (maxImageSizeFailure != null) {
@@ -7331,6 +7753,10 @@ class _$MaxImageSizeFailure extends MaxImageSizeFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotEditablePasswordFailure value)
+        notEditablePasswordFailure,
+    required TResult Function(UserInfoUpdateFailure value)
+        userInfoUpdateFailure,
   }) {
     return maxImageSizeFailure(this);
   }
@@ -7368,6 +7794,9 @@ class _$MaxImageSizeFailure extends MaxImageSizeFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
   }) {
     return maxImageSizeFailure?.call(this);
   }
@@ -7405,6 +7834,9 @@ class _$MaxImageSizeFailure extends MaxImageSizeFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (maxImageSizeFailure != null) {
@@ -7489,6 +7921,8 @@ class _$MaxImageNumFailure extends MaxImageNumFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notEditablePasswordFailure,
+    required TResult Function() userInfoUpdateFailure,
   }) {
     return maxImageNumFailure();
   }
@@ -7525,6 +7959,8 @@ class _$MaxImageNumFailure extends MaxImageNumFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
   }) {
     return maxImageNumFailure?.call();
   }
@@ -7561,6 +7997,8 @@ class _$MaxImageNumFailure extends MaxImageNumFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (maxImageNumFailure != null) {
@@ -7607,6 +8045,10 @@ class _$MaxImageNumFailure extends MaxImageNumFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotEditablePasswordFailure value)
+        notEditablePasswordFailure,
+    required TResult Function(UserInfoUpdateFailure value)
+        userInfoUpdateFailure,
   }) {
     return maxImageNumFailure(this);
   }
@@ -7644,6 +8086,9 @@ class _$MaxImageNumFailure extends MaxImageNumFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
   }) {
     return maxImageNumFailure?.call(this);
   }
@@ -7681,6 +8126,9 @@ class _$MaxImageNumFailure extends MaxImageNumFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (maxImageNumFailure != null) {
@@ -7768,6 +8216,8 @@ class _$NoPostTypeSelectedFailure extends NoPostTypeSelectedFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notEditablePasswordFailure,
+    required TResult Function() userInfoUpdateFailure,
   }) {
     return noPostTypeSelectedFailure();
   }
@@ -7804,6 +8254,8 @@ class _$NoPostTypeSelectedFailure extends NoPostTypeSelectedFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
   }) {
     return noPostTypeSelectedFailure?.call();
   }
@@ -7840,6 +8292,8 @@ class _$NoPostTypeSelectedFailure extends NoPostTypeSelectedFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (noPostTypeSelectedFailure != null) {
@@ -7886,6 +8340,10 @@ class _$NoPostTypeSelectedFailure extends NoPostTypeSelectedFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotEditablePasswordFailure value)
+        notEditablePasswordFailure,
+    required TResult Function(UserInfoUpdateFailure value)
+        userInfoUpdateFailure,
   }) {
     return noPostTypeSelectedFailure(this);
   }
@@ -7923,6 +8381,9 @@ class _$NoPostTypeSelectedFailure extends NoPostTypeSelectedFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
   }) {
     return noPostTypeSelectedFailure?.call(this);
   }
@@ -7960,6 +8421,9 @@ class _$NoPostTypeSelectedFailure extends NoPostTypeSelectedFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (noPostTypeSelectedFailure != null) {
@@ -8044,6 +8508,8 @@ class _$NoPostContentsFailure extends NoPostContentsFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notEditablePasswordFailure,
+    required TResult Function() userInfoUpdateFailure,
   }) {
     return noPostContentsFailure();
   }
@@ -8080,6 +8546,8 @@ class _$NoPostContentsFailure extends NoPostContentsFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
   }) {
     return noPostContentsFailure?.call();
   }
@@ -8116,6 +8584,8 @@ class _$NoPostContentsFailure extends NoPostContentsFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (noPostContentsFailure != null) {
@@ -8162,6 +8632,10 @@ class _$NoPostContentsFailure extends NoPostContentsFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotEditablePasswordFailure value)
+        notEditablePasswordFailure,
+    required TResult Function(UserInfoUpdateFailure value)
+        userInfoUpdateFailure,
   }) {
     return noPostContentsFailure(this);
   }
@@ -8199,6 +8673,9 @@ class _$NoPostContentsFailure extends NoPostContentsFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
   }) {
     return noPostContentsFailure?.call(this);
   }
@@ -8236,6 +8713,9 @@ class _$NoPostContentsFailure extends NoPostContentsFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
     required TResult orElse(),
   }) {
     if (noPostContentsFailure != null) {
@@ -8248,4 +8728,592 @@ class _$NoPostContentsFailure extends NoPostContentsFailure {
 abstract class NoPostContentsFailure extends Failure {
   const factory NoPostContentsFailure() = _$NoPostContentsFailure;
   const NoPostContentsFailure._() : super._();
+}
+
+/// @nodoc
+abstract class _$$NotEditablePasswordFailureCopyWith<$Res> {
+  factory _$$NotEditablePasswordFailureCopyWith(
+          _$NotEditablePasswordFailure value,
+          $Res Function(_$NotEditablePasswordFailure) then) =
+      __$$NotEditablePasswordFailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$NotEditablePasswordFailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res>
+    implements _$$NotEditablePasswordFailureCopyWith<$Res> {
+  __$$NotEditablePasswordFailureCopyWithImpl(
+      _$NotEditablePasswordFailure _value,
+      $Res Function(_$NotEditablePasswordFailure) _then)
+      : super(_value, (v) => _then(v as _$NotEditablePasswordFailure));
+
+  @override
+  _$NotEditablePasswordFailure get _value =>
+      super._value as _$NotEditablePasswordFailure;
+}
+
+/// @nodoc
+
+class _$NotEditablePasswordFailure extends NotEditablePasswordFailure {
+  const _$NotEditablePasswordFailure() : super._();
+
+  @override
+  String toString() {
+    return 'Failure.notEditablePasswordFailure()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$NotEditablePasswordFailure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() serverFailure,
+    required TResult Function() dataParsingFailure,
+    required TResult Function() noConnectionFailure,
+    required TResult Function() notFoundFailure,
+    required TResult Function() noUserDataFailure,
+    required TResult Function() maxDiseaseFailure,
+    required TResult Function() maxConimalFailure,
+    required TResult Function() emptyListFailure,
+    required TResult Function() noSuchDataInListFailure,
+    required TResult Function() registerConimalFaiure,
+    required TResult Function() removeConimalFailure,
+    required TResult Function() getConimalListFailure,
+    required TResult Function() signInCredentialFailure,
+    required TResult Function() signInTokenFailure,
+    required TResult Function() naverSigninFailure,
+    required TResult Function() kakaoSigninFailure,
+    required TResult Function() googleSigninFailure,
+    required TResult Function() appleSigninFailure,
+    required TResult Function() emailSigninFailure,
+    required TResult Function() getUserFailure,
+    required TResult Function() wrongPasswordFailure,
+    required TResult Function() noEmailUserFailure,
+    required TResult Function() existingEmailFailure,
+    required TResult Function() userEnabledFailure,
+    required TResult Function() weakPasswordFailure,
+    required TResult Function() maxImageSizeFailure,
+    required TResult Function() maxImageNumFailure,
+    required TResult Function() noPostTypeSelectedFailure,
+    required TResult Function() noPostContentsFailure,
+    required TResult Function() notEditablePasswordFailure,
+    required TResult Function() userInfoUpdateFailure,
+  }) {
+    return notEditablePasswordFailure();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? serverFailure,
+    TResult Function()? dataParsingFailure,
+    TResult Function()? noConnectionFailure,
+    TResult Function()? notFoundFailure,
+    TResult Function()? noUserDataFailure,
+    TResult Function()? maxDiseaseFailure,
+    TResult Function()? maxConimalFailure,
+    TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
+    TResult Function()? signInCredentialFailure,
+    TResult Function()? signInTokenFailure,
+    TResult Function()? naverSigninFailure,
+    TResult Function()? kakaoSigninFailure,
+    TResult Function()? googleSigninFailure,
+    TResult Function()? appleSigninFailure,
+    TResult Function()? emailSigninFailure,
+    TResult Function()? getUserFailure,
+    TResult Function()? wrongPasswordFailure,
+    TResult Function()? noEmailUserFailure,
+    TResult Function()? existingEmailFailure,
+    TResult Function()? userEnabledFailure,
+    TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
+    TResult Function()? maxImageNumFailure,
+    TResult Function()? noPostTypeSelectedFailure,
+    TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
+  }) {
+    return notEditablePasswordFailure?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? serverFailure,
+    TResult Function()? dataParsingFailure,
+    TResult Function()? noConnectionFailure,
+    TResult Function()? notFoundFailure,
+    TResult Function()? noUserDataFailure,
+    TResult Function()? maxDiseaseFailure,
+    TResult Function()? maxConimalFailure,
+    TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
+    TResult Function()? signInCredentialFailure,
+    TResult Function()? signInTokenFailure,
+    TResult Function()? naverSigninFailure,
+    TResult Function()? kakaoSigninFailure,
+    TResult Function()? googleSigninFailure,
+    TResult Function()? appleSigninFailure,
+    TResult Function()? emailSigninFailure,
+    TResult Function()? getUserFailure,
+    TResult Function()? wrongPasswordFailure,
+    TResult Function()? noEmailUserFailure,
+    TResult Function()? existingEmailFailure,
+    TResult Function()? userEnabledFailure,
+    TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
+    TResult Function()? maxImageNumFailure,
+    TResult Function()? noPostTypeSelectedFailure,
+    TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
+    required TResult orElse(),
+  }) {
+    if (notEditablePasswordFailure != null) {
+      return notEditablePasswordFailure();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ServerFailure value) serverFailure,
+    required TResult Function(DataParsingFailure value) dataParsingFailure,
+    required TResult Function(NoConnectionFailure value) noConnectionFailure,
+    required TResult Function(NotFoundFailure value) notFoundFailure,
+    required TResult Function(NoUserDataFailure value) noUserDataFailure,
+    required TResult Function(MaxDiseaseFailure value) maxDiseaseFailure,
+    required TResult Function(MaxConimalFailure value) maxConimalFailure,
+    required TResult Function(EmptyListFailure value) emptyListFailure,
+    required TResult Function(NoSuchDataInListFailure value)
+        noSuchDataInListFailure,
+    required TResult Function(RegisterConimalFailure value)
+        registerConimalFaiure,
+    required TResult Function(RemoveConimalFailure value) removeConimalFailure,
+    required TResult Function(GetConimalListFailure value)
+        getConimalListFailure,
+    required TResult Function(SignInCredentialFailure value)
+        signInCredentialFailure,
+    required TResult Function(SignInTokenFailure value) signInTokenFailure,
+    required TResult Function(NaverSigninFailure value) naverSigninFailure,
+    required TResult Function(KakaoSigninFailure value) kakaoSigninFailure,
+    required TResult Function(GoogleSigninFailure value) googleSigninFailure,
+    required TResult Function(AppleSigninFailure value) appleSigninFailure,
+    required TResult Function(EmailSigninFailure value) emailSigninFailure,
+    required TResult Function(GetUserInfoFailure value) getUserFailure,
+    required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
+    required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(ExistingEmailFailure value) existingEmailFailure,
+    required TResult Function(UserEnabledFailure value) userEnabledFailure,
+    required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
+    required TResult Function(MaxImageSizeFailure value) maxImageSizeFailure,
+    required TResult Function(MaxImageNumFailure value) maxImageNumFailure,
+    required TResult Function(NoPostTypeSelectedFailure value)
+        noPostTypeSelectedFailure,
+    required TResult Function(NoPostContentsFailure value)
+        noPostContentsFailure,
+    required TResult Function(NotEditablePasswordFailure value)
+        notEditablePasswordFailure,
+    required TResult Function(UserInfoUpdateFailure value)
+        userInfoUpdateFailure,
+  }) {
+    return notEditablePasswordFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ServerFailure value)? serverFailure,
+    TResult Function(DataParsingFailure value)? dataParsingFailure,
+    TResult Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult Function(NotFoundFailure value)? notFoundFailure,
+    TResult Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult Function(GetUserInfoFailure value)? getUserFailure,
+    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult Function(NoPostTypeSelectedFailure value)?
+        noPostTypeSelectedFailure,
+    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+  }) {
+    return notEditablePasswordFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ServerFailure value)? serverFailure,
+    TResult Function(DataParsingFailure value)? dataParsingFailure,
+    TResult Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult Function(NotFoundFailure value)? notFoundFailure,
+    TResult Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult Function(GetUserInfoFailure value)? getUserFailure,
+    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult Function(NoPostTypeSelectedFailure value)?
+        noPostTypeSelectedFailure,
+    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    required TResult orElse(),
+  }) {
+    if (notEditablePasswordFailure != null) {
+      return notEditablePasswordFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class NotEditablePasswordFailure extends Failure {
+  const factory NotEditablePasswordFailure() = _$NotEditablePasswordFailure;
+  const NotEditablePasswordFailure._() : super._();
+}
+
+/// @nodoc
+abstract class _$$UserInfoUpdateFailureCopyWith<$Res> {
+  factory _$$UserInfoUpdateFailureCopyWith(_$UserInfoUpdateFailure value,
+          $Res Function(_$UserInfoUpdateFailure) then) =
+      __$$UserInfoUpdateFailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$UserInfoUpdateFailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res>
+    implements _$$UserInfoUpdateFailureCopyWith<$Res> {
+  __$$UserInfoUpdateFailureCopyWithImpl(_$UserInfoUpdateFailure _value,
+      $Res Function(_$UserInfoUpdateFailure) _then)
+      : super(_value, (v) => _then(v as _$UserInfoUpdateFailure));
+
+  @override
+  _$UserInfoUpdateFailure get _value => super._value as _$UserInfoUpdateFailure;
+}
+
+/// @nodoc
+
+class _$UserInfoUpdateFailure extends UserInfoUpdateFailure {
+  const _$UserInfoUpdateFailure() : super._();
+
+  @override
+  String toString() {
+    return 'Failure.userInfoUpdateFailure()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$UserInfoUpdateFailure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() serverFailure,
+    required TResult Function() dataParsingFailure,
+    required TResult Function() noConnectionFailure,
+    required TResult Function() notFoundFailure,
+    required TResult Function() noUserDataFailure,
+    required TResult Function() maxDiseaseFailure,
+    required TResult Function() maxConimalFailure,
+    required TResult Function() emptyListFailure,
+    required TResult Function() noSuchDataInListFailure,
+    required TResult Function() registerConimalFaiure,
+    required TResult Function() removeConimalFailure,
+    required TResult Function() getConimalListFailure,
+    required TResult Function() signInCredentialFailure,
+    required TResult Function() signInTokenFailure,
+    required TResult Function() naverSigninFailure,
+    required TResult Function() kakaoSigninFailure,
+    required TResult Function() googleSigninFailure,
+    required TResult Function() appleSigninFailure,
+    required TResult Function() emailSigninFailure,
+    required TResult Function() getUserFailure,
+    required TResult Function() wrongPasswordFailure,
+    required TResult Function() noEmailUserFailure,
+    required TResult Function() existingEmailFailure,
+    required TResult Function() userEnabledFailure,
+    required TResult Function() weakPasswordFailure,
+    required TResult Function() maxImageSizeFailure,
+    required TResult Function() maxImageNumFailure,
+    required TResult Function() noPostTypeSelectedFailure,
+    required TResult Function() noPostContentsFailure,
+    required TResult Function() notEditablePasswordFailure,
+    required TResult Function() userInfoUpdateFailure,
+  }) {
+    return userInfoUpdateFailure();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? serverFailure,
+    TResult Function()? dataParsingFailure,
+    TResult Function()? noConnectionFailure,
+    TResult Function()? notFoundFailure,
+    TResult Function()? noUserDataFailure,
+    TResult Function()? maxDiseaseFailure,
+    TResult Function()? maxConimalFailure,
+    TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
+    TResult Function()? signInCredentialFailure,
+    TResult Function()? signInTokenFailure,
+    TResult Function()? naverSigninFailure,
+    TResult Function()? kakaoSigninFailure,
+    TResult Function()? googleSigninFailure,
+    TResult Function()? appleSigninFailure,
+    TResult Function()? emailSigninFailure,
+    TResult Function()? getUserFailure,
+    TResult Function()? wrongPasswordFailure,
+    TResult Function()? noEmailUserFailure,
+    TResult Function()? existingEmailFailure,
+    TResult Function()? userEnabledFailure,
+    TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
+    TResult Function()? maxImageNumFailure,
+    TResult Function()? noPostTypeSelectedFailure,
+    TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
+  }) {
+    return userInfoUpdateFailure?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? serverFailure,
+    TResult Function()? dataParsingFailure,
+    TResult Function()? noConnectionFailure,
+    TResult Function()? notFoundFailure,
+    TResult Function()? noUserDataFailure,
+    TResult Function()? maxDiseaseFailure,
+    TResult Function()? maxConimalFailure,
+    TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
+    TResult Function()? signInCredentialFailure,
+    TResult Function()? signInTokenFailure,
+    TResult Function()? naverSigninFailure,
+    TResult Function()? kakaoSigninFailure,
+    TResult Function()? googleSigninFailure,
+    TResult Function()? appleSigninFailure,
+    TResult Function()? emailSigninFailure,
+    TResult Function()? getUserFailure,
+    TResult Function()? wrongPasswordFailure,
+    TResult Function()? noEmailUserFailure,
+    TResult Function()? existingEmailFailure,
+    TResult Function()? userEnabledFailure,
+    TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
+    TResult Function()? maxImageNumFailure,
+    TResult Function()? noPostTypeSelectedFailure,
+    TResult Function()? noPostContentsFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
+    required TResult orElse(),
+  }) {
+    if (userInfoUpdateFailure != null) {
+      return userInfoUpdateFailure();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ServerFailure value) serverFailure,
+    required TResult Function(DataParsingFailure value) dataParsingFailure,
+    required TResult Function(NoConnectionFailure value) noConnectionFailure,
+    required TResult Function(NotFoundFailure value) notFoundFailure,
+    required TResult Function(NoUserDataFailure value) noUserDataFailure,
+    required TResult Function(MaxDiseaseFailure value) maxDiseaseFailure,
+    required TResult Function(MaxConimalFailure value) maxConimalFailure,
+    required TResult Function(EmptyListFailure value) emptyListFailure,
+    required TResult Function(NoSuchDataInListFailure value)
+        noSuchDataInListFailure,
+    required TResult Function(RegisterConimalFailure value)
+        registerConimalFaiure,
+    required TResult Function(RemoveConimalFailure value) removeConimalFailure,
+    required TResult Function(GetConimalListFailure value)
+        getConimalListFailure,
+    required TResult Function(SignInCredentialFailure value)
+        signInCredentialFailure,
+    required TResult Function(SignInTokenFailure value) signInTokenFailure,
+    required TResult Function(NaverSigninFailure value) naverSigninFailure,
+    required TResult Function(KakaoSigninFailure value) kakaoSigninFailure,
+    required TResult Function(GoogleSigninFailure value) googleSigninFailure,
+    required TResult Function(AppleSigninFailure value) appleSigninFailure,
+    required TResult Function(EmailSigninFailure value) emailSigninFailure,
+    required TResult Function(GetUserInfoFailure value) getUserFailure,
+    required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
+    required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(ExistingEmailFailure value) existingEmailFailure,
+    required TResult Function(UserEnabledFailure value) userEnabledFailure,
+    required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
+    required TResult Function(MaxImageSizeFailure value) maxImageSizeFailure,
+    required TResult Function(MaxImageNumFailure value) maxImageNumFailure,
+    required TResult Function(NoPostTypeSelectedFailure value)
+        noPostTypeSelectedFailure,
+    required TResult Function(NoPostContentsFailure value)
+        noPostContentsFailure,
+    required TResult Function(NotEditablePasswordFailure value)
+        notEditablePasswordFailure,
+    required TResult Function(UserInfoUpdateFailure value)
+        userInfoUpdateFailure,
+  }) {
+    return userInfoUpdateFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ServerFailure value)? serverFailure,
+    TResult Function(DataParsingFailure value)? dataParsingFailure,
+    TResult Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult Function(NotFoundFailure value)? notFoundFailure,
+    TResult Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult Function(GetUserInfoFailure value)? getUserFailure,
+    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult Function(NoPostTypeSelectedFailure value)?
+        noPostTypeSelectedFailure,
+    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+  }) {
+    return userInfoUpdateFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ServerFailure value)? serverFailure,
+    TResult Function(DataParsingFailure value)? dataParsingFailure,
+    TResult Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult Function(NotFoundFailure value)? notFoundFailure,
+    TResult Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult Function(GetUserInfoFailure value)? getUserFailure,
+    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult Function(NoPostTypeSelectedFailure value)?
+        noPostTypeSelectedFailure,
+    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    required TResult orElse(),
+  }) {
+    if (userInfoUpdateFailure != null) {
+      return userInfoUpdateFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UserInfoUpdateFailure extends Failure {
+  const factory UserInfoUpdateFailure() = _$UserInfoUpdateFailure;
+  const UserInfoUpdateFailure._() : super._();
 }
