@@ -5,8 +5,8 @@ import '../../../import_basic.dart';
 class WcIconButton extends StatelessWidget {
   WcIconButton({
     Key? key,
-    required this.active,
-    required this.onTap,
+    this.active = true,
+    this.onTap,
     required this.iconSrc,
     required this.activeIconColor,
     required this.inactiveIconColor,
