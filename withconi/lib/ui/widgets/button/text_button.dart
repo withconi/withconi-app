@@ -5,8 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:withconi/ui/theme/colors.dart';
 import 'package:withconi/ui/theme/sizes.dart';
 
-class WcTextButton extends StatelessWidget {
-  WcTextButton({
+class WcUnderlinedTextButton extends StatelessWidget {
+  WcUnderlinedTextButton({
     Key? key,
     this.valueText,
     required this.valueTextStyle,
