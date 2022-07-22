@@ -1,15 +1,8 @@
-import 'package:dartz/dartz.dart';
 import 'package:intl/intl.dart';
-import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
-import 'package:withconi/controller/signup/shared_data/conimal_data.dart';
-import 'package:withconi/controller/signup/shared_data/user_data.dart';
-import 'package:withconi/core/error_handling/error_message_object.dart';
 import 'package:withconi/data/repository/conimal_repository.dart';
-import 'package:withconi/data/repository/signup_repository.dart';
 import '../../configs/constants/enum.dart';
 import '../../configs/constants/regex.dart';
 import '../../configs/constants/strings.dart';
-import '../../core/error_handling/failures.dart';
 import '../../data/model/conimal.dart';
 import '../../data/model/disease.dart';
 import '../../import_basic.dart';

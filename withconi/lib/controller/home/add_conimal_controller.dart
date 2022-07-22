@@ -18,7 +18,7 @@ class AddConimalController extends GetxController {
   final ConimalRepository _conimalRepository = Get.put(ConimalRepository());
   RxBool isConimalAdded = false.obs;
   final RxString _conimalName = ''.obs;
-  Rxn<WcUser> wcUser = Rxn<WcUser>();
+  late WcUser wcUser;
   RxString diseaseText = ''.obs;
   RxString diseaseSuffixText = ''.obs;
   RxBool showAddConimalButton = false.obs;
@@ -48,7 +48,7 @@ class AddConimalController extends GetxController {
 
   void onInit() {
     super.onInit();
-    wcUser.value = Get.arguments['wcUser'];
+    wcUser = AuthController.to.wcUser.value!;
   }
 
   @override
