@@ -1,7 +1,6 @@
 import 'dart:io';
-
+import '../../../configs/constants/enum.dart';
 import '../../../import_basic.dart';
-import '../../pages/community/community_board_detail_page.dart';
 import '../badge/badge.dart';
 import '../button/icon_text_button.dart';
 
@@ -14,7 +13,7 @@ class WcUserPostListTile extends StatelessWidget {
     required this.liked,
     required this.likesNum,
     required this.commentsNum,
-    this.badgeText,
+    this.postType,
     this.badgeBackgroundColor,
     this.badgeTextColor,
     this.userProfile,
@@ -28,7 +27,7 @@ class WcUserPostListTile extends StatelessWidget {
 
   String authorName;
   String uploadAt;
-  String? badgeText;
+  PostType? postType;
   Color? badgeBackgroundColor;
   Color? badgeTextColor;
   String contents;
@@ -48,14 +47,14 @@ class WcUserPostListTile extends StatelessWidget {
     return GestureDetector(
       onTap: onPostTap,
       child: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             border:
                 Border(bottom: BorderSide(width: 1, color: WcColors.grey80))),
         width: WcWidth,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 27,
             ),
             SizedBox(
@@ -63,10 +62,10 @@ class WcUserPostListTile extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CircleAvatar(
+                  const CircleAvatar(
                     radius: 18,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
                   Column(
@@ -87,7 +86,7 @@ class WcUserPostListTile extends StatelessWidget {
                                   height: 1.5),
                             ),
                             Text(
-                              ' • $uploadAt시간 전',
+                              ' • $uploadAt',
                               style: GoogleFonts.notoSans(
                                   color: WcColors.grey140,
                                   fontSize: 13,
@@ -96,13 +95,13 @@ class WcUserPostListTile extends StatelessWidget {
                             ),
                             (activeBadge)
                                 ? WcBadge(
-                                    text: badgeText ?? '',
+                                    text: postTypeToKorean(postType),
                                     backgroundColor: badgeBackgroundColor ??
                                         Colors.transparent,
                                     textColor:
                                         badgeTextColor ?? Colors.transparent,
                                   )
-                                : SizedBox.shrink()
+                                : const SizedBox.shrink()
                           ],
                         ),
                       ),
@@ -140,12 +139,12 @@ class WcUserPostListTile extends StatelessWidget {
                                         onTap: onLikeTap,
                                         text: '34',
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 18,
                                       ),
                                     ],
                                   )
-                                : SizedBox.shrink(),
+                                : const SizedBox.shrink(),
                             (activeComment)
                                 ? WcIconTextButton(
                                     active: true,
@@ -156,11 +155,11 @@ class WcUserPostListTile extends StatelessWidget {
                                     text: '34',
                                     iconHeight: 19,
                                   )
-                                : SizedBox.shrink(),
+                                : const SizedBox.shrink(),
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                     ],
