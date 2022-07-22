@@ -13,7 +13,7 @@ class WcUser with _$WcUser {
       required String email,
       required String displayName,
       required String nickname,
-      required ProviderOptions provider,
+      required Provider provider,
       String? photoURL,
       required List<Conimal> conimals}) = _WcUser;
 

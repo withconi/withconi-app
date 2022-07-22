@@ -24,7 +24,7 @@ mixin _$WcUser {
   String get email => throw _privateConstructorUsedError;
   String get displayName => throw _privateConstructorUsedError;
   String get nickname => throw _privateConstructorUsedError;
-  ProviderOptions get provider => throw _privateConstructorUsedError;
+  Provider get provider => throw _privateConstructorUsedError;
   String? get photoURL => throw _privateConstructorUsedError;
   List<Conimal> get conimals => throw _privateConstructorUsedError;
 
@@ -42,7 +42,7 @@ abstract class $WcUserCopyWith<$Res> {
       String email,
       String displayName,
       String nickname,
-      ProviderOptions provider,
+      Provider provider,
       String? photoURL,
       List<Conimal> conimals});
 }
@@ -85,7 +85,7 @@ class _$WcUserCopyWithImpl<$Res> implements $WcUserCopyWith<$Res> {
       provider: provider == freezed
           ? _value.provider
           : provider // ignore: cast_nullable_to_non_nullable
-              as ProviderOptions,
+              as Provider,
       photoURL: photoURL == freezed
           ? _value.photoURL
           : photoURL // ignore: cast_nullable_to_non_nullable
@@ -108,7 +108,7 @@ abstract class _$$_WcUserCopyWith<$Res> implements $WcUserCopyWith<$Res> {
       String email,
       String displayName,
       String nickname,
-      ProviderOptions provider,
+      Provider provider,
       String? photoURL,
       List<Conimal> conimals});
 }
@@ -152,7 +152,7 @@ class __$$_WcUserCopyWithImpl<$Res> extends _$WcUserCopyWithImpl<$Res>
       provider: provider == freezed
           ? _value.provider
           : provider // ignore: cast_nullable_to_non_nullable
-              as ProviderOptions,
+              as Provider,
       photoURL: photoURL == freezed
           ? _value.photoURL
           : photoURL // ignore: cast_nullable_to_non_nullable
@@ -191,7 +191,7 @@ class _$_WcUser implements _WcUser {
   @override
   final String nickname;
   @override
-  final ProviderOptions provider;
+  final Provider provider;
   @override
   final String? photoURL;
   final List<Conimal> _conimals;
@@ -250,7 +250,7 @@ abstract class _WcUser implements WcUser {
       required final String email,
       required final String displayName,
       required final String nickname,
-      required final ProviderOptions provider,
+      required final Provider provider,
       final String? photoURL,
       required final List<Conimal> conimals}) = _$_WcUser;
 
@@ -265,7 +265,7 @@ abstract class _WcUser implements WcUser {
   @override
   String get nickname => throw _privateConstructorUsedError;
   @override
-  ProviderOptions get provider => throw _privateConstructorUsedError;
+  Provider get provider => throw _privateConstructorUsedError;
   @override
   String? get photoURL => throw _privateConstructorUsedError;
   @override
