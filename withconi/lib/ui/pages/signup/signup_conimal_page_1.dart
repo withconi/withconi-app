@@ -62,10 +62,10 @@ class SignupConimalPage1 extends StatelessWidget {
                                       _controller.conimalSpecies.value,
                                   value: Species.cat,
                                   disabledImage:
-                                      Image.asset('assets/icons/cat_grey.png'),
+                                      Image.asset('assets/icons/cat_black.png'),
                                   selectedColor: WcColors.white,
                                   selectedImage:
-                                      Image.asset('assets/icons/cat.png'),
+                                      Image.asset('assets/icons/cat_grey.png'),
                                   onTap: () =>
                                       _controller.onSpeicesChanged(Species.cat),
                                 ),
@@ -126,7 +126,7 @@ class SignupConimalPage1 extends StatelessWidget {
                         height: 30,
                       ),
                       Obx(() {
-                        return WcTextButton(
+                        return WcUnderlinedTextButton(
                           active: _controller.birthDateSelected.value,
                           onTap: _controller.selectBirthDate,
                           valueText: _controller.birthDateString,
@@ -150,7 +150,7 @@ class SignupConimalPage1 extends StatelessWidget {
                         height: 30,
                       ),
                       Obx(() {
-                        return WcTextButton(
+                        return WcUnderlinedTextButton(
                           active: _controller.adoptedDateSelected.value,
                           onTap: _controller.selectAdoptedDate,
                           valueText: _controller.adoptedDateString,
@@ -173,7 +173,7 @@ class SignupConimalPage1 extends StatelessWidget {
                       const SizedBox(
                         height: 30,
                       ),
-                      Obx(() => WcTextButton(
+                      Obx(() => WcUnderlinedTextButton(
                             active: _controller.diseaseSelected.value,
                             onTap: () {
                               _controller.selectDisease();

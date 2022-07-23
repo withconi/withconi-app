@@ -2,7 +2,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:withconi/import_basic.dart';
 import '../../../controller/signup/signup_conimal_2_controller.dart';
 import '../../widgets/button/wide_button.dart';
-import 'signup_widgets/conimal_list_tile.dart';
+import '../../widgets/listtile/conimal_list_tile.dart';
 
 class SignupConimalPage2 extends StatelessWidget {
   SignupConimalPage2({Key? key}) : super(key: key);
@@ -70,7 +70,7 @@ class SignupConimalPage2 extends StatelessWidget {
                             ),
                           ],
                         ),
-                        child: ConimalListTile(
+                        child: WcConimalListTile(
                           age: _controller.calculateConimalAge(index),
                           diseaseName: (_controller
                                   .conimalList[index].diseases.isNotEmpty)
