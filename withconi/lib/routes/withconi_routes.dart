@@ -11,8 +11,9 @@ abstract class Routes {
   static const SIGNUP_CONIMAL_EDIT = '/signup/conimal/edit';
   static const SIGNIN_EMAIL = '/signin/email';
   static const SIGNUP_DISEASE_SEARCH = '/signup/conimal/1/disease';
-  static const CONIMAL_ADD = '/addConimal';
-  static const CONIMAL_EDIT = '/editConimal';
+  static const CONIMAL_MANAGE = '/conimal/manage';
+  static const CONIMAL_ADD = '/conimal/manage/add';
+  static const CONIMAL_EDIT = '/conimal/manage/edit';
   static const COMMUNITY_MAIN = '/community/main';
   static const COMMUNITY_DETAIL = '/community/detail';
   static const COMMUNITY_NEW_POST = '/community/new_post';

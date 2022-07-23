@@ -1,16 +1,17 @@
 import 'package:withconi/import_basic.dart';
 import 'package:withconi/routes/withconi_bindings.dart';
+import 'package:withconi/ui/pages/common_pages/add_conimal_page.dart';
+import 'package:withconi/ui/pages/common_pages/conimal_setting_page.dart';
 import 'package:withconi/ui/pages/community/community_board_detail_page.dart';
 import 'package:withconi/ui/pages/community/community_main_page.dart';
 import 'package:withconi/ui/pages/community/community_post_detail_page.dart';
 import 'package:withconi/ui/pages/diagnosis/diagnosis_main_page.dart';
 import 'package:withconi/ui/pages/dictionary/dictionary_main_page.dart';
-import 'package:withconi/ui/pages/home/add_conimal_page.dart';
-import 'package:withconi/ui/pages/home/edit_conimal_page.dart';
+import 'package:withconi/ui/pages/common_pages/edit_conimal_page.dart';
 import 'package:withconi/ui/pages/home/home_page.dart';
 import 'package:withconi/ui/pages/hospital/hospital_main_page.dart';
-import 'package:withconi/ui/pages/settings/setting_main_page.dart';
-import 'package:withconi/ui/pages/settings/user/edit_user.dart';
+import 'package:withconi/ui/pages/settings/setting_page.dart';
+import 'package:withconi/ui/pages/common_pages/edit_user_page.dart';
 import 'package:withconi/ui/pages/signin/signin_email_page.dart';
 import 'package:withconi/ui/pages/signup/disease_search_page.dart';
 import 'package:withconi/ui/pages/signup/signup_conimal_edit_page.dart';
@@ -73,6 +74,10 @@ class WcPages {
       page: () => AddConimalpage(),
     ),
     GetPage(
+      name: Routes.CONIMAL_MANAGE,
+      page: () => ConimalSettingPage(),
+    ),
+    GetPage(
         name: Routes.COMMUNITY_MAIN,
         page: () => CommunityMainPage(),
         transition: Transition.noTransition),
@@ -110,12 +115,10 @@ class WcPages {
     GetPage(
       name: Routes.SETTING_MAIN,
       page: () => SettingPage(),
-      transition: Transition.noTransition,
     ),
     GetPage(
       name: Routes.USER_EDIT,
       page: () => EditUserPage(),
-      transition: Transition.noTransition,
     ),
   ];
 }
