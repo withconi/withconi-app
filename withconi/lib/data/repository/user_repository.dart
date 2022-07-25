@@ -34,4 +34,23 @@ class UserRepository {
       return Left(NoUserDataFailure());
     }
   }
+
+  Future<Either<Failure, bool>> updateUser(
+      {required Map<String, dynamic> updateData}) async {
+    try {
+      Map<String, dynamic>? data =
+          await _api.updateUser(updateData: updateData);
+      if (data != null) {
+        return Right(true);
+      } else {
+        return Left(UserInfoUpdateFailure());
+      }
+    } on NoInternetConnectionException {
+      return Left(NoConnectionFailure());
+    } on NotFoundException {
+      return Left(NotFoundFailure());
+    } catch (e) {
+      return Left(UserInfoUpdateFailure());
+    }
+  }
 }
