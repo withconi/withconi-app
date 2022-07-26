@@ -14,7 +14,6 @@ class HomeController extends GetxController {
   RxList<Disease> allDiseasesList = RxList<Disease>();
   RxInt navIndex = 0.obs;
   WcUser? get wcUser => _wcUser.value;
-  RxBool isExpansionOneOpened = false.obs;
   RxBool isExpansionTwoOpened = false.obs;
 
   @override
