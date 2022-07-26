@@ -46,6 +46,56 @@ class CommunityRepository {
     }
   }
 
+  Future<Either<Failure, List<Post>>> getUserPostList(
+      {required PaginationFilter paginationFilter,
+      required String userId}) async {
+    try {
+      Map<String, dynamic> data = await _api.getMyPosts(
+          paginationFilter: paginationFilter, userId: userId);
+      List<Post> postList = PostResponse.fromJson(data).results;
+      return Right(postList);
+    } on NoInternetConnectionException {
+      return Left(NoConnectionFailure());
+    } on DataParsingException {
+      return Left(DataParsingFailure());
+    }
+  }
+
+  Future<Either<Failure, List<Post>>> getLikedPostList(
+      {required String uid}) async {
+    try {
+      Map<String, dynamic> data = await _api.getLikedPosts(uid: uid);
+      List<Post> postList = PostResponse.fromJson(data).results;
+      return Right(postList);
+    } on NoInternetConnectionException {
+      return Left(NoConnectionFailure());
+    } on DataParsingException {
+      return Left(DataParsingFailure());
+    }
+  }
+
+  Future<Either<Failure, List<String>>> updateLikePost(
+      {required String uid,
+      required String postId,
+      required bool isLiked}) async {
+    try {
+      Map<String, dynamic> likePostsData =
+          await _api.updateLikePost(uid: uid, postId: postId, isLiked: isLiked);
+
+      List<String> likedPostIdList =
+          (likePostsData['likePosts'] as List<dynamic>)
+              .map((e) => e as String)
+              .toList();
+
+      print("Liked Post Number => ${likedPostIdList.length}");
+      return Right(likedPostIdList);
+    } on NoInternetConnectionException {
+      return Left(NoConnectionFailure());
+    } on DataParsingException {
+      return Left(DataParsingFailure());
+    }
+  }
+
   Future<Either<Failure, Post>> newPost({required Post newPost}) async {
     try {
       Map<String, dynamic> postJson = newPost.toJson();
