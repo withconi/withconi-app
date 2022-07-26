@@ -85,7 +85,7 @@ class AddConimalController extends GetxController {
   }
 
   void onDiseaseListChanged(List<Disease> diseaseList) {
-    _diseaseList = diseaseList;
+    _diseaseList.assignAll(diseaseList);
     setSelectedDiseaseText(_diseaseList);
   }
 
@@ -148,14 +148,14 @@ class AddConimalController extends GetxController {
     onDiseaseListChanged(newDiseaseList);
   }
 
-  setSelectedDiseaseText(List<Disease> diseaseInfo) {
-    if (diseaseInfo.isNotEmpty) {
+  setSelectedDiseaseText(List<Disease> diseaseList) {
+    if (diseaseList.isNotEmpty) {
       diseaseSelected.value = true;
-      if (diseaseInfo.length > 1) {
-        diseaseText.value = diseaseInfo[0].name.substring(0, 10);
-        diseaseSuffixText.value = ' 외 ${diseaseInfo.length - 1}개';
+      if (diseaseList.length > 1) {
+        diseaseText.value = diseaseList[0].name.substring(0, 10);
+        diseaseSuffixText.value = ' 외 ${diseaseList.length - 1}개';
       } else {
-        diseaseText.value = diseaseInfo[0].name.substring(0, 10);
+        diseaseText.value = diseaseList[0].name.substring(0, 10);
         diseaseSuffixText.value = '';
       }
     } else {
@@ -171,7 +171,22 @@ class AddConimalController extends GetxController {
   //       (str) => print(str));
   // }
 
-  finishAdd() async {
+  // finishAdd() async {
+  //   Conimal newConimal = Conimal(
+  //     conimalId: DateTime.now().millisecondsSinceEpoch.toString(),
+  //     name: conimalName,
+  //     gender: conimalGender.value!,
+  //     species: conimalSpecies.value!,
+  //     birthDate: birthDate!,
+  //     adoptedDate: adoptedDate!,
+  //     diseases: _diseaseList,
+  //     userId: wcUser.uid,
+  //     // createdAt: DateTime.now(),
+  //   );
+  //   Get.back(result: newConimal);
+  // }
+
+  Future<void> createConimal() async {
     Conimal newConimal = Conimal(
       conimalId: DateTime.now().millisecondsSinceEpoch.toString(),
       name: conimalName,
@@ -180,9 +195,17 @@ class AddConimalController extends GetxController {
       birthDate: birthDate!,
       adoptedDate: adoptedDate!,
       diseases: _diseaseList,
-      uid: wcUser.uid,
-      // createdAt: DateTime.now(),
+      userId: wcUser.uid,
     );
-    Get.back(result: newConimal);
+
+    Either<Failure, bool> addResultEither = await showLoading(
+        () => _conimalRepository.createConimal(newConimal: newConimal));
+
+    addResultEither.fold(
+        (fail) =>
+            FailureInterpreter().mapFailureToDialog(fail, 'updateConimalList'),
+        (success) {
+      Get.back(result: newConimal);
+    });
   }
 }
