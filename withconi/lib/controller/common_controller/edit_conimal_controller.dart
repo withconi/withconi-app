@@ -1,11 +1,19 @@
+import 'dart:developer';
+
+import 'package:dartz/dartz.dart';
 import 'package:intl/intl.dart';
+import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/data/repository/conimal_repository.dart';
 import '../../configs/constants/enum.dart';
 import '../../configs/constants/regex.dart';
 import '../../configs/constants/strings.dart';
+import '../../core/error_handling/failures.dart';
 import '../../data/model/conimal.dart';
 import '../../data/model/disease.dart';
 import '../../import_basic.dart';
+import '../../ui/widgets/dialog/selection_dialog.dart';
+import '../../ui/widgets/loading.dart';
+import '../ui_interpreter/failure_ui_interpreter.dart';
 
 class EditConimalController extends GetxController {
   final ConimalRepository _conimalRepository = Get.put(ConimalRepository());
@@ -186,17 +194,62 @@ class EditConimalController extends GetxController {
     }
   }
 
-  finishEdit() {
-    Conimal newConimal = Conimal(
-      conimalId: DateTime.now().millisecondsSinceEpoch.toString(),
-      name: conimalName,
-      adoptedDate: adoptedDate!,
-      birthDate: birthDate!,
-      gender: conimalGender.value!,
-      species: conimalSpecies.value!,
-      diseases: _diseaseList,
-    );
-    // _conimalRepository.editTempConimal(newConimal, conimalIndex);
-    Get.back(result: newConimal);
+  // finishEdit() {
+  //   Conimal editedConimal = Conimal(
+  //       conimalId: _conimal.conimalId,
+  //       name: conimalName,
+  //       adoptedDate: adoptedDate!,
+  //       birthDate: birthDate!,
+  //       gender: conimalGender.value!,
+  //       species: conimalSpecies.value!,
+  //       diseases: _diseaseList,
+  //       userId: AuthController.to.wcUser.value!.uid);
+
+  //   Get.back(result: editedConimal);
+  // }
+
+  Future<void> getBack() async {
+    bool isConfirmed = await showSelectionDialog(
+        cancleText: '계속하기',
+        confirmText: '그만하기',
+        title: '코니멀 수정을 그만할까요?',
+        subtitle: '변경된 정보는 모두 사라집니다');
+    if (isConfirmed) {
+      Get.back();
+    }
+  }
+
+  Future<void> onEditButtonTap() async {
+    bool isConfirmed = await showSelectionDialog(
+        cancleText: '아니요',
+        confirmText: '네',
+        title: '정보를 수정할까요?',
+        subtitle: '변경된 코니멀 정보를 수정합니다');
+
+    if (isConfirmed) {
+      editConimalDB();
+    }
+  }
+
+  Future<void> editConimalDB() async {
+    Conimal editedConimal = Conimal(
+        conimalId: _conimal.conimalId,
+        name: conimalName,
+        adoptedDate: adoptedDate!,
+        birthDate: birthDate!,
+        gender: conimalGender.value!,
+        species: conimalSpecies.value!,
+        diseases: _diseaseList,
+        userId: AuthController.to.wcUser.value!.uid);
+
+    Either<Failure, bool> addResultEither = await showLoading(
+        () => _conimalRepository.updateConimal(editConimal: editedConimal));
+
+    addResultEither.fold(
+        (fail) =>
+            FailureInterpreter().mapFailureToDialog(fail, 'updateConimalList'),
+        (success) {
+      Get.back(result: editedConimal);
+    });
   }
 }
