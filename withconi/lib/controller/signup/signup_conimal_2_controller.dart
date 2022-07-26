@@ -43,7 +43,7 @@ class SignupConimal2Controller extends GetxController {
   }
 
   calculateConimalAge(int index) {
-    int age = Calculator().calculateAge(conimalList[index].birthDate);
+    int age = TimeCalculator().calculateAge(conimalList[index].birthDate);
 
     return age;
   }
@@ -67,6 +67,7 @@ class SignupConimal2Controller extends GetxController {
 
   signUp() {
     List<Conimal> conimalList = _signUpRepository.conimalList;
+    print(conimalList);
     showLoading((() async {
       Either<Failure, String> signUpEither = await _authRepository.signUp(
           conimalList: conimalList,
