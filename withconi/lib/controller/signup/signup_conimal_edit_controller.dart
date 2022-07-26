@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:intl/intl.dart';
+import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
 import 'package:withconi/controller/signup/shared_data/conimal_data.dart';
 import 'package:withconi/controller/signup/shared_data/user_data.dart';
@@ -184,15 +185,16 @@ class SignupConimalEditController extends GetxController {
 
   editConimal() {
     Conimal newConimal = Conimal(
-      conimalId: DateTime.now().millisecondsSinceEpoch.toString(),
-      name: conimalName,
-      adoptedDate: adoptedDate!,
-      birthDate: birthDate!,
-      gender: conimalGender.value!,
-      species: conimalSpecies.value!,
-      diseases: _diseaseList,
-      // createdAt: DateTime.now(),
-    );
+        conimalId: DateTime.now().millisecondsSinceEpoch.toString(),
+        name: conimalName,
+        adoptedDate: adoptedDate!,
+        birthDate: birthDate!,
+        gender: conimalGender.value!,
+        species: conimalSpecies.value!,
+        diseases: _diseaseList,
+        userId: AuthController.to.wcUser.value!.uid
+        // createdAt: DateTime.now(),
+        );
     _signUpRepository.editTempConimal(newConimal, conimalIndex);
 
     Get.offNamedUntil(Routes.SIGNUP_CONIMAL_STEP2,
