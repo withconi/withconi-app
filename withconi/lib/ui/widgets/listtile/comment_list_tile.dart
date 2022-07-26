@@ -6,6 +6,7 @@ import '../../../import_basic.dart';
 import '../../pages/community/community_board_detail_page.dart';
 import '../badge/badge.dart';
 import '../button/icon_text_button.dart';
+import '../button/like_button.dart';
 
 class WcCommentListTile extends StatelessWidget {
   WcCommentListTile({
@@ -26,6 +27,7 @@ class WcCommentListTile extends StatelessWidget {
     this.activeBadge = true,
     this.activeComment = true,
     this.activeLike = true,
+    this.onMoreTap,
   }) : super(key: key);
 
   String authorName;
@@ -37,9 +39,10 @@ class WcCommentListTile extends StatelessWidget {
   bool liked;
   int likesNum;
   int commentsNum;
-  void Function()? onLikeTap;
+  void Function(bool) onLikeTap;
   void Function()? onCommentTap;
   void Function()? onPostTap;
+  void Function()? onMoreTap;
   File? userProfile;
   bool activeBadge;
   bool activeComment;
@@ -59,7 +62,7 @@ class WcCommentListTile extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CircleAvatar(
-              radius: 18,
+              radius: 16,
             ),
             SizedBox(
               width: 10,
@@ -88,7 +91,7 @@ class WcCommentListTile extends StatelessWidget {
                                       height: 1.5),
                                 ),
                                 Text(
-                                  ' • $uploadAt시간 전',
+                                  ' • $uploadAt',
                                   style: GoogleFonts.notoSans(
                                       color: WcColors.grey140,
                                       fontSize: 13,
@@ -141,13 +144,10 @@ class WcCommentListTile extends StatelessWidget {
                       (activeLike)
                           ? Row(
                               children: [
-                                WcIconTextButton(
-                                  active: liked,
-                                  activeIconColor: WcColors.red100,
-                                  iconSrc: 'assets/icons/heart.svg',
-                                  inactiveIconColor: WcColors.grey100,
-                                  onTap: onLikeTap,
-                                  text: '34',
+                                WcLikeButton(
+                                  likeNum: '28',
+                                  isLiked: liked,
+                                  valueChanged: onLikeTap,
                                 ),
                                 SizedBox(
                                   width: 18,
@@ -167,7 +167,7 @@ class WcCommentListTile extends StatelessWidget {
                           : SizedBox.shrink(),
                       WcIconButton(
                           active: true,
-                          onTap: () {},
+                          onTap: onMoreTap,
                           iconHeight: 22,
                           touchWidth: 50,
                           touchHeight: 30,
