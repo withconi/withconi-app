@@ -1,9 +1,11 @@
+import 'package:flutter_svg/svg.dart';
 import 'package:withconi/controller/infinite_scroll_controller.dart';
 import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
 import 'package:withconi/data/repository/community_repository.dart';
 import 'package:withconi/ui/widgets/photo_gallary/image_item.dart';
 
 import '../../configs/constants/enum.dart';
+import '../../configs/helpers/calculator.dart';
 import '../../data/model/comment.dart';
 import '../../data/model/post.dart';
 import '../../import_basic.dart';
@@ -28,10 +30,11 @@ class CommunityPostDetailController extends GetxController {
   ];
 
   Rx<Post> thisPost = Post(
+          authorId: 'authorId',
           boardId: "boardId",
           postId: "postId",
           nickname: "nickname",
-          speciesType: PostType.cat,
+          postType: PostType.cat,
           content:
               "고양이가 밥을 안 먹으려고 할 때 단순히 식사 투정이라고 생각하고 그냥 넘어가면 안돼요. 질병이 원인일 수도 있기 때문이죠. 코가 막히거나 감기가 걸려 불편해서 밥을 안 먹을 수도 있고, 위장에 염증이 있거나 기생충에 감염되었을 수도 있어요. 아니면 이물질을 삼켜 식사 중 구토를 하거나 음식을 제대로 먹지 못하고, 치아나 잇몸에 염증이 있어 통증을 느낄 수도 있습니다.",
           createdAt: DateTime.now())
@@ -61,6 +64,8 @@ class CommunityPostDetailController extends GetxController {
   int get limit => _paginationFilter.value.limit!;
   int get _page => _paginationFilter.value.page!;
   bool get lastPage => _lastPage.value;
+  String uploadAtStr(DateTime createdAt) =>
+      TimeCalculator().calculateUploadAt(createdAt);
 
   @override
   onInit() {
@@ -162,6 +167,170 @@ class CommunityPostDetailController extends GetxController {
     );
     if (newComment != null) {
       commentList.add(newComment);
+    }
+  }
+
+  onMoreTap({required String authorId, required postId}) {
+    if (authorId != authorId) {
+      Get.bottomSheet(
+        Container(
+          height: 170,
+          padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 25,
+              ),
+              GestureDetector(
+                onTap: () {
+                  print('print');
+                },
+                child: Container(
+                  height: 45,
+                  width: WcWidth,
+                  color: Colors.transparent,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset('assets/icons/circle_edit.svg'),
+                        SizedBox(
+                          width: 12,
+                        ),
+                        Text('수정하기',
+                            style: GoogleFonts.notoSans(
+                                fontSize: 17,
+                                color: WcColors.black,
+                                fontWeight: FontWeight.w500)),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  print('print');
+                },
+                child: Container(
+                  height: 50,
+                  width: WcWidth,
+                  color: Colors.transparent,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset('assets/icons/circle_delete.svg'),
+                        SizedBox(
+                          width: 12,
+                        ),
+                        Text('삭제하기',
+                            style: GoogleFonts.notoSans(
+                                fontSize: 17,
+                                color: WcColors.black,
+                                fontWeight: FontWeight.w500)),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        enterBottomSheetDuration: const Duration(milliseconds: 170),
+        exitBottomSheetDuration: const Duration(milliseconds: 170),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
+          ),
+        ),
+      );
+    } else {
+      Get.bottomSheet(
+        Container(
+          height: 170,
+          padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 25,
+              ),
+              GestureDetector(
+                onTap: () {
+                  print('print');
+                },
+                child: Container(
+                  height: 45,
+                  width: WcWidth,
+                  color: Colors.transparent,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset('assets/icons/circle_report.svg'),
+                        SizedBox(
+                          width: 12,
+                        ),
+                        Text('신고하기',
+                            style: GoogleFonts.notoSans(
+                                fontSize: 17,
+                                color: WcColors.black,
+                                fontWeight: FontWeight.w500)),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  print('print');
+                },
+                child: Container(
+                  height: 50,
+                  width: WcWidth,
+                  color: Colors.transparent,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset('assets/icons/circle_block.svg'),
+                        SizedBox(
+                          width: 12,
+                        ),
+                        Text('${commentList[0].nickname}의 글 보지 않기',
+                            style: GoogleFonts.notoSans(
+                                fontSize: 17,
+                                color: WcColors.black,
+                                fontWeight: FontWeight.w500)),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        enterBottomSheetDuration: const Duration(milliseconds: 170),
+        exitBottomSheetDuration: const Duration(milliseconds: 170),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
+          ),
+        ),
+      );
     }
   }
 }
