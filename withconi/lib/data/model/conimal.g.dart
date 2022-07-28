@@ -11,7 +11,7 @@ _$_Conimal _$$_ConimalFromJson(Map<String, dynamic> json) => _$_Conimal(
       name: json['name'] as String,
       species: $enumDecode(_$SpeciesEnumMap, json['species']),
       gender: $enumDecode(_$GenderEnumMap, json['gender']),
-      uid: json['uid'] as String? ?? '',
+      userId: json['userId'] as String? ?? '',
       birthDate: const DateTimeConverter().fromJson(json['birthDate'] as int),
       adoptedDate:
           const DateTimeConverter().fromJson(json['adoptedDate'] as int),
@@ -26,7 +26,7 @@ Map<String, dynamic> _$$_ConimalToJson(_$_Conimal instance) =>
       'name': instance.name,
       'species': _$SpeciesEnumMap[instance.species],
       'gender': _$GenderEnumMap[instance.gender],
-      'uid': instance.uid,
+      'userId': instance.userId,
       'birthDate': const DateTimeConverter().toJson(instance.birthDate),
       'adoptedDate': const DateTimeConverter().toJson(instance.adoptedDate),
       'diseases': const DiseaseIdConverter().toJson(instance.diseases),
