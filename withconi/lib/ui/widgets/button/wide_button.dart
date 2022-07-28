@@ -30,14 +30,14 @@ class WcWideButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 50,
-      width: WcWidth - 40,
+      height: buttonHeight,
+      width: buttonWidth,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10),
         child: Material(
           child: Ink(
-            height: 50,
-            width: WcWidth - 40,
+            height: buttonHeight,
+            width: buttonWidth,
             decoration: BoxDecoration(
                 color: (active) ? activeButtonColor : inactiveButtonColor),
             child: InkWell(
@@ -47,7 +47,8 @@ class WcWideButtonWidget extends StatelessWidget {
                   buttonText,
                   style: GoogleFonts.notoSans(
                       color: (active) ? activeTextColor : inactiveTextColor,
-                      fontSize: 15,
+                      fontSize: 16,
+                      letterSpacing: 0.5,
                       fontWeight: FontWeight.w500),
                 ),
               ),

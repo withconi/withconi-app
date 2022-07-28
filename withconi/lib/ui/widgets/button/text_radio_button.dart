@@ -10,8 +10,8 @@ class WcTextRadioButton extends StatelessWidget {
       this.width = 65})
       : super(key: key);
 
-  String selectedValue;
-  String value;
+  dynamic selectedValue;
+  dynamic value;
   void Function() onTap;
   double? height;
   double? width;
@@ -24,8 +24,11 @@ class WcTextRadioButton extends StatelessWidget {
           height: height,
           width: width,
           decoration: BoxDecoration(
-              color:
-                  (selectedValue == value) ? WcColors.blue100 : WcColors.grey80,
+              color: (selectedValue == null)
+                  ? WcColors.grey80
+                  : (selectedValue == value)
+                      ? WcColors.blue100
+                      : WcColors.grey80,
               borderRadius: BorderRadius.circular(5)),
           child: InkWell(
             onTap: onTap,
@@ -37,9 +40,11 @@ class WcTextRadioButton extends StatelessWidget {
               child: Text(
                 value,
                 style: GoogleFonts.notoSans(
-                    color: (selectedValue == value)
-                        ? WcColors.white
-                        : WcColors.grey200,
+                    color: (selectedValue == null)
+                        ? WcColors.grey200
+                        : (selectedValue == value)
+                            ? WcColors.white
+                            : WcColors.grey200,
                     fontSize: 14,
                     fontWeight: FontWeight.normal,
                     height: 1.2),
