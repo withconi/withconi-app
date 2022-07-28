@@ -16,14 +16,12 @@ class DiseaseSearchController extends GetxController
   Rxn<Failure> failure = Rxn<Failure>();
   RxList<Disease> diseaseListSelected = RxList<Disease>();
   RxList<Disease> diseaseListSearched = RxList<Disease>();
-  Set<Disease> resultSet = {};
-  Set<Disease> selectedSet = {};
-  Set<Disease> newResultSet = {};
 
   @override
   void onInit() {
     super.onInit();
-    diseaseListSelected.assignAll(Get.arguments);
+
+    diseaseListSelected.assignAll(Get.arguments as List<Disease>);
     change(null, status: RxStatus.empty());
   }
 
@@ -83,15 +81,15 @@ class DiseaseSearchController extends GetxController
     Get.back(result: diseaseListSelected.toList());
   }
 
-  getDiseaseInfo() {
-    List<String> diseaseNameList = diseaseListSelected.map((element) {
-      return element.name;
-    }).toList();
+  // getDiseaseInfo() {
+  //   List<String> diseaseNameList = diseaseListSelected.map((element) {
+  //     return element.name;
+  //   }).toList();
 
-    Map<String, dynamic> diseaseInfo = {
-      'diseaseNameList': diseaseNameList,
-      'diseaseNum': diseaseNameList.length
-    };
-    return diseaseInfo;
-  }
+  //   Map<String, dynamic> diseaseInfo = {
+  //     'diseaseNameList': diseaseNameList,
+  //     'diseaseNum': diseaseNameList.length
+  //   };
+  //   return diseaseInfo;
+  // }
 }
