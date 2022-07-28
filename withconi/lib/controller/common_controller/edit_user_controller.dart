@@ -13,10 +13,12 @@ import 'package:withconi/data/repository/signup_repository.dart';
 import 'package:withconi/data/repository/user_repository.dart';
 import 'package:withconi/ui/widgets/loading.dart';
 
+import '../../configs/constants/auth_variables.dart';
 import '../../configs/constants/regex.dart';
 import '../../configs/constants/strings.dart';
 import '../../configs/helpers/image_picker_helper.dart';
 import '../../import_basic.dart';
+import '../../ui/widgets/dialog/selection_dialog.dart';
 
 class EditUserController extends GetxController {
   UserRepository _userRepository = UserRepository();
@@ -133,17 +135,72 @@ class EditUserController extends GetxController {
     }
   }
 
-  Future<void> editUserInfo() async {
+  Future<void> getBack() async {
+    if (validateButton()) {
+      bool isConfirmed = await showSelectionDialog(
+          cancleText: '계속하기',
+          confirmText: '그만하기',
+          title: '수정을 그만할까요?',
+          subtitle: '변경된 정보는 모두 사라집니다');
+      if (isConfirmed) {
+        Get.back();
+      }
+    } else {
+      Get.back();
+    }
+  }
+
+  Future<void> onFinishButtonTap() async {
+    bool isConfirmed = await showSelectionDialog(
+        cancleText: '아니요',
+        confirmText: '네',
+        title: '정보를 수정할까요?',
+        subtitle: '변경된 정보를 수정합니다');
+
+    if (isConfirmed) {
+      await editUserInfoDB();
+      Get.back();
+    }
+  }
+
+  Future<void> unregister() async {
+    bool stay = await showSelectionDialog(
+        cancleText: '탈퇴할게요',
+        confirmText: '남을게요',
+        title: '앱을 탈퇴할까요?',
+        subtitle: '그래도 다시 돌아오실거죠?');
+
+    if (!stay) {
+      print('탈퇴');
+    }
+  }
+
+  Future<void> signOut() async {
+    bool isConfirmed = await showSelectionDialog(
+        cancleText: '아니요',
+        confirmText: '네',
+        title: '로그아웃 할까요?',
+        subtitle: '꼭 다시 돌아오실거죠?');
+
+    if (isConfirmed) {
+      AuthController.to.signOut();
+    }
+  }
+
+  Future<void> editUserInfoDB() async {
     Either<Failure, bool> updateUserEither =
         await showLoading(() => _userRepository.updateUser(updateData: {
               "displayName": nameTextController.text,
-              "nickName": nickNameTextController.text,
+              "nickname": nickNameTextController.text,
             }));
 
     updateUserEither.fold(
         (fail) =>
             FailureInterpreter().mapFailureToSnackbar(fail, 'editUserInfo'),
-        (success) => AuthController.to.updateUserInfo());
+        (success) {
+      AuthController.to.refreshUserInfo();
+      Get.back();
+    });
   }
 
   void changePassword() {
