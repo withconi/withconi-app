@@ -13,6 +13,7 @@ _$_Comment _$$_CommentFromJson(Map<String, dynamic> json) => _$_Comment(
       nickname: json['nickname'] as String,
       content: json['content'] as String,
       createdAt: const DateTimeConverter().fromJson(json['createdAt'] as int),
+      isLiked: json['isLiked'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$_CommentToJson(_$_Comment instance) =>
@@ -23,4 +24,5 @@ Map<String, dynamic> _$$_CommentToJson(_$_Comment instance) =>
       'nickname': instance.nickname,
       'content': instance.content,
       'createdAt': const DateTimeConverter().toJson(instance.createdAt),
+      'isLiked': instance.isLiked,
     };

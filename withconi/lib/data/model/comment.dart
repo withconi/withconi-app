@@ -14,6 +14,7 @@ class Comment with _$Comment {
     required String nickname,
     required String content,
     @DateTimeConverter() required DateTime createdAt,
+    @Default(false) bool? isLiked,
   }) = _Comment;
 
   factory Comment.fromJson(Map<String, dynamic> json) =>

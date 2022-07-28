@@ -27,6 +27,7 @@ mixin _$Comment {
   String get content => throw _privateConstructorUsedError;
   @DateTimeConverter()
   DateTime get createdAt => throw _privateConstructorUsedError;
+  bool? get isLiked => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,7 +44,8 @@ abstract class $CommentCopyWith<$Res> {
       String? authorId,
       String nickname,
       String content,
-      @DateTimeConverter() DateTime createdAt});
+      @DateTimeConverter() DateTime createdAt,
+      bool? isLiked});
 }
 
 /// @nodoc
@@ -62,6 +64,7 @@ class _$CommentCopyWithImpl<$Res> implements $CommentCopyWith<$Res> {
     Object? nickname = freezed,
     Object? content = freezed,
     Object? createdAt = freezed,
+    Object? isLiked = freezed,
   }) {
     return _then(_value.copyWith(
       postId: postId == freezed
@@ -88,6 +91,10 @@ class _$CommentCopyWithImpl<$Res> implements $CommentCopyWith<$Res> {
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      isLiked: isLiked == freezed
+          ? _value.isLiked
+          : isLiked // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -104,7 +111,8 @@ abstract class _$$_CommentCopyWith<$Res> implements $CommentCopyWith<$Res> {
       String? authorId,
       String nickname,
       String content,
-      @DateTimeConverter() DateTime createdAt});
+      @DateTimeConverter() DateTime createdAt,
+      bool? isLiked});
 }
 
 /// @nodoc
@@ -124,6 +132,7 @@ class __$$_CommentCopyWithImpl<$Res> extends _$CommentCopyWithImpl<$Res>
     Object? nickname = freezed,
     Object? content = freezed,
     Object? createdAt = freezed,
+    Object? isLiked = freezed,
   }) {
     return _then(_$_Comment(
       postId: postId == freezed
@@ -150,6 +159,10 @@ class __$$_CommentCopyWithImpl<$Res> extends _$CommentCopyWithImpl<$Res>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      isLiked: isLiked == freezed
+          ? _value.isLiked
+          : isLiked // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -164,7 +177,8 @@ class _$_Comment implements _Comment {
       this.authorId = '',
       required this.nickname,
       required this.content,
-      @DateTimeConverter() required this.createdAt});
+      @DateTimeConverter() required this.createdAt,
+      this.isLiked = false});
 
   factory _$_Comment.fromJson(Map<String, dynamic> json) =>
       _$$_CommentFromJson(json);
@@ -183,10 +197,13 @@ class _$_Comment implements _Comment {
   @override
   @DateTimeConverter()
   final DateTime createdAt;
+  @override
+  @JsonKey()
+  final bool? isLiked;
 
   @override
   String toString() {
-    return 'Comment(postId: $postId, commentId: $commentId, authorId: $authorId, nickname: $nickname, content: $content, createdAt: $createdAt)';
+    return 'Comment(postId: $postId, commentId: $commentId, authorId: $authorId, nickname: $nickname, content: $content, createdAt: $createdAt, isLiked: $isLiked)';
   }
 
   @override
@@ -199,7 +216,8 @@ class _$_Comment implements _Comment {
             const DeepCollectionEquality().equals(other.authorId, authorId) &&
             const DeepCollectionEquality().equals(other.nickname, nickname) &&
             const DeepCollectionEquality().equals(other.content, content) &&
-            const DeepCollectionEquality().equals(other.createdAt, createdAt));
+            const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
+            const DeepCollectionEquality().equals(other.isLiked, isLiked));
   }
 
   @JsonKey(ignore: true)
@@ -211,7 +229,8 @@ class _$_Comment implements _Comment {
       const DeepCollectionEquality().hash(authorId),
       const DeepCollectionEquality().hash(nickname),
       const DeepCollectionEquality().hash(content),
-      const DeepCollectionEquality().hash(createdAt));
+      const DeepCollectionEquality().hash(createdAt),
+      const DeepCollectionEquality().hash(isLiked));
 
   @JsonKey(ignore: true)
   @override
@@ -231,7 +250,8 @@ abstract class _Comment implements Comment {
       final String? authorId,
       required final String nickname,
       required final String content,
-      @DateTimeConverter() required final DateTime createdAt}) = _$_Comment;
+      @DateTimeConverter() required final DateTime createdAt,
+      final bool? isLiked}) = _$_Comment;
 
   factory _Comment.fromJson(Map<String, dynamic> json) = _$_Comment.fromJson;
 
@@ -248,6 +268,8 @@ abstract class _Comment implements Comment {
   @override
   @DateTimeConverter()
   DateTime get createdAt => throw _privateConstructorUsedError;
+  @override
+  bool? get isLiked => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_CommentCopyWith<_$_Comment> get copyWith =>
