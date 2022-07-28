@@ -4,6 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:intl/intl.dart';
 import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/data/repository/conimal_repository.dart';
+import '../../configs/constants/auth_variables.dart';
 import '../../configs/constants/enum.dart';
 import '../../configs/constants/regex.dart';
 import '../../configs/constants/strings.dart';
@@ -173,10 +174,12 @@ class EditConimalController extends GetxController {
   }
 
   selectDisease() async {
-    List<Disease> newDiseaseList = await Get.toNamed(
-        Routes.SIGNUP_DISEASE_SEARCH,
-        arguments: _diseaseList);
-    onDiseaseListChanged(newDiseaseList);
+    List<Disease>? newDiseaseList =
+        await Get.toNamed(Routes.DISEASE_ADD, arguments: _diseaseList)
+            as List<Disease>?;
+    if (newDiseaseList != null) {
+      onDiseaseListChanged(newDiseaseList);
+    }
   }
 
   setSelectedDiseaseText(List<Disease> diseaseInfo) {
@@ -249,6 +252,7 @@ class EditConimalController extends GetxController {
         (fail) =>
             FailureInterpreter().mapFailureToDialog(fail, 'updateConimalList'),
         (success) {
+      AuthController.to.refreshUserInfo();
       Get.back(result: editedConimal);
     });
   }
