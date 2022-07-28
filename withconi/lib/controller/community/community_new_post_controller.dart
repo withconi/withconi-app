@@ -11,6 +11,7 @@ import '../../configs/helpers/image_picker_helper.dart';
 import '../../core/error_handling/failures.dart';
 import '../../data/model/post.dart';
 import '../../import_basic.dart';
+import '../../ui/widgets/dialog/selection_dialog.dart';
 import '../ui_interpreter/failure_ui_interpreter.dart';
 
 class CommunityNewPostController extends GetxController {
@@ -62,7 +63,18 @@ class CommunityNewPostController extends GetxController {
     }
   }
 
-  addNewPost() async {
+  Future<void> getBack() async {
+    bool isConfirmed = await showSelectionDialog(
+        cancleText: '계속하기',
+        confirmText: '그만하기',
+        title: '글을 그만쓸까요?',
+        subtitle: '작성된 내용은 모두 사라집니다');
+    if (isConfirmed) {
+      Get.back();
+    }
+  }
+
+  Future<void> onCreateButtonTap() async {
     if (selectedPostType.value == null) {
       return FailureInterpreter()
           .mapFailureToSnackbar(NoPostTypeSelectedFailure(), 'addNewPost');
@@ -70,21 +82,33 @@ class CommunityNewPostController extends GetxController {
       return FailureInterpreter()
           .mapFailureToSnackbar(NoPostContentsFailure(), 'addNewPost');
     } else {
-      var newPostResultEither = await showLoading(() =>
-          _communityRepository.newPost(
-              newPost: Post(
-                  authorId: AuthController.to.wcUser.value!.uid,
-                  nickname: AuthController.to.wcUser.value!.nickname,
-                  boardId: _boardId,
-                  content: textController.text,
-                  createdAt: DateTime.now(),
-                  speciesType: selectedPostType.value!)));
+      bool isConfirmed = await showSelectionDialog(
+        cancleText: '아니요',
+        confirmText: '네',
+        title: '글을 남길까요?',
+      );
 
-      newPostResultEither.fold(
-          (fail) => FailureInterpreter()
-              .mapFailureToSnackbar(fail, 'pickMultipleImages'), (addedPost) {
-        Get.back(result: addedPost);
-      });
+      if (isConfirmed) {
+        createNewPostDB();
+      }
     }
+  }
+
+  createNewPostDB() async {
+    var newPostResultEither = await showLoading(() =>
+        _communityRepository.newPost(
+            newPost: Post(
+                authorId: AuthController.to.wcUser.value!.uid,
+                nickname: AuthController.to.wcUser.value!.nickname,
+                boardId: _boardId,
+                content: textController.text,
+                createdAt: DateTime.now(),
+                postType: selectedPostType.value!)));
+
+    newPostResultEither.fold(
+        (fail) => FailureInterpreter()
+            .mapFailureToSnackbar(fail, 'pickMultipleImages'), (addedPost) {
+      Get.back(result: addedPost);
+    });
   }
 }
