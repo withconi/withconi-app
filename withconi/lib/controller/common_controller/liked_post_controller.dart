@@ -14,28 +14,28 @@ class LikedPostController extends GetxController {
   CommunityRepository _communityRepository = CommunityRepository();
   RxList<Post> likedPostList = <Post>[].obs;
   late String _uid;
-  Rx<ScrollController> scrollController = ScrollController().obs;
+  // Rx<ScrollController> scrollController = ScrollController().obs;
 
-  final Rx<PaginationFilter> _paginationFilter = PaginationFilter(
-    page: 1,
-    limit: 15,
-  ).obs;
+  // final Rx<PaginationFilter> _paginationFilter = PaginationFilter(
+  //   page: 1,
+  //   limit: 15,
+  // ).obs;
 
-  final RxBool _lastPage = false.obs;
+  // final RxBool _lastPage = false.obs;
 
-  final RxBool _isLoading = false.obs;
+  // final RxBool _isLoading = false.obs;
 
-  int get limit => _paginationFilter.value.limit!;
-  int get _page => _paginationFilter.value.page!;
+  // int get limit => _paginationFilter.value.limit!;
+  // int get _page => _paginationFilter.value.page!;
 
-  void loadNextPage() => _changePaginationFilter(_page + 1, limit);
-  void loadNewPage() => _changePaginationFilter(1, limit);
+  // void loadNextPage() => _changePaginationFilter(_page + 1, limit);
+  // void loadNewPage() => _changePaginationFilter(1, limit);
 
-  String uploadAtStr(int postIndex) =>
-      TimeCalculator().calculateUploadAt(likedPostList[postIndex].createdAt);
+  String uploadAtStr(DateTime createdAt) =>
+      TimeCalculator().calculateUploadAt(createdAt);
 
   Color badgeBackgroundColor(int postIndex) {
-    switch (likedPostList[postIndex].speciesType) {
+    switch (likedPostList[postIndex].postType) {
       case PostType.all:
         return WcColors.purple20;
       case PostType.cat:
@@ -48,7 +48,7 @@ class LikedPostController extends GetxController {
   }
 
   Color badgeTextColor(int postIndex) {
-    switch (likedPostList[postIndex].speciesType) {
+    switch (likedPostList[postIndex].postType) {
       case PostType.all:
         return WcColors.purple100;
       case PostType.cat:
@@ -72,38 +72,37 @@ class LikedPostController extends GetxController {
     super.onReady();
 
     await showLoading((() => _getLikedPosts()));
-    ever(_paginationFilter, (_) => _getLikedPosts());
+    // ever(_paginationFilter, (_) => _getLikedPosts());
 
-    _addScrollListener(
-        isLastPage: _lastPage,
-        isLoading: _isLoading,
-        onEndOfScroll: loadNextPage,
-        scrollController: scrollController.value);
+    // _addScrollListener(
+    //     isLastPage: _lastPage,
+    //     isLoading: _isLoading,
+    //     onEndOfScroll: loadNextPage,
+    //     scrollController: scrollController.value);
   }
 
   @override
   onClose() {
     super.onClose();
-    scrollController.value.dispose();
+    // scrollController.value.dispose();
   }
 
-  _addScrollListener(
-      {required ScrollController scrollController,
-      required void Function() onEndOfScroll,
-      required RxBool isLastPage,
-      required RxBool isLoading}) {
-    scrollController.addListener(() {
-      if (!isLoading.value &&
-          !isLastPage.value &&
-          scrollController.offset >=
-              scrollController.position.maxScrollExtent) {
-        onEndOfScroll();
-      }
-    });
-  }
+  // _addScrollListener(
+  //     {required ScrollController scrollController,
+  //     required void Function() onEndOfScroll,
+  //     required RxBool isLastPage,
+  //     required RxBool isLoading}) {
+  //   scrollController.addListener(() {
+  //     if (!isLoading.value &&
+  //         !isLastPage.value &&
+  //         scrollController.offset >=
+  //             scrollController.position.maxScrollExtent) {
+  //       onEndOfScroll();
+  //     }
+  //   });
+  // }
 
   Future<void> _getLikedPosts() async {
-    _isLoading.value = true;
     final postDataEither =
         await _communityRepository.getLikedPostList(uid: _uid);
 
@@ -111,33 +110,36 @@ class LikedPostController extends GetxController {
         (fail) =>
             FailureInterpreter().mapFailureToSnackbar(fail, '_getPostList'),
         (newPostList) {
-      if (_paginationFilter.value.page == 1) {
-        likedPostList.clear();
-      }
+      likedPostList.clear();
+
       if (newPostList.isEmpty) {
-        _lastPage.value = true;
       } else {
         likedPostList.addAll(newPostList);
       }
-      _isLoading.value = false;
     });
   }
 
   Future<void> resetPage() async {
-    _lastPage.value = false;
-    _changePaginationFilter(1, 15);
+    _getLikedPosts();
   }
 
-  void changeTotalPerPage(int limitValue) {
-    likedPostList.clear();
-    _lastPage.value = false;
-    _changePaginationFilter(1, limitValue);
-  }
+  // void changeTotalPerPage(int limitValue) {
+  //   likedPostList.clear();
+  //   _lastPage.value = false;
+  //   _changePaginationFilter(1, limitValue);
+  // }
 
-  void _changePaginationFilter(int page, int limit) {
-    _paginationFilter.update((val) {
-      val!.page = page;
-      val.limit = limit;
-    });
+  // void _changePaginationFilter(int page, int limit) {
+  //   _paginationFilter.update((val) {
+  //     val!.page = page;
+  //     val.limit = limit;
+  //   });
+  // }
+
+  updateLikePost({required String postId, required bool isLiked}) async {
+    await _communityRepository.updateLikePost(
+        uid: AuthController.to.wcUser.value!.uid,
+        postId: postId,
+        isLiked: isLiked);
   }
 }
