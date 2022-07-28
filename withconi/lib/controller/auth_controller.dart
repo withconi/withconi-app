@@ -68,8 +68,19 @@ class AuthController extends GetxController {
     if (wcUser == null) {
       Get.offAllNamed(Routes.START);
     } else {
-      Get.offAllNamed(Routes.HOME, arguments: wcUser);
+      Get.offAllNamed(Routes.HOME);
     }
+  }
+
+  refreshUserInfo() async {
+    Either<Failure, WcUser> wcUserEither =
+        await _userRepository.getUserInfoWithUid(uid: wcUser.value!.uid);
+
+    wcUserEither.fold((fail) {
+      FailureInterpreter().mapFailureToDialog(fail, 'updateUserInfo');
+    }, (user) {
+      wcUser.value = user;
+    });
   }
 
   // _disposeSavedData() {
