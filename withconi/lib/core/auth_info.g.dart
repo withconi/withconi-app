@@ -9,21 +9,21 @@ part of 'auth_info.dart';
 _$_AuthInfo _$$_AuthInfoFromJson(Map<String, dynamic> json) => _$_AuthInfo(
       authObject: json['authObject'],
       email: json['email'] as String,
-      provider: $enumDecode(_$ProviderOptionsEnumMap, json['provider']),
+      provider: $enumDecode(_$ProviderEnumMap, json['provider']),
     );
 
 Map<String, dynamic> _$$_AuthInfoToJson(_$_AuthInfo instance) =>
     <String, dynamic>{
       'authObject': instance.authObject,
       'email': instance.email,
-      'provider': _$ProviderOptionsEnumMap[instance.provider],
+      'provider': _$ProviderEnumMap[instance.provider],
     };
 
-const _$ProviderOptionsEnumMap = {
-  ProviderOptions.kakao: 'kakao',
-  ProviderOptions.naver: 'naver',
-  ProviderOptions.google: 'google',
-  ProviderOptions.apple: 'apple',
-  ProviderOptions.email: 'email',
-  ProviderOptions.none: 'none',
+const _$ProviderEnumMap = {
+  Provider.kakao: 'kakao',
+  Provider.naver: 'naver',
+  Provider.google: 'google',
+  Provider.apple: 'apple',
+  Provider.email: 'email',
+  Provider.none: 'none',
 };

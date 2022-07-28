@@ -22,7 +22,7 @@ AuthInfo _$AuthInfoFromJson(Map<String, dynamic> json) {
 mixin _$AuthInfo {
   dynamic get authObject => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
-  ProviderOptions get provider => throw _privateConstructorUsedError;
+  Provider get provider => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +34,7 @@ mixin _$AuthInfo {
 abstract class $AuthInfoCopyWith<$Res> {
   factory $AuthInfoCopyWith(AuthInfo value, $Res Function(AuthInfo) then) =
       _$AuthInfoCopyWithImpl<$Res>;
-  $Res call({dynamic authObject, String email, ProviderOptions provider});
+  $Res call({dynamic authObject, String email, Provider provider});
 }
 
 /// @nodoc
@@ -63,7 +63,7 @@ class _$AuthInfoCopyWithImpl<$Res> implements $AuthInfoCopyWith<$Res> {
       provider: provider == freezed
           ? _value.provider
           : provider // ignore: cast_nullable_to_non_nullable
-              as ProviderOptions,
+              as Provider,
     ));
   }
 }
@@ -74,7 +74,7 @@ abstract class _$$_AuthInfoCopyWith<$Res> implements $AuthInfoCopyWith<$Res> {
           _$_AuthInfo value, $Res Function(_$_AuthInfo) then) =
       __$$_AuthInfoCopyWithImpl<$Res>;
   @override
-  $Res call({dynamic authObject, String email, ProviderOptions provider});
+  $Res call({dynamic authObject, String email, Provider provider});
 }
 
 /// @nodoc
@@ -105,7 +105,7 @@ class __$$_AuthInfoCopyWithImpl<$Res> extends _$AuthInfoCopyWithImpl<$Res>
       provider: provider == freezed
           ? _value.provider
           : provider // ignore: cast_nullable_to_non_nullable
-              as ProviderOptions,
+              as Provider,
     ));
   }
 }
@@ -124,7 +124,7 @@ class _$_AuthInfo implements _AuthInfo {
   @override
   final String email;
   @override
-  final ProviderOptions provider;
+  final Provider provider;
 
   @override
   String toString() {
@@ -165,7 +165,7 @@ abstract class _AuthInfo implements AuthInfo {
   factory _AuthInfo(
       {required final dynamic authObject,
       required final String email,
-      required final ProviderOptions provider}) = _$_AuthInfo;
+      required final Provider provider}) = _$_AuthInfo;
 
   factory _AuthInfo.fromJson(Map<String, dynamic> json) = _$_AuthInfo.fromJson;
 
@@ -174,7 +174,7 @@ abstract class _AuthInfo implements AuthInfo {
   @override
   String get email => throw _privateConstructorUsedError;
   @override
-  ProviderOptions get provider => throw _privateConstructorUsedError;
+  Provider get provider => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_AuthInfoCopyWith<_$_AuthInfo> get copyWith =>

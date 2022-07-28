@@ -9,7 +9,7 @@ class AuthInfo with _$AuthInfo {
   factory AuthInfo({
     required dynamic authObject,
     required String email,
-    required ProviderOptions provider,
+    required Provider provider,
   }) = _AuthInfo;
 
   factory AuthInfo.fromJson(Map<String, dynamic> json) =>
