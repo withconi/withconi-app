@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:withconi/configs/constants/enum.dart';
 import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/data/repository/community_repository.dart';
+import 'package:withconi/data/repository/image_repository.dart';
 import 'package:withconi/ui/widgets/loading.dart';
 
 import '../../configs/helpers/image_picker_helper.dart';
@@ -16,6 +17,7 @@ import '../ui_interpreter/failure_ui_interpreter.dart';
 
 class CommunityNewPostController extends GetxController {
   CommunityRepository _communityRepository = CommunityRepository();
+  ImageRepository _imageRepository = ImageRepository();
   List<PostType> postType = [PostType.cat, PostType.dog];
   Rxn<PostType> selectedPostType = Rxn<PostType>();
   final int maxImageNum = 4;
@@ -94,21 +96,27 @@ class CommunityNewPostController extends GetxController {
     }
   }
 
-  createNewPostDB() async {
-    var newPostResultEither = await showLoading(() =>
-        _communityRepository.newPost(
-            newPost: Post(
-                authorId: AuthController.to.wcUser.value!.uid,
-                nickname: AuthController.to.wcUser.value!.nickname,
-                boardId: _boardId,
-                content: textController.text,
-                createdAt: DateTime.now(),
-                postType: selectedPostType.value!)));
+  void createNewPostDB() async {
+    var imageUploadRefsEither = await showLoading(
+        () => _imageRepository.uploadImageFileList(imageFiles: imageFileList));
 
-    newPostResultEither.fold(
-        (fail) => FailureInterpreter()
-            .mapFailureToSnackbar(fail, 'pickMultipleImages'), (addedPost) {
-      Get.back(result: addedPost);
+    imageUploadRefsEither.fold(
+        (fail) => FailureInterpreter().mapFailureToSnackbar(
+            fail, 'image upload error'), (imageRefList) async {
+      var newPostResultEither = await showLoading(() =>
+          _communityRepository.newPost(
+              newPost: Post(
+                  authorId: AuthController.to.wcUser.value!.uid,
+                  nickname: AuthController.to.wcUser.value!.nickname,
+                  boardId: _boardId,
+                  content: textController.text,
+                  createdAt: DateTime.now(),
+                  postType: selectedPostType.value!)));
+      newPostResultEither.fold(
+          (fail) => FailureInterpreter()
+              .mapFailureToSnackbar(fail, 'createNewPostDB'), (addedPost) {
+        Get.back(result: addedPost);
+      });
     });
   }
 }
