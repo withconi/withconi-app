@@ -1,4 +1,5 @@
 import 'package:withconi/configs/helpers/calculator.dart';
+import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/controller/infinite_scroll_controller.dart';
 import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
 import 'package:withconi/data/repository/community_repository.dart';
@@ -13,6 +14,8 @@ class CommunityBoardDetailController extends GetxController {
   CommunityRepository _communityRepository = CommunityRepository();
   RxList<Post> postList = <Post>[].obs;
   late String _boardId;
+  List<String> likePostList = <String>[];
+  Rxn<Post> recentlyLikedPost = Rxn<Post>();
 
   List<PostType> postType = [
     PostType.all,
@@ -22,7 +25,6 @@ class CommunityBoardDetailController extends GetxController {
   Rx<PostType> selectedPostType = PostType.all.obs;
   Rx<SortType> selectedSortType = SortType.recent.obs;
   List<SortType> postSort = [SortType.recent, SortType.popular];
-  RxList<String> userLikedPost = <String>[].obs;
   Rx<ScrollController> scrollController = ScrollController().obs;
 
   final Rx<PaginationFilter> _paginationFilter = PaginationFilter(
@@ -40,11 +42,11 @@ class CommunityBoardDetailController extends GetxController {
   void loadNextPage() => _changePaginationFilter(_page + 1, limit);
   void loadNewPage() => _changePaginationFilter(1, limit);
 
-  String uploadAtStr(int postIndex) =>
-      TimeCalculator().calculateUploadAt(postList[postIndex].createdAt);
+  String uploadAtStr(DateTime createdAt) =>
+      TimeCalculator().calculateUploadAt(createdAt);
 
-  Color badgeBackgroundColor(int postIndex) {
-    switch (postList[postIndex].speciesType) {
+  Color badgeBackgroundColor(PostType postType) {
+    switch (postType) {
       case PostType.all:
         return WcColors.purple20;
       case PostType.cat:
@@ -56,8 +58,8 @@ class CommunityBoardDetailController extends GetxController {
     }
   }
 
-  Color badgeTextColor(int postIndex) {
-    switch (postList[postIndex].speciesType) {
+  Color badgeTextColor(PostType postType) {
+    switch (postType) {
       case PostType.all:
         return WcColors.purple100;
       case PostType.cat:
@@ -82,6 +84,7 @@ class CommunityBoardDetailController extends GetxController {
 
     await showLoading((() => _getPostList()));
     ever(_paginationFilter, (_) => _getPostList());
+    // debounce(likePostList (_)=> update)
 
     _addScrollListener(
         isLastPage: _lastPage,
@@ -96,6 +99,24 @@ class CommunityBoardDetailController extends GetxController {
     scrollController.value.dispose();
     selectedSortType.value = SortType.recent;
     selectedPostType.value = PostType.all;
+  }
+
+  updateLikePost({required String postId, required bool isLiked}) async {
+    if (likePostList.contains(postId)) {
+      likePostList.remove(postId);
+    } else {
+      likePostList.add(postId);
+    }
+    postList.refresh();
+
+    var likePostsEither = await _communityRepository.updateLikePost(
+        uid: AuthController.to.wcUser.value!.uid,
+        postId: postId,
+        isLiked: isLiked);
+
+    likePostsEither.fold(
+        (l) => FailureInterpreter().mapFailureToSnackbar(l, 'updateLikePost'),
+        (r) => likePostList.assignAll(r));
   }
 
   _addScrollListener(
@@ -129,10 +150,24 @@ class CommunityBoardDetailController extends GetxController {
       if (newPostList.isEmpty) {
         _lastPage.value = true;
       } else {
+        likePostList.assignAll(filterLikedPosts(postList: newPostList));
+
         postList.addAll(newPostList);
       }
+
       _isLoading.value = false;
     });
+  }
+
+  List<String> filterLikedPosts({required List<Post> postList}) {
+    List<String> filteredPostIdList = postList
+        .where((post) {
+          return post.isLiked == true;
+        })
+        .map((e) => e.postId!)
+        .toList();
+
+    return filteredPostIdList;
   }
 
   Future<void> resetPage({SortType? sortType, PostType? postType}) async {
@@ -154,6 +189,15 @@ class CommunityBoardDetailController extends GetxController {
       val.limit = limit;
     });
   }
+
+  // onLikedPostChanged(bool liked, Post post) {
+  //   if (likePostList.contains(post)) {
+  //     likePostList.remove(post);
+  //   } else {
+  //     likePostList.add(post);
+  //   }
+
+  // }
 
   void onSortTypeChanged(String? sortingType) {
     if (sortingType != null) {
