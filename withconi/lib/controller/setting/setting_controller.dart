@@ -23,4 +23,12 @@ class SettingPageController extends GetxController {
       Routes.USER_EDIT,
     );
   }
+
+  myLikedPosts() {
+    Get.toNamed(Routes.USER_LIKED_POST, arguments: _wcUser.uid);
+  }
+
+  myPostPage() {
+    Get.toNamed(Routes.USER_MY_POST, arguments: _wcUser.uid);
+  }
 }
