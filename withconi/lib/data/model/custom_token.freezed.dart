@@ -20,7 +20,7 @@ CustomToken _$CustomTokenFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CustomToken {
-  ProviderOptions get provider => throw _privateConstructorUsedError;
+  Provider get provider => throw _privateConstructorUsedError;
   String get uid => throw _privateConstructorUsedError;
   String get accessToken => throw _privateConstructorUsedError;
 
@@ -35,7 +35,7 @@ abstract class $CustomTokenCopyWith<$Res> {
   factory $CustomTokenCopyWith(
           CustomToken value, $Res Function(CustomToken) then) =
       _$CustomTokenCopyWithImpl<$Res>;
-  $Res call({ProviderOptions provider, String uid, String accessToken});
+  $Res call({Provider provider, String uid, String accessToken});
 }
 
 /// @nodoc
@@ -56,7 +56,7 @@ class _$CustomTokenCopyWithImpl<$Res> implements $CustomTokenCopyWith<$Res> {
       provider: provider == freezed
           ? _value.provider
           : provider // ignore: cast_nullable_to_non_nullable
-              as ProviderOptions,
+              as Provider,
       uid: uid == freezed
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
@@ -76,7 +76,7 @@ abstract class _$$_CustomTokenCopyWith<$Res>
           _$_CustomToken value, $Res Function(_$_CustomToken) then) =
       __$$_CustomTokenCopyWithImpl<$Res>;
   @override
-  $Res call({ProviderOptions provider, String uid, String accessToken});
+  $Res call({Provider provider, String uid, String accessToken});
 }
 
 /// @nodoc
@@ -99,7 +99,7 @@ class __$$_CustomTokenCopyWithImpl<$Res> extends _$CustomTokenCopyWithImpl<$Res>
       provider: provider == freezed
           ? _value.provider
           : provider // ignore: cast_nullable_to_non_nullable
-              as ProviderOptions,
+              as Provider,
       uid: uid == freezed
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
@@ -122,7 +122,7 @@ class _$_CustomToken implements _CustomToken {
       _$$_CustomTokenFromJson(json);
 
   @override
-  final ProviderOptions provider;
+  final Provider provider;
   @override
   final String uid;
   @override
@@ -165,7 +165,7 @@ class _$_CustomToken implements _CustomToken {
 
 abstract class _CustomToken implements CustomToken {
   factory _CustomToken(
-      {required final ProviderOptions provider,
+      {required final Provider provider,
       required final String uid,
       required final String accessToken}) = _$_CustomToken;
 
@@ -173,7 +173,7 @@ abstract class _CustomToken implements CustomToken {
       _$_CustomToken.fromJson;
 
   @override
-  ProviderOptions get provider => throw _privateConstructorUsedError;
+  Provider get provider => throw _privateConstructorUsedError;
   @override
   String get uid => throw _privateConstructorUsedError;
   @override

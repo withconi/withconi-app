@@ -6,7 +6,7 @@ part 'custom_token.g.dart';
 @freezed
 class CustomToken with _$CustomToken {
   factory CustomToken({
-    required ProviderOptions provider,
+    required Provider provider,
     required String uid,
     required String accessToken,
   }) = _CustomToken;
