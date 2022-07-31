@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
+import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/core/error_handling/exceptions.dart';
 import 'package:withconi/data/provider/user_api.dart';
 import '../../core/error_handling/failures.dart';
@@ -38,8 +39,8 @@ class UserRepository {
   Future<Either<Failure, bool>> updateUser(
       {required Map<String, dynamic> updateData}) async {
     try {
-      Map<String, dynamic>? data =
-          await _api.updateUser(updateData: updateData);
+      Map<String, dynamic>? data = await _api.updateUser(
+          uid: AuthController.to.wcUser.value!.uid, updateData: updateData);
       if (data != null) {
         return Right(true);
       } else {

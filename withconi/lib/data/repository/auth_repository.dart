@@ -21,7 +21,7 @@ class AuthRepository extends GetxController {
   final SignupRepository _signUpUserRepository = SignupRepository.to;
   final WcTokenManager _tokenManager = WcTokenManager();
 
-  ProviderOptions getAuthTokenProvider() => _tokenManager.getTokenProvider();
+  Provider getAuthTokenProvider() => _tokenManager.getTokenProvider();
 
   Future<Either<Failure, AuthInfo>> getGoogleAuthInfo() async {
     try {
@@ -92,23 +92,23 @@ class AuthRepository extends GetxController {
   }
 
   Future<Either<Failure, AuthInfo>> getAuthInfo(
-      {required ProviderOptions provider, String? email}) async {
+      {required Provider provider, String? email}) async {
     try {
       late AuthInfo _authInfo;
-      if (provider == ProviderOptions.email) {
+      if (provider == Provider.email) {
         _authInfo = await _api.getEmailAuthInfo(email!);
       } else {
         switch (provider) {
-          case ProviderOptions.google:
+          case Provider.google:
             _authInfo = await _api.getGoogleAuthInfo();
             break;
-          case ProviderOptions.kakao:
+          case Provider.kakao:
             _authInfo = await _api.getKakaoAuthInfo();
             break;
-          case ProviderOptions.naver:
+          case Provider.naver:
             _authInfo = await _api.getNaverAuthInfo();
             break;
-          case ProviderOptions.apple:
+          case Provider.apple:
             _authInfo = await _api.getAppleAuthInfo();
             break;
           default:
@@ -125,24 +125,23 @@ class AuthRepository extends GetxController {
     }
   }
 
-  UserState determineUserState(bool isDuplicateUser, ProviderOptions provider) {
+  UserState determineUserState(bool isDuplicateUser, Provider provider) {
     UserState userState;
     if (isDuplicateUser) {
-      if (provider == ProviderOptions.email) {
+      if (provider == Provider.email) {
         userState = UserState.SIGN_IN_EMAIL;
-      } else if ((provider == ProviderOptions.apple) ||
-          (provider == ProviderOptions.google)) {
+      } else if ((provider == Provider.apple) ||
+          (provider == Provider.google)) {
         userState = UserState.SIGN_IN_CREDENTIAL;
-      } else if ((provider == ProviderOptions.naver) ||
-          (provider == ProviderOptions.kakao)) {
+      } else if ((provider == Provider.naver) || (provider == Provider.kakao)) {
         userState = UserState.SIGN_IN_TOKEN;
       } else {
         userState = UserState.NONE;
       }
     } else {
-      if (provider == ProviderOptions.email) {
+      if (provider == Provider.email) {
         userState = UserState.SIGN_UP_EMAIL;
-      } else if (provider == ProviderOptions.none) {
+      } else if (provider == Provider.none) {
         userState = UserState.NONE;
       } else {
         userState = UserState.SIGN_UP_SNS;
@@ -207,12 +206,12 @@ class AuthRepository extends GetxController {
   }
 
   Future<bool> isUserLoggedIn() async {
-    ProviderOptions provider = WcTokenManager().getTokenProvider();
+    Provider provider = WcTokenManager().getTokenProvider();
     return await _api.isUserLoggedIn(provider: provider);
   }
 
   Future<Either<Failure, bool>> checkDuplicateUser(
-      {required String email, required ProviderOptions provider}) async {
+      {required String email, required Provider provider}) async {
     try {
       final bool isDuplicateUser = await _api.checkUserEmail(email: email);
       return Right(isDuplicateUser);
@@ -232,24 +231,26 @@ class AuthRepository extends GetxController {
     late UserCredential userCredential;
     print('signup 당시 provider option => ${authInfo.provider}');
 
+    print(conimalList);
+
     try {
       switch (authInfo.provider) {
-        case ProviderOptions.email:
+        case Provider.email:
           userCredential = await _api.creatUserWithEmail(
               email: authInfo.email, password: password!);
           break;
-        case ProviderOptions.google:
+        case Provider.google:
           userCredential =
               await _api.signInWithCredential(credential: authInfo.authObject);
           break;
-        case ProviderOptions.apple:
+        case Provider.apple:
           userCredential =
               await _api.signInWithCredential(credential: authInfo.authObject);
           break;
-        case ProviderOptions.kakao:
+        case Provider.kakao:
           userCredential = await _api.signInWithCustomToken(authInfo: authInfo);
           break;
-        case ProviderOptions.naver:
+        case Provider.naver:
           userCredential =
               await _api.signInWithCustomToken(authInfo: authInfo.authObject);
           break;
@@ -258,7 +259,9 @@ class AuthRepository extends GetxController {
       }
 
       await _signUpUserRepository.signUpUserDB(
-          uid: userCredential.user!.uid, authInfo: AuthController.to.authInfo!);
+          uid: userCredential.user!.uid,
+          authInfo: AuthController.to.authInfo!,
+          conimals: conimalList);
 
       setUserAuthInfo(
           provider: authInfo.provider, userCredential: userCredential);
@@ -319,7 +322,7 @@ class AuthRepository extends GetxController {
   }
 
   setUserAuthInfo(
-      {required ProviderOptions provider,
+      {required Provider provider,
       required UserCredential userCredential}) async {
     WcTokenManager().saveTokenProvider(provider);
     await AuthController.to.setUserState(userCredential.user);

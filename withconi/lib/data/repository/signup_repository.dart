@@ -87,6 +87,7 @@ class SignupRepository extends GetxController {
     required List<Disease> diseaseList,
   }) {
     try {
+      print('here');
       Conimal newConimal = Conimal(
         conimalId: DateTime.now().millisecondsSinceEpoch.toString(),
         name: conimalName,
@@ -95,8 +96,8 @@ class SignupRepository extends GetxController {
         birthDate: birthDate,
         adoptedDate: adoptedDate,
         diseases: diseaseList,
-        // createdAt: DateTime.now(),
       );
+      print('더 추가하기에서 질병 : ${diseaseList}');
 
       if (_conimalList.length > 3) {
         throw MaxListException();
@@ -175,10 +176,10 @@ class SignupRepository extends GetxController {
     }
   }
 
-  Future<WcUser> signUpUserDB({
-    required String uid,
-    required AuthInfo authInfo,
-  }) async {
+  Future<WcUser> signUpUserDB(
+      {required String uid,
+      required AuthInfo authInfo,
+      required List<Conimal> conimals}) async {
     WcUser newUser;
     newUser = WcUser(
         uid: uid,
@@ -187,7 +188,7 @@ class SignupRepository extends GetxController {
         nickname: nickName,
         provider: authInfo.provider,
         photoURL: profileImgPath,
-        conimals: conimalList);
+        conimals: conimals);
 
     await _api.signUpDB(newUser);
 
