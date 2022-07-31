@@ -5,10 +5,12 @@ import 'package:withconi/configs/helpers/calculator.dart';
 import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
 import 'package:withconi/ui/widgets/loading.dart';
+import 'package:withconi/ui/widgets/snackbar.dart';
 import '../../core/error_handling/failures.dart';
 import '../../data/model/conimal.dart';
 import '../../data/repository/conimal_repository.dart';
 import '../../import_basic.dart';
+import '../../ui/widgets/dialog/selection_dialog.dart';
 
 class ConimalManageController extends GetxController {
   final ConimalRepository _conimalRepository = ConimalRepository();
@@ -69,20 +71,31 @@ class ConimalManageController extends GetxController {
     }
   }
 
-  deleteConimal(int index) {
-    conimalList.removeAt(index);
+  Future<void> onDeleteTap({required String conimalId}) async {
+    if (conimalList.length <= 1) {
+      showSnackbar(text: '한마리 이상의 코니멀은 꼭 있어야 해요');
+    } else {
+      bool isConfirmed = await showSelectionDialog(
+          cancleText: '아니요',
+          confirmText: '예',
+          title: '삭제할까요?',
+          subtitle: '코니멀 정보가 삭제됩니다');
+      if (isConfirmed) {
+        deleteConimal(conimalId: conimalId);
+      }
+    }
   }
 
-  Future<void> updateConimalList() async {
-    for (Conimal conimal in conimalList) {
-      Either<Failure, bool> addResultEither = await showLoading(
-          () => _conimalRepository.updateConimal(editConimal: conimal));
+  Future<void> deleteConimal({required String conimalId}) async {
+    Either<Failure, bool> addResultEither = await showLoading(
+        () => _conimalRepository.deleteConimal(conimalId: conimalId));
 
-      addResultEither.fold(
-          (fail) => FailureInterpreter()
-              .mapFailureToDialog(fail, 'updateConimalList'), (success) {
-        log('Conimal update success => $conimal');
-      });
-    }
+    addResultEither.fold(
+        (fail) =>
+            FailureInterpreter().mapFailureToDialog(fail, 'updateConimalList'),
+        (success) {
+      log('Conimal deleted => $conimalId');
+      conimalList.removeWhere((element) => element.conimalId == conimalId);
+    });
   }
 }
