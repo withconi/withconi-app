@@ -62,10 +62,10 @@ class SignupConimalPage1 extends StatelessWidget {
                                       _controller.conimalSpecies.value,
                                   value: Species.cat,
                                   disabledImage:
-                                      Image.asset('assets/icons/cat_black.png'),
+                                      Image.asset('assets/icons/cat_grey.png'),
                                   selectedColor: WcColors.white,
                                   selectedImage:
-                                      Image.asset('assets/icons/cat_grey.png'),
+                                      Image.asset('assets/icons/cat_black.png'),
                                   onTap: () =>
                                       _controller.onSpeicesChanged(Species.cat),
                                 ),
