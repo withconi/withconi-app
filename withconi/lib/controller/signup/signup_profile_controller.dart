@@ -1,9 +1,14 @@
 import 'dart:io';
+import 'dart:math';
+import 'package:dartz/dartz.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
+import 'package:withconi/core/error_handling/failures.dart';
 import 'package:withconi/data/repository/conimal_repository.dart';
 import 'package:withconi/data/repository/signup_repository.dart';
 import '../../configs/constants/regex.dart';
 import '../../configs/constants/strings.dart';
+import '../../configs/helpers/image_picker_helper.dart';
 import '../../import_basic.dart';
 
 class SignupProfileController extends GetxController {
@@ -31,7 +36,8 @@ class SignupProfileController extends GetxController {
     super.onReady();
 
     debounce(_name, validateName, time: const Duration(milliseconds: 200));
-    debounce(_nickName, validateName, time: const Duration(milliseconds: 200));
+    debounce(_nickName, validateNickname,
+        time: const Duration(milliseconds: 200));
   }
 
   void onNameChanged(String val) {
@@ -69,13 +75,29 @@ class SignupProfileController extends GetxController {
     }
   }
 
-  pickImage() async {
-    final ImagePicker _picker = ImagePicker();
+  validateNickname(String value) {
+    final nicknameRegExp = Regex.name;
+    nameErrorText.value = null;
+    if (!nicknameRegExp.hasMatch(value)) {
+      nickNameErrorText.value = Strings.validator.nickname;
+    } else {
+      nickNameErrorText.value = null;
+    }
+  }
+
+  void pickImage() async {
+    final ImagePickHelper _picker = ImagePickHelper();
     // Pick an image
-    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
-    if (image != null) {
-      print('image selected');
-      onImageChanged(File(image.path));
+    final Either<Failure, File?>? imageFileEither =
+        await _picker.pickSingleImage();
+
+    if (imageFileEither != null) {
+      imageFileEither.fold(
+          (fail) =>
+              FailureInterpreter().mapFailureToSnackbar(fail, 'pickImage'),
+          (file) {
+        onImageChanged(file);
+      });
     }
   }
 
