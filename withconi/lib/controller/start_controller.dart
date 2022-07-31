@@ -89,7 +89,7 @@ class StartPageController extends GetxController with StateMixin<ButtonState> {
 
     late Either<Failure, AuthInfo> authInfoEither;
     authInfoEither = await _authRepository.getAuthInfo(
-        provider: ProviderOptions.email, email: email);
+        provider: Provider.email, email: email);
 
     authInfoEither.fold((fail) {
       FailureInterpreter().mapFailureToDialog(fail, 'nextStepWithEmail');
@@ -153,7 +153,7 @@ class StartPageController extends GetxController with StateMixin<ButtonState> {
     }
   }
 
-  Future<void> nextStepWithSns({required ProviderOptions provider}) async {
+  Future<void> nextStepWithSns({required Provider provider}) async {
     late Either<Failure, AuthInfo> authInfoEither;
     authInfoEither =
         await _authRepository.getAuthInfo(provider: provider, email: email);
