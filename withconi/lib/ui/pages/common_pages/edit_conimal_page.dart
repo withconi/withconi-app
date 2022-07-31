@@ -3,6 +3,7 @@ import 'package:withconi/configs/constants/enum.dart';
 import 'package:withconi/controller/common_controller/edit_conimal_controller.dart';
 import 'package:withconi/controller/signup/signup_conimal_edit_controller.dart';
 import 'package:withconi/import_basic.dart';
+import 'package:withconi/ui/widgets/appbar/appbar.dart';
 import 'package:withconi/ui/widgets/button/wide_button.dart';
 import '../../widgets/button/text_button.dart';
 import '../../widgets/text_field/textfield.dart';
@@ -25,6 +26,10 @@ class EditConimalPage extends StatelessWidget {
         }
       },
       child: Scaffold(
+        appBar: WcAppBar(
+          title: '내 코니멀 관리',
+          onLeadingTap: _controller.getBack,
+        ),
         resizeToAvoidBottomInset: false,
         body: SingleChildScrollView(
           child: SafeArea(
@@ -37,7 +42,7 @@ class EditConimalPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     const SizedBox(
-                      height: 45,
+                      height: 20,
                     ),
                     Text(
                       '등록된 코니멀의\n정보를 수정해주세요',
@@ -194,9 +199,9 @@ class EditConimalPage extends StatelessWidget {
                         active: _controller.validateButton(),
                         activeButtonColor: WcColors.blue100,
                         activeTextColor: WcColors.white,
-                        buttonText: '수정',
+                        buttonText: '수정하기',
                         buttonWidth: WcWidth - 40,
-                        onTap: _controller.finishEdit,
+                        onTap: _controller.onEditButtonTap,
                       ),
                     ),
                     SizedBox(

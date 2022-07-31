@@ -58,10 +58,10 @@ class AddConimalpage extends StatelessWidget {
                                 selectedValue: _controller.conimalSpecies.value,
                                 value: Species.cat,
                                 disabledImage:
-                                    Image.asset('assets/icons/cat_black.png'),
+                                    Image.asset('assets/icons/cat_grey.png'),
                                 selectedColor: WcColors.white,
                                 selectedImage:
-                                    Image.asset('assets/icons/cat_grey.png'),
+                                    Image.asset('assets/icons/cat_black.png'),
                                 onTap: () =>
                                     _controller.onSpeicesChanged(Species.cat),
                               ),
@@ -202,7 +202,7 @@ class AddConimalpage extends StatelessWidget {
                         activeTextColor: WcColors.white,
                         buttonText: '추가하기',
                         buttonWidth: WcWidth - 40,
-                        onTap: _controller.finishAdd,
+                        onTap: _controller.createConimal,
                       ),
                     ),
                     SizedBox(

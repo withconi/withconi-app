@@ -5,6 +5,7 @@ import 'package:withconi/controller/common_controller/liked_post_controller.dart
 import 'package:withconi/import_basic.dart';
 import 'package:withconi/ui/widgets/appbar/appbar.dart';
 
+import '../../../data/model/post.dart';
 import '../../widgets/listtile/post_list_tile.dart';
 
 class LikedPostPage extends StatelessWidget {
@@ -24,7 +25,6 @@ class LikedPostPage extends StatelessWidget {
           onRefresh: _controller.resetPage,
           child: SingleChildScrollView(
             physics: const AlwaysScrollableScrollPhysics(),
-            controller: _controller.scrollController.value,
             child: SafeArea(
               bottom: false,
               child: Column(
@@ -73,18 +73,20 @@ class LikedPostPage extends StatelessWidget {
                         itemCount: _controller.likedPostList.length,
                         shrinkWrap: true,
                         itemBuilder: ((context, index) {
+                          Post thisPost = _controller.likedPostList[index];
                           return WcUserPostListTile(
                             commentsNum: 23,
-                            contents: _controller.likedPostList[index].content,
+                            contents: thisPost.content,
                             likesNum: 12,
-                            postType:
-                                _controller.likedPostList[index].speciesType,
-                            uploadAt: _controller.uploadAtStr(index),
-                            liked: _controller.likedPostList
-                                .contains(_controller.likedPostList[index]),
-                            authorName:
-                                _controller.likedPostList[index].nickname,
-                            onLikeChanged: (_) {},
+                            postType: thisPost.postType,
+                            uploadAt:
+                                _controller.uploadAtStr(thisPost.createdAt),
+                            liked: _controller.likedPostList.contains(thisPost),
+                            authorName: thisPost.nickname,
+                            onLikeChanged: (liked) {
+                              _controller.updateLikePost(
+                                  postId: thisPost.postId!, isLiked: liked);
+                            },
                             badgeBackgroundColor:
                                 _controller.badgeBackgroundColor(index),
                             badgeTextColor: _controller.badgeTextColor(index),
