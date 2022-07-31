@@ -162,10 +162,12 @@ class SignupConimalEditController extends GetxController {
   }
 
   selectDisease() async {
-    List<Disease> newDiseaseList = await Get.toNamed(
-        Routes.SIGNUP_DISEASE_SEARCH,
-        arguments: _diseaseList);
-    onDiseaseListChanged(newDiseaseList);
+    List<Disease>? newDiseaseList =
+        await Get.toNamed(Routes.DISEASE_ADD, arguments: _diseaseList)
+            as List<Disease>?;
+    if (newDiseaseList != null) {
+      onDiseaseListChanged(newDiseaseList);
+    }
   }
 
   setSelectedDiseaseText(List<Disease> diseaseInfo) {
