@@ -15,7 +15,6 @@ class ConimalAPI {
   }
 
   Future<String?> updateConimal({required Map<String, dynamic> conimal}) async {
-    print({...conimal});
     Map<String, dynamic> data = await _dio.apiCall(
       url: HttpUrl.CONIMAL_UPDATE,
       queryParameters: null,
@@ -24,12 +23,28 @@ class ConimalAPI {
     );
   }
 
-  Future<String?> deleteConimal(
-      {required String uid, required String conimalId}) async {
+  Future<String?> updateConimalDisease(
+      {required List<String> diseases,
+      required String conimalId,
+      required String userId}) async {
+    Map<String, dynamic> data = await _dio.apiCall(
+      url: HttpUrl.CONIMAL_UPDATE,
+      queryParameters: null,
+      body: {
+        "userId": userId,
+        "conimalId": conimalId,
+        "diseases": diseases,
+      },
+      requestType: RequestType.POST,
+    );
+  }
+
+  Future<void> deleteConimal(
+      {required String userId, required String conimalId}) async {
     Map<String, dynamic> data = await _dio.apiCall(
       url: HttpUrl.CONIMAL_DELETE,
       queryParameters: null,
-      body: {"uid": uid, "conimalId": conimalId},
+      body: {"userId": userId, "conimalId": conimalId},
       requestType: RequestType.POST,
     );
   }
