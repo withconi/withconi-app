@@ -5,6 +5,7 @@ import 'package:withconi/import_basic.dart';
 import '../../../configs/helpers/calculator.dart';
 import '../../../controller/community/community_board_detail_controller.dart';
 import '../../../controller/ui_helper/infinite_scroll.dart';
+import '../../../data/model/post.dart';
 import '../../widgets/appbar/appbar.dart';
 import '../../widgets/button/text_radio_button.dart';
 import '../../widgets/listtile/post_list_tile.dart';
@@ -77,6 +78,7 @@ class CommunityBoardDetailPage extends StatelessWidget {
           color: WcColors.blue100,
           onRefresh: _controller.resetPage,
           child: SingleChildScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
             controller: _controller.scrollController.value,
             child: SafeArea(
               bottom: false,
@@ -192,28 +194,24 @@ class CommunityBoardDetailPage extends StatelessWidget {
                         itemCount: _controller.postList.length,
                         shrinkWrap: true,
                         itemBuilder: ((context, index) {
+                          Post thisPost = _controller.postList[index];
                           return WcUserPostListTile(
                             commentsNum: 23,
-                            contents: _controller.postList[index].content,
+                            contents: thisPost.content,
                             likesNum: 12,
-                            postType: _controller.postList[index].speciesType,
-                            uploadAt: _controller.uploadAtStr(index),
-                            liked: _controller.userLikedPost
-                                .contains(_controller.postList[index].postId),
-                            authorName: _controller.postList[index].nickname,
-                            onLikeTap: () {
-                              if (_controller.userLikedPost.contains(
-                                  _controller.postList[index].postId)) {
-                                _controller.userLikedPost
-                                    .remove(_controller.postList[index].postId);
-                              } else {
-                                _controller.userLikedPost
-                                    .add(_controller.postList[index].postId!);
-                              }
+                            postType: thisPost.postType,
+                            uploadAt:
+                                _controller.uploadAtStr(thisPost.createdAt),
+                            liked: _controller.likePostList.contains(thisPost),
+                            authorName: thisPost.nickname,
+                            onLikeChanged: (liked) {
+                              _controller.updateLikePost(
+                                  postId: thisPost.postId!, isLiked: liked);
                             },
-                            badgeBackgroundColor:
-                                _controller.badgeBackgroundColor(index),
-                            badgeTextColor: _controller.badgeTextColor(index),
+                            badgeBackgroundColor: _controller
+                                .badgeBackgroundColor(thisPost.postType),
+                            badgeTextColor:
+                                _controller.badgeTextColor(thisPost.postType),
                             onCommentTap: () {},
                             onPostTap: () {
                               Get.toNamed(Routes.COMMUNITY_POST_DETAIL);

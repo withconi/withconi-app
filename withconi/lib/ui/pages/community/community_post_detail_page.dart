@@ -3,9 +3,11 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:withconi/import_basic.dart';
 import 'package:withconi/ui/widgets/button/icon_button.dart';
+import 'package:withconi/ui/widgets/button/like_button.dart';
 import 'package:withconi/ui/widgets/listtile/comment_list_tile.dart';
 import 'package:withconi/ui/widgets/photo_gallary/image_item.dart';
 import '../../../controller/community/community_post_detail_controller.dart';
+import '../../../data/model/comment.dart';
 import '../../widgets/appbar/appbar.dart';
 import '../../widgets/badge/badge.dart';
 import '../../widgets/button/icon_text_button.dart';
@@ -91,8 +93,11 @@ class CommunityPostDetailPage extends StatelessWidget {
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              CircleAvatar(
-                                radius: 15,
+                              Container(
+                                margin: EdgeInsets.only(top: 2),
+                                child: CircleAvatar(
+                                  radius: 16,
+                                ),
                               ),
                               SizedBox(
                                 width: 10,
@@ -103,13 +108,13 @@ class CommunityPostDetailPage extends StatelessWidget {
                                     color: WcColors.grey200,
                                     fontSize: 16,
                                     fontWeight: FontWeight.w600,
-                                    height: 0.8),
+                                    height: 0.98),
                               ),
                               Text(
                                 ' • ${1}시간 전',
                                 style: GoogleFonts.notoSans(
                                     color: WcColors.grey140,
-                                    fontSize: 15,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.w500,
                                     height: 1.2),
                               ),
@@ -127,7 +132,7 @@ class CommunityPostDetailPage extends StatelessWidget {
                             ],
                           ),
                           SizedBox(
-                            height: 17,
+                            height: 13,
                           ),
                           SizedBox(
                             height: 180,
@@ -253,13 +258,10 @@ class CommunityPostDetailPage extends StatelessWidget {
                               children: [
                                 Row(
                                   children: [
-                                    WcIconTextButton(
-                                      active: false,
-                                      activeIconColor: WcColors.red100,
-                                      iconSrc: 'assets/icons/heart.svg',
-                                      inactiveIconColor: WcColors.grey100,
-                                      onTap: () {},
-                                      text: '34',
+                                    WcLikeButton(
+                                      valueChanged: (_) {},
+                                      likeNum: '34',
+                                      isLiked: true,
                                     ),
                                     SizedBox(
                                       width: 20,
@@ -312,30 +314,34 @@ class CommunityPostDetailPage extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              Obx(() => ListView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemCount: _controller.commentList.length,
-                  itemBuilder: ((context, index) => WcCommentListTile(
+              Obx(() {
+                return ListView.builder(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: _controller.commentList.length,
+                    itemBuilder: ((context, index) {
+                      Comment thisComment = _controller.commentList[index];
+                      return WcCommentListTile(
                         activeBadge: false,
                         activeComment: false,
                         commentsNum: 23,
-                        contents: _controller.commentList[index].content,
+                        contents: thisComment.content,
                         likesNum: 12,
-                        uploadAt: '1',
+                        uploadAt:
+                            _controller.uploadAtStr(thisComment.createdAt),
                         liked: false,
-                        authorName: _controller.commentList[index].nickname,
-                        onLikeTap: () {
-                          // if (_controller.userLikedPost
-                          //     .contains(post.itemId)) {
-                          //   _controller.userLikedPost.remove(post.itemId);
-                          // } else {
-                          //   _controller.userLikedPost.add(post.itemId);
-                          // }
+                        authorName: thisComment.nickname,
+                        onLikeTap: (_) {},
+                        onMoreTap: () {
+                          _controller.onMoreTap(
+                              authorId: thisComment.authorId!,
+                              postId: thisComment.postId);
                         },
                         badgeBackgroundColor: WcColors.blue40,
                         badgeTextColor: WcColors.blue100,
-                      ))))
+                      );
+                    }));
+              })
             ],
           ),
         ),

@@ -3,8 +3,10 @@ import 'package:lottie/lottie.dart';
 import 'package:withconi/controller/community/community_main_controller.dart';
 import 'package:withconi/controller/signup/disease_search_controller.dart';
 import 'package:withconi/import_basic.dart';
+import 'package:withconi/ui/pages/community/community_setting_page.dart';
 import 'package:withconi/ui/pages/signup/signup_widgets/disease_selection_list_button.dart';
 import '../../../controller/nav_controller.dart';
+import '../../widgets/button/icon_button.dart';
 import '../../widgets/button/wide_button.dart';
 import '../../widgets/navbar/bottom_navbar.dart';
 
@@ -37,28 +39,43 @@ class CommunityMainPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const SizedBox(
-                      height: 35,
+                      height: 20,
                     ),
                     SizedBox(
                       width: WcWidth - 40,
-                      child: Text('커뮤니티',
-                          style: GoogleFonts.notoSans(
-                              fontWeight: FontWeight.w600, fontSize: 24)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text('커뮤니티',
+                              style: GoogleFonts.notoSans(
+                                  fontWeight: FontWeight.w600, fontSize: 25)),
+                          WcIconButton(
+                              iconHeight: 23,
+                              active: true,
+                              onTap: () {
+                                Get.to(CommunitySettingPage());
+                              },
+                              iconSrc: 'assets/icons/settings.svg',
+                              activeIconColor: WcColors.grey160,
+                              inactiveIconColor: WcColors.grey160)
+                        ],
+                      ),
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
                     Container(
                       height: 45,
                       width: WcWidth - 40,
                       decoration: BoxDecoration(
                         color: WcColors.white,
-                        boxShadow: [
+                        boxShadow: const [
                           BoxShadow(
-                            color: Color.fromARGB(28, 0, 0, 0),
+                            color: Color.fromARGB(35, 0, 0, 0),
                             spreadRadius: -2,
-                            blurRadius: 7,
-                            offset: const Offset(0, 1),
+                            blurRadius: 8,
+                            offset: Offset(0, 1),
                           ),
                         ],
                         borderRadius: BorderRadius.circular(30),
@@ -114,7 +131,7 @@ class CommunityMainPage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(
-                      height: 35,
+                      height: 40,
                     ),
                     SizedBox(
                       width: WcWidth - 40,
@@ -134,7 +151,7 @@ class CommunityMainPage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Obx(
@@ -153,7 +170,7 @@ class CommunityMainPage extends StatelessWidget {
                                         EdgeInsets.symmetric(horizontal: 30),
                                     child: Text(
                                       board.title,
-                                      style: GoogleFonts.notoSans(fontSize: 15),
+                                      style: GoogleFonts.notoSans(fontSize: 16),
                                     ),
                                   ),
                                 ))
@@ -193,7 +210,7 @@ class CommunityMainPage extends StatelessWidget {
                                         EdgeInsets.symmetric(horizontal: 30),
                                     child: Text(
                                       board.title,
-                                      style: GoogleFonts.notoSans(fontSize: 15),
+                                      style: GoogleFonts.notoSans(fontSize: 16),
                                     ),
                                   ),
                                 ))

@@ -38,10 +38,8 @@ class CommunityNewPostPage extends StatelessWidget {
           'assets/icons/arrow_back.svg',
           color: WcColors.grey200,
         ),
-        onActionTap: _controller.addNewPost,
-        onLeadingTap: () {
-          Get.back(result: null);
-        },
+        onActionTap: _controller.onCreateButtonTap,
+        onLeadingTap: _controller.getBack,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Padding(
@@ -71,16 +69,16 @@ class CommunityNewPostPage extends StatelessWidget {
                   ),
                 ),
               ),
-              margin: EdgeInsets.only(right: 10),
+              margin: const EdgeInsets.only(right: 10),
               width: 60,
               height: 30,
               decoration: BoxDecoration(
                 color: WcColors.white,
                 borderRadius: BorderRadius.circular(5),
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
-                      color: Color.fromARGB(35, 0, 0, 0),
-                      blurRadius: 10,
+                      color: Color.fromARGB(30, 0, 0, 0),
+                      blurRadius: 6,
                       spreadRadius: -1),
                 ],
               ),
@@ -92,12 +90,12 @@ class CommunityNewPostPage extends StatelessWidget {
               backgroundColor: Colors.white,
               onPressed: _controller.pickMultipleImages,
               child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                   boxShadow: [
                     BoxShadow(
-                        color: Color.fromARGB(55, 0, 0, 0),
-                        blurRadius: 10,
+                        color: Color.fromARGB(50, 0, 0, 0),
+                        blurRadius: 9,
                         spreadRadius: -1),
                   ],
                 ),
@@ -118,7 +116,7 @@ class CommunityNewPostPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                margin: EdgeInsets.only(left: 20, top: 20, bottom: 14),
+                margin: const EdgeInsets.only(left: 20, top: 20, bottom: 14),
                 child: Text(
                   '어떤 코니멀과 관련된 글인가요?',
                   style: GoogleFonts.notoSans(
@@ -129,7 +127,7 @@ class CommunityNewPostPage extends StatelessWidget {
               ),
               Obx(
                 () => Container(
-                  margin: EdgeInsets.only(left: 20, bottom: 10),
+                  margin: const EdgeInsets.only(left: 20, bottom: 10),
                   child: Row(
                       children: _controller.postType
                           .map((postType) => WcTextRadioButton(
@@ -155,7 +153,7 @@ class CommunityNewPostPage extends StatelessWidget {
                             children: _controller.imageFileList
                                 .map(
                                   (image) => Container(
-                                    margin: EdgeInsets.only(right: 10),
+                                    margin: const EdgeInsets.only(right: 10),
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(10),
                                       child: Stack(children: [
@@ -191,7 +189,8 @@ class CommunityNewPostPage extends StatelessWidget {
                                                 color: Colors.transparent,
                                                 width: 50,
                                                 height: 50,
-                                                padding: EdgeInsets.all(16),
+                                                padding:
+                                                    const EdgeInsets.all(16),
                                                 child: SvgPicture.asset(
                                                   "assets/icons/delete_circle.svg",
                                                   color: WcColors.grey60,
