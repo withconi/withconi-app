@@ -24,10 +24,11 @@ mixin _$Post {
   String? get postId => throw _privateConstructorUsedError;
   String? get authorId => throw _privateConstructorUsedError;
   String get nickname => throw _privateConstructorUsedError;
-  PostType get speciesType => throw _privateConstructorUsedError;
+  PostType get postType => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
   @DateTimeConverter()
   DateTime get createdAt => throw _privateConstructorUsedError;
+  bool? get isLiked => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,9 +44,10 @@ abstract class $PostCopyWith<$Res> {
       String? postId,
       String? authorId,
       String nickname,
-      PostType speciesType,
+      PostType postType,
       String content,
-      @DateTimeConverter() DateTime createdAt});
+      @DateTimeConverter() DateTime createdAt,
+      bool? isLiked});
 }
 
 /// @nodoc
@@ -62,9 +64,10 @@ class _$PostCopyWithImpl<$Res> implements $PostCopyWith<$Res> {
     Object? postId = freezed,
     Object? authorId = freezed,
     Object? nickname = freezed,
-    Object? speciesType = freezed,
+    Object? postType = freezed,
     Object? content = freezed,
     Object? createdAt = freezed,
+    Object? isLiked = freezed,
   }) {
     return _then(_value.copyWith(
       boardId: boardId == freezed
@@ -83,9 +86,9 @@ class _$PostCopyWithImpl<$Res> implements $PostCopyWith<$Res> {
           ? _value.nickname
           : nickname // ignore: cast_nullable_to_non_nullable
               as String,
-      speciesType: speciesType == freezed
-          ? _value.speciesType
-          : speciesType // ignore: cast_nullable_to_non_nullable
+      postType: postType == freezed
+          ? _value.postType
+          : postType // ignore: cast_nullable_to_non_nullable
               as PostType,
       content: content == freezed
           ? _value.content
@@ -95,6 +98,10 @@ class _$PostCopyWithImpl<$Res> implements $PostCopyWith<$Res> {
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      isLiked: isLiked == freezed
+          ? _value.isLiked
+          : isLiked // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -109,9 +116,10 @@ abstract class _$$_PostCopyWith<$Res> implements $PostCopyWith<$Res> {
       String? postId,
       String? authorId,
       String nickname,
-      PostType speciesType,
+      PostType postType,
       String content,
-      @DateTimeConverter() DateTime createdAt});
+      @DateTimeConverter() DateTime createdAt,
+      bool? isLiked});
 }
 
 /// @nodoc
@@ -129,9 +137,10 @@ class __$$_PostCopyWithImpl<$Res> extends _$PostCopyWithImpl<$Res>
     Object? postId = freezed,
     Object? authorId = freezed,
     Object? nickname = freezed,
-    Object? speciesType = freezed,
+    Object? postType = freezed,
     Object? content = freezed,
     Object? createdAt = freezed,
+    Object? isLiked = freezed,
   }) {
     return _then(_$_Post(
       boardId: boardId == freezed
@@ -150,9 +159,9 @@ class __$$_PostCopyWithImpl<$Res> extends _$PostCopyWithImpl<$Res>
           ? _value.nickname
           : nickname // ignore: cast_nullable_to_non_nullable
               as String,
-      speciesType: speciesType == freezed
-          ? _value.speciesType
-          : speciesType // ignore: cast_nullable_to_non_nullable
+      postType: postType == freezed
+          ? _value.postType
+          : postType // ignore: cast_nullable_to_non_nullable
               as PostType,
       content: content == freezed
           ? _value.content
@@ -162,6 +171,10 @@ class __$$_PostCopyWithImpl<$Res> extends _$PostCopyWithImpl<$Res>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      isLiked: isLiked == freezed
+          ? _value.isLiked
+          : isLiked // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -175,9 +188,10 @@ class _$_Post implements _Post {
       this.postId = '',
       this.authorId = '',
       required this.nickname,
-      required this.speciesType,
+      required this.postType,
       required this.content,
-      @DateTimeConverter() required this.createdAt});
+      @DateTimeConverter() required this.createdAt,
+      this.isLiked = false});
 
   factory _$_Post.fromJson(Map<String, dynamic> json) => _$$_PostFromJson(json);
 
@@ -192,16 +206,19 @@ class _$_Post implements _Post {
   @override
   final String nickname;
   @override
-  final PostType speciesType;
+  final PostType postType;
   @override
   final String content;
   @override
   @DateTimeConverter()
   final DateTime createdAt;
+  @override
+  @JsonKey()
+  final bool? isLiked;
 
   @override
   String toString() {
-    return 'Post(boardId: $boardId, postId: $postId, authorId: $authorId, nickname: $nickname, speciesType: $speciesType, content: $content, createdAt: $createdAt)';
+    return 'Post(boardId: $boardId, postId: $postId, authorId: $authorId, nickname: $nickname, postType: $postType, content: $content, createdAt: $createdAt, isLiked: $isLiked)';
   }
 
   @override
@@ -213,10 +230,10 @@ class _$_Post implements _Post {
             const DeepCollectionEquality().equals(other.postId, postId) &&
             const DeepCollectionEquality().equals(other.authorId, authorId) &&
             const DeepCollectionEquality().equals(other.nickname, nickname) &&
-            const DeepCollectionEquality()
-                .equals(other.speciesType, speciesType) &&
+            const DeepCollectionEquality().equals(other.postType, postType) &&
             const DeepCollectionEquality().equals(other.content, content) &&
-            const DeepCollectionEquality().equals(other.createdAt, createdAt));
+            const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
+            const DeepCollectionEquality().equals(other.isLiked, isLiked));
   }
 
   @JsonKey(ignore: true)
@@ -227,9 +244,10 @@ class _$_Post implements _Post {
       const DeepCollectionEquality().hash(postId),
       const DeepCollectionEquality().hash(authorId),
       const DeepCollectionEquality().hash(nickname),
-      const DeepCollectionEquality().hash(speciesType),
+      const DeepCollectionEquality().hash(postType),
       const DeepCollectionEquality().hash(content),
-      const DeepCollectionEquality().hash(createdAt));
+      const DeepCollectionEquality().hash(createdAt),
+      const DeepCollectionEquality().hash(isLiked));
 
   @JsonKey(ignore: true)
   @override
@@ -248,9 +266,10 @@ abstract class _Post implements Post {
       final String? postId,
       final String? authorId,
       required final String nickname,
-      required final PostType speciesType,
+      required final PostType postType,
       required final String content,
-      @DateTimeConverter() required final DateTime createdAt}) = _$_Post;
+      @DateTimeConverter() required final DateTime createdAt,
+      final bool? isLiked}) = _$_Post;
 
   factory _Post.fromJson(Map<String, dynamic> json) = _$_Post.fromJson;
 
@@ -263,12 +282,14 @@ abstract class _Post implements Post {
   @override
   String get nickname => throw _privateConstructorUsedError;
   @override
-  PostType get speciesType => throw _privateConstructorUsedError;
+  PostType get postType => throw _privateConstructorUsedError;
   @override
   String get content => throw _privateConstructorUsedError;
   @override
   @DateTimeConverter()
   DateTime get createdAt => throw _privateConstructorUsedError;
+  @override
+  bool? get isLiked => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_PostCopyWith<_$_Post> get copyWith => throw _privateConstructorUsedError;

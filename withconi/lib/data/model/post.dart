@@ -12,9 +12,10 @@ class Post with _$Post {
     @Default('') String? postId,
     @Default('') String? authorId,
     required String nickname,
-    required PostType speciesType,
+    required PostType postType,
     required String content,
     @DateTimeConverter() required DateTime createdAt,
+    @Default(false) bool? isLiked,
   }) = _Post;
 
   factory Post.fromJson(Map<String, dynamic> json) => _$PostFromJson(json);
