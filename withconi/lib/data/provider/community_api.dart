@@ -1,3 +1,4 @@
+import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/controller/ui_helper/infinite_scroll.dart';
 import 'package:withconi/core/network_handling/network_service.dart';
 import '../../configs/constants/api_url.dart';
@@ -27,7 +28,7 @@ class CommunityAPI {
         "page": paginationFilter.page,
         "listSize": paginationFilter.limit,
         "boardId": boardId,
-        "speciesType": postType,
+        "postType": postType,
       },
       body: null,
       requestType: RequestType.GET,
@@ -35,17 +36,57 @@ class CommunityAPI {
     return postsData;
   }
 
-  Future<Map<String, dynamic>> searchPosts(
-      {required PaginationFilter paginationFilter,
-      required String keyword,
-      String? speciesType,
-      String? searchType}) async {
+  Future<Map<String, dynamic>> getMyPosts({
+    required PaginationFilter paginationFilter,
+    required String userId,
+  }) async {
     Map<String, dynamic> postsData = await _dio.apiCall(
-      url: HttpUrl.CONIMAL_CREATE,
+      url: HttpUrl.POST_MY_GET,
       queryParameters: {
         "page": paginationFilter.page,
         "listSize": paginationFilter.limit,
-        "speciesType": speciesType,
+        "userId": userId,
+      },
+      body: null,
+      requestType: RequestType.GET,
+    );
+    return postsData;
+  }
+
+  Future<Map<String, dynamic>> getLikedPosts({required String uid}) async {
+    Map<String, dynamic> postsData = await _dio.apiCall(
+      url: HttpUrl.POST_LIKED_GET,
+      queryParameters: {"userId": uid},
+      body: null,
+      requestType: RequestType.GET,
+    );
+    return postsData;
+  }
+
+  Future<Map<String, dynamic>> updateLikePost(
+      {required String uid,
+      required String postId,
+      required bool isLiked}) async {
+    Map<String, dynamic> likedPostList = await _dio.apiCall(
+      url: HttpUrl.POST_LIKED_UPDATE,
+      queryParameters: null,
+      body: {"userId": uid, "postId": postId, "isLike": isLiked},
+      requestType: RequestType.POST,
+    );
+    return likedPostList;
+  }
+
+  Future<Map<String, dynamic>> searchPosts(
+      {required PaginationFilter paginationFilter,
+      required String keyword,
+      String? postType,
+      String? searchType}) async {
+    Map<String, dynamic> postsData = await _dio.apiCall(
+      url: HttpUrl.POST_GET,
+      queryParameters: {
+        "page": paginationFilter.page,
+        "listSize": paginationFilter.limit,
+        "postType": postType,
         "searchType": searchType,
       },
       body: null,
