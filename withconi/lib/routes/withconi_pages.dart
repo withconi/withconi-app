@@ -2,6 +2,7 @@ import 'package:withconi/import_basic.dart';
 import 'package:withconi/routes/withconi_bindings.dart';
 import 'package:withconi/ui/pages/common_pages/add_conimal_page.dart';
 import 'package:withconi/ui/pages/common_pages/conimal_setting_page.dart';
+import 'package:withconi/ui/pages/common_pages/my_post_page.dart';
 import 'package:withconi/ui/pages/community/community_board_detail_page.dart';
 import 'package:withconi/ui/pages/community/community_main_page.dart';
 import 'package:withconi/ui/pages/community/community_post_detail_page.dart';
@@ -12,6 +13,7 @@ import 'package:withconi/ui/pages/home/home_page.dart';
 import 'package:withconi/ui/pages/hospital/hospital_main_page.dart';
 import 'package:withconi/ui/pages/settings/setting_page.dart';
 import 'package:withconi/ui/pages/common_pages/edit_user_page.dart';
+import 'package:withconi/ui/pages/common_pages/liked_post_page.dart';
 import 'package:withconi/ui/pages/signin/signin_email_page.dart';
 import 'package:withconi/ui/pages/signup/disease_search_page.dart';
 import 'package:withconi/ui/pages/signup/signup_conimal_edit_page.dart';
@@ -62,7 +64,7 @@ class WcPages {
       page: () => SignupConimalEditPage(),
     ),
     GetPage(
-      name: Routes.SIGNUP_DISEASE_SEARCH,
+      name: Routes.DISEASE_ADD,
       page: () => DiseaseSearchPage(),
     ),
     GetPage(
@@ -119,6 +121,14 @@ class WcPages {
     GetPage(
       name: Routes.USER_EDIT,
       page: () => EditUserPage(),
+    ),
+    GetPage(
+      name: Routes.USER_MY_POST,
+      page: () => MyPostPage(),
+    ),
+    GetPage(
+      name: Routes.USER_LIKED_POST,
+      page: () => LikedPostPage(),
     ),
   ];
 }
