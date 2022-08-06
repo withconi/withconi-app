@@ -29,16 +29,16 @@ extension ParseToDatetime on int {
   }
 }
 
-extension ParseToString on ProviderOptions {
+extension ParseToString on Provider {
   String toShortString() {
     return toString().split('.').last;
   }
 }
 
 extension ParseToProvider on String {
-  ProviderOptions toProviderOptions() {
-    ProviderOptions provider = ProviderOptions.none;
-    ProviderOptions.values.forEach((element) {
+  Provider toProviderOptions() {
+    Provider provider = Provider.none;
+    Provider.values.forEach((element) {
       if (element.toString() == this) {
         provider = element;
       }

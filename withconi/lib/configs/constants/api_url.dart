@@ -6,12 +6,19 @@ class HttpUrl {
   static const VERIFY_EMAIL = '/auth/verifyEmail';
   static const SIGN_IN = '/auth/signIn';
   static const SIGN_UP = '/auth/signUp';
-  static const GET_USER = '/auth/getUser';
-  static const UPDATE_USER = '/auth/updateUser';
-  static const GET_CUSTOM_TOKEN = '/auth/getCustomToken';
-  static const GET_DISEASE = '/disease/listDiseases';
-  static const CREATE_CONIMAL = '/auth/createConimal';
-  static const UPDATE_CONIMAL = '/auth/updateConimal';
-  static const DELETE_CONIMAL = '/auth/deleteConimal';
-  static const GET_POST = '/board/listPost';
+  static const USER_GET = '/auth/getUser';
+  static const USER_UPDATE = '/auth/updateUser';
+  static const CUSTOM_TOKEN_GET = '/auth/getCustomToken';
+  static const DISEASE_GET = '/disease/listDiseases';
+  static const CONIMAL_CREATE = '/auth/createConimal';
+  static const CONIMAL_UPDATE = '/auth/updateConimal';
+  static const CONIMAL_DELETE = '/auth/deleteConimal';
+  static const POST_GET = '/board/listPost';
+  static const POST_MY_GET = '/board/listPostWrittenMySelf';
+  static const POST_LIKED_GET = '/board/listLikePost';
+  static const POST_LIKED_UPDATE = '/board/updateLikePost';
+  static const POST_CREATE = '/board/createPost';
+  static const BOARD_GET = '/board/listBoard';
+  static const POST_GET_LIKE_POST = '/board/listBoard';
+  static const IMAGE_UPLOAD = '/comm/uploadFile';
 }
