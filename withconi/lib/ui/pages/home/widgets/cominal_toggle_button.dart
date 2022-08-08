@@ -28,11 +28,17 @@ class ConimalToggleButton extends StatelessWidget {
                   : Colors.transparent,
               width: 3),
           boxShadow: [
-            BoxShadow(
-                color: Color.fromARGB(38, 0, 0, 0),
-                blurRadius: 2,
-                spreadRadius: -2,
-                offset: Offset(-0.9, 2.3)),
+            (index == selectedIndex)
+                ? BoxShadow(
+                    color: Color.fromARGB(35, 0, 0, 0),
+                    blurRadius: 3,
+                    spreadRadius: 0,
+                    offset: Offset(-1.5, 2.5))
+                : BoxShadow(
+                    color: Color.fromARGB(38, 0, 0, 0),
+                    blurRadius: 2,
+                    spreadRadius: -2,
+                    offset: Offset(-0.9, 2.3)),
           ]),
       child: ClipOval(
         child: Material(
@@ -43,13 +49,13 @@ class ConimalToggleButton extends StatelessWidget {
             splashColor: WcColors.grey100, // Splash color
             onTap: onTap,
             child: Container(
-                width: (index == selectedIndex) ? 47 : 40,
-                height: (index == selectedIndex) ? 47 : 40,
+                width: (index == selectedIndex) ? 46 : 40,
+                height: (index == selectedIndex) ? 46 : 40,
                 child: Image.asset(
                   (species == Species.cat)
                       ? 'assets/icons/cat_black.png'
                       : 'assets/icons/dog.png',
-                  scale: (index == selectedIndex) ? 14.5 : 18,
+                  scale: (index == selectedIndex) ? 15 : 18,
                 )),
           ),
         ),
