@@ -42,9 +42,7 @@ class AuthAPI {
 
       String? email = googleUser?.email;
       authInfo = AuthInfo(
-          authObject: credential,
-          email: email!,
-          provider: ProviderOptions.google);
+          authObject: credential, email: email!, provider: Provider.google);
       return authInfo;
     } catch (e) {
       rethrow;
@@ -103,9 +101,7 @@ class AuthAPI {
 
       String? email = user.kakaoAccount?.email;
       authInfo = AuthInfo(
-          authObject: accessToken,
-          email: email!,
-          provider: ProviderOptions.kakao);
+          authObject: accessToken, email: email!, provider: Provider.kakao);
     } catch (e) {
       print(e);
     }
@@ -137,7 +133,7 @@ class AuthAPI {
       authInfo = AuthInfo(
           authObject: accessToken,
           email: result.account.email,
-          provider: ProviderOptions.naver);
+          provider: Provider.naver);
       return authInfo;
     } catch (e) {
       print(e);
@@ -146,8 +142,8 @@ class AuthAPI {
   }
 
   Future<AuthInfo> getEmailAuthInfo(String email) async {
-    AuthInfo authInfo = AuthInfo(
-        authObject: null, email: email, provider: ProviderOptions.email);
+    AuthInfo authInfo =
+        AuthInfo(authObject: null, email: email, provider: Provider.email);
     return authInfo;
   }
 
@@ -199,10 +195,9 @@ class AuthAPI {
     );
   }
 
-  getNewCustomToken(
-      {required ProviderOptions provider, required String token}) async {
+  getNewCustomToken({required Provider provider, required String token}) async {
     Map<String, dynamic> data = await _dio.apiCall(
-      url: HttpUrl.GET_CUSTOM_TOKEN,
+      url: HttpUrl.CUSTOM_TOKEN_GET,
       header: {"accessToken": token},
       queryParameters: null,
       body: {"provider": provider.toShortString()},
@@ -231,7 +226,7 @@ class AuthAPI {
     return isDuplicateUser;
   }
 
-  Future<bool> isUserLoggedIn({required ProviderOptions provider}) async {
+  Future<bool> isUserLoggedIn({required Provider provider}) async {
     bool userLoggedIn = false;
 
     if (firebaseAuth.currentUser == null) {
@@ -240,18 +235,18 @@ class AuthAPI {
       userLoggedIn = true;
 
       switch (provider) {
-        case ProviderOptions.kakao:
+        case Provider.kakao:
           userLoggedIn = await checkKakaoTokenValid();
           break;
-        case ProviderOptions.naver:
+        case Provider.naver:
           userLoggedIn = await checkNaverTokenValid();
           break;
-        case ProviderOptions.google:
+        case Provider.google:
           userLoggedIn = await checkGoogleUserValid();
           break;
-        case ProviderOptions.email:
+        case Provider.email:
           break;
-        case ProviderOptions.apple:
+        case Provider.apple:
           break;
 
         default:
@@ -330,7 +325,7 @@ class AuthAPI {
     authInfo = AuthInfo(
         authObject: oauthCredential,
         email: appleCredential.email!,
-        provider: ProviderOptions.apple);
+        provider: Provider.apple);
 
     // Sign in the user with Firebase. If the nonce we generated earlier does
     // not match the nonce in `appleCredential.identityToken`, sign in will fail.
