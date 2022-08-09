@@ -4,11 +4,11 @@ import 'package:withconi/configs/helpers/cache_manager.dart';
 
 @override
 class WcTokenManager with CacheManager {
-  ProviderOptions getTokenProvider() {
+  Provider getTokenProvider() {
     String tokenProvider = getCache(CacheControllerKey.PROVIDER);
     print(tokenProvider);
     return (tokenProvider.isEmpty)
-        ? ProviderOptions.none
+        ? Provider.none
         : tokenProvider.toProviderOptions();
   }
 
@@ -21,6 +21,6 @@ class WcTokenManager with CacheManager {
   void saveRefreshToken(String token) =>
       saveCache(CacheControllerKey.REFRESH_TOKEN, token);
 
-  void saveTokenProvider(ProviderOptions tokenProvider) =>
+  void saveTokenProvider(Provider tokenProvider) =>
       saveCache(CacheControllerKey.PROVIDER, tokenProvider.toString());
 }
