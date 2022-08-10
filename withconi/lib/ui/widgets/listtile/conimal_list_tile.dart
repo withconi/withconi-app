@@ -30,31 +30,32 @@ class WcConimalListTile extends StatelessWidget {
             children: [
               (species == Species.cat)
                   ? SizedBox(
-                      width: 40,
+                      width: 38,
                       child: Image.asset(
                         'assets/icons/cat_black.png',
-                        width: 42,
                         alignment: Alignment.centerLeft,
+                        isAntiAlias: true,
                       ),
                     )
                   : SizedBox(
-                      width: 40,
+                      width: 38,
                       child: Image.asset(
                         'assets/icons/dog.png',
-                        width: 40,
                         alignment: Alignment.centerLeft,
+                        isAntiAlias: true,
                       ),
                     ),
               SizedBox(
                 width: 16,
               ),
               Expanded(
-                flex: 3,
+                flex: 4,
                 child: Text(
                   name,
                   style: GoogleFonts.notoSans(
                       fontSize: 17, fontWeight: FontWeight.w600),
-                  overflow: TextOverflow.ellipsis,
+                  overflow: TextOverflow.fade,
+                  textAlign: TextAlign.left,
                 ),
               ),
               SizedBox(
@@ -88,7 +89,7 @@ class WcConimalListTile extends StatelessWidget {
                 width: 10,
               ),
               Expanded(
-                flex: 7,
+                flex: 9,
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.end,
@@ -97,27 +98,27 @@ class WcConimalListTile extends StatelessWidget {
                         diseaseName,
                         style: GoogleFonts.notoSans(
                             fontSize: 16, fontWeight: FontWeight.w500),
-                        overflow: TextOverflow.ellipsis,
+                        overflow: TextOverflow.fade,
+                        softWrap: false,
                       ),
                       (diseaseNum != null)
-                          ? Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              crossAxisAlignment: CrossAxisAlignment.baseline,
-                              textBaseline: TextBaseline.ideographic,
-                              children: [
-                                Text(
-                                  '+${diseaseNum! - 1}',
-                                  style: GoogleFonts.montserrat(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400),
-                                ),
-                                Text(
-                                  '개 질병',
-                                  style: GoogleFonts.notoSans(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                              ],
+                          ? Text.rich(
+                              TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: '+${diseaseNum! - 1}',
+                                    style: GoogleFonts.montserrat(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                  TextSpan(
+                                    text: '개 질병',
+                                    style: GoogleFonts.notoSans(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ],
+                              ),
                             )
                           : SizedBox.shrink(),
                     ]),
