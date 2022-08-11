@@ -4,16 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:withconi/configs/constants/enum.dart';
-import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
+
 import 'package:withconi/controller/start_controller.dart';
 import 'package:withconi/ui/pages/start/start_widgets/sns_button.dart';
 import 'package:withconi/ui/theme/colors.dart';
 import 'package:withconi/ui/theme/sizes.dart';
-import 'package:withconi/ui/widgets/button/loading_button.dart';
-import 'package:withconi/ui/widgets/button/wide_button.dart';
-import 'package:withconi/ui/widgets/snackbar.dart';
-import '../../../data/repository/conimal_repository.dart';
-import '../../../data/repository/signup_repository.dart';
+
 import '../../widgets/button/state_button.dart';
 import '../../widgets/loading.dart';
 import '../../widgets/text_field/textfield.dart';
@@ -152,7 +148,7 @@ class StartPage extends StatelessWidget {
                           label: '카카오톡',
                           onTap: () {
                             showLoading(() => _controller.nextStepWithSns(
-                                provider: ProviderOptions.kakao));
+                                provider: Provider.kakao));
                           },
                         ),
                         SnsButtonWidget(
@@ -160,7 +156,7 @@ class StartPage extends StatelessWidget {
                           label: '구글',
                           onTap: () {
                             showLoading(() => _controller.nextStepWithSns(
-                                provider: ProviderOptions.google));
+                                provider: Provider.google));
                           },
                         ),
                         SnsButtonWidget(
@@ -168,7 +164,7 @@ class StartPage extends StatelessWidget {
                           label: '네이버',
                           onTap: () {
                             showLoading(() => _controller.nextStepWithSns(
-                                provider: ProviderOptions.naver));
+                                provider: Provider.naver));
                           },
                         ),
                         SnsButtonWidget(
@@ -176,7 +172,7 @@ class StartPage extends StatelessWidget {
                           label: '애플',
                           onTap: () {
                             showLoading(() => _controller.nextStepWithSns(
-                                provider: ProviderOptions.apple));
+                                provider: Provider.apple));
                           },
                         ),
                       ],
