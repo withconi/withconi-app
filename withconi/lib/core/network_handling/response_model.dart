@@ -1,3 +1,4 @@
+import '../../data/model/board.dart';
 import '../../data/model/conimal.dart';
 import '../../data/model/disease.dart';
 import '../../data/model/post.dart';
@@ -78,6 +79,30 @@ class PostResponse {
         list = json['list'].map<Post>((json) => Post.fromJson(json)).toList();
       }
       return PostResponse(
+        totalResults: totalDocuments,
+        results: list,
+      );
+    } catch (e) {
+      throw DataParsingException();
+    }
+  }
+}
+
+class BoardResponse {
+  BoardResponse({required this.totalResults, required this.results});
+
+  int totalResults;
+  List<Board> results;
+
+  factory BoardResponse.fromJson(Map<String, dynamic> json) {
+    List<Board> list = [];
+
+    try {
+      int totalDocuments = json['totalDocuments'];
+      if (json['list'] != null) {
+        list = json['list'].map<Board>((json) => Board.fromJson(json)).toList();
+      }
+      return BoardResponse(
         totalResults: totalDocuments,
         results: list,
       );
