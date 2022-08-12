@@ -10,7 +10,6 @@ import 'package:withconi/ui/pages/diagnosis/diagnosis_main_page.dart';
 import 'package:withconi/ui/pages/dictionary/dictionary_main_page.dart';
 import 'package:withconi/ui/pages/common_pages/edit_conimal_page.dart';
 import 'package:withconi/ui/pages/home/home_page.dart';
-import 'package:withconi/ui/pages/hospital/hospital_main_page.dart';
 import 'package:withconi/ui/pages/settings/setting_page.dart';
 import 'package:withconi/ui/pages/common_pages/edit_user_page.dart';
 import 'package:withconi/ui/pages/common_pages/liked_post_page.dart';
@@ -24,6 +23,7 @@ import 'package:withconi/ui/pages/splash.dart';
 import 'package:withconi/ui/pages/start/start_page.dart';
 
 import '../ui/pages/community/community_new_post_page.dart';
+import '../ui/pages/hospital/hospital_main_page.dart';
 import '../ui/pages/signup/signup_conimal_page_2.dart';
 
 class WcPages {
