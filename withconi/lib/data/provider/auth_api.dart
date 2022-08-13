@@ -89,7 +89,7 @@ class AuthAPI {
     // }
 
     try {
-      OAuthToken token = await kakao.UserApi.instance.loginWithKakaoAccount();
+      OAuthToken token = await kakao.UserApi.instance.loginWithKakaoTalk();
       print('로그인 성공 ${token.accessToken}');
       accessToken = token.accessToken;
     } catch (error) {
