@@ -8,12 +8,12 @@ class SnsButtonWidget extends StatelessWidget {
   SnsButtonWidget({
     Key? key,
     required this.imageSrc,
-    required this.label,
-    required this.onTap,
+    this.label,
+    this.onTap,
   }) : super(key: key);
 
   String imageSrc;
-  String label;
+  String? label;
   void Function()? onTap;
   double height = 84;
   double iconHeight = 58;
@@ -35,7 +35,7 @@ class SnsButtonWidget extends StatelessWidget {
             height: 9,
           ),
           Text(
-            label,
+            label ?? '',
             style: GoogleFonts.notoSans(
                 color: WcColors.black,
                 fontSize: 12,
