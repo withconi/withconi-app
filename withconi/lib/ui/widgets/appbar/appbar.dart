@@ -1,3 +1,5 @@
+import 'package:flutter_svg/svg.dart';
+
 import '../../../import_basic.dart';
 
 class WcAppBar extends StatelessWidget with PreferredSizeWidget {
@@ -27,7 +29,7 @@ class WcAppBar extends StatelessWidget with PreferredSizeWidget {
         title: Text(
           title,
           style:
-              GoogleFonts.notoSans(fontSize: 15, fontWeight: FontWeight.w600),
+              GoogleFonts.notoSans(fontSize: 16, fontWeight: FontWeight.w600),
         ),
         actions: [
           GestureDetector(
@@ -43,7 +45,10 @@ class WcAppBar extends StatelessWidget with PreferredSizeWidget {
           )
         ],
         leading: GestureDetector(
-          onTap: onLeadingTap,
+          onTap: onLeadingTap ??
+              () {
+                Get.back();
+              },
           child: Transform.scale(
             scale: 1.12,
             child: Container(
@@ -51,7 +56,11 @@ class WcAppBar extends StatelessWidget with PreferredSizeWidget {
                 alignment: Alignment.centerRight,
                 padding:
                     EdgeInsets.only(left: 20, right: 20, bottom: 10, top: 10),
-                child: leading),
+                child: leading ??
+                    SvgPicture.asset(
+                      'assets/icons/arrow_back.svg',
+                      color: WcColors.grey200,
+                    )),
           ),
         ));
   }
