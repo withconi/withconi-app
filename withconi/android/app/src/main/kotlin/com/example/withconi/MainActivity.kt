@@ -1,4 +1,4 @@
-package com.example.withconi
+package co.yellowtoast.withconi
 
 import io.flutter.embedding.android.FlutterActivity
 
