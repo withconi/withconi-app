@@ -32,7 +32,6 @@ class WcTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: width,
-      height: 61,
       child: TextField(
         readOnly: readOnly,
         autofocus: false,
