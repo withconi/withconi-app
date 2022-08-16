@@ -5,7 +5,7 @@ showSnackbar({required String text}) => Get.showSnackbar(GetSnackBar(
       barBlur: 10,
       forwardAnimationCurve: Curves.decelerate,
       reverseAnimationCurve: Curves.fastLinearToSlowEaseIn,
-      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 35),
       padding: const EdgeInsets.symmetric(vertical: 15),
       borderRadius: 10,
       titleText: Text(
@@ -16,6 +16,6 @@ showSnackbar({required String text}) => Get.showSnackbar(GetSnackBar(
       ),
       messageText: const SizedBox.shrink(),
       animationDuration: const Duration(milliseconds: 700),
-      duration: const Duration(milliseconds: 900),
+      duration: const Duration(milliseconds: 1000),
       snackPosition: SnackPosition.BOTTOM,
     ));
