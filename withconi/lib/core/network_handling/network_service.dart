@@ -8,7 +8,7 @@ import 'package:withconi/configs/constants/enum.dart';
 import '../../configs/helpers/token_manager.dart';
 import '../error_handling/exceptions.dart';
 
-enum RequestType { GET, POST, PUT, PATCH, DELETE }
+enum RequestType { GET, POST, POST_FORM_DATA, PUT, PATCH, DELETE }
 
 class Api {
   final dio = createDio();
@@ -46,6 +46,7 @@ class Api {
       Map<String, dynamic>? header,
       Map<String, dynamic>? queryParameters,
       Map<String, dynamic>? body,
+      FormData? formData,
       required RequestType requestType}) async {
     Response? result;
     try {
@@ -61,8 +62,14 @@ class Api {
           {
             Options options = Options(headers: header ?? default_header);
             result = await dio.post(url, data: body, options: options);
-            print('data body 결과 : ');
-            print(body);
+
+            break;
+          }
+        case RequestType.POST_FORM_DATA:
+          {
+            Options options = Options(headers: header ?? default_header);
+            result = await dio.post(url, data: formData, options: options);
+
             break;
           }
         case RequestType.DELETE:
@@ -79,6 +86,7 @@ class Api {
         throw NoDataException();
       }
     } catch (exception) {
+      print(exception);
       rethrow;
     }
   }
@@ -143,6 +151,9 @@ class ErrorInterceptors extends Interceptor {
       case DioErrorType.cancel:
         break;
       case DioErrorType.other:
+        if (kDebugMode) {
+          print(err);
+        }
         throw NoInternetConnectionException(err.requestOptions);
     }
 
@@ -156,10 +167,15 @@ class Logging extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     if (kDebugMode) {
-      var prettyQuery =
-          JsonEncoder.withIndent('  ').convert(options.queryParameters);
-      var prettyBody = JsonEncoder.withIndent('  ').convert(options.data);
-      log('\n🧡 REQUEST[${options.method}] => PATH: ${options.path}\n🔸 QUERY: $prettyQuery\n🔸 BODY: $prettyBody');
+      if (options.contentType != "multipart/form-data") {
+        var prettyQuery =
+            const JsonEncoder.withIndent('  ').convert(options.queryParameters);
+        var prettyBody =
+            const JsonEncoder.withIndent('  ').convert(options.data);
+        log('\n🧡 REQUEST[${options.method}] => PATH: ${options.path}\n🔸 QUERY: $prettyQuery\n🔸 BODY: $prettyBody');
+      } else {
+        log('\n🧡 REQUEST[${options.method}] => PATH: ${options.path}\n🔸 BODY: ${options.data}');
+      }
     }
     return super.onRequest(options, handler);
   }
