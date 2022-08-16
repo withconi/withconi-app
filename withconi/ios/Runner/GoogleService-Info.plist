@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>955745601928-10tpc48stffksv2v3g0fnudmjhp67al7.apps.googleusercontent.com</string>
+	<string>955745601928-545f5irolb2j5vkr06p0ptlhv6t4pqeo.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.955745601928-10tpc48stffksv2v3g0fnudmjhp67al7</string>
+	<string>com.googleusercontent.apps.955745601928-545f5irolb2j5vkr06p0ptlhv6t4pqeo</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>955745601928-el07e8ngc7agnrsl1sef9hhijagf750m.apps.googleusercontent.com</string>
+	<string>955745601928-07d4p9p3ut5b6pd85tqtup9b3d150lrt.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>AIzaSyCj-A4Eki2G96TKRLIXiTDcItGCxal2i4Q</string>
 	<key>GCM_SENDER_ID</key>
@@ -15,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.withconi</string>
+	<string>co.yellowtoast.withconi</string>
 	<key>PROJECT_ID</key>
 	<string>withconi</string>
 	<key>STORAGE_BUCKET</key>
@@ -31,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:955745601928:ios:17b44c05a3bfdcf069923d</string>
+	<string>1:955745601928:ios:0ebe73031868ecb069923d</string>
 </dict>
 </plist>
