@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:withconi/configs/constants/enum.dart';
 import 'package:withconi/configs/helpers/token_manager.dart';
 import 'package:withconi/controller/auth_controller.dart';
-import 'package:withconi/controller/signup/shared_data/user_data.dart';
+
 import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
 import 'package:withconi/core/error_handling/exceptions.dart';
 import 'package:withconi/core/error_handling/failures.dart';
@@ -19,7 +19,7 @@ class AuthRepository extends GetxController {
   final AuthAPI _api = AuthAPI();
   static AuthRepository get to => Get.find<AuthRepository>();
   final SignupRepository _signUpUserRepository = SignupRepository.to;
-  final WcTokenManager _tokenManager = WcTokenManager();
+  final WcCacheManager _tokenManager = WcCacheManager();
 
   Provider getAuthTokenProvider() => _tokenManager.getTokenProvider();
 
@@ -36,6 +36,9 @@ class AuthRepository extends GetxController {
     }
   }
 
+  // setAuthUserCredential({required UserCredential userCredential}) {
+  //   firebaseAuth.signInAnonymously()
+  // }
   // Future<Either<Failure, UserState>> getUserState(
   //     {required ProviderOptions provider, String? email}) async {
   //   try {
@@ -132,7 +135,7 @@ class AuthRepository extends GetxController {
         userState = UserState.SIGN_IN_EMAIL;
       } else if ((provider == Provider.apple) ||
           (provider == Provider.google)) {
-        userState = UserState.SIGN_IN_CREDENTIAL;
+        userState = UserState.SIGN_IN_AUTH_CREDENTIAL;
       } else if ((provider == Provider.naver) || (provider == Provider.kakao)) {
         userState = UserState.SIGN_IN_TOKEN;
       } else {
@@ -205,9 +208,8 @@ class AuthRepository extends GetxController {
     }
   }
 
-  Future<bool> isUserLoggedIn() async {
-    Provider provider = WcTokenManager().getTokenProvider();
-    return await _api.isUserLoggedIn(provider: provider);
+  Future<bool> checkValidUserByPlatform({required Provider provider}) async {
+    return await _api.validateUserByPlatform(provider: provider);
   }
 
   Future<Either<Failure, bool>> checkDuplicateUser(
@@ -224,34 +226,31 @@ class AuthRepository extends GetxController {
     }
   }
 
-  Future<Either<Failure, String>> signUp(
+  Future<Either<Failure, User?>> signUp(
       {String? password,
       required List<Conimal> conimalList,
       required AuthInfo authInfo}) async {
-    late UserCredential userCredential;
-    print('signup 당시 provider option => ${authInfo.provider}');
-
-    print(conimalList);
+    late User? _authUser;
 
     try {
       switch (authInfo.provider) {
         case Provider.email:
-          userCredential = await _api.creatUserWithEmail(
+          _authUser = await _api.creatUserWithEmail(
               email: authInfo.email, password: password!);
           break;
         case Provider.google:
-          userCredential =
-              await _api.signInWithCredential(credential: authInfo.authObject);
+          _authUser = await _api.signInWithAuthCredential(
+              credential: authInfo.authObject);
           break;
         case Provider.apple:
-          userCredential =
-              await _api.signInWithCredential(credential: authInfo.authObject);
+          _authUser = await _api.signInWithAuthCredential(
+              credential: authInfo.authObject);
           break;
         case Provider.kakao:
-          userCredential = await _api.signInWithCustomToken(authInfo: authInfo);
+          _authUser = await _api.signInWithCustomToken(authInfo: authInfo);
           break;
         case Provider.naver:
-          userCredential =
+          _authUser =
               await _api.signInWithCustomToken(authInfo: authInfo.authObject);
           break;
 
@@ -259,14 +258,15 @@ class AuthRepository extends GetxController {
       }
 
       await _signUpUserRepository.signUpUserDB(
-          uid: userCredential.user!.uid,
+          uid: _authUser!.uid,
           authInfo: AuthController.to.authInfo!,
           conimals: conimalList);
 
-      setUserAuthInfo(
-          provider: authInfo.provider, userCredential: userCredential);
+      saveProviderLocalStorage(
+        provider: authInfo.provider,
+      );
 
-      return Right(userCredential.user!.uid);
+      return Right(_authUser);
     } on SignInTokenException {
       return Left(SignInTokenFailure());
     } on SignInCredentialException {
@@ -290,42 +290,90 @@ class AuthRepository extends GetxController {
 
   signInWithEmail(
       {required String password, required AuthInfo authInfo}) async {
-    late Either<Failure, UserCredential?> userCredentialEither;
-    userCredentialEither =
+    late Either<Failure, User?> _authUserEither;
+    _authUserEither =
         await _api.signInWithEmail(email: authInfo.email, password: password);
 
-    userCredentialEither.fold(
+    _authUserEither.fold(
         (fail) =>
             FailureInterpreter().mapFailureToDialog(fail, 'signInWithEmail'),
         (userCredential) {
-      setUserAuthInfo(
-          provider: authInfo.provider, userCredential: userCredential!);
+      saveProviderLocalStorage(
+        provider: authInfo.provider,
+      );
     });
   }
 
-  signInWithSnsCredential({required AuthInfo authInfo}) async {
+  signInWithAuthCredential({required AuthInfo authInfo}) async {
     showLoading(() async {
       late UserCredential _userCredential;
-      _userCredential =
-          await _api.signInWithCredential(credential: authInfo.authObject);
-      await setUserAuthInfo(
-          provider: authInfo.provider, userCredential: _userCredential);
+      await _api.signInWithAuthCredential(credential: authInfo.authObject);
+      await saveProviderLocalStorage(
+        provider: authInfo.provider,
+      );
     });
   }
 
-  signInWithSnsToken({required AuthInfo authInfo}) async {
+  signInWithCustomToken({required AuthInfo authInfo}) async {
     late UserCredential _userCredential;
-    _userCredential =
-        await _api.signInWithCustomToken(authInfo: authInfo.authObject);
-    await setUserAuthInfo(
-        provider: authInfo.provider, userCredential: _userCredential);
+    await _api.signInWithCustomToken(authInfo: authInfo.authObject);
+    await saveProviderLocalStorage(
+      provider: authInfo.provider,
+    );
   }
 
-  setUserAuthInfo(
-      {required Provider provider,
-      required UserCredential userCredential}) async {
-    WcTokenManager().saveTokenProvider(provider);
-    await AuthController.to.setUserState(userCredential.user);
+  saveProviderLocalStorage({
+    required Provider provider,
+  }) async {
+    WcCacheManager().saveProvider(provider);
+  }
+
+  Either<Failure, bool>? sendVerificationEmail({required String email}) {
+    try {
+      var acs = ActionCodeSettings(
+          // URL you want to redirect back to. The domain (www.example.com) for this
+          // URL must be whitelisted in the Firebase Console.
+          url: 'https://www.example.com/finishSignUp?cartId=1234',
+          // This must be true
+          handleCodeInApp: true,
+          iOSBundleId: 'co.yellowtoast.withconi',
+          androidPackageName: 'co.yellowtoast.withconi',
+          // installIfNotAvailable
+          androidInstallApp: true,
+          // minimumVersion
+          androidMinimumVersion: '12');
+
+      var emailAuth = email;
+      firebaseAuth
+          .sendSignInLinkToEmail(email: emailAuth, actionCodeSettings: acs)
+          .catchError((onError) {
+        print('Error sending email verification $onError');
+        return Left(SignInCredentialFailure);
+      }).then((value) {
+        print('Successfully sent email verification');
+        return Right(true);
+      });
+    } catch (e) {
+      return Left(SignInCredentialFailure());
+    }
+  }
+
+  checkEmailVerification() {
+    // Confirm the link is a sign-in with email link.
+    // if (firebaseAuth.isSignInWithEmailLink(emailLink)) {
+    //   try {
+    //     // The client SDK will parse the code from the link for you.
+    //     final userCredential = await FirebaseAuth.instance
+    //         .signInWithEmailLink(email: emailAuth, emailLink: emailLink);
+
+    //     // You can access the new user via userCredential.user.
+    //     final emailAddress = userCredential.user?.email;
+
+    //     print('Successfully signed in with email link!');
+    //   } catch (error) {
+    //     print('Error signing in with email link.');
+    //   }
+    // }
   }
 
   signOut() async {
