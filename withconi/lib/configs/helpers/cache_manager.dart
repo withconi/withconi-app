@@ -22,4 +22,9 @@ mixin CacheManager {
     final box = GetStorage();
     await box.remove(cacheControllerKey.toString());
   }
+
+  Future<void> clearCache() async {
+    final box = GetStorage();
+    await box.erase();
+  }
 }
