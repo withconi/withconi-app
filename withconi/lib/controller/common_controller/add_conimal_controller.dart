@@ -208,7 +208,7 @@ class AddConimalController extends GetxController {
         (fail) =>
             FailureInterpreter().mapFailureToDialog(fail, 'updateConimalList'),
         (success) {
-      AuthController.to.refreshUserInfo();
+      AuthController.to.refreshWcUserInfo();
       Get.back(result: newConimal);
     });
   }
