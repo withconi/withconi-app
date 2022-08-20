@@ -1,16 +1,17 @@
 // ignore_for_file: unused_local_variable
 import 'package:dartz/dartz.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:lottie/lottie.dart';
 import 'package:withconi/configs/constants/enum.dart';
 import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
-import 'package:withconi/controller/signup/shared_data/user_data.dart';
+
 import 'package:withconi/core/error_handling/failures.dart';
 import 'package:withconi/data/repository/auth_repository.dart';
 import 'package:withconi/data/repository/conimal_repository.dart';
 import 'package:withconi/data/repository/signup_repository.dart';
 import 'package:withconi/ui/widgets/loading.dart';
-import 'signup/shared_data/conimal_data.dart';
+
 import '../configs/constants/regex.dart';
 import '../configs/constants/strings.dart';
 import '../core/auth_info.dart';
@@ -136,14 +137,16 @@ class StartPageController extends GetxController with StateMixin<ButtonState> {
         buttonState.value = ButtonState.sucess;
         break;
 
-      case UserState.SIGN_IN_CREDENTIAL:
-        await _authRepository.signInWithSnsCredential(
+      case UserState.SIGN_IN_AUTH_CREDENTIAL:
+        User? _firebaseUser = await _authRepository.signInWithAuthCredential(
             authInfo: AuthController.to.authInfo!);
+
         break;
 
       case UserState.SIGN_IN_TOKEN:
-        _authRepository.signInWithSnsToken(
+        User? _firebaseUser = await _authRepository.signInWithCustomToken(
             authInfo: AuthController.to.authInfo!);
+
         break;
       case UserState.SIGN_UP_SNS:
         nextRoute = Routes.SIGNUP_PROFILE;
