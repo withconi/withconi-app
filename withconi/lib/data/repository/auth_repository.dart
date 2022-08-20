@@ -328,12 +328,14 @@ class AuthRepository extends GetxController {
     WcCacheManager().saveProvider(provider);
   }
 
-  Either<Failure, bool>? sendVerificationEmail({required String email}) {
+  Future<Either<Failure, bool>?> sendVerificationEmail(
+      {required String email}) async {
     try {
       var acs = ActionCodeSettings(
           // URL you want to redirect back to. The domain (www.example.com) for this
           // URL must be whitelisted in the Firebase Console.
-          url: 'https://www.example.com/finishSignUp?cartId=1234',
+          url:
+              'https://withconi.firebaseapp.com/__/auth/action?mode=action&oobCode=code',
           // This must be true
           handleCodeInApp: true,
           iOSBundleId: 'co.yellowtoast.withconi',
@@ -344,15 +346,9 @@ class AuthRepository extends GetxController {
           androidMinimumVersion: '12');
 
       var emailAuth = email;
-      firebaseAuth
-          .sendSignInLinkToEmail(email: emailAuth, actionCodeSettings: acs)
-          .catchError((onError) {
-        print('Error sending email verification $onError');
-        return Left(SignInCredentialFailure);
-      }).then((value) {
-        print('Successfully sent email verification');
-        return Right(true);
-      });
+      await firebaseAuth.sendSignInLinkToEmail(
+          email: emailAuth, actionCodeSettings: acs);
+      return Right(true);
     } catch (e) {
       return Left(SignInCredentialFailure());
     }

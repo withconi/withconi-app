@@ -5,7 +5,7 @@ import 'package:withconi/configs/constants/enum.dart';
 import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/data/provider/auth_api.dart';
 import 'package:withconi/data/repository/conimal_repository.dart';
-import '../../controller/signup/shared_data/user_data.dart';
+
 import '../../core/auth_info.dart';
 import '../../core/error_handling/exceptions.dart';
 import '../../core/error_handling/failures.dart';
@@ -176,6 +176,7 @@ class SignupRepository extends GetxController {
     }
   }
 
+//TODO: email verified, email verification skipped 넣기 wcUser인자로
   Future<WcUser> signUpUserDB(
       {required String uid,
       required AuthInfo authInfo,

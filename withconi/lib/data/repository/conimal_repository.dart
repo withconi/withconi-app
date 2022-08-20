@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:withconi/configs/constants/auth_variables.dart';
 import 'package:withconi/configs/constants/enum.dart';
 import 'package:withconi/controller/auth_controller.dart';
-import 'package:withconi/controller/signup/shared_data/conimal_data.dart';
+
 import 'package:withconi/core/error_handling/exceptions.dart';
 import 'package:withconi/import_basic.dart';
 import '../../core/error_handling/failures.dart';
