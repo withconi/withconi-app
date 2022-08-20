@@ -23,6 +23,9 @@ mixin _$AuthInfo {
   dynamic get authObject => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   Provider get provider => throw _privateConstructorUsedError;
+  bool? get isEmailVerified => throw _privateConstructorUsedError;
+  bool? get isEmailVerifySkipped => throw _privateConstructorUsedError;
+  dynamic get required => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +37,13 @@ mixin _$AuthInfo {
 abstract class $AuthInfoCopyWith<$Res> {
   factory $AuthInfoCopyWith(AuthInfo value, $Res Function(AuthInfo) then) =
       _$AuthInfoCopyWithImpl<$Res>;
-  $Res call({dynamic authObject, String email, Provider provider});
+  $Res call(
+      {dynamic authObject,
+      String email,
+      Provider provider,
+      bool? isEmailVerified,
+      bool? isEmailVerifySkipped,
+      dynamic required});
 }
 
 /// @nodoc
@@ -50,6 +59,9 @@ class _$AuthInfoCopyWithImpl<$Res> implements $AuthInfoCopyWith<$Res> {
     Object? authObject = freezed,
     Object? email = freezed,
     Object? provider = freezed,
+    Object? isEmailVerified = freezed,
+    Object? isEmailVerifySkipped = freezed,
+    Object? required = freezed,
   }) {
     return _then(_value.copyWith(
       authObject: authObject == freezed
@@ -64,6 +76,18 @@ class _$AuthInfoCopyWithImpl<$Res> implements $AuthInfoCopyWith<$Res> {
           ? _value.provider
           : provider // ignore: cast_nullable_to_non_nullable
               as Provider,
+      isEmailVerified: isEmailVerified == freezed
+          ? _value.isEmailVerified
+          : isEmailVerified // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isEmailVerifySkipped: isEmailVerifySkipped == freezed
+          ? _value.isEmailVerifySkipped
+          : isEmailVerifySkipped // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      required: required == freezed
+          ? _value.required
+          : required // ignore: cast_nullable_to_non_nullable
+              as dynamic,
     ));
   }
 }
@@ -74,7 +98,13 @@ abstract class _$$_AuthInfoCopyWith<$Res> implements $AuthInfoCopyWith<$Res> {
           _$_AuthInfo value, $Res Function(_$_AuthInfo) then) =
       __$$_AuthInfoCopyWithImpl<$Res>;
   @override
-  $Res call({dynamic authObject, String email, Provider provider});
+  $Res call(
+      {dynamic authObject,
+      String email,
+      Provider provider,
+      bool? isEmailVerified,
+      bool? isEmailVerifySkipped,
+      dynamic required});
 }
 
 /// @nodoc
@@ -92,6 +122,9 @@ class __$$_AuthInfoCopyWithImpl<$Res> extends _$AuthInfoCopyWithImpl<$Res>
     Object? authObject = freezed,
     Object? email = freezed,
     Object? provider = freezed,
+    Object? isEmailVerified = freezed,
+    Object? isEmailVerifySkipped = freezed,
+    Object? required = freezed,
   }) {
     return _then(_$_AuthInfo(
       authObject: authObject == freezed
@@ -106,6 +139,15 @@ class __$$_AuthInfoCopyWithImpl<$Res> extends _$AuthInfoCopyWithImpl<$Res>
           ? _value.provider
           : provider // ignore: cast_nullable_to_non_nullable
               as Provider,
+      isEmailVerified: isEmailVerified == freezed
+          ? _value.isEmailVerified
+          : isEmailVerified // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isEmailVerifySkipped: isEmailVerifySkipped == freezed
+          ? _value.isEmailVerifySkipped
+          : isEmailVerifySkipped // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      required: required == freezed ? _value.required : required,
     ));
   }
 }
@@ -114,7 +156,12 @@ class __$$_AuthInfoCopyWithImpl<$Res> extends _$AuthInfoCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_AuthInfo implements _AuthInfo {
   _$_AuthInfo(
-      {required this.authObject, required this.email, required this.provider});
+      {required this.authObject,
+      required this.email,
+      required this.provider,
+      this.isEmailVerified = false,
+      this.isEmailVerifySkipped = false,
+      this.required});
 
   factory _$_AuthInfo.fromJson(Map<String, dynamic> json) =>
       _$$_AuthInfoFromJson(json);
@@ -125,10 +172,18 @@ class _$_AuthInfo implements _AuthInfo {
   final String email;
   @override
   final Provider provider;
+  @override
+  @JsonKey()
+  final bool? isEmailVerified;
+  @override
+  @JsonKey()
+  final bool? isEmailVerifySkipped;
+  @override
+  final dynamic required;
 
   @override
   String toString() {
-    return 'AuthInfo(authObject: $authObject, email: $email, provider: $provider)';
+    return 'AuthInfo(authObject: $authObject, email: $email, provider: $provider, isEmailVerified: $isEmailVerified, isEmailVerifySkipped: $isEmailVerifySkipped, required: $required)';
   }
 
   @override
@@ -139,7 +194,12 @@ class _$_AuthInfo implements _AuthInfo {
             const DeepCollectionEquality()
                 .equals(other.authObject, authObject) &&
             const DeepCollectionEquality().equals(other.email, email) &&
-            const DeepCollectionEquality().equals(other.provider, provider));
+            const DeepCollectionEquality().equals(other.provider, provider) &&
+            const DeepCollectionEquality()
+                .equals(other.isEmailVerified, isEmailVerified) &&
+            const DeepCollectionEquality()
+                .equals(other.isEmailVerifySkipped, isEmailVerifySkipped) &&
+            const DeepCollectionEquality().equals(other.required, required));
   }
 
   @JsonKey(ignore: true)
@@ -148,7 +208,10 @@ class _$_AuthInfo implements _AuthInfo {
       runtimeType,
       const DeepCollectionEquality().hash(authObject),
       const DeepCollectionEquality().hash(email),
-      const DeepCollectionEquality().hash(provider));
+      const DeepCollectionEquality().hash(provider),
+      const DeepCollectionEquality().hash(isEmailVerified),
+      const DeepCollectionEquality().hash(isEmailVerifySkipped),
+      const DeepCollectionEquality().hash(required));
 
   @JsonKey(ignore: true)
   @override
@@ -165,7 +228,10 @@ abstract class _AuthInfo implements AuthInfo {
   factory _AuthInfo(
       {required final dynamic authObject,
       required final String email,
-      required final Provider provider}) = _$_AuthInfo;
+      required final Provider provider,
+      final bool? isEmailVerified,
+      final bool? isEmailVerifySkipped,
+      final dynamic required}) = _$_AuthInfo;
 
   factory _AuthInfo.fromJson(Map<String, dynamic> json) = _$_AuthInfo.fromJson;
 
@@ -175,6 +241,12 @@ abstract class _AuthInfo implements AuthInfo {
   String get email => throw _privateConstructorUsedError;
   @override
   Provider get provider => throw _privateConstructorUsedError;
+  @override
+  bool? get isEmailVerified => throw _privateConstructorUsedError;
+  @override
+  bool? get isEmailVerifySkipped => throw _privateConstructorUsedError;
+  @override
+  dynamic get required => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_AuthInfoCopyWith<_$_AuthInfo> get copyWith =>
