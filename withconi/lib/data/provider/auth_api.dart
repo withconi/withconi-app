@@ -3,10 +3,10 @@ import 'dart:math';
 import 'package:crypto/crypto.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_naver_login/flutter_naver_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart' as kakao;
-import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:withconi/configs/constants/api_url.dart';
 import 'package:withconi/configs/constants/enum.dart';
@@ -49,13 +49,12 @@ class AuthAPI {
     }
   }
 
-  Future<Either<Failure, UserCredential?>> signInWithEmail(
+  Future<Either<Failure, User?>> signInWithEmail(
       {required String email, required String password}) async {
     try {
-      final credential = await firebaseAuth.signInWithEmailAndPassword(
+      UserCredential credential = await firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
-
-      return Right(credential);
+      return Right(credential.user);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         return Left(NoEmailUserFailure());
@@ -89,7 +88,8 @@ class AuthAPI {
     // }
 
     try {
-      OAuthToken token = await kakao.UserApi.instance.loginWithKakaoTalk();
+      kakao.OAuthToken token =
+          await kakao.UserApi.instance.loginWithKakaoTalk();
       print('로그인 성공 ${token.accessToken}');
       accessToken = token.accessToken;
     } catch (error) {
@@ -147,22 +147,24 @@ class AuthAPI {
     return authInfo;
   }
 
-  Future<UserCredential> signInWithCustomToken(
-      {required AuthInfo authInfo}) async {
+  Future<User?> signInWithCustomToken({required AuthInfo authInfo}) async {
     try {
       String customToken = await getNewCustomToken(
           provider: authInfo.provider, token: authInfo.authObject);
-      return await firebaseAuth.signInWithCustomToken(customToken);
+      UserCredential _userCredential =
+          await firebaseAuth.signInWithCustomToken(customToken);
+      return _userCredential.user;
     } catch (e) {
       throw SignInTokenException();
     }
   }
 
-  Future<UserCredential> creatUserWithEmail(
+  Future<User?> creatUserWithEmail(
       {required String email, required String password}) async {
     try {
-      return await firebaseAuth.createUserWithEmailAndPassword(
-          email: email, password: password);
+      UserCredential _userCredential = await firebaseAuth
+          .createUserWithEmailAndPassword(email: email, password: password);
+      return _userCredential.user;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
         throw (CustomFirebaseAuthException(type: CREATE_EMAIL.existingEmail));
@@ -176,10 +178,12 @@ class AuthAPI {
     }
   }
 
-  Future<UserCredential> signInWithCredential(
+  Future<User?> signInWithAuthCredential(
       {required AuthCredential credential}) async {
     try {
-      return await firebaseAuth.signInWithCredential(credential);
+      UserCredential _userCredential =
+          await firebaseAuth.signInWithCredential(credential);
+      return _userCredential.user;
     } catch (e) {
       throw SignInCredentialException();
     }
@@ -226,7 +230,7 @@ class AuthAPI {
     return isDuplicateUser;
   }
 
-  Future<bool> isUserLoggedIn({required Provider provider}) async {
+  Future<bool> validateUserByPlatform({required Provider provider}) async {
     bool userLoggedIn = false;
 
     if (firebaseAuth.currentUser == null) {
@@ -235,6 +239,8 @@ class AuthAPI {
       userLoggedIn = true;
 
       switch (provider) {
+        case Provider.none:
+          break;
         case Provider.kakao:
           userLoggedIn = await checkKakaoTokenValid();
           break;
@@ -265,9 +271,10 @@ class AuthAPI {
   }
 
   Future<bool> checkKakaoTokenValid() async {
-    if (await AuthApi.instance.hasToken()) {
+    if (await kakao.AuthApi.instance.hasToken()) {
       try {
-        AccessTokenInfo tokenInfo = await UserApi.instance.accessTokenInfo();
+        kakao.AccessTokenInfo tokenInfo =
+            await kakao.UserApi.instance.accessTokenInfo();
 
         print('토큰 유효성 체크 성공 ${tokenInfo.id} ${tokenInfo.expiresIn}');
         if (tokenInfo.expiresIn < 0) {
@@ -276,7 +283,7 @@ class AuthAPI {
           return true;
         }
       } catch (error) {
-        if (error is KakaoException && error.isInvalidTokenError()) {
+        if (error is kakao.KakaoException && error.isInvalidTokenError()) {
           print('토큰 만료 $error');
         } else {
           print('토큰 정보 조회 실패 $error');

@@ -198,7 +198,7 @@ class EditUserController extends GetxController {
         (fail) =>
             FailureInterpreter().mapFailureToSnackbar(fail, 'editUserInfo'),
         (success) {
-      AuthController.to.refreshUserInfo();
+      AuthController.to.refreshWcUserInfo();
       Get.back();
     });
   }

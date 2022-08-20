@@ -1,4 +1,3 @@
-import 'package:withconi/controller/signup/shared_data/user_data.dart';
 import 'package:withconi/data/repository/signup_repository.dart';
 import '../../configs/constants/regex.dart';
 import '../../configs/constants/strings.dart';

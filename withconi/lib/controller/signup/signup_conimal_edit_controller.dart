@@ -2,8 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:intl/intl.dart';
 import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
-import 'package:withconi/controller/signup/shared_data/conimal_data.dart';
-import 'package:withconi/controller/signup/shared_data/user_data.dart';
+
 import 'package:withconi/core/error_handling/error_message_object.dart';
 import 'package:withconi/data/repository/conimal_repository.dart';
 import 'package:withconi/data/repository/signup_repository.dart';

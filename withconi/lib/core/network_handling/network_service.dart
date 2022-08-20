@@ -101,7 +101,7 @@ class AuthInterceptor extends Interceptor {
   void onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
     String accessToken =
-        WcTokenManager().getToken(CacheControllerKey.ACCESS_TOKEN);
+        WcCacheManager().getToken(CacheControllerKey.ACCESS_TOKEN);
 
     if (accessToken.isEmpty) {
       // var expiration = await TokenRepository().getAccessTokenRemainingTime();

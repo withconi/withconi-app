@@ -50,7 +50,7 @@ class HomeController extends GetxController {
   }
 
   Future<void> refreshPage() async {
-    await AuthController.to.refreshUserInfo();
+    await AuthController.to.refreshWcUserInfo();
     onInit();
   }
 

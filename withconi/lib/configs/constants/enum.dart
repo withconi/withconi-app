@@ -123,11 +123,17 @@ String providerToValue(Provider provider) {
   }
 }
 
-enum CacheControllerKey { ACCESS_TOKEN, REFRESH_TOKEN, PROVIDER }
+enum CacheControllerKey {
+  ACCESS_TOKEN,
+  REFRESH_TOKEN,
+  PROVIDER,
+  EMAIL_VERIFIED,
+  EMAIL_VERIFY_SKIPPED
+}
 
 enum UserState {
   SIGN_IN_EMAIL,
-  SIGN_IN_CREDENTIAL,
+  SIGN_IN_AUTH_CREDENTIAL,
   SIGN_IN_TOKEN,
   SIGN_UP_EMAIL,
   SIGN_UP_SNS,

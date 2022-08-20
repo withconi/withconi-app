@@ -1,5 +1,5 @@
 import 'package:withconi/controller/auth_controller.dart';
-import 'package:withconi/controller/signup/shared_data/user_data.dart';
+
 import 'package:withconi/data/repository/auth_repository.dart';
 import 'package:withconi/data/repository/signup_repository.dart';
 import 'package:withconi/ui/widgets/loading.dart';

@@ -424,114 +424,121 @@ class HomePage extends StatelessWidget {
                           data: ThemeData()
                               .copyWith(dividerColor: Colors.transparent),
                           child: Obx(
-                            () => ExpansionTile(
-                                onExpansionChanged: (value) {
-                                  _controller.isExpansionTwoOpened.value =
-                                      value;
-                                },
-                                textColor: WcColors.black,
-                                iconColor: WcColors.black,
-                                tilePadding: const EdgeInsets.symmetric(
-                                    vertical: 0, horizontal: 16),
-                                backgroundColor: Colors.transparent,
-                                title: Text.rich(
-                                  TextSpan(children: [
-                                    TextSpan(text: '총 관리중인 질병 '),
-                                    TextSpan(
-                                        text:
-                                            '${_controller.allDiseasesList.length}',
-                                        style: GoogleFonts.montserrat(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w400)),
-                                    TextSpan(
-                                      text: '개',
-                                    ),
-                                  ]),
-                                  style: GoogleFonts.notoSans(
-                                      fontSize: 16,
-                                      fontWeight: (_controller
-                                              .isExpansionTwoOpened.value)
-                                          ? FontWeight.bold
-                                          : FontWeight.w400),
-                                ),
-                                children: (_controller.allDiseasesList.isEmpty)
-                                    ? [SizedBox.shrink()]
-                                    : _controller.allDiseasesList
-                                        .map(
-                                          (disease) => ListTile(
-                                            title: Container(
-                                                width: WcWidth,
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 8),
-                                                  child: Text(
-                                                    disease.name,
-                                                    overflow: TextOverflow.fade,
-                                                    style: GoogleFonts.notoSans(
-                                                      fontSize: 14.5,
+                            () => IgnorePointer(
+                              ignoring: _controller.allDiseasesList.isEmpty,
+                              child: ExpansionTile(
+                                  onExpansionChanged: (value) {
+                                    _controller.isExpansionTwoOpened.value =
+                                        value;
+                                  },
+                                  textColor: WcColors.black,
+                                  iconColor: WcColors.black,
+                                  tilePadding: const EdgeInsets.symmetric(
+                                      vertical: 0, horizontal: 16),
+                                  backgroundColor: Colors.transparent,
+                                  title: Text.rich(
+                                    TextSpan(children: [
+                                      TextSpan(text: '총 관리중인 질병 '),
+                                      TextSpan(
+                                          text:
+                                              '${_controller.allDiseasesList.length}',
+                                          style: GoogleFonts.montserrat(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w400)),
+                                      TextSpan(
+                                        text: '개',
+                                      ),
+                                    ]),
+                                    style: GoogleFonts.notoSans(
+                                        fontSize: 16,
+                                        fontWeight: (_controller
+                                                .isExpansionTwoOpened.value)
+                                            ? FontWeight.bold
+                                            : FontWeight.w400),
+                                  ),
+                                  children: (_controller
+                                          .allDiseasesList.isEmpty)
+                                      ? [SizedBox.shrink()]
+                                      : _controller.allDiseasesList
+                                          .map(
+                                            (disease) => ListTile(
+                                              title: Container(
+                                                  width: WcWidth,
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 8),
+                                                    child: Text(
+                                                      disease.name,
+                                                      overflow:
+                                                          TextOverflow.fade,
+                                                      style:
+                                                          GoogleFonts.notoSans(
+                                                        fontSize: 14.5,
+                                                      ),
+                                                      softWrap: false,
                                                     ),
-                                                    softWrap: false,
-                                                  ),
-                                                )),
-                                            trailing: SizedBox(
-                                              width: 100,
-                                              height: 27,
-                                              child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.end,
-                                                  children: [
-                                                    // WcTextButton(
-                                                    //   text: '질병백과',
-                                                    // ),
-                                                    WcIconButton(
-                                                      onTap: () {
-                                                        print('asdf');
-                                                      },
-                                                      iconSrc:
-                                                          'assets/icons/info.svg',
-                                                      activeIconColor:
-                                                          WcColors.grey120,
-                                                      inactiveIconColor:
-                                                          WcColors.grey120,
-                                                      iconMainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .start,
-                                                    ),
-                                                    const SizedBox(
-                                                      width: 10,
-                                                    ),
-                                                    InkWell(
-                                                      child: Container(
-                                                        alignment:
-                                                            Alignment.center,
-                                                        height: 27,
-                                                        width: 60,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color:
-                                                              WcColors.grey180,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                            5,
+                                                  )),
+                                              trailing: SizedBox(
+                                                width: 100,
+                                                height: 27,
+                                                child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.end,
+                                                    children: [
+                                                      // WcTextButton(
+                                                      //   text: '질병백과',
+                                                      // ),
+                                                      WcIconButton(
+                                                        onTap: () {
+                                                          print('asdf');
+                                                        },
+                                                        iconSrc:
+                                                            'assets/icons/info.svg',
+                                                        activeIconColor:
+                                                            WcColors.grey120,
+                                                        inactiveIconColor:
+                                                            WcColors.grey120,
+                                                        iconMainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .start,
+                                                      ),
+                                                      const SizedBox(
+                                                        width: 10,
+                                                      ),
+                                                      InkWell(
+                                                        child: Container(
+                                                          alignment:
+                                                              Alignment.center,
+                                                          height: 27,
+                                                          width: 60,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: WcColors
+                                                                .grey180,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                              5,
+                                                            ),
+                                                          ),
+                                                          child: Text(
+                                                            '커뮤니티',
+                                                            style: GoogleFonts
+                                                                .notoSans(
+                                                                    color: WcColors
+                                                                        .white,
+                                                                    fontSize:
+                                                                        12),
                                                           ),
                                                         ),
-                                                        child: Text(
-                                                          '커뮤니티',
-                                                          style: GoogleFonts
-                                                              .notoSans(
-                                                                  color: WcColors
-                                                                      .white,
-                                                                  fontSize: 12),
-                                                        ),
                                                       ),
-                                                    ),
-                                                  ]),
+                                                    ]),
+                                              ),
                                             ),
-                                          ),
-                                        )
-                                        .toList()),
+                                          )
+                                          .toList()),
+                            ),
                           ),
                         )
                       ],

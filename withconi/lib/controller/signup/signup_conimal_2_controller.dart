@@ -1,4 +1,6 @@
 import 'package:dartz/dartz.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:withconi/configs/constants/enum.dart';
 import 'package:withconi/configs/helpers/calculator.dart';
 import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
@@ -10,7 +12,6 @@ import '../../core/error_handling/failures.dart';
 import '../../data/model/conimal.dart';
 import '../../data/repository/conimal_repository.dart';
 import '../../import_basic.dart';
-import 'shared_data/user_data.dart';
 
 class SignupConimal2Controller extends GetxController {
   final SignupRepository _signUpRepository = SignupRepository.to;
@@ -67,16 +68,16 @@ class SignupConimal2Controller extends GetxController {
 
   signUp() {
     List<Conimal> conimalList = _signUpRepository.conimalList;
-    print(conimalList);
     showLoading((() async {
-      Either<Failure, String> signUpEither = await _authRepository.signUp(
-          conimalList: conimalList,
+      Either<Failure, User?> _userEither = await _authRepository.signUp(
           password: _signUpRepository.password,
+          conimalList: conimalList,
           authInfo: AuthController.to.authInfo!);
 
-      signUpEither.fold(
+      _userEither.fold(
           (fail) => FailureInterpreter().mapFailureToDialog(fail, 'signUp'),
-          (r) => null);
+          (userCredential) async =>
+              await AuthController.to.setUserInfoAndPage());
     }));
   }
 }
