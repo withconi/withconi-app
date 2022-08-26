@@ -23,7 +23,7 @@ class Api {
     var dio = Dio(BaseOptions(
       baseUrl: HttpUrl.WITHCONI_API_BASE_URL,
       receiveTimeout: 20000, // 20 seconds
-      connectTimeout: 20000,
+      connectTimeout: 20002,
       sendTimeout: 20000,
     ));
 
