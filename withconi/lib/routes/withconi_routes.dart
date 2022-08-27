@@ -27,5 +27,5 @@ abstract class Routes {
   static const USER_MY_POST = '/user/mypost';
   static const USER_LIKED_POST = '/user/likepost';
   static const USER_MYCONIMAL = '/user/myconimal';
-  static const EMAIL_VERIFICATION = '/user/email_verification';
+  static const EMAIL_VERIFICATION = '/email_verification';
 }
