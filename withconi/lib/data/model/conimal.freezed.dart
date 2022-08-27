@@ -267,7 +267,9 @@ class _$_Conimal implements _Conimal {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ConimalToJson(this);
+    return _$$_ConimalToJson(
+      this,
+    );
   }
 }
 
@@ -285,24 +287,24 @@ abstract class _Conimal implements Conimal {
   factory _Conimal.fromJson(Map<String, dynamic> json) = _$_Conimal.fromJson;
 
   @override
-  String get conimalId => throw _privateConstructorUsedError;
+  String get conimalId;
   @override
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @override
-  Species get species => throw _privateConstructorUsedError;
+  Species get species;
   @override
-  Gender get gender => throw _privateConstructorUsedError;
+  Gender get gender;
   @override
-  String? get userId => throw _privateConstructorUsedError;
-  @override
-  @DateTimeConverter()
-  DateTime get birthDate => throw _privateConstructorUsedError;
+  String? get userId;
   @override
   @DateTimeConverter()
-  DateTime get adoptedDate => throw _privateConstructorUsedError;
+  DateTime get birthDate;
+  @override
+  @DateTimeConverter()
+  DateTime get adoptedDate;
   @override
   @DiseaseIdConverter()
-  List<Disease> get diseases => throw _privateConstructorUsedError;
+  List<Disease> get diseases;
   @override
   @JsonKey(ignore: true)
   _$$_ConimalCopyWith<_$_Conimal> get copyWith =>

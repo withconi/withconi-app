@@ -22,7 +22,7 @@ Map<String, dynamic> _$$_PostToJson(_$_Post instance) => <String, dynamic>{
       'postId': instance.postId,
       'authorId': instance.authorId,
       'nickname': instance.nickname,
-      'postType': _$PostTypeEnumMap[instance.postType],
+      'postType': _$PostTypeEnumMap[instance.postType]!,
       'content': instance.content,
       'createdAt': const DateTimeConverter().toJson(instance.createdAt),
       'isLiked': instance.isLiked,

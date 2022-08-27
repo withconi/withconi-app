@@ -159,7 +159,9 @@ class _$_CustomToken implements _CustomToken {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CustomTokenToJson(this);
+    return _$$_CustomTokenToJson(
+      this,
+    );
   }
 }
 
@@ -173,11 +175,11 @@ abstract class _CustomToken implements CustomToken {
       _$_CustomToken.fromJson;
 
   @override
-  Provider get provider => throw _privateConstructorUsedError;
+  Provider get provider;
   @override
-  String get uid => throw _privateConstructorUsedError;
+  String get uid;
   @override
-  String get accessToken => throw _privateConstructorUsedError;
+  String get accessToken;
   @override
   @JsonKey(ignore: true)
   _$$_CustomTokenCopyWith<_$_CustomToken> get copyWith =>

@@ -14,6 +14,8 @@ class WcUser with _$WcUser {
       required String displayName,
       required String nickname,
       required Provider provider,
+      @Default(false) bool isEmailVerified,
+      @Default(false) bool verificationSkipped,
       String? photoURL,
       required List<Conimal> conimals}) = _WcUser;
 

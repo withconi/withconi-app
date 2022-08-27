@@ -15,7 +15,7 @@ _$_CustomToken _$$_CustomTokenFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$_CustomTokenToJson(_$_CustomToken instance) =>
     <String, dynamic>{
-      'provider': _$ProviderEnumMap[instance.provider],
+      'provider': _$ProviderEnumMap[instance.provider]!,
       'uid': instance.uid,
       'accessToken': instance.accessToken,
     };

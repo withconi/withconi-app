@@ -24,8 +24,8 @@ Map<String, dynamic> _$$_ConimalToJson(_$_Conimal instance) =>
     <String, dynamic>{
       'conimalId': instance.conimalId,
       'name': instance.name,
-      'species': _$SpeciesEnumMap[instance.species],
-      'gender': _$GenderEnumMap[instance.gender],
+      'species': _$SpeciesEnumMap[instance.species]!,
+      'gender': _$GenderEnumMap[instance.gender]!,
       'userId': instance.userId,
       'birthDate': const DateTimeConverter().toJson(instance.birthDate),
       'adoptedDate': const DateTimeConverter().toJson(instance.adoptedDate),

@@ -209,7 +209,9 @@ class _$_Disease implements _Disease {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DiseaseToJson(this);
+    return _$$_DiseaseToJson(
+      this,
+    );
   }
 }
 
@@ -225,15 +227,15 @@ abstract class _Disease implements Disease {
 
   @override
   @DateTimeConverter()
-  DateTime get createdAt => throw _privateConstructorUsedError;
+  DateTime get createdAt;
   @override
-  String get code => throw _privateConstructorUsedError;
+  String get code;
   @override
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @override
-  List<String> get symptoms => throw _privateConstructorUsedError;
+  List<String> get symptoms;
   @override
-  String? get description => throw _privateConstructorUsedError;
+  String? get description;
   @override
   @JsonKey(ignore: true)
   _$$_DiseaseCopyWith<_$_Disease> get copyWith =>

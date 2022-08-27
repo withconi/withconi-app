@@ -239,7 +239,9 @@ class _$_Comment implements _Comment {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CommentToJson(this);
+    return _$$_CommentToJson(
+      this,
+    );
   }
 }
 
@@ -256,20 +258,20 @@ abstract class _Comment implements Comment {
   factory _Comment.fromJson(Map<String, dynamic> json) = _$_Comment.fromJson;
 
   @override
-  String get postId => throw _privateConstructorUsedError;
+  String get postId;
   @override
-  String get commentId => throw _privateConstructorUsedError;
+  String get commentId;
   @override
-  String? get authorId => throw _privateConstructorUsedError;
+  String? get authorId;
   @override
-  String get nickname => throw _privateConstructorUsedError;
+  String get nickname;
   @override
-  String get content => throw _privateConstructorUsedError;
+  String get content;
   @override
   @DateTimeConverter()
-  DateTime get createdAt => throw _privateConstructorUsedError;
+  DateTime get createdAt;
   @override
-  bool? get isLiked => throw _privateConstructorUsedError;
+  bool? get isLiked;
   @override
   @JsonKey(ignore: true)
   _$$_CommentCopyWith<_$_Comment> get copyWith =>
