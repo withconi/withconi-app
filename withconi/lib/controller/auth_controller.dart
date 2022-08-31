@@ -1,6 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:withconi/configs/constants/enum.dart';
+import 'package:withconi/configs/helpers/dynamic_link_manager.dart';
 import 'package:withconi/configs/helpers/token_manager.dart';
 
 import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
@@ -18,6 +20,7 @@ class AuthController extends GetxController {
 
   final AuthRepository _authRepository = Get.put(AuthRepository());
   final UserRepository _userRepository = Get.put(UserRepository());
+  final DynamicLinkManager _dynamicLinkManager = DynamicLinkManager();
 
   final Rxn<WcUser> wcUser = Rxn<WcUser>();
   final Rxn<AuthInfo> _authInfo = Rxn<AuthInfo>();
@@ -25,20 +28,34 @@ class AuthController extends GetxController {
 
   AuthInfo? get authInfo => _authInfo.value;
   Provider get _provider => WcCacheManager().getTokenProvider();
+  Uri? deepLink;
+  bool isUserVerified = false;
+
+  // Rxn<User> firebaseUser = Rxn<User>();
+  // Stream<User?> get user => firebaseAuth.authStateChanges();
+
+  @override
+  void onInit() async {
+    super.onInit();
+    await _dynamicLinkManager.setup();
+  }
 
   @override
   onReady() async {
     super.onReady();
 
-    await Future.delayed(const Duration(milliseconds: 1300), () {});
-    await setUserInfoAndPage();
+    await Future.delayed(const Duration(milliseconds: 1000), () async {
+      await setUserInfo(redirectPage: true);
+    });
   }
 
   onAuthInfoChanged({required AuthInfo authInfo}) {
     _authInfo.value = authInfo;
   }
 
-  setUserInfoAndPage() async {
+  setUserInfo({
+    required bool redirectPage,
+  }) async {
     bool _isUserValid =
         await _authRepository.checkValidUserByPlatform(provider: _provider);
 
@@ -47,7 +64,10 @@ class AuthController extends GetxController {
     } else {
       wcUser.value = null;
     }
-    _setInitialPage(wcUser.value);
+
+    if (redirectPage) {
+      _setInitialPage(wcUser.value);
+    }
   }
 
   _setWcUser() async {
@@ -62,17 +82,18 @@ class AuthController extends GetxController {
     });
   }
 
-  _setInitialPage(WcUser? wcUser) {
-    bool emailVerified = false;
-    bool skipEmailVerification = true;
+  _setInitialPage(WcUser? wcUser) async {
+    bool skipEmailVerification = false;
+
     if (wcUser == null) {
-      Get.offAllNamed(Routes.START);
+      await Get.offAllNamed(Routes.START);
     } else if (wcUser.provider == Provider.email &&
-        !emailVerified &&
+        !firebaseAuth.currentUser!.emailVerified &&
         !skipEmailVerification) {
-      Get.offAllNamed(Routes.EMAIL_VERIFICATION);
+      await Get.offAllNamed(Routes.EMAIL_VERIFICATION,
+          arguments: {'nextRoute': Routes.HOME});
     } else {
-      Get.offAllNamed(Routes.HOME);
+      await Get.offAllNamed(Routes.HOME);
     }
   }
 
@@ -87,14 +108,9 @@ class AuthController extends GetxController {
     });
   }
 
-  // _disposeSavedData() {
-  //   SignupUserRepository.to.dispose();
-  //   ConimalRepository.to.dispose();
-  // }
-
   signOut() async {
     await _authRepository.signOut();
     WcCacheManager().clearCache();
-    await setUserInfoAndPage();
+    await setUserInfo(redirectPage: true);
   }
 }
