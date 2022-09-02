@@ -9,11 +9,21 @@
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon"
         android:usesCleartextTraffic="true">
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW"/>
+            <category android:name="android.intent.category.DEFAULT"/>
+            <category android:name="android.intent.category.BROWSABLE"/>
+            <data
+                android:host="withconi.page.link"
+                android:scheme="https"/>
+        </intent-filter>
+    
+
         <meta-data
             android:name="com.naver.sdk.clientId"
             android:value="@string/client_id" />
         <meta-data
-            android:name="com.naver.sdk.clientSecret"
+            android:name="com.naver.sdk.clixfentSecret"
             android:value="@string/client_secret" />
         <meta-data
             android:name="com.naver.sdk.clientName"
@@ -54,5 +64,8 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+          <meta-data
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="woyvacv8h0" />
     </application>
 </manifest>
