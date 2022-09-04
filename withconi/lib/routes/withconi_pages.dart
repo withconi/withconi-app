@@ -4,13 +4,14 @@ import 'package:withconi/ui/pages/common_pages/add_conimal_page.dart';
 import 'package:withconi/ui/pages/common_pages/conimal_setting_page.dart';
 import 'package:withconi/ui/pages/common_pages/email_verification_page.dart';
 import 'package:withconi/ui/pages/common_pages/my_post_page.dart';
-import 'package:withconi/ui/pages/community/community_board_detail_page.dart';
+import 'package:withconi/ui/pages/community/community_post_list_page.dart';
 import 'package:withconi/ui/pages/community/community_main_page.dart';
 import 'package:withconi/ui/pages/community/community_post_detail_page.dart';
 import 'package:withconi/ui/pages/diagnosis/diagnosis_main_page.dart';
 import 'package:withconi/ui/pages/dictionary/dictionary_main_page.dart';
 import 'package:withconi/ui/pages/common_pages/edit_conimal_page.dart';
 import 'package:withconi/ui/pages/home/home_page.dart';
+import 'package:withconi/ui/pages/navigation/navigation_page.dart';
 import 'package:withconi/ui/pages/settings/setting_page.dart';
 import 'package:withconi/ui/pages/common_pages/edit_user_page.dart';
 import 'package:withconi/ui/pages/common_pages/liked_post_page.dart';
@@ -22,17 +23,21 @@ import 'package:withconi/ui/pages/signup/signup_pw_page.dart';
 import 'package:withconi/ui/pages/signup/signup_conimal_page_1.dart';
 import 'package:withconi/ui/pages/splash.dart';
 import 'package:withconi/ui/pages/start/start_page.dart';
-
 import '../ui/pages/community/community_new_post_page.dart';
-import '../ui/pages/hospital/hospital_main_page.dart';
-import '../ui/pages/signup/signup_conimal_page_2.dart';
+import '../ui/pages/map/map_main_page.dart';
+import '../ui/pages/signup/signup_conimal_page_final.dart';
 
 class WcPages {
   static final pages = [
     GetPage(
+        name: Routes.NAVIGATION,
+        page: () => NavigationPage(),
+        // binding: HomeBinding(),
+        transition: Transition.noTransition),
+    GetPage(
         name: Routes.HOME,
         page: () => HomePage(),
-        binding: HomeBinding(),
+        // binding: HomeBinding(),
         transition: Transition.noTransition),
     GetPage(
       name: Routes.SPLASH,
@@ -54,11 +59,11 @@ class WcPages {
     GetPage(name: Routes.SIGNIN_EMAIL, page: () => SigninEmailPage()),
     GetPage(
       name: Routes.SIGNUP_CONIMAL_STEP1,
-      page: () => SignupConimalPage1(),
+      page: () => SignupConimal1Page(),
     ),
     GetPage(
       name: Routes.SIGNUP_CONIMAL_STEP2,
-      page: () => SignupConimalPage2(),
+      page: () => SignupConimalFinalPage(),
     ),
     GetPage(
       name: Routes.SIGNUP_CONIMAL_EDIT,
@@ -86,7 +91,7 @@ class WcPages {
         transition: Transition.noTransition),
     GetPage(
       name: Routes.COMMUNITY_DETAIL,
-      page: () => CommunityBoardDetailPage(),
+      page: () => CommunityPostListPage(),
     ),
     GetPage(
         name: Routes.COMMUNITY_NEW_POST,
@@ -106,8 +111,8 @@ class WcPages {
       transition: Transition.noTransition,
     ),
     GetPage(
-      name: Routes.HOSPITAL_MAIN,
-      page: () => HospitalMainPage(),
+      name: Routes.MAP_MAIN,
+      page: () => MapMainPage(),
       transition: Transition.noTransition,
     ),
     GetPage(
@@ -135,5 +140,9 @@ class WcPages {
       name: Routes.EMAIL_VERIFICATION,
       page: () => EmailVerificationPage(),
     ),
+    // GetPage(
+    //   name: Routes.EMAIL_VERIFI_COMPLETE,
+    //   page: () => EmailVerificationCompletePage(),
+    // ),
   ];
 }

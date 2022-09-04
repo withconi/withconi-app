@@ -3,6 +3,7 @@
 abstract class Routes {
   static const SPLASH = '/';
   static const START = '/start';
+  static const NAVIGATION = '/navigation';
   static const HOME = '/home';
   static const SIGNUP_PW = '/signup/name_pw';
   static const SIGNUP_PROFILE = '/signup/profile';
@@ -19,7 +20,7 @@ abstract class Routes {
   static const COMMUNITY_NEW_POST = '/community/new_post';
   static const COMMUNITY_POST_DETAIL = '/community/post/detail';
   static const COMMUNITY_SEARCH = '/community/search';
-  static const HOSPITAL_MAIN = '/hospital/main';
+  static const MAP_MAIN = '/hospital/main';
   static const DICTIONARY_MAIN = '/dictionary/main';
   static const DIAGNOSIS_MAIN = '/diagnosis/main';
   static const SETTING_MAIN = '/setting/main';
@@ -27,5 +28,6 @@ abstract class Routes {
   static const USER_MY_POST = '/user/mypost';
   static const USER_LIKED_POST = '/user/likepost';
   static const USER_MYCONIMAL = '/user/myconimal';
-  static const EMAIL_VERIFICATION = '/email_verification';
+  static const EMAIL_VERIFICATION = '/authentication/email_verification';
+  // static const EMAIL_VERIFI_COMPLETE = '/authentication/email_verify_complete';
 }
