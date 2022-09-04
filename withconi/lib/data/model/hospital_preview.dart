@@ -1,40 +1,75 @@
+import 'package:kakao_flutter_sdk/kakao_flutter_sdk_navi.dart';
+
 import '../../ui/entities/location.dart';
-import 'abstract_class/store_type.dart';
+import 'abstract_class/place_type.dart';
 
 class HospitalPreview implements PlacePreviewType {
   @override
-  final String uid;
+  String locId = "";
 
   @override
-  final String address;
+  String address = "";
 
   @override
-  final String detailInfo;
+  int totalVisitingConimal = 0;
 
   @override
-  final String phoneNumber;
+  int totalRecommend = 0;
 
   @override
-  final String snsLink;
+  String phoneNumber = "";
 
   @override
-  final String unselectedMarkerImage = "assets/icons/hospital_unclicked.png";
+  String unselectedMarkerImage = "assets/icons/hospital_unclicked.png";
 
   @override
-  final String selectedMarkerImage = "assets/icons/hospital_clicked.png";
+  String selectedMarkerImage = "assets/icons/hospital_clicked.png";
 
   @override
-  final String placeName;
+  String name = "";
 
   @override
-  final LocationClass location;
+  LatLngClass location = LatLngClass(latitude: 0.0, longitude: 0.0);
 
-  HospitalPreview(
-      {required this.uid,
-      required this.placeName,
-      required this.location,
-      required this.address,
-      required this.detailInfo,
-      required this.snsLink,
-      required this.phoneNumber});
+  @override
+  String openingStatus = "";
+
+  @override
+  String thumbnail = "";
+
+  HospitalPreview({
+    required this.locId,
+    required this.name,
+    required this.location,
+    required this.address,
+    required this.totalVisitingConimal,
+    required this.phoneNumber,
+    required this.totalRecommend,
+    required this.openingStatus,
+    required this.thumbnail,
+  });
+
+  HospitalPreview.fromJson(Map<String, dynamic> json) {
+    locId = json['locId'];
+    name = json['title'];
+    openingStatus = json['openingStatus'];
+    address = json['address'];
+    location = LatLngClass.fromJson(json['coordinate']);
+    totalVisitingConimal = json['totalVisitingConiaml'];
+    totalRecommend = json['totalRecommend'];
+    thumbnail = json['thumbnail'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['locId'] = locId;
+    data['title'] = name;
+    data['openingStatus'] = openingStatus;
+    data['address'] = address;
+    data['coordinate'] = location.toJson();
+    data['totalVisitingConimal'] = totalVisitingConimal;
+    data['totalRecommend'] = totalRecommend;
+    data['thumbnail'] = thumbnail;
+    return data;
+  }
 }
