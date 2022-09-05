@@ -6,7 +6,7 @@ class UserAPI {
   final Api _dio = Api();
 
   Future<Map<String, dynamic>> getUserInfo({required String uid}) async {
-    Map<String, Object> requestData = {
+    Map<String, dynamic> requestData = {
       'uid': uid,
     };
 

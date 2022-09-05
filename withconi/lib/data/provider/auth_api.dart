@@ -23,12 +23,13 @@ import '../model/user.dart';
 class AuthAPI {
   final Api _dio = Api();
 
-  Future<AuthInfo> getGoogleAuthInfo() async {
+  Future<CustomAuthInfo> getGoogleAuthInfo() async {
     try {
-      late final AuthInfo authInfo;
+      late final CustomAuthInfo authInfo;
 
       // Trigger the authentication flow
       final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+      print(googleSignIn.currentUser);
 
       // Obtain the auth details from the request
       final GoogleSignInAuthentication? googleAuth =
@@ -41,7 +42,7 @@ class AuthAPI {
       );
 
       String? email = googleUser?.email;
-      authInfo = AuthInfo(
+      authInfo = CustomAuthInfo(
           authObject: credential, email: email!, provider: Provider.google);
       return authInfo;
     } catch (e) {
@@ -70,9 +71,9 @@ class AuthAPI {
 
   validateKakaoToken() {}
 
-  Future<AuthInfo> getKakaoAuthInfo() async {
+  Future<CustomAuthInfo> getKakaoAuthInfo() async {
     late String accessToken;
-    late AuthInfo authInfo;
+    late CustomAuthInfo authInfo;
     // if (await checkKakaoTokenValid()) {
     //   OAuthToken token = await AuthApi.instance.issueAccessToken();
     // } else {
@@ -100,7 +101,7 @@ class AuthAPI {
       var user = await kakao.UserApi.instance.me();
 
       String? email = user.kakaoAccount?.email;
-      authInfo = AuthInfo(
+      authInfo = CustomAuthInfo(
           authObject: accessToken, email: email!, provider: Provider.kakao);
     } catch (e) {
       print(e);
@@ -109,11 +110,11 @@ class AuthAPI {
     return authInfo;
   }
 
-  Future<AuthInfo> getNaverAuthInfo() async {
+  Future<CustomAuthInfo> getNaverAuthInfo() async {
     late String accessToken;
     late final NaverLoginResult result;
     late final NaverAccessToken tokenInfo;
-    late final AuthInfo authInfo;
+    late final CustomAuthInfo authInfo;
 
     try {
       if (await FlutterNaverLogin.isLoggedIn) {
@@ -130,7 +131,7 @@ class AuthAPI {
         print('토큰 유효하지 않음');
         result = await FlutterNaverLogin.logIn();
       }
-      authInfo = AuthInfo(
+      authInfo = CustomAuthInfo(
           authObject: accessToken,
           email: result.account.email,
           provider: Provider.naver);
@@ -141,13 +142,14 @@ class AuthAPI {
     }
   }
 
-  Future<AuthInfo> getEmailAuthInfo(String email) async {
-    AuthInfo authInfo =
-        AuthInfo(authObject: null, email: email, provider: Provider.email);
+  Future<CustomAuthInfo> getEmailAuthInfo(String email) async {
+    CustomAuthInfo authInfo = CustomAuthInfo(
+        authObject: null, email: email, provider: Provider.email);
     return authInfo;
   }
 
-  Future<User?> signInWithCustomToken({required AuthInfo authInfo}) async {
+  Future<User?> signInWithCustomToken(
+      {required CustomAuthInfo authInfo}) async {
     try {
       String customToken = await getNewCustomToken(
           provider: authInfo.provider, token: authInfo.authObject);
@@ -230,7 +232,7 @@ class AuthAPI {
     return isDuplicateUser;
   }
 
-  Future<bool> validateUserByPlatform({required Provider provider}) async {
+  Future<bool> checkValidUserByPlatform({required Provider provider}) async {
     bool userLoggedIn = false;
 
     if (firebaseAuth.currentUser == null) {
@@ -248,7 +250,7 @@ class AuthAPI {
           userLoggedIn = await checkNaverTokenValid();
           break;
         case Provider.google:
-          userLoggedIn = await checkGoogleUserValid();
+          // userLoggedIn = await checkGoogleUserValid();
           break;
         case Provider.email:
           break;
@@ -297,23 +299,25 @@ class AuthAPI {
     }
   }
 
-  checkGoogleUserValid() {
-    var googleSignInAccount = googleSignIn.currentUser;
-    if (googleSignInAccount == null) {
-      return false;
-    } else {
+  checkGoogleUserValid() async {
+    final GoogleSignInAccount? googleSignInAccount =
+        await googleSignIn.signIn();
+
+    if (googleSignInAccount != null) {
       return true;
+    } else {
+      return false;
     }
   }
 
-  Future<AuthInfo> getAppleAuthInfo() async {
+  Future<CustomAuthInfo> getAppleAuthInfo() async {
     // To prevent replay attacks with the credential returned from Apple, we
     // include a nonce in the credential request. When signing in with
     // Firebase, the nonce in the id token returned by Apple, is expected to
     // match the sha256 hash of `rawNonce`.
     final rawNonce = generateNonce();
     final nonce = sha256ofString(rawNonce);
-    late final AuthInfo authInfo;
+    late final CustomAuthInfo authInfo;
 
     // Request credential for the currently signed in Apple account.
     final appleCredential = await SignInWithApple.getAppleIDCredential(
@@ -329,7 +333,7 @@ class AuthAPI {
       idToken: appleCredential.identityToken,
       rawNonce: rawNonce,
     );
-    authInfo = AuthInfo(
+    authInfo = CustomAuthInfo(
         authObject: oauthCredential,
         email: appleCredential.email!,
         provider: Provider.apple);
