@@ -1,15 +1,10 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:withconi/controller/signup/signup_profile_controller.dart';
 import 'package:withconi/ui/theme/colors.dart';
 import 'package:withconi/ui/theme/sizes.dart';
 import 'package:withconi/ui/widgets/button/wide_button.dart';
 import '../../../controller/common_controller/email_verification_controller.dart';
-import '../../widgets/text_field/textfield.dart';
 
 class EmailVerificationPage extends StatelessWidget {
   EmailVerificationPage({Key? key}) : super(key: key);
@@ -62,20 +57,7 @@ class EmailVerificationPage extends StatelessWidget {
                   ),
                   Text('비밀번호 찾기와 회원정보 수정에는\n이메일 인증이 필요해요.'),
                   const SizedBox(
-                    height: 60,
-                  ),
-                  WcWideButtonWidget(
-                    active: true,
-                    activeButtonColor: WcColors.blue100,
-                    activeTextColor: WcColors.white,
-                    buttonText: '인증완료',
-                    buttonWidth: WcWidth - 40,
-                    onTap: () {
-                      _controller.sendVerificationEmail();
-                    },
-                  ),
-                  const SizedBox(
-                    height: 20,
+                    height: 50,
                   ),
                   WcWideButtonWidget(
                     active: true,
@@ -83,16 +65,22 @@ class EmailVerificationPage extends StatelessWidget {
                     activeTextColor: WcColors.grey180,
                     buttonText: '인증메일 재전송',
                     buttonWidth: WcWidth - 40,
-                    onTap: () {},
+                    onTap: () {
+                      _controller.resendVerificationEmail();
+                    },
                   ),
                   const SizedBox(
                     height: 20,
                   ),
                   Center(
                     child: GestureDetector(
+                      onTap: () {
+                        _controller.skipEmailVerification();
+                      },
                       child: Container(
                         width: 80,
                         height: 35,
+                        color: WcColors.white,
                         child: Column(
                           children: [
                             Text('다음에 하기'),
