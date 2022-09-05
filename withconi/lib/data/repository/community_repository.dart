@@ -9,7 +9,7 @@ import 'package:withconi/data/provider/community_api.dart';
 import 'package:withconi/data/provider/disease_api.dart';
 import '../../configs/constants/enum.dart';
 import '../../core/error_handling/failures.dart';
-import '../../core/network_handling/response_model.dart';
+import '../model/response_model/response_model.dart';
 import '../model/board.dart';
 import '../model/post.dart';
 

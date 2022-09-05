@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:withconi/configs/constants/enum.dart';
+import 'package:withconi/configs/helpers/dynamic_link_manager.dart';
 import 'package:withconi/configs/helpers/token_manager.dart';
 import 'package:withconi/controller/auth_controller.dart';
-
 import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
 import 'package:withconi/core/error_handling/exceptions.dart';
 import 'package:withconi/core/error_handling/failures.dart';
@@ -20,12 +20,13 @@ class AuthRepository extends GetxController {
   static AuthRepository get to => Get.find<AuthRepository>();
   final SignupRepository _signUpUserRepository = SignupRepository.to;
   final WcCacheManager _tokenManager = WcCacheManager();
+  final DynamicLinkManager _dynamicLinkManager = DynamicLinkManager();
 
   Provider getAuthTokenProvider() => _tokenManager.getTokenProvider();
 
-  Future<Either<Failure, AuthInfo>> getGoogleAuthInfo() async {
+  Future<Either<Failure, CustomAuthInfo>> getGoogleAuthInfo() async {
     try {
-      AuthInfo authInfo = await _api.getGoogleAuthInfo();
+      CustomAuthInfo authInfo = await _api.getGoogleAuthInfo();
       return Right(authInfo);
     } on NoInternetConnectionException {
       return Left(NoConnectionFailure());
@@ -36,48 +37,8 @@ class AuthRepository extends GetxController {
     }
   }
 
-  // setAuthUserCredential({required UserCredential userCredential}) {
-  //   firebaseAuth.signInAnonymously()
-  // }
-  // Future<Either<Failure, UserState>> getUserState(
-  //     {required ProviderOptions provider, String? email}) async {
-  //   try {
-  //     if (provider == ProviderOptions.email) {
-  //       _authInfo = await _api.getEmailAuthInfo(email!);
-  //     } else {
-  //       switch (provider) {
-  //         case ProviderOptions.google:
-  //           _authInfo = await _api.getGoogleAuthInfo();
-  //           break;
-  //         case ProviderOptions.kakao:
-  //           _authInfo = await _api.getKakaoAuthInfo();
-  //           break;
-  //         case ProviderOptions.naver:
-  //           _authInfo = await _api.getNaverAuthInfo();
-  //           break;
-  //         case ProviderOptions.apple:
-  //           _authInfo = await _api.getAppleAuthInfo();
-  //           break;
-  //         default:
-  //       }
-  //     }
-
-  //     final bool isDuplicateUser =
-  //         await _api.checkUserEmail(email: _authInfo.email);
-
-  //     final UserState userState = determineUserState(isDuplicateUser, provider);
-  //     return Right(userState);
-  //   } on NoInternetConnectionException {
-  //     return Left(NoConnectionFailure());
-  //   } on PlatformException {
-  //     return Left(NoUserDataFailure());
-  //   } catch (e) {
-  //     return Left(NoUserDataFailure());
-  //   }
-  // }
-
   Future<Either<Failure, UserState>> getUserState(
-      {required AuthInfo authInfo}) async {
+      {required CustomAuthInfo authInfo}) async {
     try {
       final bool isDuplicateUser =
           await _api.checkUserEmail(email: authInfo.email);
@@ -94,31 +55,31 @@ class AuthRepository extends GetxController {
     }
   }
 
-  Future<Either<Failure, AuthInfo>> getAuthInfo(
+  Future<Either<Failure, CustomAuthInfo>> getCustomAuthInfo(
       {required Provider provider, String? email}) async {
     try {
-      late AuthInfo _authInfo;
+      late CustomAuthInfo _customAuthInfo;
       if (provider == Provider.email) {
-        _authInfo = await _api.getEmailAuthInfo(email!);
+        _customAuthInfo = await _api.getEmailAuthInfo(email!);
       } else {
         switch (provider) {
           case Provider.google:
-            _authInfo = await _api.getGoogleAuthInfo();
+            _customAuthInfo = await _api.getGoogleAuthInfo();
             break;
           case Provider.kakao:
-            _authInfo = await _api.getKakaoAuthInfo();
+            _customAuthInfo = await _api.getKakaoAuthInfo();
             break;
           case Provider.naver:
-            _authInfo = await _api.getNaverAuthInfo();
+            _customAuthInfo = await _api.getNaverAuthInfo();
             break;
           case Provider.apple:
-            _authInfo = await _api.getAppleAuthInfo();
+            _customAuthInfo = await _api.getAppleAuthInfo();
             break;
           default:
         }
       }
 
-      return Right(_authInfo);
+      return Right(_customAuthInfo);
     } on NoInternetConnectionException {
       return Left(NoConnectionFailure());
     } on PlatformException {
@@ -153,9 +114,9 @@ class AuthRepository extends GetxController {
     return userState;
   }
 
-  Future<Either<Failure, AuthInfo>> getAppleAuthInfo() async {
+  Future<Either<Failure, CustomAuthInfo>> getAppleAuthInfo() async {
     try {
-      AuthInfo authInfo = await _api.getAppleAuthInfo();
+      CustomAuthInfo authInfo = await _api.getAppleAuthInfo();
       return Right(authInfo);
     } on NoInternetConnectionException {
       return Left(NoConnectionFailure());
@@ -166,9 +127,9 @@ class AuthRepository extends GetxController {
     }
   }
 
-  Future<Either<Failure, AuthInfo>> getEmailAuthInfo(email) async {
+  Future<Either<Failure, CustomAuthInfo>> getEmailAuthInfo(email) async {
     try {
-      AuthInfo authInfo = await _api.getEmailAuthInfo(email);
+      CustomAuthInfo authInfo = await _api.getEmailAuthInfo(email);
       return Right(authInfo);
     } on NoInternetConnectionException {
       return Left(NoConnectionFailure());
@@ -179,9 +140,9 @@ class AuthRepository extends GetxController {
     }
   }
 
-  Future<Either<Failure, AuthInfo>> getKakaoAuthInfo() async {
+  Future<Either<Failure, CustomAuthInfo>> getKakaoAuthInfo() async {
     try {
-      AuthInfo authInfo = await _api.getKakaoAuthInfo();
+      CustomAuthInfo authInfo = await _api.getKakaoAuthInfo();
       return Right(authInfo);
     } on NoInternetConnectionException {
       return Left(NoConnectionFailure());
@@ -193,9 +154,9 @@ class AuthRepository extends GetxController {
     }
   }
 
-  Future<Either<Failure, AuthInfo>> getNaverAuthInfo() async {
+  Future<Either<Failure, CustomAuthInfo>> getNaverAuthInfo() async {
     try {
-      AuthInfo authInfo = await _api.getNaverAuthInfo();
+      CustomAuthInfo authInfo = await _api.getNaverAuthInfo();
       return Right(authInfo);
     } on NoInternetConnectionException {
       return Left(NoConnectionFailure());
@@ -209,7 +170,7 @@ class AuthRepository extends GetxController {
   }
 
   Future<bool> checkValidUserByPlatform({required Provider provider}) async {
-    return await _api.validateUserByPlatform(provider: provider);
+    return await _api.checkValidUserByPlatform(provider: provider);
   }
 
   Future<Either<Failure, bool>> checkDuplicateUser(
@@ -229,7 +190,7 @@ class AuthRepository extends GetxController {
   Future<Either<Failure, User?>> signUp(
       {String? password,
       required List<Conimal> conimalList,
-      required AuthInfo authInfo}) async {
+      required CustomAuthInfo authInfo}) async {
     late User? _authUser;
 
     try {
@@ -289,22 +250,23 @@ class AuthRepository extends GetxController {
   }
 
   signInWithEmail(
-      {required String password, required AuthInfo authInfo}) async {
+      {required String password, required CustomAuthInfo authInfo}) async {
     late Either<Failure, User?> _authUserEither;
     _authUserEither =
         await _api.signInWithEmail(email: authInfo.email, password: password);
 
-    _authUserEither.fold(
+    await _authUserEither.fold(
         (fail) =>
             FailureInterpreter().mapFailureToDialog(fail, 'signInWithEmail'),
-        (userCredential) {
-      saveProviderLocalStorage(
+        (user) async {
+      await saveProviderLocalStorage(
         provider: authInfo.provider,
       );
     });
+    return;
   }
 
-  signInWithAuthCredential({required AuthInfo authInfo}) async {
+  signInWithAuthCredential({required CustomAuthInfo authInfo}) async {
     showLoading(() async {
       late UserCredential _userCredential;
       await _api.signInWithAuthCredential(credential: authInfo.authObject);
@@ -314,7 +276,7 @@ class AuthRepository extends GetxController {
     });
   }
 
-  signInWithCustomToken({required AuthInfo authInfo}) async {
+  signInWithCustomToken({required CustomAuthInfo authInfo}) async {
     late UserCredential _userCredential;
     await _api.signInWithCustomToken(authInfo: authInfo.authObject);
     await saveProviderLocalStorage(
@@ -325,17 +287,17 @@ class AuthRepository extends GetxController {
   saveProviderLocalStorage({
     required Provider provider,
   }) async {
-    WcCacheManager().saveProvider(provider);
+    await WcCacheManager().saveProvider(provider);
   }
 
   Future<Either<Failure, bool>?> sendVerificationEmail(
-      {required String email}) async {
+      {required String email,
+      required String currentRoute,
+      required String nextRoute}) async {
     try {
       var acs = ActionCodeSettings(
-          // URL you want to redirect back to. The domain (www.example.com) for this
-          // URL must be whitelisted in the Firebase Console.
-          url:
-              'https://withconi.firebaseapp.com/__/auth/action?mode=action&oobCode=code',
+          url: await _dynamicLinkManager.getUrl(
+              redirectRoute: Routes.EMAIL_VERIFICATION, nextRoute: nextRoute),
           // This must be true
           handleCodeInApp: true,
           iOSBundleId: 'co.yellowtoast.withconi',
@@ -352,24 +314,6 @@ class AuthRepository extends GetxController {
     } catch (e) {
       return Left(SignInCredentialFailure());
     }
-  }
-
-  checkEmailVerification() {
-    // Confirm the link is a sign-in with email link.
-    // if (firebaseAuth.isSignInWithEmailLink(emailLink)) {
-    //   try {
-    //     // The client SDK will parse the code from the link for you.
-    //     final userCredential = await FirebaseAuth.instance
-    //         .signInWithEmailLink(email: emailAuth, emailLink: emailLink);
-
-    //     // You can access the new user via userCredential.user.
-    //     final emailAddress = userCredential.user?.email;
-
-    //     print('Successfully signed in with email link!');
-    //   } catch (error) {
-    //     print('Error signing in with email link.');
-    //   }
-    // }
   }
 
   signOut() async {

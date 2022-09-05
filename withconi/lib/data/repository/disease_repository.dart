@@ -6,7 +6,7 @@ import 'package:withconi/core/error_handling/exceptions.dart';
 import 'package:withconi/data/model/disease.dart';
 import 'package:withconi/data/provider/disease_api.dart';
 import '../../core/error_handling/failures.dart';
-import '../../core/network_handling/response_model.dart';
+import '../model/response_model/response_model.dart';
 
 class DiseaseRepository {
   final DiseaseAPI _api = DiseaseAPI();
