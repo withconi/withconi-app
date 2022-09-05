@@ -5,8 +5,8 @@ part 'auth_info.freezed.dart';
 part 'auth_info.g.dart';
 
 @freezed
-class AuthInfo with _$AuthInfo {
-  factory AuthInfo(
+class CustomAuthInfo with _$AuthInfo {
+  factory CustomAuthInfo(
       {required dynamic authObject,
       required String email,
       required Provider provider,
@@ -14,6 +14,6 @@ class AuthInfo with _$AuthInfo {
       @Default(false) bool? isEmailVerifySkipped,
       required}) = _AuthInfo;
 
-  factory AuthInfo.fromJson(Map<String, dynamic> json) =>
+  factory CustomAuthInfo.fromJson(Map<String, dynamic> json) =>
       _$AuthInfoFromJson(json);
 }

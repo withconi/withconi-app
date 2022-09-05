@@ -19,7 +19,7 @@ Map<String, dynamic> _$$_AuthInfoToJson(_$_AuthInfo instance) =>
     <String, dynamic>{
       'authObject': instance.authObject,
       'email': instance.email,
-      'provider': _$ProviderEnumMap[instance.provider],
+      'provider': _$ProviderEnumMap[instance.provider]!,
       'isEmailVerified': instance.isEmailVerified,
       'isEmailVerifySkipped': instance.isEmailVerifySkipped,
       'required': instance.required,

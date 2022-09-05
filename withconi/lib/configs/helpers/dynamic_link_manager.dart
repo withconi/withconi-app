@@ -58,11 +58,11 @@ class DynamicLinkManager {
         case Routes.EMAIL_VERIFICATION:
           EmailVerificationController _controller =
               Get.find<EmailVerificationController>();
-          bool emailVerified = _controller.checkEmailVerification(
+          bool emailVerified = await _controller.checkEmailVerification(
               verificationLink: dynamicLinkData);
           if (emailVerified) {
             await showDurationDialog(
-                () => Future.delayed(Duration(milliseconds: 2500)));
+                () => Future.delayed(Duration(milliseconds: 2400)));
             Get.offNamed(nextRoute);
           } else {
             await showSnackbar(text: '인증 메일이 만료되었어요. 재전송해주세요 :)');

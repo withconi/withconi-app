@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-AuthInfo _$AuthInfoFromJson(Map<String, dynamic> json) {
+CustomAuthInfo _$AuthInfoFromJson(Map<String, dynamic> json) {
   return _AuthInfo.fromJson(json);
 }
 
@@ -29,13 +29,14 @@ mixin _$AuthInfo {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $AuthInfoCopyWith<AuthInfo> get copyWith =>
+  $AuthInfoCopyWith<CustomAuthInfo> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $AuthInfoCopyWith<$Res> {
-  factory $AuthInfoCopyWith(AuthInfo value, $Res Function(AuthInfo) then) =
+  factory $AuthInfoCopyWith(
+          CustomAuthInfo value, $Res Function(CustomAuthInfo) then) =
       _$AuthInfoCopyWithImpl<$Res>;
   $Res call(
       {dynamic authObject,
@@ -50,9 +51,9 @@ abstract class $AuthInfoCopyWith<$Res> {
 class _$AuthInfoCopyWithImpl<$Res> implements $AuthInfoCopyWith<$Res> {
   _$AuthInfoCopyWithImpl(this._value, this._then);
 
-  final AuthInfo _value;
+  final CustomAuthInfo _value;
   // ignore: unused_field
-  final $Res Function(AuthInfo) _then;
+  final $Res Function(CustomAuthInfo) _then;
 
   @override
   $Res call({
@@ -220,11 +221,13 @@ class _$_AuthInfo implements _AuthInfo {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_AuthInfoToJson(this);
+    return _$$_AuthInfoToJson(
+      this,
+    );
   }
 }
 
-abstract class _AuthInfo implements AuthInfo {
+abstract class _AuthInfo implements CustomAuthInfo {
   factory _AuthInfo(
       {required final dynamic authObject,
       required final String email,
@@ -236,17 +239,17 @@ abstract class _AuthInfo implements AuthInfo {
   factory _AuthInfo.fromJson(Map<String, dynamic> json) = _$_AuthInfo.fromJson;
 
   @override
-  dynamic get authObject => throw _privateConstructorUsedError;
+  dynamic get authObject;
   @override
-  String get email => throw _privateConstructorUsedError;
+  String get email;
   @override
-  Provider get provider => throw _privateConstructorUsedError;
+  Provider get provider;
   @override
-  bool? get isEmailVerified => throw _privateConstructorUsedError;
+  bool? get isEmailVerified;
   @override
-  bool? get isEmailVerifySkipped => throw _privateConstructorUsedError;
+  bool? get isEmailVerifySkipped;
   @override
-  dynamic get required => throw _privateConstructorUsedError;
+  dynamic get required;
   @override
   @JsonKey(ignore: true)
   _$$_AuthInfoCopyWith<_$_AuthInfo> get copyWith =>
