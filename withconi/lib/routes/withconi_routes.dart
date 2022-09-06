@@ -20,7 +20,6 @@ abstract class Routes {
   static const COMMUNITY_NEW_POST = '/community/new_post';
   static const COMMUNITY_POST_DETAIL = '/community/post/detail';
   static const COMMUNITY_SEARCH = '/community/search';
-  static const MAP_MAIN = '/hospital/main';
   static const DICTIONARY_MAIN = '/dictionary/main';
   static const DIAGNOSIS_MAIN = '/diagnosis/main';
   static const SETTING_MAIN = '/setting/main';
@@ -29,5 +28,7 @@ abstract class Routes {
   static const USER_LIKED_POST = '/user/likepost';
   static const USER_MYCONIMAL = '/user/myconimal';
   static const EMAIL_VERIFICATION = '/authentication/email_verification';
+  static const MAP_MAIN = '/hospital/main';
+  static const MAP_DETAIL = '/map/detail';
   // static const EMAIL_VERIFI_COMPLETE = '/authentication/email_verify_complete';
 }

@@ -1,5 +1,4 @@
 import 'package:withconi/import_basic.dart';
-import 'package:withconi/routes/withconi_bindings.dart';
 import 'package:withconi/ui/pages/common_pages/add_conimal_page.dart';
 import 'package:withconi/ui/pages/common_pages/conimal_setting_page.dart';
 import 'package:withconi/ui/pages/common_pages/email_verification_page.dart';
@@ -11,6 +10,7 @@ import 'package:withconi/ui/pages/diagnosis/diagnosis_main_page.dart';
 import 'package:withconi/ui/pages/dictionary/dictionary_main_page.dart';
 import 'package:withconi/ui/pages/common_pages/edit_conimal_page.dart';
 import 'package:withconi/ui/pages/home/home_page.dart';
+import 'package:withconi/ui/pages/map/map_detail_page.dart';
 import 'package:withconi/ui/pages/navigation/navigation_page.dart';
 import 'package:withconi/ui/pages/settings/setting_page.dart';
 import 'package:withconi/ui/pages/common_pages/edit_user_page.dart';
@@ -115,6 +115,13 @@ class WcPages {
       page: () => MapMainPage(),
       transition: Transition.noTransition,
     ),
+    GetPage(
+        name: Routes.MAP_DETAIL,
+        page: () => MapDetailPage(),
+        popGesture: true,
+        transition: Transition.fade,
+        transitionDuration: Duration(milliseconds: 200),
+        gestureWidth: (context) => 200),
     GetPage(
       name: Routes.DICTIONARY_MAIN,
       page: () => DictionaryMainPage(),
