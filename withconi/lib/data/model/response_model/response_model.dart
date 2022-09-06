@@ -117,24 +117,24 @@ class BoardResponse {
 
 class PlacePreviewResponse {
   List<PlacePreviewType> placeList;
-  int totalResults = 0;
+  int totalDocuments = 0;
 
-  PlacePreviewResponse({required this.placeList, required this.totalResults});
+  PlacePreviewResponse({required this.placeList, required this.totalDocuments});
 
   factory PlacePreviewResponse.fromJson(Map<String, dynamic> json) {
     List<PlacePreviewType> list = [];
     int totalDocs = 0;
-    // totalDocs = json['totalResults'];
-    // if (json['list'] != null) {
-    //   list = <PlacePreviewType>[];
-    //   json['list'].forEach((v) {
-    //     if (v['locType'] == 'hospital') {
-    //       list.add(new HospitalPreview.fromJson(v));
-    //     } else if (v['locType'] == 'pharmacy') {
-    //       list.add(new PharmacyPreview.fromJson(v));
-    //     }
-    //   });
-    // }
+    totalDocs = json['totalDocuments'];
+    if (json['list'] != null) {
+      list = <PlacePreviewType>[];
+      json['list'].forEach((v) {
+        if (v['locType'] == 'hospital') {
+          list.add(new HospitalPreview.fromJson(v));
+        } else if (v['locType'] == 'pharmacy') {
+          list.add(new PharmacyPreview.fromJson(v));
+        }
+      });
+    }
 
     if (json['list'] != null) {
       list = <PlacePreviewType>[];
@@ -143,6 +143,6 @@ class PlacePreviewResponse {
       });
     }
 
-    return PlacePreviewResponse(placeList: list, totalResults: totalDocs);
+    return PlacePreviewResponse(placeList: list, totalDocuments: totalDocs);
   }
 }
