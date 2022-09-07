@@ -67,6 +67,7 @@ dependencies:
   geolocator: ^9.0.1
   firebase_dynamic_links: ^4.3.4
   flutter_naver_map: ^0.10.5
+  fl_chart: ^0.55.1
   # lazy_load_scrollview: ^1.3.0
   # zefyr: ^0.12.0
   # rich_editor: ^0.0.5
