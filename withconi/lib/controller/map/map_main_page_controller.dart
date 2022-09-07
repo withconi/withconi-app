@@ -220,15 +220,17 @@ class MapMainPageController extends GetxController {
   }
 
   onSearchRefreshTap() async {
-    placeMarkers.clear();
-    await _setSearchLatLng();
-    await _getPlacePreviewList();
-    showResearchButton.value = false;
-    showPlaceListBottomSheet.value = true;
-    placePreviewListDragController.animateTo(0.40,
-        duration: Duration(milliseconds: 200), curve: Curves.linear);
-    mapController
-        .moveCamera(CameraUpdate.scrollWithOptions(_searchLatLng, zoom: 13));
+    // placeMarkers.clear();
+    // await _setSearchLatLng();
+    // await _getPlacePreviewList();
+    // showResearchButton.value = false;
+    // showPlaceListBottomSheet.value = true;
+    // placePreviewListDragController.animateTo(0.40,
+    //     duration: Duration(milliseconds: 200), curve: Curves.linear);
+    // mapController
+    //     .moveCamera(CameraUpdate.scrollWithOptions(_searchLatLng, zoom: 13));
+
+    Get.toNamed(Routes.MAP_DETAIL);
   }
 
   _getPlacePreviewList() async {
@@ -237,7 +239,7 @@ class MapMainPageController extends GetxController {
     print(zoomlevel);
     print(await mapController.getSize());
 
-    var placePreviewListResult = await _mapRepository.getPlacePreviewList(
+    var previewListResult = await _mapRepository.getPlacePreviewList(
       paginationFilter: _paginationFilter.value,
       latLng: _searchLatLng,
       locType: _selectedPlaceType,
@@ -245,8 +247,12 @@ class MapMainPageController extends GetxController {
       keyword: _searchKeyword,
     );
 
-    placePreviewListResult.fold((l) => null, (r) async {
-      await _makePlaceMarkers(placePreviewList: r.placeList);
+    previewListResult.fold((l) => null, (previewList) async {
+      if (previewList.isEmpty) {
+        _lastPage.value = true;
+      } else {
+        await _makePlaceMarkers(placePreviewList: previewList);
+      }
       return;
     });
   }
