@@ -1,6 +1,6 @@
 import 'package:withconi/import_basic.dart';
 
-import '../../../controller/nav_controller.dart';
+import '../../../controller/navigation_controller.dart';
 
 import '../../widgets/navbar/bottom_navbar.dart';
 
@@ -12,14 +12,6 @@ class DictionaryMainPage extends StatelessWidget {
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
-        bottomNavigationBar: Obx(
-          () => WcBottomNavBar(
-            navIndex: NavController.to.navBarIndex.value,
-            onTap: (index) {
-              NavController.to.onNavChanged(navIndex: index);
-            },
-          ),
-        ),
         backgroundColor: WcColors.white,
         body: SingleChildScrollView(
           child: SafeArea(
