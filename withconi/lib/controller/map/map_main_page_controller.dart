@@ -30,9 +30,12 @@ class MapMainPageController extends GetxController {
     '신장',
   ];
   List<String?> conimalFilterList = [null, '고양이', '강아지'];
+  List<String> sortTypeList = ['많이 찾는순', '거리순'];
   RxBool onlyOpenPlace = false.obs;
   RxnString selectedDiseaseFilter = RxnString();
   RxnString selectedConimalFilter = RxnString();
+
+  RxString selectedSortType = '거리순'.obs;
   RxBool showResearchButton = false.obs;
   late LatLngClass _searchLatLng;
   late LatLngClass _currentLocation;
