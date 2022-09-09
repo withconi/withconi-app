@@ -1,26 +1,27 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_naver_map/flutter_naver_map.dart';
+import 'package:geolocator/geolocator.dart';
 
-import '../../data/model/abstract_class/store_type.dart';
+import '../../data/model/abstract_class/place_type.dart';
 import 'location.dart';
 
 class CustomMarker extends Marker {
   final PlacePreviewType place;
-  bool isSelected = false;
+  double distance;
 
   // the old way
   CustomMarker({
     required String markerId,
     required this.place,
-    required LatLngClass position,
     required String text,
     required int iconWidth,
     required int iconHeight,
+    required this.distance,
     required void Function(Marker? marker, Map<String, int?> iconSize)?
         onTapMarker,
   }) : super(
           markerId: markerId,
-          position: position,
+          position: place.location,
           width: iconWidth,
           height: iconHeight,
           captionText: text,
@@ -39,14 +40,15 @@ class CustomMarker extends Marker {
   //           captionText: store.storeName);
 
   factory CustomMarker.fromMyPlace(
-          PlacePreviewType store,
-          void Function(Marker? marker, Map<String, int?> iconSize)?
-              onTapMarker) =>
+          {required PlacePreviewType place,
+          required double distance,
+          required void Function(Marker? marker, Map<String, int?> iconSize)?
+              onTapMarker}) =>
       CustomMarker(
-          place: store,
-          position: store.location,
-          markerId: store.locId,
-          text: store.name,
+          place: place,
+          markerId: place.locId,
+          text: place.name,
+          distance: distance,
           iconWidth: 30,
           iconHeight: 30,
           onTapMarker: onTapMarker);
