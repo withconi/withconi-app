@@ -1,18 +1,16 @@
-import 'package:flutter_svg/svg.dart';
-import 'package:withconi/controller/infinite_scroll_controller.dart';
-import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
+import 'package:withconi/controller/community/communty_widgets/more_tap_bottom_sheet.dart';
 import 'package:withconi/data/repository/community_repository.dart';
 import 'package:withconi/ui/widgets/photo_gallary/image_item.dart';
-
 import '../../configs/constants/enum.dart';
 import '../../configs/helpers/calculator.dart';
 import '../../data/model/comment.dart';
 import '../../data/model/post.dart';
 import '../../import_basic.dart';
 import '../ui_helper/infinite_scroll.dart';
+import 'communty_widgets/comment_bottom_sheet.dart';
 
 class CommunityPostDetailController extends GetxController {
-  CommunityRepository _communityRepository = CommunityRepository();
+  // final CommunityRepository _communityRepository = CommunityRepository();
   List<ImageItem> images = [
     ImageItem(
         id: 'tag1',
@@ -62,7 +60,7 @@ class CommunityPostDetailController extends GetxController {
   final _lastPage = false.obs;
   RxInt currentImageIndex = 0.obs;
   int get limit => _paginationFilter.value.limit!;
-  int get _page => _paginationFilter.value.page!;
+  int get page => _paginationFilter.value.page!;
   bool get lastPage => _lastPage.value;
   String uploadAtStr(DateTime createdAt) =>
       TimeCalculator().calculateUploadAt(createdAt);
@@ -81,256 +79,19 @@ class CommunityPostDetailController extends GetxController {
   }
 
   Future<void> addComment() async {
-    TextEditingController textEditingController = TextEditingController();
-    Comment? newComment = await Get.bottomSheet(
-      Container(
-        height: 280,
-        padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 20),
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 25,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 5),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('먼지님의 댓글',
-                      style: GoogleFonts.notoSans(
-                          fontSize: 17,
-                          color: WcColors.black,
-                          fontWeight: FontWeight.bold)),
-                  GestureDetector(
-                    onTap: () {
-                      Comment newComment = Comment(
-                          postId: 'postId',
-                          commentId: 'commentId',
-                          nickname: '댓글닉네임',
-                          content: textEditingController.text,
-                          createdAt: DateTime.now());
-
-                      Get.back(result: newComment);
-                    },
-                    child: Text('남기기',
-                        style: GoogleFonts.notoSans(
-                            fontSize: 16,
-                            color: WcColors.blue100,
-                            fontWeight: FontWeight.bold)),
-                  )
-                ],
-              ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Container(
-              height: 170,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25),
-                  color: WcColors.blue20),
-              child: TextField(
-                controller: textEditingController,
-                style: GoogleFonts.notoSans(
-                    color: WcColors.black,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    height: 1.5),
-                maxLines: 20,
-                minLines: 5,
-                decoration: InputDecoration(
-                    contentPadding: EdgeInsets.all(20),
-                    isDense: true,
-                    border: InputBorder.none,
-                    hintStyle: GoogleFonts.notoSans(
-                        color: WcColors.grey120,
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500,
-                        height: 1.5),
-                    hintText:
-                        '욕설, 비방 등 상대방을 불쾌하게 하는 의견은 남기지 말아주세요. 신고를 당하면 커뮤니티 이용이 제한될 수 있습니다.'),
-              ),
-            ),
-          ],
-        ),
-      ),
-      enterBottomSheetDuration: const Duration(milliseconds: 170),
-      exitBottomSheetDuration: const Duration(milliseconds: 170),
-      backgroundColor: Colors.white,
-      elevation: 0,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
-        ),
-      ),
-    );
+    Comment? newComment = await showCommentBottomSheet();
     if (newComment != null) {
       commentList.add(newComment);
     }
   }
 
-  onMoreTap({required String authorId, required postId}) {
+  onMoreTap({required String authorId, required String authorNickname}) async {
     if (authorId != authorId) {
-      Get.bottomSheet(
-        Container(
-          height: 170,
-          padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 25,
-              ),
-              GestureDetector(
-                onTap: () {
-                  print('print');
-                },
-                child: Container(
-                  height: 45,
-                  width: WcWidth,
-                  color: Colors.transparent,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SvgPicture.asset('assets/icons/circle_edit.svg'),
-                        SizedBox(
-                          width: 12,
-                        ),
-                        Text('수정하기',
-                            style: GoogleFonts.notoSans(
-                                fontSize: 17,
-                                color: WcColors.black,
-                                fontWeight: FontWeight.w500)),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  print('print');
-                },
-                child: Container(
-                  height: 50,
-                  width: WcWidth,
-                  color: Colors.transparent,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SvgPicture.asset('assets/icons/circle_delete.svg'),
-                        SizedBox(
-                          width: 12,
-                        ),
-                        Text('삭제하기',
-                            style: GoogleFonts.notoSans(
-                                fontSize: 17,
-                                color: WcColors.black,
-                                fontWeight: FontWeight.w500)),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        enterBottomSheetDuration: const Duration(milliseconds: 170),
-        exitBottomSheetDuration: const Duration(milliseconds: 170),
-        backgroundColor: Colors.white,
-        elevation: 0,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20),
-            topRight: Radius.circular(20),
-          ),
-        ),
-      );
+      return await showMoreBottomSheet(
+          isAuthor: true, authorNickname: authorNickname);
     } else {
-      Get.bottomSheet(
-        Container(
-          height: 170,
-          padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 25,
-              ),
-              GestureDetector(
-                onTap: () {
-                  print('print');
-                },
-                child: Container(
-                  height: 45,
-                  width: WcWidth,
-                  color: Colors.transparent,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SvgPicture.asset('assets/icons/circle_report.svg'),
-                        SizedBox(
-                          width: 12,
-                        ),
-                        Text('신고하기',
-                            style: GoogleFonts.notoSans(
-                                fontSize: 17,
-                                color: WcColors.black,
-                                fontWeight: FontWeight.w500)),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  print('print');
-                },
-                child: Container(
-                  height: 50,
-                  width: WcWidth,
-                  color: Colors.transparent,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SvgPicture.asset('assets/icons/circle_block.svg'),
-                        SizedBox(
-                          width: 12,
-                        ),
-                        Text('${commentList[0].nickname}의 글 보지 않기',
-                            style: GoogleFonts.notoSans(
-                                fontSize: 17,
-                                color: WcColors.black,
-                                fontWeight: FontWeight.w500)),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        enterBottomSheetDuration: const Duration(milliseconds: 170),
-        exitBottomSheetDuration: const Duration(milliseconds: 170),
-        backgroundColor: Colors.white,
-        elevation: 0,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20),
-            topRight: Radius.circular(20),
-          ),
-        ),
-      );
+      return await showMoreBottomSheet(
+          isAuthor: false, authorNickname: authorNickname);
     }
   }
 }

@@ -1,17 +1,15 @@
 import 'package:withconi/configs/helpers/calculator.dart';
 import 'package:withconi/controller/auth_controller.dart';
-import 'package:withconi/controller/infinite_scroll_controller.dart';
 import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
 import 'package:withconi/data/repository/community_repository.dart';
 import 'package:withconi/ui/widgets/loading.dart';
-
 import '../../configs/constants/enum.dart';
 import '../../data/model/post.dart';
 import '../../import_basic.dart';
 import '../ui_helper/infinite_scroll.dart';
 
 class CommunityBoardDetailController extends GetxController {
-  CommunityRepository _communityRepository = CommunityRepository();
+  final CommunityRepository _communityRepository = CommunityRepository();
   RxList<Post> postList = <Post>[].obs;
   late String _boardId;
   List<String> likePostList = <String>[];
@@ -216,9 +214,5 @@ class CommunityBoardDetailController extends GetxController {
   void addNewPost() async {
     resetPage();
     Get.toNamed(Routes.COMMUNITY_NEW_POST, arguments: _boardId);
-    // if (newPost != null) {
-    //   postList.insert(0, newPost);
-    //   postList.refresh();
-    // }
   }
 }

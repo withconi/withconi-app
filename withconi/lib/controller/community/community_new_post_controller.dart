@@ -1,13 +1,10 @@
 import 'dart:io';
-
 import 'package:dartz/dartz.dart';
-import 'package:flutter/services.dart';
 import 'package:withconi/configs/constants/enum.dart';
 import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/data/repository/community_repository.dart';
 import 'package:withconi/data/repository/image_repository.dart';
 import 'package:withconi/ui/widgets/loading.dart';
-
 import '../../configs/helpers/image_picker_helper.dart';
 import '../../core/error_handling/failures.dart';
 import '../../data/model/post.dart';
@@ -16,15 +13,15 @@ import '../../ui/widgets/dialog/selection_dialog.dart';
 import '../ui_interpreter/failure_ui_interpreter.dart';
 
 class CommunityNewPostController extends GetxController {
-  CommunityRepository _communityRepository = CommunityRepository();
-  ImageRepository _imageRepository = ImageRepository();
-  List<PostType> postType = [PostType.cat, PostType.dog];
-  Rxn<PostType> selectedPostType = Rxn<PostType>();
+  final CommunityRepository _communityRepository = CommunityRepository();
+  final ImageRepository _imageRepository = ImageRepository();
+  final List<PostType> postType = [PostType.cat, PostType.dog];
+  final Rxn<PostType> selectedPostType = Rxn<PostType>();
   final int maxImageNum = 4;
-  RxInt selectedImageNum = 0.obs;
-  RxList<File> imageFileList = <File>[].obs;
+  final RxInt selectedImageNum = 0.obs;
+  final RxList<File> imageFileList = <File>[].obs;
   late String _boardId;
-  RxBool validatePostButton = false.obs;
+  final RxBool validatePostButton = false.obs;
 
   TextEditingController textController = TextEditingController();
   @override

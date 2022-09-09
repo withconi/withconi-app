@@ -1,13 +1,8 @@
-import 'package:dartz/dartz.dart';
 import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
-import 'package:withconi/core/error_handling/error_message_object.dart';
-import 'package:withconi/data/model/disease.dart';
 import 'package:withconi/data/repository/community_repository.dart';
-import 'package:withconi/data/repository/disease_repository.dart';
-import 'package:withconi/ui/widgets/loading.dart';
-import '../../core/error_handling/failures.dart';
 import '../../data/model/board.dart';
 import '../../import_basic.dart';
+import '../../ui/pages/community/community_setting_page.dart';
 
 class CommunityMainController extends GetxController {
   CommunityRepository _communityRepository = CommunityRepository();
@@ -31,7 +26,11 @@ class CommunityMainController extends GetxController {
     });
   }
 
-  toBoard({required String boardId}) {
+  toBoardDetailPage({required String boardId}) {
     Get.toNamed(Routes.COMMUNITY_DETAIL, arguments: boardId);
+  }
+
+  toSettingPage() {
+    Get.to(CommunitySettingPage());
   }
 }
