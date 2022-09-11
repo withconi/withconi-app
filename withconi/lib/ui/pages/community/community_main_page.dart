@@ -1,33 +1,19 @@
 import 'package:flutter_svg/svg.dart';
-import 'package:lottie/lottie.dart';
 import 'package:withconi/controller/community/community_main_controller.dart';
-import 'package:withconi/controller/signup/disease_search_controller.dart';
 import 'package:withconi/import_basic.dart';
 import 'package:withconi/ui/pages/community/community_setting_page.dart';
-import 'package:withconi/ui/pages/signup/signup_widgets/disease_selection_list_button.dart';
-import '../../../controller/nav_controller.dart';
 import '../../widgets/button/icon_button.dart';
-import '../../widgets/button/wide_button.dart';
-import '../../widgets/navbar/bottom_navbar.dart';
 
 class CommunityMainPage extends StatelessWidget {
   const CommunityMainPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    CommunityMainController _controller = Get.find();
+    CommunityMainController _controller = Get.put(CommunityMainController());
 
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
-        bottomNavigationBar: Obx(
-          () => WcBottomNavBar(
-            navIndex: NavController.to.navBarIndex.value,
-            onTap: (index) {
-              NavController.to.onNavChanged(navIndex: index);
-            },
-          ),
-        ),
         backgroundColor: WcColors.white,
         body: SingleChildScrollView(
           child: SafeArea(
@@ -53,9 +39,7 @@ class CommunityMainPage extends StatelessWidget {
                           WcIconButton(
                               iconHeight: 23,
                               active: true,
-                              onTap: () {
-                                Get.to(CommunitySettingPage());
-                              },
+                              onTap: _controller.toSettingPage,
                               iconSrc: 'assets/icons/settings.svg',
                               activeIconColor: WcColors.grey160,
                               inactiveIconColor: WcColors.grey160)
@@ -96,7 +80,7 @@ class CommunityMainPage extends StatelessWidget {
                           Expanded(
                               child: TextField(
                             controller: null,
-                            onChanged: (index) {},
+                            onChanged: (text) {},
                             style: GoogleFonts.notoSans(
                                 color: WcColors.black,
                                 fontSize: 16,
@@ -141,7 +125,7 @@ class CommunityMainPage extends StatelessWidget {
                           Text('인기 게시판',
                               style: GoogleFonts.notoSans(
                                   fontWeight: FontWeight.w600, fontSize: 20)),
-                          SizedBox(
+                          const SizedBox(
                             width: 8,
                           ),
                           SvgPicture.asset(
@@ -159,7 +143,7 @@ class CommunityMainPage extends StatelessWidget {
                         children: _controller.boardList
                             .map((board) => InkWell(
                                   onTap: () {
-                                    _controller.toBoard(
+                                    _controller.toBoardDetailPage(
                                         boardId: board.boardId.toString());
                                   },
                                   child: Container(
@@ -191,7 +175,7 @@ class CommunityMainPage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Obx(
@@ -199,7 +183,7 @@ class CommunityMainPage extends StatelessWidget {
                         children: _controller.boardList
                             .map((board) => InkWell(
                                   onTap: () {
-                                    _controller.toBoard(
+                                    _controller.toBoardDetailPage(
                                         boardId: board.boardId.toString());
                                   },
                                   child: Container(
@@ -217,7 +201,7 @@ class CommunityMainPage extends StatelessWidget {
                             .toList(),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     )
                   ],

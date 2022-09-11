@@ -178,7 +178,7 @@ class CommunityPostListPage extends StatelessWidget {
                               _controller.selectedSortType.value),
                           onChanged: _controller.onSortTypeChanged,
                           buttonHeight: 45,
-                          buttonWidth: 90,
+                          // buttonWidth: 90,
                           itemHeight: 45,
                         ),
                       ),

@@ -28,7 +28,7 @@ class CommunityPostDetailPage extends StatelessWidget {
           width: WcWidth,
           child: Row(
             children: [
-              CircleAvatar(
+              const CircleAvatar(
                 radius: 21,
               ),
               const SizedBox(
@@ -301,7 +301,7 @@ class CommunityPostDetailPage extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Container(
@@ -311,13 +311,13 @@ class CommunityPostDetailPage extends StatelessWidget {
                     style: GoogleFonts.notoSans(
                         fontWeight: FontWeight.w600, fontSize: 19)),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Obx(() {
                 return ListView.builder(
                     shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     itemCount: _controller.commentList.length,
                     itemBuilder: ((context, index) {
                       Comment thisComment = _controller.commentList[index];
@@ -335,7 +335,7 @@ class CommunityPostDetailPage extends StatelessWidget {
                         onMoreTap: () {
                           _controller.onMoreTap(
                               authorId: thisComment.authorId!,
-                              postId: thisComment.postId);
+                              authorNickname: thisComment.nickname);
                         },
                         badgeBackgroundColor: WcColors.blue40,
                         badgeTextColor: WcColors.blue100,
