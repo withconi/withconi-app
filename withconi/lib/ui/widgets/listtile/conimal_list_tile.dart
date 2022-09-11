@@ -16,7 +16,7 @@ class WcConimalListTile extends StatelessWidget {
   String name;
   int age;
   String diseaseName;
-  int? diseaseNum;
+  int diseaseNum;
 
   @override
   Widget build(BuildContext context) {
@@ -101,12 +101,12 @@ class WcConimalListTile extends StatelessWidget {
                         overflow: TextOverflow.fade,
                         softWrap: false,
                       ),
-                      (diseaseNum != null)
+                      (diseaseNum > 1)
                           ? Text.rich(
                               TextSpan(
                                 children: [
                                   TextSpan(
-                                    text: '+${diseaseNum! - 1}',
+                                    text: '+${diseaseNum - 1}',
                                     style: GoogleFonts.montserrat(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w400),

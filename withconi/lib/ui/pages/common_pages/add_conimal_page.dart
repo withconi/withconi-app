@@ -1,18 +1,16 @@
 import 'package:flutter_svg/svg.dart';
 import 'package:withconi/configs/constants/enum.dart';
 import 'package:withconi/controller/common_controller/add_conimal_controller.dart';
-import 'package:withconi/data/repository/conimal_repository.dart';
 import 'package:withconi/import_basic.dart';
 import 'package:withconi/ui/widgets/appbar/appbar.dart';
 import 'package:withconi/ui/widgets/button/wide_button.dart';
-import '../../../controller/signup/signup_conimal_1_controller.dart';
 import '../../widgets/button/text_button.dart';
 import '../../widgets/text_field/textfield.dart';
 import '../signup/signup_widgets/gender_toggle_button.dart';
 import '../signup/signup_widgets/species_radio_button.dart';
 
 class AddConimalpage extends StatelessWidget {
-  AddConimalpage({Key? key}) : super(key: key);
+  const AddConimalpage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -205,7 +203,7 @@ class AddConimalpage extends StatelessWidget {
                         onTap: _controller.createConimal,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     )
                   ],
