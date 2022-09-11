@@ -50,14 +50,14 @@ class HospitalPreview implements PlacePreviewType {
   });
 
   HospitalPreview.fromJson(Map<String, dynamic> json) {
-    locId = json['locId'];
-    name = json['title'];
-    openingStatus = json['openingStatus'];
-    address = json['address'];
-    location = LatLngClass.fromJson(json['coordinate']);
-    totalVisitingConimal = json['totalVisitingConiaml'];
-    totalRecommend = json['totalRecommend'];
-    thumbnail = json['thumbnail'];
+    locId = json['locId'] ?? '';
+    name = json['title'] ?? '';
+    openingStatus = json['openingStatus'] ?? '';
+    address = json['address'] ?? '';
+    location = LatLngClass.fromJson(json['coordinate'] as List<dynamic>?);
+    totalVisitingConimal = json['totalVisitingConimal'] ?? 0;
+    totalRecommend = json['totalRecommend'] ?? 0;
+    thumbnail = json['thumbnail'] ?? '';
   }
 
   Map<String, dynamic> toJson() {
