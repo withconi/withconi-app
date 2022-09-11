@@ -23,10 +23,10 @@ class AuthController extends GetxController {
   final DynamicLinkManager _dynamicLinkManager = DynamicLinkManager();
 
   final Rxn<WcUser> wcUser = Rxn<WcUser>();
-  final Rxn<AuthInfo> _authInfo = Rxn<AuthInfo>();
+  final Rxn<CustomAuthInfo> _authInfo = Rxn<CustomAuthInfo>();
   RxInt homeNavIndex = 0.obs;
 
-  AuthInfo? get authInfo => _authInfo.value;
+  CustomAuthInfo? get authInfo => _authInfo.value;
   Provider get _provider => WcCacheManager().getTokenProvider();
   Uri? deepLink;
   bool isUserVerified = false;
@@ -49,7 +49,7 @@ class AuthController extends GetxController {
     });
   }
 
-  onAuthInfoChanged({required AuthInfo authInfo}) {
+  onAuthInfoChanged({required CustomAuthInfo authInfo}) {
     _authInfo.value = authInfo;
   }
 
@@ -83,17 +83,15 @@ class AuthController extends GetxController {
   }
 
   _setInitialPage(WcUser? wcUser) async {
-    bool skipEmailVerification = false;
-
     if (wcUser == null) {
       await Get.offAllNamed(Routes.START);
     } else if (wcUser.provider == Provider.email &&
-        !firebaseAuth.currentUser!.emailVerified &&
-        !skipEmailVerification) {
+        !wcUser.isEmailVerified &&
+        !wcUser.verificationSkipped) {
       await Get.offAllNamed(Routes.EMAIL_VERIFICATION,
           arguments: {'nextRoute': Routes.HOME});
     } else {
-      await Get.offAllNamed(Routes.HOME);
+      await Get.offAllNamed(Routes.NAVIGATION);
     }
   }
 
