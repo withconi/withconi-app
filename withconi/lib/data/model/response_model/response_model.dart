@@ -124,7 +124,7 @@ class PlacePreviewResponse {
   factory PlacePreviewResponse.fromJson(Map<String, dynamic> json) {
     List<PlacePreviewType> list = [];
     int totalDocs = 0;
-    totalDocs = json['totalDocuments'];
+    totalDocs = json['totalSearchDocuments'];
     if (json['list'] != null) {
       list = <PlacePreviewType>[];
       json['list'].forEach((v) {
