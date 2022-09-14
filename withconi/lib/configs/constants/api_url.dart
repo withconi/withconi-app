@@ -21,4 +21,6 @@ class HttpUrl {
   static const BOARD_GET = '/board/listBoard';
   static const POST_GET_LIKE_POST = '/board/listBoard';
   static const IMAGE_UPLOAD = '/comm/uploadFile';
+  static const MAP_GET_LIST = '/location/getLocationList';
+  static const MAP_GET_LOCATION_DETAIL = '/location/getLocation';
 }
