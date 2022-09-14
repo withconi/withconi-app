@@ -58,7 +58,8 @@ class SigninEmailController extends GetxController {
   }
 
   nextStep() async {
-    showLoading(() => _authRepository.signInWithEmail(
+    await showLoading(() => _authRepository.signInWithEmail(
         password: password, authInfo: AuthController.to.authInfo!));
+    AuthController.to.setUserInfo(redirectPage: true);
   }
 }

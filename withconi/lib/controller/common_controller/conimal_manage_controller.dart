@@ -1,8 +1,6 @@
 import 'dart:developer';
-
 import 'package:dartz/dartz.dart';
 import 'package:withconi/configs/helpers/calculator.dart';
-import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
 import 'package:withconi/ui/widgets/loading.dart';
 import 'package:withconi/ui/widgets/snackbar.dart';
@@ -47,7 +45,6 @@ class ConimalManageController extends GetxController {
 
   calculateConimalAge(int index) {
     int age = TimeCalculator().calculateAge(conimalList[index].birthDate);
-
     return age;
   }
 
@@ -73,7 +70,7 @@ class ConimalManageController extends GetxController {
 
   Future<void> onDeleteTap({required String conimalId}) async {
     if (conimalList.length <= 1) {
-      showSnackbar(text: '한마리 이상의 코니멀은 꼭 있어야 해요');
+      showCustomSnackbar(text: '한마리 이상의 코니멀은 꼭 있어야 해요');
     } else {
       bool isConfirmed = await showSelectionDialog(
           cancleText: '아니요',

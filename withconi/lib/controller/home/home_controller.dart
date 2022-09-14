@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:withconi/controller/auth_controller.dart';
+import 'package:withconi/controller/map/map_main_page_controller.dart';
 import 'package:withconi/data/repository/conimal_repository.dart';
 import 'package:withconi/ui/widgets/loading.dart';
 import '../../configs/constants/auth_variables.dart';

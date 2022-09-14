@@ -1,15 +1,13 @@
-import 'package:flutter/material.dart';
+import 'dart:io';
 import 'package:flutter_naver_map/flutter_naver_map.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:withconi/configs/helpers/quick_sort.dart';
 import 'package:withconi/data/model/abstract_class/place_type.dart';
-import 'package:withconi/data/model/hospital_preview.dart';
 import 'package:withconi/data/repository/map_repository.dart';
 import 'package:withconi/ui/entities/location.dart';
 import '../../configs/constants/enum.dart';
 import '../../import_basic.dart';
 import '../../ui/entities/custom_marker.dart';
-import '../../ui/pages/map/map_detail_page.dart';
 import '../../ui/widgets/loading.dart';
 import '../ui_helper/infinite_scroll.dart';
 
@@ -23,7 +21,7 @@ class MapMainPageController extends GetxController {
   RxList<bool> selectedPlaceTypeList = [true, false, false].obs;
   RxBool showSelectedPlaceBottomSheet = false.obs;
   RxBool showPlaceListBottomSheet = true.obs;
-  int distance = 1;
+  int _searchDistance = 1;
   List<String?> diseaseFilterList = [
     null,
     '심/혈관계',
@@ -81,7 +79,8 @@ class MapMainPageController extends GetxController {
 
     selectedPlaceDragController.addListener(() {
       if (selectedPlaceDragController.size >= 0.75) {
-        goToPlaceDetail();
+        goToSelectedPlaceDetail(
+            selectedLocId: selectedMarker.value!.place.locId);
         Future.delayed(const Duration(milliseconds: 200),
             () => selectedPlaceDragController.jumpTo(240 / WcHeight));
         selectedPlaceScrollController.jumpTo(0.0);
@@ -121,6 +120,16 @@ class MapMainPageController extends GetxController {
     }
   }
 
+  @override
+  void onClose() {
+    // TODO: implement onClose
+    super.onClose();
+
+    if (Platform.isIOS) {
+      mapController.clearMapView();
+    }
+  }
+
   void changeTotalPerPage(int limitValue) {
     placeMarkers.clear();
     _lastPage.value = false;
@@ -155,9 +164,9 @@ class MapMainPageController extends GetxController {
       );
     });
 
-    List<CustomMarker> sortedMarkers = await QuickSort()
-        .sortPlaceListByDistance(placeMarkerList: placeMarkers.toList());
-    placeMarkers.assignAll(sortedMarkers);
+    // List<CustomMarker> sortedMarkers = await QuickSort()
+    //     .sortPlaceListByDistance(placeMarkerList: placeMarkers.toList());
+    // placeMarkers.assignAll(sortedMarkers);
 
     for (CustomMarker customMarker in placeMarkers) {
       await customMarker.setImageIcon();
@@ -180,10 +189,8 @@ class MapMainPageController extends GetxController {
     placeMarkers.refresh();
   }
 
-  goToPlaceDetail() {
-    Get.toNamed(
-      Routes.MAP_DETAIL,
-    );
+  goToSelectedPlaceDetail({required String selectedLocId}) {
+    Get.toNamed(Routes.MAP_DETAIL, arguments: selectedLocId);
   }
 
   void onCameraChange(
@@ -223,17 +230,34 @@ class MapMainPageController extends GetxController {
   }
 
   onSearchRefreshTap() async {
-    // placeMarkers.clear();
-    // await _setSearchLatLng();
-    // await _getPlacePreviewList();
-    // showResearchButton.value = false;
-    // showPlaceListBottomSheet.value = true;
-    // placePreviewListDragController.animateTo(0.40,
-    //     duration: Duration(milliseconds: 200), curve: Curves.linear);
-    // mapController
-    //     .moveCamera(CameraUpdate.scrollWithOptions(_searchLatLng, zoom: 13));
+    placeMarkers.clear();
+    await _setSearchLatLng();
+    await _calculateSeachArea();
+    await _getPlacePreviewList();
+    showResearchButton.value = false;
+    showPlaceListBottomSheet.value = true;
+    placePreviewListDragController.animateTo(0.40,
+        duration: Duration(milliseconds: 200), curve: Curves.linear);
 
-    Get.toNamed(Routes.MAP_DETAIL);
+    if (_searchDistance >= 7) {
+      mapController
+          .moveCamera(CameraUpdate.scrollWithOptions(_searchLatLng, zoom: 12));
+    }
+
+    // Get.toNamed(Routes.MAP_DETAIL);
+  }
+
+  _calculateSeachArea() async {
+    double totalMeterPerPx = WcWidth * await mapController.getMeterPerPx();
+    int totalKilometer = (totalMeterPerPx / 1000).round();
+    print(totalKilometer);
+    if (totalKilometer >= 7) {
+      _searchDistance = 7;
+    } else {
+      _searchDistance = totalKilometer;
+    }
+
+    print(_searchDistance);
   }
 
   _getPlacePreviewList() async {
@@ -248,6 +272,7 @@ class MapMainPageController extends GetxController {
       locType: _selectedPlaceType,
       diseaseType: _selectedDiseaseType,
       keyword: _searchKeyword,
+      distance: _searchDistance,
     );
 
     previewListResult.fold((l) => null, (previewList) async {

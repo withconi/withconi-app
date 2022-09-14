@@ -40,28 +40,40 @@ class EmailVerificationController extends GetxController {
 
   skipEmailVerification() async {
     var userUpdateEither = await _userRepository
-        .updateUser(updateData: {"isEmailVerified": "true"});
+        .updateUser(updateData: {"verificationSkipped": true});
 
     bool success = userUpdateEither.fold((failure) {
       FailureInterpreter().mapFailureToDialog(failure, 'skipEmailVerification');
       return false;
-    }, (success) => success);
+    }, (success) => true);
 
     if (success) {
       AuthController.to.setUserInfo(redirectPage: true);
     }
   }
 
-  bool checkEmailVerification({
+  Future<bool> checkEmailVerification({
     required PendingDynamicLinkData verificationLink,
-  }) {
+  }) async {
     try {
       if (firebaseAuth.currentUser!.emailVerified == false) {
         AuthCredential authCredential = EmailAuthProvider.credentialWithLink(
             email: AuthController.to.wcUser.value!.email,
             emailLink: verificationLink.link.toString());
-        print('Successfully signed in with email link!');
-        return true;
+
+        var userUpdateEither = await _userRepository
+            .updateUser(updateData: {"isEmailVerified": true});
+
+        bool result = userUpdateEither.fold((failure) {
+          FailureInterpreter()
+              .mapFailureToDialog(failure, 'checkEmailVerification');
+          return false;
+        }, (r) {
+          print('Successfully signed in with email link!');
+          return true;
+        });
+
+        return result;
       } else {
         return false;
       }

@@ -35,8 +35,6 @@ class StartPageController extends GetxController with StateMixin<ButtonState> {
   String nextRoute = '';
 
   String get email => _email.value;
-  // AuthInfo? get authInfo => _authInfo.value;
-  // UserState get userState => _userState.value;
 
   @override
   void onReady() {
@@ -48,7 +46,7 @@ class StartPageController extends GetxController with StateMixin<ButtonState> {
     _email.value = email;
   }
 
-  getSnsUserState({required AuthInfo authInfo}) async {
+  getSnsUserState({required CustomAuthInfo authInfo}) async {
     late Either<Failure, UserState> userStateEither;
     userStateEither = await _authRepository.getUserState(authInfo: authInfo);
 
@@ -59,7 +57,7 @@ class StartPageController extends GetxController with StateMixin<ButtonState> {
     });
   }
 
-  getEmailUserState({required AuthInfo authInfo}) async {
+  getEmailUserState({required CustomAuthInfo authInfo}) async {
     late Either<Failure, UserState> userStateEither;
     userStateEither = await _authRepository.getUserState(authInfo: authInfo);
 
@@ -88,8 +86,8 @@ class StartPageController extends GetxController with StateMixin<ButtonState> {
   Future<void> nextStepWithEmail({required String email}) async {
     buttonState.value = ButtonState.loading;
 
-    late Either<Failure, AuthInfo> authInfoEither;
-    authInfoEither = await _authRepository.getAuthInfo(
+    late Either<Failure, CustomAuthInfo> authInfoEither;
+    authInfoEither = await _authRepository.getCustomAuthInfo(
         provider: Provider.email, email: email);
 
     authInfoEither.fold((fail) {
@@ -97,13 +95,13 @@ class StartPageController extends GetxController with StateMixin<ButtonState> {
       buttonState.value = ButtonState.none;
     }, (authInfo) async {
       AuthController.to.onAuthInfoChanged(authInfo: authInfo);
-
       UserState userState = await setUserStateByAuthInfo(authInfo: authInfo);
       setNextStepByUserState(userState);
     });
   }
 
-  Future<UserState> setUserStateByAuthInfo({required AuthInfo authInfo}) async {
+  Future<UserState> setUserStateByAuthInfo(
+      {required CustomAuthInfo authInfo}) async {
     late Either<Failure, UserState> userStateEither;
     late UserState userState;
     userStateEither = await _authRepository.getUserState(authInfo: authInfo);
@@ -138,15 +136,15 @@ class StartPageController extends GetxController with StateMixin<ButtonState> {
         break;
 
       case UserState.SIGN_IN_AUTH_CREDENTIAL:
-        User? _firebaseUser = await _authRepository.signInWithAuthCredential(
+        await _authRepository.signInWithAuthCredential(
             authInfo: AuthController.to.authInfo!);
-
+        await AuthController.to.setUserInfo(redirectPage: true);
         break;
 
       case UserState.SIGN_IN_TOKEN:
-        User? _firebaseUser = await _authRepository.signInWithCustomToken(
+        await _authRepository.signInWithCustomToken(
             authInfo: AuthController.to.authInfo!);
-
+        await AuthController.to.setUserInfo(redirectPage: true);
         break;
       case UserState.SIGN_UP_SNS:
         nextRoute = Routes.SIGNUP_PROFILE;
@@ -157,21 +155,24 @@ class StartPageController extends GetxController with StateMixin<ButtonState> {
   }
 
   Future<void> nextStepWithSns({required Provider provider}) async {
-    late Either<Failure, AuthInfo> authInfoEither;
-    authInfoEither =
-        await _authRepository.getAuthInfo(provider: provider, email: email);
+    late Either<Failure, CustomAuthInfo> authInfoEither;
+    authInfoEither = await _authRepository.getCustomAuthInfo(
+        provider: provider, email: email);
 
-    authInfoEither.fold((fail) {
+    CustomAuthInfo? customAuthInfo = await authInfoEither.fold((fail) {
       FailureInterpreter().mapFailureToDialog(fail, 'nextStepWithSns');
       buttonState.value = ButtonState.none;
+      return null;
     }, (authInfo) async {
       AuthController.to.onAuthInfoChanged(authInfo: authInfo);
-
-      UserState userState =
-          await showLoading(() => setUserStateByAuthInfo(authInfo: authInfo));
-
-      setNextStepByUserState(userState);
+      return authInfo;
     });
+
+    if (customAuthInfo != null) {
+      UserState userState =
+          await setUserStateByAuthInfo(authInfo: customAuthInfo);
+      await setNextStepByUserState(userState);
+    }
   }
 
   goNext() {

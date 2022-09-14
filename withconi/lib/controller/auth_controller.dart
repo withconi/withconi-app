@@ -27,7 +27,7 @@ class AuthController extends GetxController {
   RxInt homeNavIndex = 0.obs;
 
   CustomAuthInfo? get authInfo => _authInfo.value;
-  Provider get _provider => WcCacheManager().getTokenProvider();
+  Provider get _provider => TokenManager().getTokenProvider();
   Uri? deepLink;
   bool isUserVerified = false;
 
@@ -108,7 +108,7 @@ class AuthController extends GetxController {
 
   signOut() async {
     await _authRepository.signOut();
-    WcCacheManager().clearCache();
+    TokenManager().clearCache();
     await setUserInfo(redirectPage: true);
   }
 }

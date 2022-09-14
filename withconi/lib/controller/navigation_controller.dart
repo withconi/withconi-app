@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:withconi/controller/auth_controller.dart';
+import 'package:withconi/controller/map/map_main_page_controller.dart';
 import '../../data/model/conimal.dart';
 import '../../data/model/disease.dart';
 import '../../data/model/user.dart';

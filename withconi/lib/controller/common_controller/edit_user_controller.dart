@@ -27,7 +27,7 @@ class EditUserController extends GetxController {
   final RxString _nickName = ''.obs;
   RxBool isButtonValid = false.obs;
 
-  Rxn<dynamic> profileImg = Rxn<dynamic>();
+  Rxn<File> profileImg = Rxn<File>();
 
   RxBool profileSelected = false.obs;
 
@@ -35,7 +35,8 @@ class EditUserController extends GetxController {
   RxnString nickNameErrorText = RxnString();
   late WcUser _wcUser;
   RxBool edited = false.obs;
-  late bool passwordEditable;
+  late bool isProviderEmail;
+  late bool isEmailVerified;
 
   TextEditingController nameTextController = TextEditingController();
   TextEditingController nickNameTextController = TextEditingController();
@@ -43,7 +44,7 @@ class EditUserController extends GetxController {
   String get userProvider => providerToValue(_wcUser.provider);
 
   Image? get providerIcon => Image.asset(
-        'assets/icons/${userProvider}.png',
+        'assets/icons/$userProvider.png',
         width: 39,
       );
 
@@ -54,10 +55,12 @@ class EditUserController extends GetxController {
     nameTextController.text = _wcUser.displayName;
     nickNameTextController.text = _wcUser.nickname;
     emailTextController.text = _wcUser.email;
+    isEmailVerified = _wcUser.isEmailVerified;
+
     if (userProvider == 'email') {
-      passwordEditable = true;
+      isProviderEmail = true;
     } else {
-      passwordEditable = false;
+      isProviderEmail = false;
     }
   }
 
@@ -80,7 +83,7 @@ class EditUserController extends GetxController {
     edited.value = true;
   }
 
-  void onImageChanged(dynamic image) {
+  void onImageChanged(File image) {
     profileImg.value = image;
     profileSelected.value = true;
     edited.value = true;
@@ -204,7 +207,7 @@ class EditUserController extends GetxController {
   }
 
   void changePassword() {
-    if (passwordEditable) {
+    if (isProviderEmail) {
     } else {
       FailureInterpreter().mapFailureToSnackbar(
           const NotEditablePasswordFailure(), 'changePassword');
