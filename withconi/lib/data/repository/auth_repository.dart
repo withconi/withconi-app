@@ -19,7 +19,7 @@ class AuthRepository extends GetxController {
   final AuthAPI _api = AuthAPI();
   static AuthRepository get to => Get.find<AuthRepository>();
   final SignupRepository _signUpUserRepository = SignupRepository.to;
-  final WcCacheManager _tokenManager = WcCacheManager();
+  final TokenManager _tokenManager = TokenManager();
   final DynamicLinkManager _dynamicLinkManager = DynamicLinkManager();
 
   Provider getAuthTokenProvider() => _tokenManager.getTokenProvider();
@@ -267,18 +267,16 @@ class AuthRepository extends GetxController {
   }
 
   signInWithAuthCredential({required CustomAuthInfo authInfo}) async {
-    showLoading(() async {
-      late UserCredential _userCredential;
-      await _api.signInWithAuthCredential(credential: authInfo.authObject);
-      await saveProviderLocalStorage(
-        provider: authInfo.provider,
-      );
-    });
+    late UserCredential _userCredential;
+    await _api.signInWithAuthCredential(credential: authInfo.authObject);
+    await saveProviderLocalStorage(
+      provider: authInfo.provider,
+    );
   }
 
   signInWithCustomToken({required CustomAuthInfo authInfo}) async {
     late UserCredential _userCredential;
-    await _api.signInWithCustomToken(authInfo: authInfo.authObject);
+    await _api.signInWithCustomToken(authInfo: authInfo);
     await saveProviderLocalStorage(
       provider: authInfo.provider,
     );
@@ -287,7 +285,7 @@ class AuthRepository extends GetxController {
   saveProviderLocalStorage({
     required Provider provider,
   }) async {
-    await WcCacheManager().saveProvider(provider);
+    await TokenManager().saveProvider(provider);
   }
 
   Future<Either<Failure, bool>?> sendVerificationEmail(

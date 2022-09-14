@@ -179,7 +179,7 @@ class SignupRepository extends GetxController {
 //TODO: email verified, email verification skipped 넣기 wcUser인자로
   Future<WcUser> signUpUserDB(
       {required String uid,
-      required AuthInfo authInfo,
+      required CustomAuthInfo authInfo,
       required List<Conimal> conimals}) async {
     WcUser newUser;
     newUser = WcUser(

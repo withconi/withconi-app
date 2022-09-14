@@ -5,6 +5,7 @@ import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/controller/ui_helper/infinite_scroll.dart';
 import 'package:withconi/core/error_handling/exceptions.dart';
 import 'package:withconi/data/model/abstract_class/place_type.dart';
+import 'package:withconi/data/model/hospital_detail.dart';
 import 'package:withconi/data/model/request_model/request_model.dart';
 import 'package:withconi/data/model/response_model/response_model.dart';
 import 'package:withconi/data/provider/map_api.dart';
@@ -21,13 +22,14 @@ class MapRepository {
 
   final MapAPI _api = MapAPI();
 
-  Future<Either<Failure, PlacePreviewResponse>> getPlacePreviewList({
+  Future<Either<Failure, List<PlacePreviewType>>> getPlacePreviewList({
     required PaginationFilter paginationFilter,
     required LatLngClass latLng,
     String? keyword,
     PlaceType? locType,
     OpeningStatus? openingStatus,
     DiseaseType? diseaseType,
+    required int distance,
   }) async {
     try {
       MapFilterRequest mapFilterRequest = MapFilterRequest(
@@ -36,14 +38,38 @@ class MapRepository {
           locType: locType,
           keyword: keyword,
           openingStatus: openingStatus,
-          diseaseType: diseaseType);
+          diseaseType: diseaseType,
+          distance: distance);
       Map<String, dynamic> data = await _api.getPlacePreviewListByFilter(
           mapFilterRequest: mapFilterRequest);
 
       try {
         PlacePreviewResponse placeResponse =
             PlacePreviewResponse.fromJson(data);
-        return Right(placeResponse);
+        return Right(placeResponse.placeList);
+      } catch (e) {
+        throw DataParsingException();
+      }
+    } on NoInternetConnectionException {
+      return Left(NoConnectionFailure());
+    } on DataParsingException {
+      return Left(DataParsingFailure());
+    } on NotFoundException {
+      return Left(NotFoundFailure());
+    } catch (e) {
+      return Left(NoUserDataFailure());
+    }
+  }
+
+  Future<Either<Failure, PlaceDetail>> getPlaceDetailById({
+    required String locId,
+  }) async {
+    try {
+      Map<String, dynamic> data = await _api.getPlaceDetailById(locId: locId);
+
+      try {
+        PlaceDetail placeDetail = PlaceDetail.fromJson(data);
+        return Right(placeDetail);
       } catch (e) {
         throw DataParsingException();
       }
