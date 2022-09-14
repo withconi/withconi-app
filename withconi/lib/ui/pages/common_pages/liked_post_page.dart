@@ -1,6 +1,3 @@
-import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:withconi/configs/constants/enum.dart';
 import 'package:withconi/controller/common_controller/liked_post_controller.dart';
 import 'package:withconi/import_basic.dart';
 import 'package:withconi/ui/widgets/appbar/appbar.dart';
@@ -32,7 +29,8 @@ class LikedPostPage extends StatelessWidget {
                 children: [
                   Container(
                     width: WcWidth,
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 15),
                     child: Text(
                       '내가 좋아한 글',
                       style: GoogleFonts.notoSans(
@@ -44,7 +42,8 @@ class LikedPostPage extends StatelessWidget {
                   ),
                   Container(
                     width: WcWidth,
-                    padding: EdgeInsets.symmetric(horizontal: 22, vertical: 15),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 22, vertical: 15),
                     child: Row(
                       children: [
                         Text(

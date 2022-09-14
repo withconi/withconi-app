@@ -1,20 +1,15 @@
-import 'dart:io';
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:withconi/controller/common_controller/edit_user_controller.dart';
 import 'package:withconi/import_basic.dart';
 import 'package:withconi/ui/pages/home/home_page.dart';
-import 'package:withconi/ui/theme/colors.dart';
-import 'package:withconi/ui/theme/sizes.dart';
 import 'package:withconi/ui/widgets/appbar/appbar.dart';
+import 'package:withconi/ui/widgets/button/profile_picker_button.dart';
 import 'package:withconi/ui/widgets/button/wide_button.dart';
 import 'package:withconi/ui/widgets/text_field/suffix_button_textfield.dart';
 import '../../widgets/text_field/textfield.dart';
 
 class EditUserPage extends StatelessWidget {
-  EditUserPage({Key? key}) : super(key: key);
+  const EditUserPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     EditUserController _controller = Get.put(EditUserController());
@@ -61,65 +56,12 @@ class EditUserPage extends StatelessWidget {
                         const SizedBox(
                           height: 25,
                         ),
-                        Center(
-                          child: GestureDetector(
-                            onTap: _controller.pickImage,
-                            child: Stack(
-                              children: [
-                                const SizedBox(
-                                  width: 100,
-                                  height: 100,
-                                ),
-                                SizedBox(
-                                  width: 90,
-                                  height: 90,
-                                  child: Obx(
-                                    () => CircleAvatar(
-                                        backgroundColor: WcColors.grey60,
-                                        child:
-                                            (_controller.profileSelected.value)
-                                                ? ClipOval(
-                                                    child: Image.file(
-                                                      File(_controller
-                                                          .profileImg
-                                                          .value!
-                                                          .path),
-                                                      fit: BoxFit.cover,
-                                                      height: 100,
-                                                      width: 100,
-                                                    ),
-                                                  )
-                                                : SvgPicture.asset(
-                                                    'assets/icons/withconi_grey.svg',
-                                                    width: 44,
-                                                  )),
-                                  ),
-                                ),
-                                Positioned(
-                                  right: 0,
-                                  bottom: 7,
-                                  child: Container(
-                                    decoration: BoxDecoration(boxShadow: [
-                                      BoxShadow(
-                                        color:
-                                            WcColors.grey100.withOpacity(0.5),
-                                        spreadRadius: -2,
-                                        blurRadius: 10,
-                                        offset: const Offset(
-                                            2, 4), // changes position of shadow
-                                      ),
-                                    ]),
-                                    child: CircleAvatar(
-                                      maxRadius: 17,
-                                      backgroundColor: WcColors.white,
-                                      child: SvgPicture.asset(
-                                        'assets/icons/edit.svg',
-                                        width: 17,
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              ],
+                        Obx(
+                          () => Center(
+                            child: ProfileImagePickerButton(
+                              onTap: _controller.pickImage,
+                              imageFile: _controller.profileImg.value,
+                              profileSeleted: _controller.profileSelected.value,
                             ),
                           ),
                         ),
@@ -164,7 +106,7 @@ class EditUserPage extends StatelessWidget {
                             onTap: _controller.changePassword,
                             activeButtonColor: WcColors.blue100,
                             inactiveButtonColor: WcColors.grey80,
-                            active: _controller.passwordEditable,
+                            active: _controller.isProviderEmail,
                             width: 72,
                             height: 33,
                             text: '변경하기',
@@ -174,18 +116,32 @@ class EditUserPage extends StatelessWidget {
                         const SizedBox(
                           height: 24,
                         ),
-                        WcSuffixIconTextField(
-                          errorText: _controller.nickNameErrorText.value,
-                          labelText: '아이디 (이메일)',
-                          hintText: '아이디',
-                          readOnly: true,
-                          textController: _controller.emailTextController,
-                          keyboardType: TextInputType.emailAddress,
-                          suffixIcon: _controller.providerIcon,
-                        ),
+                        Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              WcSuffixIconTextField(
+                                width: WcWidth - 40,
+                                errorText: _controller.nickNameErrorText.value,
+                                labelText: '아이디 (이메일)',
+                                hintText: '아이디',
+                                readOnly: true,
+                                textController: _controller.emailTextController,
+                                keyboardType: TextInputType.emailAddress,
+                                suffixIcon: _controller.providerIcon,
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Visibility(
+                                visible: _controller.isProviderEmail,
+                                child: EmailVerificationButton(
+                                  isEmailVerified: _controller.isEmailVerified,
+                                ),
+                              )
+                            ]),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 110,
                     ),
                     Column(
@@ -197,7 +153,7 @@ class EditUserPage extends StatelessWidget {
                             buttonWidth: WcWidth - 40,
                             active: true,
                             activeTextColor: WcColors.grey200),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         WcWideButtonWidget(
@@ -209,7 +165,7 @@ class EditUserPage extends StatelessWidget {
                             activeTextColor: WcColors.grey160),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     )
                   ],
@@ -217,6 +173,53 @@ class EditUserPage extends StatelessWidget {
               ),
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class EmailVerificationButton extends StatelessWidget {
+  EmailVerificationButton({
+    Key? key,
+    required this.isEmailVerified,
+  }) : super(key: key);
+
+  bool isEmailVerified;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {},
+      child: Container(
+        height: 40,
+        width: 140,
+        decoration: BoxDecoration(
+            color: (isEmailVerified) ? WcColors.blue20 : WcColors.red20,
+            borderRadius: BorderRadius.circular(5)),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            (isEmailVerified)
+                ? SvgPicture.asset(
+                    'assets/icons/email_verified.svg',
+                  )
+                : SvgPicture.asset(
+                    'assets/icons/email_unverified.svg',
+                  ),
+            const SizedBox(
+              width: 10,
+            ),
+            Text(
+              (isEmailVerified) ? '이메일 인증 완료' : '이메일 인증 미완료',
+              style: GoogleFonts.notoSans(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 14,
+                  color:
+                      (isEmailVerified) ? WcColors.blue100 : WcColors.red100),
+            ),
+          ],
         ),
       ),
     );

@@ -2,11 +2,11 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:withconi/controller/common_controller/conimal_manage_controller.dart';
 import 'package:withconi/import_basic.dart';
 import 'package:withconi/ui/widgets/appbar/appbar.dart';
-import '../../widgets/button/wide_button.dart';
+import '../../../data/model/conimal.dart';
 import '../../widgets/listtile/conimal_list_tile.dart';
 
 class ConimalSettingPage extends StatelessWidget {
-  ConimalSettingPage({Key? key}) : super(key: key);
+  const ConimalSettingPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,9 +43,11 @@ class ConimalSettingPage extends StatelessWidget {
                   height: 50,
                 ),
                 Obx((() => ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: _controller.conimalList.length,
-                      itemBuilder: (context, index) => Slidable(
+                    shrinkWrap: true,
+                    itemCount: _controller.conimalList.length,
+                    itemBuilder: (context, index) {
+                      Conimal thisConimal = _controller.conimalList[index];
+                      return Slidable(
                         endActionPane: ActionPane(
                           motion: const ScrollMotion(),
                           children: [
@@ -56,8 +58,7 @@ class ConimalSettingPage extends StatelessWidget {
                               label: '삭제',
                               onPressed: (context) {
                                 _controller.onDeleteTap(
-                                    conimalId: _controller
-                                        .conimalList[index].conimalId);
+                                    conimalId: thisConimal.conimalId);
                               },
                             ),
                             SlidableAction(
@@ -73,21 +74,13 @@ class ConimalSettingPage extends StatelessWidget {
                         ),
                         child: WcConimalListTile(
                           age: _controller.calculateConimalAge(index),
-                          diseaseName: (_controller
-                                  .conimalList[index].diseases.isNotEmpty)
-                              ? _controller.conimalList[index].diseases[0].name
-                                  .substring(0, 10)
-                              : '질병 없음',
-                          diseaseNum: (_controller
-                                      .conimalList[index].diseases.length >
-                                  1)
-                              ? _controller.conimalList[index].diseases.length
-                              : null,
-                          name: _controller.conimalList[index].name,
-                          species: _controller.conimalList[index].species,
+                          diseaseName: _getThisConimalName(thisConimal),
+                          diseaseNum: thisConimal.diseases.length,
+                          name: thisConimal.name,
+                          species: thisConimal.species,
                         ),
-                      ),
-                    ))),
+                      );
+                    }))),
                 const SizedBox(
                   height: 30,
                 ),
@@ -116,26 +109,22 @@ class ConimalSettingPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
-                // Center(
-                //   child: Obx(
-                //     () => WcWideButtonWidget(
-                //       active: _controller.isButtonValid.value,
-                //       activeButtonColor: WcColors.blue100,
-                //       activeTextColor: WcColors.white,
-                //       buttonText: '수정완료',
-                //       buttonWidth: WcWidth - 40,
-                //       onTap: _controller.updateConimalList,
-                //     ),
-                //   ),
-                // ),
               ],
             ),
           ),
         ),
       ),
     );
+  }
+
+  _getThisConimalName(Conimal conimal) {
+    if (conimal.diseases.isNotEmpty) {
+      return conimal.diseases[0].name;
+    } else {
+      return '질병 없음';
+    }
   }
 }

@@ -1,17 +1,16 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:withconi/configs/constants/enum_color.dart';
 import 'package:withconi/controller/map/map_detail_controller.dart';
-import 'package:withconi/controller/map/map_main_page_controller.dart';
 import 'package:withconi/import_basic.dart';
 import 'package:withconi/ui/pages/map/map_widgets/opening_status_text.dart';
 import 'package:withconi/ui/theme/text_theme.dart';
 import 'package:withconi/ui/widgets/divider/circle_divider.dart';
-import 'package:withconi/ui/widgets/loading.dart';
 import 'package:withconi/ui/widgets/snackbar.dart';
-
 import '../../widgets/button/wide_button.dart';
 import '../../widgets/expansion_tile.dart/custom_expansion_tile.dart';
+import '../../widgets/graph/percentage_graph.dart';
 import 'map_widgets/phone_button.dart';
 
 class MapDetailPage extends StatelessWidget {
@@ -68,8 +67,8 @@ class MapDetailPage extends StatelessWidget {
                                   height: 220,
                                   decoration: BoxDecoration(
                                       image: DecorationImage(
-                                          image: NetworkImage(
-                                              _controller.thisPlace.thumbnail),
+                                          image: NetworkImage(_controller
+                                              .placeDetail.thumbnail),
                                           fit: BoxFit.cover,
                                           onError: (exception, stackTrace) =>
                                               Container(
@@ -144,7 +143,7 @@ class MapDetailPage extends StatelessWidget {
                                   SizedBox(
                                     width: WcWidth - 40,
                                     child: Text(
-                                      _controller.thisPlace.name,
+                                      _controller.placeDetail.name,
                                       style: TextStyle(
                                           fontFamily: WcFontFamily.notoSans,
                                           fontWeight: FontWeight.w600,
@@ -249,13 +248,13 @@ class MapDetailPage extends StatelessWidget {
                                                 width: 8,
                                               ),
                                               Text(_controller
-                                                  .thisPlace.address),
+                                                  .placeDetail.address),
                                               GestureDetector(
                                                 onTap: () {
                                                   Clipboard.setData(
                                                       ClipboardData(
                                                           text: _controller
-                                                              .thisPlace
+                                                              .placeDetail
                                                               .address));
 
                                                   showCustomSnackbar(
@@ -357,21 +356,18 @@ class MapDetailPage extends StatelessWidget {
                                           height: 55,
                                         ),
                                         PercentageGraph(
-                                          graphDataList: [
-                                            PercentageGraphData(
-                                                graphColor: WcColors.mintLight,
-                                                value: (((0 / 3) * 10.ceil())
-                                                        .isNaN)
-                                                    ? 0
-                                                    : ((0 / 3) * 10).ceil()),
-                                            PercentageGraphData(
-                                                graphColor: WcColors.blue80,
-                                                value: (((0 / 3) * 10.ceil())
-                                                        .isNaN)
-                                                    ? 0
-                                                    : ((0 / 3) * 10).ceil()),
-                                          ],
-                                          totalValue: 10,
+                                          graphWidth: WcWidth - 70,
+                                          graphDataList: _controller
+                                              .speciesChartData
+                                              .map((conimalChartData) =>
+                                                  PercentageGraphData(
+                                                      graphColor:
+                                                          conimalChartData
+                                                              .color,
+                                                      percent: conimalChartData
+                                                          .percent
+                                                          .round()))
+                                              .toList(),
                                         ),
                                         Positioned(
                                           left: 15,
@@ -397,56 +393,35 @@ class MapDetailPage extends StatelessWidget {
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.end,
-                                            children: [
-                                              Text(
-                                                '강아지',
-                                                style: TextStyle(
-                                                    fontFamily:
-                                                        WcFontFamily.notoSans,
-                                                    fontSize: 15,
-                                                    fontWeight:
-                                                        FontWeight.w400),
+                                        children: _controller.speciesChartData
+                                            .map(
+                                              (conimalData) => Row(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.end,
+                                                children: [
+                                                  Text(
+                                                    conimalData.title,
+                                                    style: TextStyle(
+                                                        fontFamily: WcFontFamily
+                                                            .notoSans,
+                                                        fontSize: 15,
+                                                        fontWeight:
+                                                            FontWeight.w400),
+                                                  ),
+                                                  SizedBox(
+                                                    width: 5,
+                                                  ),
+                                                  Text(
+                                                    '${conimalData.percent.round()}%',
+                                                    style: GoogleFonts.openSans(
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        fontSize: 17),
+                                                  ),
+                                                ],
                                               ),
-                                              SizedBox(
-                                                width: 5,
-                                              ),
-                                              Text(
-                                                '${_controller.thisPlace.totalVisitingDogs / _controller.thisPlace.totalVisiting}%',
-                                                style: GoogleFonts.openSans(
-                                                    fontWeight: FontWeight.w600,
-                                                    fontSize: 17),
-                                              ),
-                                            ],
-                                          ),
-                                          Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.end,
-                                            children: [
-                                              Text(
-                                                '34%',
-                                                style: GoogleFonts.openSans(
-                                                    fontWeight: FontWeight.w600,
-                                                    fontSize: 17),
-                                              ),
-                                              SizedBox(
-                                                width: 5,
-                                              ),
-                                              Text(
-                                                '고양이',
-                                                style: TextStyle(
-                                                    fontFamily:
-                                                        WcFontFamily.notoSans,
-                                                    fontSize: 15,
-                                                    fontWeight:
-                                                        FontWeight.w400),
-                                              ),
-                                            ],
-                                          )
-                                        ],
+                                            )
+                                            .toList(),
                                       ),
                                     )
                                   ],
@@ -481,151 +456,61 @@ class MapDetailPage extends StatelessWidget {
                                           aspectRatio: 1,
                                           child: PieChart(
                                             PieChartData(
-                                                pieTouchData: PieTouchData(
-                                                    touchCallback:
-                                                        (FlTouchEvent event,
-                                                            pieTouchResponse) {
-                                                  // setState(() {
-                                                  //   if (!event
-                                                  //           .isInterestedForInteractions ||
-                                                  //       pieTouchResponse == null ||
-                                                  //       pieTouchResponse.touchedSection ==
-                                                  //           null) {
-                                                  //     touchedIndex = -1;
-                                                  //     return;
-                                                  //   }
-                                                  //   touchedIndex = pieTouchResponse
-                                                  //       .touchedSection!
-                                                  //       .touchedSectionIndex;
-                                                  // });
-                                                }),
-                                                borderData: FlBorderData(
-                                                  show: false,
-                                                ),
-                                                sectionsSpace: 0,
-                                                centerSpaceRadius: 45,
-                                                sections: showingSections()),
+                                              pieTouchData: PieTouchData(
+                                                  touchCallback: _controller
+                                                      .onPieGraphTouched),
+                                              borderData: FlBorderData(
+                                                show: false,
+                                              ),
+                                              sectionsSpace: 0,
+                                              centerSpaceRadius: 45,
+                                              sections: _controller
+                                                  .diseaseChartData
+                                                  .map((diseaseChartData) {
+                                                return PieChartSectionData(
+                                                    color:
+                                                        diseaseChartData.color,
+                                                    value: diseaseChartData
+                                                        .percent,
+                                                    title:
+                                                        diseaseChartData.title,
+                                                    radius: 40,
+                                                    showTitle: true);
+                                              }).toList(),
+                                            ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                    CustomExpansionTile(
-                                      textColor: WcColors.black,
-                                      collapsedIconColor: WcColors.black,
-                                      iconColor: WcColors.black,
-                                      collapsedTextColor: WcColors.black,
-                                      tilePadding: EdgeInsets.all(0),
-                                      title: Row(
-                                        children: [
-                                          Container(
-                                            width: 13,
-                                            height: 13,
-                                            color: WcColors.yellowLight,
-                                          ),
-                                          SizedBox(
-                                            width: 8,
-                                          ),
-                                          Text('심/혈관계')
-                                        ],
-                                      ),
-                                      children: [
-                                        Container(child: Text('심/혈관계'))
-                                      ],
-                                    ),
-                                    CustomExpansionTile(
-                                      textColor: WcColors.black,
-                                      collapsedIconColor: WcColors.black,
-                                      iconColor: WcColors.black,
-                                      collapsedTextColor: WcColors.black,
-                                      tilePadding: EdgeInsets.all(0),
-                                      title: Row(
-                                        children: [
-                                          Container(
-                                            width: 13,
-                                            height: 13,
-                                            color: WcColors.yellowLight,
-                                          ),
-                                          SizedBox(
-                                            width: 8,
-                                          ),
-                                          Text('심/혈관계')
-                                        ],
-                                      ),
-                                    ),
-                                    CustomExpansionTile(
-                                      textColor: WcColors.black,
-                                      collapsedIconColor: WcColors.black,
-                                      iconColor: WcColors.black,
-                                      collapsedTextColor: WcColors.black,
-                                      tilePadding: EdgeInsets.all(0),
-                                      title: Row(
-                                        children: [
-                                          Container(
-                                            width: 13,
-                                            height: 13,
-                                            color: WcColors.yellowLight,
-                                          ),
-                                          SizedBox(
-                                            width: 8,
-                                          ),
-                                          Text('심/혈관계')
-                                        ],
-                                      ),
-                                    ),
-                                    // ExpansionPanelList.radio(
-                                    //   elevation: 0,
-                                    //   dividerColor: Colors.transparent,
-                                    //   expandedHeaderPadding: EdgeInsets.all(0),
-                                    //   children: [
-                                    //     ExpansionPanelRadio(
-                                    //         value: 1,
-                                    //         headerBuilder: (context, isExpanded) => SizedBox(
-                                    //               child: Row(
-                                    //                 children: [
-                                    //                   Container(
-                                    //                     width: 10,
-                                    //                     height: 10,
-                                    //                     color: WcColors.yellowLight,
-                                    //                   ),
-                                    //                   Text('심/혈관계')
-                                    //                 ],
-                                    //               ),
-                                    //             ),
-                                    //         body: Column(
-                                    //           children: [Text('갑상선 기능 항진증')],
-                                    //         )),
-                                    //     ExpansionPanelRadio(
-                                    //         value: 2,
-                                    //         headerBuilder: (context, isExpanded) => Row(
-                                    //               children: [
-                                    //                 Container(
-                                    //                   width: 10,
-                                    //                   height: 10,
-                                    //                   color: WcColors.yellowLight,
-                                    //                 ),
-                                    //                 Text('심/혈관계')
-                                    //               ],
-                                    //             ),
-                                    //         body: Column(
-                                    //           children: [Text('갑상선 기능 항진증')],
-                                    //         )),
-                                    //     ExpansionPanelRadio(
-                                    //         value: 3,
-                                    //         headerBuilder: (context, isExpanded) => Row(
-                                    //               children: [
-                                    //                 Container(
-                                    //                   width: 10,
-                                    //                   height: 10,
-                                    //                   color: WcColors.yellowLight,
-                                    //                 ),
-                                    //                 Text('심/혈관계')
-                                    //               ],
-                                    //             ),
-                                    //         body: Column(
-                                    //           children: [Text('갑상선 기능 항진증')],
-                                    //         )),
-                                    //   ],
-                                    // )
+                                    Column(
+                                      children: _controller.diseaseChartData
+                                          .map(
+                                            (diseaseData) =>
+                                                CustomExpansionTile(
+                                              textColor: WcColors.black,
+                                              collapsedIconColor:
+                                                  WcColors.black,
+                                              iconColor: WcColors.black,
+                                              collapsedTextColor:
+                                                  WcColors.black,
+                                              tilePadding: EdgeInsets.all(0),
+                                              title: Row(
+                                                children: [
+                                                  Container(
+                                                    width: 13,
+                                                    height: 13,
+                                                    color: diseaseData.color,
+                                                  ),
+                                                  SizedBox(
+                                                    width: 8,
+                                                  ),
+                                                  Text(diseaseData.title)
+                                                ],
+                                              ),
+                                            ),
+                                          )
+                                          .toList(),
+                                    )
                                   ],
                                 ),
                               ),
@@ -660,7 +545,8 @@ class MapDetailPage extends StatelessWidget {
                                               width: 10,
                                             ),
                                             Text(
-                                              _controller.thisPlace.totalReviews
+                                              _controller
+                                                  .placeDetail.totalReviews
                                                   .toString(),
                                               style: TextStyle(
                                                   fontFamily:
@@ -698,15 +584,14 @@ class MapDetailPage extends StatelessWidget {
                                       graphDataList: [
                                         PercentageGraphData(
                                             graphColor: WcColors.blue80,
-                                            value: ((1 / 36) * 10).ceil()),
+                                            percent: ((1 / 36) * 10).ceil()),
                                         PercentageGraphData(
                                             graphColor: WcColors.yellowLight,
-                                            value: ((12 / 36) * 10).ceil()),
+                                            percent: ((12 / 36) * 10).ceil()),
                                         PercentageGraphData(
                                             graphColor: WcColors.pinkLight,
-                                            value: ((10 / 36) * 10).ceil()),
+                                            percent: ((10 / 36) * 10).ceil()),
                                       ],
-                                      totalValue: 10,
                                     ),
                                   ],
                                 ),
@@ -885,75 +770,6 @@ class MapDetailPage extends StatelessWidget {
                       ]),
                 ),
         ),
-      ),
-    );
-  }
-}
-
-class PercentageGraph extends StatelessWidget {
-  PercentageGraph(
-      {Key? key, required this.totalValue, required this.graphDataList})
-      : super(key: key);
-
-  int totalValue;
-  List<PercentageGraphData> graphDataList;
-
-  @override
-  Widget build(BuildContext context) {
-    bool singleValidValue = false;
-    var noneZeroList =
-        graphDataList.where((element) => element.value > 0).toList();
-    if (noneZeroList.length <= 1) {
-      singleValidValue = true;
-    }
-    return PhysicalModel(
-      color: Colors.transparent,
-      borderRadius: BorderRadius.circular(8.0),
-      clipBehavior: Clip.antiAlias,
-      child: Container(
-          color: WcColors.grey60,
-          width: WcWidth - 40,
-          height: 22,
-          child: Row(
-            children: graphDataList.map((e) {
-              return PercentageGraphData(
-                graphColor: e.graphColor,
-                value: e.value,
-                isLastIndex:
-                    (graphDataList.indexOf(e) == graphDataList.length - 1 ||
-                            singleValidValue)
-                        ? true
-                        : false,
-              );
-            }).toList(),
-          )),
-    );
-  }
-}
-
-class PercentageGraphData extends StatelessWidget {
-  PercentageGraphData({
-    Key? key,
-    required this.graphColor,
-    required this.value,
-    this.isLastIndex = false,
-  }) : super(key: key);
-
-  Color graphColor;
-  int value;
-  bool isLastIndex;
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      flex: value,
-      child: Container(
-        decoration: BoxDecoration(
-            color: graphColor,
-            border: Border(
-                right: BorderSide(
-                    color: WcColors.white,
-                    width: (isLastIndex || value == 0) ? 0 : 3))),
       ),
     );
   }

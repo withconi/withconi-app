@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter_naver_map/flutter_naver_map.dart';
 import 'package:flutter_svg/svg.dart';
@@ -7,6 +9,8 @@ import 'package:withconi/ui/widgets/button/wide_button.dart';
 import '../../../controller/map/map_main_page_controller.dart';
 import '../../theme/text_theme.dart';
 import '../../widgets/searchbar/search_bar.dart';
+import 'map_widgets/opening_status_text.dart';
+import 'map_widgets/phone_button.dart';
 import 'map_widgets/place_toggle_button.dart';
 import 'map_widgets/search_refresh_button.dart';
 
@@ -42,7 +46,7 @@ class MapMainPage extends StatelessWidget {
                 ),
               ),
               Positioned(
-                top: 10,
+                top: 5,
                 left: 20,
                 child: Center(
                   child: SearchBarWidget(
@@ -51,7 +55,7 @@ class MapMainPage extends StatelessWidget {
                 ),
               ),
               Positioned(
-                top: 95,
+                top: 90,
                 left: 20,
                 child: Container(
                     height: 45,
@@ -87,11 +91,37 @@ class MapMainPage extends StatelessWidget {
                       ),
                     )),
               ),
+              Positioned(
+                right: 20,
+                top: 90,
+                child: GestureDetector(
+                  onTap: () {},
+                  child: Container(
+                    width: 50,
+                    height: 50,
+                    padding: EdgeInsets.all(13),
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: WcColors.white,
+                        boxShadow: [
+                          BoxShadow(
+                              color: WcColors.grey120,
+                              blurRadius: 6,
+                              offset: Offset(0, 3),
+                              spreadRadius: -1)
+                        ]),
+                    child: SvgPicture.asset(
+                      'assets/icons/bookmark.svg',
+                      color: WcColors.blue100,
+                    ),
+                  ),
+                ),
+              ),
               Obx(
                 () => Visibility(
                     visible: _controller.showResearchButton.value,
                     child: Positioned(
-                      top: 153,
+                      top: 145,
                       child: SearchRefreshButton(
                         onTap: _controller.onSearchRefreshTap,
                       ),
@@ -102,19 +132,9 @@ class MapMainPage extends StatelessWidget {
                   visible: _controller.showPlaceListBottomSheet.value,
                   maintainState: true,
                   child: DraggableScrollableSheet(
-                      initialChildSize: (_controller.placeMarkers.length >= 2)
-                          ? 0.40
-                          : 93 / WcHeight,
-                      minChildSize: 90 / WcHeight,
-                      maxChildSize:
-                          (((_controller.placeMarkers.length * 155) + 95) /
-                                      WcHeight <
-                                  1)
-                              ? ((_controller.placeMarkers.length * 155) + 95) /
-                                  WcHeight
-                              : 1,
-                      snap: false,
-                      // snapSizes: [0.17, 0.4, 1],
+                      initialChildSize: 0.40,
+                      minChildSize: 87 / WcHeight,
+                      maxChildSize: 1,
                       controller: _controller.placePreviewListDragController,
                       builder: (context, scrollController) {
                         _controller.placeListScrollController.value =
@@ -124,23 +144,13 @@ class MapMainPage extends StatelessWidget {
                           controller:
                               _controller.placeListScrollController.value,
                           child: Container(
-                            // height: ((_controller.placeMarkers.length * 155) +
-                            //             95 <
-                            //         WcHeight)
-                            //     ? (_controller.placeMarkers.length * 155) + 51
-                            //     : WcHeight,
+                            constraints: BoxConstraints(
+                              minHeight: WcHeight,
+                            ),
                             color: WcColors.white,
                             child: Column(
                               children: [
-                                Container(
-                                  height: 4,
-                                  width: 45,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: WcColors.grey80,
-                                  ),
-                                  margin: EdgeInsets.only(top: 13, bottom: 15),
-                                ),
+                                DraggableIndicator(),
                                 SingleChildScrollView(
                                   scrollDirection: Axis.horizontal,
                                   child: Row(
@@ -248,7 +258,7 @@ class MapMainPage extends StatelessWidget {
                                                             child: SizedBox(
                                                               child: Text(
                                                                 diseaseType ??
-                                                                    '선택안함',
+                                                                    '전체',
                                                                 style: GoogleFonts.notoSans(
                                                                     color: WcColors
                                                                         .black,
@@ -267,15 +277,9 @@ class MapMainPage extends StatelessWidget {
                                                       .selectedDiseaseFilter
                                                       .value,
                                                   onChanged: (String? item) {
-                                                    if (item == '전체') {
-                                                      _controller
-                                                          .selectedDiseaseFilter
-                                                          .value = null;
-                                                    } else {
-                                                      _controller
-                                                          .selectedDiseaseFilter
-                                                          .value = item;
-                                                    }
+                                                    _controller
+                                                        .selectedDiseaseFilter
+                                                        .value = item;
                                                   },
                                                   buttonHeight: 35,
                                                   buttonWidth: 130,
@@ -290,6 +294,8 @@ class MapMainPage extends StatelessWidget {
                                               () => DropdownButtonHideUnderline(
                                                 child: DropdownButton2(
                                                   // dropdownElevation: 2,
+                                                  selectedItemHighlightColor:
+                                                      WcColors.grey40,
                                                   selectedItemBuilder: (context) => _controller
                                                       .conimalFilterList
                                                       .map((conimalType) => Container(
@@ -322,24 +328,13 @@ class MapMainPage extends StatelessWidget {
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               5)),
-                                                  // hint: Text(
-                                                  //   '품종별 많이 찾는',
-                                                  //   style: GoogleFonts.notoSans(
-                                                  //       color: WcColors.grey160,
-                                                  //       fontWeight:
-                                                  //           FontWeight.w600,
-                                                  //       fontSize: 13),
-                                                  // ),
                                                   dropdownPadding:
                                                       EdgeInsets.symmetric(
                                                           vertical: 0),
                                                   buttonPadding:
                                                       const EdgeInsets.only(
                                                           left: 10, right: 8),
-                                                  // itemPadding: const EdgeInsets
-                                                  //         .symmetric(
-                                                  //     vertical: 15,
-                                                  //     horizontal: 10),
+
                                                   dropdownDecoration:
                                                       const BoxDecoration(
                                                           color: WcColors.white,
@@ -376,7 +371,7 @@ class MapMainPage extends StatelessWidget {
                                                             value: conimalType,
                                                             child: Text(
                                                               conimalType ??
-                                                                  '선택안함',
+                                                                  '전체',
                                                               style: GoogleFonts.notoSans(
                                                                   color: WcColors
                                                                       .black,
@@ -392,15 +387,9 @@ class MapMainPage extends StatelessWidget {
                                                       .selectedConimalFilter
                                                       .value,
                                                   onChanged: (String? item) {
-                                                    if (item == '전체') {
-                                                      _controller
-                                                          .selectedConimalFilter
-                                                          .value = null;
-                                                    } else {
-                                                      _controller
-                                                          .selectedConimalFilter
-                                                          .value = item;
-                                                    }
+                                                    _controller
+                                                        .selectedConimalFilter
+                                                        .value = item;
                                                   },
                                                   buttonHeight: 35,
                                                   buttonWidth: 130,
@@ -431,7 +420,7 @@ class MapMainPage extends StatelessWidget {
                                                     SizedBox(
                                                       width: 5,
                                                     ),
-                                                    Text('진료중',
+                                                    Text('진료 중',
                                                         style: TextStyle(
                                                             fontFamily:
                                                                 WcFontFamily
@@ -462,23 +451,157 @@ class MapMainPage extends StatelessWidget {
                                     height: 1,
                                     thickness: 1,
                                     color: WcColors.grey60),
-                                ListView.builder(
-                                    padding: EdgeInsets.all(0),
-                                    physics: NeverScrollableScrollPhysics(),
-                                    shrinkWrap: true,
-                                    itemCount: _controller.placeMarkers.length,
-                                    itemBuilder: (context, index) {
-                                      PlacePreviewType place =
-                                          _controller.placeMarkers[index].place;
-                                      return PlacePreviewListTile(
-                                        place: place,
-                                        distance: _controller.getDistanceString(
-                                            placeLocation: place.location),
-                                        onTap: () {
-                                          _controller.goToPlaceDetail();
-                                        },
-                                      );
-                                    })
+                                Obx(
+                                  () => Visibility(
+                                    visible:
+                                        _controller.placeMarkers.isNotEmpty,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
+                                      children: [
+                                        Container(
+                                          margin: EdgeInsets.only(right: 15),
+                                          child: DropdownButtonHideUnderline(
+                                            child: DropdownButton2(
+                                              selectedItemHighlightColor:
+                                                  WcColors.grey40,
+                                              itemPadding:
+                                                  EdgeInsets.only(left: 8),
+                                              buttonPadding:
+                                                  const EdgeInsets.only(
+                                                      top: 5,
+                                                      left: 0,
+                                                      right: 0),
+                                              dropdownPadding:
+                                                  EdgeInsets.symmetric(
+                                                      vertical: 0),
+                                              dropdownDecoration:
+                                                  const BoxDecoration(
+                                                      color: WcColors.white,
+                                                      boxShadow: [
+                                                    BoxShadow(
+                                                        color: Color.fromARGB(
+                                                            69, 124, 124, 124),
+                                                        blurRadius: 8,
+                                                        offset: Offset(
+                                                          0.0, // Move to right 10  horizontally
+                                                          8.0,
+                                                        )),
+                                                  ]),
+                                              icon: SvgPicture.asset(
+                                                'assets/icons/arrow_down.svg',
+                                                color: WcColors.black,
+                                              ),
+                                              isExpanded: true,
+                                              items: _controller.sortTypeList
+                                                  .map((sortType) =>
+                                                      DropdownMenuItem<String>(
+                                                        value: sortType,
+                                                        child: Text(sortType,
+                                                            style: TextStyle(
+                                                                fontFamily:
+                                                                    WcFontFamily
+                                                                        .notoSans,
+                                                                color: WcColors
+                                                                    .grey200,
+                                                                fontSize: 14,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                                height: 1.3)),
+                                                      ))
+                                                  .toList(),
+                                              value: _controller
+                                                  .selectedSortType.value,
+                                              onChanged: (String? item) {
+                                                _controller.selectedSortType
+                                                    .value = item ?? '거리순';
+                                              },
+                                              buttonHeight: 40,
+                                              buttonWidth: 90,
+                                              itemHeight: 45,
+
+                                              // buttonDecoration: BoxDecoration(
+                                              //     color: WcColors.green20),
+                                            ),
+                                          ),
+                                        ),
+                                        ListView.builder(
+                                            padding: EdgeInsets.all(0),
+                                            physics:
+                                                NeverScrollableScrollPhysics(),
+                                            shrinkWrap: true,
+                                            itemCount:
+                                                _controller.placeMarkers.length,
+                                            itemBuilder: (context, index) {
+                                              PlacePreviewType place =
+                                                  _controller
+                                                      .placeMarkers[index]
+                                                      .place;
+                                              return PlacePreviewListTile(
+                                                isFirstList: (index == 0),
+                                                place: place,
+                                                distance: _controller
+                                                    .getDistanceString(
+                                                        placeLocation:
+                                                            place.location),
+                                                onTap: () {
+                                                  _controller
+                                                      .goToSelectedPlaceDetail(
+                                                          selectedLocId:
+                                                              place.locId);
+                                                },
+                                              );
+                                            }),
+                                      ],
+                                    ),
+                                    replacement: Container(
+                                      width: WcWidth,
+                                      height: 200,
+                                      decoration:
+                                          BoxDecoration(color: WcColors.white),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            '일치하는 장소가 없네요 :(',
+                                            style: TextStyle(
+                                                fontFamily:
+                                                    WcFontFamily.notoSans,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w500,
+                                                color: WcColors.grey160),
+                                          ),
+                                          SizedBox(
+                                            height: 20,
+                                          ),
+                                          Text(
+                                            '위드코니는 반려자분들의 \n정보를 통해 활성화된답니다.',
+                                            style: TextStyle(
+                                                fontFamily:
+                                                    WcFontFamily.notoSans,
+                                                fontSize: 15,
+                                                color: WcColors.grey180),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          Text(
+                                            '소중한 리뷰를 남겨주시면\n더 도움되는 정보로 꼭 보답할게요!',
+                                            style: TextStyle(
+                                                fontFamily:
+                                                    WcFontFamily.notoSans,
+                                                fontSize: 15,
+                                                color: WcColors.grey180),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                )
                               ],
                             ),
                           ),
@@ -502,7 +625,11 @@ class MapMainPage extends StatelessWidget {
                         return SingleChildScrollView(
                           controller: _controller.selectedPlaceScrollController,
                           child: SelectedPlacePreview(
-                            onTap: _controller.goToPlaceDetail,
+                            onTap: () {
+                              _controller.goToSelectedPlaceDetail(
+                                  selectedLocId: _controller
+                                      .selectedMarker.value!.place.locId);
+                            },
                             place: _controller.selectedMarker.value!.place,
                             distance: _controller.getDistanceString(
                                 placeLocation: _controller
@@ -520,6 +647,25 @@ class MapMainPage extends StatelessWidget {
   }
 }
 
+class DraggableIndicator extends StatelessWidget {
+  const DraggableIndicator({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 4,
+      width: 45,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: WcColors.grey80,
+      ),
+      margin: EdgeInsets.only(top: 13, bottom: 15),
+    );
+  }
+}
+
 class PlacePreviewListTile extends StatelessWidget {
   PlacePreviewListTile({
     Key? key,
@@ -527,23 +673,29 @@ class PlacePreviewListTile extends StatelessWidget {
     bool? hasDivider,
     required String distance,
     void Function()? onTap,
+    EdgeInsets? padding,
+    required bool isFirstList,
   })  : _place = place,
         _hasDivider = hasDivider ?? true,
         _distance = distance,
         _onTap = onTap,
+        _isFirstList = isFirstList,
         super(key: key);
 
   final PlacePreviewType _place;
   bool _hasDivider;
   String _distance;
   void Function()? _onTap;
+  bool _isFirstList;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: _onTap,
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+        padding: (_isFirstList)
+            ? EdgeInsets.fromLTRB(15, 0, 15, 15)
+            : EdgeInsets.symmetric(horizontal: 15, vertical: 15),
         decoration: BoxDecoration(
             color: WcColors.white,
             border: Border(
@@ -568,18 +720,9 @@ class PlacePreviewListTile extends StatelessWidget {
                               fontFamily: WcFontFamily.notoSans,
                               fontSize: 18,
                               fontWeight: FontWeight.w600)),
-                      Container(
-                        margin: EdgeInsets.symmetric(horizontal: 4),
-                        child: CircleAvatar(
-                          backgroundColor: WcColors.blue100,
-                          radius: 2.5,
-                        ),
+                      OpeningStatusText(
+                        isOpen: true,
                       ),
-                      Text('진료 중',
-                          style: TextStyle(
-                              fontFamily: WcFontFamily.notoSans,
-                              fontSize: 13.5,
-                              fontWeight: FontWeight.w600)),
                     ],
                   ),
                   Row(
@@ -708,8 +851,8 @@ class SelectedPlacePreview extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              height: 4,
-              width: 37,
+              height: 5,
+              width: 38,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 color: WcColors.grey80,
@@ -717,6 +860,7 @@ class SelectedPlacePreview extends StatelessWidget {
               margin: EdgeInsets.only(top: 13, bottom: 2),
             ),
             PlacePreviewListTile(
+              isFirstList: false,
               place: _place,
               hasDivider: false,
               distance: _distance,
@@ -726,11 +870,7 @@ class SelectedPlacePreview extends StatelessWidget {
               height: 50,
               child: Row(
                 children: [
-                  Image.asset(
-                    'assets/icons/call.png',
-                    height: 50,
-                    width: 50,
-                  ),
+                  PhoneButton(),
                   SizedBox(
                     width: 10,
                   ),

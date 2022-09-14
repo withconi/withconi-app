@@ -1,7 +1,7 @@
 import 'package:flutter_svg/svg.dart';
 import 'package:withconi/configs/constants/enum.dart';
 import 'package:withconi/controller/home/home_controller.dart';
-import 'package:withconi/controller/nav_controller.dart';
+import 'package:withconi/controller/navigation_controller.dart';
 import 'package:withconi/import_basic.dart';
 import 'package:withconi/ui/pages/home/widgets/conimal_setting_button.dart';
 import 'package:withconi/ui/pages/home/widgets/cominal_toggle_button.dart';
@@ -15,21 +15,13 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    HomeController _controller = Get.find();
+    HomeController _controller = Get.put(HomeController());
 
     double heightSection1 = (WcHeight / 7) * 2.7;
     double heightSection3 = (WcHeight / 7) * 3.2;
     double maxSection1Height = 285;
 
     return Scaffold(
-      bottomNavigationBar: Obx(
-        () => WcBottomNavBar(
-          navIndex: NavController.to.navBarIndex.value,
-          onTap: (index) {
-            NavController.to.onNavChanged(navIndex: index);
-          },
-        ),
-      ),
       body: SafeArea(
         top: true,
         child: RefreshIndicator(
@@ -564,8 +556,8 @@ class HomePage extends StatelessWidget {
                                     imageSrc: 'assets/icons/diagnosis.png',
                                     text: '자가진단',
                                     onTap: () {
-                                      NavController.to
-                                          .onNavChanged(navIndex: 1);
+                                      // NavigationController.to
+                                      //     .onNavChanged(currentNavIndex: 1);
                                     },
                                   ),
                                 ),
@@ -600,7 +592,8 @@ class HomePage extends StatelessWidget {
                                   imageSrc: 'assets/icons/community.png',
                                   text: '커뮤니티',
                                   onTap: () {
-                                    NavController.to.onNavChanged(navIndex: 3);
+                                    // NavigationController.to
+                                    //     .onNavChanged(currentNavIndex: 3);
                                   },
                                 ),
                               ),
@@ -613,7 +606,8 @@ class HomePage extends StatelessWidget {
                                   imageSrc: 'assets/icons/dictionary.png',
                                   text: '질병백과',
                                   onTap: () {
-                                    NavController.to.onNavChanged(navIndex: 4);
+                                    // NavigationController.to
+                                    //     .onNavChanged(currentNavIndex: 4);
                                   },
                                 ),
                               ),

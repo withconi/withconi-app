@@ -1,7 +1,6 @@
 import 'package:flutter_svg/svg.dart';
 import 'package:withconi/configs/constants/enum.dart';
 import 'package:withconi/controller/common_controller/edit_conimal_controller.dart';
-import 'package:withconi/controller/signup/signup_conimal_edit_controller.dart';
 import 'package:withconi/import_basic.dart';
 import 'package:withconi/ui/widgets/appbar/appbar.dart';
 import 'package:withconi/ui/widgets/button/wide_button.dart';
@@ -11,7 +10,7 @@ import '../signup/signup_widgets/gender_toggle_button.dart';
 import '../signup/signup_widgets/species_radio_button.dart';
 
 class EditConimalPage extends StatelessWidget {
-  EditConimalPage({Key? key}) : super(key: key);
+  const EditConimalPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -204,7 +203,7 @@ class EditConimalPage extends StatelessWidget {
                         onTap: _controller.onEditButtonTap,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     )
                   ],

@@ -8,7 +8,7 @@ import '../../../controller/common_controller/email_verification_controller.dart
 
 class EmailVerificationPage extends StatelessWidget {
   EmailVerificationPage({Key? key}) : super(key: key);
-  EmailVerificationController _controller =
+  final EmailVerificationController _controller =
       Get.put(EmailVerificationController());
   @override
   Widget build(BuildContext context) {
@@ -52,10 +52,10 @@ class EmailVerificationPage extends StatelessWidget {
                     height: 45,
                   ),
                   Text('${_controller.email}로 \n인증 메일이 전송되었어요.'),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
-                  Text('비밀번호 찾기와 회원정보 수정에는\n이메일 인증이 필요해요.'),
+                  const Text('비밀번호 찾기와 회원정보 수정에는\n이메일 인증이 필요해요.'),
                   const SizedBox(
                     height: 50,
                   ),
@@ -83,7 +83,7 @@ class EmailVerificationPage extends StatelessWidget {
                         color: WcColors.white,
                         child: Column(
                           children: [
-                            Text('다음에 하기'),
+                            const Text('다음에 하기'),
                             Container(
                               width: 70,
                               height: 1,
