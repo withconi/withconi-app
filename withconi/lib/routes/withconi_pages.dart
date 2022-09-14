@@ -116,12 +116,13 @@ class WcPages {
       transition: Transition.noTransition,
     ),
     GetPage(
-        name: Routes.MAP_DETAIL,
-        page: () => MapDetailPage(),
-        popGesture: true,
-        transition: Transition.fade,
-        transitionDuration: Duration(milliseconds: 200),
-        gestureWidth: (context) => 200),
+      name: Routes.MAP_DETAIL,
+      page: () => MapDetailPage(),
+      popGesture: true,
+      transition: Transition.fade,
+      transitionDuration: Duration(milliseconds: 200),
+      //  gestureWidth: (context) => 200
+    ),
     GetPage(
       name: Routes.DICTIONARY_MAIN,
       page: () => DictionaryMainPage(),

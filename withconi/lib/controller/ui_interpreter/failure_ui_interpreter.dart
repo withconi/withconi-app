@@ -19,7 +19,7 @@ class FailureInterpreter {
       );
     }
 
-    return showSnackbar(text: errorMessage.message);
+    return showCustomSnackbar(text: errorMessage.message);
   }
 
   mapFailureToSnackbar(Failure _failure, String occurMethod) {
@@ -32,7 +32,7 @@ class FailureInterpreter {
       );
     }
 
-    return showSnackbar(text: errorMessage.message);
+    return showCustomSnackbar(text: errorMessage.message);
   }
 
   mapFailureToPage(Failure _failure, String occurMethod) {
@@ -43,6 +43,6 @@ class FailureInterpreter {
         '\n❤️‍🔥 FAIL[$_failure] => METHOD FROM: $occurMethod\n📍 title: ${errorMessage.title}\n📍 message: ${errorMessage.message}',
       );
     }
-    return showSnackbar(text: errorMessage.message);
+    return showCustomSnackbar(text: errorMessage.message);
   }
 }

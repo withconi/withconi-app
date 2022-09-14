@@ -50,7 +50,7 @@ class PharmacyPreview implements PlacePreviewType {
   });
 
   PharmacyPreview.fromJson(Map<String, dynamic> json) {
-    locId = json['locId'];
+    locId = json['_id'];
     name = json['title'];
     openingStatus = json['openingStatus'];
     address = json['address'];
@@ -62,7 +62,7 @@ class PharmacyPreview implements PlacePreviewType {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['locId'] = locId;
+    data['_id'] = locId;
     data['title'] = name;
     data['openingStatus'] = openingStatus;
     data['address'] = address;

@@ -91,6 +91,17 @@ enum Species {
   all,
 }
 
+String speciesToValue(Species? species) {
+  switch (species) {
+    case Species.cat:
+      return 'cat';
+    case Species.dog:
+      return 'dog';
+    default:
+      return '';
+  }
+}
+
 enum Provider {
   @JsonValue("kakao")
   kakao,
@@ -138,4 +149,78 @@ enum UserState {
   SIGN_UP_EMAIL,
   SIGN_UP_SNS,
   NONE
+}
+
+enum PlaceType { all, hospital, pharmacy }
+
+String placeTypeToValue(PlaceType? placeType) {
+  switch (placeType) {
+    case PlaceType.hospital:
+      return 'hospital';
+    case PlaceType.pharmacy:
+      return 'pharmacy';
+
+    default:
+      return 'all';
+  }
+}
+
+enum DiseaseType {
+  cardiovascular,
+  musculoskeletal,
+  digestive,
+  ophthalmology,
+  urinary,
+  respiratory,
+}
+
+String diseaseTypeToValue(DiseaseType? diseaseType) {
+  switch (diseaseType) {
+    case DiseaseType.cardiovascular:
+      return 'cardiovascular';
+    case DiseaseType.musculoskeletal:
+      return 'musculoskeletal';
+    case DiseaseType.digestive:
+      return 'digestive';
+    case DiseaseType.ophthalmology:
+      return 'ophthalmology';
+    case DiseaseType.urinary:
+      return 'urinary';
+    case DiseaseType.respiratory:
+      return 'respiratory';
+    default:
+      return '';
+  }
+}
+
+String diseaseTypeToKorean(DiseaseType? diseaseType) {
+  switch (diseaseType) {
+    case DiseaseType.cardiovascular:
+      return '심혈관계 질환';
+    case DiseaseType.musculoskeletal:
+      return '골격근계 질환';
+    case DiseaseType.digestive:
+      return '소화계 질환';
+    case DiseaseType.ophthalmology:
+      return '안과계 질환';
+    case DiseaseType.urinary:
+      return '비뇨기계 질환';
+    case DiseaseType.respiratory:
+      return '호흡기계 질환';
+    default:
+      return '';
+  }
+}
+
+enum OpeningStatus { open, closed }
+
+String openingStatusToValue(OpeningStatus? openingStatus) {
+  switch (openingStatus) {
+    case OpeningStatus.open:
+      return 'open';
+    case OpeningStatus.closed:
+      return 'closed';
+    default:
+      return '';
+  }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:withconi/configs/constants/auth_variables.dart';
 import 'package:withconi/routes/withconi_bindings.dart';
@@ -8,6 +9,8 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   KakaoSdk.init(nativeAppKey: Constants.WITHCONI_NATIVE_APP_KEY);
   await firebaseInitialization;
+  await GetStorage.init();
+
   runApp(GetMaterialApp(
     debugShowCheckedModeBanner: false,
     theme: ThemeData(

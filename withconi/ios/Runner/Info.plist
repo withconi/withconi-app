@@ -26,10 +26,6 @@
 	<string>Editor</string>
 	<key>CFBundleURLName</key>
 	<string>co.yellowtoast.withconi</string>
-	<key>CFBundleURLSchemes</key>
-	<array>
-		<string>withconi.page.link</string>
-	</array>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -38,53 +34,65 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>com.googleusercontent.apps.955745601928-545f5irolb2j5vkr06p0ptlhv6t4pqeo</string>
+				<string>withconi.page.link</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>kakao2bd59238f56f29a17c2bdb0fb628c83d</string>
 			</array>
 		</dict>
 	</array>
-
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-			<string>naversearchapp</string>
-			<string>naversearchthirdlogin</string>
-	</array>
-	<key>naverServiceAppUrlScheme</key>
-	<string>[UrlScheme]</string>
-	<key>naverConsumerKey</key>
-	<string>[ConsumerKey]</string>
-	<key>naverConsumerSecret</key>
-	<string>[ConsumerSecret]</string>
-	<key>naverServiceAppName</key>
-	<string>[ServiceAppName]</string>
-
-
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>FirebaseDynamicLinksCustomDomains</key>
 	<array>
 		<string>https://withconi.page.link</string>
 	</array>
-	
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>naversearchapp</string>
+		<string>naversearchthirdlogin</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NMFClientId</key>
 	<string>woyvacv8h0</string>
-	<key>NSAllowsArbitraryLoads</key>
-	<true/>
-	<key>NSAllowsArbitraryLoadsInWebContent</key>
-	<true/>
+	<key>io.flutter.embedded_views_preview</key>
+	<string>YES</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 		<key>NSAllowsArbitraryLoadsInWebContent</key>
 		<true/>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>naver.com</key>
+			<dict>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<false/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
+			<key>naver.net</key>
+			<dict>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<false/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
+		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>Allow access to camera to capture photos</string>
+	<string>리뷰 작성을 위한 사진첨부를 위해 카메라 접근이 필요합니다.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>사용자 위치 기반 병원/약국 추천을 위해 위치정보 접근이 필요합니다.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Allow access to photo library</string>
+	<string>리뷰 작성을 위한 사진첨부를 위해 갤러리 접근이 필요합니다.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -104,8 +112,13 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>io.flutter.embedded_views_preview</key>
-	<string>YES</string>
-
+	<key>naverConsumerKey</key>
+	<string>gt1mSZ2SUb5mUUYy5URN</string>
+	<key>naverConsumerSecret</key>
+	<string>KDMoDAlqSr</string>
+	<key>naverServiceAppName</key>
+	<string>Withconi</string>
+	<key>naverServiceAppUrlScheme</key>
+	<string>withconi.page.link</string>
 </dict>
 </plist>

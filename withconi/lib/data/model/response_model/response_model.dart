@@ -146,3 +146,25 @@ class PlacePreviewResponse {
     return PlacePreviewResponse(placeList: list, totalDocuments: totalDocs);
   }
 }
+
+// class PlaceDetailResponse {
+//   List<PlaceDetailType> placeDetailList;
+
+//   PlaceDetailResponse({
+//     required this.placeDetailList,
+//   });
+
+//   factory PlaceDetailResponse.fromJson(Map<String, dynamic> json) {
+//     List<PlaceDetailType> list = [];
+//    PlaceDe
+
+//     if (json['list'] != null) {
+//       list = <PlaceDetailType>[];
+//       json['list'].forEach((v) {
+//         list.add(new HospitalPreview.fromJson(v));
+//       });
+//     }
+
+//     return PlaceDetailResponse(placeDetailList: list);
+//   }
+// }

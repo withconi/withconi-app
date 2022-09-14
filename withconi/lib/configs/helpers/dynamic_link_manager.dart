@@ -65,7 +65,7 @@ class DynamicLinkManager {
                 () => Future.delayed(Duration(milliseconds: 2400)));
             Get.offNamed(nextRoute);
           } else {
-            await showSnackbar(text: '인증 메일이 만료되었어요. 재전송해주세요 :)');
+            await showCustomSnackbar(text: '인증 메일이 만료되었어요. 재전송해주세요 :)');
           }
           break;
         // case artist:

@@ -3,7 +3,7 @@ import 'package:withconi/configs/helpers/extension.dart';
 import 'package:withconi/configs/helpers/cache_manager.dart';
 
 @override
-class WcCacheManager with CacheManager {
+class TokenManager with CacheManager {
   Provider getTokenProvider() {
     String tokenProvider = getCache(CacheControllerKey.PROVIDER);
     return (tokenProvider.isEmpty)
@@ -20,8 +20,8 @@ class WcCacheManager with CacheManager {
   void saveRefreshToken(String token) =>
       saveCache(CacheControllerKey.REFRESH_TOKEN, token);
 
-  void saveProvider(Provider tokenProvider) =>
-      saveCache(CacheControllerKey.PROVIDER, tokenProvider.toString());
+  Future<void> saveProvider(Provider tokenProvider) async =>
+      await saveCache(CacheControllerKey.PROVIDER, tokenProvider.toString());
 
   void saveEmailVerificationInfo(
       {required String isEmailVerified, required String isEmailVerifySkipped}) {

@@ -54,6 +54,7 @@ class Api {
         case RequestType.GET:
           {
             Options options = Options(headers: header ?? default_header);
+
             result = await dio.get(url,
                 queryParameters: queryParameters, options: options);
             break;
@@ -100,26 +101,29 @@ class AuthInterceptor extends Interceptor {
   @override
   void onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
-    String accessToken =
-        WcCacheManager().getToken(CacheControllerKey.ACCESS_TOKEN);
+    if (options.headers.containsKey('requiresToken')) {
+      String accessToken =
+          TokenManager().getToken(CacheControllerKey.ACCESS_TOKEN);
 
-    if (accessToken.isEmpty) {
-      // var expiration = await TokenRepository().getAccessTokenRemainingTime();
+      if (accessToken.isEmpty) {
+        // var expiration = await TokenRepository().getAccessTokenRemainingTime();
 
-      // if (expiration.inSeconds < 60) {
-      //   dio.interceptors.requestLock.lock();
+        // if (expiration.inSeconds < 60) {
+        //   dio.interceptors.requestLock.lock();
 
-      //   // Call the refresh endpoint to get a new token
-      //   await UserService().refresh().then((response) async {
-      //     await TokenRepository().persistAccessToken(response.accessToken);
-      //     accessToken = response.accessToken;
-      //   }).catchError((error, stackTrace) {
-      //     handler.reject(error, true);
-      //   }).whenComplete(() => dio.interceptors.requestLock.unlock());
-      // }
+        //   // Call the refresh endpoint to get a new token
+        //   await UserService().refresh().then((response) async {
+        //     await TokenRepository().persistAccessToken(response.accessToken);
+        //     accessToken = response.accessToken;
+        //   }).catchError((error, stackTrace) {
+        //     handler.reject(error, true);
+        //   }).whenComplete(() => dio.interceptors.requestLock.unlock());
+        // }
 
-      options.headers['Authorization'] = 'Bearer $accessToken';
+        // options.headers['Authorization'] = 'Bearer $accessToken';
+      }
     }
+
     return handler.next(options);
   }
 }
@@ -172,7 +176,9 @@ class Logging extends Interceptor {
             const JsonEncoder.withIndent('  ').convert(options.queryParameters);
         var prettyBody =
             const JsonEncoder.withIndent('  ').convert(options.data);
-        log('\n🧡 REQUEST[${options.method}] => PATH: ${options.path}\n🔸 QUERY: $prettyQuery\n🔸 BODY: $prettyBody');
+        var prettyHeader =
+            const JsonEncoder.withIndent('  ').convert(options.headers);
+        log('\n🧡 REQUEST[${options.method}] => PATH: ${options.path}\n🔸 HEADER: $prettyHeader\n🔸 QUERY: $prettyQuery\n🔸 BODY: $prettyBody');
       } else {
         log('\n🧡 REQUEST[${options.method}] => PATH: ${options.path}\n🔸 BODY: ${options.data}');
       }

@@ -111,28 +111,34 @@ class AuthAPI {
   }
 
   Future<CustomAuthInfo> getNaverAuthInfo() async {
-    late String accessToken;
+    String accessToken = '';
     late final NaverLoginResult result;
     late final NaverAccessToken tokenInfo;
     late final CustomAuthInfo authInfo;
 
     try {
+      // await FlutterNaverLogin.isLoggedIn;
       if (await FlutterNaverLogin.isLoggedIn) {
         tokenInfo = await FlutterNaverLogin.currentAccessToken;
         if (tokenInfo.isValid()) {
+          result = await FlutterNaverLogin.logIn();
           print('토큰 유효성 체크 성공 ${tokenInfo.isValid()} ${tokenInfo.expiresAt}');
           accessToken = tokenInfo.accessToken;
         } else {
           print('토큰 유효하지 않음');
           result = await FlutterNaverLogin.logIn();
           accessToken = result.accessToken.accessToken;
+          print(result);
         }
       } else {
         print('토큰 유효하지 않음');
         result = await FlutterNaverLogin.logIn();
+        tokenInfo = await FlutterNaverLogin.currentAccessToken;
+
+        print(tokenInfo.accessToken);
       }
       authInfo = CustomAuthInfo(
-          authObject: accessToken,
+          authObject: tokenInfo.accessToken,
           email: result.account.email,
           provider: Provider.naver);
       return authInfo;
@@ -185,6 +191,7 @@ class AuthAPI {
     try {
       UserCredential _userCredential =
           await firebaseAuth.signInWithCredential(credential);
+      print(firebaseAuth.currentUser);
       return _userCredential.user;
     } catch (e) {
       throw SignInCredentialException();
@@ -204,7 +211,7 @@ class AuthAPI {
   getNewCustomToken({required Provider provider, required String token}) async {
     Map<String, dynamic> data = await _dio.apiCall(
       url: HttpUrl.CUSTOM_TOKEN_GET,
-      header: {"accessToken": token},
+      header: {"Authorization": "Bearer $token"},
       queryParameters: null,
       body: {"provider": provider.toShortString()},
       requestType: RequestType.POST,

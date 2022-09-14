@@ -18,4 +18,15 @@ class MapAPI {
 
     return mapListData;
   }
+
+  Future<Map<String, dynamic>> getPlaceDetailById(
+      {required String locId}) async {
+    Map<String, dynamic> placeDetailData = await _dio.apiCall(
+        url: HttpUrl.MAP_GET_LOCATION_DETAIL,
+        queryParameters: {'locId': locId},
+        body: null,
+        requestType: RequestType.GET);
+
+    return placeDetailData;
+  }
 }
