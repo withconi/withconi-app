@@ -15,7 +15,7 @@ import 'map_widgets/place_toggle_button.dart';
 import 'map_widgets/search_refresh_button.dart';
 
 class MapMainPage extends StatelessWidget {
-  MapMainPage({Key? key}) : super(key: key);
+  const MapMainPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

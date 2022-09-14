@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 import 'package:flutter_naver_map/flutter_naver_map.dart';
 import 'package:geolocator/geolocator.dart';
@@ -12,6 +13,7 @@ import '../../ui/widgets/loading.dart';
 import '../ui_helper/infinite_scroll.dart';
 
 class MapMainPageController extends GetxController {
+  Completer<NaverMapController> _controller = Completer();
   final MapRepository _mapRepository = MapRepository();
   MapType mapType = MapType.Basic;
   Rxn<Position> currentPosition = Rxn<Position>();
@@ -118,6 +120,8 @@ class MapMainPageController extends GetxController {
       await showLoading((() => _getPlacePreviewList()));
       mapInit = false;
     }
+    if (_controller.isCompleted) _controller = Completer();
+    _controller.complete(controller);
   }
 
   @override

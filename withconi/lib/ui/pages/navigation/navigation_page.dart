@@ -11,28 +11,63 @@ import '../map/map_main_page.dart';
 class NavigationPage extends StatelessWidget {
   const NavigationPage({Key? key}) : super(key: key);
 
+  // @override
+  // Widget build(BuildContext context) {
+  //   NavigationController _controller = Get.put(NavigationController());
+  //   return Obx(
+  //     () => Scaffold(
+  //       body: IndexedStack(
+  //         index: _controller.navBarIndex.value,
+  //         children: [
+  //           HomePage(),
+  //           const DiagnosisMainPage(),
+  //           MapMainPage(),
+  //           const CommunityMainPage(),
+  //           const DictionaryMainPage()
+  //         ],
+  //       ),
+  //       bottomNavigationBar: Obx(
+  //         () => WcBottomNavBar(
+  //           currentNavIndex: _controller.navBarIndex.value,
+  //           onTap: _controller.changeNavIndex,
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
+
   @override
   Widget build(BuildContext context) {
     NavigationController _controller = Get.put(NavigationController());
     return Obx(
       () => Scaffold(
-        body: IndexedStack(
-          index: _controller.navBarIndex.value,
-          children: [
-            HomePage(),
-            const DiagnosisMainPage(),
-            MapMainPage(),
-            const CommunityMainPage(),
-            const DictionaryMainPage()
-          ],
-        ),
-        bottomNavigationBar: Obx(
-          () => WcBottomNavBar(
-            currentNavIndex: _controller.navBarIndex.value,
-            onTap: _controller.changeNavIndex,
-          ),
+        body: _controller.getPageByIndex(_controller.navBarIndex.value),
+        bottomNavigationBar: WcBottomNavBar(
+          currentNavIndex: _controller.navBarIndex.value,
+          onTap: _controller.getPageByIndex,
         ),
       ),
     );
   }
 }
+
+
+// class NavigationPage extends StatelessWidget {
+//   const NavigationPage({Key? key}) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     NavigationController _controller = Get.put(NavigationController());
+//     return Obx(
+//       () => Scaffold(
+//         body: _controller.changeNavIndex(_controller.navBarIndex.value),
+//         bottomNavigationBar: Obx(
+//           () => WcBottomNavBar(
+//             currentNavIndex: _controller.navBarIndex.value,
+//             onTap: _controller.changeNavIndex,
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
