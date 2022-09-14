@@ -9,8 +9,8 @@ import '../../widgets/text_field/textfield.dart';
 import 'signup_widgets/gender_toggle_button.dart';
 import 'signup_widgets/species_radio_button.dart';
 
-class SignupConimalPage1 extends StatelessWidget {
-  SignupConimalPage1({Key? key}) : super(key: key);
+class SignupConimal1Page extends StatelessWidget {
+  SignupConimal1Page({Key? key}) : super(key: key);
   String controllerId = DateTime.now().millisecondsSinceEpoch.toString();
 
   @override

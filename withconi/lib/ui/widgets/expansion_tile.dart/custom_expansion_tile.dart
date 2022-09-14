@@ -4,7 +4,7 @@
 
 import 'package:flutter/material.dart';
 
-const Duration _kExpand = Duration(milliseconds: 230);
+const Duration _kExpand = Duration(milliseconds: 100);
 
 /// A single-line [ListTile] with an expansion arrow icon that expands or collapses
 /// the tile to reveal or hide the [children].

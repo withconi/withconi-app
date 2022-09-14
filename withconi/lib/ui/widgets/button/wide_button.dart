@@ -10,7 +10,7 @@ class WcWideButtonWidget extends StatelessWidget {
       required this.onTap,
       this.inactiveButtonColor = WcColors.grey80,
       required this.activeButtonColor,
-      required this.buttonWidth,
+      this.buttonWidth = double.infinity,
       this.buttonHeight = 50,
       required this.active,
       required this.activeTextColor,
@@ -29,29 +29,24 @@ class WcWideButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: buttonHeight,
-      width: buttonWidth,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: Material(
-          child: Ink(
-            height: buttonHeight,
-            width: buttonWidth,
-            decoration: BoxDecoration(
-                color: (active) ? activeButtonColor : inactiveButtonColor),
-            child: InkWell(
-              onTap: (active) ? onTap : () {},
-              child: Center(
-                child: Text(
-                  buttonText,
-                  style: GoogleFonts.notoSans(
-                      color: (active) ? activeTextColor : inactiveTextColor,
-                      fontSize: 16,
-                      letterSpacing: 0.5,
-                      fontWeight: FontWeight.w500),
-                ),
-              ),
+    return Material(
+      child: Ink(
+        height: buttonHeight,
+        width: buttonWidth,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: (active) ? activeButtonColor : inactiveButtonColor),
+        child: InkWell(
+          borderRadius: BorderRadius.circular(10),
+          onTap: (active) ? onTap : () {},
+          child: Center(
+            child: Text(
+              buttonText,
+              style: GoogleFonts.notoSans(
+                  color: (active) ? activeTextColor : inactiveTextColor,
+                  fontSize: 16,
+                  letterSpacing: 0.5,
+                  fontWeight: FontWeight.w500),
             ),
           ),
         ),

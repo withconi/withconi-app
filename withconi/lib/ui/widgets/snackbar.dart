@@ -1,10 +1,10 @@
 import '../../import_basic.dart';
 
-showSnackbar({required String text}) => Get.showSnackbar(GetSnackBar(
+showCustomSnackbar({required String text}) => Get.showSnackbar(GetSnackBar(
       backgroundColor: const Color.fromARGB(227, 41, 41, 41),
       barBlur: 10,
       forwardAnimationCurve: Curves.decelerate,
-      reverseAnimationCurve: Curves.fastLinearToSlowEaseIn,
+      reverseAnimationCurve: Curves.easeInOut,
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 35),
       padding: const EdgeInsets.symmetric(vertical: 15),
       borderRadius: 10,
@@ -16,6 +16,6 @@ showSnackbar({required String text}) => Get.showSnackbar(GetSnackBar(
       ),
       messageText: const SizedBox.shrink(),
       animationDuration: const Duration(milliseconds: 700),
-      duration: const Duration(milliseconds: 1000),
+      duration: const Duration(milliseconds: 1200),
       snackPosition: SnackPosition.BOTTOM,
     ));
