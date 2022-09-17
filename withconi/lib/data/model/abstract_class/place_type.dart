@@ -3,7 +3,8 @@ import 'package:withconi/ui/entities/disease_percents.dart';
 
 import '../../../ui/entities/location.dart';
 
-abstract class PlacePreviewType {
+abstract class PlacePreview {
+  final PlaceType placeType = PlaceType.hospital;
   final String locId = "";
   final String name = "";
   final String address = "";
@@ -15,6 +16,7 @@ abstract class PlacePreviewType {
   final int totalRecommend = 0;
   final String phoneNumber = "";
   final String thumbnail = "";
+  final double distanceByMeter = 0.0;
 }
 
 // abstract class PlaceDetailType {
