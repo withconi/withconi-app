@@ -30,5 +30,7 @@ abstract class Routes {
   static const EMAIL_VERIFICATION = '/authentication/email_verification';
   static const MAP_MAIN = '/hospital/main';
   static const MAP_DETAIL = '/map/detail';
+  static const MAP_SEARCH = '/map/search';
+  static const MAP_NEW_REVIEW = '/map/reivew/new';
   // static const EMAIL_VERIFI_COMPLETE = '/authentication/email_verify_complete';
 }

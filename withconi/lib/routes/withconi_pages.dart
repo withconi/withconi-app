@@ -11,6 +11,8 @@ import 'package:withconi/ui/pages/dictionary/dictionary_main_page.dart';
 import 'package:withconi/ui/pages/common_pages/edit_conimal_page.dart';
 import 'package:withconi/ui/pages/home/home_page.dart';
 import 'package:withconi/ui/pages/map/map_detail_page.dart';
+import 'package:withconi/ui/pages/map/map_review_page.dart';
+import 'package:withconi/ui/pages/map/map_search_page.dart';
 import 'package:withconi/ui/pages/navigation/navigation_page.dart';
 import 'package:withconi/ui/pages/settings/setting_page.dart';
 import 'package:withconi/ui/pages/common_pages/edit_user_page.dart';
@@ -96,6 +98,7 @@ class WcPages {
     GetPage(
         name: Routes.COMMUNITY_NEW_POST,
         page: () => CommunityNewPostPage(),
+        fullscreenDialog: true,
         transition: Transition.topLevel),
     GetPage(
       name: Routes.COMMUNITY_POST_DETAIL,
@@ -148,9 +151,13 @@ class WcPages {
       name: Routes.EMAIL_VERIFICATION,
       page: () => EmailVerificationPage(),
     ),
-    // GetPage(
-    //   name: Routes.EMAIL_VERIFI_COMPLETE,
-    //   page: () => EmailVerificationCompletePage(),
-    // ),
+    GetPage(
+      name: Routes.MAP_SEARCH,
+      page: () => MapSearchPage(),
+    ),
+    GetPage(
+      name: Routes.MAP_NEW_REVIEW,
+      page: () => MapNewReviewPage(),
+    ),
   ];
 }
