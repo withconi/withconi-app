@@ -11,6 +11,20 @@ import '../map/map_main_page.dart';
 class NavigationPage extends StatelessWidget {
   const NavigationPage({Key? key}) : super(key: key);
 
+  @override
+  Widget build(BuildContext context) {
+    NavigationController _controller = Get.put(NavigationController());
+    return Obx(
+      () => Scaffold(
+        body: _controller.getPageByIndex(_controller.navBarIndex.value),
+        bottomNavigationBar: WcBottomNavBar(
+          currentNavIndex: _controller.navBarIndex.value,
+          onTap: _controller.getPageByIndex,
+        ),
+      ),
+    );
+  }
+
   // @override
   // Widget build(BuildContext context) {
   //   NavigationController _controller = Get.put(NavigationController());
@@ -35,20 +49,6 @@ class NavigationPage extends StatelessWidget {
   //     ),
   //   );
   // }
-
-  @override
-  Widget build(BuildContext context) {
-    NavigationController _controller = Get.put(NavigationController());
-    return Obx(
-      () => Scaffold(
-        body: _controller.getPageByIndex(_controller.navBarIndex.value),
-        bottomNavigationBar: WcBottomNavBar(
-          currentNavIndex: _controller.navBarIndex.value,
-          onTap: _controller.getPageByIndex,
-        ),
-      ),
-    );
-  }
 }
 
 
