@@ -1,11 +1,15 @@
 import 'dart:io';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/services.dart';
 import 'package:withconi/configs/constants/enum.dart';
 import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/data/model/abstract_class/place_type.dart';
 import 'package:withconi/data/model/disease.dart';
 import 'package:withconi/data/repository/community_repository.dart';
 import 'package:withconi/data/repository/image_repository.dart';
+import 'package:withconi/data/repository/map_repository.dart';
+import 'package:withconi/ui/entities/place_verfication.dart';
+import 'package:withconi/ui/widgets/dialog/place_verification_dialog.dart';
 import 'package:withconi/ui/widgets/loading.dart';
 import '../../configs/helpers/image_picker_helper.dart';
 import '../../core/error_handling/failures.dart';
@@ -13,12 +17,14 @@ import '../../data/model/conimal.dart';
 import '../../data/model/post.dart';
 import '../../import_basic.dart';
 import '../../ui/entities/review_entity.dart';
+import '../../ui/theme/text_theme.dart';
 import '../../ui/widgets/dialog/selection_dialog.dart';
+import '../../ui/widgets/snackbar.dart';
 import '../ui_interpreter/failure_ui_interpreter.dart';
 
 class MapReviewController extends GetxController {
-  final CommunityRepository _communityRepository = CommunityRepository();
-  final ImageRepository _imageRepository = ImageRepository();
+  // final CommunityRepository _communityRepository = CommunityRepository();
+  final MapRepository _mapRepository = MapRepository();
   final List<PostType> postType = [PostType.cat, PostType.dog];
   final Rxn<PostType> selectedPostType = Rxn<PostType>();
   final int maxImageNum = 4;
@@ -52,16 +58,15 @@ class MapReviewController extends GetxController {
   ];
 
   RxBool visitVerified = false.obs;
+  Rxn<PlaceVerificationEntity> placeVerification =
+      Rxn<PlaceVerificationEntity>();
+
   @override
-  void onInit() {
+  Future<void> onInit() async {
     super.onInit();
     place = Get.arguments as PlacePreview;
+    await getPlaceVerification(locId: place.locId, placeType: place.placeType);
   }
-  // @override
-  // void onReady() {
-  //   super.onReady();
-  //   place = Get.arguments as PlacePreview;
-  // }
 
   void onPostTypeChanged(PostType postType) {
     selectedPostType.value = postType;
@@ -159,27 +164,43 @@ class MapReviewController extends GetxController {
     }
   }
 
-  // void createNewPostDB() async {
-  //   var imageUploadRefsEither = await showLoading(
-  //       () => _imageRepository.uploadImageFileList(imageFiles: imageFileList));
+  getPlaceVerification(
+      {required String locId, required PlaceType placeType}) async {
+    Either<Failure, PlaceVerificationEntity> placeVerificationResult =
+        await _mapRepository.getPlaceVerification(
+            locId: locId, placeType: placeType);
 
-  //   imageUploadRefsEither.fold(
-  //       (fail) => FailureInterpreter().mapFailureToSnackbar(
-  //           fail, 'image upload error'), (imageRefList) async {
-  //     var newPostResultEither = await showLoading(() =>
-  //         _communityRepository.newPost(
-  //             newPost: Post(
-  //                 authorId: AuthController.to.wcUser.value!.uid,
-  //                 nickname: AuthController.to.wcUser.value!.nickname,
-  //                 boardId: place,
-  //                 content: textController.text,
-  //                 createdAt: DateTime.now(),
-  //                 postType: selectedPostType.value!)));
-  //     newPostResultEither.fold(
-  //         (fail) => FailureInterpreter()
-  //             .mapFailureToSnackbar(fail, 'createNewPostDB'), (addedPost) {
-  //       Get.back(result: addedPost);
-  //     });
-  //   });
-  // }
+    placeVerificationResult.fold(
+        (failure) => FailureInterpreter()
+            .mapFailureToSnackbar(failure, 'getPlaceVerification'),
+        (verification) => placeVerification.value = verification);
+  }
+
+  verifyPlaceVisit({required BuildContext context}) async {
+    placeVerification.value = await showPlaceVerificationDialog(
+      title: '장소에 해당하는 사진을 골라주세요',
+      previousVerification: placeVerification.value!,
+      context: context,
+    );
+
+    visitVerified.value = placeVerification.value!.verified;
+    print(placeVerification.value!.verified);
+  }
+
+  createNewReview() async {
+    var newReviewEither = await showLoading(() => _mapRepository.createReview(
+        conimals: selectedConimalList,
+        diseaseTypes: selectedDiseaseTypeList,
+        placeId: place.locId,
+        reviewRate: selectedReviewEntity.value!.reviewRate,
+        selectedReviewItems: selectedReviewItemList,
+        userId: AuthController.to.wcUser.value!.uid,
+        visitVerified: visitVerified.value));
+    newReviewEither.fold(
+        (fail) =>
+            FailureInterpreter().mapFailureToSnackbar(fail, 'createNewPostDB'),
+        (newReview) async {
+      Get.back();
+    });
+  }
 }
