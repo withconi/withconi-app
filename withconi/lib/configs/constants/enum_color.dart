@@ -32,3 +32,16 @@ Color colorBySpecies(Species? species) {
       return WcColors.green40;
   }
 }
+
+Color colorByReview(ReviewRate? reviewRate) {
+  switch (reviewRate) {
+    case ReviewRate.high:
+      return WcColors.blue80;
+    case ReviewRate.middle:
+      return WcColors.yellowLight;
+    case ReviewRate.low:
+      return WcColors.pinkLight;
+    default:
+      return WcColors.grey110;
+  }
+}
