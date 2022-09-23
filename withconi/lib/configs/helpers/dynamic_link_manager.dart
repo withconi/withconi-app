@@ -46,7 +46,7 @@ class DynamicLinkManager {
       Uri url = Uri.parse(
           dynamicLinkData.link.queryParameters['continueUrl'].toString());
       String redirectPage = url.path;
-      String nextRoute = url.queryParameters['nextRoute']!;
+      String nextRoute = url.queryParameters['nextRoute'] ?? '';
 
       // Get.toNamed(pageLink, arguments: {"previousRoute": previousRoute});
 
@@ -63,7 +63,11 @@ class DynamicLinkManager {
           if (emailVerified) {
             await showDurationDialog(
                 () => Future.delayed(Duration(milliseconds: 2400)));
-            Get.offNamed(nextRoute);
+            if (nextRoute.isNotEmpty) {
+              Get.offNamed(nextRoute);
+            } else {
+              Get.back();
+            }
           } else {
             await showCustomSnackbar(text: '인증 메일이 만료되었어요. 재전송해주세요 :)');
           }
