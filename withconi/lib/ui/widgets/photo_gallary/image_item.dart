@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/widgets.dart';
 
 enum ImageType { network, file, asset }
@@ -11,20 +13,31 @@ class ImageItem {
   });
 
   final String id;
-  final dynamic resource;
+  final String resource;
   final bool isSvg;
   ImageType imageType;
-}
 
-ImageProvider getImageByType(ImageItem imageItem) {
-  switch (imageItem.imageType) {
-    case ImageType.asset:
-      return AssetImage('${imageItem.resource}');
-    case ImageType.file:
-      return FileImage(imageItem.resource);
-    case ImageType.network:
-      return NetworkImage('${imageItem.resource}');
-    default:
-      return NetworkImage('${imageItem.resource}');
+  toImageByType() {
+    switch (imageType) {
+      case ImageType.asset:
+        return AssetImage(resource);
+      case ImageType.file:
+        return FileImage(File(resource));
+      case ImageType.network:
+        return NetworkImage(resource);
+    }
   }
 }
+
+// ImageProvider getImageByType(ImageItem imageItem) {
+//   switch (imageItem.imageType) {
+//     case ImageType.asset:
+//       return AssetImage('${imageItem.resource}');
+//     case ImageType.file:
+//       return FileImage(File(imageItem.resource));
+//     case ImageType.network:
+//       return NetworkImage('${imageItem.resource}');
+//     default:
+//       return NetworkImage('${imageItem.resource}');
+//   }
+// }
