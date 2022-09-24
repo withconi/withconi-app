@@ -5,7 +5,7 @@ import 'package:withconi/configs/helpers/cache_manager.dart';
 @override
 class TokenManager with CacheManager {
   Provider getTokenProvider() {
-    String tokenProvider = getCache(CacheControllerKey.PROVIDER);
+    String tokenProvider = getCache(CacheControllerKey.provide);
     return (tokenProvider.isEmpty)
         ? Provider.none
         : tokenProvider.toProviderOptions();
@@ -15,18 +15,18 @@ class TokenManager with CacheManager {
       getCache(cacheControllerKey);
 
   void saveAccessToken(String token) =>
-      saveCache(CacheControllerKey.ACCESS_TOKEN, token);
+      saveCache(CacheControllerKey.accessToken, token);
 
   void saveRefreshToken(String token) =>
-      saveCache(CacheControllerKey.REFRESH_TOKEN, token);
+      saveCache(CacheControllerKey.refreshToken, token);
 
   Future<void> saveProvider(Provider tokenProvider) async =>
-      await saveCache(CacheControllerKey.PROVIDER, tokenProvider.toString());
+      await saveCache(CacheControllerKey.provide, tokenProvider.toString());
 
   void saveEmailVerificationInfo(
       {required String isEmailVerified, required String isEmailVerifySkipped}) {
-    saveCache(CacheControllerKey.EMAIL_VERIFIED, isEmailVerified);
-    saveCache(CacheControllerKey.EMAIL_VERIFY_SKIPPED, isEmailVerifySkipped);
+    saveCache(CacheControllerKey.emailVerified, isEmailVerified);
+    saveCache(CacheControllerKey.emailVerifySkipped, isEmailVerifySkipped);
   }
 
   Future<void> removeAllcache() async {
