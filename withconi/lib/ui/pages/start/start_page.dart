@@ -60,7 +60,7 @@ class StartPage extends StatelessWidget {
                   ),
                   Obx(() => WcTextField(
                         hintText: '이메일을 입력하여 진행해보세요',
-                        onChanged: _controller.onEmailChange,
+                        onChanged: _controller.onEmailChanged,
                         textController: _controller.emailTextController,
                         keyboardType: TextInputType.emailAddress,
                         errorText: _controller.emailErrorText.value,
@@ -70,7 +70,8 @@ class StartPage extends StatelessWidget {
                   ),
                   Obx(
                     () => WcStateButtonWidget(
-                      active: _controller.isButtonValid.value,
+                      active:
+                          (_controller.buttonState.value == ButtonState.sucess),
                       activeButtonColor: WcColors.blue100,
                       activeTextColor: WcColors.white,
                       buttonText: _controller.buttonText.value,
@@ -88,7 +89,7 @@ class StartPage extends StatelessWidget {
                           imageSrc: 'assets/icons/kakao.png',
                           label: '카카오톡',
                           onTap: () async {
-                            await showLoading(() => _controller.nextStepWithSns(
+                            await showLoading(() => _controller.onTapSnsButton(
                                 provider: Provider.kakao));
                           },
                         ),
@@ -96,7 +97,7 @@ class StartPage extends StatelessWidget {
                           imageSrc: 'assets/icons/google.png',
                           label: '구글',
                           onTap: () async {
-                            await showLoading(() => _controller.nextStepWithSns(
+                            await showLoading(() => _controller.onTapSnsButton(
                                 provider: Provider.google));
                           },
                         ),
@@ -104,7 +105,7 @@ class StartPage extends StatelessWidget {
                           imageSrc: 'assets/icons/naver.png',
                           label: '네이버',
                           onTap: () async {
-                            await showLoading(() => _controller.nextStepWithSns(
+                            await showLoading(() => _controller.onTapSnsButton(
                                 provider: Provider.naver));
                           },
                         ),
@@ -112,7 +113,7 @@ class StartPage extends StatelessWidget {
                           imageSrc: 'assets/icons/apple.png',
                           label: '애플',
                           onTap: () async {
-                            await showLoading(() => _controller.nextStepWithSns(
+                            await showLoading(() => _controller.onTapSnsButton(
                                 provider: Provider.apple));
                           },
                         ),

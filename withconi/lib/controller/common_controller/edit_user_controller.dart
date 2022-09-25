@@ -36,7 +36,7 @@ class EditUserController extends GetxController {
   late WcUser _wcUser;
   RxBool edited = false.obs;
   late bool isProviderEmail;
-  late bool isEmailVerified;
+  RxBool isEmailVerified = false.obs;
 
   TextEditingController nameTextController = TextEditingController();
   TextEditingController nickNameTextController = TextEditingController();
@@ -55,7 +55,7 @@ class EditUserController extends GetxController {
     nameTextController.text = _wcUser.displayName;
     nickNameTextController.text = _wcUser.nickname;
     emailTextController.text = _wcUser.email;
-    isEmailVerified = _wcUser.isEmailVerified;
+    isEmailVerified.value = _wcUser.isEmailVerified;
 
     if (userProvider == 'email') {
       isProviderEmail = true;
@@ -163,6 +163,18 @@ class EditUserController extends GetxController {
     if (isConfirmed) {
       await editUserInfoDB();
       Get.back();
+    }
+  }
+
+  onEmailVerificationButtonTap() async {
+    bool? emailVerificationResult = await Get.toNamed(
+      Routes.EMAIL_VERIFICATION,
+    ) as bool?;
+
+    if (emailVerificationResult != null) {
+      if (emailVerificationResult == true) {
+        isEmailVerified.value = true;
+      }
     }
   }
 

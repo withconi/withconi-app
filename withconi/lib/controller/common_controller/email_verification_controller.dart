@@ -22,7 +22,14 @@ class EmailVerificationController extends GetxController {
   Future<void> onInit() async {
     super.onInit();
     _email = AuthController.to.wcUser.value!.email;
-    _nextRoute = Get.arguments['nextRoute'] as String;
+    var arguments = Get.arguments as Map<String, dynamic>?;
+    if (arguments != null) {
+      _nextRoute = arguments['nextRoute'] as String;
+    } else {
+      _nextRoute = '';
+    }
+
+    // (arguments.) ? _nextRoute = '' : _nextRoute = arguments as String;
     await sendVerificationEmail(
         email: email,
         currentRoute: Routes.EMAIL_VERIFICATION,

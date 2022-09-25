@@ -18,6 +18,7 @@ abstract class Routes {
   static const COMMUNITY_MAIN = '/community/main';
   static const COMMUNITY_DETAIL = '/community/detail';
   static const COMMUNITY_NEW_POST = '/community/new_post';
+  static const COMMUNITY_POST_EDIT = '/community/edit_post';
   static const COMMUNITY_POST_DETAIL = '/community/post/detail';
   static const COMMUNITY_SEARCH = '/community/search';
   static const DICTIONARY_MAIN = '/dictionary/main';
@@ -32,5 +33,6 @@ abstract class Routes {
   static const MAP_DETAIL = '/map/detail';
   static const MAP_SEARCH = '/map/search';
   static const MAP_NEW_REVIEW = '/map/reivew/new';
+
   // static const EMAIL_VERIFI_COMPLETE = '/authentication/email_verify_complete';
 }

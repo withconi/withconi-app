@@ -141,7 +141,7 @@ class CommunityPostDetailPage extends StatelessWidget {
                               shape: RoundedRectangleBorder(
                                   // side: BorderSide(color: Colors.blue), if you need
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(13.0))),
+                                      BorderRadius.all(Radius.circular(10.0))),
                               child: Stack(
                                 children: [
                                   GestureDetector(
@@ -161,41 +161,32 @@ class CommunityPostDetailPage extends StatelessWidget {
                                             height: 180.0,
                                             viewportFraction: 1),
                                         items: _controller.images.map((image) {
-                                          return Builder(
-                                            builder: (BuildContext context) {
-                                              return Container(
-                                                width: WcWidth - 40,
-                                                foregroundDecoration:
-                                                    const BoxDecoration(
-                                                  gradient: LinearGradient(
-                                                      begin:
-                                                          Alignment.topCenter,
-                                                      end: Alignment
-                                                          .bottomCenter,
-                                                      colors: [
-                                                        Color.fromARGB(
-                                                            20, 0, 0, 0),
-                                                        Colors.transparent,
-                                                        Colors.transparent,
-                                                        Color.fromARGB(
-                                                            70, 0, 0, 0),
-                                                      ],
-                                                      stops: [
-                                                        0.0,
-                                                        0.2,
-                                                        0.8,
-                                                        1
-                                                        // 1
-                                                      ]),
-                                                ),
-                                                decoration: BoxDecoration(
-                                                  image: DecorationImage(
-                                                      fit: BoxFit.cover,
-                                                      image: getImageByType(
-                                                          image)),
-                                                ),
-                                              );
-                                            },
+                                          return Container(
+                                            width: WcWidth - 40,
+                                            foregroundDecoration:
+                                                const BoxDecoration(
+                                              gradient: LinearGradient(
+                                                  begin: Alignment.topCenter,
+                                                  end: Alignment.bottomCenter,
+                                                  colors: [
+                                                    Color.fromARGB(20, 0, 0, 0),
+                                                    Colors.transparent,
+                                                    Colors.transparent,
+                                                    Color.fromARGB(70, 0, 0, 0),
+                                                  ],
+                                                  stops: [
+                                                    0.0,
+                                                    0.2,
+                                                    0.8,
+                                                    1
+                                                    // 1
+                                                  ]),
+                                            ),
+                                            decoration: BoxDecoration(
+                                              image: DecorationImage(
+                                                  fit: BoxFit.cover,
+                                                  image: image.toImageByType()),
+                                            ),
                                           );
                                         }).toList(),
                                       ),

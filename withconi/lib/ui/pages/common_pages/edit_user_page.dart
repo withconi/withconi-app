@@ -132,37 +132,74 @@ class EditUserPage extends StatelessWidget {
                               const SizedBox(
                                 height: 10,
                               ),
-                              Visibility(
-                                visible: _controller.isProviderEmail,
-                                child: EmailVerificationButton(
-                                  isEmailVerified: _controller.isEmailVerified,
+                              Obx(
+                                () => Visibility(
+                                  visible: _controller.isProviderEmail,
+                                  child: EmailVerificationButton(
+                                    isEmailVerified:
+                                        _controller.isEmailVerified.value,
+                                    onTap: _controller
+                                        .onEmailVerificationButtonTap,
+                                  ),
                                 ),
                               )
                             ]),
                       ],
                     ),
                     const SizedBox(
-                      height: 110,
+                      height: 80,
                     ),
                     Column(
                       children: [
-                        WcWideButtonWidget(
-                            buttonText: '로그아웃',
+                        Center(
+                          child: GestureDetector(
                             onTap: _controller.signOut,
-                            activeButtonColor: WcColors.grey100,
-                            buttonWidth: WcWidth - 40,
-                            active: true,
-                            activeTextColor: WcColors.grey200),
+                            child: Container(
+                              width: 53,
+                              height: 35,
+                              color: WcColors.white,
+                              child: Column(
+                                children: [
+                                  const Text(
+                                    '로그아웃',
+                                    style: TextStyle(color: WcColors.grey120),
+                                  ),
+                                  Container(
+                                    width: 70,
+                                    height: 1,
+                                    color: WcColors.grey120,
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
                         const SizedBox(
                           height: 20,
                         ),
-                        WcWideButtonWidget(
-                            buttonText: '탈퇴하기',
+                        Center(
+                          child: GestureDetector(
                             onTap: _controller.unregister,
-                            activeButtonColor: WcColors.grey80,
-                            buttonWidth: WcWidth - 40,
-                            active: true,
-                            activeTextColor: WcColors.grey160),
+                            child: Container(
+                              width: 53,
+                              height: 35,
+                              color: WcColors.white,
+                              child: Column(
+                                children: [
+                                  const Text(
+                                    '탈퇴하기',
+                                    style: TextStyle(color: WcColors.grey120),
+                                  ),
+                                  Container(
+                                    width: 70,
+                                    height: 1,
+                                    color: WcColors.grey120,
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                     const SizedBox(
@@ -183,17 +220,19 @@ class EmailVerificationButton extends StatelessWidget {
   EmailVerificationButton({
     Key? key,
     required this.isEmailVerified,
+    this.onTap,
   }) : super(key: key);
 
   bool isEmailVerified;
+  void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: (isEmailVerified) ? () {} : onTap,
       child: Container(
         height: 40,
-        width: 140,
+        width: 145,
         decoration: BoxDecoration(
             color: (isEmailVerified) ? WcColors.blue20 : WcColors.red20,
             borderRadius: BorderRadius.circular(5)),
@@ -209,10 +248,10 @@ class EmailVerificationButton extends StatelessWidget {
                     'assets/icons/email_unverified.svg',
                   ),
             const SizedBox(
-              width: 10,
+              width: 7,
             ),
             Text(
-              (isEmailVerified) ? '이메일 인증 완료' : '이메일 인증 미완료',
+              (isEmailVerified) ? '이메일 인증 완료' : '이메일 인증하기',
               style: GoogleFonts.notoSans(
                   fontWeight: FontWeight.w600,
                   fontSize: 14,

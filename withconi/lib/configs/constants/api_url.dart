@@ -23,4 +23,7 @@ class HttpUrl {
   static const IMAGE_UPLOAD = '/comm/uploadFile';
   static const MAP_GET_LIST = '/location/getLocationList';
   static const MAP_GET_LOCATION_DETAIL = '/location/getLocation';
+  static const MAP_GET_PLACE_REVIEW_LIST = '/location/getLocationReviewList';
+  static const MAP_VERIFY_THUMBNAIL = '/location/verifyLocationThumbnail';
+  static const MAP_PLACE_REVIEW_CREATE = '/location/createLocationReview';
 }

@@ -93,6 +93,11 @@ class MyPostPage extends StatelessWidget {
                               Get.toNamed(Routes.COMMUNITY_POST_DETAIL);
                             },
                             activeMore: true,
+                            images: _controller.images,
+                            onMoreTap: () {
+                              Get.toNamed(Routes.COMMUNITY_POST_EDIT,
+                                  arguments: _controller.userPostList[index]);
+                            },
                           );
                         })),
                   )

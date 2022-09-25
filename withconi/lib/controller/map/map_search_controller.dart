@@ -14,7 +14,7 @@ class MapSearchController extends GetxController
   RxBool listLoaded = false.obs;
   // String get disease => _disease.value;
   Rxn<Failure> failure = Rxn<Failure>();
-  RxString _searchPlaceName = ''.obs;
+  final RxString _searchPlaceName = ''.obs;
   RxList<PlacePreview> placeListSearched = RxList<PlacePreview>();
 
   final Rx<PaginationFilter> _paginationFilter = PaginationFilter(
@@ -43,31 +43,43 @@ class MapSearchController extends GetxController
   @override
   void onReady() {
     super.onReady();
+
+    debounce(_searchPlaceName, _getPlacePreviewList,
+        time: Duration(milliseconds: 600));
     ever(_paginationFilter,
         (_) => _morePlacePreviewList(_searchPlaceName.value));
-    debounce(_searchPlaceName, _getPlacePreviewList,
-        time: Duration(milliseconds: 200));
-    _addScrollListener(
-        isLastPage: _lastPage,
-        isLoading: _isLoading,
-        onEndOfScroll: loadNextPage,
-        scrollController: scrollController.value);
-  }
+    // _addScrollListener(
+    //     isLastPage: _lastPage,
+    //     isLoading: _isLoading,
+    //     onEndOfScroll: loadNextPage,
+    //     scrollController: scrollController.value);
 
-  _addScrollListener(
-      {required ScrollController scrollController,
-      required void Function() onEndOfScroll,
-      required RxBool isLastPage,
-      required RxBool isLoading}) {
-    scrollController.addListener(() {
-      if (!isLoading.value &&
-          !isLastPage.value &&
-          scrollController.offset >=
-              scrollController.position.maxScrollExtent) {
-        onEndOfScroll();
+    scrollController.value.addListener(() {
+      var nextPageTrigger =
+          0.8 * scrollController.value.position.maxScrollExtent;
+      if (!_isLoading.value &&
+          !_lastPage.value &&
+          scrollController.value.offset >=
+              scrollController.value.position.maxScrollExtent) {
+        loadNextPage();
       }
     });
   }
+
+  // _addScrollListener(
+  //     {required ScrollController scrollController,
+  //     required void Function() onEndOfScroll,
+  //     required RxBool isLastPage,
+  //     required RxBool isLoading}) {
+  //   scrollController.addListener(() {
+  //     if (!isLoading.value &&
+  //         !isLastPage.value &&
+  //         scrollController.offset >=
+  //             scrollController.position.maxScrollExtent) {
+  //       onEndOfScroll();
+  //     }
+  //   });
+  // }
 
   void onSearchNameChanged(String val) {
     _searchPlaceName.value = val;
@@ -81,7 +93,6 @@ class MapSearchController extends GetxController
   }
 
   _getPlacePreviewList(String val) async {
-    loadNewPage();
     if (val.isEmpty) {
       clearResult();
       return;
@@ -89,7 +100,7 @@ class MapSearchController extends GetxController
       change(null, status: RxStatus.loading());
       _isLoading.value = true;
       var previewListResult = await _mapRepository.getPlacePreviewList(
-        paginationFilter: _paginationFilter.value,
+        paginationFilter: PaginationFilter(page: 1, limit: 10),
         baseLatLng: LatLngClass(latitude: 37.5206602, longitude: 127.0526429),
         keyword: val,
         distance: 1000,
@@ -105,11 +116,12 @@ class MapSearchController extends GetxController
         change(placeListSearched, status: RxStatus.success());
       });
     }
-    Get.focusScope!.unfocus();
+    // Get.focusScope!.unfocus();
   }
 
   _morePlacePreviewList(String val) async {
     // change(null, status: RxStatus.loading());
+    _isLoading.value = true;
     var previewListResult = await _mapRepository.getPlacePreviewList(
       paginationFilter: _paginationFilter.value,
       baseLatLng: LatLngClass(latitude: 37.5206602, longitude: 127.0526429),
@@ -129,6 +141,8 @@ class MapSearchController extends GetxController
         change(placeListSearched, status: RxStatus.success());
       }
     });
+
+    _isLoading.value = false;
   }
 
   void _changePaginationFilter(int page, int limit) {
@@ -153,6 +167,6 @@ class MapSearchController extends GetxController
   }
 
   onPlaceSelected({required PlacePreview selectedPlace}) {
-    Get.back(result: selectedPlace);
+    Get.toNamed(Routes.MAP_DETAIL, arguments: selectedPlace);
   }
 }

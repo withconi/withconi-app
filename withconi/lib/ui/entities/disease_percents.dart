@@ -1,12 +1,6 @@
 import 'package:withconi/configs/constants/enum.dart';
 
 class DiseasePercents {
-  // late DiseaseType totalCardiovascular;
-  // late int totalMusculoskeletal;
-  // late int totalDigestive;
-  // late int totalOphthalmology;
-  // late int totalUrinary;
-  // late int totalRespiratory;
   int totalDisease;
 
   Map<DiseaseType, int> diseaseCountMap;
@@ -14,10 +8,10 @@ class DiseasePercents {
   DiseasePercents({required this.totalDisease, required this.diseaseCountMap});
 
   factory DiseasePercents.fromJson(Map<String, dynamic> json) {
-    int totalVisiting;
+    int totalDisease;
     Map<DiseaseType, int> diseaseMap;
 
-    totalVisiting = json['totalVisiting'];
+    totalDisease = json['totalVisiting'];
     diseaseMap = {
       DiseaseType.cardiovascular:
           json['totalVisitingDiseaseCardiovascular'] ?? 0,
@@ -28,7 +22,10 @@ class DiseasePercents {
       DiseaseType.urinary: json['totalVisitingDiseaseUrinary'] ?? 0,
       DiseaseType.respiratory: json['totalVisitingDiseaseRespiratory'] ?? 0,
     };
+
+    diseaseMap.forEach(((key, value) => totalDisease += value));
+
     return DiseasePercents(
-        totalDisease: totalVisiting, diseaseCountMap: diseaseMap);
+        totalDisease: totalDisease, diseaseCountMap: diseaseMap);
   }
 }

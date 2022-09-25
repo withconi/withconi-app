@@ -29,6 +29,7 @@ class MapSearchPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SearchBarWidget(
+                  textController: TextEditingController(),
                   onTextChanged: _controller.onSearchNameChanged,
                   hintText: '동물병원/약국 검색',
                   boxShadow: const [

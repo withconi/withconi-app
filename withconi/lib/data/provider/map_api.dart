@@ -7,9 +7,7 @@ class MapAPI {
   final Api _dio = Api();
 
   Future<Map<String, dynamic>> getPlacePreviewListByFilter(
-      {required MapFilterRequest mapFilterRequest}) async {
-    Map<String, dynamic> requestData = mapFilterRequest.toJson();
-
+      {required Map<String, dynamic> requestData}) async {
     Map<String, dynamic> mapListData = await _dio.apiCall(
         url: HttpUrl.MAP_GET_LIST,
         queryParameters: requestData,
@@ -28,5 +26,38 @@ class MapAPI {
         requestType: RequestType.GET);
 
     return placeDetailData;
+  }
+
+  Future<Map<String, dynamic>> getPlaceReviews(
+      {required String locId, required bool onlyVerified}) async {
+    Map<String, dynamic> placeDetailData = await _dio.apiCall(
+        url: HttpUrl.MAP_GET_PLACE_REVIEW_LIST,
+        queryParameters: {'locId': locId, 'onlyVisitVerified': onlyVerified},
+        body: null,
+        requestType: RequestType.GET);
+
+    return placeDetailData;
+  }
+
+  Future<Map<String, dynamic>> getVerificationThumbnails(
+      {required String locId, required String placeType}) async {
+    Map<String, dynamic> verficationData = await _dio.apiCall(
+        url: HttpUrl.MAP_VERIFY_THUMBNAIL,
+        queryParameters: {'locId': locId, 'locType': placeType},
+        body: null,
+        requestType: RequestType.GET);
+
+    return verficationData;
+  }
+
+  Future<Map<String, dynamic>> createPlaceReview(
+      {required Map<String, dynamic> requestData}) async {
+    Map<String, dynamic> reviewData = await _dio.apiCall(
+        url: HttpUrl.MAP_PLACE_REVIEW_CREATE,
+        queryParameters: null,
+        body: requestData,
+        requestType: RequestType.POST);
+
+    return reviewData;
   }
 }

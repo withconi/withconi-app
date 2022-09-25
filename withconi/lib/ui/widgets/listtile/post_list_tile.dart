@@ -1,5 +1,9 @@
 import 'dart:io';
+import 'package:carousel_indicator/carousel_indicator.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:withconi/ui/widgets/button/icon_button.dart';
+import 'package:withconi/ui/widgets/photo_gallary/image_item.dart';
 import '../../../configs/constants/enum.dart';
 import '../../../import_basic.dart';
 import '../badge/badge.dart';
@@ -15,6 +19,7 @@ class WcUserPostListTile extends StatelessWidget {
       required this.liked,
       required this.likesNum,
       required this.commentsNum,
+      required this.images,
       this.badgeText,
       this.badgeBackgroundColor,
       this.badgeTextColor,
@@ -32,6 +37,7 @@ class WcUserPostListTile extends StatelessWidget {
       this.onLikeTap})
       : super(key: key);
 
+  List<ImageItem> images;
   String authorName;
   String uploadAt;
   String? badgeText;
@@ -61,6 +67,7 @@ class WcUserPostListTile extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.fromLTRB(20, 24, 20, 16),
         decoration: BoxDecoration(
+            color: WcColors.white,
             border:
                 Border(bottom: BorderSide(width: 1, color: WcColors.grey80))),
         width: WcWidth,
@@ -113,6 +120,73 @@ class WcUserPostListTile extends StatelessWidget {
                                       )
                                     : const SizedBox.shrink()
                               ],
+                            ),
+                          ),
+                          Visibility(
+                            visible: images.isNotEmpty,
+                            child: Container(
+                              height: 170,
+                              margin: EdgeInsets.only(top: 15),
+                              child: Material(
+                                clipBehavior: Clip.antiAlias,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(10.0))),
+                                child: Stack(
+                                  children: [
+                                    SizedBox(
+                                      height: 180,
+                                      width: WcWidth - 90,
+                                      child: CarouselSlider(
+                                        options: CarouselOptions(
+                                            onPageChanged: (index, reason) {},
+                                            height: 180.0,
+                                            viewportFraction: 1),
+                                        items: images.map((image) {
+                                          return Container(
+                                            width: WcWidth - 90,
+                                            foregroundDecoration:
+                                                const BoxDecoration(
+                                              gradient: LinearGradient(
+                                                  begin: Alignment.topCenter,
+                                                  end: Alignment.bottomCenter,
+                                                  colors: [
+                                                    Color.fromARGB(20, 0, 0, 0),
+                                                    Colors.transparent,
+                                                    Colors.transparent,
+                                                    Color.fromARGB(70, 0, 0, 0),
+                                                  ],
+                                                  stops: [
+                                                    0.0,
+                                                    0.2,
+                                                    0.8,
+                                                    1
+                                                    // 1
+                                                  ]),
+                                            ),
+                                            decoration: BoxDecoration(
+                                              image: DecorationImage(
+                                                  fit: BoxFit.cover,
+                                                  image: image.toImageByType()),
+                                            ),
+                                          );
+                                        }).toList(),
+                                      ),
+                                    ),
+                                    Visibility(
+                                      visible: images.length > 1,
+                                      child: Positioned(
+                                          top: 7,
+                                          right: 7,
+                                          child: SvgPicture.asset(
+                                            'assets/icons/image_multiple.svg',
+                                            color: WcColors.grey60,
+                                            width: 28,
+                                          )),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
                           ),
                           SizedBox(
@@ -184,9 +258,7 @@ class WcUserPostListTile extends StatelessWidget {
                         (activeMore)
                             ? WcIconButton(
                                 active: true,
-                                onTap: () {
-                                  print('asdfa');
-                                },
+                                onTap: onMoreTap,
                                 iconHeight: 22,
                                 touchWidth: 50,
                                 touchHeight: 30,

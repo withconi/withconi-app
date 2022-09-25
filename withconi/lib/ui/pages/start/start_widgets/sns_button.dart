@@ -15,7 +15,7 @@ class SnsButtonWidget extends StatelessWidget {
   String imageSrc;
   String? label;
   void Function()? onTap;
-  double height = 84;
+  double height = 90;
   double iconHeight = 58;
 
   @override

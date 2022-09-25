@@ -66,28 +66,12 @@ class DynamicLinkManager {
             if (nextRoute.isNotEmpty) {
               Get.offNamed(nextRoute);
             } else {
-              Get.back();
+              Get.back(result: true);
             }
           } else {
             await showCustomSnackbar(text: '인증 메일이 만료되었어요. 재전송해주세요 :)');
           }
           break;
-        // case artist:
-        //   Get.offAll(
-        //     () => ArtistScreen(),
-        //     arguments: {
-        //       "artistId": id,
-        //     },
-        //   );
-        //   break;
-        // case exhibitor:
-        //   Get.offAll(
-        //     () => ExhibitorScreen(),
-        //     arguments: {
-        //       "exhibitorId": id,
-        //     },
-        //   );
-
       }
     }
   }

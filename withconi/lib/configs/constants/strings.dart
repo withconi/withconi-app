@@ -11,3 +11,7 @@ class Validator {
   String get name => '1~10자 영문,한글';
   String get nickname => '1~10자 영문,한글,숫자';
 }
+
+class ReviewStatusItems {
+  const ReviewStatusItems();
+}

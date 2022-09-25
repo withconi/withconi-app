@@ -18,6 +18,7 @@ class SignupConimalFinalController extends GetxController {
   // final ConimalRepository _signUpRepository = ConimalRepository.to;
   final AuthRepository _authRepository = AuthRepository();
   final RxString _userName = ''.obs;
+  late final Provider _provider;
   RxList<Conimal> conimalList = RxList<Conimal>();
   String get userName => _userName.value;
   RxBool isButtonValid = true.obs;
@@ -26,6 +27,7 @@ class SignupConimalFinalController extends GetxController {
   void onReady() {
     super.onReady();
     _userName.value = _signUpRepository.name;
+    _provider = AuthController.to.authInfo!.provider;
     getConimalList();
     print(conimalList);
     ever(conimalList, validateButton);
@@ -77,9 +79,13 @@ class SignupConimalFinalController extends GetxController {
       _userEither.fold(
           (fail) => FailureInterpreter().mapFailureToDialog(fail, 'signUp'),
           (user) async {
-        await AuthController.to.setUserInfo(redirectPage: false);
-        await Get.offAllNamed(Routes.EMAIL_VERIFICATION,
-            arguments: {'nextRoute': Routes.HOME});
+        if (_provider == Provider.email) {
+          await AuthController.to.setUserInfo(redirectPage: false);
+          await Get.offAllNamed(Routes.EMAIL_VERIFICATION,
+              arguments: {'nextRoute': Routes.HOME});
+        } else {
+          await AuthController.to.setUserInfo(redirectPage: true);
+        }
       });
     }));
   }

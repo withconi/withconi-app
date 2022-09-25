@@ -2,6 +2,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:withconi/controller/community/community_main_controller.dart';
 import 'package:withconi/import_basic.dart';
 import 'package:withconi/ui/pages/community/community_setting_page.dart';
+import 'package:withconi/ui/widgets/searchbar/search_bar.dart';
 import '../../widgets/button/icon_button.dart';
 
 class CommunityMainPage extends StatelessWidget {
@@ -49,70 +50,9 @@ class CommunityMainPage extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    Container(
-                      height: 45,
-                      width: WcWidth - 40,
-                      decoration: BoxDecoration(
-                        color: WcColors.white,
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Color.fromARGB(35, 0, 0, 0),
-                            spreadRadius: -2,
-                            blurRadius: 8,
-                            offset: Offset(0, 1),
-                          ),
-                        ],
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: Row(
-                        children: [
-                          GestureDetector(
-                            onTap: () {},
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 13, right: 12),
-                              child: SvgPicture.asset(
-                                'assets/icons/search.svg',
-                                color: WcColors.grey100,
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                              child: TextField(
-                            controller: null,
-                            onChanged: (text) {},
-                            style: GoogleFonts.notoSans(
-                                color: WcColors.black,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500),
-                            decoration: InputDecoration(
-                              hintText: '게시판을 검색해보세요',
-                              hintStyle: GoogleFonts.notoSans(
-                                  color: WcColors.grey100,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w400),
-                              border: InputBorder.none,
-                            ),
-                          )),
-                          Container(
-                            height: 45,
-                            width: 1.2,
-                            color: WcColors.grey80,
-                          ),
-                          GestureDetector(
-                            onTap: () {},
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 12, right: 14),
-                              child: SvgPicture.asset(
-                                'assets/icons/cancle.svg',
-                                color: WcColors.grey100,
-                                height: 16,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                    SearchBarWidget(
+                      hintText: '게시판을 검색해보세요',
+                      textController: null,
                     ),
                     const SizedBox(
                       height: 40,

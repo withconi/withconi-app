@@ -1,25 +1,14 @@
-import 'dart:convert';
-
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:lottie/lottie.dart';
 import 'package:withconi/configs/constants/enum.dart';
-import 'package:withconi/controller/community/community_main_controller.dart';
 import 'package:withconi/controller/community/community_new_post_controller.dart';
-import 'package:withconi/controller/signup/disease_search_controller.dart';
 import 'package:withconi/import_basic.dart';
-import 'package:withconi/ui/pages/signup/signup_widgets/disease_selection_list_button.dart';
-import 'package:withconi/ui/theme/colors.dart';
 import 'package:withconi/ui/widgets/appbar/appbar.dart';
 import 'package:withconi/ui/widgets/button/text_radio_button.dart';
-
-import '../../../controller/community/community_board_detail_controller.dart';
-import '../../widgets/button/wide_button.dart';
 
 class CommunityNewPostPage extends StatelessWidget {
   CommunityNewPostPage({Key? key}) : super(key: key);
 
-  CommunityNewPostController _controller =
+  final CommunityNewPostController _controller =
       Get.put(CommunityNewPostController());
 
   @override
@@ -88,7 +77,7 @@ class CommunityNewPostPage extends StatelessWidget {
               highlightElevation: 2,
               elevation: 0,
               backgroundColor: Colors.white,
-              onPressed: _controller.pickMultipleImages,
+              onPressed: _controller.pickMultipleImageFiles,
               child: Container(
                 decoration: const BoxDecoration(
                   shape: BoxShape.circle,
@@ -150,7 +139,7 @@ class CommunityNewPostPage extends StatelessWidget {
                         child: SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
                           child: Row(
-                            children: _controller.imageFileList
+                            children: _controller.imageItemList
                                 .map(
                                   (image) => Container(
                                     margin: const EdgeInsets.only(right: 10),
@@ -175,7 +164,7 @@ class CommunityNewPostPage extends StatelessWidget {
                                           decoration: BoxDecoration(
                                             image: DecorationImage(
                                                 fit: BoxFit.cover,
-                                                image: FileImage(image)),
+                                                image: image.toImageByType()),
                                           ),
                                         ),
                                         Positioned(

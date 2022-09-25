@@ -13,8 +13,8 @@ class SearchRefreshButton extends StatelessWidget {
     return GestureDetector(
       onTap: _onTap,
       child: Container(
-        width: 140,
-        height: 34,
+        width: 147,
+        height: 35,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -30,7 +30,8 @@ class SearchRefreshButton extends StatelessWidget {
                     fontFamily: WcFontFamily.notoSans,
                     color: WcColors.black,
                     fontWeight: FontWeight.w400,
-                    fontSize: 14))
+                    fontSize: 14,
+                    height: 1.2))
           ],
         ),
         decoration: BoxDecoration(

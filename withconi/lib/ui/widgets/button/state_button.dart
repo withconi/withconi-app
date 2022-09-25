@@ -60,7 +60,7 @@ class WcStateButtonWidget extends StatelessWidget {
                       : Text(
                           buttonText,
                           style: GoogleFonts.notoSans(
-                              color: (active)
+                              color: (buttonState == ButtonState.sucess)
                                   ? activeTextColor
                                   : inactiveTextColor,
                               fontSize: 15,

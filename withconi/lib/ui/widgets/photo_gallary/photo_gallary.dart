@@ -134,7 +134,7 @@ class _GalleryPhotoViewWrapperState extends State<GalleryPhotoViewWrapper> {
         decoration: BoxDecoration(
           image: DecorationImage(
               fit: BoxFit.cover,
-              image: getImageByType(widget.galleryItems[index])),
+              image: widget.galleryItems[index].toImageByType()),
         ),
       ),
       childSize: const Size(300, 300),

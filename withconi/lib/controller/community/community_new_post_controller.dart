@@ -5,8 +5,10 @@ import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/data/repository/community_repository.dart';
 import 'package:withconi/data/repository/image_repository.dart';
 import 'package:withconi/ui/widgets/loading.dart';
+import 'package:withconi/ui/widgets/photo_gallary/image_item.dart';
 import '../../configs/helpers/image_picker_helper.dart';
 import '../../core/error_handling/failures.dart';
+import '../../data/model/conimal.dart';
 import '../../data/model/post.dart';
 import '../../import_basic.dart';
 import '../../ui/widgets/dialog/selection_dialog.dart';
@@ -19,16 +21,19 @@ class CommunityNewPostController extends GetxController {
   final Rxn<PostType> selectedPostType = Rxn<PostType>();
   final int maxImageNum = 4;
   final RxInt selectedImageNum = 0.obs;
-  final RxList<File> imageFileList = <File>[].obs;
+  // final RxList<File> imageFileList = <File>[].obs;
+
+  RxList<ImageItem> imageItemList = RxList<ImageItem>();
   late String _boardId;
   final RxBool validatePostButton = false.obs;
+  RxList<Conimal> _selectedConimalList = RxList<Conimal>();
 
   TextEditingController textController = TextEditingController();
   @override
   void onReady() {
     super.onReady();
-    _boardId = Get.arguments;
-    ever(imageFileList, setImageNum);
+    _boardId = Get.arguments as String;
+    ever(imageItemList, setImageNum);
   }
 
   setImageNum(_imageList) {
@@ -39,15 +44,24 @@ class CommunityNewPostController extends GetxController {
     selectedPostType.value = postType;
   }
 
-  void onImageListChanged(List<File> imageList) {
-    imageFileList.addAll(imageList);
+  void onImageFileAdded(List<File> imageList) {
+    List<ImageItem> newImageFileList = imageList
+        .map(
+          (e) => ImageItem(
+              id: DateTime.now().microsecondsSinceEpoch.toString(),
+              resource: e.path,
+              imageType: ImageType.file),
+        )
+        .toList();
+
+    imageItemList.addAll(newImageFileList);
   }
 
-  deleteImage(File image) {
-    imageFileList.remove(image);
+  deleteImage(ImageItem imageItem) {
+    imageItemList.remove(imageItem);
   }
 
-  void pickMultipleImages() async {
+  void pickMultipleImageFiles() async {
     final ImagePickHelper _picker = ImagePickHelper();
     final Either<Failure, List<File>>? imageFilesEither =
         await _picker.pickMultipleImages(
@@ -56,8 +70,8 @@ class CommunityNewPostController extends GetxController {
     if (imageFilesEither != null) {
       imageFilesEither.fold(
           (fail) => FailureInterpreter()
-              .mapFailureToSnackbar(fail, 'pickMultipleImages'), (list) {
-        onImageListChanged(list);
+              .mapFailureToSnackbar(fail, 'pickMultipleImages'), (files) {
+        onImageFileAdded(files);
       });
     }
   }
@@ -70,6 +84,14 @@ class CommunityNewPostController extends GetxController {
         subtitle: '작성된 내용은 모두 사라집니다');
     if (isConfirmed) {
       Get.back();
+    }
+  }
+
+  onConimalSelected(Conimal conimal) {
+    if (_selectedConimalList.contains(conimal)) {
+      _selectedConimalList.remove(conimal);
+    } else {
+      _selectedConimalList.add(conimal);
     }
   }
 
@@ -94,8 +116,8 @@ class CommunityNewPostController extends GetxController {
   }
 
   void createNewPostDB() async {
-    var imageUploadRefsEither = await showLoading(
-        () => _imageRepository.uploadImageFileList(imageFiles: imageFileList));
+    var imageUploadRefsEither = await showLoading(() =>
+        _imageRepository.uploadImageFileList(imageFiles: getOnlyFileImage()));
 
     imageUploadRefsEither.fold(
         (fail) => FailureInterpreter().mapFailureToSnackbar(
@@ -115,5 +137,16 @@ class CommunityNewPostController extends GetxController {
         Get.back(result: addedPost);
       });
     });
+  }
+
+  List<File> getOnlyFileImage() {
+    List<File> imageFiles = [];
+
+    for (ImageItem imageItem in imageItemList) {
+      if (imageItem.imageType == ImageType.file) {
+        imageFiles.add(File(imageItem.resource));
+      }
+    }
+    return imageFiles;
   }
 }

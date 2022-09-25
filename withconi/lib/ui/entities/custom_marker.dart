@@ -6,8 +6,7 @@ import '../../data/model/abstract_class/place_type.dart';
 import 'location.dart';
 
 class CustomMarker extends Marker {
-  final PlacePreviewType place;
-  double distance;
+  final PlacePreview place;
 
   // the old way
   CustomMarker({
@@ -16,7 +15,7 @@ class CustomMarker extends Marker {
     required String text,
     required int iconWidth,
     required int iconHeight,
-    required this.distance,
+    required double distance,
     required void Function(Marker? marker, Map<String, int?> iconSize)?
         onTapMarker,
   }) : super(
@@ -28,27 +27,15 @@ class CustomMarker extends Marker {
           onMarkerTab: onTapMarker,
         );
 
-  /// for SDK 2.17 and up - the new way
-  // CustomMarker(
-  //     {required this.store,
-  //     required LocationClass position,
-  //     width = 30,
-  //     height = 45})
-  //     : super(
-  //           position: store.location,
-  //           markerId: store.uid,
-  //           captionText: store.storeName);
-
   factory CustomMarker.fromMyPlace(
-          {required PlacePreviewType place,
-          required double distance,
+          {required PlacePreview place,
           required void Function(Marker? marker, Map<String, int?> iconSize)?
               onTapMarker}) =>
       CustomMarker(
           place: place,
           markerId: place.locId,
           text: place.name,
-          distance: distance,
+          distance: place.distanceByMeter,
           iconWidth: 30,
           iconHeight: 30,
           onTapMarker: onTapMarker);

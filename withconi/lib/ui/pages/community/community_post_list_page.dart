@@ -12,8 +12,8 @@ import '../../widgets/listtile/post_list_tile.dart';
 
 class CommunityPostListPage extends StatelessWidget {
   CommunityPostListPage({Key? key}) : super(key: key);
-  final CommunityBoardDetailController _controller =
-      Get.put(CommunityBoardDetailController());
+  final CommunityPostListController _controller =
+      Get.put(CommunityPostListController());
 
   @override
   Widget build(BuildContext context) {
@@ -196,6 +196,7 @@ class CommunityPostListPage extends StatelessWidget {
                         itemBuilder: ((context, index) {
                           Post thisPost = _controller.postList[index];
                           return WcUserPostListTile(
+                            images: _controller.images,
                             commentsNum: 23,
                             contents: thisPost.content,
                             likesNum: 12,

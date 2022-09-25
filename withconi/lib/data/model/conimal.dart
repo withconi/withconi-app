@@ -41,8 +41,6 @@ class DiseaseIdConverter
 
   @override
   List<Disease> fromJson(List<dynamic>? diseaseMap) {
-    print(diseaseMap);
-
     if (diseaseMap == null || diseaseMap.isEmpty) {
       return [];
     } else {

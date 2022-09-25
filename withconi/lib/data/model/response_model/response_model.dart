@@ -1,11 +1,15 @@
+import 'package:withconi/configs/constants/enum.dart';
 import 'package:withconi/data/model/abstract_class/place_type.dart';
 import 'package:withconi/data/model/hospital_preview.dart';
 import 'package:withconi/data/model/pharmacy_preview.dart';
+import 'package:withconi/ui/entities/location.dart';
+import 'package:withconi/ui/entities/review_entity.dart';
 import '../board.dart';
 import '../conimal.dart';
 import '../disease.dart';
 import '../post.dart';
 import '../../../core/error_handling/exceptions.dart';
+import '../review.dart';
 
 class UserStateResponse {
   bool? isUserInAuth;
@@ -116,36 +120,96 @@ class BoardResponse {
 }
 
 class PlacePreviewResponse {
-  List<PlacePreviewType> placeList;
+  List<PlacePreview> placeList;
   int totalDocuments = 0;
 
   PlacePreviewResponse({required this.placeList, required this.totalDocuments});
 
-  factory PlacePreviewResponse.fromJson(Map<String, dynamic> json) {
-    List<PlacePreviewType> list = [];
+  factory PlacePreviewResponse.fromJson(
+      Map<String, dynamic> json, LatLngClass baseLatLng) {
+    List<PlacePreview> list = [];
     int totalDocs = 0;
     totalDocs = json['totalSearchDocuments'];
     if (json['list'] != null) {
-      list = <PlacePreviewType>[];
+      list = <PlacePreview>[];
       json['list'].forEach((v) {
         if (v['locType'] == 'hospital') {
-          list.add(new HospitalPreview.fromJson(v));
+          list.add(new HospitalPreview.fromJson(v, baseLatLng));
         } else if (v['locType'] == 'pharmacy') {
-          list.add(new PharmacyPreview.fromJson(v));
+          list.add(new PharmacyPreview.fromJson(v, baseLatLng));
         }
       });
     }
 
     if (json['list'] != null) {
-      list = <PlacePreviewType>[];
+      list = <PlacePreview>[];
       json['list'].forEach((v) {
-        list.add(new HospitalPreview.fromJson(v));
+        list.add(new HospitalPreview.fromJson(v, baseLatLng));
       });
     }
 
     return PlacePreviewResponse(placeList: list, totalDocuments: totalDocs);
   }
 }
+
+class ReviewResponse {
+  List<ReviewRateEntity> reviewList;
+  int totalReview = 0;
+
+  ReviewResponse({required this.reviewList, required this.totalReview});
+
+  factory ReviewResponse.fromJson(Map<String, dynamic> json) {
+    List<ReviewRateEntity> list = [
+      HighReviewEntity(),
+      MiddleReviewEntity(),
+      LowReviewEntity()
+    ];
+    int totalNum = 0;
+
+    ReviewRate.values.forEach(
+      (reviewRate) {
+        Map<ReviewItems, int> itemMap = {};
+        for (ReviewItems reviewItem in ReviewItems.values) {
+          itemMap[reviewItem] = json[reviewRateToValue(reviewRate)]
+              [reviewItemsToValue(reviewItem)] as int;
+        }
+        switch (reviewRate) {
+          case ReviewRate.high:
+            list[0].reviewItems = itemMap;
+            list[0].reviewNum = json['high']['totalReivews'] as int;
+
+            break;
+          case ReviewRate.middle:
+            list[1].reviewItems = itemMap;
+            list[1].reviewNum = json['middle']['totalReivews'] as int;
+            break;
+          case ReviewRate.low:
+            list[2].reviewItems = itemMap;
+            list[2].reviewNum = json['low']['totalReivews'] as int;
+            break;
+          default:
+        }
+      },
+    );
+
+    // ReviewRate.values.forEach((reviewRate) {
+    // Review review =
+    //       Review.fromJson(json[reviewRateToValue(reviewRate)], reviewRate);
+    //   if (reviewRate == ReviewRate.high) {
+    //     list.insert(0, review);
+    //   } else if (reviewRate == ReviewRate.middle) {
+    //     list.insert(1, review);
+    //   } else if (reviewRate == ReviewRate.low) {
+    //     list.insert(2, review);
+    //   }
+
+    //   totalNum += review.reviewNum;
+    // });
+
+    return ReviewResponse(reviewList: list, totalReview: totalNum);
+  }
+}
+
 
 // class PlaceDetailResponse {
 //   List<PlaceDetailType> placeDetailList;

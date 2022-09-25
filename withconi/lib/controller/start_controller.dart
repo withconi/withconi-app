@@ -19,12 +19,57 @@ import '../import_basic.dart';
 
 enum ButtonState { sucess, none, loading }
 
+// abstract class UserStateButton {
+//   late ButtonState buttonState;
+//   late String buttonText;
+//   late String nextPage;
+
+// UserStateButton({
+//   required this.reviewRate,
+//   required this.reviewNum,
+//   required this.reviewRateEntity,
+// });
+// }
+
+// class LoginButton implements UserStateButton {
+//   @override
+//   ButtonState buttonState = ButtonState.none;
+
+//   @override
+//   String buttonText = '로그인';
+
+//   @override
+//   String nextPage = Routes.SIGNIN_EMAIL;
+// }
+
+// class SignUpButton implements UserStateButton {
+//   @override
+//   ButtonState buttonState = ButtonState.none;
+
+//   @override
+//   String buttonText = '회원가입';
+
+//   @override
+//   String nextPage = Routes.SIGNUP_PW;
+// }
+
+// class NoneButton implements UserStateButton {
+//   @override
+//   ButtonState buttonState = ButtonState.none;
+
+//   @override
+//   String buttonText = '다음';
+
+//   @override
+//   String nextPage = Routes.SIGNIN_EMAIL;
+// }
+
 class StartPageController extends GetxController with StateMixin<ButtonState> {
   final AuthRepository _authRepository = AuthRepository.to;
   final SignupRepository _signupUserRepository = SignupRepository.to;
 
   final RxString _email = ''.obs;
-  final RxBool isButtonValid = false.obs;
+  // final RxBool isButtonValid = false.obs;
   final RxString buttonText = '다음'.obs;
   // final Rx<UserState> _userState = UserState.NONE.obs;
   Rx<ButtonState> buttonState = ButtonState.none.obs;
@@ -39,11 +84,32 @@ class StartPageController extends GetxController with StateMixin<ButtonState> {
   @override
   void onReady() {
     super.onReady();
-    debounce(_email, validateEmail, time: const Duration(microseconds: 200));
+    debounce(_email, validateEmail, time: const Duration(microseconds: 700));
   }
 
-  void onEmailChange(String email) {
+  void onEmailChanged(String email) {
     _email.value = email;
+  }
+
+  Future<void> onTapSnsButton({required Provider provider}) async {
+    late Either<Failure, CustomAuthInfo> authInfoEither;
+    authInfoEither = await _authRepository.getCustomAuthInfo(
+        provider: provider, email: email);
+
+    CustomAuthInfo? customAuthInfo = await authInfoEither.fold((fail) {
+      FailureInterpreter().mapFailureToDialog(fail, 'onTapSnsButton');
+      buttonState.value = ButtonState.none;
+      return null;
+    }, (authInfo) async {
+      return authInfo;
+    });
+
+    if (customAuthInfo != null) {
+      AuthController.to.onAuthInfoChanged(authInfo: customAuthInfo);
+      UserState userState =
+          await setUserStateByAuthInfo(authInfo: customAuthInfo);
+      await setSnsNextStepByUserState(userState);
+    }
   }
 
   getSnsUserState({required CustomAuthInfo authInfo}) async {
@@ -77,9 +143,10 @@ class StartPageController extends GetxController with StateMixin<ButtonState> {
       (_email.isEmpty)
           ? emailErrorText.value = null
           : emailErrorText.value = Strings.validator.email;
+      buttonState.value = ButtonState.none;
     } else {
       emailErrorText.value = null;
-      nextStepWithEmail(email: _email);
+      await nextStepWithEmail(email: _email);
     }
   }
 
@@ -90,14 +157,20 @@ class StartPageController extends GetxController with StateMixin<ButtonState> {
     authInfoEither = await _authRepository.getCustomAuthInfo(
         provider: Provider.email, email: email);
 
-    authInfoEither.fold((fail) {
+    CustomAuthInfo? customAuthInfo = authInfoEither.fold((fail) {
       FailureInterpreter().mapFailureToDialog(fail, 'nextStepWithEmail');
       buttonState.value = ButtonState.none;
-    }, (authInfo) async {
-      AuthController.to.onAuthInfoChanged(authInfo: authInfo);
-      UserState userState = await setUserStateByAuthInfo(authInfo: authInfo);
-      setNextStepByUserState(userState);
+      return;
+    }, (authInfo) {
+      return authInfo;
     });
+
+    if (customAuthInfo != null) {
+      AuthController.to.onAuthInfoChanged(authInfo: customAuthInfo);
+      UserState userState =
+          await setUserStateByAuthInfo(authInfo: customAuthInfo);
+      setEmailNextStepByUserState(userState);
+    }
   }
 
   Future<UserState> setUserStateByAuthInfo(
@@ -107,7 +180,7 @@ class StartPageController extends GetxController with StateMixin<ButtonState> {
     userStateEither = await _authRepository.getUserState(authInfo: authInfo);
 
     userStateEither.fold((fail) {
-      userState = UserState.NONE;
+      userState = UserState.none;
       FailureInterpreter().mapFailureToDialog(fail, 'setUserStateByAuthInfo');
     }, (_userState) {
       userState = _userState;
@@ -115,63 +188,47 @@ class StartPageController extends GetxController with StateMixin<ButtonState> {
     return userState;
   }
 
-  setNextStepByUserState(UserState _userState) async {
+  setEmailNextStepByUserState(UserState _userState) async {
     switch (_userState) {
-      case UserState.NONE:
+      case UserState.none:
         buttonText.value = '입력';
-        isButtonValid.value = false;
+        // isButtonValid.value = false;
         buttonState.value = ButtonState.none;
         break;
-      case UserState.SIGN_IN_EMAIL:
+      case UserState.signInEmail:
         nextRoute = Routes.SIGNIN_EMAIL;
         buttonText.value = '로그인';
-        isButtonValid.value = true;
+        // isButtonValid.value = true;
         buttonState.value = ButtonState.sucess;
         break;
-      case UserState.SIGN_UP_EMAIL:
+      case UserState.signUpEmail:
         buttonText.value = '회원가입';
         nextRoute = Routes.SIGNUP_PW;
-        isButtonValid.value = true;
+        // isButtonValid.value = true;
         buttonState.value = ButtonState.sucess;
         break;
+      default:
+    }
+  }
 
-      case UserState.SIGN_IN_AUTH_CREDENTIAL:
+  setSnsNextStepByUserState(UserState _userState) async {
+    switch (_userState) {
+      case UserState.signInAuthCredential:
         await _authRepository.signInWithAuthCredential(
             authInfo: AuthController.to.authInfo!);
         await AuthController.to.setUserInfo(redirectPage: true);
         break;
 
-      case UserState.SIGN_IN_TOKEN:
+      case UserState.signInToken:
         await _authRepository.signInWithCustomToken(
             authInfo: AuthController.to.authInfo!);
         await AuthController.to.setUserInfo(redirectPage: true);
         break;
-      case UserState.SIGN_UP_SNS:
+      case UserState.signUpSns:
         nextRoute = Routes.SIGNUP_PROFILE;
         goNext();
         return;
       default:
-    }
-  }
-
-  Future<void> nextStepWithSns({required Provider provider}) async {
-    late Either<Failure, CustomAuthInfo> authInfoEither;
-    authInfoEither = await _authRepository.getCustomAuthInfo(
-        provider: provider, email: email);
-
-    CustomAuthInfo? customAuthInfo = await authInfoEither.fold((fail) {
-      FailureInterpreter().mapFailureToDialog(fail, 'nextStepWithSns');
-      buttonState.value = ButtonState.none;
-      return null;
-    }, (authInfo) async {
-      AuthController.to.onAuthInfoChanged(authInfo: authInfo);
-      return authInfo;
-    });
-
-    if (customAuthInfo != null) {
-      UserState userState =
-          await setUserStateByAuthInfo(authInfo: customAuthInfo);
-      await setNextStepByUserState(userState);
     }
   }
 

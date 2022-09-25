@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter_svg/svg.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:withconi/configs/constants/enum.dart';
@@ -79,33 +78,35 @@ class MapNewReviewPage extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              Container(
-                                  width: 55,
-                                  height: 55,
-                                  decoration: BoxDecoration(
-                                      color: WcColors.grey40,
-                                      image: DecorationImage(
-                                        image: NetworkImage(
-                                            _controller.place.thumbnail),
-                                        fit: BoxFit.cover,
-                                      ),
-                                      borderRadius: BorderRadius.circular(5)),
-                                  child: (_controller.visitVerified.value)
-                                      ? SizedBox.shrink()
-                                      : ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                          // make sure we apply clip it properly
-                                          child: BackdropFilter(
-                                            filter: ImageFilter.blur(
-                                                sigmaX: 20, sigmaY: 30),
-                                            child: Container(
-                                              alignment: Alignment.center,
-                                              color: WcColors.grey40
-                                                  .withOpacity(0.1),
+                              Obx(
+                                () => Container(
+                                    width: 55,
+                                    height: 55,
+                                    decoration: BoxDecoration(
+                                        color: WcColors.grey40,
+                                        image: DecorationImage(
+                                          image: NetworkImage(
+                                              _controller.place.thumbnail),
+                                          fit: BoxFit.cover,
+                                        ),
+                                        borderRadius: BorderRadius.circular(5)),
+                                    child: (_controller.visitVerified.value)
+                                        ? SizedBox.shrink()
+                                        : ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                            // make sure we apply clip it properly
+                                            child: BackdropFilter(
+                                              filter: ImageFilter.blur(
+                                                  sigmaX: 30, sigmaY: 10),
+                                              child: Container(
+                                                alignment: Alignment.center,
+                                                color: WcColors.grey40
+                                                    .withOpacity(0.3),
+                                              ),
                                             ),
-                                          ),
-                                        )),
+                                          )),
+                              ),
                               SizedBox(
                                 width: 10,
                               ),
@@ -137,9 +138,15 @@ class MapNewReviewPage extends StatelessWidget {
                               ),
                             ],
                           ),
-                          PlaceVerificationButton(
-                            visitVerified: _controller.visitVerified.value,
-                            onTap: _controller.verifyVisiting,
+                          Obx(
+                            () => PlaceVerificationButton(
+                              visitVerified: _controller.visitVerified.value,
+                              onTap: () {
+                                _controller.verifyPlaceVisit(
+                                  context: context,
+                                );
+                              },
+                            ),
                           )
                         ],
                       ),
@@ -358,7 +365,7 @@ class MapNewReviewPage extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
                       child: WcWideButtonWidget(
                           buttonText: '리뷰 등록하기',
-                          onTap: () {},
+                          onTap: _controller.createNewReview,
                           activeButtonColor: WcColors.blue100,
                           active: _controller.validateButton(),
                           activeTextColor: WcColors.white),

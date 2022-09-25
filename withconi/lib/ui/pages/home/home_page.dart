@@ -44,17 +44,19 @@ class HomePage extends StatelessWidget {
                             : heightSection1 - 35,
                         width: WcWidth,
                         decoration: const BoxDecoration(
-                            color: WcColors.white,
-                            borderRadius: BorderRadius.vertical(
-                              bottom: Radius.circular(23),
+                          color: WcColors.white,
+                          borderRadius: BorderRadius.vertical(
+                            bottom: Radius.circular(23),
+                          ),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Color.fromARGB(30, 0, 0, 0),
+                              spreadRadius: -3,
+                              blurRadius: 10,
+                              offset: Offset(0, 2),
                             ),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Color.fromARGB(28, 0, 0, 0),
-                                  blurRadius: 15,
-                                  spreadRadius: -6,
-                                  offset: Offset(2, 2)),
-                            ]),
+                          ],
+                        ),
                         child: Column(
                           children: [
                             Padding(
@@ -236,15 +238,17 @@ class HomePage extends StatelessWidget {
                   width: WcWidth - 40,
                   margin: const EdgeInsets.fromLTRB(20, 7, 20, 3),
                   decoration: BoxDecoration(
-                      color: WcColors.white,
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: const [
-                        BoxShadow(
-                            color: Color.fromARGB(34, 124, 124, 124),
-                            blurRadius: 18,
-                            spreadRadius: -3,
-                            offset: Offset(0, 0)),
-                      ]),
+                    color: WcColors.white,
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Color.fromARGB(40, 0, 0, 0),
+                        spreadRadius: -3,
+                        blurRadius: 9,
+                        offset: Offset(0, 2),
+                      ),
+                    ],
+                  ),
                   child: ListTileTheme(
                     dense: true,
                     child: ListView(

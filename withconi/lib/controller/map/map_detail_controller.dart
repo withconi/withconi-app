@@ -8,12 +8,16 @@ import 'package:withconi/data/repository/map_repository.dart';
 import 'package:withconi/ui/entities/chart_data.dart';
 import 'package:withconi/ui/widgets/loading.dart';
 import '../../core/error_handling/failures.dart';
+import '../../data/model/abstract_class/place_type.dart';
+import '../../data/model/response_model/response_model.dart';
 import '../../import_basic.dart';
 
 class MapDetailPageController extends GetxController
     with GetSingleTickerProviderStateMixin {
-  late String placeId;
+  // late String placeId;
   late PlaceDetail placeDetail;
+  late ReviewResponse reviewResponse;
+  late PlacePreview _placePreview;
   List<ChartData> diseaseChartData = [];
   List<ChartData> speciesChartData = [];
   List<ChartData> reviewChartData = [];
@@ -21,6 +25,7 @@ class MapDetailPageController extends GetxController
   RxBool placeInited = false.obs;
   MapRepository _mapRepository = MapRepository();
   RxBool isBusinessHourInfoOpen = false.obs;
+  RxBool onlyVisitVerified = false.obs;
   final List<Widget> tabs = <Widget>[
     Container(
         width: 140,
@@ -53,8 +58,8 @@ class MapDetailPageController extends GetxController
   onReady() async {
     super.onReady();
 
-    String locId = Get.arguments as String;
-    await showLoading(() => initData(locId: locId));
+    _placePreview = Get.arguments as PlacePreview;
+    await showLoading(() => initData(locId: _placePreview.locId));
 
     placeInited.value = true;
   }
@@ -67,8 +72,10 @@ class MapDetailPageController extends GetxController
 
   initData({required String locId}) async {
     await getPlaceDetailById(locId: locId);
+    await getPlaceReview(locId: locId, onlyVerified: onlyVisitVerified.value);
     makeDiseaseChartData();
     makeSpeciesChartData();
+    makeReviewChartData();
   }
 
   getPlaceDetailById({required String locId}) async {
@@ -86,44 +93,83 @@ class MapDetailPageController extends GetxController
 
   makeDiseaseChartData() {
     List<ChartData> diseaseData = [];
+    int totalDiseaseNum = placeDetail.diseasePercentInfo.totalDisease;
 
-    placeDetail.diseasePercentInfo.diseaseCountMap.forEach((key, value) {
-      ChartData chartData = ChartData(
-          percent: (2 / 30) * 100,
-          color: colorByDisease(key),
-          title: diseaseTypeToKorean(key));
-      diseaseData.add(chartData);
-    });
+    if (totalDiseaseNum != 0) {
+      placeDetail.diseasePercentInfo.diseaseCountMap.forEach((key, value) {
+        ChartData chartData = ChartData(
+            value: value,
+            percent:
+                calculatePercent(totalNum: totalDiseaseNum, valueNum: value),
+            color: colorByDisease(key),
+            title: diseaseTypeToKorean(key));
+        if (value != 0) {
+          diseaseData.add(chartData);
+        }
+      });
 
-    diseaseChartData.assignAll(diseaseData);
+      diseaseData.sort((b, a) => a.percent.compareTo(b.percent));
+      diseaseChartData.assignAll(diseaseData);
+    }
   }
 
   makeSpeciesChartData() {
     ChartData dogChartData = ChartData(
-        percent: (1 / 10) * 100,
+        value: placeDetail.totalVisitingDogs,
+        percent: calculatePercent(
+            totalNum:
+                placeDetail.totalVisitingCats + placeDetail.totalVisitingDogs,
+            valueNum: placeDetail.totalVisitingDogs),
         color: colorBySpecies(Species.dog),
         title: '강아지');
     ChartData catChartData = ChartData(
-        percent: (8 / 10) * 100,
+        value: placeDetail.totalVisitingCats,
+        percent: calculatePercent(
+            totalNum:
+                placeDetail.totalVisitingCats + placeDetail.totalVisitingDogs,
+            valueNum: placeDetail.totalVisitingCats),
         color: colorBySpecies(Species.cat),
         title: '고양이');
     speciesChartData.assignAll([dogChartData, catChartData]);
   }
 
-  makeReviewChartData() {
-    // int totalReview = placeDetail.diseasePercentInfo.totalDisease;
-    // List<ChartData> diseaseData = [];
+  getPlaceReview({required String locId, required bool onlyVerified}) async {
+    Either<Failure, ReviewResponse> reviewResponseResult = await _mapRepository
+        .getPlaceReview(locId: locId, onlyVisitVerified: onlyVerified);
 
-    // placeDetail.diseasePercentInfo.diseaseCountMap.forEach((key, value) {
-    //   print(key);
-    //   ChartData chartData = ChartData(
-    //       percent: (2 / 30) * 100,
-    //       color: WcColors.blue100,
-    //       title: diseaseTypeToKorean(key));
-    //   diseaseData.add(chartData);
-    // });
+    reviewResponseResult.fold(
+        (l) => FailureInterpreter().mapFailureToSnackbar(l, 'getPlaceReview'),
+        (r) => reviewResponse = r);
+  }
 
-    // diseaseChartData.assignAll(diseaseData);
+  onOnlyVerifiedReviewChanged(bool onlyVerified) async {
+    onlyVisitVerified.value = onlyVerified;
+    await showLoading(() => getPlaceReview(
+        locId: placeDetail.locId, onlyVerified: onlyVisitVerified.value));
+    makeReviewChartData();
+  }
+
+  makeReviewChartData() async {
+    int totalReview = reviewResponse.totalReview;
+    List<ChartData> reviewData = [];
+
+    reviewResponse.reviewList.forEach(((review) {
+      ChartData chartData = ChartData(
+          value: review.reviewNum,
+          percent: calculatePercent(
+              totalNum: totalReview, valueNum: review.reviewNum),
+          color: colorByReview(review.reviewRate),
+          title: reviewRateToKorean(review.reviewRate));
+      reviewData.add(chartData);
+    }));
+  }
+
+  calculatePercent({required int totalNum, required int valueNum}) {
+    double percentDouble = (valueNum / totalNum) * 100;
+    int percentInt = (percentDouble.isNaN || percentDouble.isInfinite)
+        ? 0
+        : percentDouble.toInt();
+    return percentInt;
   }
 
   onPieGraphTouched(FlTouchEvent event, pieTouchResponse) {
@@ -135,6 +181,10 @@ class MapDetailPageController extends GetxController
     }
     picChartTouchedIndex.value =
         pieTouchResponse.touchedSection!.touchedSectionIndex;
+  }
+
+  goToNewReviewPage() {
+    Get.toNamed(Routes.MAP_NEW_REVIEW, arguments: _placePreview);
   }
 }
 

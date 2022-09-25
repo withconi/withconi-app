@@ -16,6 +16,7 @@ import 'package:withconi/ui/entities/review_entity.dart';
 import '../../configs/constants/enum.dart';
 import '../../core/error_handling/failures.dart';
 import '../model/conimal.dart';
+import '../model/review.dart';
 import '../model/user.dart';
 
 class MapRepository {
@@ -75,6 +76,32 @@ class MapRepository {
       try {
         PlaceDetail placeDetail = PlaceDetail.fromJson(data);
         return Right(placeDetail);
+      } catch (e) {
+        throw DataParsingException();
+      }
+    } on NoInternetConnectionException {
+      return Left(NoConnectionFailure());
+    } on DataParsingException {
+      return Left(DataParsingFailure());
+    } on NotFoundException {
+      return Left(NotFoundFailure());
+    } catch (e) {
+      return Left(NoUserDataFailure());
+    }
+  }
+
+  Future<Either<Failure, ReviewResponse>> getPlaceReview({
+    required String locId,
+    required bool onlyVisitVerified,
+  }) async {
+    try {
+      Map<String, dynamic> data = await _api.getPlaceReviews(
+          locId: locId, onlyVerified: onlyVisitVerified);
+
+      try {
+        ReviewResponse reviewResponse = ReviewResponse.fromJson(data);
+
+        return Right(reviewResponse);
       } catch (e) {
         throw DataParsingException();
       }

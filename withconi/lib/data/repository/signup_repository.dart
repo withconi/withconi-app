@@ -37,11 +37,6 @@ class SignupRepository extends GetxController {
   bool visitedConimal2Page = false;
   int get checkConimalNum => conimalList.length;
 
-  // setSharedData() {
-  //   final UserData _userData = Get.put(UserData());
-  //   final ConimalData _conimalData = Get.put(ConimalData());
-  // }
-
   final AuthAPI _api = AuthAPI();
 
   saveConimalList(List<Conimal> conimalList) {

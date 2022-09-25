@@ -74,19 +74,6 @@ class AuthAPI {
   Future<CustomAuthInfo> getKakaoAuthInfo() async {
     late String accessToken;
     late CustomAuthInfo authInfo;
-    // if (await checkKakaoTokenValid()) {
-    //   OAuthToken token = await AuthApi.instance.issueAccessToken();
-    // } else {
-    //   print('발급된 토큰 없음');
-    //   try {
-    //     OAuthToken token = await UserApi.instance.loginWithKakaoAccount();
-    //     print('로그인 성공 ${token.accessToken}');
-    //     accessToken = token.accessToken;
-    //   } catch (error) {
-    //     print('로그인 실패 $error');
-    //     accessToken = '';
-    //   }
-    // }
 
     try {
       kakao.OAuthToken token =
@@ -154,11 +141,8 @@ class AuthAPI {
     return authInfo;
   }
 
-  Future<User?> signInWithCustomToken(
-      {required CustomAuthInfo authInfo}) async {
+  Future<User?> signInWithCustomToken({required String customToken}) async {
     try {
-      String customToken = await getNewCustomToken(
-          provider: authInfo.provider, token: authInfo.authObject);
       UserCredential _userCredential =
           await firebaseAuth.signInWithCustomToken(customToken);
       return _userCredential.user;
@@ -208,7 +192,8 @@ class AuthAPI {
     );
   }
 
-  getNewCustomToken({required Provider provider, required String token}) async {
+  Future<CustomToken> getNewCustomToken(
+      {required Provider provider, required String token}) async {
     Map<String, dynamic> data = await _dio.apiCall(
       url: HttpUrl.CUSTOM_TOKEN_GET,
       header: {"Authorization": "Bearer $token"},

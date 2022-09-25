@@ -8,6 +8,7 @@ import 'package:withconi/ui/widgets/loading.dart';
 import '../../configs/constants/enum.dart';
 import '../../data/model/post.dart';
 import '../../import_basic.dart';
+import '../../ui/widgets/photo_gallary/image_item.dart';
 import '../ui_helper/infinite_scroll.dart';
 
 class LikedPostController extends GetxController {
@@ -30,6 +31,22 @@ class LikedPostController extends GetxController {
 
   // void loadNextPage() => _changePaginationFilter(_page + 1, limit);
   // void loadNewPage() => _changePaginationFilter(1, limit);
+
+  List<ImageItem> images = [
+    ImageItem(
+        id: 'tag1',
+        resource: 'assets/images/image1.jpeg',
+        imageType: ImageType.asset),
+    ImageItem(
+        id: 'tag2',
+        resource: 'assets/images/image2.jpeg',
+        imageType: ImageType.asset),
+    ImageItem(
+        id: 'tag3',
+        resource:
+            'https://search.pstatic.net/common/?src=http%3A%2F%2Fshop1.phinf.naver.net%2F20210917_199%2F1631861436249TX26u_JPEG%2F32997264078967613_1334183573.jpg&type=sc960_832',
+        imageType: ImageType.network),
+  ];
 
   String uploadAtStr(DateTime createdAt) =>
       TimeCalculator().calculateUploadAt(createdAt);

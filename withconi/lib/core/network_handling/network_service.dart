@@ -103,7 +103,7 @@ class AuthInterceptor extends Interceptor {
       RequestOptions options, RequestInterceptorHandler handler) async {
     if (options.headers.containsKey('requiresToken')) {
       String accessToken =
-          TokenManager().getToken(CacheControllerKey.ACCESS_TOKEN);
+          TokenManager().getToken(CacheControllerKey.accessToken);
 
       if (accessToken.isEmpty) {
         // var expiration = await TokenRepository().getAccessTokenRemainingTime();

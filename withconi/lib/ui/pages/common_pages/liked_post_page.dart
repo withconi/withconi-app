@@ -74,6 +74,7 @@ class LikedPostPage extends StatelessWidget {
                         itemBuilder: ((context, index) {
                           Post thisPost = _controller.likedPostList[index];
                           return WcUserPostListTile(
+                            images: _controller.images,
                             commentsNum: 23,
                             contents: thisPost.content,
                             likesNum: 12,

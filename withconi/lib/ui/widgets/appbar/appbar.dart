@@ -1,4 +1,5 @@
 import 'package:flutter_svg/svg.dart';
+import 'package:withconi/ui/theme/text_theme.dart';
 
 import '../../../import_basic.dart';
 
@@ -28,8 +29,10 @@ class WcAppBar extends StatelessWidget with PreferredSizeWidget {
         backgroundColor: WcColors.white,
         title: Text(
           title,
-          style:
-              GoogleFonts.notoSans(fontSize: 16, fontWeight: FontWeight.w600),
+          style: TextStyle(
+              fontFamily: WcFontFamily.notoSans,
+              fontSize: 16,
+              fontWeight: FontWeight.w500),
         ),
         actions: [
           GestureDetector(

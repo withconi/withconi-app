@@ -21,6 +21,103 @@ enum SortType {
   recent,
   @JsonValue("popular")
   popular,
+  @JsonValue("nearest")
+  nearest,
+  @JsonValue("visiting")
+  visiting,
+}
+
+enum Species {
+  @JsonValue("cat")
+  cat,
+  @JsonValue("dog")
+  dog,
+  @JsonValue("all")
+  all,
+}
+
+enum CacheControllerKey {
+  accessToken,
+  refreshToken,
+  provide,
+  emailVerified,
+  emailVerifySkipped
+}
+
+enum UserState {
+  signInEmail,
+  signInAuthCredential,
+  signInToken,
+  signUpEmail,
+  signUpSns,
+  none
+}
+
+enum Provider {
+  @JsonValue("kakao")
+  kakao,
+  @JsonValue("naver")
+  naver,
+  @JsonValue("google")
+  google,
+  @JsonValue("apple")
+  apple,
+  @JsonValue("email")
+  email,
+  @JsonValue("none")
+  none,
+}
+
+enum PlaceType { all, hospital, pharmacy }
+
+enum DiseaseType {
+  cardiovascular,
+  musculoskeletal,
+  digestive,
+  ophthalmology,
+  urinary,
+  respiratory,
+}
+
+enum OpeningStatus { open, all }
+
+enum ReviewRate {
+  @JsonValue("low")
+  low,
+  @JsonValue("middle")
+  middle,
+  @JsonValue("high")
+  high
+}
+
+enum ReviewItems {
+  explanation,
+  kindness,
+  price,
+  adequateExamination,
+  effectiveness,
+  waitingExperience,
+  // lackOfExplination,
+  // unkindness,
+  // highPrice,
+  // inadequateExamination,
+  // badWaitingEnvironment,
+  // uneffectiveness
+}
+
+String sortTypeToKorean(SortType? sortType) {
+  switch (sortType) {
+    case SortType.popular:
+      return "인기순";
+    case SortType.visiting:
+      return "많이 찾은순";
+    case SortType.nearest:
+      return "거리순";
+    case SortType.recent:
+      return "최신순";
+    default:
+      return "";
+  }
 }
 
 String postTypeToKorean(PostType? postType) {
@@ -49,17 +146,6 @@ String postTypeToValue(PostType? postType) {
   }
 }
 
-String sortTypeToKorean(SortType? sortType) {
-  switch (sortType) {
-    case SortType.recent:
-      return "최신순";
-    case SortType.popular:
-      return "인기순";
-    default:
-      return "";
-  }
-}
-
 String sortTypeToValue(SortType? sortType) {
   switch (sortType) {
     case SortType.recent:
@@ -82,15 +168,6 @@ SortType koreanToSortType(String sortType) {
   }
 }
 
-enum Species {
-  @JsonValue("cat")
-  cat,
-  @JsonValue("dog")
-  dog,
-  @JsonValue("all")
-  all,
-}
-
 String speciesToValue(Species? species) {
   switch (species) {
     case Species.cat:
@@ -102,19 +179,15 @@ String speciesToValue(Species? species) {
   }
 }
 
-enum Provider {
-  @JsonValue("kakao")
-  kakao,
-  @JsonValue("naver")
-  naver,
-  @JsonValue("google")
-  google,
-  @JsonValue("apple")
-  apple,
-  @JsonValue("email")
-  email,
-  @JsonValue("none")
-  none,
+String speciesToKorean(Species? species) {
+  switch (species) {
+    case Species.cat:
+      return '고양이';
+    case Species.dog:
+      return '강아지';
+    default:
+      return '';
+  }
 }
 
 String providerToValue(Provider provider) {
@@ -134,25 +207,6 @@ String providerToValue(Provider provider) {
   }
 }
 
-enum CacheControllerKey {
-  ACCESS_TOKEN,
-  REFRESH_TOKEN,
-  PROVIDER,
-  EMAIL_VERIFIED,
-  EMAIL_VERIFY_SKIPPED
-}
-
-enum UserState {
-  SIGN_IN_EMAIL,
-  SIGN_IN_AUTH_CREDENTIAL,
-  SIGN_IN_TOKEN,
-  SIGN_UP_EMAIL,
-  SIGN_UP_SNS,
-  NONE
-}
-
-enum PlaceType { all, hospital, pharmacy }
-
 String placeTypeToValue(PlaceType? placeType) {
   switch (placeType) {
     case PlaceType.hospital:
@@ -163,15 +217,6 @@ String placeTypeToValue(PlaceType? placeType) {
     default:
       return 'all';
   }
-}
-
-enum DiseaseType {
-  cardiovascular,
-  musculoskeletal,
-  digestive,
-  ophthalmology,
-  urinary,
-  respiratory,
 }
 
 String diseaseTypeToValue(DiseaseType? diseaseType) {
@@ -212,14 +257,57 @@ String diseaseTypeToKorean(DiseaseType? diseaseType) {
   }
 }
 
-enum OpeningStatus { open, closed }
-
 String openingStatusToValue(OpeningStatus? openingStatus) {
   switch (openingStatus) {
     case OpeningStatus.open:
       return 'open';
-    case OpeningStatus.closed:
-      return 'closed';
+    case OpeningStatus.all:
+      return 'all';
+    default:
+      return '';
+  }
+}
+
+String reviewRateToValue(ReviewRate? reviewStatus) {
+  switch (reviewStatus) {
+    case ReviewRate.low:
+      return 'low';
+    case ReviewRate.middle:
+      return 'middle';
+    case ReviewRate.high:
+      return 'high';
+    default:
+      return '';
+  }
+}
+
+String reviewRateToKorean(ReviewRate? reviewStatus) {
+  switch (reviewStatus) {
+    case ReviewRate.low:
+      return '아쉬워요';
+    case ReviewRate.middle:
+      return '적당해요';
+    case ReviewRate.high:
+      return '추천해요';
+    default:
+      return '';
+  }
+}
+
+String reviewItemsToValue(ReviewItems? reviewItem) {
+  switch (reviewItem) {
+    case ReviewItems.explanation:
+      return 'explanation';
+    case ReviewItems.kindness:
+      return 'kindness';
+    case ReviewItems.adequateExamination:
+      return 'adequate_examination';
+    case ReviewItems.effectiveness:
+      return 'effectiveness';
+    case ReviewItems.waitingExperience:
+      return 'waiting_experience';
+    case ReviewItems.price:
+      return 'price';
     default:
       return '';
   }

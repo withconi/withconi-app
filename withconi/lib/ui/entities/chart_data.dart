@@ -1,9 +1,14 @@
 import 'dart:ui';
 
 class ChartData {
-  final double percent;
+  final int percent;
   final Color color;
   final String title;
+  final int value;
 
-  ChartData({required this.percent, required this.color, required this.title});
+  ChartData(
+      {required this.percent,
+      required this.color,
+      required this.title,
+      required this.value});
 }

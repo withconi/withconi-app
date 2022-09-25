@@ -25,9 +25,9 @@ mixin _$WcUser {
   String get displayName => throw _privateConstructorUsedError;
   String get nickname => throw _privateConstructorUsedError;
   Provider get provider => throw _privateConstructorUsedError;
-  String? get photoURL => throw _privateConstructorUsedError;
   bool get isEmailVerified => throw _privateConstructorUsedError;
   bool get verificationSkipped => throw _privateConstructorUsedError;
+  String? get photoURL => throw _privateConstructorUsedError;
   List<Conimal> get conimals => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -45,9 +45,9 @@ abstract class $WcUserCopyWith<$Res> {
       String displayName,
       String nickname,
       Provider provider,
-      String? photoURL,
       bool isEmailVerified,
       bool verificationSkipped,
+      String? photoURL,
       List<Conimal> conimals});
 }
 
@@ -66,9 +66,9 @@ class _$WcUserCopyWithImpl<$Res> implements $WcUserCopyWith<$Res> {
     Object? displayName = freezed,
     Object? nickname = freezed,
     Object? provider = freezed,
-    Object? photoURL = freezed,
     Object? isEmailVerified = freezed,
     Object? verificationSkipped = freezed,
+    Object? photoURL = freezed,
     Object? conimals = freezed,
   }) {
     return _then(_value.copyWith(
@@ -92,10 +92,6 @@ class _$WcUserCopyWithImpl<$Res> implements $WcUserCopyWith<$Res> {
           ? _value.provider
           : provider // ignore: cast_nullable_to_non_nullable
               as Provider,
-      photoURL: photoURL == freezed
-          ? _value.photoURL
-          : photoURL // ignore: cast_nullable_to_non_nullable
-              as String?,
       isEmailVerified: isEmailVerified == freezed
           ? _value.isEmailVerified
           : isEmailVerified // ignore: cast_nullable_to_non_nullable
@@ -104,6 +100,10 @@ class _$WcUserCopyWithImpl<$Res> implements $WcUserCopyWith<$Res> {
           ? _value.verificationSkipped
           : verificationSkipped // ignore: cast_nullable_to_non_nullable
               as bool,
+      photoURL: photoURL == freezed
+          ? _value.photoURL
+          : photoURL // ignore: cast_nullable_to_non_nullable
+              as String?,
       conimals: conimals == freezed
           ? _value.conimals
           : conimals // ignore: cast_nullable_to_non_nullable
@@ -123,9 +123,9 @@ abstract class _$$_WcUserCopyWith<$Res> implements $WcUserCopyWith<$Res> {
       String displayName,
       String nickname,
       Provider provider,
-      String? photoURL,
       bool isEmailVerified,
       bool verificationSkipped,
+      String? photoURL,
       List<Conimal> conimals});
 }
 
@@ -145,9 +145,9 @@ class __$$_WcUserCopyWithImpl<$Res> extends _$WcUserCopyWithImpl<$Res>
     Object? displayName = freezed,
     Object? nickname = freezed,
     Object? provider = freezed,
-    Object? photoURL = freezed,
     Object? isEmailVerified = freezed,
     Object? verificationSkipped = freezed,
+    Object? photoURL = freezed,
     Object? conimals = freezed,
   }) {
     return _then(_$_WcUser(
@@ -171,10 +171,6 @@ class __$$_WcUserCopyWithImpl<$Res> extends _$WcUserCopyWithImpl<$Res>
           ? _value.provider
           : provider // ignore: cast_nullable_to_non_nullable
               as Provider,
-      photoURL: photoURL == freezed
-          ? _value.photoURL
-          : photoURL // ignore: cast_nullable_to_non_nullable
-              as String?,
       isEmailVerified: isEmailVerified == freezed
           ? _value.isEmailVerified
           : isEmailVerified // ignore: cast_nullable_to_non_nullable
@@ -183,6 +179,10 @@ class __$$_WcUserCopyWithImpl<$Res> extends _$WcUserCopyWithImpl<$Res>
           ? _value.verificationSkipped
           : verificationSkipped // ignore: cast_nullable_to_non_nullable
               as bool,
+      photoURL: photoURL == freezed
+          ? _value.photoURL
+          : photoURL // ignore: cast_nullable_to_non_nullable
+              as String?,
       conimals: conimals == freezed
           ? _value._conimals
           : conimals // ignore: cast_nullable_to_non_nullable
@@ -201,9 +201,9 @@ class _$_WcUser implements _WcUser {
       required this.displayName,
       required this.nickname,
       required this.provider,
-      this.photoURL,
       this.isEmailVerified = false,
       this.verificationSkipped = false,
+      this.photoURL,
       required final List<Conimal> conimals})
       : _conimals = conimals;
 
@@ -221,13 +221,13 @@ class _$_WcUser implements _WcUser {
   @override
   final Provider provider;
   @override
-  final String? photoURL;
-  @override
   @JsonKey()
   final bool isEmailVerified;
   @override
   @JsonKey()
   final bool verificationSkipped;
+  @override
+  final String? photoURL;
   final List<Conimal> _conimals;
   @override
   List<Conimal> get conimals {
@@ -237,7 +237,7 @@ class _$_WcUser implements _WcUser {
 
   @override
   String toString() {
-    return 'WcUser(uid: $uid, email: $email, displayName: $displayName, nickname: $nickname, provider: $provider, photoURL: $photoURL, isEmailVerified: $isEmailVerified, verificationSkipped: $verificationSkipped, conimals: $conimals)';
+    return 'WcUser(uid: $uid, email: $email, displayName: $displayName, nickname: $nickname, provider: $provider, isEmailVerified: $isEmailVerified, verificationSkipped: $verificationSkipped, photoURL: $photoURL, conimals: $conimals)';
   }
 
   @override
@@ -251,11 +251,11 @@ class _$_WcUser implements _WcUser {
                 .equals(other.displayName, displayName) &&
             const DeepCollectionEquality().equals(other.nickname, nickname) &&
             const DeepCollectionEquality().equals(other.provider, provider) &&
-            const DeepCollectionEquality().equals(other.photoURL, photoURL) &&
             const DeepCollectionEquality()
                 .equals(other.isEmailVerified, isEmailVerified) &&
             const DeepCollectionEquality()
                 .equals(other.verificationSkipped, verificationSkipped) &&
+            const DeepCollectionEquality().equals(other.photoURL, photoURL) &&
             const DeepCollectionEquality().equals(other._conimals, _conimals));
   }
 
@@ -268,9 +268,9 @@ class _$_WcUser implements _WcUser {
       const DeepCollectionEquality().hash(displayName),
       const DeepCollectionEquality().hash(nickname),
       const DeepCollectionEquality().hash(provider),
-      const DeepCollectionEquality().hash(photoURL),
       const DeepCollectionEquality().hash(isEmailVerified),
       const DeepCollectionEquality().hash(verificationSkipped),
+      const DeepCollectionEquality().hash(photoURL),
       const DeepCollectionEquality().hash(_conimals));
 
   @JsonKey(ignore: true)
@@ -293,9 +293,9 @@ abstract class _WcUser implements WcUser {
       required final String displayName,
       required final String nickname,
       required final Provider provider,
-      final String? photoURL,
       final bool isEmailVerified,
       final bool verificationSkipped,
+      final String? photoURL,
       required final List<Conimal> conimals}) = _$_WcUser;
 
   factory _WcUser.fromJson(Map<String, dynamic> json) = _$_WcUser.fromJson;
@@ -311,11 +311,11 @@ abstract class _WcUser implements WcUser {
   @override
   Provider get provider;
   @override
-  String? get photoURL;
-  @override
   bool get isEmailVerified;
   @override
   bool get verificationSkipped;
+  @override
+  String? get photoURL;
   @override
   List<Conimal> get conimals;
   @override

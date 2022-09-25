@@ -3,6 +3,7 @@ import 'package:withconi/ui/pages/common_pages/add_conimal_page.dart';
 import 'package:withconi/ui/pages/common_pages/conimal_setting_page.dart';
 import 'package:withconi/ui/pages/common_pages/email_verification_page.dart';
 import 'package:withconi/ui/pages/common_pages/my_post_page.dart';
+import 'package:withconi/ui/pages/community/community_edit_my_post_page.dart';
 import 'package:withconi/ui/pages/community/community_post_list_page.dart';
 import 'package:withconi/ui/pages/community/community_main_page.dart';
 import 'package:withconi/ui/pages/community/community_post_detail_page.dart';
@@ -98,6 +99,11 @@ class WcPages {
     GetPage(
         name: Routes.COMMUNITY_NEW_POST,
         page: () => CommunityNewPostPage(),
+        fullscreenDialog: true,
+        transition: Transition.topLevel),
+    GetPage(
+        name: Routes.COMMUNITY_POST_EDIT,
+        page: () => CommunityEditMyPostPage(),
         fullscreenDialog: true,
         transition: Transition.topLevel),
     GetPage(

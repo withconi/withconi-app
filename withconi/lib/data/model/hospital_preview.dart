@@ -1,9 +1,11 @@
+import 'package:geolocator/geolocator.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk_navi.dart';
+import 'package:withconi/configs/constants/enum.dart';
 
 import '../../ui/entities/location.dart';
 import 'abstract_class/place_type.dart';
 
-class HospitalPreview implements PlacePreviewType {
+class HospitalPreview implements PlacePreview {
   @override
   String locId = "";
 
@@ -37,6 +39,12 @@ class HospitalPreview implements PlacePreviewType {
   @override
   String thumbnail = "";
 
+  @override
+  double distanceByMeter = 0.0;
+
+  @override
+  PlaceType placeType = PlaceType.hospital;
+
   HospitalPreview({
     required this.locId,
     required this.name,
@@ -47,9 +55,11 @@ class HospitalPreview implements PlacePreviewType {
     required this.totalRecommend,
     required this.openingStatus,
     required this.thumbnail,
+    required this.distanceByMeter,
+    this.placeType = PlaceType.hospital,
   });
 
-  HospitalPreview.fromJson(Map<String, dynamic> json) {
+  HospitalPreview.fromJson(Map<String, dynamic> json, LatLngClass baseLatLng) {
     locId = json['_id'] ?? '';
     name = json['title'] ?? '';
     openingStatus = json['openingStatus'] ?? '';
@@ -58,6 +68,9 @@ class HospitalPreview implements PlacePreviewType {
     totalVisitingConimal = json['totalVisitingConimal'] ?? 0;
     totalRecommend = json['totalRecommend'] ?? 0;
     thumbnail = json['thumbnail'] ?? '';
+    distanceByMeter = _getMeterDistanceBetween(
+        baseLocation: baseLatLng,
+        placeLocation: LatLngClass.fromJson(json['coordinate']));
   }
 
   Map<String, dynamic> toJson() {
@@ -71,5 +84,17 @@ class HospitalPreview implements PlacePreviewType {
     data['totalRecommend'] = totalRecommend;
     data['thumbnail'] = thumbnail;
     return data;
+  }
+
+  double _getMeterDistanceBetween(
+      {required LatLngClass baseLocation, required LatLngClass placeLocation}) {
+    double distanceMeters = GeolocatorPlatform.instance.distanceBetween(
+      baseLocation.latitude,
+      baseLocation.longitude,
+      placeLocation.latitude,
+      placeLocation.longitude,
+    );
+
+    return distanceMeters;
   }
 }

@@ -7,6 +7,7 @@ import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
 import 'package:withconi/core/error_handling/exceptions.dart';
 import 'package:withconi/core/error_handling/failures.dart';
+import 'package:withconi/data/model/custom_token.dart';
 import 'package:withconi/data/provider/auth_api.dart';
 import 'package:withconi/data/repository/signup_repository.dart';
 import 'package:withconi/import_basic.dart';
@@ -68,9 +69,15 @@ class AuthRepository extends GetxController {
             break;
           case Provider.kakao:
             _customAuthInfo = await _api.getKakaoAuthInfo();
+            CustomToken customToken = await _api.getNewCustomToken(
+                provider: Provider.kakao, token: _customAuthInfo.authObject);
+            _customAuthInfo.email = customToken.accessToken;
             break;
           case Provider.naver:
             _customAuthInfo = await _api.getNaverAuthInfo();
+            CustomToken customToken = await _api.getNewCustomToken(
+                provider: Provider.kakao, token: _customAuthInfo.authObject);
+            _customAuthInfo.email = customToken.accessToken;
             break;
           case Provider.apple:
             _customAuthInfo = await _api.getAppleAuthInfo();
@@ -93,22 +100,22 @@ class AuthRepository extends GetxController {
     UserState userState;
     if (isDuplicateUser) {
       if (provider == Provider.email) {
-        userState = UserState.SIGN_IN_EMAIL;
+        userState = UserState.signInEmail;
       } else if ((provider == Provider.apple) ||
           (provider == Provider.google)) {
-        userState = UserState.SIGN_IN_AUTH_CREDENTIAL;
+        userState = UserState.signInAuthCredential;
       } else if ((provider == Provider.naver) || (provider == Provider.kakao)) {
-        userState = UserState.SIGN_IN_TOKEN;
+        userState = UserState.signInToken;
       } else {
-        userState = UserState.NONE;
+        userState = UserState.none;
       }
     } else {
       if (provider == Provider.email) {
-        userState = UserState.SIGN_UP_EMAIL;
+        userState = UserState.signUpEmail;
       } else if (provider == Provider.none) {
-        userState = UserState.NONE;
+        userState = UserState.none;
       } else {
-        userState = UserState.SIGN_UP_SNS;
+        userState = UserState.signUpSns;
       }
     }
     return userState;
@@ -208,11 +215,16 @@ class AuthRepository extends GetxController {
               credential: authInfo.authObject);
           break;
         case Provider.kakao:
-          _authUser = await _api.signInWithCustomToken(authInfo: authInfo);
+          CustomToken customToken = await _api.getNewCustomToken(
+              provider: authInfo.provider, token: authInfo.authObject);
+          _authUser = await _api.signInWithCustomToken(
+              customToken: customToken.accessToken);
           break;
         case Provider.naver:
-          _authUser =
-              await _api.signInWithCustomToken(authInfo: authInfo.authObject);
+          CustomToken customToken = await _api.getNewCustomToken(
+              provider: authInfo.provider, token: authInfo.authObject);
+          _authUser = await _api.signInWithCustomToken(
+              customToken: customToken.accessToken);
           break;
 
         default:
@@ -275,8 +287,9 @@ class AuthRepository extends GetxController {
   }
 
   signInWithCustomToken({required CustomAuthInfo authInfo}) async {
-    late UserCredential _userCredential;
-    await _api.signInWithCustomToken(authInfo: authInfo);
+    CustomToken customToken = await _api.getNewCustomToken(
+        provider: authInfo.provider, token: authInfo.authObject);
+    await _api.signInWithCustomToken(customToken: customToken.accessToken);
     await saveProviderLocalStorage(
       provider: authInfo.provider,
     );

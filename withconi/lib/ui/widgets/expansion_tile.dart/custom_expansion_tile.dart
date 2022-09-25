@@ -375,7 +375,7 @@ class _CustomExpansionTileState extends State<CustomExpansionTile>
             iconColor: _iconColor.value ?? expansionTileTheme.iconColor,
             textColor: _headerColor.value,
             child: ListTile(
-              visualDensity: VisualDensity(horizontal: -2, vertical: -4),
+              visualDensity: VisualDensity(horizontal: -2, vertical: -2),
               onTap: _handleTap,
               contentPadding:
                   widget.tilePadding ?? expansionTileTheme.tilePadding,

@@ -61,6 +61,19 @@ class EmailVerificationPage extends StatelessWidget {
                   ),
                   WcWideButtonWidget(
                     active: true,
+                    activeButtonColor: WcColors.blue100,
+                    activeTextColor: WcColors.white,
+                    buttonText: '이메일 인증완료',
+                    buttonWidth: WcWidth - 40,
+                    onTap: () {
+                      _controller.resendVerificationEmail();
+                    },
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  WcWideButtonWidget(
+                    active: true,
                     activeButtonColor: WcColors.grey80,
                     activeTextColor: WcColors.grey180,
                     buttonText: '인증메일 재전송',
