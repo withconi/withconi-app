@@ -6,7 +6,7 @@ import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/data/provider/auth_api.dart';
 import 'package:withconi/data/repository/conimal_repository.dart';
 
-import '../../core/auth_info.dart';
+import '../../core/custom_auth_info.dart';
 import '../../core/error_handling/exceptions.dart';
 import '../../core/error_handling/failures.dart';
 import '../model/conimal.dart';

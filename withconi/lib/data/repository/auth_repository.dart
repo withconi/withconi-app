@@ -8,85 +8,123 @@ import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
 import 'package:withconi/core/error_handling/exceptions.dart';
 import 'package:withconi/core/error_handling/failures.dart';
 import 'package:withconi/data/model/custom_token.dart';
+import 'package:withconi/data/provider/apple_api.dart';
 import 'package:withconi/data/provider/auth_api.dart';
+import 'package:withconi/data/provider/google_api.dart';
+import 'package:withconi/data/provider/kakao_api.dart';
+import 'package:withconi/data/provider/naver_api.dart';
 import 'package:withconi/data/repository/signup_repository.dart';
 import 'package:withconi/import_basic.dart';
 import 'package:withconi/ui/widgets/loading.dart';
 import '../../configs/constants/auth_variables.dart';
-import '../../core/auth_info.dart';
+import '../../core/custom_auth_info.dart';
 import '../model/conimal.dart';
 
 class AuthRepository extends GetxController {
   final AuthAPI _api = AuthAPI();
+  final GoogleAPI _googleApi = GoogleAPI();
+  final KakaoAPI _kakaoApi = KakaoAPI();
+  final NaverAPI _naverApi = NaverAPI();
+  final AppleAPI _appleAPI = AppleAPI();
   static AuthRepository get to => Get.find<AuthRepository>();
   final SignupRepository _signUpUserRepository = SignupRepository.to;
-  final TokenManager _tokenManager = TokenManager();
+  final WcTokenManager _tokenManager = WcTokenManager();
   final DynamicLinkManager _dynamicLinkManager = DynamicLinkManager();
 
   Provider getAuthTokenProvider() => _tokenManager.getTokenProvider();
 
-  Future<Either<Failure, CustomAuthInfo>> getGoogleAuthInfo() async {
-    try {
-      CustomAuthInfo authInfo = await _api.getGoogleAuthInfo();
-      return Right(authInfo);
-    } on NoInternetConnectionException {
-      return Left(NoConnectionFailure());
-    } on PlatformException {
-      return Left(NoUserDataFailure());
-    } catch (e) {
-      return Left(NoUserDataFailure());
-    }
-  }
+  // Future<Either<Failure, CustomAuthInfo>> getGoogleAuthInfo() async {
+  //   try {
+  //     CustomAuthInfo authInfo = await _api.getGoogleAuthInfo();
+  //     return Right(authInfo);
+  //   } on NoInternetConnectionException {
+  //     return Left(NoConnectionFailure());
+  //   } on PlatformException {
+  //     return Left(NoUserDataFailure());
+  //   } catch (e) {
+  //     return Left(NoUserDataFailure());
+  //   }
+  // }
 
-  Future<Either<Failure, UserState>> getUserState(
-      {required CustomAuthInfo authInfo}) async {
-    try {
-      final bool isDuplicateUser =
-          await _api.checkUserEmail(email: authInfo.email);
+  // Future<Either<Failure, UserState>> getUserState(
+  //     {required CustomAuthInfo authInfo}) async {
+  //   try {
+  //     final bool isDuplicateUser =
+  //         await _api.checkUserEmailDuplicate(email: authInfo.email);
 
-      final UserState userState =
-          determineUserState(isDuplicateUser, authInfo.provider);
-      return Right(userState);
-    } on NoInternetConnectionException {
-      return Left(NoConnectionFailure());
-    } on PlatformException {
-      return Left(NoUserDataFailure());
-    } catch (e) {
-      return Left(NoUserDataFailure());
-    }
-  }
+  //     final UserState userState =
+  //         determineUserState(isDuplicateUser, authInfo.provider);
+  //     return Right(userState);
+  //   } on NoInternetConnectionException {
+  //     return Left(NoConnectionFailure());
+  //   } on PlatformException {
+  //     return Left(NoUserDataFailure());
+  //   } catch (e) {
+  //     return Left(NoUserDataFailure());
+  //   }
+  // }
 
-  Future<Either<Failure, CustomAuthInfo>> getCustomAuthInfo(
-      {required Provider provider, String? email}) async {
+  // Future<Either<Failure, CustomAuthInfo>> getCustomAuthInfo(
+  //     {required Provider provider, String? email}) async {
+  //   try {
+  //     late CustomAuthInfo _customAuthInfo;
+  //     if (provider == Provider.email) {
+  //       _customAuthInfo = await _api.getEmailAuthInfo(email!);
+  //     } else {
+  //       switch (provider) {
+  //         case Provider.google:
+  //           _customAuthInfo = await _api.getGoogleAuthInfo();
+  //           break;
+  //         case Provider.kakao:
+  //           _customAuthInfo = await _api.getKakaoAuthInfo();
+  //           CustomToken customToken = await _api.getNewCustomToken(
+  //               provider: Provider.kakao, token: _customAuthInfo.authObject);
+  //           _customAuthInfo.email = customToken.accessToken;
+  //           break;
+  //         case Provider.naver:
+  //           _customAuthInfo = await _api.getNaverAuthInfo();
+  //           CustomToken customToken = await _api.getNewCustomToken(
+  //               provider: Provider.kakao, token: _customAuthInfo.authObject);
+  //           _customAuthInfo.email = customToken.accessToken;
+  //           break;
+  //         case Provider.apple:
+  //           _customAuthInfo = await _api.getAppleAuthInfo();
+  //           break;
+  //         default:
+  //       }
+  //     }
+
+  //     return Right(_customAuthInfo);
+  //   } on NoInternetConnectionException {
+  //     return Left(NoConnectionFailure());
+  //   } on PlatformException {
+  //     return Left(NoUserDataFailure());
+  //   } catch (e) {
+  //     return Left(NoUserDataFailure());
+  //   }
+  // }
+
+  Future<Either<Failure, String>> getEmailFromProvider(
+      {required Provider provider}) async {
     try {
-      late CustomAuthInfo _customAuthInfo;
-      if (provider == Provider.email) {
-        _customAuthInfo = await _api.getEmailAuthInfo(email!);
-      } else {
-        switch (provider) {
-          case Provider.google:
-            _customAuthInfo = await _api.getGoogleAuthInfo();
-            break;
-          case Provider.kakao:
-            _customAuthInfo = await _api.getKakaoAuthInfo();
-            CustomToken customToken = await _api.getNewCustomToken(
-                provider: Provider.kakao, token: _customAuthInfo.authObject);
-            _customAuthInfo.email = customToken.accessToken;
-            break;
-          case Provider.naver:
-            _customAuthInfo = await _api.getNaverAuthInfo();
-            CustomToken customToken = await _api.getNewCustomToken(
-                provider: Provider.kakao, token: _customAuthInfo.authObject);
-            _customAuthInfo.email = customToken.accessToken;
-            break;
-          case Provider.apple:
-            _customAuthInfo = await _api.getAppleAuthInfo();
-            break;
-          default:
-        }
+      late String _userEmail;
+      switch (provider) {
+        case Provider.google:
+          _userEmail = await _googleApi.getGoogleUserEmail();
+          break;
+        case Provider.kakao:
+          _userEmail = await _kakaoApi.getKakaoUserEmail();
+          break;
+        case Provider.naver:
+          _userEmail = await _naverApi.getNaverUserEmail();
+          break;
+        case Provider.apple:
+          _userEmail = await _appleAPI.getAppleUserEmail();
+          break;
+        default:
       }
 
-      return Right(_customAuthInfo);
+      return Right(_userEmail);
     } on NoInternetConnectionException {
       return Left(NoConnectionFailure());
     } on PlatformException {
@@ -121,69 +159,71 @@ class AuthRepository extends GetxController {
     return userState;
   }
 
-  Future<Either<Failure, CustomAuthInfo>> getAppleAuthInfo() async {
-    try {
-      CustomAuthInfo authInfo = await _api.getAppleAuthInfo();
-      return Right(authInfo);
-    } on NoInternetConnectionException {
-      return Left(NoConnectionFailure());
-    } on PlatformException {
-      return Left(NoUserDataFailure());
-    } catch (e) {
-      return Left(NoUserDataFailure());
-    }
-  }
+  // Future<Either<Failure, CustomAuthInfo>> getAppleAuthInfo() async {
+  //   try {
+  //     CustomAuthInfo authInfo = await _api.getAppleAuthInfo();
+  //     return Right(authInfo);
+  //   } on NoInternetConnectionException {
+  //     return Left(NoConnectionFailure());
+  //   } on PlatformException {
+  //     return Left(NoUserDataFailure());
+  //   } catch (e) {
+  //     return Left(NoUserDataFailure());
+  //   }
+  // }
 
-  Future<Either<Failure, CustomAuthInfo>> getEmailAuthInfo(email) async {
-    try {
-      CustomAuthInfo authInfo = await _api.getEmailAuthInfo(email);
-      return Right(authInfo);
-    } on NoInternetConnectionException {
-      return Left(NoConnectionFailure());
-    } on PlatformException {
-      return Left(NoUserDataFailure());
-    } catch (e) {
-      return Left(NoUserDataFailure());
-    }
-  }
+  // Future<Either<Failure, CustomAuthInfo>> getEmailAuthInfo(email) async {
+  //   try {
+  //     CustomAuthInfo authInfo = await _api.getEmailAuthInfo(email);
+  //     return Right(authInfo);
+  //   } on NoInternetConnectionException {
+  //     return Left(NoConnectionFailure());
+  //   } on PlatformException {
+  //     return Left(NoUserDataFailure());
+  //   } catch (e) {
+  //     return Left(NoUserDataFailure());
+  //   }
+  // }
 
-  Future<Either<Failure, CustomAuthInfo>> getKakaoAuthInfo() async {
-    try {
-      CustomAuthInfo authInfo = await _api.getKakaoAuthInfo();
-      return Right(authInfo);
-    } on NoInternetConnectionException {
-      return Left(NoConnectionFailure());
-    } on PlatformException {
-      return Left(NoUserDataFailure());
-    } catch (e) {
-      print('getKakaoAuthInfo error');
-      return Left(NoUserDataFailure());
-    }
-  }
+  // Future<Either<Failure, CustomAuthInfo>> getKakaoAuthInfo() async {
+  //   try {
+  //     CustomAuthInfo authInfo = await _api.getKakaoAuthInfo();
+  //     return Right(authInfo);
+  //   } on NoInternetConnectionException {
+  //     return Left(NoConnectionFailure());
+  //   } on PlatformException {
+  //     return Left(NoUserDataFailure());
+  //   } catch (e) {
+  //     print('getKakaoAuthInfo error');
+  //     return Left(NoUserDataFailure());
+  //   }
+  // }
 
-  Future<Either<Failure, CustomAuthInfo>> getNaverAuthInfo() async {
-    try {
-      CustomAuthInfo authInfo = await _api.getNaverAuthInfo();
-      return Right(authInfo);
-    } on NoInternetConnectionException {
-      return Left(NoConnectionFailure());
-    } on PlatformException {
-      return Left(NoUserDataFailure());
-    } on PlatformSignInException {
-      return Left(NaverSigninFailure());
-    } catch (e) {
-      return Left(NoUserDataFailure());
-    }
-  }
+  // Future<Either<Failure, CustomAuthInfo>> getNaverAuthInfo() async {
+  //   try {
+  //     CustomAuthInfo authInfo = await _api.getNaverAuthInfo();
+  //     return Right(authInfo);
+  //   } on NoInternetConnectionException {
+  //     return Left(NoConnectionFailure());
+  //   } on PlatformException {
+  //     return Left(NoUserDataFailure());
+  //   } on PlatformSignInException {
+  //     return Left(NaverSigninFailure());
+  //   } catch (e) {
+  //     return Left(NoUserDataFailure());
+  //   }
+  // }
 
-  Future<bool> checkValidUserByPlatform({required Provider provider}) async {
-    return await _api.checkValidUserByPlatform(provider: provider);
-  }
+  // Future<bool> checkValidUserByPlatform({required Provider provider}) async {
+  //   return await _api.checkValidUserByPlatform(provider: provider);
+  // }
 
-  Future<Either<Failure, bool>> checkDuplicateUser(
-      {required String email, required Provider provider}) async {
+  Future<Either<Failure, bool>> checkDuplicateUser({
+    required String email,
+  }) async {
     try {
-      final bool isDuplicateUser = await _api.checkUserEmail(email: email);
+      final bool isDuplicateUser =
+          await _api.checkUserEmailDuplicate(email: email);
       return Right(isDuplicateUser);
     } on NoInternetConnectionException {
       print('NoInternetConnectionException');
@@ -194,78 +234,78 @@ class AuthRepository extends GetxController {
     }
   }
 
-  Future<Either<Failure, User?>> signUp(
-      {String? password,
-      required List<Conimal> conimalList,
-      required CustomAuthInfo authInfo}) async {
-    late User? _authUser;
+  // Future<Either<Failure, User?>> signUp(
+  //     {String? password,
+  //     required List<Conimal> conimalList,
+  //     required CustomAuthInfo authInfo}) async {
+  //   late User? _authUser;
 
-    try {
-      switch (authInfo.provider) {
-        case Provider.email:
-          _authUser = await _api.creatUserWithEmail(
-              email: authInfo.email, password: password!);
-          break;
-        case Provider.google:
-          _authUser = await _api.signInWithAuthCredential(
-              credential: authInfo.authObject);
-          break;
-        case Provider.apple:
-          _authUser = await _api.signInWithAuthCredential(
-              credential: authInfo.authObject);
-          break;
-        case Provider.kakao:
-          CustomToken customToken = await _api.getNewCustomToken(
-              provider: authInfo.provider, token: authInfo.authObject);
-          _authUser = await _api.signInWithCustomToken(
-              customToken: customToken.accessToken);
-          break;
-        case Provider.naver:
-          CustomToken customToken = await _api.getNewCustomToken(
-              provider: authInfo.provider, token: authInfo.authObject);
-          _authUser = await _api.signInWithCustomToken(
-              customToken: customToken.accessToken);
-          break;
+  //   try {
+  //     switch (authInfo.provider) {
+  //       case Provider.email:
+  //         _authUser = await _api.creatUserWithEmailPassword(
+  //             email: authInfo.email, password: password!);
+  //         break;
+  //       case Provider.google:
+  //         _authUser = await _api.signInWithAuthCredential(
+  //             credential: authInfo.authObject);
+  //         break;
+  //       case Provider.apple:
+  //         _authUser = await _api.signInWithAuthCredential(
+  //             credential: authInfo.authObject);
+  //         break;
+  //       case Provider.kakao:
+  //         // CustomToken customToken = await _api.getNewCustomToken(
+  //         //     provider: authInfo.provider, token: authInfo.authObject);
+  //         _authUser = await _api.signInWithCustomToken(
+  //             customToken: authInfo.);
+  //         break;
+  //       case Provider.naver:
+  //         CustomToken customToken = await _api.getNewCustomToken(
+  //             provider: authInfo.provider, token: authInfo.authObject);
+  //         _authUser = await _api.signInWithCustomToken(
+  //             customToken: customToken.accessToken);
+  //         break;
 
-        default:
-      }
+  //       default:
+  //     }
 
-      await _signUpUserRepository.signUpUserDB(
-          uid: _authUser!.uid,
-          authInfo: AuthController.to.authInfo!,
-          conimals: conimalList);
+  //     await _signUpUserRepository.signUpUserDB(
+  //         uid: _authUser!.uid,
+  //         authInfo: AuthController.to.authInfo!,
+  //         conimals: conimalList);
 
-      saveProviderLocalStorage(
-        provider: authInfo.provider,
-      );
+  //     saveProviderLocalStorage(
+  //       provider: authInfo.provider,
+  //     );
 
-      return Right(_authUser);
-    } on SignInTokenException {
-      return Left(SignInTokenFailure());
-    } on SignInCredentialException {
-      return Left(SignInCredentialFailure());
-    } on CustomFirebaseAuthException catch (e) {
-      switch (e.type) {
-        case CREATE_EMAIL.accountEnabled:
-          return Left(UserEnabledFailure());
+  //     return Right(_authUser);
+  //   } on SignInTokenException {
+  //     return Left(SignInTokenFailure());
+  //   } on SignInCredentialException {
+  //     return Left(SignInCredentialFailure());
+  //   } on CustomFirebaseAuthException catch (e) {
+  //     switch (e.type) {
+  //       case CREATE_EMAIL.accountEnabled:
+  //         return Left(UserEnabledFailure());
 
-        case CREATE_EMAIL.existingEmail:
-          return Left(ExistingEmailFailure());
-        case CREATE_EMAIL.weakPassword:
-          return Left(WeakPasswordFailure());
-        default:
-          return Left(SignInCredentialFailure());
-      }
-    } catch (e) {
-      return Left(SignInCredentialFailure());
-    }
-  }
+  //       case CREATE_EMAIL.existingEmail:
+  //         return Left(ExistingEmailFailure());
+  //       case CREATE_EMAIL.weakPassword:
+  //         return Left(WeakPasswordFailure());
+  //       default:
+  //         return Left(SignInCredentialFailure());
+  //     }
+  //   } catch (e) {
+  //     return Left(SignInCredentialFailure());
+  //   }
+  // }
 
   signInWithEmail(
       {required String password, required CustomAuthInfo authInfo}) async {
     late Either<Failure, User?> _authUserEither;
-    _authUserEither =
-        await _api.signInWithEmail(email: authInfo.email, password: password);
+    _authUserEither = await _api.signInWithEmailPassword(
+        email: authInfo.email, password: password);
 
     await _authUserEither.fold(
         (fail) =>
@@ -278,27 +318,26 @@ class AuthRepository extends GetxController {
     return;
   }
 
-  signInWithAuthCredential({required CustomAuthInfo authInfo}) async {
-    late UserCredential _userCredential;
-    await _api.signInWithAuthCredential(credential: authInfo.authObject);
+  signInWithAuthCredential({required CredentialAuthInfo authInfo}) async {
+    await _api.signInWithAuthCredential(credential: authInfo.oAuthCredential);
     await saveProviderLocalStorage(
       provider: authInfo.provider,
     );
   }
 
-  signInWithCustomToken({required CustomAuthInfo authInfo}) async {
-    CustomToken customToken = await _api.getNewCustomToken(
-        provider: authInfo.provider, token: authInfo.authObject);
-    await _api.signInWithCustomToken(customToken: customToken.accessToken);
-    await saveProviderLocalStorage(
-      provider: authInfo.provider,
-    );
-  }
+  // signInWithCustomToken({required CustomAuthInfo authInfo}) async {
+  //   CustomToken customToken = await _api.getNewCustomToken(
+  //       provider: authInfo.provider, token: authInfo.authObject);
+  //   await _api.signInWithCustomToken(customToken: customToken.accessToken);
+  //   await saveProviderLocalStorage(
+  //     provider: authInfo.provider,
+  //   );
+  // }
 
   saveProviderLocalStorage({
     required Provider provider,
   }) async {
-    await TokenManager().saveProvider(provider);
+    await WcTokenManager().saveProvider(provider);
   }
 
   Future<Either<Failure, bool>?> sendVerificationEmail(
