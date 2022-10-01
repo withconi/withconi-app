@@ -4,11 +4,12 @@ import 'dart:math';
 
 import 'package:dartz/dartz.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:withconi/ui/widgets/photo_gallary/image_item.dart';
 
 import '../../core/error_handling/failures.dart';
 
 class ImagePickHelper {
-  Future<Either<Failure, File?>?> pickSingleImage() async {
+  Future<Either<Failure, ImageItem?>?> pickSingleImage() async {
     final ImagePicker _picker = ImagePicker();
     final XFile? image = await _picker.pickImage(
         source: ImageSource.gallery, maxHeight: 500, imageQuality: 80);
@@ -25,7 +26,11 @@ class ImagePickHelper {
           return Left(MaxImageSizeFailure());
         }
       } else {
-        return Right(File(image.path));
+        ImageItem imageItem = ImageItem(
+            id: hashCode.toString(),
+            resource: image.path,
+            imageType: ImageType.file);
+        return Right(imageItem);
       }
     } else {
       return Right(null);
