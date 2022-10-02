@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:get/get.dart';
 import 'package:withconi/controller/auth_controller.dart';
+import 'package:withconi/controller/common_controller/life_cycle_controller.dart';
 import 'package:withconi/controller/map/map_main_page_controller.dart';
 import 'package:withconi/ui/pages/community/community_main_page.dart';
 import 'package:withconi/ui/pages/diagnosis/diagnosis_main_page.dart';
@@ -17,47 +18,38 @@ import '../ui/pages/home/home_page.dart';
 class NavigationController extends GetxController {
   static NavigationController get to => Get.find();
   RxInt navBarIndex = 0.obs;
+  RxString rootPageRoute = Routes.HOME.obs;
 
-  // changeNavIndex(int index) {
-  //   navBarIndex(index);
-  //   switch (index) {
-  //     case 0:
-  //       selectedPage.value = HomePage();
-  //       break;
-  //     case 1:
-  //       selectedPage.value = DiagnosisMainPage();
-  //       break;
-  //     case 2:
-  //       selectedPage.value = MapMainPage();
-  //       break;
-  //     case 3:
-  //       selectedPage.value = CommunityMainPage();
-  //       break;
-  //     case 4:
-  //       selectedPage.value = DictionaryMainPage();
-  //       break;
-  //     default:
-  //   }
-  // }
+  @override
+  onReady() {
+    super.onReady();
+    ever(rootPageRoute, _checkPermissionStatus);
+  }
 
-  getPageByIndex(int index) {
+  _checkPermissionStatus(String changedRootRoute) async {
+    await LifeCycleController.to
+        .checkRootPageStatus(rootRoute: changedRootRoute);
+  }
+
+  getPageByIndex(int index) async {
     navBarIndex(index);
     switch (index) {
       case 0:
+        rootPageRoute(Routes.HOME);
         return HomePage();
       case 1:
+        rootPageRoute(Routes.DIAGNOSIS_MAIN);
         return DiagnosisMainPage();
       case 2:
+        rootPageRoute(Routes.MAP_MAIN);
         return MapMainPage();
       case 3:
+        rootPageRoute(Routes.COMMUNITY_MAIN);
         return CommunityMainPage();
       case 4:
+        rootPageRoute(Routes.DICTIONARY_MAIN);
         return DictionaryMainPage();
       default:
     }
   }
-
-  // void changeNavIndex(int index) {
-  //   navBarIndex(index);
-  // }
 }
