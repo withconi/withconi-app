@@ -33,6 +33,9 @@ abstract class Routes {
   static const MAP_DETAIL = '/map/detail';
   static const MAP_SEARCH = '/map/search';
   static const MAP_NEW_REVIEW = '/map/reivew/new';
+  static const MAP_BOOKMARK = '/map/boormark';
+  static const MAP_MY_REVIEW = '/map/myreview';
+  static const MAP_LOCATION_PERMISSION = '/map/permission';
 
   // static const EMAIL_VERIFI_COMPLETE = '/authentication/email_verify_complete';
 }
