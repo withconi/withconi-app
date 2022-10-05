@@ -1,51 +1,34 @@
 import 'package:flutter_svg/svg.dart';
+import 'package:withconi/configs/constants/enum.dart';
+import '../../../configs/constants/enum_icon.dart';
 import '../../../data/model/comment.dart';
 import '../../../data/model/user.dart';
 import '../../../import_basic.dart';
 
-List<String> authorTrueStringList = ['수정하기', '삭제하기'];
-List<SvgPicture> authorTrueIconList = [
-  SvgPicture.asset('assets/icons/circle_edit.svg'),
-  SvgPicture.asset('assets/icons/circle_delete.svg'),
-];
-
-List<SvgPicture> authorFalseIconList = [
-  SvgPicture.asset('assets/icons/circle_report.svg'),
-  SvgPicture.asset('assets/icons/circle_block.svg'),
-];
-
-String authorFalseString({required int index, required String authorNickname}) {
-  if (index == 0) {
-    return '신고하기';
-  } else if (index == 1) {
-    return '$authorNickname의 글 보지 않기';
+showMoreBottomSheet({required String userId, required String authorId}) {
+  List<MoreOption> optionList = [];
+  if (userId == authorId) {
+    optionList = [MoreOption.edit, MoreOption.delete];
   } else {
-    return '';
+    optionList = [
+      MoreOption.report,
+      MoreOption.block,
+    ];
   }
-}
-
-showMoreBottomSheet({required bool isAuthor, required String authorNickname}) {
   return Get.bottomSheet(
     Container(
-      height: 170,
+      height: 200,
       padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
       child: Column(
         children: [
           const SizedBox(
             height: 25,
           ),
-          _moreSheetListTile(
-              icon: (isAuthor) ? authorTrueIconList[0] : authorFalseIconList[0],
-              text: (isAuthor)
-                  ? authorTrueStringList[0]
-                  : authorFalseString(
-                      index: 0, authorNickname: authorNickname)),
-          _moreSheetListTile(
-              icon: (isAuthor) ? authorTrueIconList[1] : authorFalseIconList[1],
-              text: (isAuthor)
-                  ? authorTrueStringList[1]
-                  : authorFalseString(
-                      index: 0, authorNickname: authorNickname)),
+          Column(
+            children: optionList
+                .map((e) => _moreSheetListTile(moreOption: e))
+                .toList(),
+          )
         ],
       ),
     ),
@@ -62,10 +45,11 @@ showMoreBottomSheet({required bool isAuthor, required String authorNickname}) {
   );
 }
 
-GestureDetector _moreSheetListTile(
-    {required Widget icon, required String text, void Function()? onTap}) {
+GestureDetector _moreSheetListTile({required MoreOption moreOption}) {
   return GestureDetector(
-    onTap: onTap,
+    onTap: () {
+      Get.back(result: moreOption);
+    },
     child: Container(
       height: 50,
       width: WcWidth,
@@ -76,11 +60,11 @@ GestureDetector _moreSheetListTile(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            icon,
+            moreOptionsToIcon(moreOption),
             const SizedBox(
               width: 12,
             ),
-            Text(text,
+            Text(moreOptionsToKorean(moreOption),
                 style: GoogleFonts.notoSans(
                     fontSize: 17,
                     color: WcColors.black,
