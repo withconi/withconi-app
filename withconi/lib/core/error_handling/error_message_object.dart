@@ -107,6 +107,18 @@ class ErrorMessage extends Equatable {
         title: '유저정보 업데이트 실패',
         message: '사용자 정보를 수정할 수 없었어요',
       ),
+      permissionDeniedFailure: () => const ErrorMessage(
+        title: '권한 거절 에러',
+        message: '권한을 얻을 수 없어요',
+      ),
+      permissionPermanentlyDeniedFailure: () => const ErrorMessage(
+        title: '권한 거절 에러',
+        message: '권한을 얻을 수 없어요',
+      ),
+      notFoundPostFailure: () => const ErrorMessage(
+        title: '게시물 not found error',
+        message: '삭제된 게시물입니다',
+      ),
     );
   }
 }
