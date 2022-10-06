@@ -5,10 +5,13 @@ import 'package:dartz/dartz.dart';
 import 'package:withconi/controller/ui_helper/infinite_scroll.dart';
 import 'package:withconi/core/error_handling/exceptions.dart';
 import 'package:withconi/data/model/disease.dart';
+import 'package:withconi/data/model/request_model/request_model.dart';
 import 'package:withconi/data/provider/community_api.dart';
 import 'package:withconi/data/provider/disease_api.dart';
 import '../../configs/constants/enum.dart';
 import '../../core/error_handling/failures.dart';
+import '../model/comment.dart';
+import '../model/report.dart';
 import '../model/response_model/response_model.dart';
 import '../model/board.dart';
 import '../model/post.dart';
@@ -31,12 +34,16 @@ class CommunityRepository {
   Future<Either<Failure, List<Post>>> getPostList(
       {required PaginationFilter paginationFilter,
       required String boardId,
-      required PostType postType}) async {
+      required PostType postType,
+      required String userId}) async {
     try {
-      Map<String, dynamic> data = await _api.getPosts(
-          paginationFilter: paginationFilter,
-          boardId: boardId,
-          postType: postTypeToValue(postType));
+      Map<String, dynamic> data = await _api.getPostList({
+        "page": paginationFilter.page,
+        "listSize": paginationFilter.limit,
+        "boardId": boardId,
+        "postType": postTypeToValue(postType),
+        "userId": userId
+      });
       List<Post> postList = PostResponse.fromJson(data).results;
       return Right(postList);
     } on NoInternetConnectionException {
@@ -46,7 +53,75 @@ class CommunityRepository {
     }
   }
 
-  Future<Either<Failure, List<Post>>> getUserPostList(
+  Future<Either<Failure, Post>> getPost(
+      {required String postId,
+      required String boardId,
+      required String userId}) async {
+    try {
+      Map<String, dynamic> data = await _api.getPost({
+        "boardId": boardId,
+        "postId": postId,
+        "userId": userId,
+      });
+      Post post = Post.fromJson(data['boardItem']);
+      return Right(post);
+    } on NoInternetConnectionException {
+      return Left(NoConnectionFailure());
+    } on DataParsingException {
+      return Left(DataParsingFailure());
+    } on NotFoundException {
+      return Left(NotFoundPostFailure());
+    } catch (e) {
+      return Left(Failure.userInfoUpdateFailure());
+    }
+  }
+
+  Future<Either<Failure, bool>> deletePost(
+      {required String postId, required String boardId}) async {
+    try {
+      Map<String, dynamic> data =
+          await _api.deletePost(boardId: boardId, postId: postId);
+      return Right(true);
+    } on NoInternetConnectionException {
+      return Left(NoConnectionFailure());
+    } on DataParsingException {
+      return Left(DataParsingFailure());
+    }
+  }
+
+  Future<Either<Failure, bool>> createReport(
+      {required Report newReport}) async {
+    try {
+      Map<String, dynamic> data =
+          await _api.createReport(reportJson: newReport.toJson());
+      return Right(true);
+    } on NoInternetConnectionException {
+      return Left(NoConnectionFailure());
+    } on DataParsingException {
+      return Left(DataParsingFailure());
+    }
+  }
+
+  Future<Either<Failure, CommentResponse>> getCommentList(
+      {required String boardId,
+      required String postId,
+      required String userId}) async {
+    try {
+      Map<String, dynamic> data = await _api.getCommentList({
+        "boardId": boardId,
+        "postId": postId,
+        "userId": userId,
+      });
+      CommentResponse commentResponse = CommentResponse.fromJson(data);
+      return Right(commentResponse);
+    } on NoInternetConnectionException {
+      return Left(NoConnectionFailure());
+    } on DataParsingException {
+      return Left(DataParsingFailure());
+    }
+  }
+
+  Future<Either<Failure, List<Post>>> getMyPostList(
       {required PaginationFilter paginationFilter,
       required String userId}) async {
     try {
@@ -96,6 +171,29 @@ class CommunityRepository {
     }
   }
 
+  Future<Either<Failure, List<String>>> updateLikeComment(
+      {required String uid,
+      required String postId,
+      required String commentId,
+      required bool isLiked}) async {
+    try {
+      Map<String, dynamic> likeCommentData = await _api.updateLikeComment(
+          uid: uid, postId: postId, isLiked: isLiked, commentId: commentId);
+
+      List<String> likeCommentIdList =
+          (likeCommentData['likePostLineReplies'] as List<dynamic>)
+              .map((e) => e as String)
+              .toList();
+
+      print("Liked Comment Number => ${likeCommentIdList.length}");
+      return Right(likeCommentIdList);
+    } on NoInternetConnectionException {
+      return Left(NoConnectionFailure());
+    } on DataParsingException {
+      return Left(DataParsingFailure());
+    }
+  }
+
   Future<Either<Failure, Post>> newPost({required Post newPost}) async {
     try {
       Map<String, dynamic> postJson = newPost.toJson();
@@ -107,6 +205,37 @@ class CommunityRepository {
       } else {
         return Left(DataParsingFailure());
       }
+    } on NoInternetConnectionException {
+      return Left(NoConnectionFailure());
+    } on DataParsingException {
+      return Left(DataParsingFailure());
+    }
+  }
+
+  Future<Either<Failure, bool>> updateMyPost({required Post editPost}) async {
+    try {
+      Map<String, dynamic> postJson = editPost.toJson();
+      //TODO 에러 확인하기 위해서 이미지 파라미터 잠시 없앰
+      // postJson.remove('images');
+      Map<String, dynamic> data =
+          await _api.updateMyPost(updateDataJson: postJson);
+
+      return Right(true);
+    } on NoInternetConnectionException {
+      return Left(NoConnectionFailure());
+    } on DataParsingException {
+      return Left(DataParsingFailure());
+    }
+  }
+
+  Future<Either<Failure, bool>> newComment(
+      {required Comment newComment}) async {
+    try {
+      Map<String, dynamic> newCommentJson =
+          CommentCreateRequest(comment: newComment).toJson();
+      await _api.newComment(newCommentJson: newCommentJson);
+
+      return Right(true);
     } on NoInternetConnectionException {
       return Left(NoConnectionFailure());
     } on DataParsingException {
