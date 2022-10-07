@@ -5,7 +5,10 @@ import '../../../data/model/comment.dart';
 import '../../../data/model/user.dart';
 import '../../../import_basic.dart';
 
-showMoreBottomSheet({required String userId, required String authorId}) {
+showMoreBottomSheet(
+    {required String userId,
+    required String authorId,
+    required String authorName}) {
   List<MoreOption> optionList = [];
   if (userId == authorId) {
     optionList = [MoreOption.edit, MoreOption.delete];
@@ -26,7 +29,8 @@ showMoreBottomSheet({required String userId, required String authorId}) {
           ),
           Column(
             children: optionList
-                .map((e) => _moreSheetListTile(moreOption: e))
+                .map((e) =>
+                    _moreSheetListTile(moreOption: e, authorName: authorName))
                 .toList(),
           )
         ],
@@ -45,7 +49,8 @@ showMoreBottomSheet({required String userId, required String authorId}) {
   );
 }
 
-GestureDetector _moreSheetListTile({required MoreOption moreOption}) {
+GestureDetector _moreSheetListTile(
+    {required MoreOption moreOption, required String authorName}) {
   return GestureDetector(
     onTap: () {
       Get.back(result: moreOption);
@@ -64,7 +69,8 @@ GestureDetector _moreSheetListTile({required MoreOption moreOption}) {
             const SizedBox(
               width: 12,
             ),
-            Text(moreOptionsToKorean(moreOption),
+            Text(
+                moreOptionsToKorean(option: moreOption, authorName: authorName),
                 style: GoogleFonts.notoSans(
                     fontSize: 17,
                     color: WcColors.black,
