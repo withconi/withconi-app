@@ -7,15 +7,18 @@ import 'package:withconi/ui/theme/text_theme.dart';
 import 'package:withconi/ui/widgets/snackbar.dart';
 import '../../../import_basic.dart';
 
-Future<PlaceVerificationEntity> showPlaceVerificationDialog(
+Future<VerificationGroup> showPlaceVerificationDialog(
     {required String title,
     String? subtitle,
-    required PlaceVerificationEntity previousVerification,
+    required VerificationGroup previousVerification,
     required BuildContext context}) async {
-  PlaceVerificationEntity newVerification = previousVerification;
+  VerificationGroup newVerification = previousVerification;
   int chanceLeft = previousVerification.chanceLeft;
 
-  PlaceVerificationEntity? result = await showDialog(
+  print(
+      '정답 이미지 index : ${newVerification.list.indexOf(newVerification.list.firstWhere((element) => element.isAnswer == true))}');
+
+  VerificationGroup? result = await showDialog(
       context: context,
       builder: (context) {
         bool isChecked = false;
@@ -124,7 +127,7 @@ Future<PlaceVerificationEntity> showPlaceVerificationDialog(
                       children: [
                         GridView.builder(
                           shrinkWrap: true,
-                          itemCount: previousVerification.imageSrcList.length,
+                          itemCount: previousVerification.list.length,
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 2),
@@ -150,6 +153,11 @@ Future<PlaceVerificationEntity> showPlaceVerificationDialog(
                                         totalDuration:
                                             Duration(milliseconds: 800));
                                     HapticFeedback.vibrate();
+                                    setState(() {
+                                      newVerification.list.shuffle();
+                                    });
+                                    print(
+                                        '정답 이미지 index : ${newVerification.list.indexOf(newVerification.list.firstWhere((element) => element.isAnswer == true))}');
                                   }
                                 }
                               },
@@ -157,7 +165,7 @@ Future<PlaceVerificationEntity> showPlaceVerificationDialog(
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
                                   image: NetworkImage(
-                                    previousVerification.imageSrcList[index],
+                                    previousVerification.list[index].imageSrc,
                                   ),
                                   fit: BoxFit.cover,
                                 )),
@@ -207,9 +215,8 @@ Future<PlaceVerificationEntity> showPlaceVerificationDialog(
   return result ?? previousVerification;
 }
 
-verifySelectedImage(
-    int selectedIndex, PlaceVerificationEntity verification) async {
-  if (selectedIndex == verification.correctImageIndex) {
+verifySelectedImage(int selectedIndex, VerificationGroup verification) async {
+  if (verification.list[selectedIndex].isAnswer) {
     verification.verified = true;
   } else {
     if (verification.chanceLeft >= 1) {
@@ -217,7 +224,6 @@ verifySelectedImage(
       verification.verified = false;
     }
   }
-  print(verification.chanceLeft);
 
   return verification;
 }
