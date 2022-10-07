@@ -4,7 +4,9 @@ import 'package:withconi/core/error_handling/error_message_object.dart';
 import 'package:withconi/data/model/disease.dart';
 import 'package:withconi/data/repository/disease_repository.dart';
 import '../../core/error_handling/failures.dart';
+import '../../data/model/response_model/response_model.dart';
 import '../../import_basic.dart';
+import '../ui_helper/infinite_scroll.dart';
 
 class DiseaseSearchController extends GetxController
     with StateMixin<List<Disease>> {
@@ -16,6 +18,25 @@ class DiseaseSearchController extends GetxController
   Rxn<Failure> failure = Rxn<Failure>();
   RxList<Disease> diseaseListSelected = RxList<Disease>();
   RxList<Disease> diseaseListSearched = RxList<Disease>();
+
+  final Rx<PaginationFilter> _paginationFilter = PaginationFilter(
+    page: 1,
+    limit: 20,
+  ).obs;
+
+  Rx<ScrollController> scrollController = ScrollController().obs;
+
+  final RxBool _lastPage = false.obs;
+  final RxBool _isLoading = false.obs;
+
+  RxInt count = 0.obs;
+
+  late Worker _debounceWorker;
+
+  int get limit => _paginationFilter.value.limit!;
+  int get _page => _paginationFilter.value.page!;
+
+  void loadNextPage() => _changePaginationFilter(_page + 1, limit);
 
   @override
   void onInit() {
@@ -29,11 +50,45 @@ class DiseaseSearchController extends GetxController
   void onReady() {
     super.onReady();
 
-    debounce(_disease, searchNewDiseaseList, time: Duration(milliseconds: 200));
+    _debounceWorker = debounce(_disease, _changeSeachKeywords,
+        time: Duration(milliseconds: 300));
+
+    ever(_paginationFilter, _getDiseaseList);
+
+    scrollController.value.addListener(() {
+      var nextPageTrigger =
+          0.8 * scrollController.value.position.maxScrollExtent;
+      if (!_isLoading.value &&
+          !_lastPage.value &&
+          scrollController.value.offset >= nextPageTrigger) {
+        loadNextPage();
+      }
+    });
+  }
+
+  @override
+  void onClose() {
+    super.onClose();
+    scrollController.value.dispose();
+    _debounceWorker.dispose();
+  }
+
+  void _changePaginationFilter(int page, int limit) {
+    _paginationFilter.update((val) {
+      val!.page = page;
+      val.limit = limit;
+    });
+  }
+
+  void _changeSeachKeywords(_keyword) {
+    diseaseListSearched.clear();
+    _lastPage.value = false;
+    _changePaginationFilter(1, limit);
   }
 
   void onDiseaseChanged(String val) {
     _disease.value = val;
+    count.value++;
     if (val.isEmpty) clearResult();
   }
 
@@ -43,26 +98,63 @@ class DiseaseSearchController extends GetxController
     change(null, status: RxStatus.empty());
   }
 
-  searchNewDiseaseList(String val) async {
-    if (val.isEmpty) {
+  _getDiseaseList(_paginationFilter) async {
+    if (disease.isEmpty) {
       clearResult();
       return;
     } else {
-      change(null, status: RxStatus.loading());
+      _isLoading.value = true;
+      if (_paginationFilter.page == 1) {
+        change(null, status: RxStatus.loading());
+      }
 
-      Either<Failure, List<Disease>> newResultListEither =
-          await _diseaseRepository.getDiseaseList(diseaseName: val);
+      Either<Failure, DiseaseResponse> newResultListEither =
+          await _diseaseRepository.getDiseaseList(
+              diseaseName: disease, paginationFilter: _paginationFilter);
 
       newResultListEither.fold((failure) {
         ErrorMessage errorMessage =
             ErrorMessage.mapFailureToErrorMessage(failure: failure);
         change(null, status: RxStatus.error(errorMessage.message));
-      }, (list) {
-        diseaseListSearched.assignAll(list);
+      }, (diseaseResponse) {
+        if (diseaseResponse.list.isEmpty) {
+          _lastPage.value = true;
+        } else {
+          diseaseListSearched.addAll(diseaseResponse.list);
+        }
         change(diseaseListSearched, status: RxStatus.success());
+        _isLoading.value = false;
       });
+      Get.focusScope!.unfocus();
     }
   }
+
+  // _getMoreDiseaseList(_paginationFilter) async {
+  //   if (disease.isEmpty) {
+  //     clearResult();
+  //     return;
+  //   } else {
+  //     change(null, status: RxStatus.loading());
+
+  //     Either<Failure, DiseaseResponse> newResultListEither =
+  //         await _diseaseRepository.getDiseaseList(
+  //             diseaseName: disease, paginationFilter: _paginationFilter);
+
+  //     newResultListEither.fold((failure) {
+  //       ErrorMessage errorMessage =
+  //           ErrorMessage.mapFailureToErrorMessage(failure: failure);
+  //       change(null, status: RxStatus.error(errorMessage.message));
+  //     }, (diseaseResponse) {
+  //       if (diseaseResponse.list.isEmpty) {
+  //         _lastPage.value = true;
+  //       } else {
+  //         diseaseListSearched.addAll(diseaseResponse.list);
+  //       }
+
+  //       change(diseaseListSearched, status: RxStatus.success());
+  //     });
+  //   }
+  // }
 
   onDiseaseClicked(Disease disease) {
     if (diseaseListSelected.contains(disease)) {
