@@ -1,27 +1,25 @@
 // ignore_for_file: unused_local_variable
 import 'dart:async';
-
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:withconi/configs/constants/enum.dart';
 import 'package:withconi/controller/auth_controller.dart';
+import 'package:withconi/controller/signup/data/signup_data_manager.dart';
 import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
 import 'package:withconi/core/error_handling/failures.dart';
-import 'package:withconi/data/repository/apple_repository.dart';
+import 'package:withconi/data/repository/platform_repository/apple_repository.dart';
 import 'package:withconi/data/repository/auth_repository.dart';
-import 'package:withconi/data/repository/kakao_repository.dart';
-import 'package:withconi/data/repository/naver_repository.dart';
-import 'package:withconi/data/repository/signup_repository.dart';
+import 'package:withconi/data/repository/platform_repository/kakao_repository.dart';
+import 'package:withconi/data/repository/platform_repository/naver_repository.dart';
 import '../configs/constants/regex.dart';
 import '../configs/constants/strings.dart';
 import '../core/custom_auth_info.dart';
-import '../data/repository/google_repository.dart';
+import '../data/repository/platform_repository/google_repository.dart';
 import '../import_basic.dart';
 
 enum ButtonState { success, none, loading }
 
-class StartPageController extends GetxController with StateMixin<ButtonState> {
-  final SignupRepository _signupUserRepository = Get.find<SignupRepository>();
+class StartPageController extends GetxController {
   final AuthRepository _authRepository = AuthRepository.to;
   final KakaoRepository _kakaoRepository = KakaoRepository();
   final NaverRepository _naverRepository = NaverRepository();
@@ -36,14 +34,15 @@ class StartPageController extends GetxController with StateMixin<ButtonState> {
   TextEditingController emailTextController = TextEditingController();
   CustomAuthInfo? customAuthInfo;
   RxBool validateText = false.obs;
-  Timer? _debounce;
+  Worker? _worker;
 
   String get emailInputText => _emailInputText.value;
 
   @override
   void onReady() {
     super.onReady();
-    ever(_emailInputText, _validateEmail);
+    _worker = debounce(_emailInputText, _validateEmail,
+        time: Duration(milliseconds: 300));
   }
 
   void onEmailChanged(String _email) {
@@ -60,20 +59,17 @@ class StartPageController extends GetxController with StateMixin<ButtonState> {
       {required UserState2 userState, required ButtonState button}) {
     if (userState == UserState2.signIn) {
       buttonText.value = '로그인';
-
       buttonState.value = button;
     } else if (userState == UserState2.signUp) {
       buttonText.value = '회원가입';
-
       buttonState.value = button;
     } else if (userState == UserState2.none) {
       buttonText.value = '다음';
-
       buttonState.value = button;
     }
   }
 
-  getEmailFromProvider(Provider provider) async {
+  Future<void> getEmailFromProvider(Provider provider) async {
     String _email = '';
     _selectedProvider = provider;
 
@@ -108,23 +104,23 @@ class StartPageController extends GetxController with StateMixin<ButtonState> {
     }
   }
 
-  _setNextStepByUserState(UserState2 _userState, String _email) async {
-    if (customAuthInfo == null) {
-      await _saveCustomAuthInfo(_email);
-    }
+  Future<void> _setNextStepByUserState(
+      UserState2 _userState, String _email) async {
+    await _getCustomAuthInfo(_email);
     if (_userState == UserState2.signUp) {
       //provider에 로그인 하여 oAuth 정보를 가져온 뒤 AuthController에 저장한다
-      await _signUp();
+      await _signUpNextPage();
     } else if (_userState == UserState2.signIn) {
       if (_selectedProvider == Provider.email) {
-        _signInEmail();
+        _signInEmailNextPage();
       } else {
         await _signInSnsUser();
       }
     }
   }
 
-  _signUp() async {
+  _signUpNextPage() async {
+    _initSignUpDataManager();
     switch (_selectedProvider) {
       case Provider.email:
         Get.toNamed(Routes.SIGNUP_PW);
@@ -143,15 +139,21 @@ class StartPageController extends GetxController with StateMixin<ButtonState> {
         break;
       default:
     }
-
-    // await AuthController.to.setUserInfo(redirectPage: true);
   }
 
-  _signInEmail() {
+  //본격적인 회원가입 과정을 진행하기 전 정보를 저장할 singleton class를 생성한다.
+  // class가 생성된 후 startController에서 얻은 customAuthInfo를 저장한다.
+  _initSignUpDataManager() {
+    Get.lazyReplace(() => SignUpDataManager());
+    final SignUpDataManager signUpDataManager = Get.find();
+    signUpDataManager.storeAuthInfo(customAuthInfo!);
+  }
+
+  _signInEmailNextPage() {
     Get.toNamed(Routes.SIGNIN_EMAIL);
   }
 
-  _saveCustomAuthInfo(String _email) async {
+  Future<void> _getCustomAuthInfo(String _email) async {
     late CustomAuthInfo newAuthInfo;
 
     if (_selectedProvider == Provider.email) {
@@ -192,14 +194,11 @@ class StartPageController extends GetxController with StateMixin<ButtonState> {
               .mapFailureToSnackbar(failure, 'getGoogleCredential'),
           (oAuthCredential) => newAuthInfo = CredentialAuthInfo(
               oAuthCredential: oAuthCredential, email: _email));
-    } else if (_selectedProvider == Provider.email) {
-      newAuthInfo = EmailPwdAuthInfo(password: '', email: _email);
     }
-
     _onAuthInfoChanged(newAuthInfo);
   }
 
-  _signInSnsUser() async {
+  Future<void> _signInSnsUser() async {
     switch (_selectedProvider) {
       case Provider.google:
         await _authRepository.signInWithAuthCredential(
@@ -237,15 +236,12 @@ class StartPageController extends GetxController with StateMixin<ButtonState> {
   Future<void> _determineButtonState(String _email) async {
     _changeButton(userState: UserState2.none, button: ButtonState.loading);
 
-    if (_debounce?.isActive ?? false) _debounce!.cancel();
-    _debounce = Timer(const Duration(milliseconds: 200), () async {
-      await _setUserStateByEmail(email: _email);
-      if (emailErrorText.value == null) {
-        _changeButton(userState: _userState, button: ButtonState.success);
-      } else {
-        _changeButton(userState: UserState2.none, button: ButtonState.none);
-      }
-    });
+    await _setUserStateByEmail(email: _email);
+    if (emailErrorText.value == null) {
+      _changeButton(userState: _userState, button: ButtonState.success);
+    } else {
+      _changeButton(userState: UserState2.none, button: ButtonState.none);
+    }
   }
 
   Future<bool?> _checkDuplicateEmail({required String email}) async {
@@ -261,7 +257,7 @@ class StartPageController extends GetxController with StateMixin<ButtonState> {
     return isDuplicateUser;
   }
 
-  onEmailButtonTap() async {
+  Future<void> onEmailButtonTap() async {
     await _setNextStepByUserState(_userState, _emailInputText.value);
   }
 }
