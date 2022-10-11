@@ -4,8 +4,7 @@ import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
 import 'package:withconi/data/repository/auth_repository.dart';
 import 'package:withconi/data/repository/conimal_repository.dart';
-import 'package:withconi/data/repository/signup_repository.dart';
-import 'package:withconi/ui/widgets/loading.dart';
+import 'package:withconi/ui/widgets/loading/loading_overlay.dart';
 import '../../configs/constants/auth_variables.dart';
 import '../../configs/constants/enum.dart';
 import '../../configs/constants/regex.dart';
@@ -115,6 +114,7 @@ class AddConimalController extends GetxController {
   }
 
   selectBirthDate() async {
+    Get.focusScope!.unfocus();
     DateTime? pickedDate = await showDatePicker(
         context: Get.context!,
         initialDate: _birthDate.value ?? DateTime.now(),
@@ -129,6 +129,7 @@ class AddConimalController extends GetxController {
   }
 
   selectAdoptedDate() async {
+    Get.focusScope!.unfocus();
     DateTime? pickedDate = await showDatePicker(
         context: Get.context!,
         initialDate: _adoptedDate.value ?? DateTime.now(),
@@ -143,6 +144,7 @@ class AddConimalController extends GetxController {
   }
 
   selectDisease() async {
+    Get.focusScope!.unfocus();
     List<Disease>? newDiseaseList =
         await Get.toNamed(Routes.DISEASE_ADD, arguments: _diseaseList)
             as List<Disease>?;
