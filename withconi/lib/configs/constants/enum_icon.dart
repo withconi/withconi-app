@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'enum.dart';
@@ -15,5 +16,19 @@ SvgPicture moreOptionsToIcon(MoreOption option) {
 
     default:
       return SvgPicture.asset('assets/icons/circle_delete.svg');
+  }
+}
+
+Image speciesToImage(Species species) {
+  switch (species) {
+    case Species.cat:
+      return Image.asset('assets/icons/cat_black.png');
+
+    case Species.dog:
+      return Image.asset(
+        'assets/icons/dog.png',
+      );
+    default:
+      return Image.asset('assets/icons/dog.png');
   }
 }
