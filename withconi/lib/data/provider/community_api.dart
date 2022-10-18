@@ -17,35 +17,71 @@ class CommunityAPI {
     return boardsData;
   }
 
-  Future<Map<String, dynamic>> getPosts({
-    required PaginationFilter paginationFilter,
-    required String boardId,
-    required String postType,
-  }) async {
+  Future<Map<String, dynamic>> getPostList(
+      Map<String, dynamic> data, bool requiresToken) async {
     Map<String, dynamic> postsData = await _dio.apiCall(
-      url: HttpUrl.POST_GET,
-      queryParameters: {
-        "page": paginationFilter.page,
-        "listSize": paginationFilter.limit,
-        "boardId": boardId,
-        "postType": postType,
-      },
+      header: {"requiresToken": requiresToken},
+      url: HttpUrl.COMMUNITY_GET_POST_LIST,
+      queryParameters: data,
       body: null,
       requestType: RequestType.GET,
     );
     return postsData;
+  }
+
+  Future<Map<String, dynamic>> getPost(
+      Map<String, dynamic> data, bool requiresToken) async {
+    Map<String, dynamic> postData = await _dio.apiCall(
+      header: {"requiresToken": requiresToken},
+      url: HttpUrl.COMMUNITY_GET_POST,
+      queryParameters: data,
+      body: null,
+      requestType: RequestType.GET,
+    );
+    return postData;
+  }
+
+  Future<Map<String, dynamic>> deletePost({
+    required String boardId,
+    required String postId,
+    required bool requiresToken,
+  }) async {
+    Map<String, dynamic> postData = await _dio.apiCall(
+      header: {"requiresToken": requiresToken},
+      url: HttpUrl.COMMUNITY_DELETE_POST,
+      queryParameters: null,
+      body: {
+        "boardId": boardId,
+        "postId": postId,
+      },
+      requestType: RequestType.POST,
+    );
+    return postData;
+  }
+
+  Future<Map<String, dynamic>> createReport(
+      {required Map<String, dynamic> reportJson}) async {
+    Map<String, dynamic> postData = await _dio.apiCall(
+      url: HttpUrl.COMMUNITY_CREATE_REPORT,
+      queryParameters: null,
+      body: reportJson,
+      requestType: RequestType.POST,
+    );
+    return postData;
   }
 
   Future<Map<String, dynamic>> getMyPosts({
     required PaginationFilter paginationFilter,
-    required String userId,
+    required bool requiresToken,
+    // required String userId,
   }) async {
     Map<String, dynamic> postsData = await _dio.apiCall(
-      url: HttpUrl.POST_MY_GET,
+      header: {"requiresToken": requiresToken},
+      url: HttpUrl.COMMUNITY_GET_MY_POST_LIST,
       queryParameters: {
         "page": paginationFilter.page,
         "listSize": paginationFilter.limit,
-        "userId": userId,
+        // "userId": userId,
       },
       body: null,
       requestType: RequestType.GET,
@@ -53,10 +89,24 @@ class CommunityAPI {
     return postsData;
   }
 
-  Future<Map<String, dynamic>> getLikedPosts({required String uid}) async {
+  Future<Map<String, dynamic>> getCommentList(
+      Map<String, dynamic> data, bool requiresToken) async {
+    Map<String, dynamic> commentsData = await _dio.apiCall(
+      header: {"requiresToken": requiresToken},
+      url: HttpUrl.COMMUNITY_COMMENT_LIST,
+      queryParameters: data,
+      body: null,
+      requestType: RequestType.GET,
+    );
+    return commentsData;
+  }
+
+  Future<Map<String, dynamic>> getLikedPosts(
+      {required bool requiresToken}) async {
     Map<String, dynamic> postsData = await _dio.apiCall(
-      url: HttpUrl.POST_LIKED_GET,
-      queryParameters: {"userId": uid},
+      header: {"requiresToken": requiresToken},
+      url: HttpUrl.COMMUNITY_GET_LIKE_POST_LIST,
+      queryParameters: null,
       body: null,
       requestType: RequestType.GET,
     );
@@ -64,16 +114,33 @@ class CommunityAPI {
   }
 
   Future<Map<String, dynamic>> updateLikePost(
-      {required String uid,
-      required String postId,
-      required bool isLiked}) async {
+      {required String postId,
+      required bool isLiked,
+      required bool requiresToken}) async {
     Map<String, dynamic> likedPostList = await _dio.apiCall(
-      url: HttpUrl.POST_LIKED_UPDATE,
+      header: {"requiresToken": requiresToken},
+      url: HttpUrl.COMMUNITY_UPDATE_POST_LIKE,
       queryParameters: null,
-      body: {"userId": uid, "postId": postId, "isLike": isLiked},
+      body: {"postId": postId, "isLike": isLiked},
       requestType: RequestType.POST,
     );
     return likedPostList;
+  }
+
+  Future<Map<String, dynamic>> updateLikeComment({
+    required String postId,
+    required String commentId,
+    required bool isLiked,
+    required bool requiresToken,
+  }) async {
+    Map<String, dynamic> likeCommentListData = await _dio.apiCall(
+      header: {"requiresToken": requiresToken},
+      url: HttpUrl.COMMENT_LIKE_UPDATE,
+      queryParameters: null,
+      body: {"postId": postId, "lineReplyId": commentId, "isLike": isLiked},
+      requestType: RequestType.POST,
+    );
+    return likeCommentListData;
   }
 
   Future<Map<String, dynamic>> searchPosts(
@@ -82,7 +149,7 @@ class CommunityAPI {
       String? postType,
       String? searchType}) async {
     Map<String, dynamic> postsData = await _dio.apiCall(
-      url: HttpUrl.POST_GET,
+      url: HttpUrl.COMMUNITY_GET_POST_LIST,
       queryParameters: {
         "page": paginationFilter.page,
         "listSize": paginationFilter.limit,
@@ -96,13 +163,41 @@ class CommunityAPI {
   }
 
   Future<Map<String, dynamic>> newPost(
-      {required Map<String, dynamic> newPostJson}) async {
+      {required Map<String, dynamic> newPostJson,
+      required bool requiresToken}) async {
     Map<String, dynamic> postedData = await _dio.apiCall(
+      header: {"requiresToken": requiresToken},
       url: HttpUrl.POST_CREATE,
       queryParameters: null,
       body: newPostJson,
       requestType: RequestType.POST,
     );
     return postedData;
+  }
+
+  Future<Map<String, dynamic>> updateMyPost(
+      {required Map<String, dynamic> updateDataJson,
+      required bool requiresToken}) async {
+    Map<String, dynamic> postedData = await _dio.apiCall(
+      header: {"requiresToken": requiresToken},
+      url: HttpUrl.POST_UPDATE_MY_POST,
+      queryParameters: null,
+      body: updateDataJson,
+      requestType: RequestType.POST,
+    );
+    return postedData;
+  }
+
+  Future<Map<String, dynamic>> newComment(
+      {required Map<String, dynamic> newCommentJson,
+      required bool requiresToken}) async {
+    Map<String, dynamic> commentData = await _dio.apiCall(
+      header: {'requiresToken': requiresToken},
+      url: HttpUrl.COMMENT_CREATE,
+      queryParameters: null,
+      body: newCommentJson,
+      requestType: RequestType.POST,
+    );
+    return commentData;
   }
 }
