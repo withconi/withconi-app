@@ -21,13 +21,15 @@ Comment _$CommentFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Comment {
   String get postId => throw _privateConstructorUsedError;
-  String get commentId => throw _privateConstructorUsedError;
-  String? get authorId => throw _privateConstructorUsedError;
+  String get boardId => throw _privateConstructorUsedError;
+  String? get commentId => throw _privateConstructorUsedError;
+  String get authorId => throw _privateConstructorUsedError;
   String get nickname => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
   @DateTimeConverter()
   DateTime get createdAt => throw _privateConstructorUsedError;
-  bool? get isLiked => throw _privateConstructorUsedError;
+  bool get isLike => throw _privateConstructorUsedError;
+  int get likeNum => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -40,12 +42,14 @@ abstract class $CommentCopyWith<$Res> {
       _$CommentCopyWithImpl<$Res>;
   $Res call(
       {String postId,
-      String commentId,
-      String? authorId,
+      String boardId,
+      String? commentId,
+      String authorId,
       String nickname,
       String content,
       @DateTimeConverter() DateTime createdAt,
-      bool? isLiked});
+      bool isLike,
+      int likeNum});
 }
 
 /// @nodoc
@@ -59,26 +63,32 @@ class _$CommentCopyWithImpl<$Res> implements $CommentCopyWith<$Res> {
   @override
   $Res call({
     Object? postId = freezed,
+    Object? boardId = freezed,
     Object? commentId = freezed,
     Object? authorId = freezed,
     Object? nickname = freezed,
     Object? content = freezed,
     Object? createdAt = freezed,
-    Object? isLiked = freezed,
+    Object? isLike = freezed,
+    Object? likeNum = freezed,
   }) {
     return _then(_value.copyWith(
       postId: postId == freezed
           ? _value.postId
           : postId // ignore: cast_nullable_to_non_nullable
               as String,
+      boardId: boardId == freezed
+          ? _value.boardId
+          : boardId // ignore: cast_nullable_to_non_nullable
+              as String,
       commentId: commentId == freezed
           ? _value.commentId
           : commentId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       authorId: authorId == freezed
           ? _value.authorId
           : authorId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       nickname: nickname == freezed
           ? _value.nickname
           : nickname // ignore: cast_nullable_to_non_nullable
@@ -91,10 +101,14 @@ class _$CommentCopyWithImpl<$Res> implements $CommentCopyWith<$Res> {
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      isLiked: isLiked == freezed
-          ? _value.isLiked
-          : isLiked // ignore: cast_nullable_to_non_nullable
-              as bool?,
+      isLike: isLike == freezed
+          ? _value.isLike
+          : isLike // ignore: cast_nullable_to_non_nullable
+              as bool,
+      likeNum: likeNum == freezed
+          ? _value.likeNum
+          : likeNum // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -107,12 +121,14 @@ abstract class _$$_CommentCopyWith<$Res> implements $CommentCopyWith<$Res> {
   @override
   $Res call(
       {String postId,
-      String commentId,
-      String? authorId,
+      String boardId,
+      String? commentId,
+      String authorId,
       String nickname,
       String content,
       @DateTimeConverter() DateTime createdAt,
-      bool? isLiked});
+      bool isLike,
+      int likeNum});
 }
 
 /// @nodoc
@@ -127,26 +143,32 @@ class __$$_CommentCopyWithImpl<$Res> extends _$CommentCopyWithImpl<$Res>
   @override
   $Res call({
     Object? postId = freezed,
+    Object? boardId = freezed,
     Object? commentId = freezed,
     Object? authorId = freezed,
     Object? nickname = freezed,
     Object? content = freezed,
     Object? createdAt = freezed,
-    Object? isLiked = freezed,
+    Object? isLike = freezed,
+    Object? likeNum = freezed,
   }) {
     return _then(_$_Comment(
       postId: postId == freezed
           ? _value.postId
           : postId // ignore: cast_nullable_to_non_nullable
               as String,
+      boardId: boardId == freezed
+          ? _value.boardId
+          : boardId // ignore: cast_nullable_to_non_nullable
+              as String,
       commentId: commentId == freezed
           ? _value.commentId
           : commentId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       authorId: authorId == freezed
           ? _value.authorId
           : authorId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       nickname: nickname == freezed
           ? _value.nickname
           : nickname // ignore: cast_nullable_to_non_nullable
@@ -159,10 +181,14 @@ class __$$_CommentCopyWithImpl<$Res> extends _$CommentCopyWithImpl<$Res>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      isLiked: isLiked == freezed
-          ? _value.isLiked
-          : isLiked // ignore: cast_nullable_to_non_nullable
-              as bool?,
+      isLike: isLike == freezed
+          ? _value.isLike
+          : isLike // ignore: cast_nullable_to_non_nullable
+              as bool,
+      likeNum: likeNum == freezed
+          ? _value.likeNum
+          : likeNum // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -173,12 +199,14 @@ class __$$_CommentCopyWithImpl<$Res> extends _$CommentCopyWithImpl<$Res>
 class _$_Comment implements _Comment {
   _$_Comment(
       {required this.postId,
+      required this.boardId,
       required this.commentId,
-      this.authorId = '',
+      required this.authorId,
       required this.nickname,
       required this.content,
       @DateTimeConverter() required this.createdAt,
-      this.isLiked = false});
+      required this.isLike,
+      this.likeNum = 0});
 
   factory _$_Comment.fromJson(Map<String, dynamic> json) =>
       _$$_CommentFromJson(json);
@@ -186,10 +214,11 @@ class _$_Comment implements _Comment {
   @override
   final String postId;
   @override
-  final String commentId;
+  final String boardId;
   @override
-  @JsonKey()
-  final String? authorId;
+  final String? commentId;
+  @override
+  final String authorId;
   @override
   final String nickname;
   @override
@@ -198,12 +227,14 @@ class _$_Comment implements _Comment {
   @DateTimeConverter()
   final DateTime createdAt;
   @override
+  final bool isLike;
+  @override
   @JsonKey()
-  final bool? isLiked;
+  final int likeNum;
 
   @override
   String toString() {
-    return 'Comment(postId: $postId, commentId: $commentId, authorId: $authorId, nickname: $nickname, content: $content, createdAt: $createdAt, isLiked: $isLiked)';
+    return 'Comment(postId: $postId, boardId: $boardId, commentId: $commentId, authorId: $authorId, nickname: $nickname, content: $content, createdAt: $createdAt, isLike: $isLike, likeNum: $likeNum)';
   }
 
   @override
@@ -212,12 +243,14 @@ class _$_Comment implements _Comment {
         (other.runtimeType == runtimeType &&
             other is _$_Comment &&
             const DeepCollectionEquality().equals(other.postId, postId) &&
+            const DeepCollectionEquality().equals(other.boardId, boardId) &&
             const DeepCollectionEquality().equals(other.commentId, commentId) &&
             const DeepCollectionEquality().equals(other.authorId, authorId) &&
             const DeepCollectionEquality().equals(other.nickname, nickname) &&
             const DeepCollectionEquality().equals(other.content, content) &&
             const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
-            const DeepCollectionEquality().equals(other.isLiked, isLiked));
+            const DeepCollectionEquality().equals(other.isLike, isLike) &&
+            const DeepCollectionEquality().equals(other.likeNum, likeNum));
   }
 
   @JsonKey(ignore: true)
@@ -225,12 +258,14 @@ class _$_Comment implements _Comment {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(postId),
+      const DeepCollectionEquality().hash(boardId),
       const DeepCollectionEquality().hash(commentId),
       const DeepCollectionEquality().hash(authorId),
       const DeepCollectionEquality().hash(nickname),
       const DeepCollectionEquality().hash(content),
       const DeepCollectionEquality().hash(createdAt),
-      const DeepCollectionEquality().hash(isLiked));
+      const DeepCollectionEquality().hash(isLike),
+      const DeepCollectionEquality().hash(likeNum));
 
   @JsonKey(ignore: true)
   @override
@@ -248,21 +283,25 @@ class _$_Comment implements _Comment {
 abstract class _Comment implements Comment {
   factory _Comment(
       {required final String postId,
-      required final String commentId,
-      final String? authorId,
+      required final String boardId,
+      required final String? commentId,
+      required final String authorId,
       required final String nickname,
       required final String content,
       @DateTimeConverter() required final DateTime createdAt,
-      final bool? isLiked}) = _$_Comment;
+      required final bool isLike,
+      final int likeNum}) = _$_Comment;
 
   factory _Comment.fromJson(Map<String, dynamic> json) = _$_Comment.fromJson;
 
   @override
   String get postId;
   @override
-  String get commentId;
+  String get boardId;
   @override
-  String? get authorId;
+  String? get commentId;
+  @override
+  String get authorId;
   @override
   String get nickname;
   @override
@@ -271,7 +310,9 @@ abstract class _Comment implements Comment {
   @DateTimeConverter()
   DateTime get createdAt;
   @override
-  bool? get isLiked;
+  bool get isLike;
+  @override
+  int get likeNum;
   @override
   @JsonKey(ignore: true)
   _$$_CommentCopyWith<_$_Comment> get copyWith =>

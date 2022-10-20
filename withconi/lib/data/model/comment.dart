@@ -9,14 +9,18 @@ class Comment with _$Comment {
   @JsonSerializable(explicitToJson: true)
   factory Comment({
     required String postId,
-    required String commentId,
-    @Default('') String? authorId,
+    required String boardId,
+    required String? commentId,
+    required String authorId,
     required String nickname,
     required String content,
     @DateTimeConverter() required DateTime createdAt,
-    @Default(false) bool? isLiked,
+    required bool isLike,
+    @Default(0) int likeNum,
   }) = _Comment;
 
   factory Comment.fromJson(Map<String, dynamic> json) =>
       _$CommentFromJson(json);
 }
+
+//TODO 테스트를 위해 isLiked, likeNum,  default 값 넣어놓음
