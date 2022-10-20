@@ -2,68 +2,53 @@ import 'dart:io';
 import 'package:carousel_indicator/carousel_indicator.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:withconi/ui/theme/text_theme.dart';
 import 'package:withconi/ui/widgets/button/icon_button.dart';
 import 'package:withconi/ui/widgets/photo_gallary/image_item.dart';
 import '../../../configs/constants/enum.dart';
+import '../../../configs/constants/enum_color.dart';
+import '../../../configs/helpers/calculator.dart';
+import '../../../controller/auth_controller.dart';
+import '../../../controller/community/communty_widgets/more_tap_bottom_sheet.dart';
+import '../../../data/model/post.dart';
 import '../../../import_basic.dart';
 import '../badge/badge.dart';
 import '../button/icon_text_button.dart';
 import '../button/like_button.dart';
 
-class WcUserPostListTile extends StatelessWidget {
-  WcUserPostListTile(
+class PostListTile extends StatelessWidget {
+  PostListTile(
       {Key? key,
-      required this.authorName,
-      required this.uploadAt,
-      required this.contents,
-      required this.liked,
-      required this.likesNum,
-      required this.commentsNum,
-      required this.images,
+      this.liked,
+      required this.post,
       this.badgeText,
-      this.badgeBackgroundColor,
-      this.badgeTextColor,
-      this.userProfile,
-      required this.onLikeChanged,
-      this.onCommentTap,
-      this.onPostTap,
+      this.onLikeChanged,
+      required this.onPostTap,
       this.onMoreTap,
+      this.simple = false,
       this.activeBadge = true,
-      this.activeComment = true,
-      this.activeLike = true,
-      this.activeMore = false,
-      required this.postType,
-      this.blockLikeButton = false,
       this.onLikeTap})
       : super(key: key);
-
-  List<ImageItem> images;
-  String authorName;
-  String uploadAt;
+  bool simple;
   String? badgeText;
-  Color? badgeBackgroundColor;
-  Color? badgeTextColor;
-  String contents;
-  bool liked;
-  int likesNum;
-  int commentsNum;
-  void Function(bool) onLikeChanged;
-  void Function()? onCommentTap;
-  void Function()? onPostTap;
-  void Function()? onMoreTap;
+  bool? liked;
+  Post post;
+  void Function(String, bool)? onLikeChanged;
+
+  void Function(Post post) onPostTap;
+  void Function(Post, MoreOption?)? onMoreTap;
   void Function()? onLikeTap;
   File? userProfile;
   bool activeBadge;
-  bool activeComment;
-  bool activeLike;
-  bool activeMore;
-  PostType postType;
-  bool blockLikeButton;
 
+  String uploadAtStr(DateTime createdAt) =>
+      TimeCalculator().calculateUploadAt(createdAt);
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onPostTap,
+      onTap: () {
+        onPostTap.call(post);
+      },
       child: Container(
         padding: EdgeInsets.fromLTRB(20, 24, 20, 16),
         decoration: BoxDecoration(
@@ -76,6 +61,7 @@ class WcUserPostListTile extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 17,
+              backgroundColor: WcColors.grey110,
             ),
             SizedBox(
               width: 10,
@@ -94,36 +80,35 @@ class WcUserPostListTile extends StatelessWidget {
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  authorName,
-                                  style: GoogleFonts.notoSans(
-                                      color: WcColors.grey200,
-                                      fontSize: 13.5,
-                                      fontWeight: FontWeight.w600,
-                                      height: 1.4),
-                                ),
-                                Text(
-                                  ' • $uploadAt',
-                                  style: GoogleFonts.notoSans(
-                                      color: WcColors.grey140,
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.w500,
-                                      height: 1.4),
-                                ),
+                                Text(post.nickname,
+                                    style: TextStyle(
+                                        fontFamily: WcFontFamily.notoSans,
+                                        color: WcColors.black,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                        height: 1.5)),
+                                Text(' • ${uploadAtStr(post.createdAt)}',
+                                    style: TextStyle(
+                                        fontFamily: WcFontFamily.notoSans,
+                                        color: WcColors.grey140,
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w400,
+                                        height: 1.5)),
                                 (activeBadge)
                                     ? WcBadge(
-                                        text: postTypeToKorean(postType),
-                                        backgroundColor: badgeBackgroundColor ??
-                                            Colors.transparent,
-                                        textColor: badgeTextColor ??
-                                            Colors.transparent,
+                                        text: postTypeToKorean(post.postType),
+                                        backgroundColor:
+                                            postTypeBackgroundColor(
+                                                post.postType),
+                                        textColor:
+                                            postTypeTextColor(post.postType),
                                       )
                                     : const SizedBox.shrink()
                               ],
                             ),
                           ),
                           Visibility(
-                            visible: images.isNotEmpty,
+                            visible: post.images.isNotEmpty,
                             child: Container(
                               height: 170,
                               margin: EdgeInsets.only(top: 15),
@@ -139,10 +124,11 @@ class WcUserPostListTile extends StatelessWidget {
                                       width: WcWidth - 90,
                                       child: CarouselSlider(
                                         options: CarouselOptions(
+                                            enableInfiniteScroll: false,
                                             onPageChanged: (index, reason) {},
                                             height: 180.0,
                                             viewportFraction: 1),
-                                        items: images.map((image) {
+                                        items: post.images.map((image) {
                                           return Container(
                                             width: WcWidth - 90,
                                             foregroundDecoration:
@@ -151,10 +137,10 @@ class WcUserPostListTile extends StatelessWidget {
                                                   begin: Alignment.topCenter,
                                                   end: Alignment.bottomCenter,
                                                   colors: [
-                                                    Color.fromARGB(20, 0, 0, 0),
+                                                    Color.fromARGB(14, 0, 0, 0),
                                                     Colors.transparent,
                                                     Colors.transparent,
-                                                    Color.fromARGB(70, 0, 0, 0),
+                                                    Color.fromARGB(14, 0, 0, 0),
                                                   ],
                                                   stops: [
                                                     0.0,
@@ -174,14 +160,15 @@ class WcUserPostListTile extends StatelessWidget {
                                       ),
                                     ),
                                     Visibility(
-                                      visible: images.length > 1,
+                                      visible: post.images.length > 1,
                                       child: Positioned(
                                           top: 7,
                                           right: 7,
-                                          child: SvgPicture.asset(
-                                            'assets/icons/image_multiple.svg',
-                                            color: WcColors.grey60,
-                                            width: 28,
+                                          child: Image.asset(
+                                            'assets/icons/image_multiple.png',
+                                            width: 20,
+                                            colorBlendMode:
+                                                BlendMode.luminosity,
                                           )),
                                     ),
                                   ],
@@ -197,13 +184,14 @@ class WcUserPostListTile extends StatelessWidget {
                                 decoration: const InputDecoration(
                                     border: InputBorder.none, isDense: true),
                                 controller:
-                                    TextEditingController(text: contents),
+                                    TextEditingController(text: post.content),
                                 readOnly: true,
                                 maxLines: 4,
                                 minLines: 1,
-                                style: GoogleFonts.notoSans(
+                                style: TextStyle(
+                                    fontFamily: WcFontFamily.notoSans,
                                     fontSize: 14.5,
-                                    fontWeight: FontWeight.w500,
+                                    fontWeight: FontWeight.w400,
                                     height: 1.5),
                               ),
                             ),
@@ -213,64 +201,80 @@ class WcUserPostListTile extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: 4,
-                ),
-                GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                    color: Colors.transparent,
-                    width: WcWidth - 40 - 46,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            (activeLike)
-                                ? Row(
-                                    children: [
-                                      WcLikeButton(
-                                        valueChanged: onLikeChanged,
-                                        likeNum: likesNum.toString(),
-                                        isLiked: liked,
-                                        disableLike: blockLikeButton,
-                                        onLikeTap: onLikeTap,
-                                      ),
-                                      SizedBox(
-                                        width: 18,
-                                      ),
-                                    ],
-                                  )
-                                : SizedBox.shrink(),
-                            (activeComment)
-                                ? WcIconTextButton(
+                (simple)
+                    ? SizedBox()
+                    : Column(
+                        children: [
+                          SizedBox(
+                            height: 4,
+                          ),
+                          Container(
+                            color: Colors.transparent,
+                            width: WcWidth - 40 - 46,
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        WcLikeButton(
+                                          valueChanged: (isLike) {
+                                            if (onLikeChanged != null) {
+                                              onLikeChanged!
+                                                  .call(post.postId!, isLike);
+                                            }
+                                          },
+                                          isLiked: liked ?? false,
+                                          onLikeTap: onLikeTap,
+                                        ),
+                                        Text(
+                                          post.likeNum.toString(),
+                                          style: GoogleFonts.montserrat(
+                                            fontSize: 14,
+                                            color: WcColors.grey140,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 18,
+                                        ),
+                                      ],
+                                    ),
+                                    WcIconTextButton(
+                                      active: true,
+                                      activeIconColor: WcColors.grey100,
+                                      iconSrc: 'assets/icons/comment.svg',
+                                      inactiveIconColor: WcColors.grey100,
+                                      onTap: () {},
+                                      text: post.commentNum.toString(),
+                                    )
+                                  ],
+                                ),
+                                WcIconButton(
                                     active: true,
+                                    onTap: () async {
+                                      MoreOption? selectedOption =
+                                          await showMoreBottomSheet(
+                                        userId:
+                                            AuthController.to.wcUser.value!.uid,
+                                        authorId: post.authorId,
+                                        authorName: post.nickname,
+                                      );
+                                      onMoreTap!.call(post, selectedOption);
+                                    },
+                                    iconHeight: 22,
+                                    touchWidth: 50,
+                                    touchHeight: 30,
+                                    backgroundColor: Colors.white,
+                                    iconSrc: 'assets/icons/dots.svg',
                                     activeIconColor: WcColors.grey100,
-                                    iconSrc: 'assets/icons/comment.svg',
-                                    inactiveIconColor: WcColors.grey100,
-                                    onTap: onCommentTap,
-                                    text: commentsNum.toString(),
-                                  )
-                                : SizedBox.shrink(),
-                          ],
-                        ),
-                        (activeMore)
-                            ? WcIconButton(
-                                active: true,
-                                onTap: onMoreTap,
-                                iconHeight: 22,
-                                touchWidth: 50,
-                                touchHeight: 30,
-                                backgroundColor: Colors.white,
-                                iconSrc: 'assets/icons/dots.svg',
-                                activeIconColor: WcColors.grey100,
-                                inactiveIconColor: WcColors.grey100)
-                            : SizedBox.shrink()
-                      ],
-                    ),
-                  ),
-                ),
+                                    inactiveIconColor: WcColors.grey100)
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
               ],
             ),
           ],
