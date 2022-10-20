@@ -12,9 +12,10 @@ _$_WcUser _$$_WcUserFromJson(Map<String, dynamic> json) => _$_WcUser(
       displayName: json['displayName'] as String,
       nickname: json['nickname'] as String,
       provider: $enumDecode(_$ProviderEnumMap, json['provider']),
-      isEmailVerified: json['isEmailVerified'] as bool? ?? false,
-      verificationSkipped: json['verificationSkipped'] as bool? ?? false,
+      isEmailVerified: json['isEmailVerified'] as bool,
+      verificationSkipped: json['verificationSkipped'] as bool,
       photoURL: json['photoURL'] as String?,
+      isWrittenReview: json['isWrittenReview'] as bool? ?? false,
       conimals: (json['conimals'] as List<dynamic>)
           .map((e) => Conimal.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -29,6 +30,7 @@ Map<String, dynamic> _$$_WcUserToJson(_$_WcUser instance) => <String, dynamic>{
       'isEmailVerified': instance.isEmailVerified,
       'verificationSkipped': instance.verificationSkipped,
       'photoURL': instance.photoURL,
+      'isWrittenReview': instance.isWrittenReview,
       'conimals': instance.conimals.map((e) => e.toJson()).toList(),
     };
 

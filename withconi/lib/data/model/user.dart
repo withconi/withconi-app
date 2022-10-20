@@ -14,9 +14,10 @@ class WcUser with _$WcUser {
       required String displayName,
       required String nickname,
       required Provider provider,
-      @Default(false) bool isEmailVerified,
-      @Default(false) bool verificationSkipped,
+      required bool isEmailVerified,
+      required bool verificationSkipped,
       String? photoURL,
+      @Default(false) bool? isWrittenReview,
       required List<Conimal> conimals}) = _WcUser;
 
   factory WcUser.fromJson(Map<String, dynamic> json) => _$WcUserFromJson(json);

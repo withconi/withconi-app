@@ -28,6 +28,7 @@ mixin _$WcUser {
   bool get isEmailVerified => throw _privateConstructorUsedError;
   bool get verificationSkipped => throw _privateConstructorUsedError;
   String? get photoURL => throw _privateConstructorUsedError;
+  bool? get isWrittenReview => throw _privateConstructorUsedError;
   List<Conimal> get conimals => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -48,6 +49,7 @@ abstract class $WcUserCopyWith<$Res> {
       bool isEmailVerified,
       bool verificationSkipped,
       String? photoURL,
+      bool? isWrittenReview,
       List<Conimal> conimals});
 }
 
@@ -69,6 +71,7 @@ class _$WcUserCopyWithImpl<$Res> implements $WcUserCopyWith<$Res> {
     Object? isEmailVerified = freezed,
     Object? verificationSkipped = freezed,
     Object? photoURL = freezed,
+    Object? isWrittenReview = freezed,
     Object? conimals = freezed,
   }) {
     return _then(_value.copyWith(
@@ -104,6 +107,10 @@ class _$WcUserCopyWithImpl<$Res> implements $WcUserCopyWith<$Res> {
           ? _value.photoURL
           : photoURL // ignore: cast_nullable_to_non_nullable
               as String?,
+      isWrittenReview: isWrittenReview == freezed
+          ? _value.isWrittenReview
+          : isWrittenReview // ignore: cast_nullable_to_non_nullable
+              as bool?,
       conimals: conimals == freezed
           ? _value.conimals
           : conimals // ignore: cast_nullable_to_non_nullable
@@ -126,6 +133,7 @@ abstract class _$$_WcUserCopyWith<$Res> implements $WcUserCopyWith<$Res> {
       bool isEmailVerified,
       bool verificationSkipped,
       String? photoURL,
+      bool? isWrittenReview,
       List<Conimal> conimals});
 }
 
@@ -148,6 +156,7 @@ class __$$_WcUserCopyWithImpl<$Res> extends _$WcUserCopyWithImpl<$Res>
     Object? isEmailVerified = freezed,
     Object? verificationSkipped = freezed,
     Object? photoURL = freezed,
+    Object? isWrittenReview = freezed,
     Object? conimals = freezed,
   }) {
     return _then(_$_WcUser(
@@ -183,6 +192,10 @@ class __$$_WcUserCopyWithImpl<$Res> extends _$WcUserCopyWithImpl<$Res>
           ? _value.photoURL
           : photoURL // ignore: cast_nullable_to_non_nullable
               as String?,
+      isWrittenReview: isWrittenReview == freezed
+          ? _value.isWrittenReview
+          : isWrittenReview // ignore: cast_nullable_to_non_nullable
+              as bool?,
       conimals: conimals == freezed
           ? _value._conimals
           : conimals // ignore: cast_nullable_to_non_nullable
@@ -201,9 +214,10 @@ class _$_WcUser implements _WcUser {
       required this.displayName,
       required this.nickname,
       required this.provider,
-      this.isEmailVerified = false,
-      this.verificationSkipped = false,
+      required this.isEmailVerified,
+      required this.verificationSkipped,
       this.photoURL,
+      this.isWrittenReview = false,
       required final List<Conimal> conimals})
       : _conimals = conimals;
 
@@ -221,13 +235,14 @@ class _$_WcUser implements _WcUser {
   @override
   final Provider provider;
   @override
-  @JsonKey()
   final bool isEmailVerified;
   @override
-  @JsonKey()
   final bool verificationSkipped;
   @override
   final String? photoURL;
+  @override
+  @JsonKey()
+  final bool? isWrittenReview;
   final List<Conimal> _conimals;
   @override
   List<Conimal> get conimals {
@@ -237,7 +252,7 @@ class _$_WcUser implements _WcUser {
 
   @override
   String toString() {
-    return 'WcUser(uid: $uid, email: $email, displayName: $displayName, nickname: $nickname, provider: $provider, isEmailVerified: $isEmailVerified, verificationSkipped: $verificationSkipped, photoURL: $photoURL, conimals: $conimals)';
+    return 'WcUser(uid: $uid, email: $email, displayName: $displayName, nickname: $nickname, provider: $provider, isEmailVerified: $isEmailVerified, verificationSkipped: $verificationSkipped, photoURL: $photoURL, isWrittenReview: $isWrittenReview, conimals: $conimals)';
   }
 
   @override
@@ -256,6 +271,8 @@ class _$_WcUser implements _WcUser {
             const DeepCollectionEquality()
                 .equals(other.verificationSkipped, verificationSkipped) &&
             const DeepCollectionEquality().equals(other.photoURL, photoURL) &&
+            const DeepCollectionEquality()
+                .equals(other.isWrittenReview, isWrittenReview) &&
             const DeepCollectionEquality().equals(other._conimals, _conimals));
   }
 
@@ -271,6 +288,7 @@ class _$_WcUser implements _WcUser {
       const DeepCollectionEquality().hash(isEmailVerified),
       const DeepCollectionEquality().hash(verificationSkipped),
       const DeepCollectionEquality().hash(photoURL),
+      const DeepCollectionEquality().hash(isWrittenReview),
       const DeepCollectionEquality().hash(_conimals));
 
   @JsonKey(ignore: true)
@@ -293,9 +311,10 @@ abstract class _WcUser implements WcUser {
       required final String displayName,
       required final String nickname,
       required final Provider provider,
-      final bool isEmailVerified,
-      final bool verificationSkipped,
+      required final bool isEmailVerified,
+      required final bool verificationSkipped,
       final String? photoURL,
+      final bool? isWrittenReview,
       required final List<Conimal> conimals}) = _$_WcUser;
 
   factory _WcUser.fromJson(Map<String, dynamic> json) = _$_WcUser.fromJson;
@@ -316,6 +335,8 @@ abstract class _WcUser implements WcUser {
   bool get verificationSkipped;
   @override
   String? get photoURL;
+  @override
+  bool? get isWrittenReview;
   @override
   List<Conimal> get conimals;
   @override
