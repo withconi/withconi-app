@@ -1,51 +1,43 @@
+import 'dart:developer';
+
+import 'package:dartz/dartz.dart';
+import 'package:withconi/configs/constants/enum.dart';
+import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/controller/community/communty_widgets/more_tap_bottom_sheet.dart';
-import 'package:withconi/data/repository/community_repository.dart';
-import 'package:withconi/ui/widgets/photo_gallary/image_item.dart';
-import '../../configs/constants/enum.dart';
+import 'package:withconi/data/model/report.dart';
+import 'package:withconi/data/model/response_model/response_model.dart';
+import 'package:withconi/ui/widgets/dialog/selection_dialog.dart';
+import 'package:withconi/ui/widgets/error_widget/error_widget.dart';
+import 'package:withconi/ui/widgets/loading/loading_page.dart';
 import '../../configs/helpers/calculator.dart';
+import '../../core/error_handling/failures.dart';
 import '../../data/model/comment.dart';
 import '../../data/model/post.dart';
+import '../../data/repository/community_repository.dart';
 import '../../import_basic.dart';
+import '../../ui/widgets/error_page/error_page.dart';
+import '../../ui/widgets/loading/loading_overlay.dart';
 import '../ui_helper/infinite_scroll.dart';
+import '../ui_interpreter/failure_ui_interpreter.dart';
 import 'communty_widgets/comment_bottom_sheet.dart';
 
-class CommunityPostDetailController extends GetxController {
-  // final CommunityRepository _communityRepository = CommunityRepository();
-  List<ImageItem> images = [
-    ImageItem(
-        id: 'tag1',
-        resource: 'assets/images/image1.jpeg',
-        imageType: ImageType.asset),
-    ImageItem(
-        id: 'tag2',
-        resource: 'assets/images/image2.jpeg',
-        imageType: ImageType.asset),
-    ImageItem(
-        id: 'tag3',
-        resource:
-            'https://search.pstatic.net/common/?src=http%3A%2F%2Fshop1.phinf.naver.net%2F20210917_199%2F1631861436249TX26u_JPEG%2F32997264078967613_1334183573.jpg&type=sc960_832',
-        imageType: ImageType.network),
-  ];
+enum CommunityPageResultKey { blockAuthorId }
 
-  Rx<Post> thisPost = Post(
-          authorId: 'authorId',
-          boardId: "boardId",
-          postId: "postId",
-          nickname: "nickname",
-          postType: PostType.cat,
-          content:
-              "고양이가 밥을 안 먹으려고 할 때 단순히 식사 투정이라고 생각하고 그냥 넘어가면 안돼요. 질병이 원인일 수도 있기 때문이죠. 코가 막히거나 감기가 걸려 불편해서 밥을 안 먹을 수도 있고, 위장에 염증이 있거나 기생충에 감염되었을 수도 있어요. 아니면 이물질을 삼켜 식사 중 구토를 하거나 음식을 제대로 먹지 못하고, 치아나 잇몸에 염증이 있어 통증을 느낄 수도 있습니다.",
-          createdAt: DateTime.now())
-      .obs;
+class CommunityPostDetailController extends GetxController {
+  final CommunityRepository _communityRepository = CommunityRepository();
+
+  late Rx<Post> thisPost;
   RxList<Comment> commentList = <Comment>[
     Comment(
+        authorId: '',
         nickname: "nickname",
         content: "고양이가 밥을 안 먹으려고 할 때 밥을 그냥 안줘버리면 어떻게 되나요?",
         createdAt: DateTime.now(),
-        commentId: '',
-        postId: '')
+        commentId: '123',
+        postId: '',
+        boardId: '',
+        isLike: false)
   ].obs;
-
   List<String> postType = [
     '모두',
     '강아지',
@@ -55,19 +47,27 @@ class CommunityPostDetailController extends GetxController {
   RxString selectedPostSort = '최신순'.obs;
   List<String> postSort = ['최신순', '인기순'];
   RxList<String> userLikedPost = ['먼지', 'c', 'd'].obs;
+  List<String> likeCommentIdList = <String>[];
 
-  final _paginationFilter = PaginationFilter().obs;
+  final _paginationFilter = PaginationFilter(page: 1, limit: 10).obs;
   final _lastPage = false.obs;
+  RxBool dataLoaded = false.obs;
   RxInt currentImageIndex = 0.obs;
-  int get limit => _paginationFilter.value.limit!;
-  int get page => _paginationFilter.value.page!;
+  int get limit => _paginationFilter.value.limit;
+  int get page => _paginationFilter.value.page;
   bool get lastPage => _lastPage.value;
   String uploadAtStr(DateTime createdAt) =>
       TimeCalculator().calculateUploadAt(createdAt);
 
+  GlobalKey commentWidgetKey = GlobalKey();
+  ScrollController scrollController = ScrollController();
+
   @override
-  onInit() {
+  onInit() async {
     super.onInit();
+    Post post = Get.arguments as Post;
+    await _setPost(postId: post.postId!, boardId: post.boardId);
+    await _getCommentList(postId: post.postId!, boardId: post.boardId);
   }
 
   void onPostSortingChanged(String? sortingType) {
@@ -78,20 +78,215 @@ class CommunityPostDetailController extends GetxController {
     selectedPostType.value = postType;
   }
 
+  _setPost({required String postId, required String boardId}) async {
+    dataLoaded.value = false;
+    Either<Failure, Post> postEither = await _communityRepository.getPost(
+      postId: postId,
+      boardId: boardId,
+    );
+    postEither.fold((failure) {
+      Get.off(ErrorPage(
+        failure: failure,
+      ));
+      dataLoaded.value = false;
+    }, (post) {
+      thisPost = post.obs;
+      dataLoaded.value = true;
+    });
+  }
+
+  _getCommentList({required String postId, required String boardId}) async {
+    Either<Failure, CommentResponse> commentEither =
+        await _communityRepository.getCommentList(
+      postId: postId,
+      boardId: boardId,
+    );
+    commentEither.fold((failure) {}, (commentResponse) {
+      commentList.addAll(commentResponse.list);
+    });
+  }
+
+  _deletePost() async {
+    Either<Failure, bool> deleteEither = await _communityRepository.deletePost(
+        postId: thisPost.value.postId!, boardId: thisPost.value.boardId);
+    deleteEither.fold((failure) {
+      FailureInterpreter().mapFailureToDialog(failure, 'getPost');
+    }, (success) {
+      log('게시물 삭제 완료');
+      Get.back();
+    });
+  }
+
   Future<void> addComment() async {
-    Comment? newComment = await showCommentBottomSheet();
-    if (newComment != null) {
+    Comment? newComment = await showCommentBottomSheet(Comment(
+        isLike: false,
+        authorId: AuthController.to.wcUser.value!.uid,
+        postId: thisPost.value.postId!,
+        boardId: thisPost.value.boardId,
+        commentId: DateTime.now().microsecondsSinceEpoch.toString(),
+        nickname: AuthController.to.wcUser.value!.nickname,
+        content: '',
+        createdAt: DateTime.now()));
+    if (newComment != null && newComment.content.isNotEmpty) {
       commentList.add(newComment);
+      updateCommentDB(newComment);
     }
   }
 
-  onMoreTap({required String authorId, required String authorNickname}) async {
-    if (authorId != authorId) {
-      return await showMoreBottomSheet(
-          isAuthor: true, authorNickname: authorNickname);
+  updateCommentDB(Comment _newComment) async {
+    var newPostResultEither = await showLoading(
+        () => _communityRepository.newComment(newComment: _newComment));
+    newPostResultEither.fold((fail) {
+      FailureInterpreter().mapFailureToSnackbar(fail, 'createComment');
+      return;
+    }, (addedPost) {
+      return;
+    });
+    return;
+  }
+
+  onPageChanged(int index) {
+    currentImageIndex.value = index;
+  }
+
+  onLikeChanged(String postId, bool isLike) async {
+    print('asdfadf');
+    if (isLike) {
+      thisPost.value =
+          thisPost.value.copyWith(likeNum: thisPost.value.likeNum + 1);
     } else {
-      return await showMoreBottomSheet(
-          isAuthor: false, authorNickname: authorNickname);
+      thisPost.value =
+          thisPost.value.copyWith(likeNum: thisPost.value.likeNum - 1);
     }
+
+    var likePostsEither = await _communityRepository.updateLikePost(
+        uid: AuthController.to.wcUser.value!.uid,
+        postId: postId,
+        isLiked: isLike);
+
+    likePostsEither.fold(
+        (l) => FailureInterpreter().mapFailureToSnackbar(l, 'updateLikePost'),
+        (r) {});
+  }
+
+  updateCommentLike({required String commentId, required bool isLiked}) async {
+    if (isLiked) {
+      likeCommentIdList.add(commentId);
+      commentList.forEach((element) {
+        Comment changedComment = element.copyWith(likeNum: element.likeNum + 1);
+        if (element.commentId == commentId) {
+          commentList.replaceRange(commentList.indexOf(element),
+              commentList.indexOf(element) + 1, [changedComment]);
+        }
+      });
+    } else {
+      likeCommentIdList.remove(commentId);
+      commentList.forEach((element) {
+        Comment changedComment = element.copyWith(likeNum: element.likeNum - 1);
+        if (element.commentId == commentId) {
+          commentList.replaceRange(commentList.indexOf(element),
+              commentList.indexOf(element) + 1, [changedComment]);
+        }
+      });
+    }
+    commentList.refresh();
+
+    var likeCommentEither = await _communityRepository.updateLikeComment(
+        uid: AuthController.to.wcUser.value!.uid,
+        postId: thisPost.value.postId!,
+        isLiked: isLiked,
+        commentId: commentId);
+
+    likeCommentEither.fold(
+        (l) =>
+            FailureInterpreter().mapFailureToSnackbar(l, 'updateCommentLike'),
+        (r) => likeCommentIdList.assignAll(r));
+  }
+
+  onPostMoreTap(Post post, MoreOption? moreOption) async {
+    if (moreOption != null) {
+      switch (moreOption) {
+        case MoreOption.edit:
+          await Get.toNamed(Routes.COMMUNITY_POST_EDIT, arguments: post);
+          break;
+        case MoreOption.delete:
+          await _deletePost();
+          break;
+        case MoreOption.report:
+          Get.toNamed(Routes.COMMUNITY_NEW_REPORT,
+              arguments: Report(
+                  boardId: post.boardId,
+                  postId: post.postId!,
+                  userId: AuthController.to.wcUser.value!.uid,
+                  reviewDesc: []));
+          break;
+        case MoreOption.block:
+          blockUserPosts(postInfo: post);
+          break;
+        default:
+          break;
+      }
+    }
+  }
+
+  onCommentMoreTap(Comment comment, MoreOption? moreOption) async {
+    if (moreOption != null) {
+      switch (moreOption) {
+        case MoreOption.edit:
+          await Get.toNamed(Routes.COMMUNITY_POST_EDIT, arguments: comment);
+          break;
+        case MoreOption.delete:
+          await _deletePost();
+          break;
+        case MoreOption.report:
+          Get.toNamed(Routes.COMMUNITY_NEW_REPORT,
+              arguments: Report(
+                  boardId: comment.boardId,
+                  postId: comment.postId,
+                  userId: AuthController.to.wcUser.value!.uid,
+                  reviewDesc: []));
+          break;
+        case MoreOption.block:
+          blockUserComments(commentInfo: comment);
+          break;
+        default:
+          break;
+      }
+    }
+  }
+
+  blockUserComments({required Comment commentInfo}) async {
+    bool blockConfirmed = await showSelectionDialog(
+        confirmText: '네',
+        cancleText: '아니오',
+        title: '이 유저의 댓글을 차단할까요?',
+        subtitle: '이 유저의 모든 댓글을 숨깁니다.');
+
+    if (blockConfirmed) {
+      commentList
+          .removeWhere((element) => element.authorId == commentInfo.authorId);
+      commentList.refresh();
+    }
+  }
+
+  blockUserPosts({required Post postInfo}) async {
+    bool blockConfirmed = await showSelectionDialog(
+        confirmText: '네',
+        cancleText: '아니오',
+        title: '이 유저의 글을 차단할까요?',
+        subtitle: '이 유저의 모든 글을 숨깁니다.');
+
+    if (blockConfirmed) {
+      Get.back(
+          result: {CommunityPageResultKey.blockAuthorId: postInfo.authorId});
+    }
+  }
+
+  animateToCommentSection() {
+    Scrollable.ensureVisible(
+      commentWidgetKey.currentContext!,
+      duration: Duration(milliseconds: 200),
+      curve: Curves.easeInOut,
+    );
   }
 }
