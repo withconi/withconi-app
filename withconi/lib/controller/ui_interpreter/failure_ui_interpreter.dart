@@ -22,6 +22,13 @@ class FailureInterpreter {
     return showCustomSnackbar(text: errorMessage.message);
   }
 
+  String mapFailureToText(Failure _failure) {
+    ErrorMessage errorMessage =
+        ErrorMessage.mapFailureToErrorMessage(failure: _failure);
+
+    return errorMessage.message;
+  }
+
   mapFailureToSnackbar(Failure _failure, String occurMethod) {
     ErrorMessage errorMessage =
         ErrorMessage.mapFailureToErrorMessage(failure: _failure);
