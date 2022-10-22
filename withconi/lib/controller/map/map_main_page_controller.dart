@@ -1,18 +1,29 @@
 import 'dart:async';
+import 'package:app_settings/app_settings.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter_naver_map/flutter_naver_map.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:withconi/configs/helpers/calculator.dart';
 import 'package:withconi/configs/helpers/quick_sort.dart';
-import 'package:withconi/data/model/abstract_class/place_type.dart';
+import 'package:withconi/controller/auth_controller.dart';
+import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
+import 'package:withconi/data/model/abstract_class/place_preview.dart';
+import 'package:withconi/data/model/hospital_preview.dart';
 import 'package:withconi/data/repository/map_repository.dart';
 import 'package:withconi/ui/entities/location.dart';
+import 'package:withconi/ui/pages/map/map_location_permission_page.dart';
 import '../../configs/constants/enum.dart';
+import '../../core/error_handling/failures.dart';
 import '../../import_basic.dart';
 import '../../ui/entities/custom_marker.dart';
-import '../../ui/widgets/loading.dart';
+import '../../ui/widgets/loading/loading_overlay.dart';
 import '../ui_helper/infinite_scroll.dart';
 
 class MapMainPageController extends GetxController {
+  static MapMainPageController get to => Get.find(tag: "Initial");
+  RxBool hasLocationPermission = false.obs;
+  late String _userId;
+
   Completer<NaverMapController> _controller = Completer();
   late NaverMapController mapController;
   final MapRepository _mapRepository = MapRepository();
@@ -20,12 +31,18 @@ class MapMainPageController extends GetxController {
   Rxn<Position> currentPosition = Rxn<Position>();
   RxList<CustomMarker> placeMarkers = RxList<CustomMarker>();
   Rxn<CustomMarker> selectedMarker = Rxn<CustomMarker>();
+  Rxn<Marker> myLocationMarker = Rxn<Marker>();
 
   RxList<bool> selectedPlaceTypeList = [true, false, false].obs;
   RxBool showSelectedPlaceBottomSheet = false.obs;
   RxBool showPlaceListBottomSheet = true.obs;
   int _searchDistance = 3;
   bool mapInit = true;
+  Rx<LocationType> selectedLocationType = LocationType.currentLocation.obs;
+  List<LocationType> locationTypeList = [
+    LocationType.currentLocation,
+    LocationType.mapLocation,
+  ];
   List<PlaceType> placeTypeList = [
     PlaceType.all,
     PlaceType.hospital,
@@ -45,9 +62,9 @@ class MapMainPageController extends GetxController {
   RxBool onlyOpenPlace = false.obs;
   Rx<SortType> selectedSortType = SortType.nearest.obs;
   RxBool showResearchButton = false.obs;
-  late LatLngClass _searchLatLng;
-  late LatLngClass _currentLocation;
-  late CameraPosition _currentCameraPosition;
+  late LatLngClass _searchBaseLocation;
+  LatLngClass? _currentLocation;
+  // late CameraPosition _currentCameraPosition;
 
   Rx<PlaceType> selectedPlaceType = PlaceType.all.obs;
   Rxn<DiseaseType> selectedDiseaseType = Rxn<DiseaseType>();
@@ -73,8 +90,8 @@ class MapMainPageController extends GetxController {
   final RxBool _lastPage = false.obs;
   final RxBool _isLoading = false.obs;
 
-  int get limit => _paginationFilter.value.limit!;
-  int get _page => _paginationFilter.value.page!;
+  int get limit => _paginationFilter.value.limit;
+  int get _page => _paginationFilter.value.page;
 
   Future<void> loadNextPage() async {
     _changePaginationFilter(_page + 1, limit);
@@ -87,19 +104,29 @@ class MapMainPageController extends GetxController {
   }
 
   @override
+  Future<void> onInit() async {
+    super.onInit();
+    _userId = AuthController.to.wcUser.value!.uid;
+  }
+
+  @override
   onReady() async {
     super.onReady();
 
+    if (await setPermissionStatus()) {
+      _setSearchBaseLocation(locationSearchType: selectedLocationType.value);
+    }
+
     selectedPlaceDragController.addListener(() {
       if (selectedPlaceDragController.size >= 0.75) {
-        goToSelectedPlaceDetail(selectedPlace: selectedMarker.value!.place);
+        PlacePreview placePreview = selectedMarker.value!.place;
+        goToSelectedPlaceDetail(selectedPlace: placePreview);
         Future.delayed(const Duration(milliseconds: 200),
             () => selectedPlaceDragController.jumpTo(240 / WcHeight));
         selectedPlaceScrollController.jumpTo(0.0);
       }
     });
 
-    // ever(_paginationFilter, _getPlacePreviewList());
     ever(selectedMarker, onSelectedMarkerChanged);
 
     _addScrollListener(
@@ -107,6 +134,12 @@ class MapMainPageController extends GetxController {
         isLoading: _isLoading,
         onEndOfScroll: loadNextPage,
         scrollController: placeListScrollController.value);
+  }
+
+  @override
+  onClose() {
+    super.onClose();
+    selectedPlaceDragController.dispose();
   }
 
   _addScrollListener(
@@ -126,19 +159,15 @@ class MapMainPageController extends GetxController {
 
   Future<void> onMapCreated(NaverMapController controller) async {
     mapController = controller;
-    await _setSearchLatLng();
-    if (mapInit) {
-      await showLoading((() => loadNewPage()));
 
-      mapInit = false;
+    if (_currentLocation != null) {
+      if (mapInit) {
+        await showLoading((() => loadNewPage()));
+        mapInit = false;
+      }
     }
     if (_controller.isCompleted) _controller = Completer();
     _controller.complete(controller);
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
   }
 
   void changeTotalPerPage(int limitValue) {
@@ -154,19 +183,53 @@ class MapMainPageController extends GetxController {
     });
   }
 
-  _setSearchLatLng() async {
-    _searchLatLng = await mapController.getCameraPosition().then((value) =>
-        LatLngClass(
-            latitude: value.target.latitude,
-            longitude: value.target.longitude));
+  Future<bool> _setSearchBaseLocation(
+      {required LocationType locationSearchType}) async {
+    bool success = false;
+
+    await _setCurrentLocation();
+    if (_currentLocation != null) {
+      switch (locationSearchType) {
+        case LocationType.mapLocation:
+          _searchBaseLocation = await mapController.getCameraPosition().then(
+              (value) => LatLngClass(
+                  latitude: value.target.latitude,
+                  longitude: value.target.longitude));
+          break;
+        case LocationType.currentLocation:
+          _searchBaseLocation = _currentLocation!;
+          break;
+
+        default:
+      }
+      success = true;
+    } else {
+      success = false;
+    }
+    return success;
   }
 
-  sortPlaceByType() {
+  _setCurrentLocation() async {
+    _currentLocation = await _getCurrentLocation();
+  }
+
+  onCurrentLocationButtonTap() async {
+    _currentLocation = await _getCurrentLocation();
+
+    await mapController.moveCamera(CameraUpdate.scrollTo(_currentLocation!),
+        animationDuration: 200);
+  }
+
+  onSortTypeChanged() {
     List<CustomMarker> sortedMarkers = QuickSort().sortPlaceByType(
         placeMarkerList: placeMarkers.toList(),
         sortType: selectedSortType.value);
     placeMarkers.assignAll(sortedMarkers);
     placeMarkers.refresh();
+  }
+
+  onBaseLocationChanged() {
+    showLoading(() => getNewPlaceList());
   }
 
   Future<void> _addPlaceMarkers(
@@ -179,6 +242,7 @@ class MapMainPageController extends GetxController {
     });
 
     for (CustomMarker customMarker in placeMarkers) {
+      print(customMarker.place.unselectedMarkerImage);
       await customMarker.setImageIcon();
     }
     placeMarkers.refresh();
@@ -211,7 +275,7 @@ class MapMainPageController extends GetxController {
   }
 
   void goToSelectedPlaceDetail({required PlacePreview selectedPlace}) {
-    Get.toNamed(Routes.MAP_DETAIL, arguments: selectedPlace);
+    Get.toNamed(Routes.MAP_DETAIL, arguments: selectedPlace.locId);
   }
 
   void onCameraChange(
@@ -234,6 +298,11 @@ class MapMainPageController extends GetxController {
     onSearchRefreshTap();
   }
 
+  onSelectedPlaceTypeChanged(Object? item) async {
+    selectedPlaceType.value = item as PlaceType;
+    onSearchRefreshTap();
+  }
+
   onOpeningStatusTypeChanged() async {
     onlyOpenPlace.value = !onlyOpenPlace.value;
     onSearchRefreshTap();
@@ -251,7 +320,7 @@ class MapMainPageController extends GetxController {
     if (selectedMarker != null) {
       await mapController.moveCamera(
           CameraUpdate.scrollTo(selectedMarker.position!),
-          animationDuration: 2);
+          animationDuration: 100);
       for (CustomMarker customMarker in placeMarkers) {
         if (customMarker.place.locId == selectedMarker.markerId) {
           await customMarker.setImageIcon(
@@ -279,21 +348,26 @@ class MapMainPageController extends GetxController {
 
   getNewPlaceList() async {
     placeMarkers.clear();
-    await _setSearchLatLng();
-    await _calculateSeachArea();
-    await loadNewPage();
-    showResearchButton.value = false;
-    showPlaceListBottomSheet.value = true;
-    placePreviewListDragController.animateTo(0.40,
-        duration: Duration(milliseconds: 200), curve: Curves.linear);
+    bool setBaseLocationSucceed = await _setSearchBaseLocation(
+        locationSearchType: selectedLocationType.value);
+    if (setBaseLocationSucceed) {
+      await _setSearchDistance();
+      await loadNewPage();
+      showResearchButton.value = false;
+      showPlaceListBottomSheet.value = true;
+      placePreviewListDragController.animateTo(0.40,
+          duration: Duration(milliseconds: 200), curve: Curves.linear);
 
-    if (_searchDistance >= 7) {
-      mapController
-          .moveCamera(CameraUpdate.scrollWithOptions(_searchLatLng, zoom: 12));
+      if (_searchDistance >= 7) {
+        mapController.moveCamera(
+            CameraUpdate.scrollWithOptions(_searchBaseLocation, zoom: 12));
+      }
+    } else {
+      Get.toNamed(Routes.MAP_LOCATION_PERMISSION);
     }
   }
 
-  _calculateSeachArea() async {
+  _setSearchDistance() async {
     double totalMeterPerPx = WcWidth * await mapController.getMeterPerPx();
     int totalKilometer = (totalMeterPerPx / 1000).round();
     if (totalKilometer >= 7) {
@@ -311,7 +385,7 @@ class MapMainPageController extends GetxController {
 
     var previewListResult = await _mapRepository.getPlacePreviewList(
       paginationFilter: paginationFilter,
-      baseLatLng: _searchLatLng,
+      baseLatLng: _searchBaseLocation,
       locType: selectedPlaceType.value,
       conimalType: selectedSpeciesType.value,
       diseaseType: selectedDiseaseType.value,
@@ -319,12 +393,12 @@ class MapMainPageController extends GetxController {
       distance: _searchDistance,
     );
 
-    previewListResult.fold((l) => null, (previewList) async {
-      if (previewList.isEmpty) {
+    previewListResult.fold((l) => null, (previewResponse) async {
+      if (previewResponse.placeList.isEmpty) {
         _lastPage.value = true;
       } else {
-        await _addPlaceMarkers(placePreviewList: previewList);
-        sortPlaceByType();
+        await _addPlaceMarkers(placePreviewList: previewResponse.placeList);
+        onSortTypeChanged();
       }
       return;
     });
@@ -338,36 +412,55 @@ class MapMainPageController extends GetxController {
     return distanceResult;
   }
 
-  Future<LatLngClass> determineCurrentLocation() async {
-    bool serviceEnabled;
-    LocationPermission permission;
-
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      return Future.error('Location services are disabled.');
-    }
-
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        return Future.error('Location permissions are denied');
-      }
-    }
-
-    if (permission == LocationPermission.deniedForever) {
-      return Future.error(
-          'Location permissions are permanently denied, we cannot request permissions.');
-    }
+  Future<LatLngClass> _getCurrentLocation() async {
     return await Geolocator.getCurrentPosition().then((value) =>
         LatLngClass(latitude: value.latitude, longitude: value.longitude));
   }
 
-  searchPlace() {
-    Get.toNamed(Routes.MAP_SEARCH);
+  Future<bool> setPermissionStatus() async {
+    late bool serviceEnabled;
+    late bool gotPermission;
+    LocationPermission permission;
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      gotPermission = false;
+    } else {
+      permission = await Geolocator.checkPermission();
+      if (permission == LocationPermission.denied) {
+        permission = await Geolocator.requestPermission();
+
+        if (permission == LocationPermission.denied) {
+          gotPermission = false;
+        }
+      }
+      if (permission == LocationPermission.deniedForever) {
+        gotPermission = false;
+      }
+      if (permission == LocationPermission.always ||
+          permission == LocationPermission.whileInUse) {
+        gotPermission = true;
+      }
+    }
+
+    hasLocationPermission.value = gotPermission;
+    return gotPermission;
+  }
+
+  openAppLocationSetting() async {
+    await AppSettings.openLocationSettings();
+  }
+
+  searchPlace() async {
+    PlacePreview? searchedPlacePreview =
+        await Get.toNamed(Routes.MAP_SEARCH) as PlacePreview?;
+    if (searchedPlacePreview != null) {
+      Get.toNamed(Routes.MAP_DETAIL, arguments: searchedPlacePreview.locId);
+    }
   }
 
   goToNewReviewPage() {
-    Get.toNamed(Routes.MAP_NEW_REVIEW, arguments: selectedMarker.value!.place);
+    Get.toNamed(Routes.MAP_NEW_REVIEW,
+        arguments: selectedMarker.value!.place.locId);
   }
 }

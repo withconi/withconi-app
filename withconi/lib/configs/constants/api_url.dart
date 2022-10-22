@@ -3,6 +3,7 @@
 class HttpUrl {
   static const WITHCONI_API_BASE_URL =
       'https://asia-northeast3-withconi.cloudfunctions.net/api';
+  static const VERSION_CHECK = '/comm/getVersion';
   static const VERIFY_EMAIL = '/auth/verifyEmail';
   static const SIGN_IN = '/auth/signIn';
   static const SIGN_UP = '/auth/signUp';
@@ -16,6 +17,7 @@ class HttpUrl {
   static const COMMUNITY_GET_POST_LIST = '/board/listPost';
   static const COMMUNITY_GET_MY_POST_LIST = '/board/listPostWrittenMySelf';
   static const COMMUNITY_GET_LIKE_POST_LIST = '/board/listLikePost';
+  static const COMMUNITY_COMMENT_LIST = '/board/listPostLineReply';
   static const COMMUNITY_UPDATE_POST_LIKE = '/board/updateLikePost';
   static const COMMENT_LIKE_UPDATE = '/board/updateLikePostLineReply';
   static const COMMENT_DELETE = '/board/deletePostLineReply';
@@ -36,4 +38,5 @@ class HttpUrl {
   static const MAP_CREATE_REVIEW = '/location/createLocationReview';
   static const MAP_GET_MY_REVIEW_LIST = '/location/getMyReviewList';
   static const MAP_GET_REVIEW_DETAIL = '/location/getMyReview';
+  static const MAP_UPDATE_BOOKMARK = '/location/updateLocationBookmark';
 }

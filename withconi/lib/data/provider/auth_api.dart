@@ -17,6 +17,7 @@ import 'package:withconi/core/error_handling/exceptions.dart';
 import 'package:withconi/core/network_handling/network_service.dart';
 import 'package:withconi/data/model/custom_token.dart';
 
+import '../../configs/constants/app_info.dart';
 import '../../core/error_handling/failures.dart';
 import '../model/user.dart';
 
@@ -74,6 +75,18 @@ class AuthAPI {
   //     rethrow;
   //   }
   // }
+
+  checkAppVersion() async {
+    Map<String, dynamic> data = await _dio.apiCall(
+      header: {'os-name': AppInfo().os, 'version': AppInfo.version},
+      url: HttpUrl.VERSION_CHECK,
+      queryParameters: null,
+      body: null,
+      requestType: RequestType.GET,
+    );
+
+    return data;
+  }
 
   Future<Either<Failure, User?>> signInWithEmailPassword(
       {required String email, required String password}) async {
@@ -251,15 +264,15 @@ class AuthAPI {
   //   return authInfo;
   // }
 
-  // Future<User?> signInWithCustomToken({required String customToken}) async {
-  //   try {
-  //     UserCredential _userCredential =
-  //         await firebaseAuth.signInWithCustomToken(customToken);
-  //     return _userCredential.user;
-  //   } catch (e) {
-  //     throw SignInTokenException();
-  //   }
-  // }
+  Future<User?> signInWithCustomToken({required String customToken}) async {
+    try {
+      UserCredential _userCredential =
+          await firebaseAuth.signInWithCustomToken(customToken);
+      return _userCredential.user;
+    } catch (e) {
+      throw SignInTokenException();
+    }
+  }
 
   Future<User?> creatUserWithEmailPassword(
       {required String email, required String password}) async {
@@ -292,14 +305,19 @@ class AuthAPI {
     }
   }
 
-  Future<String?> signUpDB(WcUser user) async {
+  Future<String> signUpDB(WcUser user) async {
     print('user toJson 결과 => ${user.toJson()} ');
-    Map<String, dynamic> data = await _dio.apiCall(
-      url: HttpUrl.SIGN_UP,
-      queryParameters: null,
-      body: user.toJson(),
-      requestType: RequestType.POST,
-    );
+    try {
+      Map<String, dynamic> data = await _dio.apiCall(
+        url: HttpUrl.SIGN_UP,
+        queryParameters: null,
+        body: user.toJson(),
+        requestType: RequestType.POST,
+      );
+      return '';
+    } catch (e) {
+      rethrow;
+    }
   }
 
   Future<CustomToken> getNewCustomToken(

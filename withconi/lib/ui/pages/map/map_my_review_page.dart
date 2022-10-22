@@ -24,75 +24,68 @@ class MapMyReviewPage extends StatelessWidget {
       ),
       backgroundColor: WcColors.white,
       body: Obx(
-        () => RefreshIndicator(
-          strokeWidth: 2.5,
-          backgroundColor: WcColors.white,
-          color: WcColors.blue100,
-          onRefresh: _controller.resetPage,
-          child: SingleChildScrollView(
-            physics: const AlwaysScrollableScrollPhysics(),
-            controller: _controller.scrollController.value,
-            child: SafeArea(
-              bottom: false,
-              child: ConstrainedBox(
-                constraints: BoxConstraints(minHeight: WcHeight),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      width: WcWidth,
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                      child: Text(
-                        '작성한 리뷰',
-                        style: GoogleFonts.notoSans(
-                            color: WcColors.black,
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                            height: 1.4),
-                      ),
+        () => SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          controller: _controller.scrollController.value,
+          child: SafeArea(
+            bottom: false,
+            child: ConstrainedBox(
+              constraints: BoxConstraints(minHeight: WcHeight),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    width: WcWidth,
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                    child: Text(
+                      '작성한 리뷰',
+                      style: GoogleFonts.notoSans(
+                          color: WcColors.black,
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          height: 1.4),
                     ),
-                    Container(
-                      width: WcWidth,
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 22, vertical: 15),
-                      child: Row(
-                        children: [
-                          Text(
-                            '${_controller.myReviewList.length}',
+                  ),
+                  Container(
+                    width: WcWidth,
+                    padding: EdgeInsets.symmetric(horizontal: 22, vertical: 15),
+                    child: Row(
+                      children: [
+                        Obx(
+                          () => Text(
+                            '${_controller.totalReviewNum}',
                             style: GoogleFonts.montserrat(
                               color: WcColors.black,
                               fontSize: 21,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
-                          Text(
-                            '개',
-                            style: GoogleFonts.montserrat(
-                              color: WcColors.black,
-                              fontSize: 21,
-                              fontWeight: FontWeight.w600,
-                            ),
+                        ),
+                        Text(
+                          '개',
+                          style: GoogleFonts.montserrat(
+                            color: WcColors.black,
+                            fontSize: 21,
+                            fontWeight: FontWeight.w600,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                    Obx(
-                      () => ListView.builder(
-                          cacheExtent: 1000,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemCount: _controller.myReviewList.length,
-                          shrinkWrap: true,
-                          itemBuilder: ((context, index) {
-                            PlaceReview review =
-                                _controller.myReviewList[index];
-                            return MyReviewListTile(
-                              review: review,
-                            );
-                          })),
-                    )
-                  ],
-                ),
+                  ),
+                  Obx(
+                    () => ListView.builder(
+                        cacheExtent: 1000,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: _controller.myReviewList.length,
+                        shrinkWrap: true,
+                        itemBuilder: ((context, index) {
+                          Review review = _controller.myReviewList[index];
+                          return MyReviewListTile(
+                            review: review,
+                          );
+                        })),
+                  )
+                ],
               ),
             ),
           ),
@@ -108,7 +101,7 @@ class MyReviewListTile extends StatelessWidget {
     required this.review,
   }) : super(key: key);
 
-  PlaceReview review;
+  Review review;
 
   @override
   Widget build(BuildContext context) {
@@ -132,21 +125,21 @@ class MyReviewListTile extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(review.placePreview!.name,
+                    Text(review.name,
                         style: TextStyle(
                             fontFamily: WcFontFamily.notoSans,
-                            fontSize: 17.5,
+                            fontSize: 17,
                             fontWeight: FontWeight.w500)),
                     SizedBox(
                       height: 3,
                     ),
-                    Text(review.placePreview!.address,
+                    Text(review.address,
                         style: TextStyle(
                             fontFamily: WcFontFamily.notoSans,
                             color: WcColors.grey120,
-                            fontSize: 14.5,
+                            fontSize: 14,
                             overflow: TextOverflow.ellipsis,
-                            fontWeight: FontWeight.w500))
+                            fontWeight: FontWeight.w400))
                   ],
                 ),
                 PlaceVerificationButton(
@@ -186,8 +179,8 @@ class MyReviewListTile extends StatelessWidget {
                                 review.reviewEntity.selectedReviewItems[0])),
                             style: TextStyle(
                                 fontFamily: WcFontFamily.notoSans,
-                                color: WcColors.grey140,
-                                fontSize: 14,
+                                color: WcColors.grey160,
+                                fontSize: 13.5,
                                 overflow: TextOverflow.ellipsis,
                                 fontWeight: FontWeight.w500)),
                       ]),

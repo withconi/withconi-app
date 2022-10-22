@@ -1,4 +1,6 @@
 PODS:
+  - "app_settings (3.0.0+1)":
+    - Flutter
   - AppAuth (1.5.0):
     - AppAuth/Core (= 1.5.0)
     - AppAuth/ExternalUserAgent (= 1.5.0)
@@ -198,6 +200,7 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
+  - app_settings (from `.symlinks/plugins/app_settings/ios`)
   - firebase_analytics (from `.symlinks/plugins/firebase_analytics/ios`)
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
@@ -246,6 +249,8 @@ SPEC REPOS:
     - PromisesObjC
 
 EXTERNAL SOURCES:
+  app_settings:
+    :path: ".symlinks/plugins/app_settings/ios"
   firebase_analytics:
     :path: ".symlinks/plugins/firebase_analytics/ios"
   firebase_auth:
@@ -284,6 +289,7 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
 
 SPEC CHECKSUMS:
+  app_settings: d103828c9f5d515c4df9ee754dabd443f7cedcf3
   AppAuth: 80317d99ac7ff2801a2f18ff86b48cd315ed465d
   Firebase: 7703fc4022824b6d6db1bf7bea58d13b8e17ec46
   firebase_analytics: 63825a37b8ebabd44189b2c04f44ecd864554ebc

@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "955745601928",
+    "firebase_url": "https://withconi-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "withconi",
     "storage_bucket": "withconi.appspot.com"
   },
@@ -50,7 +51,7 @@
               "client_id": "955745601928-10tpc48stffksv2v3g0fnudmjhp67al7.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "co.yellowtoast.withconi"
+                "bundle_id": "com.example.withconi"
               }
             }
           ]
@@ -59,28 +60,12 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:955745601928:android:e5cd9861edd0f96769923d",
+        "mobilesdk_app_id": "1:955745601928:android:421933ce6fcaaac969923d",
         "android_client_info": {
-          "package_name": "co.yellowtoast.withconi"
+          "package_name": "com.example.withconi_web"
         }
       },
       "oauth_client": [
-        {
-          "client_id": "955745601928-07d4p9p3ut5b6pd85tqtup9b3d150lrt.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "co.yellowtoast.withconi",
-            "certificate_hash": "756844633551e6349848a34721cea4b33af4f758"
-          }
-        },
-        {
-          "client_id": "955745601928-el07e8ngc7agnrsl1sef9hhijagf750m.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "co.yellowtoast.withconi",
-            "certificate_hash": "16e27848b59ac55bdd12075a68260c1d7835d8fb"
-          }
-        },
         {
           "client_id": "955745601928-d5h3s4tk0j5vgris027ke9777m3qjjlk.apps.googleusercontent.com",
           "client_type": 3
@@ -102,7 +87,7 @@
               "client_id": "955745601928-10tpc48stffksv2v3g0fnudmjhp67al7.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "co.yellowtoast.withconi"
+                "bundle_id": "com.example.withconi"
               }
             }
           ]

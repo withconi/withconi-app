@@ -2,7 +2,7 @@
 import 'package:get_storage/get_storage.dart';
 import '../constants/enum.dart';
 
-mixin CacheManager {
+class CacheManager {
   Future<bool> saveCache(
     CacheControllerKey cacheControllerKey,
     String? value,
@@ -21,6 +21,7 @@ mixin CacheManager {
   Future<void> removeCache(CacheControllerKey cacheControllerKey) async {
     final box = GetStorage();
     await box.remove(cacheControllerKey.toString());
+    return;
   }
 
   Future<void> clearCache() async {

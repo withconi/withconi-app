@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$Failure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() versionCheckFailure,
     required TResult Function() serverFailure,
     required TResult Function() dataParsingFailure,
     required TResult Function() noConnectionFailure,
@@ -40,6 +41,7 @@ mixin _$Failure {
     required TResult Function() getUserFailure,
     required TResult Function() wrongPasswordFailure,
     required TResult Function() noEmailUserFailure,
+    required TResult Function() wrongTokenFailure,
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
@@ -47,12 +49,16 @@ mixin _$Failure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notFoundPostFailure,
     required TResult Function() notEditablePasswordFailure,
     required TResult Function() userInfoUpdateFailure,
+    required TResult Function() permissionDeniedFailure,
+    required TResult Function() permissionPermanentlyDeniedFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -75,6 +81,7 @@ mixin _$Failure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -82,12 +89,16 @@ mixin _$Failure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -110,6 +121,7 @@ mixin _$Failure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -117,13 +129,17 @@ mixin _$Failure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(VersionCheckFailure value) versionCheckFailure,
     required TResult Function(ServerFailure value) serverFailure,
     required TResult Function(DataParsingFailure value) dataParsingFailure,
     required TResult Function(NoConnectionFailure value) noConnectionFailure,
@@ -150,6 +166,7 @@ mixin _$Failure {
     required TResult Function(GetUserInfoFailure value) getUserFailure,
     required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
     required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(WrongTokenFailure value) wrongTokenFailure,
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
@@ -159,14 +176,20 @@ mixin _$Failure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotFoundPostFailure value) notFoundPostFailure,
     required TResult Function(NotEditablePasswordFailure value)
         notEditablePasswordFailure,
     required TResult Function(UserInfoUpdateFailure value)
         userInfoUpdateFailure,
+    required TResult Function(PermissionDeniedFailure value)
+        permissionDeniedFailure,
+    required TResult Function(PermissionPermanentlyDeniedFailure value)
+        permissionPermanentlyDeniedFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -189,6 +212,7 @@ mixin _$Failure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -197,13 +221,18 @@ mixin _$Failure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -226,6 +255,7 @@ mixin _$Failure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -234,9 +264,13 @@ mixin _$Failure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -255,6 +289,332 @@ class _$FailureCopyWithImpl<$Res> implements $FailureCopyWith<$Res> {
   final Failure _value;
   // ignore: unused_field
   final $Res Function(Failure) _then;
+}
+
+/// @nodoc
+abstract class _$$VersionCheckFailureCopyWith<$Res> {
+  factory _$$VersionCheckFailureCopyWith(_$VersionCheckFailure value,
+          $Res Function(_$VersionCheckFailure) then) =
+      __$$VersionCheckFailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$VersionCheckFailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res>
+    implements _$$VersionCheckFailureCopyWith<$Res> {
+  __$$VersionCheckFailureCopyWithImpl(
+      _$VersionCheckFailure _value, $Res Function(_$VersionCheckFailure) _then)
+      : super(_value, (v) => _then(v as _$VersionCheckFailure));
+
+  @override
+  _$VersionCheckFailure get _value => super._value as _$VersionCheckFailure;
+}
+
+/// @nodoc
+
+class _$VersionCheckFailure extends VersionCheckFailure {
+  const _$VersionCheckFailure() : super._();
+
+  @override
+  String toString() {
+    return 'Failure.versionCheckFailure()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$VersionCheckFailure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() versionCheckFailure,
+    required TResult Function() serverFailure,
+    required TResult Function() dataParsingFailure,
+    required TResult Function() noConnectionFailure,
+    required TResult Function() notFoundFailure,
+    required TResult Function() noUserDataFailure,
+    required TResult Function() maxDiseaseFailure,
+    required TResult Function() maxConimalFailure,
+    required TResult Function() emptyListFailure,
+    required TResult Function() noSuchDataInListFailure,
+    required TResult Function() registerConimalFaiure,
+    required TResult Function() removeConimalFailure,
+    required TResult Function() getConimalListFailure,
+    required TResult Function() signInCredentialFailure,
+    required TResult Function() signInTokenFailure,
+    required TResult Function() naverSigninFailure,
+    required TResult Function() kakaoSigninFailure,
+    required TResult Function() googleSigninFailure,
+    required TResult Function() appleSigninFailure,
+    required TResult Function() emailSigninFailure,
+    required TResult Function() getUserFailure,
+    required TResult Function() wrongPasswordFailure,
+    required TResult Function() noEmailUserFailure,
+    required TResult Function() wrongTokenFailure,
+    required TResult Function() existingEmailFailure,
+    required TResult Function() userEnabledFailure,
+    required TResult Function() weakPasswordFailure,
+    required TResult Function() maxImageSizeFailure,
+    required TResult Function() maxImageNumFailure,
+    required TResult Function() noPostTypeSelectedFailure,
+    required TResult Function() noPostContentsFailure,
+    required TResult Function() notFoundPostFailure,
+    required TResult Function() notEditablePasswordFailure,
+    required TResult Function() userInfoUpdateFailure,
+    required TResult Function() permissionDeniedFailure,
+    required TResult Function() permissionPermanentlyDeniedFailure,
+  }) {
+    return versionCheckFailure();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
+    TResult Function()? serverFailure,
+    TResult Function()? dataParsingFailure,
+    TResult Function()? noConnectionFailure,
+    TResult Function()? notFoundFailure,
+    TResult Function()? noUserDataFailure,
+    TResult Function()? maxDiseaseFailure,
+    TResult Function()? maxConimalFailure,
+    TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
+    TResult Function()? signInCredentialFailure,
+    TResult Function()? signInTokenFailure,
+    TResult Function()? naverSigninFailure,
+    TResult Function()? kakaoSigninFailure,
+    TResult Function()? googleSigninFailure,
+    TResult Function()? appleSigninFailure,
+    TResult Function()? emailSigninFailure,
+    TResult Function()? getUserFailure,
+    TResult Function()? wrongPasswordFailure,
+    TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
+    TResult Function()? existingEmailFailure,
+    TResult Function()? userEnabledFailure,
+    TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
+    TResult Function()? maxImageNumFailure,
+    TResult Function()? noPostTypeSelectedFailure,
+    TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
+  }) {
+    return versionCheckFailure?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
+    TResult Function()? serverFailure,
+    TResult Function()? dataParsingFailure,
+    TResult Function()? noConnectionFailure,
+    TResult Function()? notFoundFailure,
+    TResult Function()? noUserDataFailure,
+    TResult Function()? maxDiseaseFailure,
+    TResult Function()? maxConimalFailure,
+    TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
+    TResult Function()? signInCredentialFailure,
+    TResult Function()? signInTokenFailure,
+    TResult Function()? naverSigninFailure,
+    TResult Function()? kakaoSigninFailure,
+    TResult Function()? googleSigninFailure,
+    TResult Function()? appleSigninFailure,
+    TResult Function()? emailSigninFailure,
+    TResult Function()? getUserFailure,
+    TResult Function()? wrongPasswordFailure,
+    TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
+    TResult Function()? existingEmailFailure,
+    TResult Function()? userEnabledFailure,
+    TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
+    TResult Function()? maxImageNumFailure,
+    TResult Function()? noPostTypeSelectedFailure,
+    TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
+    required TResult orElse(),
+  }) {
+    if (versionCheckFailure != null) {
+      return versionCheckFailure();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(VersionCheckFailure value) versionCheckFailure,
+    required TResult Function(ServerFailure value) serverFailure,
+    required TResult Function(DataParsingFailure value) dataParsingFailure,
+    required TResult Function(NoConnectionFailure value) noConnectionFailure,
+    required TResult Function(NotFoundFailure value) notFoundFailure,
+    required TResult Function(NoUserDataFailure value) noUserDataFailure,
+    required TResult Function(MaxDiseaseFailure value) maxDiseaseFailure,
+    required TResult Function(MaxConimalFailure value) maxConimalFailure,
+    required TResult Function(EmptyListFailure value) emptyListFailure,
+    required TResult Function(NoSuchDataInListFailure value)
+        noSuchDataInListFailure,
+    required TResult Function(RegisterConimalFailure value)
+        registerConimalFaiure,
+    required TResult Function(RemoveConimalFailure value) removeConimalFailure,
+    required TResult Function(GetConimalListFailure value)
+        getConimalListFailure,
+    required TResult Function(SignInCredentialFailure value)
+        signInCredentialFailure,
+    required TResult Function(SignInTokenFailure value) signInTokenFailure,
+    required TResult Function(NaverSigninFailure value) naverSigninFailure,
+    required TResult Function(KakaoSigninFailure value) kakaoSigninFailure,
+    required TResult Function(GoogleSigninFailure value) googleSigninFailure,
+    required TResult Function(AppleSigninFailure value) appleSigninFailure,
+    required TResult Function(EmailSigninFailure value) emailSigninFailure,
+    required TResult Function(GetUserInfoFailure value) getUserFailure,
+    required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
+    required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(WrongTokenFailure value) wrongTokenFailure,
+    required TResult Function(ExistingEmailFailure value) existingEmailFailure,
+    required TResult Function(UserEnabledFailure value) userEnabledFailure,
+    required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
+    required TResult Function(MaxImageSizeFailure value) maxImageSizeFailure,
+    required TResult Function(MaxImageNumFailure value) maxImageNumFailure,
+    required TResult Function(NoPostTypeSelectedFailure value)
+        noPostTypeSelectedFailure,
+    required TResult Function(NoPostContentsFailure value)
+        noPostContentsFailure,
+    required TResult Function(NotFoundPostFailure value) notFoundPostFailure,
+    required TResult Function(NotEditablePasswordFailure value)
+        notEditablePasswordFailure,
+    required TResult Function(UserInfoUpdateFailure value)
+        userInfoUpdateFailure,
+    required TResult Function(PermissionDeniedFailure value)
+        permissionDeniedFailure,
+    required TResult Function(PermissionPermanentlyDeniedFailure value)
+        permissionPermanentlyDeniedFailure,
+  }) {
+    return versionCheckFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult Function(ServerFailure value)? serverFailure,
+    TResult Function(DataParsingFailure value)? dataParsingFailure,
+    TResult Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult Function(NotFoundFailure value)? notFoundFailure,
+    TResult Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult Function(GetUserInfoFailure value)? getUserFailure,
+    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult Function(NoPostTypeSelectedFailure value)?
+        noPostTypeSelectedFailure,
+    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
+  }) {
+    return versionCheckFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult Function(ServerFailure value)? serverFailure,
+    TResult Function(DataParsingFailure value)? dataParsingFailure,
+    TResult Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult Function(NotFoundFailure value)? notFoundFailure,
+    TResult Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult Function(GetUserInfoFailure value)? getUserFailure,
+    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult Function(NoPostTypeSelectedFailure value)?
+        noPostTypeSelectedFailure,
+    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
+    required TResult orElse(),
+  }) {
+    if (versionCheckFailure != null) {
+      return versionCheckFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class VersionCheckFailure extends Failure {
+  const factory VersionCheckFailure() = _$VersionCheckFailure;
+  const VersionCheckFailure._() : super._();
 }
 
 /// @nodoc
@@ -297,6 +657,7 @@ class _$ServerFailure extends ServerFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() versionCheckFailure,
     required TResult Function() serverFailure,
     required TResult Function() dataParsingFailure,
     required TResult Function() noConnectionFailure,
@@ -319,6 +680,7 @@ class _$ServerFailure extends ServerFailure {
     required TResult Function() getUserFailure,
     required TResult Function() wrongPasswordFailure,
     required TResult Function() noEmailUserFailure,
+    required TResult Function() wrongTokenFailure,
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
@@ -326,8 +688,11 @@ class _$ServerFailure extends ServerFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notFoundPostFailure,
     required TResult Function() notEditablePasswordFailure,
     required TResult Function() userInfoUpdateFailure,
+    required TResult Function() permissionDeniedFailure,
+    required TResult Function() permissionPermanentlyDeniedFailure,
   }) {
     return serverFailure();
   }
@@ -335,6 +700,7 @@ class _$ServerFailure extends ServerFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -357,6 +723,7 @@ class _$ServerFailure extends ServerFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -364,8 +731,11 @@ class _$ServerFailure extends ServerFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
   }) {
     return serverFailure?.call();
   }
@@ -373,6 +743,7 @@ class _$ServerFailure extends ServerFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -395,6 +766,7 @@ class _$ServerFailure extends ServerFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -402,8 +774,11 @@ class _$ServerFailure extends ServerFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (serverFailure != null) {
@@ -415,6 +790,7 @@ class _$ServerFailure extends ServerFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(VersionCheckFailure value) versionCheckFailure,
     required TResult Function(ServerFailure value) serverFailure,
     required TResult Function(DataParsingFailure value) dataParsingFailure,
     required TResult Function(NoConnectionFailure value) noConnectionFailure,
@@ -441,6 +817,7 @@ class _$ServerFailure extends ServerFailure {
     required TResult Function(GetUserInfoFailure value) getUserFailure,
     required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
     required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(WrongTokenFailure value) wrongTokenFailure,
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
@@ -450,10 +827,15 @@ class _$ServerFailure extends ServerFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotFoundPostFailure value) notFoundPostFailure,
     required TResult Function(NotEditablePasswordFailure value)
         notEditablePasswordFailure,
     required TResult Function(UserInfoUpdateFailure value)
         userInfoUpdateFailure,
+    required TResult Function(PermissionDeniedFailure value)
+        permissionDeniedFailure,
+    required TResult Function(PermissionPermanentlyDeniedFailure value)
+        permissionPermanentlyDeniedFailure,
   }) {
     return serverFailure(this);
   }
@@ -461,6 +843,7 @@ class _$ServerFailure extends ServerFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -483,6 +866,7 @@ class _$ServerFailure extends ServerFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -491,9 +875,13 @@ class _$ServerFailure extends ServerFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
   }) {
     return serverFailure?.call(this);
   }
@@ -501,6 +889,7 @@ class _$ServerFailure extends ServerFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -523,6 +912,7 @@ class _$ServerFailure extends ServerFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -531,9 +921,13 @@ class _$ServerFailure extends ServerFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (serverFailure != null) {
@@ -589,6 +983,7 @@ class _$DataParsingFailure extends DataParsingFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() versionCheckFailure,
     required TResult Function() serverFailure,
     required TResult Function() dataParsingFailure,
     required TResult Function() noConnectionFailure,
@@ -611,6 +1006,7 @@ class _$DataParsingFailure extends DataParsingFailure {
     required TResult Function() getUserFailure,
     required TResult Function() wrongPasswordFailure,
     required TResult Function() noEmailUserFailure,
+    required TResult Function() wrongTokenFailure,
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
@@ -618,8 +1014,11 @@ class _$DataParsingFailure extends DataParsingFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notFoundPostFailure,
     required TResult Function() notEditablePasswordFailure,
     required TResult Function() userInfoUpdateFailure,
+    required TResult Function() permissionDeniedFailure,
+    required TResult Function() permissionPermanentlyDeniedFailure,
   }) {
     return dataParsingFailure();
   }
@@ -627,6 +1026,7 @@ class _$DataParsingFailure extends DataParsingFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -649,6 +1049,7 @@ class _$DataParsingFailure extends DataParsingFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -656,8 +1057,11 @@ class _$DataParsingFailure extends DataParsingFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
   }) {
     return dataParsingFailure?.call();
   }
@@ -665,6 +1069,7 @@ class _$DataParsingFailure extends DataParsingFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -687,6 +1092,7 @@ class _$DataParsingFailure extends DataParsingFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -694,8 +1100,11 @@ class _$DataParsingFailure extends DataParsingFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (dataParsingFailure != null) {
@@ -707,6 +1116,7 @@ class _$DataParsingFailure extends DataParsingFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(VersionCheckFailure value) versionCheckFailure,
     required TResult Function(ServerFailure value) serverFailure,
     required TResult Function(DataParsingFailure value) dataParsingFailure,
     required TResult Function(NoConnectionFailure value) noConnectionFailure,
@@ -733,6 +1143,7 @@ class _$DataParsingFailure extends DataParsingFailure {
     required TResult Function(GetUserInfoFailure value) getUserFailure,
     required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
     required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(WrongTokenFailure value) wrongTokenFailure,
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
@@ -742,10 +1153,15 @@ class _$DataParsingFailure extends DataParsingFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotFoundPostFailure value) notFoundPostFailure,
     required TResult Function(NotEditablePasswordFailure value)
         notEditablePasswordFailure,
     required TResult Function(UserInfoUpdateFailure value)
         userInfoUpdateFailure,
+    required TResult Function(PermissionDeniedFailure value)
+        permissionDeniedFailure,
+    required TResult Function(PermissionPermanentlyDeniedFailure value)
+        permissionPermanentlyDeniedFailure,
   }) {
     return dataParsingFailure(this);
   }
@@ -753,6 +1169,7 @@ class _$DataParsingFailure extends DataParsingFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -775,6 +1192,7 @@ class _$DataParsingFailure extends DataParsingFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -783,9 +1201,13 @@ class _$DataParsingFailure extends DataParsingFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
   }) {
     return dataParsingFailure?.call(this);
   }
@@ -793,6 +1215,7 @@ class _$DataParsingFailure extends DataParsingFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -815,6 +1238,7 @@ class _$DataParsingFailure extends DataParsingFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -823,9 +1247,13 @@ class _$DataParsingFailure extends DataParsingFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (dataParsingFailure != null) {
@@ -881,6 +1309,7 @@ class _$NoConnectionFailure extends NoConnectionFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() versionCheckFailure,
     required TResult Function() serverFailure,
     required TResult Function() dataParsingFailure,
     required TResult Function() noConnectionFailure,
@@ -903,6 +1332,7 @@ class _$NoConnectionFailure extends NoConnectionFailure {
     required TResult Function() getUserFailure,
     required TResult Function() wrongPasswordFailure,
     required TResult Function() noEmailUserFailure,
+    required TResult Function() wrongTokenFailure,
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
@@ -910,8 +1340,11 @@ class _$NoConnectionFailure extends NoConnectionFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notFoundPostFailure,
     required TResult Function() notEditablePasswordFailure,
     required TResult Function() userInfoUpdateFailure,
+    required TResult Function() permissionDeniedFailure,
+    required TResult Function() permissionPermanentlyDeniedFailure,
   }) {
     return noConnectionFailure();
   }
@@ -919,6 +1352,7 @@ class _$NoConnectionFailure extends NoConnectionFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -941,6 +1375,7 @@ class _$NoConnectionFailure extends NoConnectionFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -948,8 +1383,11 @@ class _$NoConnectionFailure extends NoConnectionFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
   }) {
     return noConnectionFailure?.call();
   }
@@ -957,6 +1395,7 @@ class _$NoConnectionFailure extends NoConnectionFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -979,6 +1418,7 @@ class _$NoConnectionFailure extends NoConnectionFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -986,8 +1426,11 @@ class _$NoConnectionFailure extends NoConnectionFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (noConnectionFailure != null) {
@@ -999,6 +1442,7 @@ class _$NoConnectionFailure extends NoConnectionFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(VersionCheckFailure value) versionCheckFailure,
     required TResult Function(ServerFailure value) serverFailure,
     required TResult Function(DataParsingFailure value) dataParsingFailure,
     required TResult Function(NoConnectionFailure value) noConnectionFailure,
@@ -1025,6 +1469,7 @@ class _$NoConnectionFailure extends NoConnectionFailure {
     required TResult Function(GetUserInfoFailure value) getUserFailure,
     required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
     required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(WrongTokenFailure value) wrongTokenFailure,
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
@@ -1034,10 +1479,15 @@ class _$NoConnectionFailure extends NoConnectionFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotFoundPostFailure value) notFoundPostFailure,
     required TResult Function(NotEditablePasswordFailure value)
         notEditablePasswordFailure,
     required TResult Function(UserInfoUpdateFailure value)
         userInfoUpdateFailure,
+    required TResult Function(PermissionDeniedFailure value)
+        permissionDeniedFailure,
+    required TResult Function(PermissionPermanentlyDeniedFailure value)
+        permissionPermanentlyDeniedFailure,
   }) {
     return noConnectionFailure(this);
   }
@@ -1045,6 +1495,7 @@ class _$NoConnectionFailure extends NoConnectionFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -1067,6 +1518,7 @@ class _$NoConnectionFailure extends NoConnectionFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -1075,9 +1527,13 @@ class _$NoConnectionFailure extends NoConnectionFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
   }) {
     return noConnectionFailure?.call(this);
   }
@@ -1085,6 +1541,7 @@ class _$NoConnectionFailure extends NoConnectionFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -1107,6 +1564,7 @@ class _$NoConnectionFailure extends NoConnectionFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -1115,9 +1573,13 @@ class _$NoConnectionFailure extends NoConnectionFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (noConnectionFailure != null) {
@@ -1172,6 +1634,7 @@ class _$NotFoundFailure extends NotFoundFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() versionCheckFailure,
     required TResult Function() serverFailure,
     required TResult Function() dataParsingFailure,
     required TResult Function() noConnectionFailure,
@@ -1194,6 +1657,7 @@ class _$NotFoundFailure extends NotFoundFailure {
     required TResult Function() getUserFailure,
     required TResult Function() wrongPasswordFailure,
     required TResult Function() noEmailUserFailure,
+    required TResult Function() wrongTokenFailure,
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
@@ -1201,8 +1665,11 @@ class _$NotFoundFailure extends NotFoundFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notFoundPostFailure,
     required TResult Function() notEditablePasswordFailure,
     required TResult Function() userInfoUpdateFailure,
+    required TResult Function() permissionDeniedFailure,
+    required TResult Function() permissionPermanentlyDeniedFailure,
   }) {
     return notFoundFailure();
   }
@@ -1210,6 +1677,7 @@ class _$NotFoundFailure extends NotFoundFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -1232,6 +1700,7 @@ class _$NotFoundFailure extends NotFoundFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -1239,8 +1708,11 @@ class _$NotFoundFailure extends NotFoundFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
   }) {
     return notFoundFailure?.call();
   }
@@ -1248,6 +1720,7 @@ class _$NotFoundFailure extends NotFoundFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -1270,6 +1743,7 @@ class _$NotFoundFailure extends NotFoundFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -1277,8 +1751,11 @@ class _$NotFoundFailure extends NotFoundFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (notFoundFailure != null) {
@@ -1290,6 +1767,7 @@ class _$NotFoundFailure extends NotFoundFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(VersionCheckFailure value) versionCheckFailure,
     required TResult Function(ServerFailure value) serverFailure,
     required TResult Function(DataParsingFailure value) dataParsingFailure,
     required TResult Function(NoConnectionFailure value) noConnectionFailure,
@@ -1316,6 +1794,7 @@ class _$NotFoundFailure extends NotFoundFailure {
     required TResult Function(GetUserInfoFailure value) getUserFailure,
     required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
     required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(WrongTokenFailure value) wrongTokenFailure,
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
@@ -1325,10 +1804,15 @@ class _$NotFoundFailure extends NotFoundFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotFoundPostFailure value) notFoundPostFailure,
     required TResult Function(NotEditablePasswordFailure value)
         notEditablePasswordFailure,
     required TResult Function(UserInfoUpdateFailure value)
         userInfoUpdateFailure,
+    required TResult Function(PermissionDeniedFailure value)
+        permissionDeniedFailure,
+    required TResult Function(PermissionPermanentlyDeniedFailure value)
+        permissionPermanentlyDeniedFailure,
   }) {
     return notFoundFailure(this);
   }
@@ -1336,6 +1820,7 @@ class _$NotFoundFailure extends NotFoundFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -1358,6 +1843,7 @@ class _$NotFoundFailure extends NotFoundFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -1366,9 +1852,13 @@ class _$NotFoundFailure extends NotFoundFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
   }) {
     return notFoundFailure?.call(this);
   }
@@ -1376,6 +1866,7 @@ class _$NotFoundFailure extends NotFoundFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -1398,6 +1889,7 @@ class _$NotFoundFailure extends NotFoundFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -1406,9 +1898,13 @@ class _$NotFoundFailure extends NotFoundFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (notFoundFailure != null) {
@@ -1464,6 +1960,7 @@ class _$NoUserDataFailure extends NoUserDataFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() versionCheckFailure,
     required TResult Function() serverFailure,
     required TResult Function() dataParsingFailure,
     required TResult Function() noConnectionFailure,
@@ -1486,6 +1983,7 @@ class _$NoUserDataFailure extends NoUserDataFailure {
     required TResult Function() getUserFailure,
     required TResult Function() wrongPasswordFailure,
     required TResult Function() noEmailUserFailure,
+    required TResult Function() wrongTokenFailure,
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
@@ -1493,8 +1991,11 @@ class _$NoUserDataFailure extends NoUserDataFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notFoundPostFailure,
     required TResult Function() notEditablePasswordFailure,
     required TResult Function() userInfoUpdateFailure,
+    required TResult Function() permissionDeniedFailure,
+    required TResult Function() permissionPermanentlyDeniedFailure,
   }) {
     return noUserDataFailure();
   }
@@ -1502,6 +2003,7 @@ class _$NoUserDataFailure extends NoUserDataFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -1524,6 +2026,7 @@ class _$NoUserDataFailure extends NoUserDataFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -1531,8 +2034,11 @@ class _$NoUserDataFailure extends NoUserDataFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
   }) {
     return noUserDataFailure?.call();
   }
@@ -1540,6 +2046,7 @@ class _$NoUserDataFailure extends NoUserDataFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -1562,6 +2069,7 @@ class _$NoUserDataFailure extends NoUserDataFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -1569,8 +2077,11 @@ class _$NoUserDataFailure extends NoUserDataFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (noUserDataFailure != null) {
@@ -1582,6 +2093,7 @@ class _$NoUserDataFailure extends NoUserDataFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(VersionCheckFailure value) versionCheckFailure,
     required TResult Function(ServerFailure value) serverFailure,
     required TResult Function(DataParsingFailure value) dataParsingFailure,
     required TResult Function(NoConnectionFailure value) noConnectionFailure,
@@ -1608,6 +2120,7 @@ class _$NoUserDataFailure extends NoUserDataFailure {
     required TResult Function(GetUserInfoFailure value) getUserFailure,
     required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
     required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(WrongTokenFailure value) wrongTokenFailure,
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
@@ -1617,10 +2130,15 @@ class _$NoUserDataFailure extends NoUserDataFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotFoundPostFailure value) notFoundPostFailure,
     required TResult Function(NotEditablePasswordFailure value)
         notEditablePasswordFailure,
     required TResult Function(UserInfoUpdateFailure value)
         userInfoUpdateFailure,
+    required TResult Function(PermissionDeniedFailure value)
+        permissionDeniedFailure,
+    required TResult Function(PermissionPermanentlyDeniedFailure value)
+        permissionPermanentlyDeniedFailure,
   }) {
     return noUserDataFailure(this);
   }
@@ -1628,6 +2146,7 @@ class _$NoUserDataFailure extends NoUserDataFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -1650,6 +2169,7 @@ class _$NoUserDataFailure extends NoUserDataFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -1658,9 +2178,13 @@ class _$NoUserDataFailure extends NoUserDataFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
   }) {
     return noUserDataFailure?.call(this);
   }
@@ -1668,6 +2192,7 @@ class _$NoUserDataFailure extends NoUserDataFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -1690,6 +2215,7 @@ class _$NoUserDataFailure extends NoUserDataFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -1698,9 +2224,13 @@ class _$NoUserDataFailure extends NoUserDataFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (noUserDataFailure != null) {
@@ -1756,6 +2286,7 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() versionCheckFailure,
     required TResult Function() serverFailure,
     required TResult Function() dataParsingFailure,
     required TResult Function() noConnectionFailure,
@@ -1778,6 +2309,7 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
     required TResult Function() getUserFailure,
     required TResult Function() wrongPasswordFailure,
     required TResult Function() noEmailUserFailure,
+    required TResult Function() wrongTokenFailure,
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
@@ -1785,8 +2317,11 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notFoundPostFailure,
     required TResult Function() notEditablePasswordFailure,
     required TResult Function() userInfoUpdateFailure,
+    required TResult Function() permissionDeniedFailure,
+    required TResult Function() permissionPermanentlyDeniedFailure,
   }) {
     return maxDiseaseFailure();
   }
@@ -1794,6 +2329,7 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -1816,6 +2352,7 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -1823,8 +2360,11 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
   }) {
     return maxDiseaseFailure?.call();
   }
@@ -1832,6 +2372,7 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -1854,6 +2395,7 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -1861,8 +2403,11 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (maxDiseaseFailure != null) {
@@ -1874,6 +2419,7 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(VersionCheckFailure value) versionCheckFailure,
     required TResult Function(ServerFailure value) serverFailure,
     required TResult Function(DataParsingFailure value) dataParsingFailure,
     required TResult Function(NoConnectionFailure value) noConnectionFailure,
@@ -1900,6 +2446,7 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
     required TResult Function(GetUserInfoFailure value) getUserFailure,
     required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
     required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(WrongTokenFailure value) wrongTokenFailure,
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
@@ -1909,10 +2456,15 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotFoundPostFailure value) notFoundPostFailure,
     required TResult Function(NotEditablePasswordFailure value)
         notEditablePasswordFailure,
     required TResult Function(UserInfoUpdateFailure value)
         userInfoUpdateFailure,
+    required TResult Function(PermissionDeniedFailure value)
+        permissionDeniedFailure,
+    required TResult Function(PermissionPermanentlyDeniedFailure value)
+        permissionPermanentlyDeniedFailure,
   }) {
     return maxDiseaseFailure(this);
   }
@@ -1920,6 +2472,7 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -1942,6 +2495,7 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -1950,9 +2504,13 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
   }) {
     return maxDiseaseFailure?.call(this);
   }
@@ -1960,6 +2518,7 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -1982,6 +2541,7 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -1990,9 +2550,13 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (maxDiseaseFailure != null) {
@@ -2048,6 +2612,7 @@ class _$MaxConimalFailure extends MaxConimalFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() versionCheckFailure,
     required TResult Function() serverFailure,
     required TResult Function() dataParsingFailure,
     required TResult Function() noConnectionFailure,
@@ -2070,6 +2635,7 @@ class _$MaxConimalFailure extends MaxConimalFailure {
     required TResult Function() getUserFailure,
     required TResult Function() wrongPasswordFailure,
     required TResult Function() noEmailUserFailure,
+    required TResult Function() wrongTokenFailure,
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
@@ -2077,8 +2643,11 @@ class _$MaxConimalFailure extends MaxConimalFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notFoundPostFailure,
     required TResult Function() notEditablePasswordFailure,
     required TResult Function() userInfoUpdateFailure,
+    required TResult Function() permissionDeniedFailure,
+    required TResult Function() permissionPermanentlyDeniedFailure,
   }) {
     return maxConimalFailure();
   }
@@ -2086,6 +2655,7 @@ class _$MaxConimalFailure extends MaxConimalFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -2108,6 +2678,7 @@ class _$MaxConimalFailure extends MaxConimalFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -2115,8 +2686,11 @@ class _$MaxConimalFailure extends MaxConimalFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
   }) {
     return maxConimalFailure?.call();
   }
@@ -2124,6 +2698,7 @@ class _$MaxConimalFailure extends MaxConimalFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -2146,6 +2721,7 @@ class _$MaxConimalFailure extends MaxConimalFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -2153,8 +2729,11 @@ class _$MaxConimalFailure extends MaxConimalFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (maxConimalFailure != null) {
@@ -2166,6 +2745,7 @@ class _$MaxConimalFailure extends MaxConimalFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(VersionCheckFailure value) versionCheckFailure,
     required TResult Function(ServerFailure value) serverFailure,
     required TResult Function(DataParsingFailure value) dataParsingFailure,
     required TResult Function(NoConnectionFailure value) noConnectionFailure,
@@ -2192,6 +2772,7 @@ class _$MaxConimalFailure extends MaxConimalFailure {
     required TResult Function(GetUserInfoFailure value) getUserFailure,
     required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
     required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(WrongTokenFailure value) wrongTokenFailure,
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
@@ -2201,10 +2782,15 @@ class _$MaxConimalFailure extends MaxConimalFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotFoundPostFailure value) notFoundPostFailure,
     required TResult Function(NotEditablePasswordFailure value)
         notEditablePasswordFailure,
     required TResult Function(UserInfoUpdateFailure value)
         userInfoUpdateFailure,
+    required TResult Function(PermissionDeniedFailure value)
+        permissionDeniedFailure,
+    required TResult Function(PermissionPermanentlyDeniedFailure value)
+        permissionPermanentlyDeniedFailure,
   }) {
     return maxConimalFailure(this);
   }
@@ -2212,6 +2798,7 @@ class _$MaxConimalFailure extends MaxConimalFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -2234,6 +2821,7 @@ class _$MaxConimalFailure extends MaxConimalFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -2242,9 +2830,13 @@ class _$MaxConimalFailure extends MaxConimalFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
   }) {
     return maxConimalFailure?.call(this);
   }
@@ -2252,6 +2844,7 @@ class _$MaxConimalFailure extends MaxConimalFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -2274,6 +2867,7 @@ class _$MaxConimalFailure extends MaxConimalFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -2282,9 +2876,13 @@ class _$MaxConimalFailure extends MaxConimalFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (maxConimalFailure != null) {
@@ -2339,6 +2937,7 @@ class _$EmptyListFailure extends EmptyListFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() versionCheckFailure,
     required TResult Function() serverFailure,
     required TResult Function() dataParsingFailure,
     required TResult Function() noConnectionFailure,
@@ -2361,6 +2960,7 @@ class _$EmptyListFailure extends EmptyListFailure {
     required TResult Function() getUserFailure,
     required TResult Function() wrongPasswordFailure,
     required TResult Function() noEmailUserFailure,
+    required TResult Function() wrongTokenFailure,
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
@@ -2368,8 +2968,11 @@ class _$EmptyListFailure extends EmptyListFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notFoundPostFailure,
     required TResult Function() notEditablePasswordFailure,
     required TResult Function() userInfoUpdateFailure,
+    required TResult Function() permissionDeniedFailure,
+    required TResult Function() permissionPermanentlyDeniedFailure,
   }) {
     return emptyListFailure();
   }
@@ -2377,6 +2980,7 @@ class _$EmptyListFailure extends EmptyListFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -2399,6 +3003,7 @@ class _$EmptyListFailure extends EmptyListFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -2406,8 +3011,11 @@ class _$EmptyListFailure extends EmptyListFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
   }) {
     return emptyListFailure?.call();
   }
@@ -2415,6 +3023,7 @@ class _$EmptyListFailure extends EmptyListFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -2437,6 +3046,7 @@ class _$EmptyListFailure extends EmptyListFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -2444,8 +3054,11 @@ class _$EmptyListFailure extends EmptyListFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (emptyListFailure != null) {
@@ -2457,6 +3070,7 @@ class _$EmptyListFailure extends EmptyListFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(VersionCheckFailure value) versionCheckFailure,
     required TResult Function(ServerFailure value) serverFailure,
     required TResult Function(DataParsingFailure value) dataParsingFailure,
     required TResult Function(NoConnectionFailure value) noConnectionFailure,
@@ -2483,6 +3097,7 @@ class _$EmptyListFailure extends EmptyListFailure {
     required TResult Function(GetUserInfoFailure value) getUserFailure,
     required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
     required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(WrongTokenFailure value) wrongTokenFailure,
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
@@ -2492,10 +3107,15 @@ class _$EmptyListFailure extends EmptyListFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotFoundPostFailure value) notFoundPostFailure,
     required TResult Function(NotEditablePasswordFailure value)
         notEditablePasswordFailure,
     required TResult Function(UserInfoUpdateFailure value)
         userInfoUpdateFailure,
+    required TResult Function(PermissionDeniedFailure value)
+        permissionDeniedFailure,
+    required TResult Function(PermissionPermanentlyDeniedFailure value)
+        permissionPermanentlyDeniedFailure,
   }) {
     return emptyListFailure(this);
   }
@@ -2503,6 +3123,7 @@ class _$EmptyListFailure extends EmptyListFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -2525,6 +3146,7 @@ class _$EmptyListFailure extends EmptyListFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -2533,9 +3155,13 @@ class _$EmptyListFailure extends EmptyListFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
   }) {
     return emptyListFailure?.call(this);
   }
@@ -2543,6 +3169,7 @@ class _$EmptyListFailure extends EmptyListFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -2565,6 +3192,7 @@ class _$EmptyListFailure extends EmptyListFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -2573,9 +3201,13 @@ class _$EmptyListFailure extends EmptyListFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (emptyListFailure != null) {
@@ -2633,6 +3265,7 @@ class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() versionCheckFailure,
     required TResult Function() serverFailure,
     required TResult Function() dataParsingFailure,
     required TResult Function() noConnectionFailure,
@@ -2655,6 +3288,7 @@ class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
     required TResult Function() getUserFailure,
     required TResult Function() wrongPasswordFailure,
     required TResult Function() noEmailUserFailure,
+    required TResult Function() wrongTokenFailure,
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
@@ -2662,8 +3296,11 @@ class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notFoundPostFailure,
     required TResult Function() notEditablePasswordFailure,
     required TResult Function() userInfoUpdateFailure,
+    required TResult Function() permissionDeniedFailure,
+    required TResult Function() permissionPermanentlyDeniedFailure,
   }) {
     return noSuchDataInListFailure();
   }
@@ -2671,6 +3308,7 @@ class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -2693,6 +3331,7 @@ class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -2700,8 +3339,11 @@ class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
   }) {
     return noSuchDataInListFailure?.call();
   }
@@ -2709,6 +3351,7 @@ class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -2731,6 +3374,7 @@ class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -2738,8 +3382,11 @@ class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (noSuchDataInListFailure != null) {
@@ -2751,6 +3398,7 @@ class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(VersionCheckFailure value) versionCheckFailure,
     required TResult Function(ServerFailure value) serverFailure,
     required TResult Function(DataParsingFailure value) dataParsingFailure,
     required TResult Function(NoConnectionFailure value) noConnectionFailure,
@@ -2777,6 +3425,7 @@ class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
     required TResult Function(GetUserInfoFailure value) getUserFailure,
     required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
     required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(WrongTokenFailure value) wrongTokenFailure,
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
@@ -2786,10 +3435,15 @@ class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotFoundPostFailure value) notFoundPostFailure,
     required TResult Function(NotEditablePasswordFailure value)
         notEditablePasswordFailure,
     required TResult Function(UserInfoUpdateFailure value)
         userInfoUpdateFailure,
+    required TResult Function(PermissionDeniedFailure value)
+        permissionDeniedFailure,
+    required TResult Function(PermissionPermanentlyDeniedFailure value)
+        permissionPermanentlyDeniedFailure,
   }) {
     return noSuchDataInListFailure(this);
   }
@@ -2797,6 +3451,7 @@ class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -2819,6 +3474,7 @@ class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -2827,9 +3483,13 @@ class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
   }) {
     return noSuchDataInListFailure?.call(this);
   }
@@ -2837,6 +3497,7 @@ class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -2859,6 +3520,7 @@ class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -2867,9 +3529,13 @@ class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (noSuchDataInListFailure != null) {
@@ -2926,6 +3592,7 @@ class _$RegisterConimalFailure extends RegisterConimalFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() versionCheckFailure,
     required TResult Function() serverFailure,
     required TResult Function() dataParsingFailure,
     required TResult Function() noConnectionFailure,
@@ -2948,6 +3615,7 @@ class _$RegisterConimalFailure extends RegisterConimalFailure {
     required TResult Function() getUserFailure,
     required TResult Function() wrongPasswordFailure,
     required TResult Function() noEmailUserFailure,
+    required TResult Function() wrongTokenFailure,
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
@@ -2955,8 +3623,11 @@ class _$RegisterConimalFailure extends RegisterConimalFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notFoundPostFailure,
     required TResult Function() notEditablePasswordFailure,
     required TResult Function() userInfoUpdateFailure,
+    required TResult Function() permissionDeniedFailure,
+    required TResult Function() permissionPermanentlyDeniedFailure,
   }) {
     return registerConimalFaiure();
   }
@@ -2964,6 +3635,7 @@ class _$RegisterConimalFailure extends RegisterConimalFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -2986,6 +3658,7 @@ class _$RegisterConimalFailure extends RegisterConimalFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -2993,8 +3666,11 @@ class _$RegisterConimalFailure extends RegisterConimalFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
   }) {
     return registerConimalFaiure?.call();
   }
@@ -3002,6 +3678,7 @@ class _$RegisterConimalFailure extends RegisterConimalFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -3024,6 +3701,7 @@ class _$RegisterConimalFailure extends RegisterConimalFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -3031,8 +3709,11 @@ class _$RegisterConimalFailure extends RegisterConimalFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (registerConimalFaiure != null) {
@@ -3044,6 +3725,7 @@ class _$RegisterConimalFailure extends RegisterConimalFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(VersionCheckFailure value) versionCheckFailure,
     required TResult Function(ServerFailure value) serverFailure,
     required TResult Function(DataParsingFailure value) dataParsingFailure,
     required TResult Function(NoConnectionFailure value) noConnectionFailure,
@@ -3070,6 +3752,7 @@ class _$RegisterConimalFailure extends RegisterConimalFailure {
     required TResult Function(GetUserInfoFailure value) getUserFailure,
     required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
     required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(WrongTokenFailure value) wrongTokenFailure,
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
@@ -3079,10 +3762,15 @@ class _$RegisterConimalFailure extends RegisterConimalFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotFoundPostFailure value) notFoundPostFailure,
     required TResult Function(NotEditablePasswordFailure value)
         notEditablePasswordFailure,
     required TResult Function(UserInfoUpdateFailure value)
         userInfoUpdateFailure,
+    required TResult Function(PermissionDeniedFailure value)
+        permissionDeniedFailure,
+    required TResult Function(PermissionPermanentlyDeniedFailure value)
+        permissionPermanentlyDeniedFailure,
   }) {
     return registerConimalFaiure(this);
   }
@@ -3090,6 +3778,7 @@ class _$RegisterConimalFailure extends RegisterConimalFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -3112,6 +3801,7 @@ class _$RegisterConimalFailure extends RegisterConimalFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -3120,9 +3810,13 @@ class _$RegisterConimalFailure extends RegisterConimalFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
   }) {
     return registerConimalFaiure?.call(this);
   }
@@ -3130,6 +3824,7 @@ class _$RegisterConimalFailure extends RegisterConimalFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -3152,6 +3847,7 @@ class _$RegisterConimalFailure extends RegisterConimalFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -3160,9 +3856,13 @@ class _$RegisterConimalFailure extends RegisterConimalFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (registerConimalFaiure != null) {
@@ -3218,6 +3918,7 @@ class _$RemoveConimalFailure extends RemoveConimalFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() versionCheckFailure,
     required TResult Function() serverFailure,
     required TResult Function() dataParsingFailure,
     required TResult Function() noConnectionFailure,
@@ -3240,6 +3941,7 @@ class _$RemoveConimalFailure extends RemoveConimalFailure {
     required TResult Function() getUserFailure,
     required TResult Function() wrongPasswordFailure,
     required TResult Function() noEmailUserFailure,
+    required TResult Function() wrongTokenFailure,
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
@@ -3247,8 +3949,11 @@ class _$RemoveConimalFailure extends RemoveConimalFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notFoundPostFailure,
     required TResult Function() notEditablePasswordFailure,
     required TResult Function() userInfoUpdateFailure,
+    required TResult Function() permissionDeniedFailure,
+    required TResult Function() permissionPermanentlyDeniedFailure,
   }) {
     return removeConimalFailure();
   }
@@ -3256,6 +3961,7 @@ class _$RemoveConimalFailure extends RemoveConimalFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -3278,6 +3984,7 @@ class _$RemoveConimalFailure extends RemoveConimalFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -3285,8 +3992,11 @@ class _$RemoveConimalFailure extends RemoveConimalFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
   }) {
     return removeConimalFailure?.call();
   }
@@ -3294,6 +4004,7 @@ class _$RemoveConimalFailure extends RemoveConimalFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -3316,6 +4027,7 @@ class _$RemoveConimalFailure extends RemoveConimalFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -3323,8 +4035,11 @@ class _$RemoveConimalFailure extends RemoveConimalFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (removeConimalFailure != null) {
@@ -3336,6 +4051,7 @@ class _$RemoveConimalFailure extends RemoveConimalFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(VersionCheckFailure value) versionCheckFailure,
     required TResult Function(ServerFailure value) serverFailure,
     required TResult Function(DataParsingFailure value) dataParsingFailure,
     required TResult Function(NoConnectionFailure value) noConnectionFailure,
@@ -3362,6 +4078,7 @@ class _$RemoveConimalFailure extends RemoveConimalFailure {
     required TResult Function(GetUserInfoFailure value) getUserFailure,
     required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
     required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(WrongTokenFailure value) wrongTokenFailure,
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
@@ -3371,10 +4088,15 @@ class _$RemoveConimalFailure extends RemoveConimalFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotFoundPostFailure value) notFoundPostFailure,
     required TResult Function(NotEditablePasswordFailure value)
         notEditablePasswordFailure,
     required TResult Function(UserInfoUpdateFailure value)
         userInfoUpdateFailure,
+    required TResult Function(PermissionDeniedFailure value)
+        permissionDeniedFailure,
+    required TResult Function(PermissionPermanentlyDeniedFailure value)
+        permissionPermanentlyDeniedFailure,
   }) {
     return removeConimalFailure(this);
   }
@@ -3382,6 +4104,7 @@ class _$RemoveConimalFailure extends RemoveConimalFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -3404,6 +4127,7 @@ class _$RemoveConimalFailure extends RemoveConimalFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -3412,9 +4136,13 @@ class _$RemoveConimalFailure extends RemoveConimalFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
   }) {
     return removeConimalFailure?.call(this);
   }
@@ -3422,6 +4150,7 @@ class _$RemoveConimalFailure extends RemoveConimalFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -3444,6 +4173,7 @@ class _$RemoveConimalFailure extends RemoveConimalFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -3452,9 +4182,13 @@ class _$RemoveConimalFailure extends RemoveConimalFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (removeConimalFailure != null) {
@@ -3510,6 +4244,7 @@ class _$GetConimalListFailure extends GetConimalListFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() versionCheckFailure,
     required TResult Function() serverFailure,
     required TResult Function() dataParsingFailure,
     required TResult Function() noConnectionFailure,
@@ -3532,6 +4267,7 @@ class _$GetConimalListFailure extends GetConimalListFailure {
     required TResult Function() getUserFailure,
     required TResult Function() wrongPasswordFailure,
     required TResult Function() noEmailUserFailure,
+    required TResult Function() wrongTokenFailure,
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
@@ -3539,8 +4275,11 @@ class _$GetConimalListFailure extends GetConimalListFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notFoundPostFailure,
     required TResult Function() notEditablePasswordFailure,
     required TResult Function() userInfoUpdateFailure,
+    required TResult Function() permissionDeniedFailure,
+    required TResult Function() permissionPermanentlyDeniedFailure,
   }) {
     return getConimalListFailure();
   }
@@ -3548,6 +4287,7 @@ class _$GetConimalListFailure extends GetConimalListFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -3570,6 +4310,7 @@ class _$GetConimalListFailure extends GetConimalListFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -3577,8 +4318,11 @@ class _$GetConimalListFailure extends GetConimalListFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
   }) {
     return getConimalListFailure?.call();
   }
@@ -3586,6 +4330,7 @@ class _$GetConimalListFailure extends GetConimalListFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -3608,6 +4353,7 @@ class _$GetConimalListFailure extends GetConimalListFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -3615,8 +4361,11 @@ class _$GetConimalListFailure extends GetConimalListFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (getConimalListFailure != null) {
@@ -3628,6 +4377,7 @@ class _$GetConimalListFailure extends GetConimalListFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(VersionCheckFailure value) versionCheckFailure,
     required TResult Function(ServerFailure value) serverFailure,
     required TResult Function(DataParsingFailure value) dataParsingFailure,
     required TResult Function(NoConnectionFailure value) noConnectionFailure,
@@ -3654,6 +4404,7 @@ class _$GetConimalListFailure extends GetConimalListFailure {
     required TResult Function(GetUserInfoFailure value) getUserFailure,
     required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
     required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(WrongTokenFailure value) wrongTokenFailure,
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
@@ -3663,10 +4414,15 @@ class _$GetConimalListFailure extends GetConimalListFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotFoundPostFailure value) notFoundPostFailure,
     required TResult Function(NotEditablePasswordFailure value)
         notEditablePasswordFailure,
     required TResult Function(UserInfoUpdateFailure value)
         userInfoUpdateFailure,
+    required TResult Function(PermissionDeniedFailure value)
+        permissionDeniedFailure,
+    required TResult Function(PermissionPermanentlyDeniedFailure value)
+        permissionPermanentlyDeniedFailure,
   }) {
     return getConimalListFailure(this);
   }
@@ -3674,6 +4430,7 @@ class _$GetConimalListFailure extends GetConimalListFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -3696,6 +4453,7 @@ class _$GetConimalListFailure extends GetConimalListFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -3704,9 +4462,13 @@ class _$GetConimalListFailure extends GetConimalListFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
   }) {
     return getConimalListFailure?.call(this);
   }
@@ -3714,6 +4476,7 @@ class _$GetConimalListFailure extends GetConimalListFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -3736,6 +4499,7 @@ class _$GetConimalListFailure extends GetConimalListFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -3744,9 +4508,13 @@ class _$GetConimalListFailure extends GetConimalListFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (getConimalListFailure != null) {
@@ -3804,6 +4572,7 @@ class _$SignInCredentialFailure extends SignInCredentialFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() versionCheckFailure,
     required TResult Function() serverFailure,
     required TResult Function() dataParsingFailure,
     required TResult Function() noConnectionFailure,
@@ -3826,6 +4595,7 @@ class _$SignInCredentialFailure extends SignInCredentialFailure {
     required TResult Function() getUserFailure,
     required TResult Function() wrongPasswordFailure,
     required TResult Function() noEmailUserFailure,
+    required TResult Function() wrongTokenFailure,
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
@@ -3833,8 +4603,11 @@ class _$SignInCredentialFailure extends SignInCredentialFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notFoundPostFailure,
     required TResult Function() notEditablePasswordFailure,
     required TResult Function() userInfoUpdateFailure,
+    required TResult Function() permissionDeniedFailure,
+    required TResult Function() permissionPermanentlyDeniedFailure,
   }) {
     return signInCredentialFailure();
   }
@@ -3842,6 +4615,7 @@ class _$SignInCredentialFailure extends SignInCredentialFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -3864,6 +4638,7 @@ class _$SignInCredentialFailure extends SignInCredentialFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -3871,8 +4646,11 @@ class _$SignInCredentialFailure extends SignInCredentialFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
   }) {
     return signInCredentialFailure?.call();
   }
@@ -3880,6 +4658,7 @@ class _$SignInCredentialFailure extends SignInCredentialFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -3902,6 +4681,7 @@ class _$SignInCredentialFailure extends SignInCredentialFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -3909,8 +4689,11 @@ class _$SignInCredentialFailure extends SignInCredentialFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (signInCredentialFailure != null) {
@@ -3922,6 +4705,7 @@ class _$SignInCredentialFailure extends SignInCredentialFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(VersionCheckFailure value) versionCheckFailure,
     required TResult Function(ServerFailure value) serverFailure,
     required TResult Function(DataParsingFailure value) dataParsingFailure,
     required TResult Function(NoConnectionFailure value) noConnectionFailure,
@@ -3948,6 +4732,7 @@ class _$SignInCredentialFailure extends SignInCredentialFailure {
     required TResult Function(GetUserInfoFailure value) getUserFailure,
     required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
     required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(WrongTokenFailure value) wrongTokenFailure,
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
@@ -3957,10 +4742,15 @@ class _$SignInCredentialFailure extends SignInCredentialFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotFoundPostFailure value) notFoundPostFailure,
     required TResult Function(NotEditablePasswordFailure value)
         notEditablePasswordFailure,
     required TResult Function(UserInfoUpdateFailure value)
         userInfoUpdateFailure,
+    required TResult Function(PermissionDeniedFailure value)
+        permissionDeniedFailure,
+    required TResult Function(PermissionPermanentlyDeniedFailure value)
+        permissionPermanentlyDeniedFailure,
   }) {
     return signInCredentialFailure(this);
   }
@@ -3968,6 +4758,7 @@ class _$SignInCredentialFailure extends SignInCredentialFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -3990,6 +4781,7 @@ class _$SignInCredentialFailure extends SignInCredentialFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -3998,9 +4790,13 @@ class _$SignInCredentialFailure extends SignInCredentialFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
   }) {
     return signInCredentialFailure?.call(this);
   }
@@ -4008,6 +4804,7 @@ class _$SignInCredentialFailure extends SignInCredentialFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -4030,6 +4827,7 @@ class _$SignInCredentialFailure extends SignInCredentialFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -4038,9 +4836,13 @@ class _$SignInCredentialFailure extends SignInCredentialFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (signInCredentialFailure != null) {
@@ -4096,6 +4898,7 @@ class _$SignInTokenFailure extends SignInTokenFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() versionCheckFailure,
     required TResult Function() serverFailure,
     required TResult Function() dataParsingFailure,
     required TResult Function() noConnectionFailure,
@@ -4118,6 +4921,7 @@ class _$SignInTokenFailure extends SignInTokenFailure {
     required TResult Function() getUserFailure,
     required TResult Function() wrongPasswordFailure,
     required TResult Function() noEmailUserFailure,
+    required TResult Function() wrongTokenFailure,
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
@@ -4125,8 +4929,11 @@ class _$SignInTokenFailure extends SignInTokenFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notFoundPostFailure,
     required TResult Function() notEditablePasswordFailure,
     required TResult Function() userInfoUpdateFailure,
+    required TResult Function() permissionDeniedFailure,
+    required TResult Function() permissionPermanentlyDeniedFailure,
   }) {
     return signInTokenFailure();
   }
@@ -4134,6 +4941,7 @@ class _$SignInTokenFailure extends SignInTokenFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -4156,6 +4964,7 @@ class _$SignInTokenFailure extends SignInTokenFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -4163,8 +4972,11 @@ class _$SignInTokenFailure extends SignInTokenFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
   }) {
     return signInTokenFailure?.call();
   }
@@ -4172,6 +4984,7 @@ class _$SignInTokenFailure extends SignInTokenFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -4194,6 +5007,7 @@ class _$SignInTokenFailure extends SignInTokenFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -4201,8 +5015,11 @@ class _$SignInTokenFailure extends SignInTokenFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (signInTokenFailure != null) {
@@ -4214,6 +5031,7 @@ class _$SignInTokenFailure extends SignInTokenFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(VersionCheckFailure value) versionCheckFailure,
     required TResult Function(ServerFailure value) serverFailure,
     required TResult Function(DataParsingFailure value) dataParsingFailure,
     required TResult Function(NoConnectionFailure value) noConnectionFailure,
@@ -4240,6 +5058,7 @@ class _$SignInTokenFailure extends SignInTokenFailure {
     required TResult Function(GetUserInfoFailure value) getUserFailure,
     required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
     required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(WrongTokenFailure value) wrongTokenFailure,
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
@@ -4249,10 +5068,15 @@ class _$SignInTokenFailure extends SignInTokenFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotFoundPostFailure value) notFoundPostFailure,
     required TResult Function(NotEditablePasswordFailure value)
         notEditablePasswordFailure,
     required TResult Function(UserInfoUpdateFailure value)
         userInfoUpdateFailure,
+    required TResult Function(PermissionDeniedFailure value)
+        permissionDeniedFailure,
+    required TResult Function(PermissionPermanentlyDeniedFailure value)
+        permissionPermanentlyDeniedFailure,
   }) {
     return signInTokenFailure(this);
   }
@@ -4260,6 +5084,7 @@ class _$SignInTokenFailure extends SignInTokenFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -4282,6 +5107,7 @@ class _$SignInTokenFailure extends SignInTokenFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -4290,9 +5116,13 @@ class _$SignInTokenFailure extends SignInTokenFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
   }) {
     return signInTokenFailure?.call(this);
   }
@@ -4300,6 +5130,7 @@ class _$SignInTokenFailure extends SignInTokenFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -4322,6 +5153,7 @@ class _$SignInTokenFailure extends SignInTokenFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -4330,9 +5162,13 @@ class _$SignInTokenFailure extends SignInTokenFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (signInTokenFailure != null) {
@@ -4388,6 +5224,7 @@ class _$NaverSigninFailure extends NaverSigninFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() versionCheckFailure,
     required TResult Function() serverFailure,
     required TResult Function() dataParsingFailure,
     required TResult Function() noConnectionFailure,
@@ -4410,6 +5247,7 @@ class _$NaverSigninFailure extends NaverSigninFailure {
     required TResult Function() getUserFailure,
     required TResult Function() wrongPasswordFailure,
     required TResult Function() noEmailUserFailure,
+    required TResult Function() wrongTokenFailure,
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
@@ -4417,8 +5255,11 @@ class _$NaverSigninFailure extends NaverSigninFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notFoundPostFailure,
     required TResult Function() notEditablePasswordFailure,
     required TResult Function() userInfoUpdateFailure,
+    required TResult Function() permissionDeniedFailure,
+    required TResult Function() permissionPermanentlyDeniedFailure,
   }) {
     return naverSigninFailure();
   }
@@ -4426,6 +5267,7 @@ class _$NaverSigninFailure extends NaverSigninFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -4448,6 +5290,7 @@ class _$NaverSigninFailure extends NaverSigninFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -4455,8 +5298,11 @@ class _$NaverSigninFailure extends NaverSigninFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
   }) {
     return naverSigninFailure?.call();
   }
@@ -4464,6 +5310,7 @@ class _$NaverSigninFailure extends NaverSigninFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -4486,6 +5333,7 @@ class _$NaverSigninFailure extends NaverSigninFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -4493,8 +5341,11 @@ class _$NaverSigninFailure extends NaverSigninFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (naverSigninFailure != null) {
@@ -4506,6 +5357,7 @@ class _$NaverSigninFailure extends NaverSigninFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(VersionCheckFailure value) versionCheckFailure,
     required TResult Function(ServerFailure value) serverFailure,
     required TResult Function(DataParsingFailure value) dataParsingFailure,
     required TResult Function(NoConnectionFailure value) noConnectionFailure,
@@ -4532,6 +5384,7 @@ class _$NaverSigninFailure extends NaverSigninFailure {
     required TResult Function(GetUserInfoFailure value) getUserFailure,
     required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
     required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(WrongTokenFailure value) wrongTokenFailure,
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
@@ -4541,10 +5394,15 @@ class _$NaverSigninFailure extends NaverSigninFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotFoundPostFailure value) notFoundPostFailure,
     required TResult Function(NotEditablePasswordFailure value)
         notEditablePasswordFailure,
     required TResult Function(UserInfoUpdateFailure value)
         userInfoUpdateFailure,
+    required TResult Function(PermissionDeniedFailure value)
+        permissionDeniedFailure,
+    required TResult Function(PermissionPermanentlyDeniedFailure value)
+        permissionPermanentlyDeniedFailure,
   }) {
     return naverSigninFailure(this);
   }
@@ -4552,6 +5410,7 @@ class _$NaverSigninFailure extends NaverSigninFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -4574,6 +5433,7 @@ class _$NaverSigninFailure extends NaverSigninFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -4582,9 +5442,13 @@ class _$NaverSigninFailure extends NaverSigninFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
   }) {
     return naverSigninFailure?.call(this);
   }
@@ -4592,6 +5456,7 @@ class _$NaverSigninFailure extends NaverSigninFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -4614,6 +5479,7 @@ class _$NaverSigninFailure extends NaverSigninFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -4622,9 +5488,13 @@ class _$NaverSigninFailure extends NaverSigninFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (naverSigninFailure != null) {
@@ -4680,6 +5550,7 @@ class _$KakaoSigninFailure extends KakaoSigninFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() versionCheckFailure,
     required TResult Function() serverFailure,
     required TResult Function() dataParsingFailure,
     required TResult Function() noConnectionFailure,
@@ -4702,6 +5573,7 @@ class _$KakaoSigninFailure extends KakaoSigninFailure {
     required TResult Function() getUserFailure,
     required TResult Function() wrongPasswordFailure,
     required TResult Function() noEmailUserFailure,
+    required TResult Function() wrongTokenFailure,
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
@@ -4709,8 +5581,11 @@ class _$KakaoSigninFailure extends KakaoSigninFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notFoundPostFailure,
     required TResult Function() notEditablePasswordFailure,
     required TResult Function() userInfoUpdateFailure,
+    required TResult Function() permissionDeniedFailure,
+    required TResult Function() permissionPermanentlyDeniedFailure,
   }) {
     return kakaoSigninFailure();
   }
@@ -4718,6 +5593,7 @@ class _$KakaoSigninFailure extends KakaoSigninFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -4740,6 +5616,7 @@ class _$KakaoSigninFailure extends KakaoSigninFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -4747,8 +5624,11 @@ class _$KakaoSigninFailure extends KakaoSigninFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
   }) {
     return kakaoSigninFailure?.call();
   }
@@ -4756,6 +5636,7 @@ class _$KakaoSigninFailure extends KakaoSigninFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -4778,6 +5659,7 @@ class _$KakaoSigninFailure extends KakaoSigninFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -4785,8 +5667,11 @@ class _$KakaoSigninFailure extends KakaoSigninFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (kakaoSigninFailure != null) {
@@ -4798,6 +5683,7 @@ class _$KakaoSigninFailure extends KakaoSigninFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(VersionCheckFailure value) versionCheckFailure,
     required TResult Function(ServerFailure value) serverFailure,
     required TResult Function(DataParsingFailure value) dataParsingFailure,
     required TResult Function(NoConnectionFailure value) noConnectionFailure,
@@ -4824,6 +5710,7 @@ class _$KakaoSigninFailure extends KakaoSigninFailure {
     required TResult Function(GetUserInfoFailure value) getUserFailure,
     required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
     required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(WrongTokenFailure value) wrongTokenFailure,
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
@@ -4833,10 +5720,15 @@ class _$KakaoSigninFailure extends KakaoSigninFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotFoundPostFailure value) notFoundPostFailure,
     required TResult Function(NotEditablePasswordFailure value)
         notEditablePasswordFailure,
     required TResult Function(UserInfoUpdateFailure value)
         userInfoUpdateFailure,
+    required TResult Function(PermissionDeniedFailure value)
+        permissionDeniedFailure,
+    required TResult Function(PermissionPermanentlyDeniedFailure value)
+        permissionPermanentlyDeniedFailure,
   }) {
     return kakaoSigninFailure(this);
   }
@@ -4844,6 +5736,7 @@ class _$KakaoSigninFailure extends KakaoSigninFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -4866,6 +5759,7 @@ class _$KakaoSigninFailure extends KakaoSigninFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -4874,9 +5768,13 @@ class _$KakaoSigninFailure extends KakaoSigninFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
   }) {
     return kakaoSigninFailure?.call(this);
   }
@@ -4884,6 +5782,7 @@ class _$KakaoSigninFailure extends KakaoSigninFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -4906,6 +5805,7 @@ class _$KakaoSigninFailure extends KakaoSigninFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -4914,9 +5814,13 @@ class _$KakaoSigninFailure extends KakaoSigninFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (kakaoSigninFailure != null) {
@@ -4972,6 +5876,7 @@ class _$GoogleSigninFailure extends GoogleSigninFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() versionCheckFailure,
     required TResult Function() serverFailure,
     required TResult Function() dataParsingFailure,
     required TResult Function() noConnectionFailure,
@@ -4994,6 +5899,7 @@ class _$GoogleSigninFailure extends GoogleSigninFailure {
     required TResult Function() getUserFailure,
     required TResult Function() wrongPasswordFailure,
     required TResult Function() noEmailUserFailure,
+    required TResult Function() wrongTokenFailure,
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
@@ -5001,8 +5907,11 @@ class _$GoogleSigninFailure extends GoogleSigninFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notFoundPostFailure,
     required TResult Function() notEditablePasswordFailure,
     required TResult Function() userInfoUpdateFailure,
+    required TResult Function() permissionDeniedFailure,
+    required TResult Function() permissionPermanentlyDeniedFailure,
   }) {
     return googleSigninFailure();
   }
@@ -5010,6 +5919,7 @@ class _$GoogleSigninFailure extends GoogleSigninFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -5032,6 +5942,7 @@ class _$GoogleSigninFailure extends GoogleSigninFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -5039,8 +5950,11 @@ class _$GoogleSigninFailure extends GoogleSigninFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
   }) {
     return googleSigninFailure?.call();
   }
@@ -5048,6 +5962,7 @@ class _$GoogleSigninFailure extends GoogleSigninFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -5070,6 +5985,7 @@ class _$GoogleSigninFailure extends GoogleSigninFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -5077,8 +5993,11 @@ class _$GoogleSigninFailure extends GoogleSigninFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (googleSigninFailure != null) {
@@ -5090,6 +6009,7 @@ class _$GoogleSigninFailure extends GoogleSigninFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(VersionCheckFailure value) versionCheckFailure,
     required TResult Function(ServerFailure value) serverFailure,
     required TResult Function(DataParsingFailure value) dataParsingFailure,
     required TResult Function(NoConnectionFailure value) noConnectionFailure,
@@ -5116,6 +6036,7 @@ class _$GoogleSigninFailure extends GoogleSigninFailure {
     required TResult Function(GetUserInfoFailure value) getUserFailure,
     required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
     required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(WrongTokenFailure value) wrongTokenFailure,
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
@@ -5125,10 +6046,15 @@ class _$GoogleSigninFailure extends GoogleSigninFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotFoundPostFailure value) notFoundPostFailure,
     required TResult Function(NotEditablePasswordFailure value)
         notEditablePasswordFailure,
     required TResult Function(UserInfoUpdateFailure value)
         userInfoUpdateFailure,
+    required TResult Function(PermissionDeniedFailure value)
+        permissionDeniedFailure,
+    required TResult Function(PermissionPermanentlyDeniedFailure value)
+        permissionPermanentlyDeniedFailure,
   }) {
     return googleSigninFailure(this);
   }
@@ -5136,6 +6062,7 @@ class _$GoogleSigninFailure extends GoogleSigninFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -5158,6 +6085,7 @@ class _$GoogleSigninFailure extends GoogleSigninFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -5166,9 +6094,13 @@ class _$GoogleSigninFailure extends GoogleSigninFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
   }) {
     return googleSigninFailure?.call(this);
   }
@@ -5176,6 +6108,7 @@ class _$GoogleSigninFailure extends GoogleSigninFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -5198,6 +6131,7 @@ class _$GoogleSigninFailure extends GoogleSigninFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -5206,9 +6140,13 @@ class _$GoogleSigninFailure extends GoogleSigninFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (googleSigninFailure != null) {
@@ -5264,6 +6202,7 @@ class _$AppleSigninFailure extends AppleSigninFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() versionCheckFailure,
     required TResult Function() serverFailure,
     required TResult Function() dataParsingFailure,
     required TResult Function() noConnectionFailure,
@@ -5286,6 +6225,7 @@ class _$AppleSigninFailure extends AppleSigninFailure {
     required TResult Function() getUserFailure,
     required TResult Function() wrongPasswordFailure,
     required TResult Function() noEmailUserFailure,
+    required TResult Function() wrongTokenFailure,
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
@@ -5293,8 +6233,11 @@ class _$AppleSigninFailure extends AppleSigninFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notFoundPostFailure,
     required TResult Function() notEditablePasswordFailure,
     required TResult Function() userInfoUpdateFailure,
+    required TResult Function() permissionDeniedFailure,
+    required TResult Function() permissionPermanentlyDeniedFailure,
   }) {
     return appleSigninFailure();
   }
@@ -5302,6 +6245,7 @@ class _$AppleSigninFailure extends AppleSigninFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -5324,6 +6268,7 @@ class _$AppleSigninFailure extends AppleSigninFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -5331,8 +6276,11 @@ class _$AppleSigninFailure extends AppleSigninFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
   }) {
     return appleSigninFailure?.call();
   }
@@ -5340,6 +6288,7 @@ class _$AppleSigninFailure extends AppleSigninFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -5362,6 +6311,7 @@ class _$AppleSigninFailure extends AppleSigninFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -5369,8 +6319,11 @@ class _$AppleSigninFailure extends AppleSigninFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (appleSigninFailure != null) {
@@ -5382,6 +6335,7 @@ class _$AppleSigninFailure extends AppleSigninFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(VersionCheckFailure value) versionCheckFailure,
     required TResult Function(ServerFailure value) serverFailure,
     required TResult Function(DataParsingFailure value) dataParsingFailure,
     required TResult Function(NoConnectionFailure value) noConnectionFailure,
@@ -5408,6 +6362,7 @@ class _$AppleSigninFailure extends AppleSigninFailure {
     required TResult Function(GetUserInfoFailure value) getUserFailure,
     required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
     required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(WrongTokenFailure value) wrongTokenFailure,
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
@@ -5417,10 +6372,15 @@ class _$AppleSigninFailure extends AppleSigninFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotFoundPostFailure value) notFoundPostFailure,
     required TResult Function(NotEditablePasswordFailure value)
         notEditablePasswordFailure,
     required TResult Function(UserInfoUpdateFailure value)
         userInfoUpdateFailure,
+    required TResult Function(PermissionDeniedFailure value)
+        permissionDeniedFailure,
+    required TResult Function(PermissionPermanentlyDeniedFailure value)
+        permissionPermanentlyDeniedFailure,
   }) {
     return appleSigninFailure(this);
   }
@@ -5428,6 +6388,7 @@ class _$AppleSigninFailure extends AppleSigninFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -5450,6 +6411,7 @@ class _$AppleSigninFailure extends AppleSigninFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -5458,9 +6420,13 @@ class _$AppleSigninFailure extends AppleSigninFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
   }) {
     return appleSigninFailure?.call(this);
   }
@@ -5468,6 +6434,7 @@ class _$AppleSigninFailure extends AppleSigninFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -5490,6 +6457,7 @@ class _$AppleSigninFailure extends AppleSigninFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -5498,9 +6466,13 @@ class _$AppleSigninFailure extends AppleSigninFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (appleSigninFailure != null) {
@@ -5556,6 +6528,7 @@ class _$EmailSigninFailure extends EmailSigninFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() versionCheckFailure,
     required TResult Function() serverFailure,
     required TResult Function() dataParsingFailure,
     required TResult Function() noConnectionFailure,
@@ -5578,6 +6551,7 @@ class _$EmailSigninFailure extends EmailSigninFailure {
     required TResult Function() getUserFailure,
     required TResult Function() wrongPasswordFailure,
     required TResult Function() noEmailUserFailure,
+    required TResult Function() wrongTokenFailure,
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
@@ -5585,8 +6559,11 @@ class _$EmailSigninFailure extends EmailSigninFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notFoundPostFailure,
     required TResult Function() notEditablePasswordFailure,
     required TResult Function() userInfoUpdateFailure,
+    required TResult Function() permissionDeniedFailure,
+    required TResult Function() permissionPermanentlyDeniedFailure,
   }) {
     return emailSigninFailure();
   }
@@ -5594,6 +6571,7 @@ class _$EmailSigninFailure extends EmailSigninFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -5616,6 +6594,7 @@ class _$EmailSigninFailure extends EmailSigninFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -5623,8 +6602,11 @@ class _$EmailSigninFailure extends EmailSigninFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
   }) {
     return emailSigninFailure?.call();
   }
@@ -5632,6 +6614,7 @@ class _$EmailSigninFailure extends EmailSigninFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -5654,6 +6637,7 @@ class _$EmailSigninFailure extends EmailSigninFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -5661,8 +6645,11 @@ class _$EmailSigninFailure extends EmailSigninFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (emailSigninFailure != null) {
@@ -5674,6 +6661,7 @@ class _$EmailSigninFailure extends EmailSigninFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(VersionCheckFailure value) versionCheckFailure,
     required TResult Function(ServerFailure value) serverFailure,
     required TResult Function(DataParsingFailure value) dataParsingFailure,
     required TResult Function(NoConnectionFailure value) noConnectionFailure,
@@ -5700,6 +6688,7 @@ class _$EmailSigninFailure extends EmailSigninFailure {
     required TResult Function(GetUserInfoFailure value) getUserFailure,
     required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
     required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(WrongTokenFailure value) wrongTokenFailure,
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
@@ -5709,10 +6698,15 @@ class _$EmailSigninFailure extends EmailSigninFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotFoundPostFailure value) notFoundPostFailure,
     required TResult Function(NotEditablePasswordFailure value)
         notEditablePasswordFailure,
     required TResult Function(UserInfoUpdateFailure value)
         userInfoUpdateFailure,
+    required TResult Function(PermissionDeniedFailure value)
+        permissionDeniedFailure,
+    required TResult Function(PermissionPermanentlyDeniedFailure value)
+        permissionPermanentlyDeniedFailure,
   }) {
     return emailSigninFailure(this);
   }
@@ -5720,6 +6714,7 @@ class _$EmailSigninFailure extends EmailSigninFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -5742,6 +6737,7 @@ class _$EmailSigninFailure extends EmailSigninFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -5750,9 +6746,13 @@ class _$EmailSigninFailure extends EmailSigninFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
   }) {
     return emailSigninFailure?.call(this);
   }
@@ -5760,6 +6760,7 @@ class _$EmailSigninFailure extends EmailSigninFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -5782,6 +6783,7 @@ class _$EmailSigninFailure extends EmailSigninFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -5790,9 +6792,13 @@ class _$EmailSigninFailure extends EmailSigninFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (emailSigninFailure != null) {
@@ -5848,6 +6854,7 @@ class _$GetUserInfoFailure extends GetUserInfoFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() versionCheckFailure,
     required TResult Function() serverFailure,
     required TResult Function() dataParsingFailure,
     required TResult Function() noConnectionFailure,
@@ -5870,6 +6877,7 @@ class _$GetUserInfoFailure extends GetUserInfoFailure {
     required TResult Function() getUserFailure,
     required TResult Function() wrongPasswordFailure,
     required TResult Function() noEmailUserFailure,
+    required TResult Function() wrongTokenFailure,
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
@@ -5877,8 +6885,11 @@ class _$GetUserInfoFailure extends GetUserInfoFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notFoundPostFailure,
     required TResult Function() notEditablePasswordFailure,
     required TResult Function() userInfoUpdateFailure,
+    required TResult Function() permissionDeniedFailure,
+    required TResult Function() permissionPermanentlyDeniedFailure,
   }) {
     return getUserFailure();
   }
@@ -5886,6 +6897,7 @@ class _$GetUserInfoFailure extends GetUserInfoFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -5908,6 +6920,7 @@ class _$GetUserInfoFailure extends GetUserInfoFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -5915,8 +6928,11 @@ class _$GetUserInfoFailure extends GetUserInfoFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
   }) {
     return getUserFailure?.call();
   }
@@ -5924,6 +6940,7 @@ class _$GetUserInfoFailure extends GetUserInfoFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -5946,6 +6963,7 @@ class _$GetUserInfoFailure extends GetUserInfoFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -5953,8 +6971,11 @@ class _$GetUserInfoFailure extends GetUserInfoFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (getUserFailure != null) {
@@ -5966,6 +6987,7 @@ class _$GetUserInfoFailure extends GetUserInfoFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(VersionCheckFailure value) versionCheckFailure,
     required TResult Function(ServerFailure value) serverFailure,
     required TResult Function(DataParsingFailure value) dataParsingFailure,
     required TResult Function(NoConnectionFailure value) noConnectionFailure,
@@ -5992,6 +7014,7 @@ class _$GetUserInfoFailure extends GetUserInfoFailure {
     required TResult Function(GetUserInfoFailure value) getUserFailure,
     required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
     required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(WrongTokenFailure value) wrongTokenFailure,
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
@@ -6001,10 +7024,15 @@ class _$GetUserInfoFailure extends GetUserInfoFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotFoundPostFailure value) notFoundPostFailure,
     required TResult Function(NotEditablePasswordFailure value)
         notEditablePasswordFailure,
     required TResult Function(UserInfoUpdateFailure value)
         userInfoUpdateFailure,
+    required TResult Function(PermissionDeniedFailure value)
+        permissionDeniedFailure,
+    required TResult Function(PermissionPermanentlyDeniedFailure value)
+        permissionPermanentlyDeniedFailure,
   }) {
     return getUserFailure(this);
   }
@@ -6012,6 +7040,7 @@ class _$GetUserInfoFailure extends GetUserInfoFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -6034,6 +7063,7 @@ class _$GetUserInfoFailure extends GetUserInfoFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -6042,9 +7072,13 @@ class _$GetUserInfoFailure extends GetUserInfoFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
   }) {
     return getUserFailure?.call(this);
   }
@@ -6052,6 +7086,7 @@ class _$GetUserInfoFailure extends GetUserInfoFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -6074,6 +7109,7 @@ class _$GetUserInfoFailure extends GetUserInfoFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -6082,9 +7118,13 @@ class _$GetUserInfoFailure extends GetUserInfoFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (getUserFailure != null) {
@@ -6140,6 +7180,7 @@ class _$WrongPasswordFailure extends WrongPasswordFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() versionCheckFailure,
     required TResult Function() serverFailure,
     required TResult Function() dataParsingFailure,
     required TResult Function() noConnectionFailure,
@@ -6162,6 +7203,7 @@ class _$WrongPasswordFailure extends WrongPasswordFailure {
     required TResult Function() getUserFailure,
     required TResult Function() wrongPasswordFailure,
     required TResult Function() noEmailUserFailure,
+    required TResult Function() wrongTokenFailure,
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
@@ -6169,8 +7211,11 @@ class _$WrongPasswordFailure extends WrongPasswordFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notFoundPostFailure,
     required TResult Function() notEditablePasswordFailure,
     required TResult Function() userInfoUpdateFailure,
+    required TResult Function() permissionDeniedFailure,
+    required TResult Function() permissionPermanentlyDeniedFailure,
   }) {
     return wrongPasswordFailure();
   }
@@ -6178,6 +7223,7 @@ class _$WrongPasswordFailure extends WrongPasswordFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -6200,6 +7246,7 @@ class _$WrongPasswordFailure extends WrongPasswordFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -6207,8 +7254,11 @@ class _$WrongPasswordFailure extends WrongPasswordFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
   }) {
     return wrongPasswordFailure?.call();
   }
@@ -6216,6 +7266,7 @@ class _$WrongPasswordFailure extends WrongPasswordFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -6238,6 +7289,7 @@ class _$WrongPasswordFailure extends WrongPasswordFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -6245,8 +7297,11 @@ class _$WrongPasswordFailure extends WrongPasswordFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (wrongPasswordFailure != null) {
@@ -6258,6 +7313,7 @@ class _$WrongPasswordFailure extends WrongPasswordFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(VersionCheckFailure value) versionCheckFailure,
     required TResult Function(ServerFailure value) serverFailure,
     required TResult Function(DataParsingFailure value) dataParsingFailure,
     required TResult Function(NoConnectionFailure value) noConnectionFailure,
@@ -6284,6 +7340,7 @@ class _$WrongPasswordFailure extends WrongPasswordFailure {
     required TResult Function(GetUserInfoFailure value) getUserFailure,
     required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
     required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(WrongTokenFailure value) wrongTokenFailure,
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
@@ -6293,10 +7350,15 @@ class _$WrongPasswordFailure extends WrongPasswordFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotFoundPostFailure value) notFoundPostFailure,
     required TResult Function(NotEditablePasswordFailure value)
         notEditablePasswordFailure,
     required TResult Function(UserInfoUpdateFailure value)
         userInfoUpdateFailure,
+    required TResult Function(PermissionDeniedFailure value)
+        permissionDeniedFailure,
+    required TResult Function(PermissionPermanentlyDeniedFailure value)
+        permissionPermanentlyDeniedFailure,
   }) {
     return wrongPasswordFailure(this);
   }
@@ -6304,6 +7366,7 @@ class _$WrongPasswordFailure extends WrongPasswordFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -6326,6 +7389,7 @@ class _$WrongPasswordFailure extends WrongPasswordFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -6334,9 +7398,13 @@ class _$WrongPasswordFailure extends WrongPasswordFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
   }) {
     return wrongPasswordFailure?.call(this);
   }
@@ -6344,6 +7412,7 @@ class _$WrongPasswordFailure extends WrongPasswordFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -6366,6 +7435,7 @@ class _$WrongPasswordFailure extends WrongPasswordFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -6374,9 +7444,13 @@ class _$WrongPasswordFailure extends WrongPasswordFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (wrongPasswordFailure != null) {
@@ -6432,6 +7506,7 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() versionCheckFailure,
     required TResult Function() serverFailure,
     required TResult Function() dataParsingFailure,
     required TResult Function() noConnectionFailure,
@@ -6454,6 +7529,7 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
     required TResult Function() getUserFailure,
     required TResult Function() wrongPasswordFailure,
     required TResult Function() noEmailUserFailure,
+    required TResult Function() wrongTokenFailure,
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
@@ -6461,8 +7537,11 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notFoundPostFailure,
     required TResult Function() notEditablePasswordFailure,
     required TResult Function() userInfoUpdateFailure,
+    required TResult Function() permissionDeniedFailure,
+    required TResult Function() permissionPermanentlyDeniedFailure,
   }) {
     return noEmailUserFailure();
   }
@@ -6470,6 +7549,7 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -6492,6 +7572,7 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -6499,8 +7580,11 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
   }) {
     return noEmailUserFailure?.call();
   }
@@ -6508,6 +7592,7 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -6530,6 +7615,7 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -6537,8 +7623,11 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (noEmailUserFailure != null) {
@@ -6550,6 +7639,7 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(VersionCheckFailure value) versionCheckFailure,
     required TResult Function(ServerFailure value) serverFailure,
     required TResult Function(DataParsingFailure value) dataParsingFailure,
     required TResult Function(NoConnectionFailure value) noConnectionFailure,
@@ -6576,6 +7666,7 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
     required TResult Function(GetUserInfoFailure value) getUserFailure,
     required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
     required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(WrongTokenFailure value) wrongTokenFailure,
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
@@ -6585,10 +7676,15 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotFoundPostFailure value) notFoundPostFailure,
     required TResult Function(NotEditablePasswordFailure value)
         notEditablePasswordFailure,
     required TResult Function(UserInfoUpdateFailure value)
         userInfoUpdateFailure,
+    required TResult Function(PermissionDeniedFailure value)
+        permissionDeniedFailure,
+    required TResult Function(PermissionPermanentlyDeniedFailure value)
+        permissionPermanentlyDeniedFailure,
   }) {
     return noEmailUserFailure(this);
   }
@@ -6596,6 +7692,7 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -6618,6 +7715,7 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -6626,9 +7724,13 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
   }) {
     return noEmailUserFailure?.call(this);
   }
@@ -6636,6 +7738,7 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -6658,6 +7761,7 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -6666,9 +7770,13 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (noEmailUserFailure != null) {
@@ -6681,6 +7789,332 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
 abstract class NoEmailUserFailure extends Failure {
   const factory NoEmailUserFailure() = _$NoEmailUserFailure;
   const NoEmailUserFailure._() : super._();
+}
+
+/// @nodoc
+abstract class _$$WrongTokenFailureCopyWith<$Res> {
+  factory _$$WrongTokenFailureCopyWith(
+          _$WrongTokenFailure value, $Res Function(_$WrongTokenFailure) then) =
+      __$$WrongTokenFailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$WrongTokenFailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res>
+    implements _$$WrongTokenFailureCopyWith<$Res> {
+  __$$WrongTokenFailureCopyWithImpl(
+      _$WrongTokenFailure _value, $Res Function(_$WrongTokenFailure) _then)
+      : super(_value, (v) => _then(v as _$WrongTokenFailure));
+
+  @override
+  _$WrongTokenFailure get _value => super._value as _$WrongTokenFailure;
+}
+
+/// @nodoc
+
+class _$WrongTokenFailure extends WrongTokenFailure {
+  const _$WrongTokenFailure() : super._();
+
+  @override
+  String toString() {
+    return 'Failure.wrongTokenFailure()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$WrongTokenFailure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() versionCheckFailure,
+    required TResult Function() serverFailure,
+    required TResult Function() dataParsingFailure,
+    required TResult Function() noConnectionFailure,
+    required TResult Function() notFoundFailure,
+    required TResult Function() noUserDataFailure,
+    required TResult Function() maxDiseaseFailure,
+    required TResult Function() maxConimalFailure,
+    required TResult Function() emptyListFailure,
+    required TResult Function() noSuchDataInListFailure,
+    required TResult Function() registerConimalFaiure,
+    required TResult Function() removeConimalFailure,
+    required TResult Function() getConimalListFailure,
+    required TResult Function() signInCredentialFailure,
+    required TResult Function() signInTokenFailure,
+    required TResult Function() naverSigninFailure,
+    required TResult Function() kakaoSigninFailure,
+    required TResult Function() googleSigninFailure,
+    required TResult Function() appleSigninFailure,
+    required TResult Function() emailSigninFailure,
+    required TResult Function() getUserFailure,
+    required TResult Function() wrongPasswordFailure,
+    required TResult Function() noEmailUserFailure,
+    required TResult Function() wrongTokenFailure,
+    required TResult Function() existingEmailFailure,
+    required TResult Function() userEnabledFailure,
+    required TResult Function() weakPasswordFailure,
+    required TResult Function() maxImageSizeFailure,
+    required TResult Function() maxImageNumFailure,
+    required TResult Function() noPostTypeSelectedFailure,
+    required TResult Function() noPostContentsFailure,
+    required TResult Function() notFoundPostFailure,
+    required TResult Function() notEditablePasswordFailure,
+    required TResult Function() userInfoUpdateFailure,
+    required TResult Function() permissionDeniedFailure,
+    required TResult Function() permissionPermanentlyDeniedFailure,
+  }) {
+    return wrongTokenFailure();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
+    TResult Function()? serverFailure,
+    TResult Function()? dataParsingFailure,
+    TResult Function()? noConnectionFailure,
+    TResult Function()? notFoundFailure,
+    TResult Function()? noUserDataFailure,
+    TResult Function()? maxDiseaseFailure,
+    TResult Function()? maxConimalFailure,
+    TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
+    TResult Function()? signInCredentialFailure,
+    TResult Function()? signInTokenFailure,
+    TResult Function()? naverSigninFailure,
+    TResult Function()? kakaoSigninFailure,
+    TResult Function()? googleSigninFailure,
+    TResult Function()? appleSigninFailure,
+    TResult Function()? emailSigninFailure,
+    TResult Function()? getUserFailure,
+    TResult Function()? wrongPasswordFailure,
+    TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
+    TResult Function()? existingEmailFailure,
+    TResult Function()? userEnabledFailure,
+    TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
+    TResult Function()? maxImageNumFailure,
+    TResult Function()? noPostTypeSelectedFailure,
+    TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
+  }) {
+    return wrongTokenFailure?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
+    TResult Function()? serverFailure,
+    TResult Function()? dataParsingFailure,
+    TResult Function()? noConnectionFailure,
+    TResult Function()? notFoundFailure,
+    TResult Function()? noUserDataFailure,
+    TResult Function()? maxDiseaseFailure,
+    TResult Function()? maxConimalFailure,
+    TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
+    TResult Function()? signInCredentialFailure,
+    TResult Function()? signInTokenFailure,
+    TResult Function()? naverSigninFailure,
+    TResult Function()? kakaoSigninFailure,
+    TResult Function()? googleSigninFailure,
+    TResult Function()? appleSigninFailure,
+    TResult Function()? emailSigninFailure,
+    TResult Function()? getUserFailure,
+    TResult Function()? wrongPasswordFailure,
+    TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
+    TResult Function()? existingEmailFailure,
+    TResult Function()? userEnabledFailure,
+    TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
+    TResult Function()? maxImageNumFailure,
+    TResult Function()? noPostTypeSelectedFailure,
+    TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
+    required TResult orElse(),
+  }) {
+    if (wrongTokenFailure != null) {
+      return wrongTokenFailure();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(VersionCheckFailure value) versionCheckFailure,
+    required TResult Function(ServerFailure value) serverFailure,
+    required TResult Function(DataParsingFailure value) dataParsingFailure,
+    required TResult Function(NoConnectionFailure value) noConnectionFailure,
+    required TResult Function(NotFoundFailure value) notFoundFailure,
+    required TResult Function(NoUserDataFailure value) noUserDataFailure,
+    required TResult Function(MaxDiseaseFailure value) maxDiseaseFailure,
+    required TResult Function(MaxConimalFailure value) maxConimalFailure,
+    required TResult Function(EmptyListFailure value) emptyListFailure,
+    required TResult Function(NoSuchDataInListFailure value)
+        noSuchDataInListFailure,
+    required TResult Function(RegisterConimalFailure value)
+        registerConimalFaiure,
+    required TResult Function(RemoveConimalFailure value) removeConimalFailure,
+    required TResult Function(GetConimalListFailure value)
+        getConimalListFailure,
+    required TResult Function(SignInCredentialFailure value)
+        signInCredentialFailure,
+    required TResult Function(SignInTokenFailure value) signInTokenFailure,
+    required TResult Function(NaverSigninFailure value) naverSigninFailure,
+    required TResult Function(KakaoSigninFailure value) kakaoSigninFailure,
+    required TResult Function(GoogleSigninFailure value) googleSigninFailure,
+    required TResult Function(AppleSigninFailure value) appleSigninFailure,
+    required TResult Function(EmailSigninFailure value) emailSigninFailure,
+    required TResult Function(GetUserInfoFailure value) getUserFailure,
+    required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
+    required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(WrongTokenFailure value) wrongTokenFailure,
+    required TResult Function(ExistingEmailFailure value) existingEmailFailure,
+    required TResult Function(UserEnabledFailure value) userEnabledFailure,
+    required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
+    required TResult Function(MaxImageSizeFailure value) maxImageSizeFailure,
+    required TResult Function(MaxImageNumFailure value) maxImageNumFailure,
+    required TResult Function(NoPostTypeSelectedFailure value)
+        noPostTypeSelectedFailure,
+    required TResult Function(NoPostContentsFailure value)
+        noPostContentsFailure,
+    required TResult Function(NotFoundPostFailure value) notFoundPostFailure,
+    required TResult Function(NotEditablePasswordFailure value)
+        notEditablePasswordFailure,
+    required TResult Function(UserInfoUpdateFailure value)
+        userInfoUpdateFailure,
+    required TResult Function(PermissionDeniedFailure value)
+        permissionDeniedFailure,
+    required TResult Function(PermissionPermanentlyDeniedFailure value)
+        permissionPermanentlyDeniedFailure,
+  }) {
+    return wrongTokenFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult Function(ServerFailure value)? serverFailure,
+    TResult Function(DataParsingFailure value)? dataParsingFailure,
+    TResult Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult Function(NotFoundFailure value)? notFoundFailure,
+    TResult Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult Function(GetUserInfoFailure value)? getUserFailure,
+    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult Function(NoPostTypeSelectedFailure value)?
+        noPostTypeSelectedFailure,
+    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
+  }) {
+    return wrongTokenFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult Function(ServerFailure value)? serverFailure,
+    TResult Function(DataParsingFailure value)? dataParsingFailure,
+    TResult Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult Function(NotFoundFailure value)? notFoundFailure,
+    TResult Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult Function(GetUserInfoFailure value)? getUserFailure,
+    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult Function(NoPostTypeSelectedFailure value)?
+        noPostTypeSelectedFailure,
+    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
+    required TResult orElse(),
+  }) {
+    if (wrongTokenFailure != null) {
+      return wrongTokenFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class WrongTokenFailure extends Failure {
+  const factory WrongTokenFailure() = _$WrongTokenFailure;
+  const WrongTokenFailure._() : super._();
 }
 
 /// @nodoc
@@ -6724,6 +8158,7 @@ class _$ExistingEmailFailure extends ExistingEmailFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() versionCheckFailure,
     required TResult Function() serverFailure,
     required TResult Function() dataParsingFailure,
     required TResult Function() noConnectionFailure,
@@ -6746,6 +8181,7 @@ class _$ExistingEmailFailure extends ExistingEmailFailure {
     required TResult Function() getUserFailure,
     required TResult Function() wrongPasswordFailure,
     required TResult Function() noEmailUserFailure,
+    required TResult Function() wrongTokenFailure,
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
@@ -6753,8 +8189,11 @@ class _$ExistingEmailFailure extends ExistingEmailFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notFoundPostFailure,
     required TResult Function() notEditablePasswordFailure,
     required TResult Function() userInfoUpdateFailure,
+    required TResult Function() permissionDeniedFailure,
+    required TResult Function() permissionPermanentlyDeniedFailure,
   }) {
     return existingEmailFailure();
   }
@@ -6762,6 +8201,7 @@ class _$ExistingEmailFailure extends ExistingEmailFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -6784,6 +8224,7 @@ class _$ExistingEmailFailure extends ExistingEmailFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -6791,8 +8232,11 @@ class _$ExistingEmailFailure extends ExistingEmailFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
   }) {
     return existingEmailFailure?.call();
   }
@@ -6800,6 +8244,7 @@ class _$ExistingEmailFailure extends ExistingEmailFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -6822,6 +8267,7 @@ class _$ExistingEmailFailure extends ExistingEmailFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -6829,8 +8275,11 @@ class _$ExistingEmailFailure extends ExistingEmailFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (existingEmailFailure != null) {
@@ -6842,6 +8291,7 @@ class _$ExistingEmailFailure extends ExistingEmailFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(VersionCheckFailure value) versionCheckFailure,
     required TResult Function(ServerFailure value) serverFailure,
     required TResult Function(DataParsingFailure value) dataParsingFailure,
     required TResult Function(NoConnectionFailure value) noConnectionFailure,
@@ -6868,6 +8318,7 @@ class _$ExistingEmailFailure extends ExistingEmailFailure {
     required TResult Function(GetUserInfoFailure value) getUserFailure,
     required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
     required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(WrongTokenFailure value) wrongTokenFailure,
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
@@ -6877,10 +8328,15 @@ class _$ExistingEmailFailure extends ExistingEmailFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotFoundPostFailure value) notFoundPostFailure,
     required TResult Function(NotEditablePasswordFailure value)
         notEditablePasswordFailure,
     required TResult Function(UserInfoUpdateFailure value)
         userInfoUpdateFailure,
+    required TResult Function(PermissionDeniedFailure value)
+        permissionDeniedFailure,
+    required TResult Function(PermissionPermanentlyDeniedFailure value)
+        permissionPermanentlyDeniedFailure,
   }) {
     return existingEmailFailure(this);
   }
@@ -6888,6 +8344,7 @@ class _$ExistingEmailFailure extends ExistingEmailFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -6910,6 +8367,7 @@ class _$ExistingEmailFailure extends ExistingEmailFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -6918,9 +8376,13 @@ class _$ExistingEmailFailure extends ExistingEmailFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
   }) {
     return existingEmailFailure?.call(this);
   }
@@ -6928,6 +8390,7 @@ class _$ExistingEmailFailure extends ExistingEmailFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -6950,6 +8413,7 @@ class _$ExistingEmailFailure extends ExistingEmailFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -6958,9 +8422,13 @@ class _$ExistingEmailFailure extends ExistingEmailFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (existingEmailFailure != null) {
@@ -7016,6 +8484,7 @@ class _$UserEnabledFailure extends UserEnabledFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() versionCheckFailure,
     required TResult Function() serverFailure,
     required TResult Function() dataParsingFailure,
     required TResult Function() noConnectionFailure,
@@ -7038,6 +8507,7 @@ class _$UserEnabledFailure extends UserEnabledFailure {
     required TResult Function() getUserFailure,
     required TResult Function() wrongPasswordFailure,
     required TResult Function() noEmailUserFailure,
+    required TResult Function() wrongTokenFailure,
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
@@ -7045,8 +8515,11 @@ class _$UserEnabledFailure extends UserEnabledFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notFoundPostFailure,
     required TResult Function() notEditablePasswordFailure,
     required TResult Function() userInfoUpdateFailure,
+    required TResult Function() permissionDeniedFailure,
+    required TResult Function() permissionPermanentlyDeniedFailure,
   }) {
     return userEnabledFailure();
   }
@@ -7054,6 +8527,7 @@ class _$UserEnabledFailure extends UserEnabledFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -7076,6 +8550,7 @@ class _$UserEnabledFailure extends UserEnabledFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -7083,8 +8558,11 @@ class _$UserEnabledFailure extends UserEnabledFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
   }) {
     return userEnabledFailure?.call();
   }
@@ -7092,6 +8570,7 @@ class _$UserEnabledFailure extends UserEnabledFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -7114,6 +8593,7 @@ class _$UserEnabledFailure extends UserEnabledFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -7121,8 +8601,11 @@ class _$UserEnabledFailure extends UserEnabledFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (userEnabledFailure != null) {
@@ -7134,6 +8617,7 @@ class _$UserEnabledFailure extends UserEnabledFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(VersionCheckFailure value) versionCheckFailure,
     required TResult Function(ServerFailure value) serverFailure,
     required TResult Function(DataParsingFailure value) dataParsingFailure,
     required TResult Function(NoConnectionFailure value) noConnectionFailure,
@@ -7160,6 +8644,7 @@ class _$UserEnabledFailure extends UserEnabledFailure {
     required TResult Function(GetUserInfoFailure value) getUserFailure,
     required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
     required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(WrongTokenFailure value) wrongTokenFailure,
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
@@ -7169,10 +8654,15 @@ class _$UserEnabledFailure extends UserEnabledFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotFoundPostFailure value) notFoundPostFailure,
     required TResult Function(NotEditablePasswordFailure value)
         notEditablePasswordFailure,
     required TResult Function(UserInfoUpdateFailure value)
         userInfoUpdateFailure,
+    required TResult Function(PermissionDeniedFailure value)
+        permissionDeniedFailure,
+    required TResult Function(PermissionPermanentlyDeniedFailure value)
+        permissionPermanentlyDeniedFailure,
   }) {
     return userEnabledFailure(this);
   }
@@ -7180,6 +8670,7 @@ class _$UserEnabledFailure extends UserEnabledFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -7202,6 +8693,7 @@ class _$UserEnabledFailure extends UserEnabledFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -7210,9 +8702,13 @@ class _$UserEnabledFailure extends UserEnabledFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
   }) {
     return userEnabledFailure?.call(this);
   }
@@ -7220,6 +8716,7 @@ class _$UserEnabledFailure extends UserEnabledFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -7242,6 +8739,7 @@ class _$UserEnabledFailure extends UserEnabledFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -7250,9 +8748,13 @@ class _$UserEnabledFailure extends UserEnabledFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (userEnabledFailure != null) {
@@ -7308,6 +8810,7 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() versionCheckFailure,
     required TResult Function() serverFailure,
     required TResult Function() dataParsingFailure,
     required TResult Function() noConnectionFailure,
@@ -7330,6 +8833,7 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
     required TResult Function() getUserFailure,
     required TResult Function() wrongPasswordFailure,
     required TResult Function() noEmailUserFailure,
+    required TResult Function() wrongTokenFailure,
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
@@ -7337,8 +8841,11 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notFoundPostFailure,
     required TResult Function() notEditablePasswordFailure,
     required TResult Function() userInfoUpdateFailure,
+    required TResult Function() permissionDeniedFailure,
+    required TResult Function() permissionPermanentlyDeniedFailure,
   }) {
     return weakPasswordFailure();
   }
@@ -7346,6 +8853,7 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -7368,6 +8876,7 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -7375,8 +8884,11 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
   }) {
     return weakPasswordFailure?.call();
   }
@@ -7384,6 +8896,7 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -7406,6 +8919,7 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -7413,8 +8927,11 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (weakPasswordFailure != null) {
@@ -7426,6 +8943,7 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(VersionCheckFailure value) versionCheckFailure,
     required TResult Function(ServerFailure value) serverFailure,
     required TResult Function(DataParsingFailure value) dataParsingFailure,
     required TResult Function(NoConnectionFailure value) noConnectionFailure,
@@ -7452,6 +8970,7 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
     required TResult Function(GetUserInfoFailure value) getUserFailure,
     required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
     required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(WrongTokenFailure value) wrongTokenFailure,
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
@@ -7461,10 +8980,15 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotFoundPostFailure value) notFoundPostFailure,
     required TResult Function(NotEditablePasswordFailure value)
         notEditablePasswordFailure,
     required TResult Function(UserInfoUpdateFailure value)
         userInfoUpdateFailure,
+    required TResult Function(PermissionDeniedFailure value)
+        permissionDeniedFailure,
+    required TResult Function(PermissionPermanentlyDeniedFailure value)
+        permissionPermanentlyDeniedFailure,
   }) {
     return weakPasswordFailure(this);
   }
@@ -7472,6 +8996,7 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -7494,6 +9019,7 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -7502,9 +9028,13 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
   }) {
     return weakPasswordFailure?.call(this);
   }
@@ -7512,6 +9042,7 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -7534,6 +9065,7 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -7542,9 +9074,13 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (weakPasswordFailure != null) {
@@ -7600,6 +9136,7 @@ class _$MaxImageSizeFailure extends MaxImageSizeFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() versionCheckFailure,
     required TResult Function() serverFailure,
     required TResult Function() dataParsingFailure,
     required TResult Function() noConnectionFailure,
@@ -7622,6 +9159,7 @@ class _$MaxImageSizeFailure extends MaxImageSizeFailure {
     required TResult Function() getUserFailure,
     required TResult Function() wrongPasswordFailure,
     required TResult Function() noEmailUserFailure,
+    required TResult Function() wrongTokenFailure,
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
@@ -7629,8 +9167,11 @@ class _$MaxImageSizeFailure extends MaxImageSizeFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notFoundPostFailure,
     required TResult Function() notEditablePasswordFailure,
     required TResult Function() userInfoUpdateFailure,
+    required TResult Function() permissionDeniedFailure,
+    required TResult Function() permissionPermanentlyDeniedFailure,
   }) {
     return maxImageSizeFailure();
   }
@@ -7638,6 +9179,7 @@ class _$MaxImageSizeFailure extends MaxImageSizeFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -7660,6 +9202,7 @@ class _$MaxImageSizeFailure extends MaxImageSizeFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -7667,8 +9210,11 @@ class _$MaxImageSizeFailure extends MaxImageSizeFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
   }) {
     return maxImageSizeFailure?.call();
   }
@@ -7676,6 +9222,7 @@ class _$MaxImageSizeFailure extends MaxImageSizeFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -7698,6 +9245,7 @@ class _$MaxImageSizeFailure extends MaxImageSizeFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -7705,8 +9253,11 @@ class _$MaxImageSizeFailure extends MaxImageSizeFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (maxImageSizeFailure != null) {
@@ -7718,6 +9269,7 @@ class _$MaxImageSizeFailure extends MaxImageSizeFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(VersionCheckFailure value) versionCheckFailure,
     required TResult Function(ServerFailure value) serverFailure,
     required TResult Function(DataParsingFailure value) dataParsingFailure,
     required TResult Function(NoConnectionFailure value) noConnectionFailure,
@@ -7744,6 +9296,7 @@ class _$MaxImageSizeFailure extends MaxImageSizeFailure {
     required TResult Function(GetUserInfoFailure value) getUserFailure,
     required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
     required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(WrongTokenFailure value) wrongTokenFailure,
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
@@ -7753,10 +9306,15 @@ class _$MaxImageSizeFailure extends MaxImageSizeFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotFoundPostFailure value) notFoundPostFailure,
     required TResult Function(NotEditablePasswordFailure value)
         notEditablePasswordFailure,
     required TResult Function(UserInfoUpdateFailure value)
         userInfoUpdateFailure,
+    required TResult Function(PermissionDeniedFailure value)
+        permissionDeniedFailure,
+    required TResult Function(PermissionPermanentlyDeniedFailure value)
+        permissionPermanentlyDeniedFailure,
   }) {
     return maxImageSizeFailure(this);
   }
@@ -7764,6 +9322,7 @@ class _$MaxImageSizeFailure extends MaxImageSizeFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -7786,6 +9345,7 @@ class _$MaxImageSizeFailure extends MaxImageSizeFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -7794,9 +9354,13 @@ class _$MaxImageSizeFailure extends MaxImageSizeFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
   }) {
     return maxImageSizeFailure?.call(this);
   }
@@ -7804,6 +9368,7 @@ class _$MaxImageSizeFailure extends MaxImageSizeFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -7826,6 +9391,7 @@ class _$MaxImageSizeFailure extends MaxImageSizeFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -7834,9 +9400,13 @@ class _$MaxImageSizeFailure extends MaxImageSizeFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (maxImageSizeFailure != null) {
@@ -7892,6 +9462,7 @@ class _$MaxImageNumFailure extends MaxImageNumFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() versionCheckFailure,
     required TResult Function() serverFailure,
     required TResult Function() dataParsingFailure,
     required TResult Function() noConnectionFailure,
@@ -7914,6 +9485,7 @@ class _$MaxImageNumFailure extends MaxImageNumFailure {
     required TResult Function() getUserFailure,
     required TResult Function() wrongPasswordFailure,
     required TResult Function() noEmailUserFailure,
+    required TResult Function() wrongTokenFailure,
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
@@ -7921,8 +9493,11 @@ class _$MaxImageNumFailure extends MaxImageNumFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notFoundPostFailure,
     required TResult Function() notEditablePasswordFailure,
     required TResult Function() userInfoUpdateFailure,
+    required TResult Function() permissionDeniedFailure,
+    required TResult Function() permissionPermanentlyDeniedFailure,
   }) {
     return maxImageNumFailure();
   }
@@ -7930,6 +9505,7 @@ class _$MaxImageNumFailure extends MaxImageNumFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -7952,6 +9528,7 @@ class _$MaxImageNumFailure extends MaxImageNumFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -7959,8 +9536,11 @@ class _$MaxImageNumFailure extends MaxImageNumFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
   }) {
     return maxImageNumFailure?.call();
   }
@@ -7968,6 +9548,7 @@ class _$MaxImageNumFailure extends MaxImageNumFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -7990,6 +9571,7 @@ class _$MaxImageNumFailure extends MaxImageNumFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -7997,8 +9579,11 @@ class _$MaxImageNumFailure extends MaxImageNumFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (maxImageNumFailure != null) {
@@ -8010,6 +9595,7 @@ class _$MaxImageNumFailure extends MaxImageNumFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(VersionCheckFailure value) versionCheckFailure,
     required TResult Function(ServerFailure value) serverFailure,
     required TResult Function(DataParsingFailure value) dataParsingFailure,
     required TResult Function(NoConnectionFailure value) noConnectionFailure,
@@ -8036,6 +9622,7 @@ class _$MaxImageNumFailure extends MaxImageNumFailure {
     required TResult Function(GetUserInfoFailure value) getUserFailure,
     required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
     required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(WrongTokenFailure value) wrongTokenFailure,
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
@@ -8045,10 +9632,15 @@ class _$MaxImageNumFailure extends MaxImageNumFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotFoundPostFailure value) notFoundPostFailure,
     required TResult Function(NotEditablePasswordFailure value)
         notEditablePasswordFailure,
     required TResult Function(UserInfoUpdateFailure value)
         userInfoUpdateFailure,
+    required TResult Function(PermissionDeniedFailure value)
+        permissionDeniedFailure,
+    required TResult Function(PermissionPermanentlyDeniedFailure value)
+        permissionPermanentlyDeniedFailure,
   }) {
     return maxImageNumFailure(this);
   }
@@ -8056,6 +9648,7 @@ class _$MaxImageNumFailure extends MaxImageNumFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -8078,6 +9671,7 @@ class _$MaxImageNumFailure extends MaxImageNumFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -8086,9 +9680,13 @@ class _$MaxImageNumFailure extends MaxImageNumFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
   }) {
     return maxImageNumFailure?.call(this);
   }
@@ -8096,6 +9694,7 @@ class _$MaxImageNumFailure extends MaxImageNumFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -8118,6 +9717,7 @@ class _$MaxImageNumFailure extends MaxImageNumFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -8126,9 +9726,13 @@ class _$MaxImageNumFailure extends MaxImageNumFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (maxImageNumFailure != null) {
@@ -8187,6 +9791,7 @@ class _$NoPostTypeSelectedFailure extends NoPostTypeSelectedFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() versionCheckFailure,
     required TResult Function() serverFailure,
     required TResult Function() dataParsingFailure,
     required TResult Function() noConnectionFailure,
@@ -8209,6 +9814,7 @@ class _$NoPostTypeSelectedFailure extends NoPostTypeSelectedFailure {
     required TResult Function() getUserFailure,
     required TResult Function() wrongPasswordFailure,
     required TResult Function() noEmailUserFailure,
+    required TResult Function() wrongTokenFailure,
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
@@ -8216,8 +9822,11 @@ class _$NoPostTypeSelectedFailure extends NoPostTypeSelectedFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notFoundPostFailure,
     required TResult Function() notEditablePasswordFailure,
     required TResult Function() userInfoUpdateFailure,
+    required TResult Function() permissionDeniedFailure,
+    required TResult Function() permissionPermanentlyDeniedFailure,
   }) {
     return noPostTypeSelectedFailure();
   }
@@ -8225,6 +9834,7 @@ class _$NoPostTypeSelectedFailure extends NoPostTypeSelectedFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -8247,6 +9857,7 @@ class _$NoPostTypeSelectedFailure extends NoPostTypeSelectedFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -8254,8 +9865,11 @@ class _$NoPostTypeSelectedFailure extends NoPostTypeSelectedFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
   }) {
     return noPostTypeSelectedFailure?.call();
   }
@@ -8263,6 +9877,7 @@ class _$NoPostTypeSelectedFailure extends NoPostTypeSelectedFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -8285,6 +9900,7 @@ class _$NoPostTypeSelectedFailure extends NoPostTypeSelectedFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -8292,8 +9908,11 @@ class _$NoPostTypeSelectedFailure extends NoPostTypeSelectedFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (noPostTypeSelectedFailure != null) {
@@ -8305,6 +9924,7 @@ class _$NoPostTypeSelectedFailure extends NoPostTypeSelectedFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(VersionCheckFailure value) versionCheckFailure,
     required TResult Function(ServerFailure value) serverFailure,
     required TResult Function(DataParsingFailure value) dataParsingFailure,
     required TResult Function(NoConnectionFailure value) noConnectionFailure,
@@ -8331,6 +9951,7 @@ class _$NoPostTypeSelectedFailure extends NoPostTypeSelectedFailure {
     required TResult Function(GetUserInfoFailure value) getUserFailure,
     required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
     required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(WrongTokenFailure value) wrongTokenFailure,
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
@@ -8340,10 +9961,15 @@ class _$NoPostTypeSelectedFailure extends NoPostTypeSelectedFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotFoundPostFailure value) notFoundPostFailure,
     required TResult Function(NotEditablePasswordFailure value)
         notEditablePasswordFailure,
     required TResult Function(UserInfoUpdateFailure value)
         userInfoUpdateFailure,
+    required TResult Function(PermissionDeniedFailure value)
+        permissionDeniedFailure,
+    required TResult Function(PermissionPermanentlyDeniedFailure value)
+        permissionPermanentlyDeniedFailure,
   }) {
     return noPostTypeSelectedFailure(this);
   }
@@ -8351,6 +9977,7 @@ class _$NoPostTypeSelectedFailure extends NoPostTypeSelectedFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -8373,6 +10000,7 @@ class _$NoPostTypeSelectedFailure extends NoPostTypeSelectedFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -8381,9 +10009,13 @@ class _$NoPostTypeSelectedFailure extends NoPostTypeSelectedFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
   }) {
     return noPostTypeSelectedFailure?.call(this);
   }
@@ -8391,6 +10023,7 @@ class _$NoPostTypeSelectedFailure extends NoPostTypeSelectedFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -8413,6 +10046,7 @@ class _$NoPostTypeSelectedFailure extends NoPostTypeSelectedFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -8421,9 +10055,13 @@ class _$NoPostTypeSelectedFailure extends NoPostTypeSelectedFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (noPostTypeSelectedFailure != null) {
@@ -8479,6 +10117,7 @@ class _$NoPostContentsFailure extends NoPostContentsFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() versionCheckFailure,
     required TResult Function() serverFailure,
     required TResult Function() dataParsingFailure,
     required TResult Function() noConnectionFailure,
@@ -8501,6 +10140,7 @@ class _$NoPostContentsFailure extends NoPostContentsFailure {
     required TResult Function() getUserFailure,
     required TResult Function() wrongPasswordFailure,
     required TResult Function() noEmailUserFailure,
+    required TResult Function() wrongTokenFailure,
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
@@ -8508,8 +10148,11 @@ class _$NoPostContentsFailure extends NoPostContentsFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notFoundPostFailure,
     required TResult Function() notEditablePasswordFailure,
     required TResult Function() userInfoUpdateFailure,
+    required TResult Function() permissionDeniedFailure,
+    required TResult Function() permissionPermanentlyDeniedFailure,
   }) {
     return noPostContentsFailure();
   }
@@ -8517,6 +10160,7 @@ class _$NoPostContentsFailure extends NoPostContentsFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -8539,6 +10183,7 @@ class _$NoPostContentsFailure extends NoPostContentsFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -8546,8 +10191,11 @@ class _$NoPostContentsFailure extends NoPostContentsFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
   }) {
     return noPostContentsFailure?.call();
   }
@@ -8555,6 +10203,7 @@ class _$NoPostContentsFailure extends NoPostContentsFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -8577,6 +10226,7 @@ class _$NoPostContentsFailure extends NoPostContentsFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -8584,8 +10234,11 @@ class _$NoPostContentsFailure extends NoPostContentsFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (noPostContentsFailure != null) {
@@ -8597,6 +10250,7 @@ class _$NoPostContentsFailure extends NoPostContentsFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(VersionCheckFailure value) versionCheckFailure,
     required TResult Function(ServerFailure value) serverFailure,
     required TResult Function(DataParsingFailure value) dataParsingFailure,
     required TResult Function(NoConnectionFailure value) noConnectionFailure,
@@ -8623,6 +10277,7 @@ class _$NoPostContentsFailure extends NoPostContentsFailure {
     required TResult Function(GetUserInfoFailure value) getUserFailure,
     required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
     required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(WrongTokenFailure value) wrongTokenFailure,
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
@@ -8632,10 +10287,15 @@ class _$NoPostContentsFailure extends NoPostContentsFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotFoundPostFailure value) notFoundPostFailure,
     required TResult Function(NotEditablePasswordFailure value)
         notEditablePasswordFailure,
     required TResult Function(UserInfoUpdateFailure value)
         userInfoUpdateFailure,
+    required TResult Function(PermissionDeniedFailure value)
+        permissionDeniedFailure,
+    required TResult Function(PermissionPermanentlyDeniedFailure value)
+        permissionPermanentlyDeniedFailure,
   }) {
     return noPostContentsFailure(this);
   }
@@ -8643,6 +10303,7 @@ class _$NoPostContentsFailure extends NoPostContentsFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -8665,6 +10326,7 @@ class _$NoPostContentsFailure extends NoPostContentsFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -8673,9 +10335,13 @@ class _$NoPostContentsFailure extends NoPostContentsFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
   }) {
     return noPostContentsFailure?.call(this);
   }
@@ -8683,6 +10349,7 @@ class _$NoPostContentsFailure extends NoPostContentsFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -8705,6 +10372,7 @@ class _$NoPostContentsFailure extends NoPostContentsFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -8713,9 +10381,13 @@ class _$NoPostContentsFailure extends NoPostContentsFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (noPostContentsFailure != null) {
@@ -8728,6 +10400,332 @@ class _$NoPostContentsFailure extends NoPostContentsFailure {
 abstract class NoPostContentsFailure extends Failure {
   const factory NoPostContentsFailure() = _$NoPostContentsFailure;
   const NoPostContentsFailure._() : super._();
+}
+
+/// @nodoc
+abstract class _$$NotFoundPostFailureCopyWith<$Res> {
+  factory _$$NotFoundPostFailureCopyWith(_$NotFoundPostFailure value,
+          $Res Function(_$NotFoundPostFailure) then) =
+      __$$NotFoundPostFailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$NotFoundPostFailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res>
+    implements _$$NotFoundPostFailureCopyWith<$Res> {
+  __$$NotFoundPostFailureCopyWithImpl(
+      _$NotFoundPostFailure _value, $Res Function(_$NotFoundPostFailure) _then)
+      : super(_value, (v) => _then(v as _$NotFoundPostFailure));
+
+  @override
+  _$NotFoundPostFailure get _value => super._value as _$NotFoundPostFailure;
+}
+
+/// @nodoc
+
+class _$NotFoundPostFailure extends NotFoundPostFailure {
+  const _$NotFoundPostFailure() : super._();
+
+  @override
+  String toString() {
+    return 'Failure.notFoundPostFailure()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$NotFoundPostFailure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() versionCheckFailure,
+    required TResult Function() serverFailure,
+    required TResult Function() dataParsingFailure,
+    required TResult Function() noConnectionFailure,
+    required TResult Function() notFoundFailure,
+    required TResult Function() noUserDataFailure,
+    required TResult Function() maxDiseaseFailure,
+    required TResult Function() maxConimalFailure,
+    required TResult Function() emptyListFailure,
+    required TResult Function() noSuchDataInListFailure,
+    required TResult Function() registerConimalFaiure,
+    required TResult Function() removeConimalFailure,
+    required TResult Function() getConimalListFailure,
+    required TResult Function() signInCredentialFailure,
+    required TResult Function() signInTokenFailure,
+    required TResult Function() naverSigninFailure,
+    required TResult Function() kakaoSigninFailure,
+    required TResult Function() googleSigninFailure,
+    required TResult Function() appleSigninFailure,
+    required TResult Function() emailSigninFailure,
+    required TResult Function() getUserFailure,
+    required TResult Function() wrongPasswordFailure,
+    required TResult Function() noEmailUserFailure,
+    required TResult Function() wrongTokenFailure,
+    required TResult Function() existingEmailFailure,
+    required TResult Function() userEnabledFailure,
+    required TResult Function() weakPasswordFailure,
+    required TResult Function() maxImageSizeFailure,
+    required TResult Function() maxImageNumFailure,
+    required TResult Function() noPostTypeSelectedFailure,
+    required TResult Function() noPostContentsFailure,
+    required TResult Function() notFoundPostFailure,
+    required TResult Function() notEditablePasswordFailure,
+    required TResult Function() userInfoUpdateFailure,
+    required TResult Function() permissionDeniedFailure,
+    required TResult Function() permissionPermanentlyDeniedFailure,
+  }) {
+    return notFoundPostFailure();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
+    TResult Function()? serverFailure,
+    TResult Function()? dataParsingFailure,
+    TResult Function()? noConnectionFailure,
+    TResult Function()? notFoundFailure,
+    TResult Function()? noUserDataFailure,
+    TResult Function()? maxDiseaseFailure,
+    TResult Function()? maxConimalFailure,
+    TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
+    TResult Function()? signInCredentialFailure,
+    TResult Function()? signInTokenFailure,
+    TResult Function()? naverSigninFailure,
+    TResult Function()? kakaoSigninFailure,
+    TResult Function()? googleSigninFailure,
+    TResult Function()? appleSigninFailure,
+    TResult Function()? emailSigninFailure,
+    TResult Function()? getUserFailure,
+    TResult Function()? wrongPasswordFailure,
+    TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
+    TResult Function()? existingEmailFailure,
+    TResult Function()? userEnabledFailure,
+    TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
+    TResult Function()? maxImageNumFailure,
+    TResult Function()? noPostTypeSelectedFailure,
+    TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
+  }) {
+    return notFoundPostFailure?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
+    TResult Function()? serverFailure,
+    TResult Function()? dataParsingFailure,
+    TResult Function()? noConnectionFailure,
+    TResult Function()? notFoundFailure,
+    TResult Function()? noUserDataFailure,
+    TResult Function()? maxDiseaseFailure,
+    TResult Function()? maxConimalFailure,
+    TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
+    TResult Function()? signInCredentialFailure,
+    TResult Function()? signInTokenFailure,
+    TResult Function()? naverSigninFailure,
+    TResult Function()? kakaoSigninFailure,
+    TResult Function()? googleSigninFailure,
+    TResult Function()? appleSigninFailure,
+    TResult Function()? emailSigninFailure,
+    TResult Function()? getUserFailure,
+    TResult Function()? wrongPasswordFailure,
+    TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
+    TResult Function()? existingEmailFailure,
+    TResult Function()? userEnabledFailure,
+    TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
+    TResult Function()? maxImageNumFailure,
+    TResult Function()? noPostTypeSelectedFailure,
+    TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
+    required TResult orElse(),
+  }) {
+    if (notFoundPostFailure != null) {
+      return notFoundPostFailure();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(VersionCheckFailure value) versionCheckFailure,
+    required TResult Function(ServerFailure value) serverFailure,
+    required TResult Function(DataParsingFailure value) dataParsingFailure,
+    required TResult Function(NoConnectionFailure value) noConnectionFailure,
+    required TResult Function(NotFoundFailure value) notFoundFailure,
+    required TResult Function(NoUserDataFailure value) noUserDataFailure,
+    required TResult Function(MaxDiseaseFailure value) maxDiseaseFailure,
+    required TResult Function(MaxConimalFailure value) maxConimalFailure,
+    required TResult Function(EmptyListFailure value) emptyListFailure,
+    required TResult Function(NoSuchDataInListFailure value)
+        noSuchDataInListFailure,
+    required TResult Function(RegisterConimalFailure value)
+        registerConimalFaiure,
+    required TResult Function(RemoveConimalFailure value) removeConimalFailure,
+    required TResult Function(GetConimalListFailure value)
+        getConimalListFailure,
+    required TResult Function(SignInCredentialFailure value)
+        signInCredentialFailure,
+    required TResult Function(SignInTokenFailure value) signInTokenFailure,
+    required TResult Function(NaverSigninFailure value) naverSigninFailure,
+    required TResult Function(KakaoSigninFailure value) kakaoSigninFailure,
+    required TResult Function(GoogleSigninFailure value) googleSigninFailure,
+    required TResult Function(AppleSigninFailure value) appleSigninFailure,
+    required TResult Function(EmailSigninFailure value) emailSigninFailure,
+    required TResult Function(GetUserInfoFailure value) getUserFailure,
+    required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
+    required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(WrongTokenFailure value) wrongTokenFailure,
+    required TResult Function(ExistingEmailFailure value) existingEmailFailure,
+    required TResult Function(UserEnabledFailure value) userEnabledFailure,
+    required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
+    required TResult Function(MaxImageSizeFailure value) maxImageSizeFailure,
+    required TResult Function(MaxImageNumFailure value) maxImageNumFailure,
+    required TResult Function(NoPostTypeSelectedFailure value)
+        noPostTypeSelectedFailure,
+    required TResult Function(NoPostContentsFailure value)
+        noPostContentsFailure,
+    required TResult Function(NotFoundPostFailure value) notFoundPostFailure,
+    required TResult Function(NotEditablePasswordFailure value)
+        notEditablePasswordFailure,
+    required TResult Function(UserInfoUpdateFailure value)
+        userInfoUpdateFailure,
+    required TResult Function(PermissionDeniedFailure value)
+        permissionDeniedFailure,
+    required TResult Function(PermissionPermanentlyDeniedFailure value)
+        permissionPermanentlyDeniedFailure,
+  }) {
+    return notFoundPostFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult Function(ServerFailure value)? serverFailure,
+    TResult Function(DataParsingFailure value)? dataParsingFailure,
+    TResult Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult Function(NotFoundFailure value)? notFoundFailure,
+    TResult Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult Function(GetUserInfoFailure value)? getUserFailure,
+    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult Function(NoPostTypeSelectedFailure value)?
+        noPostTypeSelectedFailure,
+    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
+  }) {
+    return notFoundPostFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult Function(ServerFailure value)? serverFailure,
+    TResult Function(DataParsingFailure value)? dataParsingFailure,
+    TResult Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult Function(NotFoundFailure value)? notFoundFailure,
+    TResult Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult Function(GetUserInfoFailure value)? getUserFailure,
+    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult Function(NoPostTypeSelectedFailure value)?
+        noPostTypeSelectedFailure,
+    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
+    required TResult orElse(),
+  }) {
+    if (notFoundPostFailure != null) {
+      return notFoundPostFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class NotFoundPostFailure extends Failure {
+  const factory NotFoundPostFailure() = _$NotFoundPostFailure;
+  const NotFoundPostFailure._() : super._();
 }
 
 /// @nodoc
@@ -8775,6 +10773,7 @@ class _$NotEditablePasswordFailure extends NotEditablePasswordFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() versionCheckFailure,
     required TResult Function() serverFailure,
     required TResult Function() dataParsingFailure,
     required TResult Function() noConnectionFailure,
@@ -8797,6 +10796,7 @@ class _$NotEditablePasswordFailure extends NotEditablePasswordFailure {
     required TResult Function() getUserFailure,
     required TResult Function() wrongPasswordFailure,
     required TResult Function() noEmailUserFailure,
+    required TResult Function() wrongTokenFailure,
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
@@ -8804,8 +10804,11 @@ class _$NotEditablePasswordFailure extends NotEditablePasswordFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notFoundPostFailure,
     required TResult Function() notEditablePasswordFailure,
     required TResult Function() userInfoUpdateFailure,
+    required TResult Function() permissionDeniedFailure,
+    required TResult Function() permissionPermanentlyDeniedFailure,
   }) {
     return notEditablePasswordFailure();
   }
@@ -8813,6 +10816,7 @@ class _$NotEditablePasswordFailure extends NotEditablePasswordFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -8835,6 +10839,7 @@ class _$NotEditablePasswordFailure extends NotEditablePasswordFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -8842,8 +10847,11 @@ class _$NotEditablePasswordFailure extends NotEditablePasswordFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
   }) {
     return notEditablePasswordFailure?.call();
   }
@@ -8851,6 +10859,7 @@ class _$NotEditablePasswordFailure extends NotEditablePasswordFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -8873,6 +10882,7 @@ class _$NotEditablePasswordFailure extends NotEditablePasswordFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -8880,8 +10890,11 @@ class _$NotEditablePasswordFailure extends NotEditablePasswordFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (notEditablePasswordFailure != null) {
@@ -8893,6 +10906,7 @@ class _$NotEditablePasswordFailure extends NotEditablePasswordFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(VersionCheckFailure value) versionCheckFailure,
     required TResult Function(ServerFailure value) serverFailure,
     required TResult Function(DataParsingFailure value) dataParsingFailure,
     required TResult Function(NoConnectionFailure value) noConnectionFailure,
@@ -8919,6 +10933,7 @@ class _$NotEditablePasswordFailure extends NotEditablePasswordFailure {
     required TResult Function(GetUserInfoFailure value) getUserFailure,
     required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
     required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(WrongTokenFailure value) wrongTokenFailure,
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
@@ -8928,10 +10943,15 @@ class _$NotEditablePasswordFailure extends NotEditablePasswordFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotFoundPostFailure value) notFoundPostFailure,
     required TResult Function(NotEditablePasswordFailure value)
         notEditablePasswordFailure,
     required TResult Function(UserInfoUpdateFailure value)
         userInfoUpdateFailure,
+    required TResult Function(PermissionDeniedFailure value)
+        permissionDeniedFailure,
+    required TResult Function(PermissionPermanentlyDeniedFailure value)
+        permissionPermanentlyDeniedFailure,
   }) {
     return notEditablePasswordFailure(this);
   }
@@ -8939,6 +10959,7 @@ class _$NotEditablePasswordFailure extends NotEditablePasswordFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -8961,6 +10982,7 @@ class _$NotEditablePasswordFailure extends NotEditablePasswordFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -8969,9 +10991,13 @@ class _$NotEditablePasswordFailure extends NotEditablePasswordFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
   }) {
     return notEditablePasswordFailure?.call(this);
   }
@@ -8979,6 +11005,7 @@ class _$NotEditablePasswordFailure extends NotEditablePasswordFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -9001,6 +11028,7 @@ class _$NotEditablePasswordFailure extends NotEditablePasswordFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -9009,9 +11037,13 @@ class _$NotEditablePasswordFailure extends NotEditablePasswordFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (notEditablePasswordFailure != null) {
@@ -9067,6 +11099,7 @@ class _$UserInfoUpdateFailure extends UserInfoUpdateFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() versionCheckFailure,
     required TResult Function() serverFailure,
     required TResult Function() dataParsingFailure,
     required TResult Function() noConnectionFailure,
@@ -9089,6 +11122,7 @@ class _$UserInfoUpdateFailure extends UserInfoUpdateFailure {
     required TResult Function() getUserFailure,
     required TResult Function() wrongPasswordFailure,
     required TResult Function() noEmailUserFailure,
+    required TResult Function() wrongTokenFailure,
     required TResult Function() existingEmailFailure,
     required TResult Function() userEnabledFailure,
     required TResult Function() weakPasswordFailure,
@@ -9096,8 +11130,11 @@ class _$UserInfoUpdateFailure extends UserInfoUpdateFailure {
     required TResult Function() maxImageNumFailure,
     required TResult Function() noPostTypeSelectedFailure,
     required TResult Function() noPostContentsFailure,
+    required TResult Function() notFoundPostFailure,
     required TResult Function() notEditablePasswordFailure,
     required TResult Function() userInfoUpdateFailure,
+    required TResult Function() permissionDeniedFailure,
+    required TResult Function() permissionPermanentlyDeniedFailure,
   }) {
     return userInfoUpdateFailure();
   }
@@ -9105,6 +11142,7 @@ class _$UserInfoUpdateFailure extends UserInfoUpdateFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -9127,6 +11165,7 @@ class _$UserInfoUpdateFailure extends UserInfoUpdateFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -9134,8 +11173,11 @@ class _$UserInfoUpdateFailure extends UserInfoUpdateFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
   }) {
     return userInfoUpdateFailure?.call();
   }
@@ -9143,6 +11185,7 @@ class _$UserInfoUpdateFailure extends UserInfoUpdateFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
     TResult Function()? serverFailure,
     TResult Function()? dataParsingFailure,
     TResult Function()? noConnectionFailure,
@@ -9165,6 +11208,7 @@ class _$UserInfoUpdateFailure extends UserInfoUpdateFailure {
     TResult Function()? getUserFailure,
     TResult Function()? wrongPasswordFailure,
     TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
     TResult Function()? existingEmailFailure,
     TResult Function()? userEnabledFailure,
     TResult Function()? weakPasswordFailure,
@@ -9172,8 +11216,11 @@ class _$UserInfoUpdateFailure extends UserInfoUpdateFailure {
     TResult Function()? maxImageNumFailure,
     TResult Function()? noPostTypeSelectedFailure,
     TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
     TResult Function()? notEditablePasswordFailure,
     TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (userInfoUpdateFailure != null) {
@@ -9185,6 +11232,7 @@ class _$UserInfoUpdateFailure extends UserInfoUpdateFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(VersionCheckFailure value) versionCheckFailure,
     required TResult Function(ServerFailure value) serverFailure,
     required TResult Function(DataParsingFailure value) dataParsingFailure,
     required TResult Function(NoConnectionFailure value) noConnectionFailure,
@@ -9211,6 +11259,7 @@ class _$UserInfoUpdateFailure extends UserInfoUpdateFailure {
     required TResult Function(GetUserInfoFailure value) getUserFailure,
     required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
     required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(WrongTokenFailure value) wrongTokenFailure,
     required TResult Function(ExistingEmailFailure value) existingEmailFailure,
     required TResult Function(UserEnabledFailure value) userEnabledFailure,
     required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
@@ -9220,10 +11269,15 @@ class _$UserInfoUpdateFailure extends UserInfoUpdateFailure {
         noPostTypeSelectedFailure,
     required TResult Function(NoPostContentsFailure value)
         noPostContentsFailure,
+    required TResult Function(NotFoundPostFailure value) notFoundPostFailure,
     required TResult Function(NotEditablePasswordFailure value)
         notEditablePasswordFailure,
     required TResult Function(UserInfoUpdateFailure value)
         userInfoUpdateFailure,
+    required TResult Function(PermissionDeniedFailure value)
+        permissionDeniedFailure,
+    required TResult Function(PermissionPermanentlyDeniedFailure value)
+        permissionPermanentlyDeniedFailure,
   }) {
     return userInfoUpdateFailure(this);
   }
@@ -9231,6 +11285,7 @@ class _$UserInfoUpdateFailure extends UserInfoUpdateFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -9253,6 +11308,7 @@ class _$UserInfoUpdateFailure extends UserInfoUpdateFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -9261,9 +11317,13 @@ class _$UserInfoUpdateFailure extends UserInfoUpdateFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
   }) {
     return userInfoUpdateFailure?.call(this);
   }
@@ -9271,6 +11331,7 @@ class _$UserInfoUpdateFailure extends UserInfoUpdateFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(DataParsingFailure value)? dataParsingFailure,
     TResult Function(NoConnectionFailure value)? noConnectionFailure,
@@ -9293,6 +11354,7 @@ class _$UserInfoUpdateFailure extends UserInfoUpdateFailure {
     TResult Function(GetUserInfoFailure value)? getUserFailure,
     TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
     TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
     TResult Function(ExistingEmailFailure value)? existingEmailFailure,
     TResult Function(UserEnabledFailure value)? userEnabledFailure,
     TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
@@ -9301,9 +11363,13 @@ class _$UserInfoUpdateFailure extends UserInfoUpdateFailure {
     TResult Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
     TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
     TResult Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
     TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
     required TResult orElse(),
   }) {
     if (userInfoUpdateFailure != null) {
@@ -9316,4 +11382,664 @@ class _$UserInfoUpdateFailure extends UserInfoUpdateFailure {
 abstract class UserInfoUpdateFailure extends Failure {
   const factory UserInfoUpdateFailure() = _$UserInfoUpdateFailure;
   const UserInfoUpdateFailure._() : super._();
+}
+
+/// @nodoc
+abstract class _$$PermissionDeniedFailureCopyWith<$Res> {
+  factory _$$PermissionDeniedFailureCopyWith(_$PermissionDeniedFailure value,
+          $Res Function(_$PermissionDeniedFailure) then) =
+      __$$PermissionDeniedFailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$PermissionDeniedFailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res>
+    implements _$$PermissionDeniedFailureCopyWith<$Res> {
+  __$$PermissionDeniedFailureCopyWithImpl(_$PermissionDeniedFailure _value,
+      $Res Function(_$PermissionDeniedFailure) _then)
+      : super(_value, (v) => _then(v as _$PermissionDeniedFailure));
+
+  @override
+  _$PermissionDeniedFailure get _value =>
+      super._value as _$PermissionDeniedFailure;
+}
+
+/// @nodoc
+
+class _$PermissionDeniedFailure extends PermissionDeniedFailure {
+  const _$PermissionDeniedFailure() : super._();
+
+  @override
+  String toString() {
+    return 'Failure.permissionDeniedFailure()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PermissionDeniedFailure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() versionCheckFailure,
+    required TResult Function() serverFailure,
+    required TResult Function() dataParsingFailure,
+    required TResult Function() noConnectionFailure,
+    required TResult Function() notFoundFailure,
+    required TResult Function() noUserDataFailure,
+    required TResult Function() maxDiseaseFailure,
+    required TResult Function() maxConimalFailure,
+    required TResult Function() emptyListFailure,
+    required TResult Function() noSuchDataInListFailure,
+    required TResult Function() registerConimalFaiure,
+    required TResult Function() removeConimalFailure,
+    required TResult Function() getConimalListFailure,
+    required TResult Function() signInCredentialFailure,
+    required TResult Function() signInTokenFailure,
+    required TResult Function() naverSigninFailure,
+    required TResult Function() kakaoSigninFailure,
+    required TResult Function() googleSigninFailure,
+    required TResult Function() appleSigninFailure,
+    required TResult Function() emailSigninFailure,
+    required TResult Function() getUserFailure,
+    required TResult Function() wrongPasswordFailure,
+    required TResult Function() noEmailUserFailure,
+    required TResult Function() wrongTokenFailure,
+    required TResult Function() existingEmailFailure,
+    required TResult Function() userEnabledFailure,
+    required TResult Function() weakPasswordFailure,
+    required TResult Function() maxImageSizeFailure,
+    required TResult Function() maxImageNumFailure,
+    required TResult Function() noPostTypeSelectedFailure,
+    required TResult Function() noPostContentsFailure,
+    required TResult Function() notFoundPostFailure,
+    required TResult Function() notEditablePasswordFailure,
+    required TResult Function() userInfoUpdateFailure,
+    required TResult Function() permissionDeniedFailure,
+    required TResult Function() permissionPermanentlyDeniedFailure,
+  }) {
+    return permissionDeniedFailure();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
+    TResult Function()? serverFailure,
+    TResult Function()? dataParsingFailure,
+    TResult Function()? noConnectionFailure,
+    TResult Function()? notFoundFailure,
+    TResult Function()? noUserDataFailure,
+    TResult Function()? maxDiseaseFailure,
+    TResult Function()? maxConimalFailure,
+    TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
+    TResult Function()? signInCredentialFailure,
+    TResult Function()? signInTokenFailure,
+    TResult Function()? naverSigninFailure,
+    TResult Function()? kakaoSigninFailure,
+    TResult Function()? googleSigninFailure,
+    TResult Function()? appleSigninFailure,
+    TResult Function()? emailSigninFailure,
+    TResult Function()? getUserFailure,
+    TResult Function()? wrongPasswordFailure,
+    TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
+    TResult Function()? existingEmailFailure,
+    TResult Function()? userEnabledFailure,
+    TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
+    TResult Function()? maxImageNumFailure,
+    TResult Function()? noPostTypeSelectedFailure,
+    TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
+  }) {
+    return permissionDeniedFailure?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
+    TResult Function()? serverFailure,
+    TResult Function()? dataParsingFailure,
+    TResult Function()? noConnectionFailure,
+    TResult Function()? notFoundFailure,
+    TResult Function()? noUserDataFailure,
+    TResult Function()? maxDiseaseFailure,
+    TResult Function()? maxConimalFailure,
+    TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
+    TResult Function()? signInCredentialFailure,
+    TResult Function()? signInTokenFailure,
+    TResult Function()? naverSigninFailure,
+    TResult Function()? kakaoSigninFailure,
+    TResult Function()? googleSigninFailure,
+    TResult Function()? appleSigninFailure,
+    TResult Function()? emailSigninFailure,
+    TResult Function()? getUserFailure,
+    TResult Function()? wrongPasswordFailure,
+    TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
+    TResult Function()? existingEmailFailure,
+    TResult Function()? userEnabledFailure,
+    TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
+    TResult Function()? maxImageNumFailure,
+    TResult Function()? noPostTypeSelectedFailure,
+    TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
+    required TResult orElse(),
+  }) {
+    if (permissionDeniedFailure != null) {
+      return permissionDeniedFailure();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(VersionCheckFailure value) versionCheckFailure,
+    required TResult Function(ServerFailure value) serverFailure,
+    required TResult Function(DataParsingFailure value) dataParsingFailure,
+    required TResult Function(NoConnectionFailure value) noConnectionFailure,
+    required TResult Function(NotFoundFailure value) notFoundFailure,
+    required TResult Function(NoUserDataFailure value) noUserDataFailure,
+    required TResult Function(MaxDiseaseFailure value) maxDiseaseFailure,
+    required TResult Function(MaxConimalFailure value) maxConimalFailure,
+    required TResult Function(EmptyListFailure value) emptyListFailure,
+    required TResult Function(NoSuchDataInListFailure value)
+        noSuchDataInListFailure,
+    required TResult Function(RegisterConimalFailure value)
+        registerConimalFaiure,
+    required TResult Function(RemoveConimalFailure value) removeConimalFailure,
+    required TResult Function(GetConimalListFailure value)
+        getConimalListFailure,
+    required TResult Function(SignInCredentialFailure value)
+        signInCredentialFailure,
+    required TResult Function(SignInTokenFailure value) signInTokenFailure,
+    required TResult Function(NaverSigninFailure value) naverSigninFailure,
+    required TResult Function(KakaoSigninFailure value) kakaoSigninFailure,
+    required TResult Function(GoogleSigninFailure value) googleSigninFailure,
+    required TResult Function(AppleSigninFailure value) appleSigninFailure,
+    required TResult Function(EmailSigninFailure value) emailSigninFailure,
+    required TResult Function(GetUserInfoFailure value) getUserFailure,
+    required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
+    required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(WrongTokenFailure value) wrongTokenFailure,
+    required TResult Function(ExistingEmailFailure value) existingEmailFailure,
+    required TResult Function(UserEnabledFailure value) userEnabledFailure,
+    required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
+    required TResult Function(MaxImageSizeFailure value) maxImageSizeFailure,
+    required TResult Function(MaxImageNumFailure value) maxImageNumFailure,
+    required TResult Function(NoPostTypeSelectedFailure value)
+        noPostTypeSelectedFailure,
+    required TResult Function(NoPostContentsFailure value)
+        noPostContentsFailure,
+    required TResult Function(NotFoundPostFailure value) notFoundPostFailure,
+    required TResult Function(NotEditablePasswordFailure value)
+        notEditablePasswordFailure,
+    required TResult Function(UserInfoUpdateFailure value)
+        userInfoUpdateFailure,
+    required TResult Function(PermissionDeniedFailure value)
+        permissionDeniedFailure,
+    required TResult Function(PermissionPermanentlyDeniedFailure value)
+        permissionPermanentlyDeniedFailure,
+  }) {
+    return permissionDeniedFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult Function(ServerFailure value)? serverFailure,
+    TResult Function(DataParsingFailure value)? dataParsingFailure,
+    TResult Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult Function(NotFoundFailure value)? notFoundFailure,
+    TResult Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult Function(GetUserInfoFailure value)? getUserFailure,
+    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult Function(NoPostTypeSelectedFailure value)?
+        noPostTypeSelectedFailure,
+    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
+  }) {
+    return permissionDeniedFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult Function(ServerFailure value)? serverFailure,
+    TResult Function(DataParsingFailure value)? dataParsingFailure,
+    TResult Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult Function(NotFoundFailure value)? notFoundFailure,
+    TResult Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult Function(GetUserInfoFailure value)? getUserFailure,
+    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult Function(NoPostTypeSelectedFailure value)?
+        noPostTypeSelectedFailure,
+    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
+    required TResult orElse(),
+  }) {
+    if (permissionDeniedFailure != null) {
+      return permissionDeniedFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class PermissionDeniedFailure extends Failure {
+  const factory PermissionDeniedFailure() = _$PermissionDeniedFailure;
+  const PermissionDeniedFailure._() : super._();
+}
+
+/// @nodoc
+abstract class _$$PermissionPermanentlyDeniedFailureCopyWith<$Res> {
+  factory _$$PermissionPermanentlyDeniedFailureCopyWith(
+          _$PermissionPermanentlyDeniedFailure value,
+          $Res Function(_$PermissionPermanentlyDeniedFailure) then) =
+      __$$PermissionPermanentlyDeniedFailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$PermissionPermanentlyDeniedFailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res>
+    implements _$$PermissionPermanentlyDeniedFailureCopyWith<$Res> {
+  __$$PermissionPermanentlyDeniedFailureCopyWithImpl(
+      _$PermissionPermanentlyDeniedFailure _value,
+      $Res Function(_$PermissionPermanentlyDeniedFailure) _then)
+      : super(_value, (v) => _then(v as _$PermissionPermanentlyDeniedFailure));
+
+  @override
+  _$PermissionPermanentlyDeniedFailure get _value =>
+      super._value as _$PermissionPermanentlyDeniedFailure;
+}
+
+/// @nodoc
+
+class _$PermissionPermanentlyDeniedFailure
+    extends PermissionPermanentlyDeniedFailure {
+  const _$PermissionPermanentlyDeniedFailure() : super._();
+
+  @override
+  String toString() {
+    return 'Failure.permissionPermanentlyDeniedFailure()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PermissionPermanentlyDeniedFailure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() versionCheckFailure,
+    required TResult Function() serverFailure,
+    required TResult Function() dataParsingFailure,
+    required TResult Function() noConnectionFailure,
+    required TResult Function() notFoundFailure,
+    required TResult Function() noUserDataFailure,
+    required TResult Function() maxDiseaseFailure,
+    required TResult Function() maxConimalFailure,
+    required TResult Function() emptyListFailure,
+    required TResult Function() noSuchDataInListFailure,
+    required TResult Function() registerConimalFaiure,
+    required TResult Function() removeConimalFailure,
+    required TResult Function() getConimalListFailure,
+    required TResult Function() signInCredentialFailure,
+    required TResult Function() signInTokenFailure,
+    required TResult Function() naverSigninFailure,
+    required TResult Function() kakaoSigninFailure,
+    required TResult Function() googleSigninFailure,
+    required TResult Function() appleSigninFailure,
+    required TResult Function() emailSigninFailure,
+    required TResult Function() getUserFailure,
+    required TResult Function() wrongPasswordFailure,
+    required TResult Function() noEmailUserFailure,
+    required TResult Function() wrongTokenFailure,
+    required TResult Function() existingEmailFailure,
+    required TResult Function() userEnabledFailure,
+    required TResult Function() weakPasswordFailure,
+    required TResult Function() maxImageSizeFailure,
+    required TResult Function() maxImageNumFailure,
+    required TResult Function() noPostTypeSelectedFailure,
+    required TResult Function() noPostContentsFailure,
+    required TResult Function() notFoundPostFailure,
+    required TResult Function() notEditablePasswordFailure,
+    required TResult Function() userInfoUpdateFailure,
+    required TResult Function() permissionDeniedFailure,
+    required TResult Function() permissionPermanentlyDeniedFailure,
+  }) {
+    return permissionPermanentlyDeniedFailure();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
+    TResult Function()? serverFailure,
+    TResult Function()? dataParsingFailure,
+    TResult Function()? noConnectionFailure,
+    TResult Function()? notFoundFailure,
+    TResult Function()? noUserDataFailure,
+    TResult Function()? maxDiseaseFailure,
+    TResult Function()? maxConimalFailure,
+    TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
+    TResult Function()? signInCredentialFailure,
+    TResult Function()? signInTokenFailure,
+    TResult Function()? naverSigninFailure,
+    TResult Function()? kakaoSigninFailure,
+    TResult Function()? googleSigninFailure,
+    TResult Function()? appleSigninFailure,
+    TResult Function()? emailSigninFailure,
+    TResult Function()? getUserFailure,
+    TResult Function()? wrongPasswordFailure,
+    TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
+    TResult Function()? existingEmailFailure,
+    TResult Function()? userEnabledFailure,
+    TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
+    TResult Function()? maxImageNumFailure,
+    TResult Function()? noPostTypeSelectedFailure,
+    TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
+  }) {
+    return permissionPermanentlyDeniedFailure?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
+    TResult Function()? serverFailure,
+    TResult Function()? dataParsingFailure,
+    TResult Function()? noConnectionFailure,
+    TResult Function()? notFoundFailure,
+    TResult Function()? noUserDataFailure,
+    TResult Function()? maxDiseaseFailure,
+    TResult Function()? maxConimalFailure,
+    TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
+    TResult Function()? signInCredentialFailure,
+    TResult Function()? signInTokenFailure,
+    TResult Function()? naverSigninFailure,
+    TResult Function()? kakaoSigninFailure,
+    TResult Function()? googleSigninFailure,
+    TResult Function()? appleSigninFailure,
+    TResult Function()? emailSigninFailure,
+    TResult Function()? getUserFailure,
+    TResult Function()? wrongPasswordFailure,
+    TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
+    TResult Function()? existingEmailFailure,
+    TResult Function()? userEnabledFailure,
+    TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
+    TResult Function()? maxImageNumFailure,
+    TResult Function()? noPostTypeSelectedFailure,
+    TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
+    required TResult orElse(),
+  }) {
+    if (permissionPermanentlyDeniedFailure != null) {
+      return permissionPermanentlyDeniedFailure();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(VersionCheckFailure value) versionCheckFailure,
+    required TResult Function(ServerFailure value) serverFailure,
+    required TResult Function(DataParsingFailure value) dataParsingFailure,
+    required TResult Function(NoConnectionFailure value) noConnectionFailure,
+    required TResult Function(NotFoundFailure value) notFoundFailure,
+    required TResult Function(NoUserDataFailure value) noUserDataFailure,
+    required TResult Function(MaxDiseaseFailure value) maxDiseaseFailure,
+    required TResult Function(MaxConimalFailure value) maxConimalFailure,
+    required TResult Function(EmptyListFailure value) emptyListFailure,
+    required TResult Function(NoSuchDataInListFailure value)
+        noSuchDataInListFailure,
+    required TResult Function(RegisterConimalFailure value)
+        registerConimalFaiure,
+    required TResult Function(RemoveConimalFailure value) removeConimalFailure,
+    required TResult Function(GetConimalListFailure value)
+        getConimalListFailure,
+    required TResult Function(SignInCredentialFailure value)
+        signInCredentialFailure,
+    required TResult Function(SignInTokenFailure value) signInTokenFailure,
+    required TResult Function(NaverSigninFailure value) naverSigninFailure,
+    required TResult Function(KakaoSigninFailure value) kakaoSigninFailure,
+    required TResult Function(GoogleSigninFailure value) googleSigninFailure,
+    required TResult Function(AppleSigninFailure value) appleSigninFailure,
+    required TResult Function(EmailSigninFailure value) emailSigninFailure,
+    required TResult Function(GetUserInfoFailure value) getUserFailure,
+    required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
+    required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(WrongTokenFailure value) wrongTokenFailure,
+    required TResult Function(ExistingEmailFailure value) existingEmailFailure,
+    required TResult Function(UserEnabledFailure value) userEnabledFailure,
+    required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
+    required TResult Function(MaxImageSizeFailure value) maxImageSizeFailure,
+    required TResult Function(MaxImageNumFailure value) maxImageNumFailure,
+    required TResult Function(NoPostTypeSelectedFailure value)
+        noPostTypeSelectedFailure,
+    required TResult Function(NoPostContentsFailure value)
+        noPostContentsFailure,
+    required TResult Function(NotFoundPostFailure value) notFoundPostFailure,
+    required TResult Function(NotEditablePasswordFailure value)
+        notEditablePasswordFailure,
+    required TResult Function(UserInfoUpdateFailure value)
+        userInfoUpdateFailure,
+    required TResult Function(PermissionDeniedFailure value)
+        permissionDeniedFailure,
+    required TResult Function(PermissionPermanentlyDeniedFailure value)
+        permissionPermanentlyDeniedFailure,
+  }) {
+    return permissionPermanentlyDeniedFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult Function(ServerFailure value)? serverFailure,
+    TResult Function(DataParsingFailure value)? dataParsingFailure,
+    TResult Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult Function(NotFoundFailure value)? notFoundFailure,
+    TResult Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult Function(GetUserInfoFailure value)? getUserFailure,
+    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult Function(NoPostTypeSelectedFailure value)?
+        noPostTypeSelectedFailure,
+    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
+  }) {
+    return permissionPermanentlyDeniedFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult Function(ServerFailure value)? serverFailure,
+    TResult Function(DataParsingFailure value)? dataParsingFailure,
+    TResult Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult Function(NotFoundFailure value)? notFoundFailure,
+    TResult Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult Function(GetUserInfoFailure value)? getUserFailure,
+    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult Function(NoPostTypeSelectedFailure value)?
+        noPostTypeSelectedFailure,
+    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
+    required TResult orElse(),
+  }) {
+    if (permissionPermanentlyDeniedFailure != null) {
+      return permissionPermanentlyDeniedFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class PermissionPermanentlyDeniedFailure extends Failure {
+  const factory PermissionPermanentlyDeniedFailure() =
+      _$PermissionPermanentlyDeniedFailure;
+  const PermissionPermanentlyDeniedFailure._() : super._();
 }

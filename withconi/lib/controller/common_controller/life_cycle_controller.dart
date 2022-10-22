@@ -1,5 +1,9 @@
+import 'dart:async';
 import 'dart:developer';
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:get/get.dart';
+import 'package:withconi/configs/helpers/dynamic_link_manager.dart';
+import 'package:withconi/controller/community/community_main_controller.dart';
 import 'package:withconi/controller/map/map_main_page_controller.dart';
 import '../../routes/withconi_routes.dart';
 import '../navigation_controller.dart';
@@ -25,8 +29,11 @@ class LifeCycleController extends SuperController {
   @override
   Future<void> onResumed() async {
     log('app resumed');
-    await checkRootPageStatus(
-        rootRoute: NavigationController.to.rootPageRoute.value);
+
+    if (Get.currentRoute != Routes.START && Get.currentRoute != Routes.SPLASH) {
+      await checkRootPageStatus(
+          rootRoute: NavigationController.to.rootPageRoute.value);
+    }
   }
 
   checkRootPageStatus({required String rootRoute}) async {

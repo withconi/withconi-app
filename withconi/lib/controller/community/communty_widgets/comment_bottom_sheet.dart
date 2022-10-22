@@ -1,7 +1,7 @@
 import '../../../data/model/comment.dart';
 import '../../../import_basic.dart';
 
-showCommentBottomSheet() {
+showCommentBottomSheet(Comment comment) {
   TextEditingController textEditingController = TextEditingController();
   return Get.bottomSheet(
     Container(
@@ -17,20 +17,15 @@ showCommentBottomSheet() {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('먼지님의 댓글',
+                Text('${comment.nickname}님의 댓글',
                     style: GoogleFonts.notoSans(
                         fontSize: 17,
                         color: WcColors.black,
                         fontWeight: FontWeight.bold)),
                 GestureDetector(
                   onTap: () {
-                    Comment newComment = Comment(
-                        postId: 'postId',
-                        commentId: 'commentId',
-                        nickname: '댓글닉네임',
-                        content: textEditingController.text,
-                        createdAt: DateTime.now());
-
+                    Comment newComment =
+                        comment.copyWith(content: textEditingController.text);
                     Get.back(result: newComment);
                   },
                   child: Text('남기기',
@@ -51,6 +46,7 @@ showCommentBottomSheet() {
                 borderRadius: BorderRadius.circular(25),
                 color: WcColors.blue20),
             child: TextField(
+              autofocus: false,
               controller: textEditingController,
               style: GoogleFonts.notoSans(
                   color: WcColors.black,
@@ -78,6 +74,7 @@ showCommentBottomSheet() {
     enterBottomSheetDuration: const Duration(milliseconds: 170),
     exitBottomSheetDuration: const Duration(milliseconds: 170),
     backgroundColor: Colors.white,
+    isScrollControlled: true,
     elevation: 0,
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.only(

@@ -60,8 +60,7 @@ class EditUserPage extends StatelessWidget {
                           () => Center(
                             child: ProfileImagePickerButton(
                               onTap: _controller.pickImage,
-                              imageFile: _controller.profileImg.value,
-                              profileSeleted: _controller.profileSelected.value,
+                              imageItem: _controller.imageItem.value,
                             ),
                           ),
                         ),
@@ -229,9 +228,9 @@ class EmailVerificationButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (isEmailVerified) ? () {} : onTap,
+      onTap: (!isEmailVerified) ? () {} : onTap,
       child: Container(
-        height: 40,
+        height: 38,
         width: 145,
         decoration: BoxDecoration(
             color: (isEmailVerified) ? WcColors.blue20 : WcColors.red20,
@@ -254,7 +253,7 @@ class EmailVerificationButton extends StatelessWidget {
               (isEmailVerified) ? '이메일 인증 완료' : '이메일 인증하기',
               style: GoogleFonts.notoSans(
                   fontWeight: FontWeight.w600,
-                  fontSize: 14,
+                  fontSize: 14.5,
                   color:
                       (isEmailVerified) ? WcColors.blue100 : WcColors.red100),
             ),

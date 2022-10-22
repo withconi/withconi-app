@@ -35,15 +35,16 @@ class CommunityRepository {
       {required PaginationFilter paginationFilter,
       required String boardId,
       required PostType postType,
-      required String userId}) async {
+      // required String userId,
+      String? keyword}) async {
     try {
       Map<String, dynamic> data = await _api.getPostList({
         "page": paginationFilter.page,
         "listSize": paginationFilter.limit,
         "boardId": boardId,
         "postType": postTypeToValue(postType),
-        "userId": userId
-      });
+        "keyword": keyword
+      }, true);
       List<Post> postList = PostResponse.fromJson(data).results;
       return Right(postList);
     } on NoInternetConnectionException {
@@ -53,16 +54,16 @@ class CommunityRepository {
     }
   }
 
-  Future<Either<Failure, Post>> getPost(
-      {required String postId,
-      required String boardId,
-      required String userId}) async {
+  Future<Either<Failure, Post>> getPost({
+    required String postId,
+    required String boardId,
+  }) async {
     try {
       Map<String, dynamic> data = await _api.getPost({
         "boardId": boardId,
         "postId": postId,
-        "userId": userId,
-      });
+        // "userId": userId,
+      }, true);
       Post post = Post.fromJson(data['boardItem']);
       return Right(post);
     } on NoInternetConnectionException {
@@ -79,8 +80,8 @@ class CommunityRepository {
   Future<Either<Failure, bool>> deletePost(
       {required String postId, required String boardId}) async {
     try {
-      Map<String, dynamic> data =
-          await _api.deletePost(boardId: boardId, postId: postId);
+      Map<String, dynamic> data = await _api.deletePost(
+          boardId: boardId, postId: postId, requiresToken: true);
       return Right(true);
     } on NoInternetConnectionException {
       return Left(NoConnectionFailure());
@@ -102,16 +103,16 @@ class CommunityRepository {
     }
   }
 
-  Future<Either<Failure, CommentResponse>> getCommentList(
-      {required String boardId,
-      required String postId,
-      required String userId}) async {
+  Future<Either<Failure, CommentResponse>> getCommentList({
+    required String boardId,
+    required String postId,
+  }) async {
     try {
       Map<String, dynamic> data = await _api.getCommentList({
         "boardId": boardId,
         "postId": postId,
-        "userId": userId,
-      });
+        // "userId": userId,
+      }, true);
       CommentResponse commentResponse = CommentResponse.fromJson(data);
       return Right(commentResponse);
     } on NoInternetConnectionException {
@@ -121,12 +122,12 @@ class CommunityRepository {
     }
   }
 
-  Future<Either<Failure, List<Post>>> getMyPostList(
-      {required PaginationFilter paginationFilter,
-      required String userId}) async {
+  Future<Either<Failure, List<Post>>> getMyPostList({
+    required PaginationFilter paginationFilter,
+  }) async {
     try {
       Map<String, dynamic> data = await _api.getMyPosts(
-          paginationFilter: paginationFilter, userId: userId);
+          paginationFilter: paginationFilter, requiresToken: true);
       List<Post> postList = PostResponse.fromJson(data).results;
       return Right(postList);
     } on NoInternetConnectionException {
@@ -136,10 +137,9 @@ class CommunityRepository {
     }
   }
 
-  Future<Either<Failure, List<Post>>> getLikedPostList(
-      {required String uid}) async {
+  Future<Either<Failure, List<Post>>> getLikedPostList() async {
     try {
-      Map<String, dynamic> data = await _api.getLikedPosts(uid: uid);
+      Map<String, dynamic> data = await _api.getLikedPosts(requiresToken: true);
       List<Post> postList = PostResponse.fromJson(data).results;
       return Right(postList);
     } on NoInternetConnectionException {
@@ -154,8 +154,8 @@ class CommunityRepository {
       required String postId,
       required bool isLiked}) async {
     try {
-      Map<String, dynamic> likePostsData =
-          await _api.updateLikePost(uid: uid, postId: postId, isLiked: isLiked);
+      Map<String, dynamic> likePostsData = await _api.updateLikePost(
+          requiresToken: true, postId: postId, isLiked: isLiked);
 
       List<String> likedPostIdList =
           (likePostsData['likePosts'] as List<dynamic>)
@@ -178,7 +178,10 @@ class CommunityRepository {
       required bool isLiked}) async {
     try {
       Map<String, dynamic> likeCommentData = await _api.updateLikeComment(
-          uid: uid, postId: postId, isLiked: isLiked, commentId: commentId);
+          postId: postId,
+          isLiked: isLiked,
+          commentId: commentId,
+          requiresToken: true);
 
       List<String> likeCommentIdList =
           (likeCommentData['likePostLineReplies'] as List<dynamic>)
@@ -198,7 +201,8 @@ class CommunityRepository {
     try {
       Map<String, dynamic> postJson = newPost.toJson();
       postJson.remove('postId');
-      Map<String, dynamic> data = await _api.newPost(newPostJson: postJson);
+      Map<String, dynamic> data =
+          await _api.newPost(newPostJson: postJson, requiresToken: true);
       if (data['board'] != null) {
         Post addedPost = Post.fromJson(data['board']);
         return Right(addedPost);
@@ -217,8 +221,8 @@ class CommunityRepository {
       Map<String, dynamic> postJson = editPost.toJson();
       //TODO 에러 확인하기 위해서 이미지 파라미터 잠시 없앰
       // postJson.remove('images');
-      Map<String, dynamic> data =
-          await _api.updateMyPost(updateDataJson: postJson);
+      Map<String, dynamic> data = await _api.updateMyPost(
+          updateDataJson: postJson, requiresToken: true);
 
       return Right(true);
     } on NoInternetConnectionException {
@@ -233,7 +237,8 @@ class CommunityRepository {
     try {
       Map<String, dynamic> newCommentJson =
           CommentCreateRequest(comment: newComment).toJson();
-      await _api.newComment(newCommentJson: newCommentJson);
+      await _api.newComment(
+          newCommentJson: newCommentJson, requiresToken: true);
 
       return Right(true);
     } on NoInternetConnectionException {

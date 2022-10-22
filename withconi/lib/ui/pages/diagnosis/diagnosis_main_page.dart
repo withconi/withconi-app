@@ -1,4 +1,7 @@
+import 'package:lottie/lottie.dart';
 import 'package:withconi/import_basic.dart';
+import 'package:withconi/ui/theme/text_theme.dart';
+import 'package:withconi/ui/widgets/button/wide_button.dart';
 
 import '../../../controller/navigation_controller.dart';
 
@@ -9,31 +12,64 @@ class DiagnosisMainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async => false,
-      child: Scaffold(
-        backgroundColor: WcColors.white,
-        body: SingleChildScrollView(
-          child: SafeArea(
-            bottom: false,
-            child: Center(
-              child: SizedBox(
-                width: WcWidth,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+    return Scaffold(
+      backgroundColor: WcColors.white,
+      body: SafeArea(
+        bottom: false,
+        child: Center(
+          child: SizedBox(
+            width: WcWidth,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(
+                  height: 45,
+                ),
+                SizedBox(
+                  width: WcWidth - 40,
+                  child: Text('자가진단',
+                      style: TextStyle(
+                          fontFamily: WcFontFamily.notoSans,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 24)),
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                SizedBox(
+                  width: WcWidth - 40,
+                  child: Text('간단한 증상을 입력하면\n의심되는 질병을 보여줘요.',
+                      style: TextStyle(
+                          fontFamily: WcFontFamily.notoSans,
+                          color: WcColors.grey180,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 16)),
+                ),
+                Expanded(
+                    child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    const SizedBox(
-                      height: 35,
+                    Container(
+                      margin: EdgeInsets.symmetric(vertical: 80),
+                      height: 200,
+                      child: LottieBuilder.asset(
+                        'assets/json/health_care.json',
+                        fit: BoxFit.contain,
+                        repeat: false,
+                      ),
                     ),
-                    SizedBox(
-                      width: WcWidth - 40,
-                      child: Text('자가진단',
-                          style: GoogleFonts.notoSans(
-                              fontWeight: FontWeight.w600, fontSize: 24)),
+                    Container(
+                      margin: EdgeInsets.only(bottom: 20),
+                      child: WcWideButtonWidget(
+                        buttonText: '자가진단 시작',
+                        onTap: () {},
+                        active: true,
+                        buttonWidth: WcWidth - 40,
+                      ),
                     ),
                   ],
-                ),
-              ),
+                ))
+              ],
             ),
           ),
         ),

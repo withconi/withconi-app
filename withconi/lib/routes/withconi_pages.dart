@@ -1,25 +1,33 @@
 import 'package:withconi/import_basic.dart';
+import 'package:withconi/routes/withconi_bindings.dart';
 import 'package:withconi/ui/pages/common_pages/add_conimal_page.dart';
 import 'package:withconi/ui/pages/common_pages/conimal_setting_page.dart';
 import 'package:withconi/ui/pages/common_pages/email_verification_page.dart';
-import 'package:withconi/ui/pages/common_pages/my_post_page.dart';
+import 'package:withconi/ui/pages/community/community_my_post_page.dart';
 import 'package:withconi/ui/pages/community/community_edit_my_post_page.dart';
+import 'package:withconi/ui/pages/community/community_post_search_page.dart';
+import 'package:withconi/ui/pages/community/community_report_page.dart';
 import 'package:withconi/ui/pages/community/community_post_list_page.dart';
 import 'package:withconi/ui/pages/community/community_main_page.dart';
 import 'package:withconi/ui/pages/community/community_post_detail_page.dart';
 import 'package:withconi/ui/pages/diagnosis/diagnosis_main_page.dart';
+import 'package:withconi/ui/pages/dictionary/dictionary_detail_page.dart';
 import 'package:withconi/ui/pages/dictionary/dictionary_main_page.dart';
 import 'package:withconi/ui/pages/common_pages/edit_conimal_page.dart';
+import 'package:withconi/ui/pages/dictionary/dictionary_search_page.dart';
 import 'package:withconi/ui/pages/home/home_page.dart';
+import 'package:withconi/ui/pages/map/map_bookmark_page.dart';
 import 'package:withconi/ui/pages/map/map_detail_page.dart';
-import 'package:withconi/ui/pages/map/map_review_page.dart';
+import 'package:withconi/ui/pages/map/map_location_permission_page.dart';
+import 'package:withconi/ui/pages/map/map_my_review_page.dart';
+import 'package:withconi/ui/pages/map/map_new_review_page.dart';
 import 'package:withconi/ui/pages/map/map_search_page.dart';
 import 'package:withconi/ui/pages/navigation/navigation_page.dart';
 import 'package:withconi/ui/pages/settings/setting_page.dart';
 import 'package:withconi/ui/pages/common_pages/edit_user_page.dart';
-import 'package:withconi/ui/pages/common_pages/liked_post_page.dart';
+import 'package:withconi/ui/pages/community/community_like_post_page.dart';
 import 'package:withconi/ui/pages/signin/signin_email_page.dart';
-import 'package:withconi/ui/pages/signup/disease_search_page.dart';
+import 'package:withconi/ui/pages/common_pages/disease_search_page.dart';
 import 'package:withconi/ui/pages/signup/signup_conimal_edit_page.dart';
 import 'package:withconi/ui/pages/signup/signup_profile_page.dart';
 import 'package:withconi/ui/pages/signup/signup_pw_page.dart';
@@ -35,7 +43,7 @@ class WcPages {
     GetPage(
         name: Routes.NAVIGATION,
         page: () => NavigationPage(),
-        // binding: HomeBinding(),
+        binding: NavigationBinding(),
         transition: Transition.noTransition),
     GetPage(
         name: Routes.HOME,
@@ -111,13 +119,18 @@ class WcPages {
       page: () => CommunityPostDetailPage(),
     ),
     GetPage(
-      name: Routes.COMMUNITY_SEARCH,
-      page: () => CommunityMainPage(),
+      name: Routes.COMMUNITY_POST_SEARCH,
+      page: () => CommunityPostSearchPage(),
     ),
     GetPage(
       name: Routes.DIAGNOSIS_MAIN,
       page: () => DiagnosisMainPage(),
-      transition: Transition.noTransition,
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: Routes.COMMUNITY_NEW_REPORT,
+      page: () => CommunityNewReportPage(),
+      transition: Transition.cupertino,
     ),
     GetPage(
       name: Routes.MAP_MAIN,
@@ -136,6 +149,16 @@ class WcPages {
       name: Routes.DICTIONARY_MAIN,
       page: () => DictionaryMainPage(),
       transition: Transition.noTransition,
+    ),
+    GetPage(
+      name: Routes.DICTIONARY_DETAIL,
+      page: () => DictionaryDetailPage(),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: Routes.DICTIONARY_SEARCH,
+      page: () => DictionarySearchPage(),
+      transition: Transition.cupertino,
     ),
     GetPage(
       name: Routes.SETTING_MAIN,
@@ -164,6 +187,18 @@ class WcPages {
     GetPage(
       name: Routes.MAP_NEW_REVIEW,
       page: () => MapNewReviewPage(),
+    ),
+    GetPage(
+      name: Routes.MAP_BOOKMARK,
+      page: () => MapBookmarkPage(),
+    ),
+    GetPage(
+      name: Routes.MAP_MY_REVIEW,
+      page: () => MapMyReviewPage(),
+    ),
+    GetPage(
+      name: Routes.MAP_LOCATION_PERMISSION,
+      page: () => MapLocationPermissionPage(),
     ),
   ];
 }

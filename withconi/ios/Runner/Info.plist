@@ -2,11 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>LSApplicationQueriesSchemes</key>
-		<array>
-		<string>sms</string>
-		<string>tel</string>
-		</array>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
@@ -39,7 +34,6 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>com.googleusercontent.apps.955745601928-545f5irolb2j5vkr06p0ptlhv6t4pqeo</string>
-				<string>withconi.page.link</string>
 			</array>
 		</dict>
 		<dict>
@@ -50,12 +44,22 @@
 				<string>kakao2bd59238f56f29a17c2bdb0fb628c83d</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>withconi.dynamiclink</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>withconimal.page.link</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>FirebaseDynamicLinksCustomDomains</key>
 	<array>
-		<string>https://withconi.page.link</string>
+		<string>https://withconimal.page.link</string>
 	</array>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
@@ -66,8 +70,6 @@
 	<true/>
 	<key>NMFClientId</key>
 	<string>woyvacv8h0</string>
-	<key>io.flutter.embedded_views_preview</key>
-	<string>YES</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
@@ -117,6 +119,8 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>io.flutter.embedded_views_preview</key>
+	<string>YES</string>
 	<key>naverConsumerKey</key>
 	<string>gt1mSZ2SUb5mUUYy5URN</string>
 	<key>naverConsumerSecret</key>
@@ -124,6 +128,6 @@
 	<key>naverServiceAppName</key>
 	<string>Withconi</string>
 	<key>naverServiceAppUrlScheme</key>
-	<string>withconi.page.link</string>
+	<string>withconimal.page.link</string>
 </dict>
 </plist>

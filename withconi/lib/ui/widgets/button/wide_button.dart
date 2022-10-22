@@ -9,11 +9,11 @@ class WcWideButtonWidget extends StatelessWidget {
       required this.buttonText,
       required this.onTap,
       this.inactiveButtonColor = WcColors.grey80,
-      required this.activeButtonColor,
+      this.activeButtonColor = WcColors.blue100,
       this.buttonWidth = double.infinity,
       this.buttonHeight = 50,
       required this.active,
-      required this.activeTextColor,
+      this.activeTextColor = WcColors.white,
       this.inactiveTextColor = WcColors.grey120})
       : super(key: key);
   String buttonText;

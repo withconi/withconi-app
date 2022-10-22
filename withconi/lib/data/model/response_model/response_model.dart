@@ -1,14 +1,16 @@
 import 'package:withconi/configs/constants/enum.dart';
-import 'package:withconi/data/model/abstract_class/place_type.dart';
+import 'package:withconi/data/model/abstract_class/place_preview.dart';
+import 'package:withconi/data/model/comment.dart';
 import 'package:withconi/data/model/hospital_preview.dart';
 import 'package:withconi/data/model/pharmacy_preview.dart';
 import 'package:withconi/ui/entities/location.dart';
-import 'package:withconi/ui/entities/review_entity.dart';
+import 'package:withconi/ui/entities/review_rate_entity.dart';
 import '../board.dart';
 import '../conimal.dart';
 import '../disease.dart';
 import '../post.dart';
 import '../../../core/error_handling/exceptions.dart';
+import '../../../ui/entities/review_entity.dart';
 import '../review.dart';
 
 class UserStateResponse {
@@ -46,10 +48,10 @@ class ConimalResponse {
 }
 
 class DiseaseResponse {
-  DiseaseResponse({required this.totalResults, required this.results});
+  DiseaseResponse({required this.totalResults, required this.list});
 
   int totalResults;
-  List<Disease> results;
+  List<Disease> list;
 
   factory DiseaseResponse.fromJson(Map<String, dynamic> json) {
     List<Disease> list = [];
@@ -63,7 +65,7 @@ class DiseaseResponse {
       }
       return DiseaseResponse(
         totalResults: totalDocuments,
-        results: list,
+        list: list,
       );
     } catch (e) {
       throw DataParsingException();
@@ -95,6 +97,32 @@ class PostResponse {
   }
 }
 
+class CommentResponse {
+  CommentResponse({required this.totalResults, required this.list});
+
+  int totalResults;
+  List<Comment> list;
+
+  factory CommentResponse.fromJson(Map<String, dynamic> json) {
+    List<Comment> list = [];
+
+    try {
+      int totalDocuments = json['totalDocuments'];
+      if (json['list'] != null) {
+        list = json['list']
+            .map<Comment>((json) => Comment.fromJson(json))
+            .toList();
+      }
+      return CommentResponse(
+        totalResults: totalDocuments,
+        list: list,
+      );
+    } catch (e) {
+      throw DataParsingException();
+    }
+  }
+}
+
 class BoardResponse {
   BoardResponse({required this.totalResults, required this.results});
 
@@ -119,6 +147,31 @@ class BoardResponse {
   }
 }
 
+class PlaceReviewListResponse {
+  PlaceReviewListResponse({required this.totalResults, required this.list});
+
+  int totalResults;
+  List<Review> list;
+
+  factory PlaceReviewListResponse.fromJson(Map<String, dynamic> json) {
+    List<Review> list = [];
+
+    try {
+      int totalDocuments = json['totalDocuments'];
+      if (json['list'] != null) {
+        list =
+            json['list'].map<Review>((json) => Review.fromJson(json)).toList();
+      }
+      return PlaceReviewListResponse(
+        totalResults: totalDocuments,
+        list: list,
+      );
+    } catch (e) {
+      throw DataParsingException();
+    }
+  }
+}
+
 class PlacePreviewResponse {
   List<PlacePreview> placeList;
   int totalDocuments = 0;
@@ -134,35 +187,36 @@ class PlacePreviewResponse {
       list = <PlacePreview>[];
       json['list'].forEach((v) {
         if (v['locType'] == 'hospital') {
-          list.add(new HospitalPreview.fromJson(v, baseLatLng));
+          list.add(HospitalPreview.fromJson(v, baseLatLng));
         } else if (v['locType'] == 'pharmacy') {
-          list.add(new PharmacyPreview.fromJson(v, baseLatLng));
+          list.add(PharmacyPreview.fromJson(v, baseLatLng));
         }
       });
     }
 
-    if (json['list'] != null) {
-      list = <PlacePreview>[];
-      json['list'].forEach((v) {
-        list.add(new HospitalPreview.fromJson(v, baseLatLng));
-      });
-    }
+    // if (json['list'] != null) {
+    //   list = <PlacePreview>[];
+    //   json['list'].forEach((v) {
+    //     list.add(HospitalPreview.fromJson(v, baseLatLng));
+    //   });
+    // }
 
     return PlacePreviewResponse(placeList: list, totalDocuments: totalDocs);
   }
 }
 
-class ReviewResponse {
-  List<ReviewRateEntity> reviewList;
+class TotalReviewDataResponse {
+  List<ReviewEntity> reviewList;
   int totalReview = 0;
 
-  ReviewResponse({required this.reviewList, required this.totalReview});
+  TotalReviewDataResponse(
+      {required this.reviewList, required this.totalReview});
 
-  factory ReviewResponse.fromJson(Map<String, dynamic> json) {
-    List<ReviewRateEntity> list = [
-      HighReviewEntity(),
-      MiddleReviewEntity(),
-      LowReviewEntity()
+  factory TotalReviewDataResponse.fromJson(Map<String, dynamic> json) {
+    List<ReviewEntity> list = [
+      HighReviewEntity(selectedReviewItems: []),
+      MiddleReviewEntity(selectedReviewItems: []),
+      LowReviewEntity(selectedReviewItems: [])
     ];
     int totalNum = 0;
 
@@ -175,60 +229,27 @@ class ReviewResponse {
         }
         switch (reviewRate) {
           case ReviewRate.high:
-            list[0].reviewItems = itemMap;
-            list[0].reviewNum = json['high']['totalReivews'] as int;
+            list[0].reviewItemsMap = itemMap;
+            list[0].reviewNum = json['high']['totalReviews'] as int;
 
             break;
           case ReviewRate.middle:
-            list[1].reviewItems = itemMap;
-            list[1].reviewNum = json['middle']['totalReivews'] as int;
+            list[1].reviewItemsMap = itemMap;
+            list[1].reviewNum = json['middle']['totalReviews'] as int;
             break;
           case ReviewRate.low:
-            list[2].reviewItems = itemMap;
-            list[2].reviewNum = json['low']['totalReivews'] as int;
+            list[2].reviewItemsMap = itemMap;
+            list[2].reviewNum = json['low']['totalReviews'] as int;
             break;
           default:
         }
       },
     );
 
-    // ReviewRate.values.forEach((reviewRate) {
-    // Review review =
-    //       Review.fromJson(json[reviewRateToValue(reviewRate)], reviewRate);
-    //   if (reviewRate == ReviewRate.high) {
-    //     list.insert(0, review);
-    //   } else if (reviewRate == ReviewRate.middle) {
-    //     list.insert(1, review);
-    //   } else if (reviewRate == ReviewRate.low) {
-    //     list.insert(2, review);
-    //   }
+    for (ReviewEntity reviewItem in list) {
+      totalNum += reviewItem.reviewNum;
+    }
 
-    //   totalNum += review.reviewNum;
-    // });
-
-    return ReviewResponse(reviewList: list, totalReview: totalNum);
+    return TotalReviewDataResponse(reviewList: list, totalReview: totalNum);
   }
 }
-
-
-// class PlaceDetailResponse {
-//   List<PlaceDetailType> placeDetailList;
-
-//   PlaceDetailResponse({
-//     required this.placeDetailList,
-//   });
-
-//   factory PlaceDetailResponse.fromJson(Map<String, dynamic> json) {
-//     List<PlaceDetailType> list = [];
-//    PlaceDe
-
-//     if (json['list'] != null) {
-//       list = <PlaceDetailType>[];
-//       json['list'].forEach((v) {
-//         list.add(new HospitalPreview.fromJson(v));
-//       });
-//     }
-
-//     return PlaceDetailResponse(placeDetailList: list);
-//   }
-// }

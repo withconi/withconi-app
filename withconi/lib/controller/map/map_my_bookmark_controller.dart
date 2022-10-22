@@ -2,13 +2,13 @@ import 'package:withconi/configs/helpers/calculator.dart';
 import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/controller/infinite_scroll_controller.dart';
 import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
-import 'package:withconi/data/model/abstract_class/place_type.dart';
+import 'package:withconi/data/model/abstract_class/place_preview.dart';
 import 'package:withconi/data/model/hospital_preview.dart';
 import 'package:withconi/data/model/pharmacy_preview.dart';
 import 'package:withconi/data/repository/community_repository.dart';
 import 'package:withconi/ui/entities/custom_marker.dart';
 import 'package:withconi/ui/entities/location.dart';
-import 'package:withconi/ui/widgets/loading.dart';
+import 'package:withconi/ui/widgets/loading/loading_overlay.dart';
 
 import '../../configs/constants/enum.dart';
 import '../../data/model/post.dart';
@@ -32,8 +32,8 @@ class MapMyBookmarkController extends GetxController {
 
   final RxBool _isLoading = false.obs;
 
-  int get limit => _paginationFilter.value.limit!;
-  int get _page => _paginationFilter.value.page!;
+  int get limit => _paginationFilter.value.limit;
+  int get _page => _paginationFilter.value.page;
 
   void loadNextPage() => _changePaginationFilter(_page + 1, limit);
   void loadNewPage() => _changePaginationFilter(1, limit);
@@ -58,10 +58,11 @@ class MapMyBookmarkController extends GetxController {
         scrollController: scrollController.value);
   }
 
-  // @override
-  // onClose() {
-  //   super.onClose();
-  // }
+  @override
+  onClose() {
+    super.onClose();
+    scrollController.value.dispose();
+  }
 
   _addScrollListener(
       {required ScrollController scrollController,
@@ -100,44 +101,48 @@ class MapMyBookmarkController extends GetxController {
           name: '참편한 동물병원',
           location: LatLngClass(latitude: 0, longitude: 0),
           address: 'address',
-          totalVisitingConimal: 3,
-          phoneNumber: '02-1010-2020',
-          totalRecommend: 1,
-          openingStatus: '',
+          totalVisiting: 3,
+          phone: '02-1010-2020',
+          totalReviews: 1,
+          openingStatus: OpeningStatus.open,
           thumbnail: '',
+          visitVerified: true,
           distanceByMeter: 0.0),
       PharmacyPreview(
           locId: 'loc8',
           name: '참편한 약국',
           location: LatLngClass(latitude: 0, longitude: 0),
           address: 'address',
-          totalVisitingConimal: 3,
-          phoneNumber: '02-1010-2020',
-          totalRecommend: 1,
-          openingStatus: '',
+          totalVisiting: 3,
+          phone: '02-1010-2020',
+          totalReviews: 1,
+          openingStatus: OpeningStatus.open,
           thumbnail: '',
+          visitVerified: true,
           distanceByMeter: 0.0),
       HospitalPreview(
           locId: 'loc2',
           name: '좋은 동물병원',
           location: LatLngClass(latitude: 0, longitude: 0),
           address: 'address2',
-          totalVisitingConimal: 3,
-          phoneNumber: '23',
-          totalRecommend: 1,
-          openingStatus: '',
+          totalVisiting: 3,
+          phone: '23',
+          totalReviews: 1,
+          openingStatus: OpeningStatus.open,
           thumbnail: '',
+          visitVerified: false,
           distanceByMeter: 0.0),
       HospitalPreview(
           locId: 'loc3',
           name: '행복한 동물병원',
           location: LatLngClass(latitude: 0, longitude: 0),
           address: 'address3',
-          totalVisitingConimal: 3,
-          phoneNumber: '0-2020',
-          totalRecommend: 1,
-          openingStatus: '',
+          totalVisiting: 3,
+          phone: '0-2020',
+          totalReviews: 1,
+          openingStatus: OpeningStatus.open,
           thumbnail: '',
+          visitVerified: false,
           distanceByMeter: 0.0)
     ];
 

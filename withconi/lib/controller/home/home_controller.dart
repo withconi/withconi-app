@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/controller/map/map_main_page_controller.dart';
 import 'package:withconi/data/repository/conimal_repository.dart';
-import 'package:withconi/ui/widgets/loading.dart';
+import 'package:withconi/ui/widgets/loading/loading_overlay.dart';
 import '../../configs/constants/auth_variables.dart';
 import '../../data/model/conimal.dart';
 import '../../data/model/disease.dart';
@@ -11,7 +11,7 @@ import '../../routes/withconi_routes.dart';
 
 class HomeController extends GetxController {
   ConimalRepository _conimalRepository = ConimalRepository();
-  late WcUser _wcUser;
+  late Rx<WcUser> _wcUser;
   RxList<Conimal> conimalList = RxList<Conimal>();
   Rxn<Conimal> selectedConimal = Rxn<Conimal>();
   RxInt selectedConimalIndex = 0.obs;
@@ -20,7 +20,7 @@ class HomeController extends GetxController {
   RxList<Disease> allDiseasesList = RxList<Disease>();
 
   RxInt navIndex = 0.obs;
-  WcUser? get wcUser => _wcUser;
+  WcUser? get wcUser => _wcUser.value;
   RxBool isExpansionOneOpened = false.obs;
   RxBool isExpansionTwoOpened = false.obs;
 
@@ -28,18 +28,22 @@ class HomeController extends GetxController {
   onInit() {
     super.onInit();
     selectedConimalIndex.value = 0;
+    _setHomePageData();
+  }
+
+  _setHomePageData() {
     _setWcUser();
     _setConimalList();
-    _setSelectedConimal(selectedConimalIndex.value);
+    _setSelectedConimal(0);
     _setAllDiseases();
   }
 
   void _setWcUser() {
-    _wcUser = AuthController.to.wcUser.value!;
+    _wcUser = AuthController.to.wcUser.value!.obs;
   }
 
   void _setConimalList() {
-    conimalList.assignAll(_wcUser.conimals);
+    conimalList.assignAll(_wcUser.value.conimals);
     conimalCount.value = conimalList.length;
   }
 
@@ -53,6 +57,11 @@ class HomeController extends GetxController {
   Future<void> refreshPage() async {
     await AuthController.to.refreshWcUserInfo();
     onInit();
+  }
+
+  manageConimal() async {
+    await Get.toNamed(Routes.CONIMAL_MANAGE, arguments: wcUser!.conimals);
+    _setHomePageData();
   }
 
   void _setAllDiseases() {
@@ -74,9 +83,9 @@ class HomeController extends GetxController {
     if (selectedDiseases == null) {
     } else {
       await showLoading(() => _conimalRepository.updateConimalDisease(
-          conimalId: selectedConimal.conimalId,
-          diseases: selectedDiseases,
-          userId: selectedConimal.userId!));
+            conimalId: selectedConimal.conimalId,
+            diseases: selectedDiseases,
+          ));
 
       refreshPage();
     }

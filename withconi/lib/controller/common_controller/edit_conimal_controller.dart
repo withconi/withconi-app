@@ -13,7 +13,7 @@ import '../../data/model/conimal.dart';
 import '../../data/model/disease.dart';
 import '../../import_basic.dart';
 import '../../ui/widgets/dialog/selection_dialog.dart';
-import '../../ui/widgets/loading.dart';
+import '../../ui/widgets/loading/loading_overlay.dart';
 import '../ui_interpreter/failure_ui_interpreter.dart';
 
 class EditConimalController extends GetxController {
@@ -146,6 +146,7 @@ class EditConimalController extends GetxController {
   }
 
   selectBirthDate() async {
+    Get.focusScope!.unfocus();
     DateTime? pickedDate = await showDatePicker(
         context: Get.context!,
         initialDate: _birthDate.value ?? DateTime.now(),
@@ -160,6 +161,7 @@ class EditConimalController extends GetxController {
   }
 
   selectAdoptedDate() async {
+    Get.focusScope!.unfocus();
     DateTime? pickedDate = await showDatePicker(
         context: Get.context!,
         initialDate: _adoptedDate.value ?? DateTime.now(),
@@ -174,6 +176,7 @@ class EditConimalController extends GetxController {
   }
 
   selectDisease() async {
+    Get.focusScope!.unfocus();
     List<Disease>? newDiseaseList =
         await Get.toNamed(Routes.DISEASE_ADD, arguments: _diseaseList)
             as List<Disease>?;

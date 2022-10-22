@@ -1,5 +1,6 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:withconi/configs/constants/enum.dart';
+import 'package:withconi/data/model/disease.dart';
 import 'package:withconi/ui/entities/disease_percents.dart';
 import 'package:withconi/ui/pages/map/map_main_page.dart';
 
@@ -14,12 +15,13 @@ abstract class PlacePreview {
   String unselectedMarkerImage = "";
   String selectedMarkerImage = "";
   LatLngClass location = LatLngClass(longitude: 0.0, latitude: 0.0);
-  int totalVisitingConimal = 0;
-  int totalRecommend = 0;
+  int totalVisiting = 0;
+  int totalReviews = 0;
   String phone = "";
   String thumbnail = "";
   double distanceByMeter = 0.0;
   bool visitVerified = false;
+  DiseasePercentInfo? diseaseInfo;
 
   // PlacePreview.fromJson(Map<String, dynamic> json, LatLngClass baseLatLng) {
   //   locId = json['_id'] ?? '';

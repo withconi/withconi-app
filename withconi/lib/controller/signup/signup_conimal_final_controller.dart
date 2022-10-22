@@ -3,22 +3,24 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:withconi/configs/constants/enum.dart';
 import 'package:withconi/configs/helpers/calculator.dart';
 import 'package:withconi/controller/auth_controller.dart';
+import 'package:withconi/controller/signup/data/signup_data_manager.dart';
 import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
+import 'package:withconi/core/custom_auth_info.dart';
 import 'package:withconi/data/repository/auth_repository.dart';
-
-import 'package:withconi/data/repository/signup_repository.dart';
-import 'package:withconi/ui/widgets/loading.dart';
+import 'package:withconi/ui/widgets/loading/loading_overlay.dart';
 import '../../core/error_handling/failures.dart';
 import '../../data/model/conimal.dart';
+import '../../data/model/user.dart';
 import '../../data/repository/conimal_repository.dart';
 import '../../import_basic.dart';
 
 class SignupConimalFinalController extends GetxController {
-  final SignupRepository _signUpRepository = SignupRepository.to;
+  // final SignupRepository _signUpRepository = Get.find();
+  final SignUpDataManager _signUpDataManager = Get.find();
   // final ConimalRepository _signUpRepository = ConimalRepository.to;
   final AuthRepository _authRepository = AuthRepository();
   final RxString _userName = ''.obs;
-  late final Provider _provider;
+  // late final Provider _provider;
   RxList<Conimal> conimalList = RxList<Conimal>();
   String get userName => _userName.value;
   RxBool isButtonValid = true.obs;
@@ -26,10 +28,9 @@ class SignupConimalFinalController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    _userName.value = _signUpRepository.name;
-    _provider = AuthController.to.authInfo!.provider;
+    _userName.value = _signUpDataManager.name;
+    // _provider = AuthController.to.authInfo!.provider;
     getConimalList();
-    print(conimalList);
     ever(conimalList, validateButton);
   }
 
@@ -42,7 +43,8 @@ class SignupConimalFinalController extends GetxController {
   }
 
   getConimalList() {
-    conimalList.value = _signUpRepository.conimalList;
+    conimalList.value = _signUpDataManager.conimalList;
+    conimalList.refresh();
   }
 
   calculateConimalAge(int index) {
@@ -61,32 +63,55 @@ class SignupConimalFinalController extends GetxController {
 
   deleteConimal(int index) {
     Either<Failure, bool> removeResultEither =
-        _signUpRepository.removeConimalIndex(index);
+        _signUpDataManager.removeConimalIndex(index);
     removeResultEither.fold(
         (fail) =>
             FailureInterpreter().mapFailureToDialog(fail, 'deleteConimal'),
         (success) => getConimalList());
   }
 
-  signUp() {
-    List<Conimal> conimalList = _signUpRepository.conimalList;
-    showLoading((() async {
-      Either<Failure, User?> _userEither = await _authRepository.signUp(
-          password: _signUpRepository.password,
-          conimalList: conimalList,
-          authInfo: AuthController.to.authInfo!);
+  signUp() async {
+    CustomAuthInfo authInfo = _signUpDataManager.authInfo;
+    bool signUpSucceed = false;
 
-      _userEither.fold(
-          (fail) => FailureInterpreter().mapFailureToDialog(fail, 'signUp'),
-          (user) async {
-        if (_provider == Provider.email) {
-          await AuthController.to.setUserInfo(redirectPage: false);
-          await Get.offAllNamed(Routes.EMAIL_VERIFICATION,
-              arguments: {'nextRoute': Routes.HOME});
-        } else {
-          await AuthController.to.setUserInfo(redirectPage: true);
-        }
+    await showLoading((() async {
+      Either<Failure, String> _userEither =
+          await _authRepository.signUpFirebaseAuth(authInfo: authInfo);
+
+      String? firebaseUid = _userEither.fold((fail) {
+        FailureInterpreter().mapFailureToDialog(fail, 'signUpFirebaseAuth');
+        return null;
+      }, (uid) {
+        return uid;
       });
+
+      if (firebaseUid != null) {
+        signUpSucceed = await signUpDB(firebaseUid: firebaseUid);
+      }
     }));
+
+    if (signUpSucceed) {
+      await setWcUserInfo(provider: authInfo.provider);
+    } else {
+      return;
+    }
+  }
+
+  setWcUserInfo({required Provider provider}) async {
+    await AuthController.to.setUserInfo(redirectPage: true);
+  }
+
+  Future<bool> signUpDB({required String firebaseUid}) async {
+    late WcUser newUser;
+    newUser = _signUpDataManager.newUserForDb(firebaseUid: firebaseUid);
+    Either<Failure, String> dbUserEither =
+        await _authRepository.signUpUserDB(wcUser: newUser);
+
+    bool success = dbUserEither.fold((l) {
+      FailureInterpreter().mapFailureToSnackbar(l, 'signUpDB');
+      return false;
+    }, (r) => true);
+
+    return success;
   }
 }

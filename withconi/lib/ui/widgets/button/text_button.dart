@@ -5,16 +5,18 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:withconi/ui/theme/colors.dart';
 import 'package:withconi/ui/theme/sizes.dart';
 
+import '../../theme/text_theme.dart';
+
 class WcUnderlinedTextButton extends StatelessWidget {
   WcUnderlinedTextButton({
     Key? key,
     this.valueText,
-    required this.valueTextStyle,
+    this.valueTextStyle,
     required this.active,
     required this.suffixText,
-    required this.suffixTextStyle,
+    this.suffixTextStyle,
     required this.hintText,
-    required this.hintTextStyle,
+    this.hintTextStyle,
     this.suffixIcon,
     this.onTap,
   }) : super(key: key);
@@ -22,9 +24,9 @@ class WcUnderlinedTextButton extends StatelessWidget {
   String? valueText;
   String suffixText;
   String hintText;
-  TextStyle hintTextStyle;
-  TextStyle valueTextStyle;
-  TextStyle suffixTextStyle;
+  TextStyle? hintTextStyle;
+  TextStyle? valueTextStyle;
+  TextStyle? suffixTextStyle;
   Widget? suffixIcon;
   bool active;
   void Function()? onTap;
@@ -36,7 +38,7 @@ class WcUnderlinedTextButton extends StatelessWidget {
       child: Container(
         color: Colors.transparent,
         width: WcWidth - 40,
-        height: 45,
+        height: 43,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
@@ -52,22 +54,47 @@ class WcUnderlinedTextButton extends StatelessWidget {
                           children: [
                             Text(
                               valueText ?? '',
-                              style: valueTextStyle,
+                              style: valueTextStyle ??
+                                  TextStyle(
+                                      fontFamily: WcFontFamily.notoSans,
+                                      color: WcColors.black,
+                                      fontSize: 16,
+                                      height: 1,
+                                      fontWeight: FontWeight.w600),
                             ),
-                            Text(suffixText, style: suffixTextStyle),
+                            Text(
+                              suffixText,
+                              style: suffixTextStyle ??
+                                  TextStyle(
+                                      fontFamily: WcFontFamily.notoSans,
+                                      color: WcColors.black,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600),
+                            ),
                           ],
                         )
                       : SizedBox(),
                   (active)
                       ? SizedBox()
-                      : Expanded(child: Text(hintText, style: hintTextStyle)),
-                  suffixIcon ?? SizedBox(),
+                      : Expanded(
+                          child: Text(hintText,
+                              style: hintTextStyle ??
+                                  TextStyle(
+                                      fontFamily: WcFontFamily.notoSans,
+                                      color: WcColors.grey100,
+                                      fontSize: 16,
+                                      height: 1,
+                                      fontWeight: FontWeight.w400))),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 5),
+                    child: suffixIcon ?? SizedBox(),
+                  ),
                 ],
               ),
             ),
             Container(
-              height: 0.6,
-              color: WcColors.grey100,
+              height: 1,
+              color: WcColors.grey110,
             )
           ],
         ),

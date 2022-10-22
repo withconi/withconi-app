@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:withconi/configs/constants/enum.dart';
 import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/controller/community/community_new_post_controller.dart';
+import 'package:withconi/controller/map/map_edit_review_controller.dart';
 import 'package:withconi/controller/map/map_new_review_controller.dart';
 import 'package:withconi/import_basic.dart';
 import 'package:withconi/ui/entities/review_rate_entity.dart';
@@ -21,7 +22,8 @@ import 'map_widgets/review_rate_button.dart';
 class MapEditReviewPage extends StatelessWidget {
   MapEditReviewPage({Key? key}) : super(key: key);
 
-  final MapReviewController _controller = Get.put(MapReviewController());
+  final MapEditReviewController _controller =
+      Get.put(MapEditReviewController());
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +70,8 @@ class MapEditReviewPage extends StatelessWidget {
                                           fit: BoxFit.cover,
                                         ),
                                         borderRadius: BorderRadius.circular(5)),
-                                    child: (_controller.visitVerified.value)
+                                    child: (_controller
+                                            .placeVerification.value!.verified)
                                         ? SizedBox.shrink()
                                         : ClipRRect(
                                             borderRadius:
@@ -118,7 +121,7 @@ class MapEditReviewPage extends StatelessWidget {
                           ),
                           Obx(
                             () => PlaceVerificationButton(
-                              visitVerified: _controller.visitVerified.value,
+                              visitVerified: _controller.place.visitVerified,
                               onTap: () {
                                 _controller.verifyPlaceVisit(
                                   context: context,

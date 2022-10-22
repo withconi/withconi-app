@@ -1,22 +1,18 @@
-import 'dart:io';
 import 'package:flutter_svg/svg.dart';
 import '../../../import_basic.dart';
+import '../photo_gallary/image_item.dart';
 
 class ProfileImagePickerButton extends StatelessWidget {
   const ProfileImagePickerButton({
     Key? key,
     void Function()? onTap,
-    required File? imageFile,
-    required bool profileSeleted,
+    required ImageItem? imageItem,
   })  : _onTap = onTap,
-        _imageFile = imageFile,
-        _profileSelected = profileSeleted,
+        _imageItem = imageItem,
         super(key: key);
 
   final void Function()? _onTap;
-  final File? _imageFile;
-  final bool _profileSelected;
-
+  final ImageItem? _imageItem;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -28,30 +24,14 @@ class ProfileImagePickerButton extends StatelessWidget {
             height: 100,
           ),
           SizedBox(
-            width: 90,
-            height: 90,
-            child: CircleAvatar(
+              width: 90,
+              height: 90,
+              child: CircleAvatar(
                 backgroundColor: WcColors.grey60,
-                child: (_profileSelected)
-                    ? ClipOval(
-                        child: Image.file(
-                          _imageFile!,
-                          fit: BoxFit.cover,
-                          height: 100,
-                          width: 100,
-                          errorBuilder: (context, error, stackTrace) {
-                            return SvgPicture.asset(
-                              'assets/icons/withconi_grey.svg',
-                              width: 44,
-                            );
-                          },
-                        ),
-                      )
-                    : SvgPicture.asset(
-                        'assets/icons/withconi_grey.svg',
-                        width: 44,
-                      )),
-          ),
+                backgroundImage: (_imageItem != null)
+                    ? _imageItem!.toImageByType()
+                    : const AssetImage('assets/icons/withconi_grey.png'),
+              )),
           Positioned(
             right: 0,
             bottom: 7,

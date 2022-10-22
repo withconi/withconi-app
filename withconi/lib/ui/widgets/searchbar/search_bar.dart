@@ -29,7 +29,7 @@ class SearchBarWidget extends StatelessWidget {
                 color: Color.fromARGB(50, 0, 0, 0),
                 spreadRadius: -2,
                 blurRadius: 6,
-                offset: Offset(0, 1),
+                offset: Offset(0, 1.5),
               ),
             ],
         _margin = margin ?? EdgeInsets.fromLTRB(0, 0, 0, 0),
@@ -72,9 +72,13 @@ class SearchBarWidget extends StatelessWidget {
               child: SvgPicture.asset(
                 _iconSrc,
                 color: _iconColor,
+                height: 20,
               ),
             ),
           ),
+          // SizedBox(
+          //   width: 20,
+          // ),
           Expanded(
               child: GestureDetector(
             onTap: _onTextFieldTapped,
@@ -90,7 +94,7 @@ class SearchBarWidget extends StatelessWidget {
               decoration: InputDecoration(
                 hintText: _hintText,
                 hintStyle: GoogleFonts.notoSans(
-                    color: WcColors.grey100,
+                    color: WcColors.grey120,
                     fontSize: 16,
                     fontWeight: FontWeight.w400),
                 border: InputBorder.none,
@@ -106,11 +110,12 @@ class SearchBarWidget extends StatelessWidget {
               ? GestureDetector(
                   onTap: _onTapAction,
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 12, right: 14),
+                    padding: const EdgeInsets.only(
+                        left: 12, right: 14, top: 12, bottom: 12),
                     child: SvgPicture.asset(
                       'assets/icons/cancle.svg',
-                      color: WcColors.grey100,
-                      height: 16,
+                      color: WcColors.grey120,
+                      height: 15,
                     ),
                   ),
                 )

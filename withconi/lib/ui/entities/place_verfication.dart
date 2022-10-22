@@ -1,32 +1,45 @@
-class PlaceVerificationEntity {
-  List<String> imageSrcList;
-  int correctImageIndex;
-  bool verified;
+class VerificationGroup {
+  List<Verification> list;
   int chanceLeft;
-  PlaceVerificationEntity({
-    required this.imageSrcList,
-    required this.correctImageIndex,
-    required this.verified,
+  bool verified;
+  VerificationGroup({
+    required this.list,
     required this.chanceLeft,
+    required this.verified,
   }) : super();
 
-  factory PlaceVerificationEntity.fromJson(Map<String, dynamic>? json) {
-    List<String> imageList = [];
-    int correctIndex = 0;
+  factory VerificationGroup.fromJson(Map<String, dynamic>? json) {
+    List<Verification> verificationList = [];
+    int chanceLeft = 2;
+    bool verified = false;
     if (json != null) {
       List<dynamic> list = json['thumbnails'] as List<dynamic>;
+      chanceLeft = json['totalChance'] as int;
 
-      for (int i = 0; i < list.length; i++) {
-        imageList.add(list[i]['thumbnail'] as String);
-        if (list[i]['success'] as bool) {
-          correctIndex = i;
-        }
-      }
+      verificationList = list
+          .map((e) => Verification.fromJson(e as Map<String, dynamic>))
+          .toList();
     }
-    return PlaceVerificationEntity(
-        imageSrcList: imageList,
-        correctImageIndex: correctIndex,
-        verified: false,
-        chanceLeft: 2);
+    return VerificationGroup(
+        list: verificationList, chanceLeft: chanceLeft, verified: verified);
+  }
+}
+
+class Verification {
+  String imageSrc;
+  bool isAnswer;
+  Verification({required this.imageSrc, required this.isAnswer}) : super();
+
+  factory Verification.fromJson(Map<String, dynamic>? json) {
+    late String image;
+    late bool answer;
+    if (json != null) {
+      image = json['thumbnail'] as String;
+      answer = json['success'] as bool;
+    }
+    return Verification(
+      imageSrc: image,
+      isAnswer: answer,
+    );
   }
 }

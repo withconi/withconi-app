@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_naver_map/flutter_naver_map.dart';
 import 'package:geolocator/geolocator.dart';
 
-import '../../data/model/abstract_class/place_type.dart';
+import '../../data/model/abstract_class/place_preview.dart';
 import 'location.dart';
 
 class CustomMarker extends Marker {
@@ -15,7 +15,7 @@ class CustomMarker extends Marker {
     required String text,
     required int iconWidth,
     required int iconHeight,
-    required double distance,
+    // required double distance,
     required void Function(Marker? marker, Map<String, int?> iconSize)?
         onTapMarker,
   }) : super(
@@ -35,7 +35,7 @@ class CustomMarker extends Marker {
           place: place,
           markerId: place.locId,
           text: place.name,
-          distance: place.distanceByMeter,
+          // distance: place.distanceByMeter,
           iconWidth: 30,
           iconHeight: 30,
           onTapMarker: onTapMarker);

@@ -19,7 +19,8 @@ class ConimalRepository extends GetxController {
   Future<Either<Failure, bool>> createConimal(
       {required Conimal newConimal}) async {
     try {
-      await _api.createConimal(conimal: newConimal.toJson());
+      await _api.createConimal(
+          conimal: newConimal.toJson(), requiresToken: true);
 
       return Right(true);
     } on MaxListException {
@@ -32,8 +33,9 @@ class ConimalRepository extends GetxController {
   Future<Either<Failure, bool>> updateConimal(
       {required Conimal editConimal}) async {
     try {
-      print(AuthController.to.wcUser.value!.uid);
-      await _api.updateConimal(conimal: editConimal.toJson());
+      // print(AuthController.to.wcUser.value!.uid);
+      await _api.updateConimal(
+          updateData: editConimal.toJson(), requiresToken: true);
 
       return Right(true);
     } on MaxListException {
@@ -43,10 +45,10 @@ class ConimalRepository extends GetxController {
     }
   }
 
-  Future<Either<Failure, bool>> updateConimalDisease(
-      {required List<Disease> diseases,
-      required String conimalId,
-      required String userId}) async {
+  Future<Either<Failure, bool>> updateConimalDisease({
+    required List<Disease> diseases,
+    required String conimalId,
+  }) async {
     try {
       List<String> diseaseCodeList = [];
 
@@ -56,7 +58,7 @@ class ConimalRepository extends GetxController {
       }
 
       await _api.updateConimalDisease(
-          conimalId: conimalId, diseases: diseaseCodeList, userId: userId);
+          conimalId: conimalId, diseases: diseaseCodeList, requiresToken: true);
 
       return Right(true);
     } on MaxListException {
@@ -69,8 +71,7 @@ class ConimalRepository extends GetxController {
   Future<Either<Failure, bool>> deleteConimal(
       {required String conimalId}) async {
     try {
-      await _api.deleteConimal(
-          userId: AuthController.to.wcUser.value!.uid, conimalId: conimalId);
+      await _api.deleteConimal(requiresToken: true, conimalId: conimalId);
 
       return Right(true);
     } on MaxListException {

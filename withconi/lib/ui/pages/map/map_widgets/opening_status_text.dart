@@ -6,7 +6,7 @@ class OpeningStatusText extends StatelessWidget {
   OpeningStatusText({
     Key? key,
     required this.isOpen,
-    this.fontSize = 13.5,
+    this.fontSize = 14,
     this.hasIndicator = true,
     this.closedFontColor = WcColors.red100,
     this.openFontColor = WcColors.black,
@@ -27,7 +27,7 @@ class OpeningStatusText extends StatelessWidget {
             style: TextStyle(
                 fontFamily: WcFontFamily.notoSans,
                 fontSize: fontSize,
-                fontWeight: FontWeight.w600)),
+                fontWeight: FontWeight.w500)),
       ],
     );
   }

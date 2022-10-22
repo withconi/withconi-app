@@ -28,11 +28,11 @@ class PercentageGraph extends StatelessWidget {
               return PercentageGraphData(
                 graphColor: e.graphColor,
                 percent: (e.percent > 0 && e.percent <= 10) ? 10 : e.percent,
-                isLastIndex:
-                    (graphDataList.indexOf(e) == graphDataList.length - 1 ||
-                            singleValidValue)
-                        ? true
-                        : false,
+                isLastIndex: ((graphDataList.indexOf(e) != 0 &&
+                            noneZeroList.length > 1) ||
+                        singleValidValue)
+                    ? true
+                    : false,
               );
             }).toList(),
           )),

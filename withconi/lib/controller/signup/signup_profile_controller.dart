@@ -2,10 +2,10 @@ import 'dart:io';
 import 'dart:math';
 import 'package:dartz/dartz.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:withconi/controller/signup/data/signup_data_manager.dart';
 import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
 import 'package:withconi/core/error_handling/failures.dart';
-import 'package:withconi/data/repository/conimal_repository.dart';
-import 'package:withconi/data/repository/signup_repository.dart';
+import 'package:withconi/ui/widgets/photo_gallary/image_item.dart';
 import '../../configs/constants/regex.dart';
 import '../../configs/constants/strings.dart';
 import '../../configs/helpers/image_picker_helper.dart';
@@ -13,13 +13,14 @@ import '../../import_basic.dart';
 
 class SignupProfileController extends GetxController {
   // final ConimalRepository _signUpRepository = ConimalRepository.to;
-  final SignupRepository _signUpRepository = SignupRepository.to;
+  // final SignupRepository _signUpRepository = Get.find();
+  final SignUpDataManager _signUpDataManager = Get.find();
 
   final RxString _name = ''.obs;
   final RxString _nickName = ''.obs;
   RxBool isButtonValid = false.obs;
 
-  Rxn<dynamic> profileImg = Rxn<dynamic>();
+  Rxn<ImageItem> profileImg = Rxn<ImageItem>();
 
   RxBool profileSelected = false.obs;
 
@@ -48,7 +49,7 @@ class SignupProfileController extends GetxController {
     _nickName.value = val;
   }
 
-  void onImageChanged(dynamic image) {
+  void onImageChanged(ImageItem image) {
     profileImg.value = image;
     profileSelected.value = true;
   }
@@ -88,7 +89,7 @@ class SignupProfileController extends GetxController {
   void pickImage() async {
     final ImagePickHelper _picker = ImagePickHelper();
     // Pick an image
-    final Either<Failure, File?>? imageFileEither =
+    final Either<Failure, ImageItem?>? imageFileEither =
         await _picker.pickSingleImage();
 
     if (imageFileEither != null) {
@@ -96,16 +97,23 @@ class SignupProfileController extends GetxController {
           (fail) =>
               FailureInterpreter().mapFailureToSnackbar(fail, 'pickImage'),
           (file) {
-        onImageChanged(file);
+        if (file != null) {
+          onImageChanged(file);
+        }
       });
     }
   }
 
   nextStep() {
-    _signUpRepository.saveUserName(name);
-    _signUpRepository.saveUserNickname(nickName);
-    _signUpRepository.saveUserProfile(profileImg.value);
-    if (_signUpRepository.visitedConimal2Page) {
+    // _signUpRepository.saveUserName(name);
+    // _signUpRepository.saveUserNickname(nickName);
+    // _signUpRepository.saveUserProfile(profileImg.value);
+
+    _signUpDataManager.storeUserName(name);
+    _signUpDataManager.storeUserNickname(nickName);
+    _signUpDataManager.storeUserProfile(profileImg.value);
+
+    if (_signUpDataManager.conimalList.isNotEmpty) {
       Get.toNamed(Routes.SIGNUP_CONIMAL_STEP2);
     } else {
       Get.toNamed(Routes.SIGNUP_CONIMAL_STEP1);

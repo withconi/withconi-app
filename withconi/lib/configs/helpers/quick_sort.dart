@@ -1,4 +1,4 @@
-import 'package:withconi/data/model/abstract_class/place_type.dart';
+import 'package:withconi/data/model/abstract_class/place_preview.dart';
 import 'package:withconi/ui/entities/custom_marker.dart';
 
 import '../constants/enum.dart';
@@ -59,10 +59,10 @@ class QuickSort {
     if (list.isEmpty) {
       return 0;
     }
-    int pivot = list[high].place.totalVisitingConimal;
+    int pivot = list[high].place.totalReviews;
     int i = low - 1;
     for (int j = low; j < high; j++) {
-      if (list[j].place.totalVisitingConimal < pivot) {
+      if (list[j].place.totalReviews > pivot) {
         i++;
         swap(list, i, j);
       }

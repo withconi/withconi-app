@@ -15,6 +15,10 @@ class ErrorMessage extends Equatable {
 
   static ErrorMessage mapFailureToErrorMessage({required Failure failure}) {
     return failure.when(
+      versionCheckFailure: () => const ErrorMessage(
+        title: '버전 체크 에러',
+        message: '앱 버전을 확인할 수 없어요',
+      ),
       serverFailure: () => const ErrorMessage(
         title: '인터넷 서버 에러',
         message: '정보를 불러올 수 없어요',
@@ -27,13 +31,17 @@ class ErrorMessage extends Equatable {
         title: '인터넷 연결 실패',
         message: '인터넷과 연결되어있지 않네요',
       ),
+      wrongTokenFailure: () => const ErrorMessage(
+        title: '토큰 오류',
+        message: '사용자를 인증할 수 없어요',
+      ),
       maxConimalFailure: () => const ErrorMessage(
         title: '등록된 코니멀이 3마리 이상',
         message: '최대 3마리까지만 등록 가능해요',
       ),
       maxDiseaseFailure: () => const ErrorMessage(
-        title: '등록된 질병이 4개 이상',
-        message: '최대 4개의 질병까지만 등록 가능해요',
+        title: '등록된 질병이 3개 이상',
+        message: '최대 3개의 질병까지만 등록 가능해요',
       ),
       noUserDataFailure: () => const ErrorMessage(
         title: '사용자 정보 불러오기 실패',

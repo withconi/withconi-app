@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/widgets.dart';
+import 'package:withconi/configs/constants/constants.dart';
 
 enum ImageType { network, file, asset }
 
@@ -24,7 +25,7 @@ class ImageItem {
       case ImageType.file:
         return FileImage(File(resource));
       case ImageType.network:
-        return NetworkImage(resource);
+        return NetworkImage(Constants.WITHCONI_IMAGE_BASE_URL + resource);
     }
   }
 }

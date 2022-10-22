@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:withconi/configs/constants/enum.dart';
 import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/controller/community/communty_widgets/more_tap_bottom_sheet.dart';
+import 'package:withconi/ui/theme/text_theme.dart';
 import 'package:withconi/ui/widgets/button/icon_button.dart';
 
 import '../../../configs/helpers/calculator.dart';
@@ -86,7 +87,8 @@ class WcCommentListTile extends StatelessWidget {
                                     children: [
                                       Text(
                                         comment.nickname,
-                                        style: GoogleFonts.notoSans(
+                                        style: TextStyle(
+                                            fontFamily: WcFontFamily.notoSans,
                                             color: WcColors.grey200,
                                             fontSize: 13,
                                             fontWeight: FontWeight.w600,
@@ -94,10 +96,11 @@ class WcCommentListTile extends StatelessWidget {
                                       ),
                                       Text(
                                         ' • ${uploadAtStr(comment.createdAt)}',
-                                        style: GoogleFonts.notoSans(
+                                        style: TextStyle(
+                                            fontFamily: WcFontFamily.notoSans,
                                             color: WcColors.grey140,
                                             fontSize: 13,
-                                            fontWeight: FontWeight.w500,
+                                            fontWeight: FontWeight.w400,
                                             height: 1.5),
                                       ),
                                     ],
@@ -116,9 +119,10 @@ class WcCommentListTile extends StatelessWidget {
                                       readOnly: true,
                                       maxLines: 3,
                                       minLines: 1,
-                                      style: GoogleFonts.notoSans(
+                                      style: TextStyle(
+                                          fontFamily: WcFontFamily.notoSans,
                                           fontSize: 14,
-                                          fontWeight: FontWeight.w500,
+                                          fontWeight: FontWeight.w400,
                                           height: 1.5),
                                     ),
                                   ),

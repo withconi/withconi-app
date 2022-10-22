@@ -1,3 +1,5 @@
+import 'package:withconi/ui/theme/text_theme.dart';
+
 import '../../../import_basic.dart';
 
 Future<bool> showSelectionDialog(
@@ -8,12 +10,13 @@ Future<bool> showSelectionDialog(
     void Function()? onCancleTap,
     String? subtitle}) async {
   var result = await Get.dialog(Dialog(
+    insetPadding: EdgeInsets.symmetric(horizontal: 30),
     backgroundColor: Colors.transparent,
     child: Container(
       height: (subtitle != null) ? 180 : 160,
       padding: EdgeInsets.all(24),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(15),
         color: WcColors.white,
       ),
       child: Column(
@@ -27,8 +30,10 @@ Future<bool> showSelectionDialog(
                 height: 35,
                 child: Text(
                   title,
-                  style: GoogleFonts.notoSans(
-                      fontSize: 21, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontFamily: WcFontFamily.notoSans,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600),
                 ),
               ),
               (subtitle == null)
@@ -37,10 +42,11 @@ Future<bool> showSelectionDialog(
                       height: 35,
                       child: Text(
                         subtitle,
-                        style: GoogleFonts.notoSans(
+                        style: TextStyle(
+                            fontFamily: WcFontFamily.notoSans,
                             color: WcColors.grey140,
-                            fontSize: 16.5,
-                            fontWeight: FontWeight.w500),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400),
                       ),
                     ),
             ],
@@ -104,63 +110,3 @@ Future<bool> showSelectionDialog(
   result ??= false;
   return result;
 }
-   
-    // Get.defaultDialog(
-    //     title: title,
-    //     titlePadding: EdgeInsets.all(20),
-    //     contentPadding: EdgeInsets.all(20),
-    //     actions: [
-    //       Row(
-    //         children: [
-    //           InkWell(
-    //             onTap: onCancleTap ?? () => false,
-    //             child: Container(
-    //               alignment: Alignment.center,
-    //               decoration: BoxDecoration(color: WcColors.blue100),
-    //               child: Text(cancleText),
-    //             ),
-    //           ),
-    //           InkWell(
-    //             onTap: onCancleTap ?? () => false,
-    //             child: Container(
-    //               alignment: Alignment.center,
-    //               decoration: BoxDecoration(color: WcColors.blue100),
-    //               child: Text(cancleText),
-    //             ),
-    //           ),
-    //         ],
-    //       )
-    //     ]);
-// Container(
-//       padding: EdgeInsets.all(20),
-//       decoration: BoxDecoration(
-//         borderRadius: BorderRadius.circular(20),
-//         color: WcColors.white,
-//       ),
-//       child: Column(
-//         children: [
-//           Text(title),
-//           (subtitle == null) ? SizedBox.shrink() : Text(subtitle),
-//           Row(
-//             children: [
-//               InkWell(
-//                 onTap: onFalseTap ?? () => false,
-//                 child: Container(
-//                   alignment: Alignment.center,
-//                   decoration: BoxDecoration(color: WcColors.grey120),
-//                   child: Text(falseText),
-//                 ),
-//               ),
-//               InkWell(
-//                 onTap: onTrueTap ?? () => true,
-//                 child: Container(
-//                   alignment: Alignment.center,
-//                   decoration: BoxDecoration(color: WcColors.blue100),
-//                   child: Text(trueText),
-//                 ),
-//               ),
-//             ],
-//           )
-//         ],
-//       ),
-//     )

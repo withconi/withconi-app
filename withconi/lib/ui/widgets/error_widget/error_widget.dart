@@ -15,7 +15,7 @@ class WcErrorWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: WcHeight - 380,
+        height: WcHeight - 230,
         width: WcWidth,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

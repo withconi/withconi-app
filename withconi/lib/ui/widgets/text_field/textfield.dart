@@ -47,7 +47,7 @@ class WcTextField extends StatelessWidget {
         decoration: InputDecoration(
           isDense: true,
           contentPadding: EdgeInsets.only(top: 11, bottom: 10),
-          errorText: errorText,
+          errorText: (errorText == '' || errorText == null) ? null : errorText,
           labelText: labelText,
           labelStyle: GoogleFonts.notoSans(
               color: WcColors.grey100,

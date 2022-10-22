@@ -1,5 +1,6 @@
+import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/core/error_handling/error_message_object.dart';
-import 'package:withconi/data/model/abstract_class/place_type.dart';
+import 'package:withconi/data/model/abstract_class/place_preview.dart';
 import 'package:withconi/ui/entities/location.dart';
 import '../../configs/helpers/calculator.dart';
 import '../../core/error_handling/failures.dart';
@@ -13,13 +14,14 @@ class MapSearchController extends GetxController
   TextEditingController placeNameTextController = TextEditingController();
   RxBool listLoaded = false.obs;
   // String get disease => _disease.value;
+  late String _userId;
   Rxn<Failure> failure = Rxn<Failure>();
-  final RxString _searchPlaceName = ''.obs;
+  final RxString searchKeywords = ''.obs;
   RxList<PlacePreview> placeListSearched = RxList<PlacePreview>();
 
   final Rx<PaginationFilter> _paginationFilter = PaginationFilter(
     page: 1,
-    limit: 5,
+    limit: 8,
   ).obs;
 
   Rx<ScrollController> scrollController = ScrollController().obs;
@@ -27,62 +29,43 @@ class MapSearchController extends GetxController
   final RxBool _lastPage = false.obs;
   final RxBool _isLoading = false.obs;
 
-  int get limit => _paginationFilter.value.limit!;
-  int get _page => _paginationFilter.value.page!;
+  int get limit => _paginationFilter.value.limit;
+  int get _page => _paginationFilter.value.page;
 
   void loadNextPage() => _changePaginationFilter(_page + 1, limit);
-  void loadNewPage() => _changePaginationFilter(1, limit);
+
+  late Worker _debounceWorker;
 
   @override
   void onInit() {
     super.onInit();
-    // _getPlacePreviewList(_searchPlaceName.value);
+    _userId = AuthController.to.wcUser.value!.uid;
+    _debounceWorker = debounce(searchKeywords, _changeSearchKeyword,
+        time: const Duration(milliseconds: 500));
+    ever(_paginationFilter, _getPlacePreviewList);
+
     change(null, status: RxStatus.empty());
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-
-    debounce(_searchPlaceName, _getPlacePreviewList,
-        time: Duration(milliseconds: 600));
-    ever(_paginationFilter,
-        (_) => _morePlacePreviewList(_searchPlaceName.value));
-    // _addScrollListener(
-    //     isLastPage: _lastPage,
-    //     isLoading: _isLoading,
-    //     onEndOfScroll: loadNextPage,
-    //     scrollController: scrollController.value);
 
     scrollController.value.addListener(() {
       var nextPageTrigger =
-          0.8 * scrollController.value.position.maxScrollExtent;
+          scrollController.value.position.maxScrollExtent * 0.8;
       if (!_isLoading.value &&
           !_lastPage.value &&
-          scrollController.value.offset >=
-              scrollController.value.position.maxScrollExtent) {
+          scrollController.value.offset >= nextPageTrigger) {
         loadNextPage();
       }
     });
   }
 
-  // _addScrollListener(
-  //     {required ScrollController scrollController,
-  //     required void Function() onEndOfScroll,
-  //     required RxBool isLastPage,
-  //     required RxBool isLoading}) {
-  //   scrollController.addListener(() {
-  //     if (!isLoading.value &&
-  //         !isLastPage.value &&
-  //         scrollController.offset >=
-  //             scrollController.position.maxScrollExtent) {
-  //       onEndOfScroll();
-  //     }
-  //   });
-  // }
+  @override
+  void onClose() {
+    super.onClose();
+    scrollController.value.dispose();
+    _debounceWorker.dispose();
+  }
 
-  void onSearchNameChanged(String val) {
-    _searchPlaceName.value = val;
+  void onSearchChanged(String val) {
+    searchKeywords.value = val;
     if (val.isEmpty) clearResult();
   }
 
@@ -92,57 +75,37 @@ class MapSearchController extends GetxController
     change(null, status: RxStatus.empty());
   }
 
-  _getPlacePreviewList(String val) async {
-    if (val.isEmpty) {
+  _getPlacePreviewList(PaginationFilter paginationFilter) async {
+    if (searchKeywords.value.isEmpty) {
       clearResult();
       return;
     } else {
-      change(null, status: RxStatus.loading());
+      if (paginationFilter.page == 1) {
+        change(null, status: RxStatus.loading());
+      }
       _isLoading.value = true;
-      var previewListResult = await _mapRepository.getPlacePreviewList(
-        paginationFilter: PaginationFilter(page: 1, limit: 10),
+      var previewListResponse = await _mapRepository.getPlacePreviewList(
+        paginationFilter: _paginationFilter.value,
         baseLatLng: LatLngClass(latitude: 37.5206602, longitude: 127.0526429),
-        keyword: val,
+        keyword: searchKeywords.value,
         distance: 1000,
       );
 
-      previewListResult.fold((failure) {
+      previewListResponse.fold((failure) {
         ErrorMessage errorMessage =
             ErrorMessage.mapFailureToErrorMessage(failure: failure);
         change(null, status: RxStatus.error(errorMessage.message));
-      }, (previewList) {
-        placeListSearched.assignAll(previewList);
+      }, (response) {
+        if (response.placeList.isEmpty) {
+          _lastPage.value = true;
+        } else {
+          placeListSearched.addAll(response.placeList);
+        }
         _isLoading.value = false;
         change(placeListSearched, status: RxStatus.success());
       });
     }
-    // Get.focusScope!.unfocus();
-  }
-
-  _morePlacePreviewList(String val) async {
-    // change(null, status: RxStatus.loading());
-    _isLoading.value = true;
-    var previewListResult = await _mapRepository.getPlacePreviewList(
-      paginationFilter: _paginationFilter.value,
-      baseLatLng: LatLngClass(latitude: 37.5206602, longitude: 127.0526429),
-      keyword: val,
-      distance: 1000,
-    );
-
-    previewListResult.fold((failure) {
-      ErrorMessage errorMessage =
-          ErrorMessage.mapFailureToErrorMessage(failure: failure);
-      change(null, status: RxStatus.error(errorMessage.message));
-    }, (previewList) {
-      if (previewList.isEmpty) {
-        _lastPage.value = true;
-      } else {
-        placeListSearched.addAll(previewList);
-        change(placeListSearched, status: RxStatus.success());
-      }
-    });
-
-    _isLoading.value = false;
+    Get.focusScope!.unfocus();
   }
 
   void _changePaginationFilter(int page, int limit) {
@@ -152,10 +115,10 @@ class MapSearchController extends GetxController
     });
   }
 
-  void changeTotalPerPage(int limitValue) {
+  void _changeSearchKeyword(_keyword) {
     placeListSearched.clear();
     _lastPage.value = false;
-    _changePaginationFilter(1, limitValue);
+    _changePaginationFilter(1, limit);
   }
 
   String getDistanceToString({required double distanceMeter}) {
@@ -167,6 +130,6 @@ class MapSearchController extends GetxController
   }
 
   onPlaceSelected({required PlacePreview selectedPlace}) {
-    Get.toNamed(Routes.MAP_DETAIL, arguments: selectedPlace);
+    Get.back(result: selectedPlace);
   }
 }

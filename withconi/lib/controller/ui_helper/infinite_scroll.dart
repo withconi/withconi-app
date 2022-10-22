@@ -3,10 +3,10 @@ import 'package:withconi/import_basic.dart';
 import 'package:flutter/widgets.dart';
 
 class PaginationFilter {
-  int? page;
-  int? limit;
+  int page;
+  int limit;
 
-  PaginationFilter({this.page, this.limit});
+  PaginationFilter({required this.page, required this.limit});
 
   @override
   String toString() => 'PaginationFilter(page: $page, limit: $limit)';

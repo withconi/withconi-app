@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/services.dart';
 import 'package:withconi/configs/constants/enum.dart';
 import 'package:withconi/controller/auth_controller.dart';
-import 'package:withconi/data/model/abstract_class/place_type.dart';
+import 'package:withconi/data/model/abstract_class/place_preview.dart';
 import 'package:withconi/data/model/disease.dart';
 import 'package:withconi/data/repository/community_repository.dart';
 import 'package:withconi/data/repository/image_repository.dart';
@@ -11,7 +11,7 @@ import 'package:withconi/data/repository/map_repository.dart';
 import 'package:withconi/data/repository/user_repository.dart';
 import 'package:withconi/ui/entities/place_verfication.dart';
 import 'package:withconi/ui/widgets/dialog/place_verification_dialog.dart';
-import 'package:withconi/ui/widgets/loading.dart';
+import 'package:withconi/ui/widgets/loading/loading_overlay.dart';
 import '../../configs/helpers/image_picker_helper.dart';
 import '../../core/error_handling/failures.dart';
 import '../../data/model/conimal.dart';
@@ -35,7 +35,10 @@ class MapEditReviewController extends GetxController {
   final RxList<File> imageFileList = <File>[].obs;
 
   final RxBool validatePostButton = false.obs;
-  late Rx<PlaceReview> review;
+  late String _reviewId;
+  late String _userId;
+  late Rx<Review> review;
+  late PlacePreview place;
   Rxn<ReviewEntity> selectedReviewEntity = Rxn<ReviewEntity>();
   RxList<Conimal> selectedConimalList = RxList<Conimal>();
   RxList<DiseaseType> selectedDiseaseTypeList = RxList<DiseaseType>();
@@ -60,16 +63,31 @@ class MapEditReviewController extends GetxController {
   ];
 
   RxBool visitVerified = false.obs;
-  Rxn<PlaceVerificationEntity> placeVerification =
-      Rxn<PlaceVerificationEntity>();
+  Rxn<VerificationGroup> placeVerification = Rxn<VerificationGroup>();
 
   @override
   Future<void> onInit() async {
     super.onInit();
-    review = Get.arguments as Rx<PlaceReview>;
-    await getPlaceVerification(
-        locId: review.value.placeId,
-        placeType: review.value.placePreview!.placeType);
+    _reviewId = Get.arguments as String;
+    _userId = AuthController.to.wcUser.value!.uid;
+    await _initData();
+  }
+
+  _initData() async {
+    try {
+      Review? newReview = await _getMyReview(_userId, _reviewId);
+      if (newReview != null) {
+        review = newReview.obs;
+      }
+      PlacePreview? preview =
+          await _getPlacePreview(_userId, review.value.placeId);
+      if (preview != null) {
+        place = preview;
+      }
+      await _setPlaceVerification();
+    } catch (e) {
+      print('수정할 리뷰 불러오기 실패');
+    }
   }
 
   void onPostTypeChanged(PostType postType) {
@@ -101,13 +119,6 @@ class MapEditReviewController extends GetxController {
   }
 
   onReviewItemSelected(ReviewItems item) {
-    // if (selectedReviewItemList.contains(item)) {
-    //   selectedReviewItemList.remove(item);
-
-    // } else {
-    //   selectedReviewItemList.add(item);
-    // }
-
     if (selectedReviewEntity.value!.selectedReviewItems.contains(item)) {
       selectedReviewEntity.value!.selectedReviewItems.remove(item);
     } else {
@@ -179,11 +190,10 @@ class MapEditReviewController extends GetxController {
     }
   }
 
-  getPlaceVerification(
-      {required String locId, required PlaceType placeType}) async {
-    Either<Failure, PlaceVerificationEntity> placeVerificationResult =
+  _setPlaceVerification() async {
+    Either<Failure, VerificationGroup> placeVerificationResult =
         await _mapRepository.getPlaceVerification(
-            locId: locId, placeType: placeType);
+            locId: review.value.placeId, placeType: review.value.placeType);
 
     placeVerificationResult.fold(
         (failure) => FailureInterpreter()
@@ -192,14 +202,39 @@ class MapEditReviewController extends GetxController {
   }
 
   verifyPlaceVisit({required BuildContext context}) async {
-    placeVerification.value = await showPlaceVerificationDialog(
+    await showPlaceVerificationDialog(
       title: '장소에 해당하는 사진을 골라주세요',
-      previousVerification: placeVerification.value!,
       context: context,
     );
 
     visitVerified.value = placeVerification.value!.verified;
     print(placeVerification.value!.verified);
+  }
+
+  Future<Review?> _getMyReview(String userId, String reviewId) async {
+    final reviewDetailEither = await _mapRepository.getReviewDetail(
+        userId: userId, reviewId: reviewId);
+
+    Review? review = reviewDetailEither.fold(
+        (fail) =>
+            FailureInterpreter().mapFailureToSnackbar(fail, '_getPostList'),
+        (placeReview) {
+      return placeReview;
+    });
+    return review;
+  }
+
+  Future<PlacePreview?> _getPlacePreview(String userId, String placeId) async {
+    final placePreviewEither = await _mapRepository.getPlacePreviewById(
+        userId: userId, locId: placeId);
+
+    PlacePreview? preview = placePreviewEither.fold(
+        (fail) =>
+            FailureInterpreter().mapFailureToSnackbar(fail, '_getPostList'),
+        (placePreview) {
+      return placePreview;
+    });
+    return preview;
   }
 
   createNewReview() async {
@@ -230,16 +265,5 @@ class MapEditReviewController extends GetxController {
     //     return;
     //   }
     // });
-  }
-
-  _updateUser() async {
-    Either<Failure, bool> updateUserEither =
-        await _userRepository.updateUser(updateData: {'isWrittenReview': true});
-
-    bool updateSucceed = updateUserEither.fold((fail) {
-      FailureInterpreter().mapFailureToSnackbar(fail, 'createNewPostDB');
-      return false;
-    }, (r) => true);
-    return updateSucceed;
   }
 }

@@ -8,6 +8,7 @@ import 'package:withconi/controller/signup/signup_profile_controller.dart';
 import 'package:withconi/ui/theme/colors.dart';
 import 'package:withconi/ui/theme/sizes.dart';
 import 'package:withconi/ui/widgets/button/wide_button.dart';
+import '../../widgets/button/profile_picker_button.dart';
 import '../../widgets/text_field/textfield.dart';
 
 class SignupProfilePage extends StatelessWidget {
@@ -47,63 +48,10 @@ class SignupProfilePage extends StatelessWidget {
                     height: 45,
                   ),
                   Center(
-                    child: GestureDetector(
-                      onTap: _controller.pickImage,
-                      child: Stack(
-                        children: [
-                          SizedBox(
-                            width: 100,
-                            height: 100,
-                          ),
-                          SizedBox(
-                            width: 94,
-                            height: 94,
-                            child: Obx(
-                              () => CircleAvatar(
-                                  backgroundColor: WcColors.grey60,
-                                  child: (_controller.profileSelected.value)
-                                      ? ClipOval(
-                                          child: Image.file(
-                                            File(_controller
-                                                .profileImg.value!.path),
-                                            fit: BoxFit.cover,
-                                            height: 100,
-                                            width: 100,
-                                          ),
-                                        )
-                                      : SvgPicture.asset(
-                                          'assets/icons/withconi_grey.svg',
-                                          width: 44,
-                                        )),
-                            ),
-                          ),
-                          Positioned(
-                            right: 0,
-                            bottom: 7,
-                            child: Container(
-                              decoration: BoxDecoration(boxShadow: [
-                                BoxShadow(
-                                  color: WcColors.grey100.withOpacity(0.5),
-                                  spreadRadius: -2,
-                                  blurRadius: 10,
-                                  offset: const Offset(
-                                      2, 4), // changes position of shadow
-                                ),
-                              ]),
-                              child: CircleAvatar(
-                                maxRadius: 17,
-                                backgroundColor: WcColors.white,
-                                child: SvgPicture.asset(
-                                  'assets/icons/edit.svg',
-                                  width: 17,
-                                ),
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
+                      child: Obx(() => ProfileImagePickerButton(
+                            imageItem: _controller.profileImg.value,
+                            onTap: _controller.pickImage,
+                          ))),
                   Obx(() {
                     return WcTextField(
                       errorText: _controller.nameErrorText.value,

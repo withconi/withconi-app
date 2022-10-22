@@ -85,10 +85,10 @@ class CommunityPostSearchPage extends StatelessWidget {
                           ),
                     onEmpty: const SizedBox.shrink(),
                     onLoading: SizedBox(
-                      height: WcHeight - 380,
+                      height: WcHeight - 240,
                       child: OverflowBox(
-                        minHeight: 160,
-                        maxHeight: 160,
+                        minHeight: 140,
+                        maxHeight: 140,
                         child: Lottie.asset('assets/json/loading.json'),
                       ),
                     ),

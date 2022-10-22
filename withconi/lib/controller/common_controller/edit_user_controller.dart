@@ -1,19 +1,12 @@
-import 'dart:io';
-import 'dart:math';
 import 'package:dartz/dartz.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:withconi/configs/constants/enum.dart';
 import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
 import 'package:withconi/core/error_handling/failures.dart';
 import 'package:withconi/data/model/user.dart';
-import 'package:withconi/data/repository/conimal_repository.dart';
-import 'package:withconi/data/repository/signup_repository.dart';
 import 'package:withconi/data/repository/user_repository.dart';
-import 'package:withconi/ui/widgets/loading.dart';
-
-import '../../configs/constants/auth_variables.dart';
+import 'package:withconi/ui/widgets/loading/loading_overlay.dart';
+import 'package:withconi/ui/widgets/photo_gallary/image_item.dart';
 import '../../configs/constants/regex.dart';
 import '../../configs/constants/strings.dart';
 import '../../configs/helpers/image_picker_helper.dart';
@@ -21,16 +14,14 @@ import '../../import_basic.dart';
 import '../../ui/widgets/dialog/selection_dialog.dart';
 
 class EditUserController extends GetxController {
-  UserRepository _userRepository = UserRepository();
+  final UserRepository _userRepository = UserRepository();
 
   final RxString _name = ''.obs;
   final RxString _nickName = ''.obs;
   RxBool isButtonValid = false.obs;
 
-  Rxn<File> profileImg = Rxn<File>();
-
-  RxBool profileSelected = false.obs;
-
+  // Rxn<File> profileImg = Rxn<File>();
+  Rxn<ImageItem> imageItem = Rxn<ImageItem>();
   RxnString nameErrorText = RxnString();
   RxnString nickNameErrorText = RxnString();
   late WcUser _wcUser;
@@ -42,7 +33,6 @@ class EditUserController extends GetxController {
   TextEditingController nickNameTextController = TextEditingController();
   TextEditingController emailTextController = TextEditingController();
   String get userProvider => providerToValue(_wcUser.provider);
-
   Image? get providerIcon => Image.asset(
         'assets/icons/$userProvider.png',
         width: 39,
@@ -57,7 +47,7 @@ class EditUserController extends GetxController {
     emailTextController.text = _wcUser.email;
     isEmailVerified.value = _wcUser.isEmailVerified;
 
-    if (userProvider == 'email') {
+    if (_wcUser.provider == Provider.email) {
       isProviderEmail = true;
     } else {
       isProviderEmail = false;
@@ -83,9 +73,8 @@ class EditUserController extends GetxController {
     edited.value = true;
   }
 
-  void onImageChanged(File image) {
-    profileImg.value = image;
-    profileSelected.value = true;
+  void onImageChanged(ImageItem image) {
+    imageItem.value = image;
     edited.value = true;
   }
 
@@ -123,7 +112,7 @@ class EditUserController extends GetxController {
   void pickImage() async {
     final ImagePickHelper _picker = ImagePickHelper();
     // Pick an image
-    final Either<Failure, File?>? imageFileEither =
+    final Either<Failure, ImageItem?>? imageFileEither =
         await _picker.pickSingleImage();
 
     if (imageFileEither != null) {
@@ -199,6 +188,7 @@ class EditUserController extends GetxController {
 
     if (isConfirmed) {
       AuthController.to.signOut();
+      return;
     }
   }
 
@@ -212,14 +202,14 @@ class EditUserController extends GetxController {
     updateUserEither.fold(
         (fail) =>
             FailureInterpreter().mapFailureToSnackbar(fail, 'editUserInfo'),
-        (success) {
-      AuthController.to.refreshWcUserInfo();
-      Get.back();
+        (success) async {
+      await AuthController.to.refreshWcUserInfo();
     });
   }
 
   void changePassword() {
     if (isProviderEmail) {
+      Get.toNamed(Routes.EMAIL_VERIFICATION);
     } else {
       FailureInterpreter().mapFailureToSnackbar(
           const NotEditablePasswordFailure(), 'changePassword');

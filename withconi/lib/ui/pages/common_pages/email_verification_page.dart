@@ -66,7 +66,7 @@ class EmailVerificationPage extends StatelessWidget {
                     buttonText: '이메일 인증완료',
                     buttonWidth: WcWidth - 40,
                     onTap: () {
-                      _controller.resendVerificationEmail();
+                      _controller.checkEmailVerified();
                     },
                   ),
                   const SizedBox(

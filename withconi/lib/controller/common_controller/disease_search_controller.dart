@@ -33,8 +33,8 @@ class DiseaseSearchController extends GetxController
 
   late Worker _debounceWorker;
 
-  int get limit => _paginationFilter.value.limit!;
-  int get _page => _paginationFilter.value.page!;
+  int get limit => _paginationFilter.value.limit;
+  int get _page => _paginationFilter.value.page;
 
   void loadNextPage() => _changePaginationFilter(_page + 1, limit);
 
@@ -42,7 +42,8 @@ class DiseaseSearchController extends GetxController
   void onInit() {
     super.onInit();
 
-    diseaseListSelected.assignAll(Get.arguments as List<Disease>);
+    diseaseListSelected
+        .assignAll(Get.arguments ?? <Disease>[] as List<Disease>);
     change(null, status: RxStatus.empty());
   }
 
@@ -160,7 +161,7 @@ class DiseaseSearchController extends GetxController
     if (diseaseListSelected.contains(disease)) {
       diseaseListSelected.remove(disease);
     } else {
-      if (diseaseListSelected.length < 4) {
+      if (diseaseListSelected.length < 3) {
         diseaseListSelected.add(disease);
       } else {
         FailureInterpreter().mapFailureToDialog(

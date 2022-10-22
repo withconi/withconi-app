@@ -32,16 +32,13 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>com.googleusercontent.apps.955745601928-545f5irolb2j5vkr06p0ptlhv6t4pqeo</string>
-				<string>withconi.page.link</string>
+				<string>withconimal.page.link</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
-	<key>FirebaseDynamicLinksCustomDomains</key>
-	<array>
-		<string>https://withconi.page.link</string>
-	</array>
+	
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>naversearchapp</string>

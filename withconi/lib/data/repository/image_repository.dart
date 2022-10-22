@@ -6,6 +6,7 @@ import 'package:dio/dio.dart';
 import 'package:withconi/core/error_handling/exceptions.dart';
 import 'package:withconi/data/provider/image_api.dart';
 import '../../core/error_handling/failures.dart';
+import '../../ui/widgets/photo_gallary/image_item.dart';
 
 class ImageRepository {
   final ImageAPI _api = ImageAPI();
@@ -15,7 +16,7 @@ class ImageRepository {
     try {
       Map<String, dynamic> data =
           await _api.uploadImageFile(imageFile: imageFile);
-      String imageFileId = data["imageFileRef"] as String;
+      String imageFileId = data["field"] as String;
       return Right(imageFileId);
     } on NoInternetConnectionException {
       return Left(NoConnectionFailure());
@@ -24,15 +25,16 @@ class ImageRepository {
     }
   }
 
-  Future<Either<Failure, List<String>>> uploadImageFileList(
-      {required List<File> imageFiles}) async {
+  Future<Either<Failure, List<ImageItem>>> uploadImageFileList(
+      {required List<ImageItem> imageFileItems}) async {
     try {
-      List<String> imageFileRefs = [];
-      for (File imageFile in imageFiles) {
+      List<ImageItem> imageFileRefs = [];
+      for (ImageItem imageFile in imageFileItems) {
         Map<String, dynamic> data =
-            await _api.uploadImageFile(imageFile: imageFile);
-        String imageFileId = data["imageFileRef"] as String;
-        imageFileRefs.add(imageFileId);
+            await _api.uploadImageFile(imageFile: File(imageFile.resource));
+        String imageFileId = data["field"] as String;
+        imageFileRefs.add(ImageItem(
+            id: imageFileId, resource: imageFileId, imageType: ImageType.file));
       }
 
       return Right(imageFileRefs);

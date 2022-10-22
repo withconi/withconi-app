@@ -33,7 +33,9 @@ class SignupConimalFinalPage extends StatelessWidget {
                 ),
                 Obx(() {
                   return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                    ),
                     child: Text(
                       '${_controller.userName}님과 함께하는\n코니멀이에요',
                       style: GoogleFonts.notoSans(
@@ -42,49 +44,68 @@ class SignupConimalFinalPage extends StatelessWidget {
                   );
                 }),
                 const SizedBox(
-                  height: 50,
+                  height: 40,
                 ),
-                Obx((() => ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: _controller.conimalList.length,
-                      itemBuilder: (context, index) => Slidable(
-                        endActionPane: ActionPane(
-                          motion: const ScrollMotion(),
-                          children: [
-                            SlidableAction(
-                              backgroundColor: WcColors.red100,
-                              foregroundColor: Colors.white,
-                              icon: Icons.delete,
-                              label: '삭제',
-                              onPressed: (context) {
-                                _controller.deleteConimal(index);
-                              },
-                            ),
-                            SlidableAction(
-                              onPressed: (context) {
-                                _controller.editConimal(index);
-                              },
-                              backgroundColor: WcColors.blue80,
-                              foregroundColor: Colors.white,
-                              icon: Icons.edit,
-                              label: '수정',
-                            ),
-                          ],
-                        ),
-                        child: WcConimalListTile(
-                          age: _controller.calculateConimalAge(index),
-                          diseaseName: (_controller
-                                  .conimalList[index].diseases.isNotEmpty)
-                              ? _controller.conimalList[index].diseases[0].name
-                                  .substring(0, 10)
-                              : '질병 없음',
-                          diseaseNum:
-                              _controller.conimalList[index].diseases.length,
-                          name: _controller.conimalList[index].name,
-                          species: _controller.conimalList[index].species,
-                        ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 5),
+                      child: Text(
+                        '<<  슬라이드하여 수정할 수 있어요',
+                        style: GoogleFonts.notoSans(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500,
+                            color: WcColors.grey140),
                       ),
-                    ))),
+                    ),
+                    Obx((() => ListView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: _controller.conimalList.length,
+                          itemBuilder: (context, index) => Slidable(
+                            endActionPane: ActionPane(
+                              motion: const ScrollMotion(),
+                              children: [
+                                SlidableAction(
+                                  backgroundColor: WcColors.red100,
+                                  foregroundColor: Colors.white,
+                                  icon: Icons.delete,
+                                  label: '삭제',
+                                  onPressed: (context) {
+                                    _controller.deleteConimal(index);
+                                  },
+                                ),
+                                SlidableAction(
+                                  onPressed: (context) {
+                                    _controller.editConimal(index);
+                                  },
+                                  backgroundColor: WcColors.blue80,
+                                  foregroundColor: Colors.white,
+                                  icon: Icons.edit,
+                                  label: '수정',
+                                ),
+                              ],
+                            ),
+                            child: WcConimalListTile(
+                              age: _controller.calculateConimalAge(index),
+                              diseaseName: (_controller
+                                      .conimalList[index].diseases.isNotEmpty)
+                                  ? _controller
+                                      .conimalList[index].diseases[0].name
+                                      .substring(0, 10)
+                                  : '질병 없음',
+                              diseaseNum: _controller
+                                  .conimalList[index].diseases.length,
+                              name: _controller.conimalList[index].name,
+                              species: _controller.conimalList[index].species,
+                            ),
+                          ),
+                        ))),
+                  ],
+                ),
                 const SizedBox(
                   height: 30,
                 ),

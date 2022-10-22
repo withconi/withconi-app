@@ -1,15 +1,13 @@
 import 'package:withconi/controller/auth_controller.dart';
-
 import 'package:withconi/data/repository/auth_repository.dart';
-import 'package:withconi/data/repository/signup_repository.dart';
-import 'package:withconi/ui/widgets/loading.dart';
+import 'package:withconi/ui/widgets/loading/loading_overlay.dart';
 import '../../configs/constants/regex.dart';
 import '../../configs/constants/strings.dart';
 import '../../import_basic.dart';
 
 class SigninEmailController extends GetxController {
   final AuthRepository _authRepository = AuthRepository();
-  final SignupRepository _signupUserRepository = SignupRepository.to;
+  // final SignupRepository _signupUserRepository = Get.find();
 
   final RxString _email = ''.obs;
   final RxString _password = ''.obs;
@@ -26,7 +24,7 @@ class SigninEmailController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    _email.value = _signupUserRepository.email;
+    _email.value = AuthController.to.authInfo!.email;
     emailTextController.text = _email.value;
 
     debounce(_password, validatePassword,

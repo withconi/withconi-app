@@ -11,7 +11,8 @@ class WcColors {
 
   static const Color navy60 = Color(0xffE2EDFA);
 
-  static const Color blue100 = Color(0xff0058DD);
+  static const Color blue100 = Color.fromARGB(255, 0, 101, 225);
+  // static const Color blue100 = Color(0xff0058DD);
   static const Color blue80 = Color.fromARGB(255, 40, 120, 240);
 
   static const Color green20 = Color(0xffDFECF1);
@@ -30,13 +31,14 @@ class WcColors {
   static const Color grey120 = Color.fromARGB(255, 170, 171, 174);
 
   static const Color grey140 = Color.fromARGB(255, 119, 121, 123);
-  static const Color grey160 = Color.fromARGB(255, 97, 100, 107);
-  static const Color grey180 = Color.fromARGB(255, 82, 88, 98);
+  static const Color grey160 = Color.fromARGB(255, 96, 100, 109);
+  static const Color grey180 = Color.fromARGB(255, 78, 84, 95);
   static const Color grey200 = Color.fromARGB(255, 52, 53, 54);
   static const Color red20 = Color.fromARGB(255, 255, 238, 236);
   // static const Color red40 = Color.fromARGB(255, 253, 232, 229);
   static const Color red100 = Color.fromARGB(255, 236, 48, 23);
-
+  static const Color orange100 = Color.fromARGB(255, 254, 106, 0);
+  static const Color orange20 = Color(0xffFFEDE2);
   // FFEDED
 
   static const Color cyan60 = Color(0xffD7EEF8);

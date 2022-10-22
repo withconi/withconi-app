@@ -1,8 +1,9 @@
 import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:withconi/configs/helpers/calculator.dart';
+import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
-import 'package:withconi/ui/widgets/loading.dart';
+import 'package:withconi/ui/widgets/loading/loading_overlay.dart';
 import 'package:withconi/ui/widgets/snackbar.dart';
 import '../../core/error_handling/failures.dart';
 import '../../data/model/conimal.dart';
@@ -90,9 +91,10 @@ class ConimalManageController extends GetxController {
     addResultEither.fold(
         (fail) =>
             FailureInterpreter().mapFailureToDialog(fail, 'updateConimalList'),
-        (success) {
+        (success) async {
       log('Conimal deleted => $conimalId');
       conimalList.removeWhere((element) => element.conimalId == conimalId);
+      await AuthController.to.refreshWcUserInfo();
     });
   }
 }

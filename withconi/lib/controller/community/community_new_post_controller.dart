@@ -4,7 +4,7 @@ import 'package:withconi/configs/constants/enum.dart';
 import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/data/repository/community_repository.dart';
 import 'package:withconi/data/repository/image_repository.dart';
-import 'package:withconi/ui/widgets/loading.dart';
+import 'package:withconi/ui/widgets/loading/loading_overlay.dart';
 import 'package:withconi/ui/widgets/photo_gallary/image_item.dart';
 import '../../configs/helpers/image_picker_helper.dart';
 import '../../core/error_handling/failures.dart';
@@ -21,13 +21,11 @@ class CommunityNewPostController extends GetxController {
   final Rxn<PostType> selectedPostType = Rxn<PostType>();
   final int maxImageNum = 4;
   final RxInt selectedImageNum = 0.obs;
-  // final RxList<File> imageFileList = <File>[].obs;
 
   RxList<ImageItem> imageItemList = RxList<ImageItem>();
   late String _boardId;
   final RxBool validatePostButton = false.obs;
   RxList<Conimal> _selectedConimalList = RxList<Conimal>();
-
   TextEditingController textController = TextEditingController();
   @override
   void onReady() {
@@ -116,8 +114,9 @@ class CommunityNewPostController extends GetxController {
   }
 
   void createNewPostDB() async {
-    var imageUploadRefsEither = await showLoading(() =>
-        _imageRepository.uploadImageFileList(imageFiles: getOnlyFileImage()));
+    Either<Failure, List<ImageItem>> imageUploadRefsEither = await showLoading(
+        () => _imageRepository.uploadImageFileList(
+            imageFileItems: getOnlyFileImageItem()));
 
     imageUploadRefsEither.fold(
         (fail) => FailureInterpreter().mapFailureToSnackbar(
@@ -125,12 +124,14 @@ class CommunityNewPostController extends GetxController {
       var newPostResultEither = await showLoading(() =>
           _communityRepository.newPost(
               newPost: Post(
+                  images: imageRefList,
                   authorId: AuthController.to.wcUser.value!.uid,
                   nickname: AuthController.to.wcUser.value!.nickname,
                   boardId: _boardId,
                   content: textController.text,
                   createdAt: DateTime.now(),
-                  postType: selectedPostType.value!)));
+                  postType: selectedPostType.value!,
+                  isLike: false)));
       newPostResultEither.fold(
           (fail) => FailureInterpreter()
               .mapFailureToSnackbar(fail, 'createNewPostDB'), (addedPost) {
@@ -139,14 +140,8 @@ class CommunityNewPostController extends GetxController {
     });
   }
 
-  List<File> getOnlyFileImage() {
-    List<File> imageFiles = [];
-
-    for (ImageItem imageItem in imageItemList) {
-      if (imageItem.imageType == ImageType.file) {
-        imageFiles.add(File(imageItem.resource));
-      }
-    }
-    return imageFiles;
+  List<ImageItem> getOnlyFileImageItem() {
+    // imageItemList.where((p0) => p0.imageType == ImageType.file).toList();
+    return imageItemList.where((p0) => p0.imageType == ImageType.file).toList();
   }
 }

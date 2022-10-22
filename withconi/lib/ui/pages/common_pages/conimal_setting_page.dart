@@ -42,45 +42,62 @@ class ConimalSettingPage extends StatelessWidget {
                 const SizedBox(
                   height: 50,
                 ),
-                Obx((() => ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: _controller.conimalList.length,
-                    itemBuilder: (context, index) {
-                      Conimal thisConimal = _controller.conimalList[index];
-                      return Slidable(
-                        endActionPane: ActionPane(
-                          motion: const ScrollMotion(),
-                          children: [
-                            SlidableAction(
-                              backgroundColor: WcColors.red100,
-                              foregroundColor: Colors.white,
-                              icon: Icons.delete,
-                              label: '삭제',
-                              onPressed: (context) {
-                                _controller.onDeleteTap(
-                                    conimalId: thisConimal.conimalId);
-                              },
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 5),
+                      child: Text(
+                        '<<  슬라이드하여 수정할 수 있어요',
+                        style: GoogleFonts.notoSans(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500,
+                            color: WcColors.grey140),
+                      ),
+                    ),
+                    Obx((() => ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: _controller.conimalList.length,
+                        itemBuilder: (context, index) {
+                          Conimal thisConimal = _controller.conimalList[index];
+                          return Slidable(
+                            endActionPane: ActionPane(
+                              motion: const ScrollMotion(),
+                              children: [
+                                SlidableAction(
+                                  backgroundColor: WcColors.red100,
+                                  foregroundColor: Colors.white,
+                                  icon: Icons.delete,
+                                  label: '삭제',
+                                  onPressed: (context) {
+                                    _controller.onDeleteTap(
+                                        conimalId: thisConimal.conimalId);
+                                  },
+                                ),
+                                SlidableAction(
+                                  onPressed: (context) {
+                                    _controller.editConimal(index);
+                                  },
+                                  backgroundColor: WcColors.blue80,
+                                  foregroundColor: Colors.white,
+                                  icon: Icons.edit,
+                                  label: '수정',
+                                ),
+                              ],
                             ),
-                            SlidableAction(
-                              onPressed: (context) {
-                                _controller.editConimal(index);
-                              },
-                              backgroundColor: WcColors.blue80,
-                              foregroundColor: Colors.white,
-                              icon: Icons.edit,
-                              label: '수정',
+                            child: WcConimalListTile(
+                              age: _controller.calculateConimalAge(index),
+                              diseaseName: _getThisConimalName(thisConimal),
+                              diseaseNum: thisConimal.diseases.length,
+                              name: thisConimal.name,
+                              species: thisConimal.species,
                             ),
-                          ],
-                        ),
-                        child: WcConimalListTile(
-                          age: _controller.calculateConimalAge(index),
-                          diseaseName: _getThisConimalName(thisConimal),
-                          diseaseNum: thisConimal.diseases.length,
-                          name: thisConimal.name,
-                          species: thisConimal.species,
-                        ),
-                      );
-                    }))),
+                          );
+                        }))),
+                  ],
+                ),
                 const SizedBox(
                   height: 30,
                 ),

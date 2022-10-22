@@ -1,8 +1,11 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_naver_map/flutter_naver_map.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:withconi/configs/constants/enum.dart';
-import 'package:withconi/data/model/abstract_class/place_type.dart';
+import 'package:withconi/configs/constants/enum_color.dart';
+import 'package:withconi/controller/auth_controller.dart';
+import 'package:withconi/data/model/abstract_class/place_preview.dart';
 import 'package:withconi/import_basic.dart';
 import 'package:withconi/ui/entities/dropdown_data.dart';
 import 'package:withconi/ui/widgets/button/wide_button.dart';
@@ -19,237 +22,496 @@ class MapMainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    MapMainPageController _controller = Get.put(MapMainPageController());
+    MapMainPageController _controller = Get.find(tag: 'Initial');
+    // MapMainPageController _controller = Get.put(MapMainPageController());
 
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
-        backgroundColor: WcColors.white,
-        body: Center(
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              Container(
-                width: WcWidth,
-                height: WcHeight,
-                child: Obx(
-                  () => NaverMap(
-                    onMapCreated: _controller.onMapCreated,
-                    mapType: _controller.mapType,
-                    locationButtonEnable: false,
-                    initLocationTrackingMode: LocationTrackingMode.Follow,
-                    markers: _controller.placeMarkers.toList(),
-                    onMapTap: _controller.onMapTap,
-                    logoClickEnabled: true,
-                    onCameraChange: _controller.onCameraChange,
-                  ),
-                ),
-              ),
-              Positioned(
-                top: 30,
-                left: 20,
-                child: Center(
-                  child: SearchBarWidget(
-                    width: WcWidth - 40 - 55,
-                    // iconSrc: 'assets/icons/list.svg',
-                    textController: null,
-                    hintText: '동물병원/약국 검색',
-                    isEditable: false,
-                    onTextFieldTapped: _controller.searchPlace,
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Color.fromARGB(60, 0, 0, 0),
-                        spreadRadius: -1,
-                        blurRadius: 10,
-                        offset: Offset(0, 1),
-                      ),
-                    ],
-                    onTapLeading: () {},
-                    activeAction: false,
-                  ),
-                ),
-              ),
-              Positioned(
-                top: 83,
-                left: 20,
-                child: Container(
-                    height: 45,
-                    decoration: BoxDecoration(
-                      color: WcColors.white,
-                      borderRadius: BorderRadius.circular(50),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Color.fromARGB(70, 0, 0, 0),
-                          spreadRadius: -1,
-                          blurRadius: 7,
-                          offset: Offset(0, 1),
+        // backgroundColor: WcColors.white,s
+        body: Obx(
+          () => Center(
+            child: (!_controller.hasLocationPermission.value)
+                ? LocationPermissionWidget(controller: _controller)
+                : Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Container(
+                        width: WcWidth,
+                        height: WcHeight,
+                        child: Obx(
+                          () => NaverMap(
+                            onMapCreated: _controller.onMapCreated,
+                            mapType: _controller.mapType,
+                            locationButtonEnable: false,
+                            initLocationTrackingMode:
+                                LocationTrackingMode.Follow,
+                            markers: [..._controller.placeMarkers],
+                            onMapTap: _controller.onMapTap,
+                            logoClickEnabled: true,
+                            onCameraChange: _controller.onCameraChange,
+                          ),
                         ),
-                      ],
-                    ),
-                    child: Obx(
-                      () => PlaceTypeToggleButton(
-                        onPressed: (int index) {
-                          _controller.selectedPlaceType.value =
-                              _controller.placeTypeList[index];
-                          for (int i = 0;
-                              i < _controller.selectedPlaceTypeList.length;
-                              i++) {
-                            if (i == index) {
-                              _controller.selectedPlaceTypeList[i] = true;
-                            } else {
-                              _controller.selectedPlaceTypeList[i] = false;
-                            }
-                          }
-
-                          _controller.selectedPlaceTypeList.refresh();
-                        },
-                        isSelectedList:
-                            _controller.selectedPlaceTypeList.toList(),
                       ),
-                    )),
-              ),
-              Positioned(
-                right: 15,
-                top: 83,
-                child: GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                    width: 48,
-                    height: 48,
-                    padding: EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: WcColors.white,
-                        boxShadow: [
-                          BoxShadow(
-                              color: WcColors.grey120,
-                              blurRadius: 6,
-                              offset: Offset(0, 3),
-                              spreadRadius: -1)
-                        ]),
-                    child: SvgPicture.asset(
-                      'assets/icons/bookmark.svg',
-                      color: WcColors.blue100,
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                right: 15,
-                top: 30,
-                child: GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                    width: 48,
-                    height: 48,
-                    padding: EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: WcColors.white,
-                        boxShadow: [
-                          BoxShadow(
-                              color: WcColors.grey120,
-                              blurRadius: 6,
-                              offset: Offset(0, 3),
-                              spreadRadius: -1)
-                        ]),
-                    child: SvgPicture.asset(
-                      'assets/icons/list.svg',
-                      color: WcColors.blue100,
-                    ),
-                  ),
-                ),
-              ),
-              Obx(
-                () => Visibility(
-                    visible: _controller.showResearchButton.value,
-                    child: Positioned(
-                      top: 145,
-                      child: SearchRefreshButton(
-                        onTap: _controller.onSearchRefreshTap,
+                      Positioned(
+                        top: 35,
+                        left: 20,
+                        child: Center(
+                          child: SearchBarWidget(
+                            width: WcWidth - 40 - 55,
+                            // iconSrc: 'assets/icons/list.svg',
+                            textController: null,
+                            hintText: '동물병원/약국 검색',
+                            isEditable: false,
+                            onTextFieldTapped: _controller.searchPlace,
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Color.fromARGB(60, 0, 0, 0),
+                                spreadRadius: -1,
+                                blurRadius: 10,
+                                offset: Offset(0, 1),
+                              ),
+                            ],
+                            onTapLeading: () {},
+                            activeAction: false,
+                          ),
+                        ),
                       ),
-                    )),
-              ),
-              Obx(
-                () => Visibility(
-                  visible: _controller.showPlaceListBottomSheet.value,
-                  maintainState: true,
-                  child: DraggableScrollableSheet(
-                      initialChildSize: 0.37,
-                      minChildSize: 87 / WcHeight,
-                      maxChildSize: 1,
-                      controller: _controller.placePreviewListDragController,
-                      builder: (context, scrollController) {
-                        _controller.placeListScrollController.value =
-                            scrollController;
-                        return SingleChildScrollView(
-                          physics: ClampingScrollPhysics(),
-                          controller:
-                              _controller.placeListScrollController.value,
-                          child: Container(
-                            constraints: BoxConstraints(
-                              minHeight: WcHeight,
+                      Positioned(
+                        top: 88,
+                        left: 20,
+                        child: Container(
+                            height: 45,
+                            decoration: BoxDecoration(
+                              color: WcColors.white,
+                              borderRadius: BorderRadius.circular(50),
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: Color.fromARGB(70, 0, 0, 0),
+                                  spreadRadius: -1,
+                                  blurRadius: 7,
+                                  offset: Offset(0, 1),
+                                ),
+                              ],
                             ),
-                            color: WcColors.white,
-                            child: Column(
-                              children: [
-                                DraggableIndicator(),
-                                SingleChildScrollView(
-                                  scrollDirection: Axis.horizontal,
-                                  child: Row(
+                            child: Obx(
+                              () => PlaceTypeToggleButton(
+                                onPressed:
+                                    _controller.onSelectedPlaceTypeChanged,
+                                placeTypeList: _controller.placeTypeList,
+                                selectedPlaceType:
+                                    _controller.selectedPlaceType.value,
+                              ),
+                            )),
+                      ),
+                      Positioned(
+                        right: 15,
+                        top: 88,
+                        child: GestureDetector(
+                          onTap: () {
+                            Get.toNamed(Routes.MAP_BOOKMARK,
+                                arguments: AuthController.to.wcUser.value!.uid);
+                          },
+                          child: Container(
+                            width: 48,
+                            height: 48,
+                            padding: EdgeInsets.all(12),
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: WcColors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: WcColors.grey120,
+                                      blurRadius: 6,
+                                      offset: Offset(0, 3),
+                                      spreadRadius: -1)
+                                ]),
+                            child: SvgPicture.asset(
+                              'assets/icons/bookmark.svg',
+                              color: WcColors.blue100,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        right: 15,
+                        top: 35,
+                        child: GestureDetector(
+                          onTap: () {
+                            Get.toNamed(
+                              Routes.MAP_MY_REVIEW,
+                            );
+                          },
+                          child: Container(
+                            width: 48,
+                            height: 48,
+                            padding: EdgeInsets.all(12),
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: WcColors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: WcColors.grey120,
+                                      blurRadius: 6,
+                                      offset: Offset(0, 3),
+                                      spreadRadius: -1)
+                                ]),
+                            child: SvgPicture.asset(
+                              'assets/icons/list.svg',
+                              color: WcColors.blue100,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Obx(
+                        () => Visibility(
+                            visible: _controller.showResearchButton.value,
+                            child: Positioned(
+                              top: 145,
+                              child: SearchRefreshButton(
+                                onTap: _controller.onSearchRefreshTap,
+                              ),
+                            )),
+                      ),
+                      Obx(
+                        () => Visibility(
+                          visible: _controller.showPlaceListBottomSheet.value,
+                          maintainState: true,
+                          child: DraggableScrollableSheet(
+                              initialChildSize: 0.39,
+                              minChildSize: 93 / WcHeight,
+                              maxChildSize: 1,
+                              controller:
+                                  _controller.placePreviewListDragController,
+                              builder: (context, scrollController) {
+                                _controller.placeListScrollController.value =
+                                    scrollController;
+                                return SingleChildScrollView(
+                                  // physics: ClampingScrollPhysics(),
+                                  controller: _controller
+                                      .placeListScrollController.value,
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
                                     children: [
+                                      MyLocationButton(
+                                        onTap: _controller
+                                            .onCurrentLocationButtonTap,
+                                      ),
                                       Container(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 13),
-                                        child: Row(
+                                        constraints: BoxConstraints(
+                                          minHeight: WcHeight,
+                                        ),
+                                        decoration: BoxDecoration(
+                                            color: WcColors.white,
+                                            boxShadow: [
+                                              BoxShadow(
+                                                  color: WcColors.grey120,
+                                                  blurRadius: 10,
+                                                  offset: Offset(0, 2),
+                                                  spreadRadius: -5)
+                                            ]),
+                                        child: Column(
                                           children: [
-                                            Obx(
-                                              () => CustomDropdownButton(
-                                                  dropdownList: _controller
-                                                      .diseaseFilterList
-                                                      .map((e) => DropdownData(
-                                                          value: e,
-                                                          text:
-                                                              diseaseTypeToKorean(
-                                                                  e)))
-                                                      .toList(),
-                                                  hintText: '질병별 방문 많은',
-                                                  selectedValue: _controller
-                                                      .selectedDiseaseType
-                                                      .value,
-                                                  onValueChanged: _controller
-                                                      .onSelectedDiseaseTypeChanged),
-                                            ),
-                                            SizedBox(
-                                              width: 10,
-                                            ),
-                                            Obx(
-                                              () => CustomDropdownButton(
-                                                dropdownList: _controller
-                                                    .speciesFilterList
-                                                    .map((species) =>
-                                                        DropdownData(
-                                                            value: species,
-                                                            text:
-                                                                speciesToKorean(
-                                                                    species)))
-                                                    .toList(),
-                                                hintText: '품종별 많이 찾는',
-                                                selectedValue: _controller
-                                                    .selectedSpeciesType.value,
-                                                onValueChanged: _controller
-                                                    .onSelectedSpeciesTypeChanged,
+                                            DraggableIndicator(),
+                                            SingleChildScrollView(
+                                              scrollDirection: Axis.horizontal,
+                                              child: Row(
+                                                children: [
+                                                  Container(
+                                                    padding: const EdgeInsets
+                                                            .symmetric(
+                                                        horizontal: 13),
+                                                    child: Row(
+                                                      children: [
+                                                        Obx(
+                                                          () => CustomDropdownButton(
+                                                              dropdownList: _controller
+                                                                  .diseaseFilterList
+                                                                  .map((e) =>
+                                                                      DropdownData(
+                                                                          value:
+                                                                              e,
+                                                                          text: diseaseTypeToKorean(
+                                                                              e)))
+                                                                  .toList(),
+                                                              hintText:
+                                                                  '질병별 방문 많은',
+                                                              selectedValue:
+                                                                  _controller
+                                                                      .selectedDiseaseType
+                                                                      .value,
+                                                              onValueChanged:
+                                                                  _controller
+                                                                      .onSelectedDiseaseTypeChanged),
+                                                        ),
+                                                        SizedBox(
+                                                          width: 10,
+                                                        ),
+                                                        Obx(
+                                                          () =>
+                                                              CustomDropdownButton(
+                                                            dropdownList: _controller
+                                                                .speciesFilterList
+                                                                .map((species) =>
+                                                                    DropdownData(
+                                                                        value:
+                                                                            species,
+                                                                        text: speciesToKorean(
+                                                                            species)))
+                                                                .toList(),
+                                                            hintText:
+                                                                '품종별 많이 찾는',
+                                                            selectedValue:
+                                                                _controller
+                                                                    .selectedSpeciesType
+                                                                    .value,
+                                                            onValueChanged:
+                                                                _controller
+                                                                    .onSelectedSpeciesTypeChanged,
+                                                          ),
+                                                        ),
+                                                        SizedBox(
+                                                          width: 10,
+                                                        ),
+                                                        Obx(
+                                                          () =>
+                                                              OpengingStatusButton(
+                                                            onlyOpenPlaces:
+                                                                _controller
+                                                                    .onlyOpenPlace
+                                                                    .value,
+                                                            onTap: _controller
+                                                                .onOpeningStatusTypeChanged,
+                                                          ),
+                                                        )
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
                                             ),
                                             SizedBox(
-                                              width: 10,
+                                              height: 15,
                                             ),
+                                            Divider(
+                                                height: 1,
+                                                thickness: 1,
+                                                color: WcColors.grey60),
                                             Obx(
-                                              () => OpengingStatusButton(
-                                                onlyOpenPlaces: _controller
-                                                    .onlyOpenPlace.value,
-                                                onTap: _controller
-                                                    .onOpeningStatusTypeChanged,
+                                              () => Visibility(
+                                                visible: _controller
+                                                    .placeMarkers.isNotEmpty,
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.end,
+                                                  children: [
+                                                    SizedBox(
+                                                      height: 4,
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment.end,
+                                                      children: [
+                                                        Obx(
+                                                          () => Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    right: 8.0),
+                                                            child:
+                                                                CustomDropdownButton(
+                                                              buttonPadding:
+                                                                  const EdgeInsets
+                                                                          .only(
+                                                                      left: 3,
+                                                                      right: 0),
+                                                              buttonWidth: (_controller
+                                                                          .selectedLocationType
+                                                                          .value ==
+                                                                      LocationType
+                                                                          .currentLocation)
+                                                                  ? 90
+                                                                  : 105,
+                                                              selectedButtonColor:
+                                                                  WcColors
+                                                                      .white,
+                                                              selectedTextColor:
+                                                                  WcColors
+                                                                      .black,
+                                                              dropdownList: _controller
+                                                                  .locationTypeList
+                                                                  .map((e) =>
+                                                                      DropdownData(
+                                                                          value:
+                                                                              e,
+                                                                          text:
+                                                                              locationTypeToKorean(e)))
+                                                                  .toList(),
+                                                              hintText: '',
+                                                              selectedValue:
+                                                                  _controller
+                                                                      .selectedLocationType
+                                                                      .value,
+                                                              onValueChanged:
+                                                                  (item) {
+                                                                _controller
+                                                                        .selectedLocationType
+                                                                        .value =
+                                                                    item
+                                                                        as LocationType;
+                                                                _controller
+                                                                    .onBaseLocationChanged();
+                                                              },
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Obx(
+                                                          () => Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    right: 8.0),
+                                                            child:
+                                                                CustomDropdownButton(
+                                                              buttonPadding:
+                                                                  const EdgeInsets
+                                                                          .only(
+                                                                      left: 3,
+                                                                      right: 0),
+                                                              buttonWidth: (_controller
+                                                                          .selectedSortType
+                                                                          .value ==
+                                                                      SortType
+                                                                          .nearest)
+                                                                  ? 80
+                                                                  : 95,
+                                                              selectedButtonColor:
+                                                                  WcColors
+                                                                      .white,
+                                                              selectedTextColor:
+                                                                  WcColors
+                                                                      .black,
+                                                              dropdownList: _controller
+                                                                  .sortTypeList
+                                                                  .map((e) =>
+                                                                      DropdownData(
+                                                                          value:
+                                                                              e,
+                                                                          text:
+                                                                              sortTypeToKorean(e)))
+                                                                  .toList(),
+                                                              hintText: '',
+                                                              selectedValue:
+                                                                  _controller
+                                                                      .selectedSortType
+                                                                      .value,
+                                                              onValueChanged:
+                                                                  (item) {
+                                                                _controller
+                                                                        .selectedSortType
+                                                                        .value =
+                                                                    item
+                                                                        as SortType;
+                                                                _controller
+                                                                    .onSortTypeChanged();
+                                                                print(item);
+                                                              },
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    ListView.builder(
+                                                        padding:
+                                                            EdgeInsets.all(0),
+                                                        physics:
+                                                            NeverScrollableScrollPhysics(),
+                                                        shrinkWrap: true,
+                                                        itemCount: _controller
+                                                            .placeMarkers
+                                                            .length,
+                                                        itemBuilder:
+                                                            (context, index) {
+                                                          PlacePreview place =
+                                                              _controller
+                                                                  .placeMarkers[
+                                                                      index]
+                                                                  .place;
+                                                          return PlacePreviewListTile(
+                                                            diseaseInfo: place
+                                                                .diseaseInfo!
+                                                                .diseaseMap,
+                                                            isFirstList:
+                                                                (index == 0),
+                                                            place: place,
+                                                            distance: _controller
+                                                                .getDistanceToString(
+                                                                    distanceMeter:
+                                                                        place
+                                                                            .distanceByMeter),
+                                                            onTap: () {
+                                                              // _controller
+                                                              //     .goToSelectedPlaceDetail(
+                                                              //         selectedLocId:
+                                                              //             place.locId);
+                                                              _controller
+                                                                  .selectedMarker
+                                                                  .value = _controller
+                                                                      .placeMarkers[
+                                                                  index];
+                                                            },
+                                                          );
+                                                        }),
+                                                  ],
+                                                ),
+                                                replacement: Container(
+                                                  width: WcWidth,
+                                                  height: 200,
+                                                  decoration: BoxDecoration(
+                                                      color: WcColors.white),
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      SvgPicture.asset(
+                                                        'assets/icons/location_grey.svg',
+                                                        color: WcColors.grey100,
+                                                        height: 35,
+                                                      ),
+                                                      SizedBox(
+                                                        height: 10,
+                                                      ),
+                                                      Text(
+                                                        '일치하는 장소가 없네요 :(',
+                                                        style: TextStyle(
+                                                            fontFamily:
+                                                                WcFontFamily
+                                                                    .notoSans,
+                                                            fontSize: 17,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            color: WcColors
+                                                                .grey120),
+                                                      ),
+                                                      SizedBox(
+                                                        height: 10,
+                                                      ),
+                                                      Text(
+                                                        '소중한 리뷰를 남겨주시면\n더 도움되는 정보로 꼭 보답할게요!',
+                                                        style: TextStyle(
+                                                            fontFamily:
+                                                                WcFontFamily
+                                                                    .notoSans,
+                                                            fontSize: 15,
+                                                            color: WcColors
+                                                                .grey120),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
                                               ),
                                             )
                                           ],
@@ -257,167 +519,251 @@ class MapMainPage extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 15,
-                                ),
-                                Divider(
-                                    height: 1,
-                                    thickness: 1,
-                                    color: WcColors.grey60),
-                                Obx(
-                                  () => Visibility(
-                                    visible:
-                                        _controller.placeMarkers.isNotEmpty,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.end,
-                                      children: [
-                                        SizedBox(
-                                          height: 4,
-                                        ),
-                                        Obx(
-                                          () => Padding(
-                                            padding: const EdgeInsets.only(
-                                                right: 8.0),
-                                            child: CustomDropdownButton(
-                                              buttonWidth: 105,
-                                              selectedButtonColor:
-                                                  WcColors.white,
-                                              selectedTextColor: WcColors.black,
-                                              dropdownList: _controller
-                                                  .sortTypeList
-                                                  .map((e) => DropdownData(
-                                                      value: e,
-                                                      text:
-                                                          sortTypeToKorean(e)))
-                                                  .toList(),
-                                              hintText: '',
-                                              selectedValue: _controller
-                                                  .selectedSortType.value,
-                                              onValueChanged: (item) {
-                                                _controller.selectedSortType
-                                                    .value = item as SortType;
-                                                _controller.sortPlaceByType();
-                                                print(item);
-                                              },
+                                );
+                              }),
+                        ),
+                      ),
+                      Obx(
+                        () => Visibility(
+                          visible: (_controller.selectedMarker.value != null),
+                          child: DraggableScrollableSheet(
+                              controller:
+                                  _controller.selectedPlaceDragController,
+                              minChildSize: 255 / WcHeight,
+                              initialChildSize: 255 / WcHeight,
+                              maxChildSize: 0.8,
+                              snap: true,
+                              snapSizes: [260 / WcHeight, 0.8],
+                              builder: (context, scrollController) {
+                                _controller.selectedPlaceScrollController =
+                                    scrollController;
+                                return SingleChildScrollView(
+                                    controller: _controller
+                                        .selectedPlaceScrollController,
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        _controller.goToSelectedPlaceDetail(
+                                            selectedPlace: _controller
+                                                .selectedMarker.value!.place);
+                                      },
+                                      child: Container(
+                                        margin: EdgeInsets.only(top: 20),
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(20),
+                                                topRight: Radius.circular(20)),
+                                            color: WcColors.white,
+                                            boxShadow: [
+                                              BoxShadow(
+                                                  color: WcColors.grey140,
+                                                  blurRadius: 10,
+                                                  offset: Offset(0, 0),
+                                                  spreadRadius: -6)
+                                            ]),
+                                        height: WcHeight,
+                                        width: WcWidth,
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              height: 5,
+                                              width: 38,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                color: WcColors.grey80,
+                                              ),
+                                              margin: EdgeInsets.only(
+                                                  top: 13, bottom: 2),
                                             ),
-                                          ),
+                                            PlacePreviewListTile(
+                                              diseaseInfo: _controller
+                                                  .selectedMarker
+                                                  .value!
+                                                  .place
+                                                  .diseaseInfo!
+                                                  .diseaseMap,
+                                              isFirstList: false,
+                                              place: _controller
+                                                  .selectedMarker.value!.place,
+                                              hasDivider: false,
+                                              distance: _controller
+                                                  .getDistanceToString(
+                                                      distanceMeter: _controller
+                                                          .selectedMarker
+                                                          .value!
+                                                          .place
+                                                          .distanceByMeter),
+                                            ),
+                                            Container(
+                                              width: WcWidth - 30,
+                                              height: 50,
+                                              child: Row(
+                                                children: [
+                                                  PhoneCallButton(
+                                                      phoneNumber: _controller
+                                                          .selectedMarker
+                                                          .value!
+                                                          .place
+                                                          .phone),
+                                                  SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                  WcWideButtonWidget(
+                                                      buttonText: '리뷰쓰기',
+                                                      onTap: _controller
+                                                          .goToNewReviewPage,
+                                                      buttonWidth:
+                                                          WcWidth - 30 - 60,
+                                                      activeButtonColor:
+                                                          WcColors.blue100,
+                                                      active: true,
+                                                      activeTextColor:
+                                                          WcColors.white),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                        ListView.builder(
-                                            padding: EdgeInsets.all(0),
-                                            physics:
-                                                NeverScrollableScrollPhysics(),
-                                            shrinkWrap: true,
-                                            itemCount:
-                                                _controller.placeMarkers.length,
-                                            itemBuilder: (context, index) {
-                                              PlacePreview place = _controller
-                                                  .placeMarkers[index].place;
-                                              return PlacePreviewListTile(
-                                                isFirstList: (index == 0),
-                                                place: place,
-                                                distance: _controller
-                                                    .getDistanceToString(
-                                                        distanceMeter: place
-                                                            .distanceByMeter),
-                                                onTap: () {
-                                                  // _controller
-                                                  //     .goToSelectedPlaceDetail(
-                                                  //         selectedLocId:
-                                                  //             place.locId);
-                                                  _controller.selectedMarker
-                                                          .value =
-                                                      _controller
-                                                          .placeMarkers[index];
-                                                },
-                                              );
-                                            }),
-                                      ],
-                                    ),
-                                    replacement: Container(
-                                      width: WcWidth,
-                                      height: 200,
-                                      decoration:
-                                          BoxDecoration(color: WcColors.white),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          SvgPicture.asset(
-                                            'assets/icons/location_grey.svg',
-                                            color: WcColors.grey100,
-                                            height: 35,
-                                          ),
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                          Text(
-                                            '일치하는 장소가 없네요 :(',
-                                            style: TextStyle(
-                                                fontFamily:
-                                                    WcFontFamily.notoSans,
-                                                fontSize: 17,
-                                                fontWeight: FontWeight.w500,
-                                                color: WcColors.grey120),
-                                          ),
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                          Text(
-                                            '소중한 리뷰를 남겨주시면\n더 도움되는 정보로 꼭 보답할게요!',
-                                            style: TextStyle(
-                                                fontFamily:
-                                                    WcFontFamily.notoSans,
-                                                fontSize: 15,
-                                                color: WcColors.grey120),
-                                            textAlign: TextAlign.center,
-                                          ),
-                                        ],
                                       ),
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        );
-                      }),
+                                    )
+
+                                    // SelectedPlacePreview(
+                                    //   onReviewTap: _controller.goToNewReviewPage,
+                                    //   onTap: () {
+                                    //     _controller.goToSelectedPlaceDetail(
+                                    //         selectedPlace: _controller
+                                    //             .selectedMarker.value!.place);
+                                    //   },
+                                    //   place:
+                                    //       _controller.selectedMarker.value!.place,
+                                    //   distance: _controller.getDistanceToString(
+                                    //       distanceMeter: _controller
+                                    //           .selectedMarker
+                                    //           .value!
+                                    //           .place
+                                    //           .distanceByMeter),
+                                    // ),
+                                    );
+                              }),
+                        ),
+                      )
+                    ],
+                  ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class LocationPermissionWidget extends StatelessWidget {
+  const LocationPermissionWidget({
+    Key? key,
+    required MapMainPageController controller,
+  })  : _controller = controller,
+        super(key: key);
+
+  final MapMainPageController _controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: SizedBox(
+        height: WcHeight,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              const SizedBox(
+                height: 75,
+              ),
+              SizedBox(
+                width: 60,
+                child: Image.asset(
+                  'assets/icons/hospital_clicked.png',
                 ),
               ),
-              Obx(
-                () => Visibility(
-                  visible: (_controller.selectedMarker.value != null),
-                  child: DraggableScrollableSheet(
-                      controller: _controller.selectedPlaceDragController,
-                      minChildSize: 235 / WcHeight,
-                      initialChildSize: 235 / WcHeight,
-                      maxChildSize: 0.8,
-                      snap: true,
-                      snapSizes: [240 / WcHeight, 0.8],
-                      builder: (context, scrollController) {
-                        _controller.selectedPlaceScrollController =
-                            scrollController;
-                        return SingleChildScrollView(
-                          controller: _controller.selectedPlaceScrollController,
-                          child: SelectedPlacePreview(
-                            onReviewTap: _controller.goToNewReviewPage,
-                            onTap: () {
-                              _controller.goToSelectedPlaceDetail(
-                                  selectedPlace:
-                                      _controller.selectedMarker.value!.place);
-                            },
-                            place: _controller.selectedMarker.value!.place,
-                            distance: _controller.getDistanceToString(
-                                distanceMeter: _controller.selectedMarker.value!
-                                    .place.distanceByMeter),
-                          ),
-                        );
-                      }),
-                ),
-              )
+              const SizedBox(
+                height: 16,
+              ),
+              Text('위치정보 권한이\n필요해요',
+                  style: TextStyle(
+                      fontFamily: WcFontFamily.notoSans,
+                      fontSize: 25,
+                      fontWeight: FontWeight.w600)),
+              const SizedBox(
+                height: 45,
+              ),
+              const Text('정확한 정보를 위해\n위치정보가 반드시 필요해요.\n설정에서 위치정보 권한을 허용해주세요 :)',
+                  style: TextStyle(
+                      fontFamily: WcFontFamily.notoSans,
+                      fontSize: 15,
+                      color: WcColors.grey140,
+                      fontWeight: FontWeight.w400)),
+              SizedBox(
+                height: 10,
+              ),
+              const Text('설정 > 위치 > 앱을 사용하는 동안',
+                  style: TextStyle(
+                      fontFamily: WcFontFamily.notoSans,
+                      fontSize: 15,
+                      color: WcColors.grey200,
+                      fontWeight: FontWeight.w600)),
+              const SizedBox(
+                height: 50,
+              ),
+              WcWideButtonWidget(
+                active: true,
+                activeButtonColor: WcColors.blue100,
+                activeTextColor: WcColors.white,
+                buttonText: '위치정보 권한 설정하기',
+                buttonWidth: WcWidth - 40,
+                onTap: _controller.openAppLocationSetting,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class MyLocationButton extends StatelessWidget {
+  MyLocationButton({
+    Key? key,
+    this.onTap,
+  }) : super(key: key);
+  void Function()? onTap;
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        margin: EdgeInsets.fromLTRB(0, 0, 15, 10),
+        width: 43,
+        height: 43,
+        padding: EdgeInsets.all(9),
+        decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: WcColors.white,
+            boxShadow: [
+              BoxShadow(
+                  color: WcColors.grey180,
+                  blurRadius: 7,
+                  offset: Offset(0, 2),
+                  spreadRadius: -3)
+            ]),
+        child: SvgPicture.asset(
+          'assets/icons/my_location.svg',
+          height: 25,
         ),
       ),
     );
@@ -480,6 +826,7 @@ class CustomDropdownButton extends StatelessWidget {
       this.buttonWidth = 139,
       this.buttonHeight = 35,
       this.selectedButtonColor,
+      this.buttonPadding,
       this.selectedTextColor})
       : super(key: key);
 
@@ -491,6 +838,7 @@ class CustomDropdownButton extends StatelessWidget {
   Color? selectedButtonColor;
   Color? selectedTextColor;
   double buttonHeight;
+  EdgeInsetsGeometry? buttonPadding;
 
   @override
   Widget build(BuildContext context) {
@@ -521,7 +869,8 @@ class CustomDropdownButton extends StatelessWidget {
                 : WcColors.grey60,
             borderRadius: BorderRadius.circular(5)),
         dropdownPadding: EdgeInsets.symmetric(vertical: 0),
-        buttonPadding: const EdgeInsets.only(left: 10, right: 8),
+        buttonPadding:
+            buttonPadding ?? const EdgeInsets.only(left: 10, right: 8),
         dropdownDecoration:
             const BoxDecoration(color: WcColors.white, boxShadow: [
           BoxShadow(
@@ -585,19 +934,21 @@ class DraggableIndicator extends StatelessWidget {
 }
 
 class PlacePreviewListTile extends StatelessWidget {
-  PlacePreviewListTile({
-    Key? key,
-    required PlacePreview place,
-    bool? hasDivider,
-    required String distance,
-    void Function()? onTap,
-    EdgeInsets? padding,
-    required bool isFirstList,
-  })  : _place = place,
+  PlacePreviewListTile(
+      {Key? key,
+      required PlacePreview place,
+      bool? hasDivider,
+      required String distance,
+      void Function()? onTap,
+      EdgeInsets? padding,
+      required bool isFirstList,
+      required Map<DiseaseType, int> diseaseInfo})
+      : _place = place,
         _hasDivider = hasDivider ?? true,
         _distance = distance,
         _onTap = onTap,
         _isFirstList = isFirstList,
+        _diseaseInfo = diseaseInfo,
         super(key: key);
 
   final PlacePreview _place;
@@ -605,6 +956,7 @@ class PlacePreviewListTile extends StatelessWidget {
   String _distance;
   void Function()? _onTap;
   bool _isFirstList;
+  Map<DiseaseType, int> _diseaseInfo;
 
   @override
   Widget build(BuildContext context) {
@@ -636,7 +988,7 @@ class PlacePreviewListTile extends StatelessWidget {
                       Text(_place.name,
                           style: TextStyle(
                               fontFamily: WcFontFamily.notoSans,
-                              fontSize: 18,
+                              fontSize: 17,
                               fontWeight: FontWeight.w600)),
                       OpeningStatusText(
                         isOpen: true,
@@ -646,52 +998,56 @@ class PlacePreviewListTile extends StatelessWidget {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      SvgPicture.asset(
-                        'assets/icons/good_face.svg',
-                        width: 18,
+                      Container(
+                        height: 10,
+                        width: 10,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(2.5),
+                            color: colorByDisease(_diseaseInfo.keys.first)),
                       ),
                       SizedBox(
                         width: 5,
                       ),
-                      Text('추천해요',
+                      Text(diseaseTypeToKorean(_diseaseInfo.keys.first),
                           style: TextStyle(
                               fontFamily: WcFontFamily.notoSans,
-                              fontSize: 15,
-                              height: 1.3,
-                              color: WcColors.grey180,
+                              fontSize: 14.5,
+                              height: 1.2,
+                              color: WcColors.grey200,
+                              fontWeight: FontWeight.w600)),
+                      Text(' 질환 방문많음',
+                          style: TextStyle(
+                              fontFamily: WcFontFamily.notoSans,
+                              fontSize: 14.5,
+                              height: 1.2,
+                              color: WcColors.grey160,
                               fontWeight: FontWeight.w500)),
                       SizedBox(
                         width: 2,
                       ),
-                      Text(_place.totalRecommend.toString(),
-                          style: GoogleFonts.openSans(
-                              fontSize: 15,
-                              height: 1.3,
-                              color: WcColors.grey180,
-                              fontWeight: FontWeight.w600)),
                       Container(
-                        margin: EdgeInsets.symmetric(horizontal: 7),
+                        margin: EdgeInsets.symmetric(horizontal: 5),
                         child: CircleAvatar(
                           backgroundColor: WcColors.grey120,
                           radius: 1,
                         ),
                       ),
-                      Text('코니멀 방문',
+                      Text('리뷰',
                           style: TextStyle(
                               fontFamily: WcFontFamily.notoSans,
-                              fontSize: 15,
-                              height: 1.3,
-                              color: WcColors.grey180,
+                              fontSize: 14.5,
+                              height: 1.2,
+                              color: WcColors.grey160,
                               fontWeight: FontWeight.w500)),
                       SizedBox(
-                        width: 2,
+                        width: 3,
                       ),
-                      Text(_place.totalVisitingConimal.toString(),
+                      Text(_place.totalReviews.toString(),
                           style: GoogleFonts.openSans(
-                              fontSize: 15,
-                              height: 1.3,
+                              fontSize: 14.5,
+                              height: 1.2,
                               color: WcColors.grey180,
-                              fontWeight: FontWeight.w600)),
+                              fontWeight: FontWeight.w700)),
                     ],
                   ),
                   Row(
@@ -745,28 +1101,37 @@ class SelectedPlacePreview extends StatelessWidget {
     required String distance,
     void Function()? onTap,
     void Function()? onReviewTap,
+    void Function()? onCallTap,
   })  : _place = place,
         _distance = distance,
         _onTap = onTap,
         _onReviewTap = onReviewTap,
+        _onCallTap = onCallTap,
         super(key: key);
 
   final PlacePreview _place;
   String _distance;
   void Function()? _onTap;
   void Function()? _onReviewTap;
+  void Function()? _onCallTap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: _onTap,
       child: Container(
-        // padding: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
+        margin: EdgeInsets.only(top: 20),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(20), topRight: Radius.circular(20)),
-          color: WcColors.white,
-        ),
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+            color: WcColors.white,
+            boxShadow: [
+              BoxShadow(
+                  color: WcColors.grey140,
+                  blurRadius: 10,
+                  offset: Offset(0, 0),
+                  spreadRadius: -6)
+            ]),
         height: WcHeight,
         width: WcWidth,
         child: Column(
@@ -781,6 +1146,7 @@ class SelectedPlacePreview extends StatelessWidget {
               margin: EdgeInsets.only(top: 13, bottom: 2),
             ),
             PlacePreviewListTile(
+              diseaseInfo: _place.diseaseInfo!.diseaseMap,
               isFirstList: false,
               place: _place,
               hasDivider: false,
@@ -791,7 +1157,7 @@ class SelectedPlacePreview extends StatelessWidget {
               height: 50,
               child: Row(
                 children: [
-                  PhoneButton(),
+                  PhoneCallButton(phoneNumber: _place.phone),
                   SizedBox(
                     width: 10,
                   ),

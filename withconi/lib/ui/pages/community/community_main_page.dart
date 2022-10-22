@@ -2,6 +2,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:withconi/controller/community/community_main_controller.dart';
 import 'package:withconi/import_basic.dart';
 import 'package:withconi/ui/pages/community/community_setting_page.dart';
+import 'package:withconi/ui/pages/home/home_page.dart';
+import 'package:withconi/ui/theme/text_theme.dart';
 import 'package:withconi/ui/widgets/searchbar/search_bar.dart';
 import '../../widgets/button/icon_button.dart';
 
@@ -10,7 +12,8 @@ class CommunityMainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CommunityMainController _controller = Get.put(CommunityMainController());
+    CommunityMainController _controller = Get.find(tag: 'Initial');
+    // CommunityMainController _controller = Get.put(CommunityMainController());
 
     return WillPopScope(
       onWillPop: () async => false,
@@ -35,8 +38,10 @@ class CommunityMainPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text('커뮤니티',
-                              style: GoogleFonts.notoSans(
-                                  fontWeight: FontWeight.w600, fontSize: 25)),
+                              style: TextStyle(
+                                  fontFamily: WcFontFamily.notoSans,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 25)),
                           WcIconButton(
                               iconHeight: 23,
                               active: true,
@@ -62,15 +67,18 @@ class CommunityMainPage extends StatelessWidget {
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text('인기 게시판',
-                              style: GoogleFonts.notoSans(
-                                  fontWeight: FontWeight.w600, fontSize: 20)),
+                          Text('이번주 인기글',
+                              style: TextStyle(
+                                  fontFamily: WcFontFamily.notoSans,
+                                  fontWeight: FontWeight.w500,
+                                  height: 1,
+                                  fontSize: 19)),
                           const SizedBox(
                             width: 8,
                           ),
                           SvgPicture.asset(
                             'assets/icons/hot.svg',
-                            height: 21,
+                            height: 22,
                           )
                         ],
                       ),
@@ -81,22 +89,10 @@ class CommunityMainPage extends StatelessWidget {
                     Obx(
                       () => Column(
                         children: _controller.boardList
-                            .map((board) => InkWell(
-                                  onTap: () {
-                                    _controller.toBoardDetailPage(
-                                        boardId: board.boardId.toString());
-                                  },
-                                  child: Container(
-                                    alignment: Alignment.centerLeft,
-                                    height: 50,
-                                    width: WcWidth,
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 30),
-                                    child: Text(
-                                      board.title,
-                                      style: GoogleFonts.notoSans(fontSize: 16),
-                                    ),
-                                  ),
+                            .map((board) => HotPostListTile(
+                                  width: WcWidth - 40,
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
                                 ))
                             .toList(),
                       ),
@@ -110,8 +106,11 @@ class CommunityMainPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text('전체 게시판',
-                              style: GoogleFonts.notoSans(
-                                  fontWeight: FontWeight.w600, fontSize: 20)),
+                              style: TextStyle(
+                                  fontFamily: WcFontFamily.notoSans,
+                                  fontWeight: FontWeight.w500,
+                                  height: 1,
+                                  fontSize: 19)),
                         ],
                       ),
                     ),
@@ -128,14 +127,15 @@ class CommunityMainPage extends StatelessWidget {
                                   },
                                   child: Container(
                                     alignment: Alignment.centerLeft,
-                                    height: 50,
+                                    height: 45,
                                     width: WcWidth,
                                     padding:
                                         EdgeInsets.symmetric(horizontal: 30),
-                                    child: Text(
-                                      board.title,
-                                      style: GoogleFonts.notoSans(fontSize: 16),
-                                    ),
+                                    child: Text(board.title,
+                                        style: TextStyle(
+                                            fontFamily: WcFontFamily.notoSans,
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 16)),
                                   ),
                                 ))
                             .toList(),

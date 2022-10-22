@@ -1,67 +1,65 @@
 import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
-import 'package:withconi/configs/constants/enum.dart';
-import 'package:withconi/controller/auth_controller.dart';
-import 'package:withconi/data/provider/auth_api.dart';
-import 'package:withconi/data/repository/conimal_repository.dart';
+import 'package:withconi/core/custom_auth_info.dart';
+import 'package:withconi/data/model/user.dart';
+import '../../../configs/constants/enum.dart';
+import '../../../core/error_handling/exceptions.dart';
+import '../../../core/error_handling/failures.dart';
+import '../../../data/model/conimal.dart';
+import '../../../data/model/disease.dart';
+import '../../../ui/widgets/photo_gallary/image_item.dart';
 
-import '../../core/custom_auth_info.dart';
-import '../../core/error_handling/exceptions.dart';
-import '../../core/error_handling/failures.dart';
-import '../model/conimal.dart';
-import '../model/disease.dart';
-import '../model/user.dart';
-
-class SignupRepository extends GetxController {
-  // SignupUserRepository._internal();
-  // static final _singleton = SignupUserRepository._internal();
-  static SignupRepository get to => Get.find<SignupRepository>();
-
+class SignUpDataManager extends GetxController {
   final RxString _email = ''.obs;
   final RxString _name = ''.obs;
   final RxString _password = ''.obs;
   final RxString _nickName = ''.obs;
-  final Rxn<File> _profileImg = Rxn<File>();
+  final Rxn<ImageItem> _profileImg = Rxn<ImageItem>();
   final List<Conimal> _conimalList = [];
+  late CustomAuthInfo _customAuthInfo;
+  bool visitedConimal2Page = false;
 
   String get email => _email.value;
   String get name => _name.value;
   String get password => _password.value;
   String get nickName => _nickName.value;
-  File? get profileImg =>
-      (_profileImg.value == null) ? null : _profileImg.value;
-  String get profileImgPath =>
-      (_profileImg.value == null) ? '' : _profileImg.value!.path;
   List<Conimal> get conimalList => _conimalList;
-  bool visitedConimal2Page = false;
   int get checkConimalNum => conimalList.length;
+  ImageItem? get profileImg => _profileImg.value;
 
-  final AuthAPI _api = AuthAPI();
+  CustomAuthInfo get authInfo => _customAuthInfo;
 
-  saveConimalList(List<Conimal> conimalList) {
+  sstoreonimalList(List<Conimal> conimalList) {
     _conimalList.assignAll(conimalList);
   }
 
-  saveEmail(String email) {
-    // _authInfo.value = authInfo;
+  storeEmail(String email) {
     _email.value = email;
   }
 
-  saveUserName(String name) {
+  storeUserName(String name) {
     _name.value = name;
   }
 
-  saveUserPassword(String password) {
+  storeUserPassword(String password) {
     _password.value = password;
+    //password가 지정되었다면 Email & Password 로그인이기 때문에
+    // cuatomAuthInfo 클래스 내에 있는 인증객체에 password를 할당한다.
+    _customAuthInfo.authObject = password;
   }
 
-  saveUserNickname(String nickName) {
+  storeUserNickname(String nickName) {
     _nickName.value = nickName;
   }
 
-  saveUserProfile(File? profileFile) {
-    _profileImg.value = profileFile;
+  storeUserProfile(ImageItem? imageItem) {
+    _profileImg.value = imageItem;
+  }
+
+  storeAuthInfo(CustomAuthInfo authInfo) {
+    _customAuthInfo = authInfo;
+    _email.value = authInfo.email;
   }
 
   removeAllData() {
@@ -73,6 +71,29 @@ class SignupRepository extends GetxController {
     _conimalList.clear();
   }
 
+  WcUser newUserForDb({required String firebaseUid}) {
+    late final bool isEmailVerified;
+    late final bool verificationSkipped;
+
+    if (authInfo.provider != Provider.email) {
+      isEmailVerified = true;
+      verificationSkipped = false;
+    } else {
+      isEmailVerified = true;
+      verificationSkipped = true;
+    }
+
+    return WcUser(
+        uid: firebaseUid,
+        email: _customAuthInfo.email,
+        displayName: name,
+        nickname: nickName,
+        provider: _customAuthInfo.provider,
+        conimals: conimalList.toList(),
+        isEmailVerified: isEmailVerified,
+        verificationSkipped: verificationSkipped);
+  }
+
   Either<Failure, bool> addConimal({
     required String conimalName,
     required Gender gender,
@@ -81,34 +102,26 @@ class SignupRepository extends GetxController {
     required DateTime adoptedDate,
     required List<Disease> diseaseList,
   }) {
-    try {
-      print('here');
-      Conimal newConimal = Conimal(
-        conimalId: DateTime.now().millisecondsSinceEpoch.toString(),
-        name: conimalName,
-        gender: gender,
-        species: species,
-        birthDate: birthDate,
-        adoptedDate: adoptedDate,
-        diseases: diseaseList,
-      );
-      print('더 추가하기에서 질병 : ${diseaseList}');
+    Conimal newConimal = Conimal(
+      conimalId: DateTime.now().millisecondsSinceEpoch.toString(),
+      name: conimalName,
+      gender: gender,
+      species: species,
+      birthDate: birthDate,
+      adoptedDate: adoptedDate,
+      diseases: diseaseList,
+    );
 
-      if (_conimalList.length > 3) {
-        throw MaxListException();
-      } else {
-        _conimalList.add(newConimal);
-      }
-
-      return Right(true);
-    } on MaxListException {
+    if (_conimalList.length > 3) {
       return Left(MaxConimalFailure());
-    } catch (e) {
-      return Left(DataParsingFailure());
+    } else {
+      _conimalList.add(newConimal);
     }
+
+    return Right(true);
   }
 
-  Either<Failure, bool> editTempConimal(Conimal conimal, int index) {
+  Either<Failure, bool> editConimal(Conimal conimal, int index) {
     try {
       _conimalList.removeAt(index);
       _conimalList.insert(index, conimal);
@@ -118,7 +131,7 @@ class SignupRepository extends GetxController {
     }
   }
 
-  Either<Failure, Conimal> getTempConimal(int index) {
+  Either<Failure, Conimal> getConimalInfo(int index) {
     try {
       return Right(_conimalList[index]);
     } catch (e) {
@@ -169,25 +182,5 @@ class SignupRepository extends GetxController {
     } catch (e) {
       return Left(RemoveConimalFailure());
     }
-  }
-
-//TODO: email verified, email verification skipped 넣기 wcUser인자로
-  Future<WcUser> signUpUserDB(
-      {required String uid,
-      required CustomAuthInfo authInfo,
-      required List<Conimal> conimals}) async {
-    WcUser newUser;
-    newUser = WcUser(
-        uid: uid,
-        email: authInfo.email,
-        displayName: name,
-        nickname: nickName,
-        provider: authInfo.provider,
-        photoURL: profileImgPath,
-        conimals: conimals);
-
-    await _api.signUpDB(newUser);
-
-    return newUser;
   }
 }

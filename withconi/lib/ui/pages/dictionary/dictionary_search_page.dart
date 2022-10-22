@@ -1,6 +1,6 @@
 import 'package:flutter_svg/svg.dart';
 import 'package:lottie/lottie.dart';
-import 'package:withconi/controller/common_controller/disease_select_controller.dart';
+import 'package:withconi/controller/common_controller/disease_search_controller.dart';
 import 'package:withconi/controller/dictionary/dictionary_search_controller.dart';
 import 'package:withconi/import_basic.dart';
 import 'package:withconi/ui/pages/signup/signup_widgets/disease_selection_list_button.dart';

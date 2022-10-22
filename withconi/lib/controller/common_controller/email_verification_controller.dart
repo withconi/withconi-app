@@ -6,7 +6,7 @@ import 'package:withconi/data/repository/user_repository.dart';
 import '../../../import_basic.dart';
 import '../../configs/constants/auth_variables.dart';
 import '../../data/repository/auth_repository.dart';
-import '../../ui/widgets/loading.dart';
+import '../../ui/widgets/loading/loading_overlay.dart';
 import '../auth_controller.dart';
 
 class EmailVerificationController extends GetxController {
@@ -28,8 +28,6 @@ class EmailVerificationController extends GetxController {
     } else {
       _nextRoute = '';
     }
-
-    // (arguments.) ? _nextRoute = '' : _nextRoute = arguments as String;
     await sendVerificationEmail(
         email: email,
         currentRoute: Routes.EMAIL_VERIFICATION,
@@ -49,13 +47,26 @@ class EmailVerificationController extends GetxController {
     var userUpdateEither = await _userRepository
         .updateUser(updateData: {"verificationSkipped": true});
 
+    late bool getBack;
+
+    if (_nextRoute.isEmpty) {
+      getBack = true;
+    } else {
+      getBack = false;
+    }
+
     bool success = userUpdateEither.fold((failure) {
       FailureInterpreter().mapFailureToDialog(failure, 'skipEmailVerification');
       return false;
     }, (success) => true);
 
     if (success) {
-      AuthController.to.setUserInfo(redirectPage: true);
+      if (getBack) {
+        await AuthController.to.setUserInfo(redirectPage: false);
+        Get.back();
+      } else {
+        await AuthController.to.setUserInfo(redirectPage: true);
+      }
     }
   }
 
@@ -96,5 +107,9 @@ class EmailVerificationController extends GetxController {
         currentRoute: Routes.EMAIL_VERIFICATION,
         nextRoute: _nextRoute));
     result!.fold((l) => null, (r) => null);
+  }
+
+  checkEmailVerified() async {
+    print(firebaseAuth.currentUser!.emailVerified);
   }
 }

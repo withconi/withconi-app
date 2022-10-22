@@ -2,6 +2,7 @@ import 'package:withconi/configs/constants/enum.dart';
 import 'package:withconi/controller/ui_helper/infinite_scroll.dart';
 import 'package:withconi/ui/entities/location.dart';
 
+import '../comment.dart';
 import '../conimal.dart';
 
 class MapFilterRequest {
@@ -32,9 +33,22 @@ class MapFilterRequest {
         'locType': placeTypeToValue(locType),
         'filterByDisease': diseaseTypeToValue(diseaseType),
         'filterBySpecies': speciesToValue(speciesType),
-        'filterByopeningStatus': openingStatusToValue(openingStatus),
+        'filterByOpeningStatus': openingStatusToValue(openingStatus),
         'lat': latLng.latitude,
         'lng': latLng.longitude,
         'distance': distance,
+      };
+}
+
+class CommentCreateRequest {
+  CommentCreateRequest({required this.comment});
+
+  Comment comment;
+
+  Map<String, dynamic> toJson() => {
+        "userId": comment.authorId,
+        "boardId": comment.boardId,
+        "postId": comment.postId,
+        "content": comment.content
       };
 }

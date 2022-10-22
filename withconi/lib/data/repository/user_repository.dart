@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
+import 'package:withconi/configs/constants/auth_variables.dart';
 import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/core/error_handling/exceptions.dart';
 import 'package:withconi/data/provider/user_api.dart';
@@ -21,6 +22,7 @@ class UserRepository {
 
       try {
         WcUser wcUser = WcUser.fromJson(data['user']);
+
         return Right(wcUser);
       } catch (e) {
         throw DataParsingException();
@@ -31,6 +33,8 @@ class UserRepository {
       return Left(DataParsingFailure());
     } on NotFoundException {
       return Left(NotFoundFailure());
+    } on UnauthorizedException {
+      return Left(WrongTokenFailure());
     } catch (e) {
       return Left(NoUserDataFailure());
     }

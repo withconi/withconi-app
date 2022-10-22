@@ -39,9 +39,12 @@ enum Species {
 enum CacheControllerKey {
   accessToken,
   refreshToken,
-  provide,
+  provider,
   emailVerified,
-  emailVerifySkipped
+  emailVerifySkipped,
+  email,
+  appleIdToken,
+  rawNonce,
 }
 
 enum UserState {
@@ -52,6 +55,8 @@ enum UserState {
   signUpSns,
   none
 }
+
+enum UserState2 { signIn, signUp, none }
 
 enum Provider {
   @JsonValue("kakao")
@@ -70,16 +75,7 @@ enum Provider {
 
 enum PlaceType { all, hospital, pharmacy }
 
-enum DiseaseType {
-  cardiovascular,
-  musculoskeletal,
-  digestive,
-  ophthalmology,
-  urinary,
-  respiratory,
-}
-
-enum OpeningStatus { open, all }
+enum OpeningStatus { open, closed }
 
 enum ReviewRate {
   @JsonValue("low")
@@ -90,6 +86,25 @@ enum ReviewRate {
   high
 }
 
+enum MoreOption { edit, delete, report, block }
+
+String moreOptionsToKorean(
+    {required MoreOption option, required String authorName}) {
+  switch (option) {
+    case MoreOption.block:
+      return '$authorName의 글 더이상 보지 않기';
+    case MoreOption.report:
+      return '신고하기';
+    case MoreOption.edit:
+      return '수정하기';
+    case MoreOption.delete:
+      return '삭제하기';
+
+    default:
+      return '';
+  }
+}
+
 enum ReviewItems {
   explanation,
   kindness,
@@ -97,12 +112,34 @@ enum ReviewItems {
   adequateExamination,
   effectiveness,
   waitingExperience,
-  // lackOfExplination,
-  // unkindness,
-  // highPrice,
-  // inadequateExamination,
-  // badWaitingEnvironment,
-  // uneffectiveness
+}
+
+enum ReportItem {
+  animalCruelty,
+  maliciousContents,
+  wrongInformation,
+  sexualContents,
+  promotionalContents,
+  ect,
+}
+
+String reportItemToKorean(ReportItem? reportItem) {
+  switch (reportItem) {
+    case ReportItem.animalCruelty:
+      return "동물 학대 관련 글";
+    case ReportItem.maliciousContents:
+      return "잘못된 정보";
+    case ReportItem.wrongInformation:
+      return "악의적인 컨텐츠";
+    case ReportItem.sexualContents:
+      return "성적인 컨텐츠";
+    case ReportItem.promotionalContents:
+      return "영리목적/홍보성 글";
+    case ReportItem.ect:
+      return "기타";
+    default:
+      return "";
+  }
 }
 
 String sortTypeToKorean(SortType? sortType) {
@@ -115,6 +152,20 @@ String sortTypeToKorean(SortType? sortType) {
       return "거리순";
     case SortType.recent:
       return "최신순";
+    default:
+      return "";
+  }
+}
+
+enum LocationType { mapLocation, currentLocation }
+
+String locationTypeToKorean(LocationType? loctionType) {
+  switch (loctionType) {
+    case LocationType.mapLocation:
+      return "현재 지도 기준";
+    case LocationType.currentLocation:
+      return "내위치 기준";
+
     default:
       return "";
   }
@@ -219,6 +270,37 @@ String placeTypeToValue(PlaceType? placeType) {
   }
 }
 
+PlaceType placeTypeFromString(String? placeType) {
+  switch (placeType) {
+    case 'hospital':
+      return PlaceType.hospital;
+    case 'pharmacy':
+      return PlaceType.pharmacy;
+    default:
+      return PlaceType.all;
+  }
+}
+
+enum DiseaseType {
+  cardiovascular, //심혈관
+  musculoskeletal, // 근골격
+  digestive, //소화기,간담췌
+  ophthalmology, // 안과
+  urinary, // 비뇨신장
+  respiratory, // 호흡기
+
+  //예전버전은 여기까지
+  otorhinolaryngology, // 이비인후
+  infectiousDisease, //감염성
+  brainNeurology, // 뇌신경정신질환
+  dentistry, //치과
+  oncology, //암,종양혈액질환
+  dermatology, //피부과
+  endocrinology, //내분비,호르몬
+  emergency, //응급
+
+}
+
 String diseaseTypeToValue(DiseaseType? diseaseType) {
   switch (diseaseType) {
     case DiseaseType.cardiovascular:
@@ -233,6 +315,22 @@ String diseaseTypeToValue(DiseaseType? diseaseType) {
       return 'urinary';
     case DiseaseType.respiratory:
       return 'respiratory';
+    case DiseaseType.otorhinolaryngology:
+      return 'otorhinolaryngology';
+    case DiseaseType.infectiousDisease:
+      return 'infectious_disease';
+    case DiseaseType.brainNeurology:
+      return 'brain_neurology';
+    case DiseaseType.dentistry:
+      return 'dentistry';
+    case DiseaseType.oncology:
+      return 'oncology';
+    case DiseaseType.dermatology:
+      return 'dermatology';
+    case DiseaseType.endocrinology:
+      return 'endocrinology';
+    case DiseaseType.emergency:
+      return 'emergency';
     default:
       return '';
   }
@@ -241,19 +339,90 @@ String diseaseTypeToValue(DiseaseType? diseaseType) {
 String diseaseTypeToKorean(DiseaseType? diseaseType) {
   switch (diseaseType) {
     case DiseaseType.cardiovascular:
-      return '심혈관계 질환';
+      return '심혈관';
     case DiseaseType.musculoskeletal:
-      return '골격근계 질환';
+      return '근골격';
     case DiseaseType.digestive:
-      return '소화계 질환';
+      return '소화기/간담췌';
     case DiseaseType.ophthalmology:
-      return '안과계 질환';
+      return '안과';
     case DiseaseType.urinary:
-      return '비뇨기계 질환';
+      return '비뇨신장';
     case DiseaseType.respiratory:
-      return '호흡기계 질환';
+      return '호흡기';
+
+    case DiseaseType.otorhinolaryngology:
+      return '이비인후';
+    case DiseaseType.infectiousDisease:
+      return '감염';
+    case DiseaseType.brainNeurology:
+      return '뇌/신경/정신';
+    case DiseaseType.dentistry:
+      return '치과';
+    case DiseaseType.oncology:
+      return '암/종양혈액';
+    case DiseaseType.dermatology:
+      return '피부';
+    case DiseaseType.endocrinology:
+      return '내분비/면역';
+    case DiseaseType.emergency:
+      return '응급';
     default:
       return '';
+  }
+}
+
+DiseaseType diseaseTypeFromString(String? diseaseTypeString) {
+  switch (diseaseTypeString) {
+    case 'cardiovascular':
+      return DiseaseType.cardiovascular;
+    case 'musculoskeletal':
+      return DiseaseType.musculoskeletal;
+    case 'digestive':
+      return DiseaseType.digestive;
+    case 'ophthalmology':
+      return DiseaseType.ophthalmology;
+    case 'urinary':
+      return DiseaseType.urinary;
+    case 'respiratory':
+      return DiseaseType.respiratory;
+
+/*    case DiseaseType.otorhinolaryngology:
+      return 'otorhinolaryngology';
+    case DiseaseType.infectiousDisease:
+      return 'infectious_disease';
+    case DiseaseType.brainNeurology:
+      return 'brain_neurology';
+    case DiseaseType.dentistry:
+      return 'dentistry';
+    case DiseaseType.oncology:
+      return 'oncology';
+    case DiseaseType.dermatology:
+      return 'dermatology';
+    case DiseaseType.endocrinology:
+      return 'endocrinology';
+    case DiseaseType.emergency:
+      return 'emergency'; */
+    case 'otorhinolaryngology':
+      return DiseaseType.otorhinolaryngology;
+    case 'infectious_disease':
+      return DiseaseType.infectiousDisease;
+    case 'brain_neurology':
+      return DiseaseType.brainNeurology;
+    case 'dentistry':
+      return DiseaseType.dentistry;
+    case 'oncology':
+      return DiseaseType.oncology;
+    case 'dermatology':
+      return DiseaseType.dermatology;
+    case 'endocrinology':
+      return DiseaseType.endocrinology;
+
+    case 'emergency':
+      return DiseaseType.emergency;
+
+    default:
+      return DiseaseType.urinary;
   }
 }
 
@@ -261,10 +430,21 @@ String openingStatusToValue(OpeningStatus? openingStatus) {
   switch (openingStatus) {
     case OpeningStatus.open:
       return 'open';
-    case OpeningStatus.all:
+    case OpeningStatus.closed:
       return 'all';
     default:
       return '';
+  }
+}
+
+OpeningStatus openingStatusFromJson(String? openingStatus) {
+  switch (openingStatus) {
+    case 'open':
+      return OpeningStatus.open;
+    case 'all':
+      return OpeningStatus.closed;
+    default:
+      return OpeningStatus.closed;
   }
 }
 
@@ -278,6 +458,19 @@ String reviewRateToValue(ReviewRate? reviewStatus) {
       return 'high';
     default:
       return '';
+  }
+}
+
+ReviewRate reviewRateFromString(String reviewRateString) {
+  switch (reviewRateString) {
+    case 'low':
+      return ReviewRate.low;
+    case 'middle':
+      return ReviewRate.middle;
+    case 'high':
+      return ReviewRate.high;
+    default:
+      return ReviewRate.middle;
   }
 }
 
@@ -310,5 +503,37 @@ String reviewItemsToValue(ReviewItems? reviewItem) {
       return 'price';
     default:
       return '';
+  }
+}
+
+ReviewItems reviewItemsFromString(String itemString) {
+  switch (itemString) {
+    case 'explanation':
+      return ReviewItems.explanation;
+    case 'kindness':
+      return ReviewItems.kindness;
+    case 'adequateExamination':
+      return ReviewItems.adequateExamination;
+    case 'effectiveness':
+      return ReviewItems.effectiveness;
+    case 'waitingExperience':
+      return ReviewItems.waitingExperience;
+    case 'price':
+      return ReviewItems.price;
+    default:
+      return ReviewItems.explanation;
+
+    // case ReviewItems.kindness:
+    //   return 'kindness';
+    // case ReviewItems.adequateExamination:
+    //   return 'adequate_examination';
+    // case ReviewItems.effectiveness:
+    //   return 'effectiveness';
+    // case ReviewItems.waitingExperience:
+    //   return 'waiting_experience';
+    // case ReviewItems.price:
+    //   return 'price';
+    // default:
+    //   return '';
   }
 }

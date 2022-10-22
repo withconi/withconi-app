@@ -14,10 +14,10 @@ class WcCircleDivider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: margin ?? EdgeInsets.symmetric(horizontal: 4),
+      margin: margin ?? EdgeInsets.symmetric(horizontal: 5),
       child: CircleAvatar(
         backgroundColor: color ?? WcColors.blue100,
-        radius: radius ?? 2.5,
+        radius: radius ?? 2.4,
       ),
     );
   }

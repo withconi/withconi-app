@@ -43,11 +43,11 @@ class WcStateButtonWidget extends StatelessWidget {
             height: 50,
             width: WcWidth - 40,
             decoration: BoxDecoration(
-                color: (buttonState == ButtonState.sucess)
+                color: (buttonState == ButtonState.success)
                     ? activeButtonColor
                     : inactiveButtonColor),
             child: InkWell(
-              onTap: (buttonState == ButtonState.sucess) ? onTap : () {},
+              onTap: (buttonState == ButtonState.success) ? onTap : () {},
               child: Center(
                   child: (buttonState == ButtonState.loading)
                       ? SizedBox(
@@ -60,7 +60,7 @@ class WcStateButtonWidget extends StatelessWidget {
                       : Text(
                           buttonText,
                           style: GoogleFonts.notoSans(
-                              color: (buttonState == ButtonState.sucess)
+                              color: (buttonState == ButtonState.success)
                                   ? activeTextColor
                                   : inactiveTextColor,
                               fontSize: 15,

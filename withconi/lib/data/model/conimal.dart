@@ -41,10 +41,14 @@ class DiseaseIdConverter
 
   @override
   List<Disease> fromJson(List<dynamic>? diseaseMap) {
-    if (diseaseMap == null || diseaseMap.isEmpty) {
+    try {
+      if (diseaseMap == null || diseaseMap.isEmpty) {
+        return [];
+      } else {
+        return diseaseMap.map((data) => Disease.fromJson(data)).toList();
+      }
+    } catch (e) {
       return [];
-    } else {
-      return diseaseMap.map((data) => Disease.fromJson(data)).toList();
     }
   }
 

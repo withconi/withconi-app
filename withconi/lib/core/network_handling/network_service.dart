@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:withconi/configs/constants/api_url.dart';
 import 'package:withconi/configs/constants/enum.dart';
+import '../../configs/constants/auth_variables.dart';
 import '../../configs/helpers/token_manager.dart';
 import '../error_handling/exceptions.dart';
 
@@ -82,7 +83,11 @@ class Api {
           }
       }
       if (result != null && result.data['success'] == true) {
-        return result.data['data'] as Map<String, dynamic>;
+        if (result.data['data'] != null) {
+          return result.data['data'] as Map<String, dynamic>;
+        } else {
+          return result.data;
+        }
       } else {
         throw NoDataException();
       }
@@ -101,28 +106,37 @@ class AuthInterceptor extends Interceptor {
   @override
   void onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
-    if (options.headers.containsKey('requiresToken')) {
-      String accessToken =
-          TokenManager().getToken(CacheControllerKey.accessToken);
+    if (options.headers.containsKey('requiresToken') &&
+        options.headers['requiresToken']) {
+      // String accessToken =
+      //     WcTokenManager().getToken(CacheControllerKey.accessToken);
 
-      if (accessToken.isEmpty) {
-        // var expiration = await TokenRepository().getAccessTokenRemainingTime();
+      // if (accessToken.isEmpty) {
+      // var expiration = await TokenRepository().getAccessTokenRemainingTime();
 
-        // if (expiration.inSeconds < 60) {
-        //   dio.interceptors.requestLock.lock();
+      // if (expiration.inSeconds < 60) {
+      //   dio.interceptors.requestLock.lock();
 
-        //   // Call the refresh endpoint to get a new token
-        //   await UserService().refresh().then((response) async {
-        //     await TokenRepository().persistAccessToken(response.accessToken);
-        //     accessToken = response.accessToken;
-        //   }).catchError((error, stackTrace) {
-        //     handler.reject(error, true);
-        //   }).whenComplete(() => dio.interceptors.requestLock.unlock());
-        // }
+      //   // Call the refresh endpoint to get a new token
+      //   await UserService().refresh().then((response) async {
+      //     await TokenRepository().persistAccessToken(response.accessToken);
+      //     accessToken = response.accessToken;
+      //   }).catchError((error, stackTrace) {
+      //     handler.reject(error, true);
+      //   }).whenComplete(() => dio.interceptors.requestLock.unlock());
+      // }
 
-        // options.headers['Authorization'] = 'Bearer $accessToken';
+      // options.headers['Authorization'] = 'Bearer $accessToken';
+      // }
+
+      options.headers.remove('requiresToken');
+      if (firebaseAuth.currentUser != null) {
+        String firebaseToken = await firebaseAuth.currentUser!.getIdToken(true);
+        print(firebaseToken);
+        options.headers['Authorization'] = 'Bearer $firebaseToken';
       }
     }
+    print(firebaseAuth.currentUser);
 
     return handler.next(options);
   }

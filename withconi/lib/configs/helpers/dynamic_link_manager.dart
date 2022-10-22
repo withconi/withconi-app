@@ -8,10 +8,10 @@ import 'package:withconi/ui/widgets/snackbar.dart';
 import '../../import_basic.dart';
 
 class DynamicLinkManager {
-  final String dynamicLinkPrefix = 'https://withconi.page.link';
+  final String dynamicLinkPrefix = 'https://withconimal.page.link';
   Future<bool> setup() async {
     bool isExistDynamicLink = await _getInitialDynamicLink();
-    _addListener();
+    await _addListener();
 
     return isExistDynamicLink;
   }
@@ -28,7 +28,7 @@ class DynamicLinkManager {
     return false;
   }
 
-  void _addListener() {
+  Future<void> _addListener() async {
     FirebaseDynamicLinks.instance.onLink.listen((
       PendingDynamicLinkData dynamicLinkData,
     ) async {
@@ -47,8 +47,6 @@ class DynamicLinkManager {
           dynamicLinkData.link.queryParameters['continueUrl'].toString());
       String redirectPage = url.path;
       String nextRoute = url.queryParameters['nextRoute'] ?? '';
-
-      // Get.toNamed(pageLink, arguments: {"previousRoute": previousRoute});
 
       print(dynamicLinkData.link);
       print(redirectPage);
@@ -79,26 +77,32 @@ class DynamicLinkManager {
   Future<String> getShortLink(String redirectPage, String nextRoute) async {
     final dynamicLinkParams = DynamicLinkParameters(
       uriPrefix: dynamicLinkPrefix,
-      link: Uri.parse('$dynamicLinkPrefix/$redirectPage?nextRoute=$nextRoute'),
-      androidParameters: const AndroidParameters(
+      link: Uri.parse(
+          'https://withconi.web.app/$redirectPage?nextRoute=$nextRoute'),
+      androidParameters: AndroidParameters(
+        fallbackUrl: Uri.parse(
+            'https://withconi.web.app/$redirectPage?nextRoute=$nextRoute'),
         packageName: 'co.yellowtoast.withconi',
         minimumVersion: 0,
       ),
-      iosParameters: const IOSParameters(
+      iosParameters: IOSParameters(
+        fallbackUrl: Uri.parse(
+            'https://withconi.web.app/$redirectPage?nextRoute=$nextRoute'),
         bundleId: 'co.yellowtoast.withconi',
         minimumVersion: '0',
       ),
     );
-    final dynamicLink =
-        await firebaseDynamicLinks.buildShortLink(dynamicLinkParams);
+    final dynamicLink = await firebaseDynamicLinks.buildLink(dynamicLinkParams);
+    print(dynamicLink.toString());
 
-    return dynamicLink.shortUrl.toString();
+    return dynamicLink.toString();
   }
 
-  Future<String> getUrl(
-      {required String redirectRoute, required String nextRoute}) async {
+  String getUrl({required String redirectRoute, required String nextRoute}) {
+    // String dynamicLinkUrl =
+    //     '$dynamicLinkPrefix$redirectRoute?nextRoute=$nextRoute?uid=${firebaseAuth.currentUser!.uid}';
     String dynamicLinkUrl =
-        '$dynamicLinkPrefix$redirectRoute?nextRoute=$nextRoute';
+        'https://withconimal.page.link?link=https://withconi.web.app&apn=co.yellowtoast.withconi&afl=https://withconi.web.app&isi=2022&ibi=co.yellowtoast.withconi&ifl=https://withconi.web.app&nextRoute=$nextRoute&uid=${firebaseAuth.currentUser!.uid}&isi=2022&ibi=co.yellowtoast.withconi&ifl=https://withconi.web.app&nextRoute=$nextRoute&uid=${firebaseAuth.currentUser!.uid}';
     print(dynamicLinkUrl);
     return dynamicLinkUrl;
   }

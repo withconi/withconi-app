@@ -8,15 +8,16 @@ import 'package:withconi/ui/widgets/searchbar/search_bar.dart';
 import '../../../data/model/disease.dart';
 import '../../widgets/button/wide_button.dart';
 import '../../widgets/error_widget/error_widget.dart';
-import 'signup_widgets/disease_item_box.dart';
+import '../signup/signup_widgets/disease_item_box.dart';
 
-class DiseaseSearchPage extends StatelessWidget {
-  const DiseaseSearchPage({Key? key}) : super(key: key);
+class BreedSearchPage extends StatelessWidget {
+  const BreedSearchPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     DiseaseSearchController _controller = Get.put(DiseaseSearchController());
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: WcColors.white,
       floatingActionButton: WcWideButtonWidget(
         active: true,
@@ -104,7 +105,7 @@ class DiseaseSearchPage extends StatelessWidget {
                 //   ),
                 // ),
                 SearchBarWidget(
-                  hintText: '질병 검색',
+                  hintText: '묘종/견종 검색',
                   onTextChanged: _controller.onDiseaseChanged,
                   onTapAction: _controller.clearResult,
                   textController: _controller.diseaseTextController,
@@ -132,40 +133,54 @@ class DiseaseSearchPage extends StatelessWidget {
                   height: 10,
                 ),
                 _controller.obx(
-                    (onSuccessResult) => (onSuccessResult!.isNotEmpty)
-                        ? Expanded(
-                            child: SingleChildScrollView(
-                              child: Column(
-                                  children: onSuccessResult
-                                      .map(
-                                        (disease) => Obx(
-                                          () => DiseaseListTileButton(
-                                            name: disease.name,
-                                            onTap: () {
-                                              _controller
-                                                  .onDiseaseClicked(disease);
-                                            },
-                                            selected: _controller
-                                                .diseaseListSelected
-                                                .contains(disease),
-                                            width: WcWidth,
-                                          ),
-                                        ),
-                                      )
-                                      .toList()),
-                            ),
-                          )
-                        : WcErrorWidget(
+                    (onSuccessResult) => (onSuccessResult!.isEmpty)
+                        ? WcErrorWidget(
                             image: Image.asset(
                               'assets/icons/no_result.png',
                               height: 90,
                             ),
-                            title: '검색 결과가 없어요',
-                            message: '다른 검색어로 다시 시도해 보세요 :)',
+                            title: '검색 결과가 없습니다',
+                            message: '다른 검색어로 시도해주세요 :)',
+                          )
+                        : Expanded(
+                            child: SingleChildScrollView(
+                              controller: _controller.scrollController.value,
+                              child: Column(
+                                children: [
+                                  Column(
+                                      children: onSuccessResult
+                                          .map(
+                                            (disease) => Obx(
+                                              () => DiseaseListTileButton(
+                                                disease: disease,
+                                                onTap: _controller
+                                                    .onDiseaseClicked,
+                                                selected: _controller
+                                                    .diseaseListSelected
+                                                    .contains(disease),
+                                                width: WcWidth,
+                                              ),
+                                            ),
+                                          )
+                                          .toList()),
+                                  SizedBox(
+                                    height: 100,
+                                  )
+                                ],
+                              ),
+                            ),
                           ),
-                    onEmpty: const SizedBox.shrink(),
+                    onEmpty: WcErrorWidget(
+                      image: Image.asset(
+                        'assets/icons/search_color.png',
+                        color: WcColors.grey80,
+                        height: 80,
+                      ),
+                      title: '',
+                      message: '',
+                    ),
                     onLoading: SizedBox(
-                      height: WcHeight - 380,
+                      height: WcHeight - 230,
                       child: OverflowBox(
                         minHeight: 160,
                         maxHeight: 160,

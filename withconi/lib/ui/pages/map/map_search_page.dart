@@ -1,16 +1,11 @@
-import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:lottie/lottie.dart';
-import 'package:withconi/controller/common_controller/disease_search_controller.dart';
+import 'package:withconi/configs/helpers/search_highlighter.dart';
 import 'package:withconi/controller/map/map_search_controller.dart';
 import 'package:withconi/import_basic.dart';
-import 'package:withconi/ui/pages/signup/signup_widgets/disease_selection_list_button.dart';
 import 'package:withconi/ui/widgets/searchbar/search_bar.dart';
 import '../../../configs/constants/enum.dart';
 import '../../theme/text_theme.dart';
-import '../../widgets/button/wide_button.dart';
 import '../../widgets/error_widget/error_widget.dart';
-import '../signup/signup_widgets/disease_item_box.dart';
 
 class MapSearchPage extends StatelessWidget {
   const MapSearchPage({Key? key}) : super(key: key);
@@ -19,6 +14,7 @@ class MapSearchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     MapSearchController _controller = Get.put(MapSearchController());
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: WcColors.white,
       body: SafeArea(
         bottom: false,
@@ -29,8 +25,9 @@ class MapSearchPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SearchBarWidget(
-                  textController: TextEditingController(),
-                  onTextChanged: _controller.onSearchNameChanged,
+                  textController: _controller.placeNameTextController,
+                  onTextChanged: _controller.onSearchChanged,
+                  onTapAction: _controller.clearResult,
                   hintText: '동물병원/약국 검색',
                   boxShadow: const [
                     BoxShadow(
@@ -56,18 +53,24 @@ class MapSearchPage extends StatelessWidget {
                                 child: Column(
                                     children: onSuccessResult
                                         .map(
-                                          (disease) => SearchedPlaceListTile(
-                                            onTap: () {
-                                              _controller.onPlaceSelected(
-                                                  selectedPlace: disease);
-                                            },
-                                            address: disease.address,
-                                            distance:
-                                                _controller.getDistanceToString(
-                                                    distanceMeter: disease
-                                                        .distanceByMeter),
-                                            placeName: disease.name,
-                                            placeType: disease.placeType,
+                                          (place) => Obx(
+                                            () => PlaceSimpleListTile(
+                                              keywords: _controller
+                                                  .searchKeywords.value,
+                                              onTap: () {
+                                                _controller.onPlaceSelected(
+                                                    selectedPlace: place);
+                                              },
+                                              address: place.address,
+                                              distance: _controller
+                                                  .getDistanceToString(
+                                                      distanceMeter: place
+                                                          .distanceByMeter),
+                                              placeName: place.name,
+                                              placeType: place.placeType,
+                                              placeIconSrc:
+                                                  place.unselectedMarkerImage,
+                                            ),
                                           ),
                                         )
                                         .toList()),
@@ -77,17 +80,17 @@ class MapSearchPage extends StatelessWidget {
                         : WcErrorWidget(
                             image: Image.asset(
                               'assets/icons/no_result.png',
-                              height: 100,
+                              height: 90,
                             ),
                             title: '검색 결과가 없어요',
                             message: '다른 검색어로 다시 시도해 보세요 :)',
                           ),
                     onEmpty: const SizedBox.shrink(),
                     onLoading: SizedBox(
-                      height: WcHeight - 380,
+                      height: WcHeight - 240,
                       child: OverflowBox(
-                        minHeight: 160,
-                        maxHeight: 160,
+                        minHeight: 140,
+                        maxHeight: 140,
                         child: Lottie.asset('assets/json/loading.json'),
                       ),
                     ),
@@ -108,21 +111,25 @@ class MapSearchPage extends StatelessWidget {
   }
 }
 
-class SearchedPlaceListTile extends StatelessWidget {
-  SearchedPlaceListTile({
+class PlaceSimpleListTile extends StatelessWidget {
+  PlaceSimpleListTile({
     Key? key,
     required this.address,
     required this.placeType,
     required this.placeName,
     required this.distance,
     this.onTap,
+    required this.placeIconSrc,
+    required this.keywords,
   }) : super(key: key);
 
   String address;
   PlaceType placeType;
   String placeName;
   String distance;
+  String placeIconSrc;
   void Function()? onTap;
+  String keywords;
 
   @override
   Widget build(BuildContext context) {
@@ -140,7 +147,7 @@ class SearchedPlaceListTile extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(top: 4),
             child: Image.asset(
-              'assets/icons/hospital_unclicked.png',
+              placeIconSrc,
               height: 23,
             ),
           ),
@@ -152,40 +159,29 @@ class SearchedPlaceListTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text(placeName,
-                    style: TextStyle(
-                        fontFamily: WcFontFamily.notoSans,
-                        fontSize: 17,
-                        fontWeight: FontWeight.w500)),
+                RichText(
+                    text: TextSpan(
+                        children: highlightOccurrences(
+                            placeName,
+                            keywords,
+                            TextStyle(
+                                fontFamily: WcFontFamily.notoSans,
+                                fontSize: 17,
+                                color: WcColors.black,
+                                fontWeight: FontWeight.w700)),
+                        style: TextStyle(
+                            fontFamily: WcFontFamily.notoSans,
+                            fontSize: 17,
+                            color: WcColors.grey180,
+                            fontWeight: FontWeight.w500))),
                 Text(address,
                     style: TextStyle(
                         fontFamily: WcFontFamily.notoSans,
-                        color: WcColors.grey120,
+                        color: WcColors.grey140,
                         fontSize: 14,
                         overflow: TextOverflow.ellipsis,
                         height: 1.5,
-                        fontWeight: FontWeight.w500)),
-                // Row(
-                //   children: [
-                //     Text('리뷰',
-                //         style: TextStyle(
-                //             height: 1.5,
-                //             fontFamily: WcFontFamily.notoSans,
-                //             fontSize: 13,
-                //             color: WcColors.grey140,
-                //             fontWeight: FontWeight.w500)),
-                //     SizedBox(
-                //       width: 5,
-                //     ),
-                //     Text('24',
-                //         style: TextStyle(
-                //             height: 1.5,
-                //             fontFamily: WcFontFamily.notoSans,
-                //             fontSize: 13,
-                //             color: WcColors.grey200,
-                //             fontWeight: FontWeight.w500)),
-                //   ],
-                // ),
+                        fontWeight: FontWeight.w400)),
               ],
             ),
           ),

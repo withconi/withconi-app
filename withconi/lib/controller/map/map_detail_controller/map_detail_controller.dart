@@ -65,21 +65,19 @@ class MapDetailPageController extends GetxController
     super.onClose();
   }
 
-  onBookmarkTap() async {
-    isBookmarked.value = !isBookmarked.value;
+  onBookmarkTap(bool isBookMarked) async {
+    isBookmarked.value = isBookMarked;
     await updateBookMark(
         placeId: placeDetail.locId, isBookmarked: isBookmarked.value);
   }
 
   updateBookMark({required String placeId, required bool isBookmarked}) async {
-    // var likePostsEither = await _communityRepository.updateLikePost(
-    //     uid: AuthController.to.wcUser.value!.uid,
-    //     postId: postId,
-    //     isLiked: isLiked);
+    var likePostsEither = await _mapRepository.updateBookmark(
+        placeId: placeId, isBookmarked: isBookmarked);
 
-    // likePostsEither.fold(
-    //     (l) => FailureInterpreter().mapFailureToSnackbar(l, 'updateLikePost'),
-    //     (r) => likePostIdList.assignAll(r));
+    likePostsEither.fold(
+        (l) => FailureInterpreter().mapFailureToSnackbar(l, 'updateLikePost'),
+        (r) => {});
   }
 
   initData() async {
@@ -104,6 +102,7 @@ class MapDetailPageController extends GetxController
             FailureInterpreter().mapFailureToSnackbar(l, 'getPlaceDetailById'),
         (r) {
       placeDetail = r;
+      isBookmarked.value = placeDetail.isBookmarked;
     });
     return;
   }

@@ -20,15 +20,19 @@ abstract class Routes {
   static const COMMUNITY_NEW_POST = '/community/new_post';
   static const COMMUNITY_POST_EDIT = '/community/edit_post';
   static const COMMUNITY_POST_DETAIL = '/community/post/detail';
-  static const COMMUNITY_SEARCH = '/community/search';
+  static const COMMUNITY_POST_SEARCH = '/community/search';
+  static const COMMUNITY_NEW_REPORT = '/community/report';
+
   static const DICTIONARY_MAIN = '/dictionary/main';
+
+  static const DICTIONARY_DETAIL = '/dictionary/detail';
   static const DIAGNOSIS_MAIN = '/diagnosis/main';
   static const SETTING_MAIN = '/setting/main';
   static const USER_EDIT = '/user/edit';
   static const USER_MY_POST = '/user/mypost';
   static const USER_LIKED_POST = '/user/likepost';
   static const USER_MYCONIMAL = '/user/myconimal';
-  static const EMAIL_VERIFICATION = '/authentication/email_verification';
+  static const EMAIL_VERIFICATION = '/emailverification';
   static const MAP_MAIN = '/hospital/main';
   static const MAP_DETAIL = '/map/detail';
   static const MAP_SEARCH = '/map/search';
@@ -36,6 +40,6 @@ abstract class Routes {
   static const MAP_BOOKMARK = '/map/boormark';
   static const MAP_MY_REVIEW = '/map/myreview';
   static const MAP_LOCATION_PERMISSION = '/map/permission';
-
+  static const DICTIONARY_SEARCH = '/dictionary/search';
   // static const EMAIL_VERIFI_COMPLETE = '/authentication/email_verify_complete';
 }

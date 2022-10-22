@@ -32,5 +32,7 @@
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:955745601928:ios:0ebe73031868ecb069923d</string>
+	<key>DATABASE_URL</key>
+	<string>https://withconi-default-rtdb.asia-southeast1.firebasedatabase.app</string>
 </dict>
 </plist>

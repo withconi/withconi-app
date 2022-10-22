@@ -81,7 +81,7 @@ class Review {
       userId: json['userId'] ?? '',
       placeId: json['locId'] ?? '',
       placeType: placeTypeFromString(json['locType']),
-      name: json['title'],
+      name: json['name'] ?? '',
       address: json['address'],
       visitVerified: json['isVisiting'] ?? false,
       conimals: conimals,

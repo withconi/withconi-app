@@ -88,6 +88,7 @@ dev_dependencies:
   freezed: ^2.0.3+1
   json_serializable: ^6.2.0
   flutter_launcher_icons: ^0.9.3
+  app_settings: 4.1.8
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -105,6 +106,8 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/json/
+    - assets/icons/diagnosis/
+
     
   fonts:
     - family: NotoSansKR

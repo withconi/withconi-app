@@ -4,6 +4,7 @@ part 'failures.freezed.dart';
 @freezed
 class Failure with _$Failure {
   const Failure._(); // This constructor is needed to have custom methods in Freezed.
+  const factory Failure.versionCheckFailure() = VersionCheckFailure;
   const factory Failure.serverFailure() = ServerFailure;
   const factory Failure.dataParsingFailure() = DataParsingFailure;
   const factory Failure.noConnectionFailure() = NoConnectionFailure;
@@ -26,6 +27,7 @@ class Failure with _$Failure {
   const factory Failure.getUserFailure() = GetUserInfoFailure;
   const factory Failure.wrongPasswordFailure() = WrongPasswordFailure;
   const factory Failure.noEmailUserFailure() = NoEmailUserFailure;
+  const factory Failure.wrongTokenFailure() = WrongTokenFailure;
   const factory Failure.existingEmailFailure() = ExistingEmailFailure;
   const factory Failure.userEnabledFailure() = UserEnabledFailure;
   const factory Failure.weakPasswordFailure() = WeakPasswordFailure;
@@ -33,7 +35,11 @@ class Failure with _$Failure {
   const factory Failure.maxImageNumFailure() = MaxImageNumFailure;
   const factory Failure.noPostTypeSelectedFailure() = NoPostTypeSelectedFailure;
   const factory Failure.noPostContentsFailure() = NoPostContentsFailure;
+  const factory Failure.notFoundPostFailure() = NotFoundPostFailure;
   const factory Failure.notEditablePasswordFailure() =
       NotEditablePasswordFailure;
   const factory Failure.userInfoUpdateFailure() = UserInfoUpdateFailure;
+  const factory Failure.permissionDeniedFailure() = PermissionDeniedFailure;
+  const factory Failure.permissionPermanentlyDeniedFailure() =
+      PermissionPermanentlyDeniedFailure;
 }

@@ -4,7 +4,7 @@ import 'package:withconi/configs/constants/enum.dart';
 import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/data/repository/community_repository.dart';
 import 'package:withconi/data/repository/image_repository.dart';
-import 'package:withconi/ui/widgets/loading.dart';
+import 'package:withconi/ui/widgets/loading/loading_overlay.dart';
 import 'package:withconi/ui/widgets/photo_gallary/image_item.dart';
 import '../../configs/helpers/image_picker_helper.dart';
 import '../../core/error_handling/failures.dart';
@@ -22,7 +22,6 @@ class CommunityEditMyPostController extends GetxController {
   final int maxImageNum = 4;
   final RxInt selectedImageNum = 0.obs;
   RxList<ImageItem> imageItemList = RxList<ImageItem>();
-  late String _boardId;
   late Post post;
   final RxBool validatePostButton = false.obs;
   RxList<Conimal> _selectedConimalList = RxList<Conimal>();
@@ -56,7 +55,7 @@ class CommunityEditMyPostController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    // _boardId = Get.arguments as String;
+
     ever(imageItemList, setImageNum);
   }
 
@@ -134,43 +133,47 @@ class CommunityEditMyPostController extends GetxController {
       );
 
       if (isConfirmed) {
-        createNewPostDB();
+        editPost();
       }
     }
   }
 
-  void createNewPostDB() async {
-    // var imageUploadRefsEither = await showLoading(() =>
-    //     _imageRepository.uploadImageFileList(imageFiles: getOnlyFileImage()));
+  void editPost() async {
+    // TODO 이미지 업로드 하는 부분 정리 필요함 : 삭제, 새로운 이미지 추가 시 처리하는 부분
+    Either<Failure, List<ImageItem>> imageUploadRefsEither = await showLoading(
+        () => _imageRepository.uploadImageFileList(
+            imageFileItems: getOnlyFileImageItems()));
 
-    // imageUploadRefsEither.fold(
-    //     (fail) => FailureInterpreter().mapFailureToSnackbar(
-    //         fail, 'image upload error'), (imageRefList) async {
-    //   var newPostResultEither = await showLoading(() =>
-    //       _communityRepository.newPost(
-    //           newPost: Post(
-    //               authorId: AuthController.to.wcUser.value!.uid,
-    //               nickname: AuthController.to.wcUser.value!.nickname,
-    //               boardId: _boardId,
-    //               content: textController.text,
-    //               createdAt: DateTime.now(),
-    //               postType: selectedPostType.value!)));
-    //   newPostResultEither.fold(
-    //       (fail) => FailureInterpreter()
-    //           .mapFailureToSnackbar(fail, 'createNewPostDB'), (addedPost) {
-    //     Get.back(result: addedPost);
-    //   });
-    // });
+    imageUploadRefsEither.fold(
+        (fail) => FailureInterpreter().mapFailureToSnackbar(
+            fail, 'image upload error'), (imageRefList) async {
+      List<ImageItem> editedImageList =
+          imageItemList.where((p0) => p0.imageType != ImageType.file).toList();
+      editedImageList.addAll(imageRefList);
+
+      Post editedPost = Post(
+          images: editedImageList,
+          authorId: AuthController.to.wcUser.value!.uid,
+          nickname: AuthController.to.wcUser.value!.nickname,
+          boardId: post.boardId,
+          postId: post.postId,
+          content: textController.text,
+          createdAt: DateTime.now(),
+          postType: selectedPostType.value!,
+          isLike: false);
+
+      var newPostResultEither = await showLoading(
+          () => _communityRepository.updateMyPost(editPost: editedPost));
+      newPostResultEither.fold(
+          (fail) => FailureInterpreter()
+              .mapFailureToSnackbar(fail, 'createNewPostDB'), (addedPost) {
+        Get.back(result: editedPost);
+      });
+    });
   }
 
-  List<File> getOnlyFileImage() {
-    List<File> imageFiles = [];
-
-    for (ImageItem imageItem in imageItemList) {
-      if (imageItem.imageType == ImageType.file) {
-        imageFiles.add(File(imageItem.resource));
-      }
-    }
-    return imageFiles;
+  List<ImageItem> getOnlyFileImageItems() {
+    // imageItemList.where((p0) => p0.imageType == ImageType.file).toList();
+    return imageItemList.where((p0) => p0.imageType == ImageType.file).toList();
   }
 }

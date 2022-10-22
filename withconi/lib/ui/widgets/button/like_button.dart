@@ -50,7 +50,6 @@ class WcLikeButton extends StatefulWidget {
     Color? iconColor,
     Color? iconDisabledColor,
     bool? isLiked,
-    required String likeNum,
     required void Function(bool) valueChanged,
     bool? disableLike,
     void Function()? onLikeTap,
@@ -60,7 +59,6 @@ class WcLikeButton extends StatefulWidget {
         _iconDisabledColor = iconDisabledColor ?? WcColors.grey100,
         _isLiked = isLiked ?? false,
         _valueChanged = valueChanged,
-        _likeNum = likeNum,
         _diableLike = disableLike ?? false,
         _onLikeTap = onLikeTap,
         super(key: key);
@@ -70,7 +68,7 @@ class WcLikeButton extends StatefulWidget {
   final bool _isLiked;
   final void Function(bool) _valueChanged;
   final Color? _iconDisabledColor;
-  final String _likeNum;
+
   final bool _diableLike;
   final void Function()? _onLikeTap;
 
@@ -89,19 +87,18 @@ class _WcLikeButtonState extends State<WcLikeButton>
   double _maxIconSize = 0.0;
   double _minIconSize = 0.0;
 
-  final int _animationTime = 300;
+  final int _animationTime = 200;
 
   bool _isFavorite = false;
   bool _isAnimationCompleted = false;
   bool _disableLike = false;
-  String _likeNum = '';
   void Function()? _onLikeTap;
 
   @override
   void initState() {
     super.initState();
     _onLikeTap = widget._onLikeTap;
-    _likeNum = widget._likeNum;
+
     _isFavorite = widget._isLiked;
     _disableLike = widget._diableLike;
     _maxIconSize = (widget._iconSize < 20.0)
@@ -163,8 +160,6 @@ class _WcLikeButtonState extends State<WcLikeButton>
     });
   }
 
-  setAnimation() {}
-
   @override
   void dispose() {
     super.dispose();
@@ -173,52 +168,46 @@ class _WcLikeButtonState extends State<WcLikeButton>
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: _controller,
-      builder: (BuildContext context, _) {
-        return GestureDetector(
-          onTap: () {
-            if (_disableLike == false) {
-              setState(() {
-                if (_isAnimationCompleted == true) {
-                  _controller.reverse();
+    return Row(
+      children: [
+        AnimatedBuilder(
+          animation: _controller,
+          builder: (BuildContext context, _) {
+            return GestureDetector(
+              onTap: () {
+                if (_disableLike == false) {
+                  setState(() {
+                    if (_isAnimationCompleted == true) {
+                      _controller.reverse();
+                    } else {
+                      _controller.forward();
+                    }
+                  });
                 } else {
-                  _controller.forward();
+                  setState(() {
+                    if (_onLikeTap != null) {
+                      _onLikeTap!();
+                    }
+                  });
                 }
-              });
-            } else {
-              setState(() {
-                if (_onLikeTap != null) {
-                  _onLikeTap!();
-                }
-              });
-            }
+              },
+              child: Container(
+                padding: const EdgeInsets.fromLTRB(0, 5, 5, 4),
+                color: Colors.transparent,
+                child: Row(
+                  children: [
+                    Icon(
+                      (Icons.favorite),
+                      color: _colorAnimation.value,
+                      size: _sizeAnimation.value,
+                    ),
+                  ],
+                ),
+              ),
+            );
           },
-          child: Container(
-            padding: const EdgeInsets.fromLTRB(0, 5, 9, 4),
-            color: Colors.transparent,
-            child: Row(
-              children: [
-                Icon(
-                  (Icons.favorite),
-                  color: _colorAnimation.value,
-                  size: _sizeAnimation.value,
-                ),
-                SizedBox(
-                  width: 5,
-                ),
-                Text(
-                  _likeNum,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 14,
-                    color: WcColors.grey140,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        );
-      },
+        ),
+      ],
     );
   }
 }

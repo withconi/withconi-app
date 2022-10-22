@@ -119,8 +119,7 @@ class LikedPostController extends GetxController {
   // }
 
   Future<void> _getLikedPosts() async {
-    final postDataEither =
-        await _communityRepository.getLikedPostList(uid: _uid);
+    final postDataEither = await _communityRepository.getLikedPostList();
 
     postDataEither.fold(
         (fail) =>

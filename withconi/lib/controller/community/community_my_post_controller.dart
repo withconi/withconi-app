@@ -1,12 +1,17 @@
+import 'dart:developer';
+
+import 'package:dartz/dartz.dart';
 import 'package:withconi/configs/helpers/calculator.dart';
 import 'package:withconi/controller/auth_controller.dart';
+import 'package:withconi/controller/community/communty_widgets/more_tap_bottom_sheet.dart';
 import 'package:withconi/controller/infinite_scroll_controller.dart';
 import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
 import 'package:withconi/data/repository/auth_repository.dart';
 import 'package:withconi/data/repository/community_repository.dart';
-import 'package:withconi/ui/widgets/loading.dart';
+import 'package:withconi/ui/widgets/loading/loading_overlay.dart';
 
 import '../../configs/constants/enum.dart';
+import '../../core/error_handling/failures.dart';
 import '../../data/model/post.dart';
 import '../../import_basic.dart';
 import '../../ui/widgets/photo_gallary/image_item.dart';
@@ -45,14 +50,11 @@ class MyPostPageController extends GetxController {
   final RxBool isLiked = false.obs;
   final RxBool _isLoading = false.obs;
 
-  int get limit => _paginationFilter.value.limit!;
-  int get _page => _paginationFilter.value.page!;
+  int get limit => _paginationFilter.value.limit;
+  int get _page => _paginationFilter.value.page;
 
   void loadNextPage() => _changePaginationFilter(_page + 1, limit);
   void loadNewPage() => _changePaginationFilter(1, limit);
-
-  String uploadAtStr(int postIndex) =>
-      TimeCalculator().calculateUploadAt(userPostList[postIndex].createdAt);
 
   Color badgeBackgroundColor(int postIndex) {
     switch (userPostList[postIndex].postType) {
@@ -108,7 +110,11 @@ class MyPostPageController extends GetxController {
   }
 
   onLikeTap() {
-    showCustomSnackbar(text: '내 글에는 좋아요를 누를 수 없어요');
+    // TODO - 내 글에도 좋아요 기능 할 수 있도록 하기
+  }
+
+  onPostTap(Post selectedPost) {
+    Get.toNamed(Routes.COMMUNITY_POST_DETAIL, arguments: selectedPost);
   }
 
   _addScrollListener(
@@ -128,8 +134,9 @@ class MyPostPageController extends GetxController {
 
   Future<void> _getMyPostList() async {
     _isLoading.value = true;
-    final postDataEither = await _communityRepository.getUserPostList(
-        paginationFilter: _paginationFilter.value, userId: _userId);
+    final postDataEither = await _communityRepository.getMyPostList(
+      paginationFilter: _paginationFilter.value,
+    );
 
     postDataEither.fold(
         (fail) => FailureInterpreter()
@@ -144,6 +151,32 @@ class MyPostPageController extends GetxController {
       }
       _isLoading.value = false;
     });
+  }
+
+  _deletePost(Post post) async {
+    Either<Failure, bool> deleteEither = await _communityRepository.deletePost(
+        postId: post.postId!, boardId: post.boardId);
+    deleteEither.fold((failure) {
+      FailureInterpreter().mapFailureToDialog(failure, 'getPost');
+    }, (success) {
+      log('게시물 삭제 완료');
+      Get.back();
+    });
+  }
+
+  onPostMoreTap(Post post, MoreOption? moreOption) async {
+    if (moreOption != null) {
+      switch (moreOption) {
+        case MoreOption.edit:
+          await Get.toNamed(Routes.COMMUNITY_POST_EDIT, arguments: post);
+          break;
+        case MoreOption.delete:
+          await _deletePost(post);
+          break;
+        default:
+          break;
+      }
+    }
   }
 
   Future<void> resetPage({SortType? sortType, PostType? postType}) async {

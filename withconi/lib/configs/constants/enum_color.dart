@@ -1,5 +1,5 @@
 import 'dart:ui';
-
+import '../../import_basic.dart';
 import '../../ui/theme/colors.dart';
 import 'enum.dart';
 
@@ -43,5 +43,56 @@ Color colorByReview(ReviewRate? reviewRate) {
       return WcColors.pinkLight;
     default:
       return WcColors.grey110;
+  }
+}
+
+Color postTypeBackgroundColor(PostType postType) {
+  switch (postType) {
+    case PostType.all:
+      return WcColors.orange20;
+    case PostType.cat:
+      return WcColors.blue60;
+    case PostType.dog:
+      return WcColors.green40;
+    default:
+      return Colors.transparent;
+  }
+}
+
+Color speciesBackgroundColor(Species species) {
+  switch (species) {
+    case Species.dog:
+      return WcColors.orange20;
+    case Species.cat:
+      return WcColors.blue60;
+
+    default:
+      return Colors.transparent;
+  }
+}
+
+Color postTypeTextColor(PostType postType) {
+  switch (postType) {
+    case PostType.all:
+      return WcColors.orange100;
+    case PostType.cat:
+      return WcColors.blue100;
+    case PostType.dog:
+      return WcColors.green100;
+
+    default:
+      return Colors.transparent;
+  }
+}
+
+Color speciesTypeTextColor(Species species) {
+  switch (species) {
+    case Species.dog:
+      return WcColors.orange100;
+    case Species.cat:
+      return WcColors.blue100;
+
+    default:
+      return Colors.transparent;
   }
 }

@@ -5,8 +5,11 @@ import '../../configs/constants/api_url.dart';
 class ConimalAPI {
   final Api _dio = Api();
 
-  Future<String?> createConimal({required Map<String, dynamic> conimal}) async {
+  Future<String?> createConimal(
+      {required Map<String, dynamic> conimal,
+      required bool requiresToken}) async {
     Map<String, dynamic> data = await _dio.apiCall(
+      header: {"requiresToken": requiresToken},
       url: HttpUrl.CONIMAL_CREATE,
       queryParameters: null,
       body: conimal,
@@ -14,11 +17,14 @@ class ConimalAPI {
     );
   }
 
-  Future<String?> updateConimal({required Map<String, dynamic> conimal}) async {
+  Future<String?> updateConimal(
+      {required Map<String, dynamic> updateData,
+      required bool requiresToken}) async {
     Map<String, dynamic> data = await _dio.apiCall(
+      header: {"requiresToken": requiresToken},
       url: HttpUrl.CONIMAL_UPDATE,
       queryParameters: null,
-      body: conimal,
+      body: updateData,
       requestType: RequestType.POST,
     );
   }
@@ -26,12 +32,12 @@ class ConimalAPI {
   Future<String?> updateConimalDisease(
       {required List<String> diseases,
       required String conimalId,
-      required String userId}) async {
+      required bool requiresToken}) async {
     Map<String, dynamic> data = await _dio.apiCall(
+      header: {'requiresToken': requiresToken},
       url: HttpUrl.CONIMAL_UPDATE,
       queryParameters: null,
       body: {
-        "userId": userId,
         "conimalId": conimalId,
         "diseases": diseases,
       },
@@ -40,11 +46,12 @@ class ConimalAPI {
   }
 
   Future<void> deleteConimal(
-      {required String userId, required String conimalId}) async {
+      {required String conimalId, required bool requiresToken}) async {
     Map<String, dynamic> data = await _dio.apiCall(
+      header: {'requiresToken': requiresToken},
       url: HttpUrl.CONIMAL_DELETE,
       queryParameters: null,
-      body: {"userId": userId, "conimalId": conimalId},
+      body: {"conimalId": conimalId},
       requestType: RequestType.POST,
     );
   }

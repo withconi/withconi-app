@@ -9,7 +9,7 @@ class PlaceDetail {
 
   String address = '';
 
-  late DiseasePercents diseasePercentInfo;
+  late DiseasePercentInfo diseaseInfo;
 
   LatLngClass location = LatLngClass(latitude: 0.0, longitude: 0.0);
 
@@ -30,6 +30,7 @@ class PlaceDetail {
   int totalVisitingDogs = 0;
 
   String phone = '';
+  bool isBookmarked = false;
 
   PlaceDetail({
     required this.locId,
@@ -37,7 +38,7 @@ class PlaceDetail {
     required this.address,
     required this.location,
     required this.placeType,
-    required this.diseasePercentInfo,
+    required this.diseaseInfo,
     required this.thumbnail,
     required this.totalRecommend,
     required this.totalReviews,
@@ -45,11 +46,12 @@ class PlaceDetail {
     required this.totalVisitingDogs,
     required this.totalVisitingCats,
     required this.phone,
+    required this.isBookmarked,
   });
 
   PlaceDetail.fromJson(Map<String, dynamic> json) {
     locId = json['_id'] ?? '';
-    name = json['title'] ?? '';
+    name = json['name'] ?? '';
     address = json['address'] ?? '';
     location = LatLngClass.fromJson(json['coordinate']);
     totalRecommend = json['totalRecommend'] ?? 0;
@@ -58,8 +60,9 @@ class PlaceDetail {
     totalVisiting = json['totalVisiting'] ?? 0;
     totalVisitingDogs = json['totalVisitingDogs'] ?? 0;
     totalVisitingCats = json['totalVisitingCats'] ?? 0;
-    diseasePercentInfo = DiseasePercents.fromJson(json);
+    diseaseInfo = DiseasePercentInfo.fromJson(json);
     placeType = PlaceType.hospital;
     phone = json['phone'] ?? '';
+    isBookmarked = json['isBookmarked'] ?? false;
   }
 }

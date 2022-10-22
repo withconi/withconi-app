@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/controller/common_controller/life_cycle_controller.dart';
 import 'package:withconi/controller/map/map_main_page_controller.dart';
+import 'package:withconi/ui/entities/nav_destination.dart';
 import 'package:withconi/ui/pages/community/community_main_page.dart';
 import 'package:withconi/ui/pages/diagnosis/diagnosis_main_page.dart';
 import 'package:withconi/ui/pages/dictionary/dictionary_main_page.dart';
@@ -31,24 +32,22 @@ class NavigationController extends GetxController {
         .checkRootPageStatus(rootRoute: changedRootRoute);
   }
 
-  getPageByIndex(int index) async {
+  getPageByIndex(int index) {
     navBarIndex(index);
+
     switch (index) {
       case 0:
         rootPageRoute(Routes.HOME);
-        return HomePage();
+        break;
       case 1:
-        rootPageRoute(Routes.DIAGNOSIS_MAIN);
-        return DiagnosisMainPage();
-      case 2:
         rootPageRoute(Routes.MAP_MAIN);
-        return MapMainPage();
-      case 3:
+        break;
+      case 2:
         rootPageRoute(Routes.COMMUNITY_MAIN);
-        return CommunityMainPage();
-      case 4:
+        break;
+      case 3:
         rootPageRoute(Routes.DICTIONARY_MAIN);
-        return DictionaryMainPage();
+        break;
       default:
     }
   }

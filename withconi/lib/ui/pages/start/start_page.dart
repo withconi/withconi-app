@@ -11,7 +11,7 @@ import 'package:withconi/ui/theme/colors.dart';
 import 'package:withconi/ui/theme/sizes.dart';
 
 import '../../widgets/button/state_button.dart';
-import '../../widgets/loading.dart';
+import '../../widgets/loading/loading_overlay.dart';
 import '../../widgets/text_field/textfield.dart';
 
 class StartPage extends StatelessWidget {
@@ -70,13 +70,13 @@ class StartPage extends StatelessWidget {
                   ),
                   Obx(
                     () => WcStateButtonWidget(
-                      active:
-                          (_controller.buttonState.value == ButtonState.sucess),
+                      active: (_controller.buttonState.value ==
+                          ButtonState.success),
                       activeButtonColor: WcColors.blue100,
                       activeTextColor: WcColors.white,
                       buttonText: _controller.buttonText.value,
                       buttonWidth: WcWidth - 40,
-                      onTap: _controller.goNext,
+                      onTap: _controller.onEmailButtonTap,
                       buttonState: _controller.buttonState.value,
                     ),
                   ),
@@ -89,32 +89,32 @@ class StartPage extends StatelessWidget {
                           imageSrc: 'assets/icons/kakao.png',
                           label: '카카오톡',
                           onTap: () async {
-                            await showLoading(() => _controller.onTapSnsButton(
-                                provider: Provider.kakao));
+                            await showLoading(() => _controller
+                                .getEmailFromProvider(Provider.kakao));
                           },
                         ),
                         SnsButtonWidget(
                           imageSrc: 'assets/icons/google.png',
                           label: '구글',
                           onTap: () async {
-                            await showLoading(() => _controller.onTapSnsButton(
-                                provider: Provider.google));
+                            await showLoading(() => _controller
+                                .getEmailFromProvider(Provider.google));
                           },
                         ),
                         SnsButtonWidget(
                           imageSrc: 'assets/icons/naver.png',
                           label: '네이버',
                           onTap: () async {
-                            await showLoading(() => _controller.onTapSnsButton(
-                                provider: Provider.naver));
+                            await showLoading(() => _controller
+                                .getEmailFromProvider(Provider.naver));
                           },
                         ),
                         SnsButtonWidget(
                           imageSrc: 'assets/icons/apple.png',
                           label: '애플',
                           onTap: () async {
-                            await showLoading(() => _controller.onTapSnsButton(
-                                provider: Provider.apple));
+                            await showLoading(() => _controller
+                                .getEmailFromProvider(Provider.apple));
                           },
                         ),
                       ],

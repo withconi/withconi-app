@@ -1,11 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:intl/intl.dart';
-import 'package:withconi/controller/auth_controller.dart';
+import 'package:withconi/controller/signup/data/signup_data_manager.dart';
 import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
-
-import 'package:withconi/core/error_handling/error_message_object.dart';
-import 'package:withconi/data/repository/conimal_repository.dart';
-import 'package:withconi/data/repository/signup_repository.dart';
 import '../../configs/constants/enum.dart';
 import '../../configs/constants/regex.dart';
 import '../../configs/constants/strings.dart';
@@ -16,10 +12,11 @@ import '../../import_basic.dart';
 
 class SignupConimalEditController extends GetxController {
   // final ConimalRepository _signUpRepository = ConimalRepository.to;
-  final SignupRepository _signUpRepository = SignupRepository.to;
+  // final SignupRepository _signUpRepository = Get.find();
+  final SignUpDataManager _signUpDataManager = Get.find();
   late int conimalIndex;
   RxString controllerTag = ''.obs;
-
+  late Conimal thisConimal;
   RxString _userName = ''.obs;
   RxString _conimalName = ''.obs;
   RxString diseaseText = ''.obs;
@@ -55,14 +52,14 @@ class SignupConimalEditController extends GetxController {
   void onInit() {
     super.onInit();
     conimalIndex = Get.arguments['index'];
-    getConimalToEdit(conimalIndex);
+    _getConimalToEdit(conimalIndex);
   }
 
   @override
   void onReady() {
     super.onReady();
 
-    _userName.value = _signUpRepository.name;
+    _userName.value = _signUpDataManager.name;
 
     debounce(_conimalName, validateName,
         time: const Duration(milliseconds: 400));
@@ -119,8 +116,6 @@ class SignupConimalEditController extends GetxController {
     }
     return isButtonValid.value;
   }
-
-  nextStep() {}
 
   validateName(String value) {
     final nameRegExp = Regex.name;
@@ -185,41 +180,41 @@ class SignupConimalEditController extends GetxController {
   }
 
   editConimal() {
-    Conimal newConimal = Conimal(
-        conimalId: DateTime.now().millisecondsSinceEpoch.toString(),
-        name: conimalName,
-        adoptedDate: adoptedDate!,
-        birthDate: birthDate!,
-        gender: conimalGender.value!,
-        species: conimalSpecies.value!,
-        diseases: _diseaseList,
-        userId: AuthController.to.wcUser.value!.uid
-        // createdAt: DateTime.now(),
-        );
-    _signUpRepository.editTempConimal(newConimal, conimalIndex);
+    Conimal editedConimal = thisConimal.copyWith(
+      conimalId: DateTime.now().millisecondsSinceEpoch.toString(),
+      name: conimalName,
+      adoptedDate: adoptedDate!,
+      birthDate: birthDate!,
+      gender: conimalGender.value!,
+      species: conimalSpecies.value!,
+      diseases: _diseaseList,
+    );
+
+    _signUpDataManager.editConimal(editedConimal, conimalIndex);
 
     Get.offNamedUntil(Routes.SIGNUP_CONIMAL_STEP2,
         ModalRoute.withName(Routes.SIGNUP_PROFILE));
   }
 
-  getConimalToEdit(int conimalIndex) {
+  _getConimalToEdit(int conimalIndex) {
     Either<Failure, Conimal> conimalEither =
-        _signUpRepository.getTempConimal(conimalIndex);
+        _signUpDataManager.getConimalInfo(conimalIndex);
     conimalEither.fold(
         (fail) => FailureInterpreter()
             .mapFailureToSnackbar(fail, StackTrace.current.toString()),
-        (conimal) => setConimalInfo(conimal));
+        (conimal) => _setConimalInfo(conimal));
   }
 
-  setConimalInfo(Conimal editConimal) {
-    onSpeicesChanged(editConimal.species);
-    onBirthDateChanged(editConimal.birthDate);
-    onAdoptedDateChanged(editConimal.adoptedDate);
-    onDiseaseListChanged(editConimal.diseases);
-    onConimalNameChanged(editConimal.name);
-    conimalNameTextController.text = editConimal.name;
-    onGenderChanged(editConimal.gender);
-    if (editConimal.gender == Gender.female) {
+  _setConimalInfo(Conimal editableConimal) {
+    thisConimal = editableConimal;
+    onSpeicesChanged(editableConimal.species);
+    onBirthDateChanged(editableConimal.birthDate);
+    onAdoptedDateChanged(editableConimal.adoptedDate);
+    onDiseaseListChanged(editableConimal.diseases);
+    onConimalNameChanged(editableConimal.name);
+    onGenderChanged(editableConimal.gender);
+    conimalNameTextController.text = editableConimal.name;
+    if (editableConimal.gender == Gender.female) {
       genderSelectionList[0] = true;
       genderSelectionList[1] = false;
     } else {

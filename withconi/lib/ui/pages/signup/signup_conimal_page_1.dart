@@ -175,6 +175,31 @@ class SignupConimal1Page extends StatelessWidget {
                       ),
                       Obx(() => WcUnderlinedTextButton(
                             active: _controller.diseaseSelected.value,
+                            onTap: () {},
+                            valueText: _controller.diseaseText.value,
+                            suffixTextStyle: GoogleFonts.notoSans(
+                                color: WcColors.black,
+                                fontSize: 17,
+                                fontWeight: FontWeight.w300),
+                            valueTextStyle: GoogleFonts.notoSans(
+                                color: WcColors.black,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600),
+                            hintText: '묘종/견종 검색',
+                            hintTextStyle: GoogleFonts.notoSans(
+                                color: WcColors.grey100,
+                                fontSize: 17,
+                                fontWeight: FontWeight.w300),
+                            suffixText: _controller.diseaseSuffixText.value,
+                            suffixIcon: SvgPicture.asset(
+                              'assets/icons/search.svg',
+                            ),
+                          )),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      Obx(() => WcUnderlinedTextButton(
+                            active: _controller.diseaseSelected.value,
                             onTap: () {
                               _controller.selectDisease();
                             },
@@ -187,7 +212,7 @@ class SignupConimal1Page extends StatelessWidget {
                                 color: WcColors.black,
                                 fontSize: 18,
                                 fontWeight: FontWeight.w600),
-                            hintText: '질병 추가',
+                            hintText: '질병 검색하여 추가',
                             hintTextStyle: GoogleFonts.notoSans(
                                 color: WcColors.grey100,
                                 fontSize: 17,

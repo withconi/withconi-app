@@ -1,23 +1,27 @@
 import 'package:get/get.dart';
 import 'package:withconi/controller/auth_controller.dart';
+import 'package:withconi/controller/common_controller/life_cycle_controller.dart';
+import 'package:withconi/controller/navigation_controller.dart';
 
-import 'package:withconi/data/repository/signup_repository.dart';
+import '../controller/community/community_main_controller.dart';
+import '../controller/home/home_controller.dart';
+import '../controller/map/map_main_page_controller.dart';
 
 class InitialBinding implements Bindings {
   @override
   void dependencies() {
-    Get.lazyReplace(() => SignupRepository(), fenix: true);
     Get.put<AuthController>(AuthController(), permanent: true);
+    Get.put<LifeCycleController>(LifeCycleController(), permanent: true);
   }
 }
 
-// class HomeBinding implements Bindings {
-//   @override
-//   void dependencies() {
-//     Get.put<NavigationController>(NavigationController(), permanent: true);
-//     Get.put<HomeController>(HomeController(), permanent: true);
-//     Get.put<CommunityMainController>(CommunityMainController(),
-//         permanent: true);
-//     Get.put<MapMainPageController>(MapMainPageController(), permanent: true);
-//   }
-// }
+class NavigationBinding implements Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut(() => NavigationController());
+    Get.lazyReplace(() => HomeController(), tag: 'Initial', fenix: true);
+    Get.lazyReplace(() => CommunityMainController(),
+        tag: 'Initial', fenix: true);
+    Get.lazyReplace(() => MapMainPageController(), tag: 'Initial', fenix: true);
+  }
+}
