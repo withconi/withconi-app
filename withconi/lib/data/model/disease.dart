@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../configs/constants/enum.dart';
 import '../../core/error_handling/exceptions.dart';
 import 'conimal.dart';
 part 'disease.freezed.dart';
@@ -14,6 +15,7 @@ class Disease with _$Disease {
     required String name,
     required List<String> symptoms,
     @Default('') String? description,
+    DiseaseType? diseaseType,
   }) = _Disease;
 
   factory Disease.fromJson(Map<String, dynamic> json) =>

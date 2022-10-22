@@ -26,6 +26,7 @@ mixin _$Disease {
   String get name => throw _privateConstructorUsedError;
   List<String> get symptoms => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
+  DiseaseType? get diseaseType => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,7 +42,8 @@ abstract class $DiseaseCopyWith<$Res> {
       String code,
       String name,
       List<String> symptoms,
-      String? description});
+      String? description,
+      DiseaseType? diseaseType});
 }
 
 /// @nodoc
@@ -59,6 +61,7 @@ class _$DiseaseCopyWithImpl<$Res> implements $DiseaseCopyWith<$Res> {
     Object? name = freezed,
     Object? symptoms = freezed,
     Object? description = freezed,
+    Object? diseaseType = freezed,
   }) {
     return _then(_value.copyWith(
       createdAt: createdAt == freezed
@@ -81,6 +84,10 @@ class _$DiseaseCopyWithImpl<$Res> implements $DiseaseCopyWith<$Res> {
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      diseaseType: diseaseType == freezed
+          ? _value.diseaseType
+          : diseaseType // ignore: cast_nullable_to_non_nullable
+              as DiseaseType?,
     ));
   }
 }
@@ -96,7 +103,8 @@ abstract class _$$_DiseaseCopyWith<$Res> implements $DiseaseCopyWith<$Res> {
       String code,
       String name,
       List<String> symptoms,
-      String? description});
+      String? description,
+      DiseaseType? diseaseType});
 }
 
 /// @nodoc
@@ -115,6 +123,7 @@ class __$$_DiseaseCopyWithImpl<$Res> extends _$DiseaseCopyWithImpl<$Res>
     Object? name = freezed,
     Object? symptoms = freezed,
     Object? description = freezed,
+    Object? diseaseType = freezed,
   }) {
     return _then(_$_Disease(
       createdAt: createdAt == freezed
@@ -137,6 +146,10 @@ class __$$_DiseaseCopyWithImpl<$Res> extends _$DiseaseCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      diseaseType: diseaseType == freezed
+          ? _value.diseaseType
+          : diseaseType // ignore: cast_nullable_to_non_nullable
+              as DiseaseType?,
     ));
   }
 }
@@ -150,7 +163,8 @@ class _$_Disease implements _Disease {
       required this.code,
       required this.name,
       required final List<String> symptoms,
-      this.description = ''})
+      this.description = '',
+      this.diseaseType})
       : _symptoms = symptoms;
 
   factory _$_Disease.fromJson(Map<String, dynamic> json) =>
@@ -173,10 +187,12 @@ class _$_Disease implements _Disease {
   @override
   @JsonKey()
   final String? description;
+  @override
+  final DiseaseType? diseaseType;
 
   @override
   String toString() {
-    return 'Disease(createdAt: $createdAt, code: $code, name: $name, symptoms: $symptoms, description: $description)';
+    return 'Disease(createdAt: $createdAt, code: $code, name: $name, symptoms: $symptoms, description: $description, diseaseType: $diseaseType)';
   }
 
   @override
@@ -189,7 +205,9 @@ class _$_Disease implements _Disease {
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other._symptoms, _symptoms) &&
             const DeepCollectionEquality()
-                .equals(other.description, description));
+                .equals(other.description, description) &&
+            const DeepCollectionEquality()
+                .equals(other.diseaseType, diseaseType));
   }
 
   @JsonKey(ignore: true)
@@ -200,7 +218,8 @@ class _$_Disease implements _Disease {
       const DeepCollectionEquality().hash(code),
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(_symptoms),
-      const DeepCollectionEquality().hash(description));
+      const DeepCollectionEquality().hash(description),
+      const DeepCollectionEquality().hash(diseaseType));
 
   @JsonKey(ignore: true)
   @override
@@ -221,7 +240,8 @@ abstract class _Disease implements Disease {
       required final String code,
       required final String name,
       required final List<String> symptoms,
-      final String? description}) = _$_Disease;
+      final String? description,
+      final DiseaseType? diseaseType}) = _$_Disease;
 
   factory _Disease.fromJson(Map<String, dynamic> json) = _$_Disease.fromJson;
 
@@ -236,6 +256,8 @@ abstract class _Disease implements Disease {
   List<String> get symptoms;
   @override
   String? get description;
+  @override
+  DiseaseType? get diseaseType;
   @override
   @JsonKey(ignore: true)
   _$$_DiseaseCopyWith<_$_Disease> get copyWith =>
