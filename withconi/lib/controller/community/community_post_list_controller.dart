@@ -56,8 +56,8 @@ class CommunityPostListController extends GetxController {
   Future<void> onReady() async {
     super.onReady();
 
-    await showLoading((() => _getPostList()));
-    ever(_paginationFilter, (_) => _getPostList());
+    await showLoading((() => _getPostList(_paginationFilter.value)));
+    ever(_paginationFilter, _getPostList);
 
     _addScrollListener(
         isLastPage: _lastPage,
@@ -120,29 +120,36 @@ class CommunityPostListController extends GetxController {
     });
   }
 
-  Future<void> _getPostList() async {
-    await showLoading(() async {
-      _isLoading.value = true;
-      final postDataEither = await _communityRepository.getPostList(
-          paginationFilter: _paginationFilter.value,
+  Future<void> _getPostList(PaginationFilter paginationFilter) async {
+    _isLoading.value = true;
+    late final postDataEither;
+
+    if (paginationFilter.page == 1) {
+      postDataEither = await showLoading(() => _communityRepository.getPostList(
+          paginationFilter: paginationFilter,
+          boardId: _boardId,
+          postType: selectedPostType.value));
+    } else {
+      postDataEither = await _communityRepository.getPostList(
+          paginationFilter: paginationFilter,
           boardId: _boardId,
           postType: selectedPostType.value);
+    }
 
-      postDataEither.fold(
-          (fail) => FailureInterpreter()
-              .mapFailureToSnackbar(fail, '_getPostListByPage'), (newPostList) {
-        if (_paginationFilter.value.page == 1) {
-          postList.clear();
-        }
-        if (newPostList.isEmpty) {
-          _lastPage.value = true;
-        } else {
-          likePostIdList.addAll(filterLikedPosts(postList: newPostList));
-          postList.addAll(newPostList);
-        }
-        postList.refresh();
-        _isLoading.value = false;
-      });
+    postDataEither.fold(
+        (fail) => FailureInterpreter()
+            .mapFailureToSnackbar(fail, '_getPostListByPage'), (newPostList) {
+      if (paginationFilter.page == 1) {
+        postList.clear();
+      }
+      if (newPostList.isEmpty) {
+        _lastPage.value = true;
+      } else {
+        likePostIdList.addAll(filterLikedPosts(postList: newPostList));
+        postList.addAll(newPostList);
+      }
+      postList.refresh();
+      _isLoading.value = false;
     });
   }
 
@@ -157,6 +164,7 @@ class CommunityPostListController extends GetxController {
     return filteredPostIdList;
   }
 
+//TODO : resetPage에 로딩 없애기
   Future<void> resetPage({SortType? sortType, PostType? postType}) async {
     selectedSortType.value = sortType ?? SortType.recent;
     selectedPostType.value = postType ?? PostType.all;
@@ -228,7 +236,7 @@ class CommunityPostListController extends GetxController {
   }
 
   _blockUserPosts(String blockUserId) async {
-    await showLoading(() => Future.delayed(const Duration(milliseconds: 1000)));
+    await showLoading(() => Future.delayed(const Duration(milliseconds: 500)));
     postList.removeWhere((element) => element.authorId == blockUserId);
     postList.refresh();
   }

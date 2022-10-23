@@ -27,11 +27,18 @@ class DiseasePercentInfo {
 
     diseaseMap = Map.fromEntries(diseaseMap.entries.toList()
       ..sort((e2, e1) => e1.value.compareTo(e2.value)));
-
-    print(diseaseMap.entries);
-    print(diseaseMap.keys);
-
     return DiseasePercentInfo(
         totalDisease: totalDisease, diseaseMap: diseaseMap);
   }
+}
+
+class DiseaseHistory {
+  DiseaseType diseaseType = DiseaseType.dentistry;
+  int totalDisease = 20;
+  List<Map<String, dynamic>> diseaseList = [
+    {'갑상선 기능 항진증': 36},
+    {'갑상선 기능 저하증': 36},
+    {'어쩌구질병': 26},
+    {'기타': 46},
+  ];
 }
