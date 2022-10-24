@@ -47,7 +47,7 @@ app.*.map.json
 
 
 # 개인 gitignore 리스트
-/ios/Runner/GoogleService-info.plist
-/android/app/google-services.json
-/android/app/key.properties
-/android/app/withconi-keystore.jks
+# /ios/Runner/GoogleService-info.plist
+# /android/app/google-services.json
+# /android/app/key.properties
+# /android/app/withconi-keystore.jks
