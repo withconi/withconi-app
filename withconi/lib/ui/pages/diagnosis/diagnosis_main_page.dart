@@ -62,7 +62,9 @@ class DiagnosisMainPage extends StatelessWidget {
                       margin: EdgeInsets.only(bottom: 20),
                       child: WcWideButtonWidget(
                         buttonText: '자가진단 시작',
-                        onTap: () {},
+                        onTap: () {
+                          Get.toNamed(Routes.DIAGNOSIS_STEP1);
+                        },
                         active: true,
                         buttonWidth: WcWidth - 40,
                       ),
