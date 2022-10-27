@@ -3,7 +3,6 @@ import 'package:get_storage/get_storage.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:withconi/configs/constants/auth_variables.dart';
 import 'package:withconi/routes/withconi_bindings.dart';
-import 'configs/helpers/navigator_observer.dart';
 import 'import_basic.dart';
 
 Future<void> main() async {

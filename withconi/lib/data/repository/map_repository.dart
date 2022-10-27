@@ -19,6 +19,8 @@ import '../model/conimal.dart';
 import '../../ui/entities/review_entity.dart';
 import '../model/hospital_preview.dart';
 import '../model/pharmacy_preview.dart';
+import '../model/response_model/place_preview_response.dart';
+import '../model/response_model/review_history_response.dart';
 import '../model/review.dart';
 import '../model/user.dart';
 
@@ -125,7 +127,7 @@ class MapRepository {
     }
   }
 
-  Future<Either<Failure, TotalReviewDataResponse>> getTotalReviewData({
+  Future<Either<Failure, ReviewHistoryResponse>> getTotalReviewData({
     required String locId,
     required bool onlyVerfiedReview,
   }) async {
@@ -134,8 +136,8 @@ class MapRepository {
           locId: locId, onlyVerified: onlyVerfiedReview, requiresToken: true);
 
       try {
-        TotalReviewDataResponse reviewResponse =
-            TotalReviewDataResponse.fromJson(data);
+        ReviewHistoryResponse reviewResponse =
+            ReviewHistoryResponse.fromJson(data);
 
         return Right(reviewResponse);
       } catch (e) {

@@ -25,100 +25,96 @@ class DiagnosisSymptomPage extends StatelessWidget {
     DiagnosisSymptomController _controller =
         Get.put(DiagnosisSymptomController());
 
-    return GestureDetector(
-      onTap: () {
-        FocusScopeNode currentFocus = FocusScope.of(context);
-
-        if (!currentFocus.hasPrimaryFocus) {
-          currentFocus.unfocus();
-        }
-      },
-      child: WillPopScope(
-        onWillPop: () async => false,
-        child: Scaffold(
-          appBar: WcAppBar(
-            title: '',
-            onLeadingTap: _controller.getBack,
-          ),
-          body: Obx(
-            () => (_controller.isLoading.value)
-                ? LoadingPage()
-                : SingleChildScrollView(
-                    child: SizedBox(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: Image.asset(
-                              'assets/icons/diagnosis/symptoms_${symptomsToValue(_controller.symptomGroup.symptomType)}.png',
-                              height: 80,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  '${symptomsToKorean(_controller.symptomGroup.symptomType)}이상',
-                                  style: TextStyle(
-                                      fontFamily: WcFontFamily.notoSans,
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                Text(
-                                  '1개 이상의 증상을 선택해주세요',
-                                  style: TextStyle(
-                                      fontFamily: WcFontFamily.notoSans,
-                                      fontSize: 17,
-                                      height: 2,
-                                      fontWeight: FontWeight.w400),
-                                ),
-                                SizedBox(
-                                  height: 25,
-                                ),
-                                Wrap(
-                                  spacing: 10,
-                                  runSpacing: 10,
-                                  children: _controller.symptomItemList
-                                      .map(
-                                        (symptom) => Obx(
-                                          () => SymptomItemButton(
-                                            onTap: _controller.onSymptomItemTap,
-                                            selected: _controller
-                                                .selectedSymptomItemList
-                                                .contains(symptom),
-                                            symptomItemText: symptom,
-                                          ),
-                                        ),
-                                      )
-                                      .toList(),
-                                ),
-                                const SizedBox(
-                                  height: 50,
-                                ),
-                                // WcWideButtonWidget(
-                                //   active: false,
-                                //   activeButtonColor: WcColors.blue100,
-                                //   activeTextColor: WcColors.white,
-                                //   buttonText: '선택완료',
-                                //   buttonWidth: WcWidth - 40,
-                                //   onTap: () {},
-                                // ),
-                                const SizedBox(
-                                  height: 20,
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-          ),
+    return Scaffold(
+      appBar: WcAppBar(
+        title: '',
+        onActionTap: _controller.getBack,
+        action: Text(
+          '완료',
+          style: TextStyle(
+              fontFamily: WcFontFamily.notoSans,
+              fontSize: 17,
+              color: WcColors.blue100,
+              fontWeight: FontWeight.w600),
         ),
+      ),
+      body: Obx(
+        () => (_controller.isLoading.value)
+            ? LoadingPage()
+            : SingleChildScrollView(
+                child: SizedBox(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: Image.asset(
+                          'assets/icons/diagnosis/symptoms_${symptomsToValue(_controller.symptomGroup.symptomType)}.png',
+                          height: 80,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              '${symptomsToKorean(_controller.symptomGroup.symptomType)}이상',
+                              style: TextStyle(
+                                  fontFamily: WcFontFamily.notoSans,
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            Text(
+                              '1개 이상의 증상을 선택해주세요',
+                              style: TextStyle(
+                                  fontFamily: WcFontFamily.notoSans,
+                                  fontSize: 17,
+                                  height: 2,
+                                  fontWeight: FontWeight.w400),
+                            ),
+                            SizedBox(
+                              height: 25,
+                            ),
+                            Wrap(
+                              spacing: 10,
+                              runSpacing: 10,
+                              children: _controller.symptomItemList
+                                  .map(
+                                    (symptom) => Obx(
+                                      () => SymptomItemButton(
+                                        onTap: _controller.onSymptomItemTap,
+                                        selected: _controller
+                                            .selectedSymptomItemList
+                                            .contains(symptom),
+                                        symptomItemText: symptom,
+                                      ),
+                                    ),
+                                  )
+                                  .toList(),
+                            ),
+                            const SizedBox(
+                              height: 50,
+                            ),
+                            // WcWideButtonWidget(
+                            //   active: false,
+                            //   activeButtonColor: WcColors.blue100,
+                            //   activeTextColor: WcColors.white,
+                            //   buttonText: '선택완료',
+                            //   buttonWidth: WcWidth - 40,
+                            //   onTap: () {},
+                            // ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
       ),
     );
   }

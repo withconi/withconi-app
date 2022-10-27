@@ -5,6 +5,7 @@ import 'package:withconi/configs/constants/enum_color.dart';
 import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
 import 'package:withconi/data/model/place_detail.dart';
+import 'package:withconi/data/model/response_model/review_history_response.dart';
 import 'package:withconi/data/repository/map_repository.dart';
 import 'package:withconi/ui/entities/chart_data.dart';
 import 'package:withconi/ui/widgets/loading/loading_overlay.dart';
@@ -17,7 +18,7 @@ class MapDetailPageController extends GetxController
     with GetSingleTickerProviderStateMixin {
   // late String placeId;
   late PlaceDetail placeDetail;
-  late TotalReviewDataResponse reviewResponse;
+  late ReviewHistoryResponse reviewResponse;
   late String _placeId;
   late String _userId;
   List<ChartData> diseaseChartData = [];
@@ -109,10 +110,10 @@ class MapDetailPageController extends GetxController
 
   makeDiseaseChartData() {
     List<ChartData> diseaseData = [];
-    int totalDiseaseNum = placeDetail.diseaseInfo.totalDisease;
+    int totalDiseaseNum = placeDetail.diseaseHistoryGroup.totalHistory;
 
     if (totalDiseaseNum != 0) {
-      placeDetail.diseaseInfo.diseaseMap.forEach((key, value) {
+      placeDetail.diseaseHistoryGroup.diseaseMap.forEach((key, value) {
         ChartData chartData = ChartData(
             value: value,
             percent:
@@ -152,7 +153,7 @@ class MapDetailPageController extends GetxController
 
   getPlaceReview(
       {required String locId, required bool onlyVerifiedReviews}) async {
-    Either<Failure, TotalReviewDataResponse> reviewResponseResult =
+    Either<Failure, ReviewHistoryResponse> reviewResponseResult =
         await _mapRepository.getTotalReviewData(
             locId: locId, onlyVerfiedReview: onlyVerifiedReviews);
 

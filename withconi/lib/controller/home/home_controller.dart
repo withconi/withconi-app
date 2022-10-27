@@ -4,8 +4,10 @@ import 'package:withconi/controller/map/map_main_page_controller.dart';
 import 'package:withconi/data/repository/conimal_repository.dart';
 import 'package:withconi/ui/widgets/loading/loading_overlay.dart';
 import '../../configs/constants/auth_variables.dart';
+import '../../configs/constants/enum.dart';
 import '../../data/model/conimal.dart';
 import '../../data/model/disease.dart';
+import '../../data/model/post.dart';
 import '../../data/model/user.dart';
 import '../../routes/withconi_routes.dart';
 
@@ -23,6 +25,25 @@ class HomeController extends GetxController {
   WcUser? get wcUser => _wcUser.value;
   RxBool isExpansionOneOpened = false.obs;
   RxBool isExpansionTwoOpened = false.obs;
+
+  List<Post> hotPostList = [
+    Post(
+        boardId: 'boardId',
+        authorId: 'authorId',
+        nickname: 'nickname',
+        postType: PostType.cat,
+        content: '고양이를 위한 100가지 사료추천 글을 들고왔습니다',
+        images: [],
+        createdAt: DateTime.now()),
+    Post(
+        boardId: 'boardId',
+        authorId: 'authorId',
+        nickname: 'nickname',
+        postType: PostType.cat,
+        content: '고양이를 위한 100가지 사료추천 글을 들고왔습니다',
+        images: [],
+        createdAt: DateTime.now())
+  ];
 
   @override
   onInit() {

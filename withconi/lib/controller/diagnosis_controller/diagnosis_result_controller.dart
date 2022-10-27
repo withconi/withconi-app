@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:intl/intl.dart';
 import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
+import 'package:withconi/data/model/disease_result.dart';
 import 'package:withconi/data/model/symptom.dart';
 import 'package:withconi/data/repository/auth_repository.dart';
 import 'package:withconi/data/repository/conimal_repository.dart';
@@ -16,8 +17,26 @@ import '../../data/model/disease.dart';
 import '../../data/model/user.dart';
 import '../../import_basic.dart';
 
-class DiagnosisSymptomController extends GetxController {
-  late SymptomGroup symptomGroup;
+class DiagnosisResultController extends GetxController {
+  List<DiseaseResult> diseaseResultList = [
+    DiseaseResult(
+        diseaseId: '1',
+        posibility: DiseasePosibility.high,
+        diseaseName: '갑상선 기능항진증'),
+    DiseaseResult(
+        diseaseId: '2',
+        posibility: DiseasePosibility.middle,
+        diseaseName: '갑상선 결합어쩌구'),
+    DiseaseResult(
+        diseaseId: '3',
+        posibility: DiseasePosibility.low,
+        diseaseName: '갑상선 기능항진증'),
+    DiseaseResult(
+        diseaseId: '4',
+        posibility: DiseasePosibility.low,
+        diseaseName: '갑상선 기능항진증'),
+  ];
+
   List<String> symptomItemList = [
     '절뚝거림',
     '힘없음',
@@ -35,11 +54,12 @@ class DiagnosisSymptomController extends GetxController {
   RxBool isLoading = true.obs;
 
   @override
-  void onInit() {
+  Future<void> onInit() async {
     super.onInit();
-    symptomGroup = Get.arguments as SymptomGroup;
-    selectedSymptomItemList.assignAll(symptomGroup.symptomList);
-    isLoading.value = false;
+    // selectedSymptomItemList.assignAll(symptomGroup.symptomList);
+    await Future.delayed(Duration(milliseconds: 4000), () {
+      isLoading.value = false;
+    });
   }
 
   @override

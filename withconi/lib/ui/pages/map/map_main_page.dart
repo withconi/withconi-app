@@ -55,10 +55,10 @@ class MapMainPage extends StatelessWidget {
                       ),
                       Positioned(
                         top: 35,
-                        left: 20,
+                        left: 15,
                         child: Center(
                           child: SearchBarWidget(
-                            width: WcWidth - 40 - 55,
+                            width: WcWidth - 40 - 45,
                             // iconSrc: 'assets/icons/list.svg',
                             textController: null,
                             hintText: '동물병원/약국 검색',
@@ -79,7 +79,7 @@ class MapMainPage extends StatelessWidget {
                       ),
                       Positioned(
                         top: 88,
-                        left: 20,
+                        left: 15,
                         child: Container(
                             height: 45,
                             decoration: BoxDecoration(
@@ -105,7 +105,7 @@ class MapMainPage extends StatelessWidget {
                             )),
                       ),
                       Positioned(
-                        right: 15,
+                        right: 13,
                         top: 88,
                         child: GestureDetector(
                           onTap: () {
@@ -134,7 +134,7 @@ class MapMainPage extends StatelessWidget {
                         ),
                       ),
                       Positioned(
-                        right: 15,
+                        right: 13,
                         top: 35,
                         child: GestureDetector(
                           onTap: () {
@@ -224,25 +224,29 @@ class MapMainPage extends StatelessWidget {
                                                     child: Row(
                                                       children: [
                                                         Obx(
-                                                          () => CustomDropdownButton(
-                                                              dropdownList: _controller
-                                                                  .diseaseFilterList
-                                                                  .map((e) =>
-                                                                      DropdownData(
-                                                                          value:
-                                                                              e,
-                                                                          text: diseaseTypeToKorean(
-                                                                              e)))
-                                                                  .toList(),
-                                                              hintText:
-                                                                  '질병별 방문 많은',
-                                                              selectedValue:
-                                                                  _controller
-                                                                      .selectedDiseaseType
-                                                                      .value,
-                                                              onValueChanged:
-                                                                  _controller
-                                                                      .onSelectedDiseaseTypeChanged),
+                                                          () =>
+                                                              CustomDropdownButton(
+                                                                  dropdownList:
+                                                                      DiseaseType
+                                                                          .values
+                                                                          .map(
+                                                                              (e) {
+                                                                    return DropdownData(
+                                                                        value: (e == DiseaseType.all)
+                                                                            ? null
+                                                                            : e,
+                                                                        text: diseaseTypeToKorean(
+                                                                            e));
+                                                                  }).toList(),
+                                                                  hintText:
+                                                                      '질병별 방문 많은',
+                                                                  selectedValue:
+                                                                      _controller
+                                                                          .selectedDiseaseType
+                                                                          .value,
+                                                                  onValueChanged:
+                                                                      _controller
+                                                                          .onSelectedDiseaseTypeChanged),
                                                         ),
                                                         SizedBox(
                                                           width: 10,
@@ -250,14 +254,16 @@ class MapMainPage extends StatelessWidget {
                                                         Obx(
                                                           () =>
                                                               CustomDropdownButton(
-                                                            dropdownList: _controller
-                                                                .speciesFilterList
-                                                                .map((species) =>
-                                                                    DropdownData(
-                                                                        value:
-                                                                            species,
-                                                                        text: speciesToKorean(
-                                                                            species)))
+                                                            dropdownList: Species
+                                                                .values
+                                                                .map((species) => DropdownData(
+                                                                    value: (species ==
+                                                                            Species
+                                                                                .all)
+                                                                        ? null
+                                                                        : species,
+                                                                    text: speciesToKorean(
+                                                                        species)))
                                                                 .toList(),
                                                             hintText:
                                                                 '품종별 많이 찾는',
@@ -529,11 +535,11 @@ class MapMainPage extends StatelessWidget {
                           child: DraggableScrollableSheet(
                               controller:
                                   _controller.selectedPlaceDragController,
-                              minChildSize: 255 / WcHeight,
-                              initialChildSize: 255 / WcHeight,
+                              minChildSize: 250 / WcHeight,
+                              initialChildSize: 250 / WcHeight,
                               maxChildSize: 0.8,
-                              snap: true,
-                              snapSizes: [260 / WcHeight, 0.8],
+                              // snap: true,
+                              // snapSizes: [250 / WcHeight, 0.8],
                               builder: (context, scrollController) {
                                 _controller.selectedPlaceScrollController =
                                     scrollController;
@@ -573,7 +579,7 @@ class MapMainPage extends StatelessWidget {
                                                 color: WcColors.grey80,
                                               ),
                                               margin: EdgeInsets.only(
-                                                  top: 13, bottom: 2),
+                                                  top: 13, bottom: 0),
                                             ),
                                             PlacePreviewListTile(
                                               diseaseInfo: _controller
@@ -845,6 +851,7 @@ class CustomDropdownButton extends StatelessWidget {
     return DropdownButtonHideUnderline(
       child: DropdownButton2(
         // dropdownElevation: 2,
+        scrollbarAlwaysShow: true,
         selectedItemBuilder: (context) => dropdownList
             .map(
               (dropdownItem) => Container(

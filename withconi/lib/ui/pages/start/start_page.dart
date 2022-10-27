@@ -9,6 +9,7 @@ import 'package:withconi/controller/start_controller.dart';
 import 'package:withconi/ui/pages/start/start_widgets/sns_button.dart';
 import 'package:withconi/ui/theme/colors.dart';
 import 'package:withconi/ui/theme/sizes.dart';
+import 'package:withconi/ui/theme/text_theme.dart';
 
 import '../../widgets/button/state_button.dart';
 import '../../widgets/loading/loading_overlay.dart';
@@ -52,8 +53,10 @@ class StartPage extends StatelessWidget {
                   ),
                   Text(
                     '함께 코니멀의\n질병관리를 시작해볼까요?',
-                    style: GoogleFonts.notoSans(
-                        fontSize: 25, fontWeight: FontWeight.w600),
+                    style: TextStyle(
+                        fontFamily: WcFontFamily.notoSans,
+                        fontSize: 24,
+                        fontWeight: FontWeight.w600),
                   ),
                   const SizedBox(
                     height: 60,

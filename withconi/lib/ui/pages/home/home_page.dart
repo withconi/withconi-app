@@ -7,8 +7,11 @@ import 'package:withconi/controller/navigation_controller.dart';
 import 'package:withconi/import_basic.dart';
 import 'package:withconi/ui/pages/home/widgets/conimal_setting_button.dart';
 import 'package:withconi/ui/pages/home/widgets/cominal_toggle_button.dart';
+import 'package:withconi/ui/pages/home/widgets/hot_post_listtile.dart';
 import 'package:withconi/ui/theme/text_theme.dart';
 import 'package:withconi/ui/widgets/button/icon_button.dart';
+import '../../../data/model/board.dart';
+import '../../../data/model/post.dart';
 import '../../widgets/dialog/selection_dialog.dart';
 import '../../widgets/navbar/bottom_navbar.dart';
 import 'widgets/icon_big_button.dart';
@@ -640,8 +643,12 @@ class HomePage extends StatelessWidget {
                       SizedBox(
                         height: 10,
                       ),
-                      HotPostListTile(),
-                      HotPostListTile(),
+                      Column(
+                          children: _controller.hotPostList
+                              .map((e) => HotPostListTile(
+                                    post: e,
+                                  ))
+                              .toList())
                     ],
                   ),
                 ),
@@ -772,7 +779,7 @@ class SelfDiagnosisButton extends StatelessWidget {
                 CircleAvatar(
                   child: Image.asset(
                     'assets/icons/cross.png',
-                    color: Color.fromARGB(255, 0, 67, 225),
+                    color: Color.fromARGB(255, 0, 64, 215),
                     height: 15,
                   ),
                   radius: 15,
@@ -786,60 +793,13 @@ class SelfDiagnosisButton extends StatelessWidget {
                         fontFamily: WcFontFamily.notoSans,
                         fontSize: 16.5,
                         fontWeight: FontWeight.w600,
-                        color: WcColors.black)),
+                        color: Color.fromARGB(255, 0, 80, 177))),
               ],
             ),
-            SvgPicture.asset('assets/icons/arrow_right.svg')
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class HotPostListTile extends StatelessWidget {
-  HotPostListTile(
-      {Key? key,
-      this.width = double.infinity,
-      this.padding = const EdgeInsets.symmetric(horizontal: 15)})
-      : super(key: key);
-  double? width;
-  EdgeInsets? padding;
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        print('asdf');
-      },
-      child: Container(
-        color: WcColors.white,
-        height: 40,
-        width: width,
-        padding: padding,
-        child: Row(
-          children: [
-            Text(
-              '심혈관질환',
-              style: TextStyle(
-                  fontFamily: WcFontFamily.notoSans,
-                  fontSize: 15,
-                  fontWeight: FontWeight.w500,
-                  color: WcColors.black),
-            ),
-            SizedBox(
-              width: 10,
-            ),
-            Expanded(
-              child: Text(
-                '고양이를 위한 100가지 사료추천입니다 어쩌구저쩌구저어어',
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                    fontFamily: WcFontFamily.notoSans,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w400,
-                    color: WcColors.grey180),
-              ),
-            ),
+            Padding(
+                padding: const EdgeInsets.only(right: 3),
+                child: SvgPicture.asset('assets/icons/arrow_right.svg',
+                    color: Color.fromARGB(255, 0, 80, 177)))
           ],
         ),
       ),

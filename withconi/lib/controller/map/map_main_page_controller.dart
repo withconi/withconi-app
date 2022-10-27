@@ -368,15 +368,16 @@ class MapMainPageController extends GetxController {
   }
 
   _setSearchDistance() async {
-    double totalMeterPerPx = WcWidth * await mapController.getMeterPerPx();
-    int totalKilometer = (totalMeterPerPx / 1000).round();
-    if (totalKilometer >= 7) {
-      _searchDistance = 7;
-    } else if (totalKilometer <= 3) {
-      _searchDistance = 3;
-    } else {
-      _searchDistance = totalKilometer;
-    }
+    // double totalMeterPerPx = WcWidth * await mapController.getMeterPerPx();
+    // int totalKilometer = (totalMeterPerPx / 1000).round();
+    // if (totalKilometer >= 7) {
+    //   _searchDistance = 7;
+    // } else if (totalKilometer <= 3) {
+    //   _searchDistance = 3;
+    // } else {
+    //   _searchDistance = totalKilometer;
+    // }
+    _searchDistance = 200;
   }
 
   _getPlacePreviewList(PaginationFilter paginationFilter) async {

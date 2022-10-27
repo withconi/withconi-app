@@ -1,5 +1,6 @@
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk_navi.dart';
-import 'package:withconi/ui/entities/disease_percents.dart';
+import 'package:withconi/data/model/disease_history.dart';
+import 'package:withconi/ui/entities/disease_history_group.dart';
 import 'package:withconi/configs/constants/enum.dart';
 
 import '../../ui/entities/location.dart';
@@ -9,7 +10,7 @@ class PlaceDetail {
 
   String address = '';
 
-  late DiseasePercentInfo diseaseInfo;
+  late DiseaseHistoryGroup diseaseHistoryGroup;
 
   LatLngClass location = LatLngClass(latitude: 0.0, longitude: 0.0);
 
@@ -38,7 +39,7 @@ class PlaceDetail {
     required this.address,
     required this.location,
     required this.placeType,
-    required this.diseaseInfo,
+    required this.diseaseHistoryGroup,
     required this.thumbnail,
     required this.totalRecommend,
     required this.totalReviews,
@@ -51,7 +52,7 @@ class PlaceDetail {
 
   PlaceDetail.fromJson(Map<String, dynamic> json) {
     locId = json['_id'] ?? '';
-    name = json['name'] ?? '';
+    name = json['name'] ?? '다움동물병원';
     address = json['address'] ?? '';
     location = LatLngClass.fromJson(json['coordinate']);
     totalRecommend = json['totalRecommend'] ?? 0;
@@ -60,7 +61,7 @@ class PlaceDetail {
     totalVisiting = json['totalVisiting'] ?? 0;
     totalVisitingDogs = json['totalVisitingDogs'] ?? 0;
     totalVisitingCats = json['totalVisitingCats'] ?? 0;
-    diseaseInfo = DiseasePercentInfo.fromJson(json);
+    diseaseHistoryGroup = DiseaseHistoryGroup.fromJson(json);
     placeType = PlaceType.hospital;
     phone = json['phone'] ?? '';
     isBookmarked = json['isBookmarked'] ?? false;

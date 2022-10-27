@@ -1,4 +1,5 @@
 import 'package:flutter_svg/svg.dart';
+import 'package:withconi/ui/theme/text_theme.dart';
 import '../../../import_basic.dart';
 
 class SearchBarWidget extends StatelessWidget {
@@ -26,10 +27,10 @@ class SearchBarWidget extends StatelessWidget {
         _boxShadow = boxShadow ??
             const [
               BoxShadow(
-                color: Color.fromARGB(50, 0, 0, 0),
-                spreadRadius: -2,
-                blurRadius: 6,
-                offset: Offset(0, 1.5),
+                color: Color.fromARGB(28, 0, 0, 0),
+                spreadRadius: -1.5,
+                blurRadius: 7,
+                offset: Offset(0, 1),
               ),
             ],
         _margin = margin ?? EdgeInsets.fromLTRB(0, 0, 0, 0),
@@ -93,7 +94,8 @@ class SearchBarWidget extends StatelessWidget {
                   fontWeight: FontWeight.w500),
               decoration: InputDecoration(
                 hintText: _hintText,
-                hintStyle: GoogleFonts.notoSans(
+                hintStyle: TextStyle(
+                    fontFamily: WcFontFamily.notoSans,
                     color: WcColors.grey120,
                     fontSize: 16,
                     fontWeight: FontWeight.w400),

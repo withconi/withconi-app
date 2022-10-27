@@ -1,4 +1,4 @@
-import 'package:withconi/ui/entities/disease_percents.dart';
+import 'package:withconi/ui/entities/disease_history_group.dart';
 
 import '../../configs/constants/enum.dart';
 import '../../ui/entities/location.dart';
@@ -50,7 +50,7 @@ class PharmacyPreview implements PlacePreview {
   bool visitVerified = false;
 
   @override
-  DiseasePercentInfo? diseaseInfo;
+  DiseaseHistoryGroup? diseaseInfo;
 
   PharmacyPreview({
     required this.locId,
@@ -82,7 +82,7 @@ class PharmacyPreview implements PlacePreview {
         placeLocation: LatLngClass.fromJson(json['coordinate']));
     visitVerified = json['isVisitVerified'] ?? false;
     phone = json['phone'] ?? '';
-    diseaseInfo = DiseasePercentInfo.fromJson(json);
+    diseaseInfo = DiseaseHistoryGroup.fromJson(json);
   }
 
   // Map<String, dynamic> toJson() {

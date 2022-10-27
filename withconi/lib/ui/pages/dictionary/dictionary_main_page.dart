@@ -1,9 +1,11 @@
 import 'dart:ui';
 
 import 'package:flutter_svg/svg.dart';
+import 'package:withconi/configs/constants/enum.dart';
 import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/controller/community/community_main_controller.dart';
 import 'package:withconi/data/model/disease.dart';
+import 'package:withconi/data/model/symptom.dart';
 import 'package:withconi/import_basic.dart';
 import 'package:withconi/ui/pages/community/community_setting_page.dart';
 import 'package:withconi/ui/pages/dictionary/dictionary_detail_page.dart';
@@ -36,18 +38,28 @@ class DictionaryMainPage extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           const SizedBox(
                             height: 20,
                           ),
-                          Text('질병백과',
-                              style: TextStyle(
-                                  fontFamily: WcFontFamily.notoSans,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 25)),
+                          SizedBox(
+                            width: WcWidth - 40,
+                            height: 50,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text('질병백과',
+                                    style: TextStyle(
+                                        fontFamily: WcFontFamily.notoSans,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 25)),
+                              ],
+                            ),
+                          ),
                           const SizedBox(
-                            height: 20,
+                            height: 10,
                           ),
                           SearchBarWidget(
                             isEditable: false,
@@ -95,8 +107,52 @@ class DictionaryMainPage extends StatelessWidget {
                             .map((board) => InkWell(
                                   onTap: () {
                                     Get.toNamed(Routes.DICTIONARY_DETAIL,
-                                        arguments: AuthController.to.wcUser
-                                            .value!.conimals[0].diseases[0]);
+                                        arguments: Disease(
+                                            diseaseType:
+                                                DiseaseType.cardiovascular,
+                                            createdAt: DateTime.now(),
+                                            code: 'code',
+                                            name: '갑상선 기능 항진증',
+                                            symptomGroups: [
+                                              SymptomGroup(
+                                                  symptomType: Symptom.bone,
+                                                  symptomList: [
+                                                    '발목골절 종창',
+                                                    '발목골절 종창',
+                                                    '발목아품',
+                                                    '절뚝거림',
+                                                    '뒷다리 만곡'
+                                                  ]),
+                                              SymptomGroup(
+                                                  symptomType: Symptom.mouth,
+                                                  symptomList: [
+                                                    '발목골절 종창',
+                                                    '발목골절 종창',
+                                                    '발목아품',
+                                                    '절뚝거림',
+                                                    '뒷다리 만곡'
+                                                  ]),
+                                              SymptomGroup(
+                                                  symptomType: Symptom.eat,
+                                                  symptomList: [
+                                                    '발목골절 종창',
+                                                    '발목골절 종창',
+                                                  ]),
+                                              SymptomGroup(
+                                                  symptomType: Symptom.urinary,
+                                                  symptomList: [
+                                                    '발목골절 종창',
+                                                    '발목골절 종창',
+                                                    '발목골절 종창',
+                                                    '발목아품',
+                                                    '절뚝거림',
+                                                    '뒷다리 만곡',
+                                                    '발목골절 종창',
+                                                    '발목아품',
+                                                    '절뚝거림',
+                                                    '뒷다리 만곡'
+                                                  ])
+                                            ]));
                                   },
                                   child: Container(
                                       alignment: Alignment.centerLeft,
@@ -112,8 +168,7 @@ class DictionaryMainPage extends StatelessWidget {
                                                     1)
                                                 .toString(),
                                             style: GoogleFonts.openSans(
-                                                fontWeight: FontWeight.w600,
-                                                color: WcColors.blue100,
+                                                fontWeight: FontWeight.w700,
                                                 fontSize: 16),
                                           ),
                                           SizedBox(
@@ -178,8 +233,7 @@ class DictionaryMainPage extends StatelessWidget {
                                                   1)
                                               .toString(),
                                           style: GoogleFonts.openSans(
-                                              fontWeight: FontWeight.w600,
-                                              color: WcColors.orange100,
+                                              fontWeight: FontWeight.w700,
                                               fontSize: 16),
                                         ),
                                         SizedBox(

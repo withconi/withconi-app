@@ -22,6 +22,7 @@ class DiagnosisStep2Controller extends GetxController {
     // SymptomGroup(symptomType: Symptom.bone, symptomList: ['근떨림', '절뚝거림']),
     // SymptomGroup(symptomType: Symptom.action, symptomList: ['무기력', '절뚝거림'])
   ].obs;
+  RxBool isButtonValid = false.obs;
 
   RxList<SymptomGroup> symptomGroups = Symptom.values
       .map((e) => SymptomGroup(symptomType: e, symptomList: []))
@@ -36,6 +37,8 @@ class DiagnosisStep2Controller extends GetxController {
   @override
   void onReady() {
     super.onReady();
+
+    ever(selectedSymptomGroupList, validateButton);
   }
 
   goToSymptomSelectionPage(Symptom selectedSymptom) async {
@@ -43,13 +46,17 @@ class DiagnosisStep2Controller extends GetxController {
     // selectedSymptomGroupList.insert(
     //     0, selectedSymptomGroupList[0].copyWith(symptomType: selectedSymptom));
 
-    List<String> selectedSymptomItemList = await Get.toNamed(
-        Routes.DIAGNOSIS_SYMPTOM,
-        arguments: selectedSymptomGroupList.firstWhereOrNull(
-                (element) => element.symptomType == selectedSymptom) ??
-            SymptomGroup(symptomType: selectedSymptom, symptomList: []));
+    List<String>? symptomResult = await Get.toNamed(Routes.DIAGNOSIS_SYMPTOM,
+            arguments: selectedSymptomGroupList.firstWhereOrNull(
+                    (element) => element.symptomType == selectedSymptom) ??
+                SymptomGroup(symptomType: selectedSymptom, symptomList: []))
+        as List<String>?;
 
-    if (selectedSymptomItemList.isEmpty) {
+    if (symptomResult == null) {
+      return;
+    }
+
+    if (symptomResult.isEmpty) {
       selectedSymptomGroupList
           .removeWhere((element) => element.symptomType == selectedSymptom);
     } else {
@@ -59,24 +66,23 @@ class DiagnosisStep2Controller extends GetxController {
           if (element.symptomType == selectedSymptom) {
             int index = selectedSymptomGroupList.indexOf(element);
             SymptomGroup newGroup =
-                element.copyWith(symptomList: selectedSymptomItemList);
+                element.copyWith(symptomList: symptomResult);
             selectedSymptomGroupList.replaceRange(index, index + 1, [newGroup]);
             break;
           }
         }
       } else {
         selectedSymptomGroupList.add(SymptomGroup(
-            symptomType: selectedSymptom,
-            symptomList: selectedSymptomItemList));
+            symptomType: selectedSymptom, symptomList: symptomResult));
       }
     }
   }
 
-  bool validateButton() {
-    if (selectedSymptomGroupList.isNotEmpty) {
-      return true;
+  void validateButton(list) {
+    if (list.isNotEmpty) {
+      isButtonValid.value = true;
     } else {
-      return false;
+      isButtonValid.value = false;
     }
   }
 }

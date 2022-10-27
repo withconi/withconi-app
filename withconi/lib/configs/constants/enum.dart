@@ -1,10 +1,23 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:withconi/data/model/disease_result.dart';
 
 enum Gender {
   @JsonValue("female")
   female,
   @JsonValue("male")
   male,
+}
+
+String genderToKorean(Gender gender) {
+  switch (gender) {
+    case Gender.female:
+      return '암컷';
+
+    case Gender.male:
+      return '수컷';
+    default:
+      return '';
+  }
 }
 
 enum PostType {
@@ -28,12 +41,33 @@ enum SortType {
 }
 
 enum Species {
+  @JsonValue("all")
+  all,
   @JsonValue("cat")
   cat,
   @JsonValue("dog")
   dog,
-  @JsonValue("all")
-  all,
+}
+
+enum Symptom {
+  @JsonValue("action")
+  action,
+  @JsonValue("bone")
+  bone,
+  @JsonValue("eat")
+  eat,
+  @JsonValue("eye")
+  eye,
+  @JsonValue("lung")
+  lung,
+  @JsonValue("mouth")
+  mouth,
+  @JsonValue("nerve")
+  nerve,
+  @JsonValue("stomach")
+  stomach,
+  @JsonValue("urinary")
+  urinary,
 }
 
 enum CacheControllerKey {
@@ -71,6 +105,28 @@ enum Provider {
   email,
   @JsonValue("none")
   none,
+}
+
+enum DiseasePosibility {
+  @JsonValue("high")
+  high,
+  @JsonValue("middle")
+  middle,
+  @JsonValue("low")
+  low,
+}
+
+String diseasePosibilityToKorean(DiseasePosibility posibility) {
+  switch (posibility) {
+    case DiseasePosibility.high:
+      return '높은의심';
+    case DiseasePosibility.middle:
+      return '보통의심';
+    case DiseasePosibility.low:
+      return '낮은의심';
+    default:
+      return '';
+  }
 }
 
 enum PlaceType { all, hospital, pharmacy }
@@ -121,6 +177,58 @@ enum ReportItem {
   sexualContents,
   promotionalContents,
   ect,
+}
+
+String symptomsToValue(Symptom? symptom) {
+  switch (symptom) {
+    case Symptom.action:
+      return 'action';
+    case Symptom.bone:
+      return 'bone';
+    case Symptom.eat:
+      return 'eat';
+    case Symptom.eye:
+      return 'eye';
+    case Symptom.lung:
+      return 'lung';
+    case Symptom.mouth:
+      return 'mouth';
+    case Symptom.nerve:
+      return 'nerve';
+    case Symptom.stomach:
+      return 'stomach';
+    case Symptom.urinary:
+      return 'urinary';
+
+    default:
+      return '';
+  }
+}
+
+String symptomsToKorean(Symptom? symptom) {
+  switch (symptom) {
+    case Symptom.action:
+      return '행동';
+    case Symptom.bone:
+      return '근골격';
+    case Symptom.eat:
+      return '섭취';
+    case Symptom.eye:
+      return '안구';
+    case Symptom.lung:
+      return '호흡기';
+    case Symptom.mouth:
+      return '구강';
+    case Symptom.nerve:
+      return '신경';
+    case Symptom.stomach:
+      return '복부';
+    case Symptom.urinary:
+      return '생식비뇨';
+
+    default:
+      return '';
+  }
 }
 
 String reportItemToKorean(ReportItem? reportItem) {
@@ -282,6 +390,7 @@ PlaceType placeTypeFromString(String? placeType) {
 }
 
 enum DiseaseType {
+  all,
   cardiovascular, //심혈관
   musculoskeletal, // 근골격
   digestive, //소화기,간담췌
@@ -318,9 +427,9 @@ String diseaseTypeToValue(DiseaseType? diseaseType) {
     case DiseaseType.otorhinolaryngology:
       return 'otorhinolaryngology';
     case DiseaseType.infectiousDisease:
-      return 'infectious_disease';
+      return 'infectiousDisease';
     case DiseaseType.brainNeurology:
-      return 'brain_neurology';
+      return 'brainNeurology';
     case DiseaseType.dentistry:
       return 'dentistry';
     case DiseaseType.oncology:
@@ -405,9 +514,9 @@ DiseaseType diseaseTypeFromString(String? diseaseTypeString) {
       return 'emergency'; */
     case 'otorhinolaryngology':
       return DiseaseType.otorhinolaryngology;
-    case 'infectious_disease':
+    case 'infectiousDisease':
       return DiseaseType.infectiousDisease;
-    case 'brain_neurology':
+    case 'brainNeurology':
       return DiseaseType.brainNeurology;
     case 'dentistry':
       return DiseaseType.dentistry;

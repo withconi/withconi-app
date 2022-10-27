@@ -31,7 +31,7 @@ class WcAppBar extends StatelessWidget with PreferredSizeWidget {
           title,
           style: TextStyle(
               fontFamily: WcFontFamily.notoSans,
-              fontSize: 16,
+              fontSize: 15,
               fontWeight: FontWeight.w500),
         ),
         actions: [

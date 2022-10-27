@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:withconi/data/model/symptom.dart';
 
 import '../../configs/constants/enum.dart';
 import '../../core/error_handling/exceptions.dart';
@@ -13,8 +14,9 @@ class Disease with _$Disease {
     @DateTimeConverter() required DateTime createdAt,
     required String code,
     required String name,
-    required List<String> symptoms,
+    // required List<String> symptoms,
     @Default('') String? description,
+    @Default([]) List<SymptomGroup> symptomGroups,
     DiseaseType? diseaseType,
   }) = _Disease;
 

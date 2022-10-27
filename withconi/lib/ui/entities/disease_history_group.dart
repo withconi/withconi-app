@@ -1,15 +1,20 @@
 import 'package:withconi/configs/constants/enum.dart';
+import 'package:withconi/data/model/disease_history.dart';
 
-class DiseasePercentInfo {
-  int totalDisease;
+class DiseaseHistoryGroup {
+  int totalHistory;
 
   Map<DiseaseType, int> diseaseMap;
 
-  DiseasePercentInfo({required this.totalDisease, required this.diseaseMap});
+  List<DiseaseHistory>? historyList;
 
-  factory DiseasePercentInfo.fromJson(Map<String, dynamic> json) {
+  DiseaseHistoryGroup(
+      {required this.totalHistory, required this.diseaseMap, this.historyList});
+
+  factory DiseaseHistoryGroup.fromJson(Map<String, dynamic> json) {
     int totalDisease;
     Map<DiseaseType, int> diseaseMap;
+    List<DiseaseHistory> historyList = [];
 
     totalDisease = json['totalVisiting'];
     diseaseMap = {
@@ -27,18 +32,7 @@ class DiseasePercentInfo {
 
     diseaseMap = Map.fromEntries(diseaseMap.entries.toList()
       ..sort((e2, e1) => e1.value.compareTo(e2.value)));
-    return DiseasePercentInfo(
-        totalDisease: totalDisease, diseaseMap: diseaseMap);
+    return DiseaseHistoryGroup(
+        totalHistory: totalDisease, diseaseMap: diseaseMap);
   }
-}
-
-class DiseaseHistory {
-  DiseaseType diseaseType = DiseaseType.dentistry;
-  int totalDisease = 20;
-  List<Map<String, dynamic>> diseaseList = [
-    {'갑상선 기능 항진증': 36},
-    {'갑상선 기능 저하증': 36},
-    {'어쩌구질병': 26},
-    {'기타': 46},
-  ];
 }

@@ -12,11 +12,34 @@ Color colorByDisease(DiseaseType? diseaseType) {
     case DiseaseType.digestive:
       return WcColors.mintLight;
     case DiseaseType.ophthalmology:
-      return WcColors.blue80;
+      return WcColors.blue100.withOpacity(0.7);
     case DiseaseType.urinary:
       return WcColors.yellowLight;
     case DiseaseType.respiratory:
       return WcColors.purpleLight;
+//
+    case DiseaseType.infectiousDisease:
+      return WcColors.grey110;
+    case DiseaseType.emergency:
+      return WcColors.red100;
+
+    case DiseaseType.endocrinology:
+      return WcColors.green100;
+
+    case DiseaseType.otorhinolaryngology:
+      return WcColors.mustardLight;
+
+    case DiseaseType.brainNeurology:
+      return WcColors.orange100;
+
+    case DiseaseType.oncology:
+      return WcColors.blue100;
+    case DiseaseType.dermatology:
+      return WcColors.purpleLight;
+
+    case DiseaseType.dentistry:
+      return WcColors.babyPinkLight;
+
     default:
       return WcColors.green40;
   }
@@ -94,5 +117,40 @@ Color speciesTypeTextColor(Species species) {
 
     default:
       return Colors.transparent;
+  }
+}
+
+Color backgroundColorByGender(Gender? gender) {
+  switch (gender) {
+    case Gender.female:
+      return WcColors.red20;
+    case Gender.male:
+      return WcColors.blue20;
+    default:
+      return Colors.transparent;
+  }
+}
+
+Color textColorByGender(Gender? gender) {
+  switch (gender) {
+    case Gender.female:
+      return WcColors.red100;
+    case Gender.male:
+      return WcColors.blue100;
+    default:
+      return Colors.transparent;
+  }
+}
+
+Color colorByDiseasePosibility(DiseasePosibility posibility) {
+  switch (posibility) {
+    case DiseasePosibility.high:
+      return WcColors.red100;
+    case DiseasePosibility.middle:
+      return WcColors.orange100;
+    case DiseasePosibility.low:
+      return WcColors.yellowLight;
+    default:
+      return WcColors.white;
   }
 }

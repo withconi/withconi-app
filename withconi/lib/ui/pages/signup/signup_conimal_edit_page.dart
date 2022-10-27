@@ -3,7 +3,11 @@ import 'package:withconi/configs/constants/enum.dart';
 import 'package:withconi/controller/signup/signup_conimal_edit_controller.dart';
 import 'package:withconi/import_basic.dart';
 import 'package:withconi/ui/widgets/button/wide_button.dart';
+import '../../../configs/constants/enum_color.dart';
+import '../../../configs/constants/enum_icon.dart';
+import '../../theme/text_theme.dart';
 import '../../widgets/button/text_button.dart';
+import '../../widgets/checkbox/custom_checkbox.dart';
 import '../../widgets/text_field/textfield.dart';
 import 'signup_widgets/gender_toggle_button.dart';
 import 'signup_widgets/species_radio_button.dart';
@@ -40,9 +44,11 @@ class SignupConimalEditPage extends StatelessWidget {
                       height: 45,
                     ),
                     Text(
-                      '등록된 코니멀의\n정보를 수정해주세요',
-                      style: GoogleFonts.notoSans(
-                          fontSize: 25, fontWeight: FontWeight.w600),
+                      '등록한 코니멀의\n정보를 수정할 수 있어요',
+                      style: TextStyle(
+                          fontFamily: WcFontFamily.notoSans,
+                          fontSize: 23,
+                          fontWeight: FontWeight.w500),
                     ),
                     const SizedBox(
                       height: 50,
@@ -81,57 +87,69 @@ class SignupConimalEditPage extends StatelessWidget {
                       height: 20,
                     ),
                     Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        WcTextField(
-                          width: (WcWidth) / 1.65,
-                          labelText: '코니멀 이름',
-                          hintText: '코니멀 이름',
-                          onChanged: _controller.onConimalNameChanged,
-                          textController: _controller.conimalNameTextController,
-                          keyboardType: TextInputType.name,
-                        ),
-                        Obx(
-                          () => GenderToggleButton(
-                            selectionList:
-                                _controller.genderSelectionList.toList(),
-                            onPressed: (index) {
-                              if (index == 0) {
-                                _controller.onGenderChanged(Gender.female);
-                                _controller.genderSelectionList[0] = true;
-                                _controller.genderSelectionList[1] = false;
-                              } else {
-                                _controller.onGenderChanged(Gender.female);
-                                _controller.genderSelectionList[0] = false;
-                                _controller.genderSelectionList[1] = true;
-                              }
-                            },
+                        Expanded(
+                          child: WcTextField(
+                            labelText: '코니멀 이름',
+                            hintText: '코니멀 이름',
+                            onChanged: _controller.onConimalNameChanged,
+                            textController:
+                                _controller.conimalNameTextController,
+                            keyboardType: TextInputType.name,
                           ),
                         ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Obx(
+                              () => GenderToggleButton(
+                                svgIconSrcList: Gender.values
+                                    .map((e) => genderToSvgSrc(e))
+                                    .toList(),
+                                selectionList: Gender.values.toList(),
+                                onPressed: (gender) {
+                                  Get.focusScope!.unfocus();
+                                  _controller.onGenderChanged(gender);
+                                },
+                                selectedValue: _controller.conimalGender.value,
+                                backgroundColorList: Gender.values
+                                    .map((e) => backgroundColorByGender(e))
+                                    .toList(),
+                                mainColorList: Gender.values
+                                    .map((e) => textColorByGender(e))
+                                    .toList(),
+                                textList: Gender.values
+                                    .map((e) => genderToKorean(e))
+                                    .toList(),
+                                // selectedValue: null,
+                                // value: null,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            CustomCheckBox(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                value: true,
+                                text: '중성화 완료함',
+                                iconHeight: 18,
+                                isSelected: false,
+                                onChanged: (p0) {}),
+                          ],
+                        ),
                       ],
-                    ),
-                    const SizedBox(
-                      height: 30,
                     ),
                     Obx(() {
                       return WcUnderlinedTextButton(
                         active: _controller.birthDateSelected.value,
                         onTap: _controller.selectBirthDate,
                         valueText: _controller.birthDateString,
-                        suffixTextStyle: GoogleFonts.notoSans(
-                            color: WcColors.black,
-                            fontSize: 17,
-                            fontWeight: FontWeight.w300),
-                        valueTextStyle: GoogleFonts.montserrat(
-                            color: WcColors.black,
-                            fontSize: 17,
-                            fontWeight: FontWeight.w600),
                         hintText: '출생일',
-                        hintTextStyle: GoogleFonts.notoSans(
-                            color: WcColors.grey100,
-                            fontSize: 17,
-                            fontWeight: FontWeight.w300),
                         suffixText: ' 출생',
                       );
                     }),
@@ -143,19 +161,7 @@ class SignupConimalEditPage extends StatelessWidget {
                         active: _controller.adoptedDateSelected.value,
                         onTap: _controller.selectAdoptedDate,
                         valueText: _controller.adoptedDateString,
-                        suffixTextStyle: GoogleFonts.notoSans(
-                            color: WcColors.black,
-                            fontSize: 17,
-                            fontWeight: FontWeight.w300),
-                        valueTextStyle: GoogleFonts.montserrat(
-                            color: WcColors.black,
-                            fontSize: 17,
-                            fontWeight: FontWeight.w600),
                         hintText: '입양일',
-                        hintTextStyle: GoogleFonts.notoSans(
-                            color: WcColors.grey100,
-                            fontSize: 17,
-                            fontWeight: FontWeight.w300),
                         suffixText: ' 입양',
                       );
                     }),
@@ -168,19 +174,7 @@ class SignupConimalEditPage extends StatelessWidget {
                             _controller.selectDisease();
                           },
                           valueText: _controller.diseaseText.value,
-                          suffixTextStyle: GoogleFonts.notoSans(
-                              color: WcColors.black,
-                              fontSize: 17,
-                              fontWeight: FontWeight.w300),
-                          valueTextStyle: GoogleFonts.notoSans(
-                              color: WcColors.black,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600),
                           hintText: '질병 추가',
-                          hintTextStyle: GoogleFonts.notoSans(
-                              color: WcColors.grey100,
-                              fontSize: 17,
-                              fontWeight: FontWeight.w300),
                           suffixText: _controller.diseaseSuffixText.value,
                           suffixIcon: SvgPicture.asset(
                             'assets/icons/search.svg',

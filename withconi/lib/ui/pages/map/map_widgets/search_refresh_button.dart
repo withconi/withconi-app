@@ -31,7 +31,7 @@ class SearchRefreshButton extends StatelessWidget {
                     color: WcColors.black,
                     fontWeight: FontWeight.w400,
                     fontSize: 14,
-                    height: 1.2))
+                    height: 1.3))
           ],
         ),
         decoration: BoxDecoration(
@@ -41,8 +41,8 @@ class SearchRefreshButton extends StatelessWidget {
             BoxShadow(
               color: Color.fromARGB(60, 0, 0, 0),
               spreadRadius: -1,
-              blurRadius: 7,
-              offset: Offset(0, 1),
+              blurRadius: 5,
+              offset: Offset(0, 0),
             ),
           ],
         ),

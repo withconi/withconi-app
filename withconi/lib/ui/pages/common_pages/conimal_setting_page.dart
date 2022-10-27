@@ -3,6 +3,7 @@ import 'package:withconi/controller/common_controller/conimal_manage_controller.
 import 'package:withconi/import_basic.dart';
 import 'package:withconi/ui/widgets/appbar/appbar.dart';
 import '../../../data/model/conimal.dart';
+import '../../theme/text_theme.dart';
 import '../../widgets/listtile/conimal_list_tile.dart';
 
 class ConimalSettingPage extends StatelessWidget {
@@ -35,8 +36,10 @@ class ConimalSettingPage extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Text(
                     '내 코니멀 관리',
-                    style: GoogleFonts.notoSans(
-                        fontSize: 24, fontWeight: FontWeight.w600),
+                    style: TextStyle(
+                        fontFamily: WcFontFamily.notoSans,
+                        fontSize: 24,
+                        fontWeight: FontWeight.w500),
                   ),
                 ),
                 const SizedBox(

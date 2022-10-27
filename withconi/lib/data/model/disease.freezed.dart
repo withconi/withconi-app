@@ -23,9 +23,10 @@ mixin _$Disease {
   @DateTimeConverter()
   DateTime get createdAt => throw _privateConstructorUsedError;
   String get code => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  List<String> get symptoms => throw _privateConstructorUsedError;
+  String get name =>
+      throw _privateConstructorUsedError; // required List<String> symptoms,
   String? get description => throw _privateConstructorUsedError;
+  List<SymptomGroup> get symptomGroups => throw _privateConstructorUsedError;
   DiseaseType? get diseaseType => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,8 +42,8 @@ abstract class $DiseaseCopyWith<$Res> {
       {@DateTimeConverter() DateTime createdAt,
       String code,
       String name,
-      List<String> symptoms,
       String? description,
+      List<SymptomGroup> symptomGroups,
       DiseaseType? diseaseType});
 }
 
@@ -59,8 +60,8 @@ class _$DiseaseCopyWithImpl<$Res> implements $DiseaseCopyWith<$Res> {
     Object? createdAt = freezed,
     Object? code = freezed,
     Object? name = freezed,
-    Object? symptoms = freezed,
     Object? description = freezed,
+    Object? symptomGroups = freezed,
     Object? diseaseType = freezed,
   }) {
     return _then(_value.copyWith(
@@ -76,14 +77,14 @@ class _$DiseaseCopyWithImpl<$Res> implements $DiseaseCopyWith<$Res> {
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      symptoms: symptoms == freezed
-          ? _value.symptoms
-          : symptoms // ignore: cast_nullable_to_non_nullable
-              as List<String>,
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      symptomGroups: symptomGroups == freezed
+          ? _value.symptomGroups
+          : symptomGroups // ignore: cast_nullable_to_non_nullable
+              as List<SymptomGroup>,
       diseaseType: diseaseType == freezed
           ? _value.diseaseType
           : diseaseType // ignore: cast_nullable_to_non_nullable
@@ -102,8 +103,8 @@ abstract class _$$_DiseaseCopyWith<$Res> implements $DiseaseCopyWith<$Res> {
       {@DateTimeConverter() DateTime createdAt,
       String code,
       String name,
-      List<String> symptoms,
       String? description,
+      List<SymptomGroup> symptomGroups,
       DiseaseType? diseaseType});
 }
 
@@ -121,8 +122,8 @@ class __$$_DiseaseCopyWithImpl<$Res> extends _$DiseaseCopyWithImpl<$Res>
     Object? createdAt = freezed,
     Object? code = freezed,
     Object? name = freezed,
-    Object? symptoms = freezed,
     Object? description = freezed,
+    Object? symptomGroups = freezed,
     Object? diseaseType = freezed,
   }) {
     return _then(_$_Disease(
@@ -138,14 +139,14 @@ class __$$_DiseaseCopyWithImpl<$Res> extends _$DiseaseCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      symptoms: symptoms == freezed
-          ? _value._symptoms
-          : symptoms // ignore: cast_nullable_to_non_nullable
-              as List<String>,
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      symptomGroups: symptomGroups == freezed
+          ? _value._symptomGroups
+          : symptomGroups // ignore: cast_nullable_to_non_nullable
+              as List<SymptomGroup>,
       diseaseType: diseaseType == freezed
           ? _value.diseaseType
           : diseaseType // ignore: cast_nullable_to_non_nullable
@@ -162,10 +163,10 @@ class _$_Disease implements _Disease {
       {@DateTimeConverter() required this.createdAt,
       required this.code,
       required this.name,
-      required final List<String> symptoms,
       this.description = '',
+      final List<SymptomGroup> symptomGroups = const [],
       this.diseaseType})
-      : _symptoms = symptoms;
+      : _symptomGroups = symptomGroups;
 
   factory _$_Disease.fromJson(Map<String, dynamic> json) =>
       _$$_DiseaseFromJson(json);
@@ -177,22 +178,24 @@ class _$_Disease implements _Disease {
   final String code;
   @override
   final String name;
-  final List<String> _symptoms;
-  @override
-  List<String> get symptoms {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_symptoms);
-  }
-
+// required List<String> symptoms,
   @override
   @JsonKey()
   final String? description;
+  final List<SymptomGroup> _symptomGroups;
+  @override
+  @JsonKey()
+  List<SymptomGroup> get symptomGroups {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_symptomGroups);
+  }
+
   @override
   final DiseaseType? diseaseType;
 
   @override
   String toString() {
-    return 'Disease(createdAt: $createdAt, code: $code, name: $name, symptoms: $symptoms, description: $description, diseaseType: $diseaseType)';
+    return 'Disease(createdAt: $createdAt, code: $code, name: $name, description: $description, symptomGroups: $symptomGroups, diseaseType: $diseaseType)';
   }
 
   @override
@@ -203,9 +206,10 @@ class _$_Disease implements _Disease {
             const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
             const DeepCollectionEquality().equals(other.code, code) &&
             const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other._symptoms, _symptoms) &&
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
+            const DeepCollectionEquality()
+                .equals(other._symptomGroups, _symptomGroups) &&
             const DeepCollectionEquality()
                 .equals(other.diseaseType, diseaseType));
   }
@@ -217,8 +221,8 @@ class _$_Disease implements _Disease {
       const DeepCollectionEquality().hash(createdAt),
       const DeepCollectionEquality().hash(code),
       const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(_symptoms),
       const DeepCollectionEquality().hash(description),
+      const DeepCollectionEquality().hash(_symptomGroups),
       const DeepCollectionEquality().hash(diseaseType));
 
   @JsonKey(ignore: true)
@@ -239,8 +243,8 @@ abstract class _Disease implements Disease {
       {@DateTimeConverter() required final DateTime createdAt,
       required final String code,
       required final String name,
-      required final List<String> symptoms,
       final String? description,
+      final List<SymptomGroup> symptomGroups,
       final DiseaseType? diseaseType}) = _$_Disease;
 
   factory _Disease.fromJson(Map<String, dynamic> json) = _$_Disease.fromJson;
@@ -252,10 +256,10 @@ abstract class _Disease implements Disease {
   String get code;
   @override
   String get name;
-  @override
-  List<String> get symptoms;
-  @override
+  @override // required List<String> symptoms,
   String? get description;
+  @override
+  List<SymptomGroup> get symptomGroups;
   @override
   DiseaseType? get diseaseType;
   @override

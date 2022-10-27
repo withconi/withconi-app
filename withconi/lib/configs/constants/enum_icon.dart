@@ -3,7 +3,7 @@ import 'package:flutter_svg/svg.dart';
 
 import 'enum.dart';
 
-SvgPicture moreOptionsToIcon(MoreOption option) {
+SvgPicture moreOptionsToSvgIcon(MoreOption option) {
   switch (option) {
     case MoreOption.block:
       return SvgPicture.asset('assets/icons/circle_block.svg');
@@ -30,5 +30,17 @@ Image speciesToImage(Species species) {
       );
     default:
       return Image.asset('assets/icons/dog.png');
+  }
+}
+
+String genderToSvgSrc(Gender gender) {
+  switch (gender) {
+    case Gender.female:
+      return 'assets/icons/gender_female.svg';
+
+    case Gender.male:
+      return 'assets/icons/gender_male.svg';
+    default:
+      return '';
   }
 }

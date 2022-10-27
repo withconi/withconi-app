@@ -12,6 +12,7 @@ abstract class Routes {
   static const SIGNUP_CONIMAL_EDIT = '/signup/conimal/edit';
   static const SIGNIN_EMAIL = '/signin/email';
   static const DISEASE_ADD = '/disease/add';
+
   static const CONIMAL_MANAGE = '/conimal/manage';
   static const CONIMAL_ADD = '/conimal/manage/add';
   static const CONIMAL_EDIT = '/conimal/manage/edit';
@@ -27,6 +28,10 @@ abstract class Routes {
 
   static const DICTIONARY_DETAIL = '/dictionary/detail';
   static const DIAGNOSIS_MAIN = '/diagnosis/main';
+  static const DIAGNOSIS_STEP1 = '/disease/main/step1';
+  static const DIAGNOSIS_STEP2 = '/disease/main/step1/step2';
+  static const DIAGNOSIS_SYMPTOM = '/disease/main/step1/step2/symptom';
+  static const DIAGNOSIS_RESULT = '/disease/main/step1/step2/result';
   static const SETTING_MAIN = '/setting/main';
   static const USER_EDIT = '/user/edit';
   static const USER_MY_POST = '/user/mypost';

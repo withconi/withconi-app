@@ -95,15 +95,19 @@ class DiagnosisStep2Page extends StatelessWidget {
                   const SizedBox(
                     height: 50,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20.0),
-                    child: WcWideButtonWidget(
-                      active: _controller.validateButton(),
-                      activeButtonColor: WcColors.blue100,
-                      activeTextColor: WcColors.white,
-                      buttonText: '다음',
-                      buttonWidth: WcWidth - 40,
-                      onTap: () {},
+                  Obx(
+                    () => Padding(
+                      padding: const EdgeInsets.only(left: 20.0),
+                      child: WcWideButtonWidget(
+                        active: _controller.isButtonValid.value,
+                        activeButtonColor: WcColors.blue100,
+                        activeTextColor: WcColors.white,
+                        buttonText: '분석하기',
+                        buttonWidth: WcWidth - 40,
+                        onTap: () {
+                          Get.toNamed(Routes.DIAGNOSIS_RESULT);
+                        },
+                      ),
                     ),
                   ),
                   const SizedBox(

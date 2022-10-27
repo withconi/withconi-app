@@ -11,12 +11,12 @@ class WcUnderlinedTextButton extends StatelessWidget {
   WcUnderlinedTextButton({
     Key? key,
     this.valueText,
-    this.valueTextStyle,
+    // this.valueTextStyle,
     required this.active,
     required this.suffixText,
-    this.suffixTextStyle,
+    // this.suffixTextStyle,
     required this.hintText,
-    this.hintTextStyle,
+    // this.hintTextStyle,
     this.suffixIcon,
     this.onTap,
   }) : super(key: key);
@@ -55,12 +55,11 @@ class WcUnderlinedTextButton extends StatelessWidget {
                             Text(
                               valueText ?? '',
                               style: valueTextStyle ??
-                                  TextStyle(
-                                      fontFamily: WcFontFamily.notoSans,
+                                  GoogleFonts.openSans(
                                       color: WcColors.black,
-                                      fontSize: 16,
+                                      fontSize: 18,
                                       height: 1,
-                                      fontWeight: FontWeight.w600),
+                                      fontWeight: FontWeight.w700),
                             ),
                             Text(
                               suffixText,

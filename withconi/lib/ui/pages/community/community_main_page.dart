@@ -5,7 +5,10 @@ import 'package:withconi/ui/pages/community/community_setting_page.dart';
 import 'package:withconi/ui/pages/home/home_page.dart';
 import 'package:withconi/ui/theme/text_theme.dart';
 import 'package:withconi/ui/widgets/searchbar/search_bar.dart';
+import '../../../configs/constants/enum.dart';
+import '../../../data/model/post.dart';
 import '../../widgets/button/icon_button.dart';
+import '../home/widgets/hot_post_listtile.dart';
 
 class CommunityMainPage extends StatelessWidget {
   const CommunityMainPage({Key? key}) : super(key: key);
@@ -33,6 +36,7 @@ class CommunityMainPage extends StatelessWidget {
                     ),
                     SizedBox(
                       width: WcWidth - 40,
+                      height: 50,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -72,7 +76,7 @@ class CommunityMainPage extends StatelessWidget {
                                   fontFamily: WcFontFamily.notoSans,
                                   fontWeight: FontWeight.w500,
                                   height: 1,
-                                  fontSize: 19)),
+                                  fontSize: 18)),
                           const SizedBox(
                             width: 8,
                           ),
@@ -86,16 +90,15 @@ class CommunityMainPage extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    Obx(
-                      () => Column(
-                        children: _controller.boardList
-                            .map((board) => HotPostListTile(
-                                  width: WcWidth - 40,
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 10),
-                                ))
-                            .toList(),
-                      ),
+                    Column(
+                      children: _controller.hotPostList
+                          .map((post) => HotPostListTile(
+                                width: WcWidth - 40,
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
+                                post: post,
+                              ))
+                          .toList(),
                     ),
                     const SizedBox(
                       height: 30,
@@ -110,7 +113,7 @@ class CommunityMainPage extends StatelessWidget {
                                   fontFamily: WcFontFamily.notoSans,
                                   fontWeight: FontWeight.w500,
                                   height: 1,
-                                  fontSize: 19)),
+                                  fontSize: 18)),
                         ],
                       ),
                     ),

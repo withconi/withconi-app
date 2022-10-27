@@ -101,15 +101,15 @@ class MapDetailPage extends StatelessWidget {
               ),
               Positioned(
                 left: 15,
-                top: 30,
+                top: 18,
                 child: GestureDetector(
                   onTap: () {
                     Get.back();
                   },
                   child: Container(
-                    width: 50,
-                    height: 50,
-                    padding: EdgeInsets.all(13),
+                    width: 47,
+                    height: 47,
+                    padding: EdgeInsets.all(12),
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: WcColors.white,
@@ -129,7 +129,7 @@ class MapDetailPage extends StatelessWidget {
               ),
               Positioned(
                 right: 15,
-                top: 30,
+                top: 18,
                 child: Obx(
                   () => BookmarkButton(
                     isBookmarked: _controller.isBookmarked.value,
@@ -232,14 +232,21 @@ class MapDetailPage extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        height: 25,
+                        // height: 25,
+                        width: WcWidth - 40,
+                        padding: EdgeInsets.only(top: 4),
                         child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SvgPicture.asset('assets/icons/place_marker.svg'),
+                            SvgPicture.asset(
+                              'assets/icons/place_marker.svg',
+                            ),
                             SizedBox(
                               width: 8,
                             ),
-                            Text(_controller.placeDetail.address),
+                            SizedBox(
+                                width: 200,
+                                child: Text(_controller.placeDetail.address)),
                             GestureDetector(
                               onTap: () {
                                 Clipboard.setData(ClipboardData(
@@ -248,13 +255,15 @@ class MapDetailPage extends StatelessWidget {
                                 showCustomSnackbar(text: '주소가 복사되었어요');
                               },
                               child: Container(
-                                height: 25,
+                                // height: 25,
                                 width: 30,
                                 color: WcColors.white,
-                                padding:
-                                    EdgeInsets.only(top: 4, bottom: 5, left: 4),
+                                padding: EdgeInsets.only(
+                                  top: 1,
+                                ),
                                 child: SvgPicture.asset(
                                   'assets/icons/copy.svg',
+                                  width: 16,
                                 ),
                               ),
                             ),
@@ -262,10 +271,11 @@ class MapDetailPage extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        height: 25,
+                        height: 27,
                         // margin:
                         //     EdgeInsets.symmetric(vertical: 3),
                         child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             SvgPicture.asset('assets/icons/phone.svg'),
                             SizedBox(
@@ -997,9 +1007,9 @@ class BookmarkButton extends StatelessWidget {
         onTap!.call(!isBookmarked);
       },
       child: Container(
-        width: 50,
-        height: 50,
-        padding: EdgeInsets.all(13),
+        width: 47,
+        height: 47,
+        padding: EdgeInsets.all(12),
         decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: WcColors.white,

@@ -65,7 +65,7 @@ GestureDetector _moreSheetListTile(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            moreOptionsToIcon(moreOption),
+            moreOptionsToSvgIcon(moreOption),
             const SizedBox(
               width: 12,
             ),

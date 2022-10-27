@@ -194,7 +194,7 @@ class MapNewReviewController extends GetxController {
           createdAt: DateTime.now(),
           code: 'code',
           name: '질병입니다다다다다 다라다라 다',
-          symptoms: [],
+          symptomGroups: [],
           diseaseType: DiseaseType.musculoskeletal)
     ]) as List<Disease>?;
 
@@ -207,7 +207,6 @@ class MapNewReviewController extends GetxController {
           createdAt: DateTime.now(),
           code: 'code',
           name: '질병입니다다다다다 다라다라 다',
-          symptoms: [],
           diseaseType: DiseaseType.musculoskeletal)
     ]);
 

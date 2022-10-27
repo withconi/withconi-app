@@ -39,7 +39,7 @@ class WcBadge extends StatelessWidget {
             fontFamily: WcFontFamily.notoSans,
             color: textColor,
             fontSize: textSize,
-            fontWeight: FontWeight.w600,
+            fontWeight: FontWeight.w500,
             height: 1.1),
       ),
     );

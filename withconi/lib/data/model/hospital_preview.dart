@@ -2,7 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk_navi.dart';
 import 'package:withconi/configs/constants/enum.dart';
-import 'package:withconi/ui/entities/disease_percents.dart';
+import 'package:withconi/ui/entities/disease_history_group.dart';
 
 import '../../ui/entities/location.dart';
 import 'abstract_class/place_preview.dart';
@@ -51,7 +51,7 @@ class HospitalPreview implements PlacePreview {
   bool visitVerified = false;
 
   @override
-  DiseasePercentInfo? diseaseInfo;
+  DiseaseHistoryGroup? diseaseInfo;
 
   HospitalPreview({
     required this.locId,
@@ -83,7 +83,7 @@ class HospitalPreview implements PlacePreview {
         placeLocation: LatLngClass.fromJson(json['coordinate']));
     visitVerified = json['isVisitVerified'] ?? false;
     phone = json['phone'] ?? '';
-    diseaseInfo = DiseasePercentInfo.fromJson(json);
+    diseaseInfo = DiseaseHistoryGroup.fromJson(json);
   }
 
   // Map<String, dynamic> toJson() {

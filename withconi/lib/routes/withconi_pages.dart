@@ -11,6 +11,8 @@ import 'package:withconi/ui/pages/community/community_post_list_page.dart';
 import 'package:withconi/ui/pages/community/community_main_page.dart';
 import 'package:withconi/ui/pages/community/community_post_detail_page.dart';
 import 'package:withconi/ui/pages/diagnosis/diagnosis_main_page.dart';
+import 'package:withconi/ui/pages/diagnosis/diagnosis_step1_page.dart';
+import 'package:withconi/ui/pages/diagnosis/diagnosis_symptom_page.dart';
 import 'package:withconi/ui/pages/dictionary/dictionary_detail_page.dart';
 import 'package:withconi/ui/pages/dictionary/dictionary_main_page.dart';
 import 'package:withconi/ui/pages/common_pages/edit_conimal_page.dart';
@@ -35,6 +37,8 @@ import 'package:withconi/ui/pages/signup/signup_conimal_page_1.dart';
 import 'package:withconi/ui/pages/splash.dart';
 import 'package:withconi/ui/pages/start/start_page.dart';
 import '../ui/pages/community/community_new_post_page.dart';
+import '../ui/pages/diagnosis/diagnosis_result_page.dart';
+import '../ui/pages/diagnosis/diagnosis_step2_page.dart';
 import '../ui/pages/map/map_main_page.dart';
 import '../ui/pages/signup/signup_conimal_page_final.dart';
 
@@ -199,6 +203,22 @@ class WcPages {
     GetPage(
       name: Routes.MAP_LOCATION_PERMISSION,
       page: () => MapLocationPermissionPage(),
+    ),
+    GetPage(
+      name: Routes.DIAGNOSIS_STEP1,
+      page: () => DiagnosisStep1Page(),
+    ),
+    GetPage(
+      name: Routes.DIAGNOSIS_STEP2,
+      page: () => DiagnosisStep2Page(),
+    ),
+    GetPage(
+      name: Routes.DIAGNOSIS_SYMPTOM,
+      page: () => DiagnosisSymptomPage(),
+    ),
+    GetPage(
+      name: Routes.DIAGNOSIS_RESULT,
+      page: () => DiagnosisResultPage(),
     ),
   ];
 }

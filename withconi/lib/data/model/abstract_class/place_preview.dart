@@ -1,7 +1,7 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:withconi/configs/constants/enum.dart';
 import 'package:withconi/data/model/disease.dart';
-import 'package:withconi/ui/entities/disease_percents.dart';
+import 'package:withconi/ui/entities/disease_history_group.dart';
 import 'package:withconi/ui/pages/map/map_main_page.dart';
 
 import '../../../ui/entities/location.dart';
@@ -21,7 +21,7 @@ abstract class PlacePreview {
   String thumbnail = "";
   double distanceByMeter = 0.0;
   bool visitVerified = false;
-  DiseasePercentInfo? diseaseInfo;
+  DiseaseHistoryGroup? diseaseInfo;
 
   // PlacePreview.fromJson(Map<String, dynamic> json, LatLngClass baseLatLng) {
   //   locId = json['_id'] ?? '';

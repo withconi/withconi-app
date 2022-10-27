@@ -11,7 +11,7 @@ class CustomCheckBox extends StatelessWidget {
     required this.isSelected,
     required this.onChanged,
     this.mainAxisAlignment = MainAxisAlignment.start,
-    this.iconHeight = 23,
+    this.iconHeight = 22,
     this.textSize = 15.5,
   }) : super(key: key);
 

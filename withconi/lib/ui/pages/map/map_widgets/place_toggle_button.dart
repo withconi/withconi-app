@@ -1,3 +1,5 @@
+import 'package:withconi/ui/theme/text_theme.dart';
+
 import '../../../../configs/constants/enum.dart';
 import '../../../../import_basic.dart';
 
@@ -36,12 +38,30 @@ class PlaceTypeToggleButton extends StatelessWidget {
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.only(left: 3),
-          child: Text('전체'),
+          child: Text(
+            '전체',
+            style: TextStyle(
+                fontFamily: WcFontFamily.notoSans,
+                fontSize: 15,
+                fontWeight: FontWeight.w400),
+          ),
         ),
-        Text('병원'),
+        Text(
+          '병원',
+          style: TextStyle(
+              fontFamily: WcFontFamily.notoSans,
+              fontSize: 15,
+              fontWeight: FontWeight.w400),
+        ),
         Padding(
           padding: const EdgeInsets.only(right: 3),
-          child: Text('약국'),
+          child: Text(
+            '약국',
+            style: TextStyle(
+                fontFamily: WcFontFamily.notoSans,
+                fontSize: 15,
+                fontWeight: FontWeight.w400),
+          ),
         ),
       ],
       onPressed: (index) {

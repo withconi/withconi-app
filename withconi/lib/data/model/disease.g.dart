@@ -10,9 +10,11 @@ _$_Disease _$$_DiseaseFromJson(Map<String, dynamic> json) => _$_Disease(
       createdAt: const DateTimeConverter().fromJson(json['createdAt'] as int),
       code: json['code'] as String,
       name: json['name'] as String,
-      symptoms:
-          (json['symptoms'] as List<dynamic>).map((e) => e as String).toList(),
       description: json['description'] as String? ?? '',
+      symptomGroups: (json['symptomGroups'] as List<dynamic>?)
+              ?.map((e) => SymptomGroup.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
       diseaseType:
           $enumDecodeNullable(_$DiseaseTypeEnumMap, json['diseaseType']),
     );
@@ -22,12 +24,13 @@ Map<String, dynamic> _$$_DiseaseToJson(_$_Disease instance) =>
       'createdAt': const DateTimeConverter().toJson(instance.createdAt),
       'code': instance.code,
       'name': instance.name,
-      'symptoms': instance.symptoms,
       'description': instance.description,
+      'symptomGroups': instance.symptomGroups.map((e) => e.toJson()).toList(),
       'diseaseType': _$DiseaseTypeEnumMap[instance.diseaseType],
     };
 
 const _$DiseaseTypeEnumMap = {
+  DiseaseType.all: 'all',
   DiseaseType.cardiovascular: 'cardiovascular',
   DiseaseType.musculoskeletal: 'musculoskeletal',
   DiseaseType.digestive: 'digestive',
