@@ -1,5 +1,5 @@
 import 'package:withconi/data/model/abstract_class/place_preview.dart';
-import 'package:withconi/ui/entities/custom_marker.dart';
+import 'package:withconi/ui/ui_model/custom_marker.dart';
 
 import '../constants/enum.dart';
 
