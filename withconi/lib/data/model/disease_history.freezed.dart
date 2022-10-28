@@ -20,21 +20,6 @@ DiseaseHistory _$DiseaseHistoryFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$DiseaseHistory {
-// required int totalDisease,
-// required int totalCardiovascular,
-// required int totalMusculoskeletal,
-// required int totalDigestive,
-// required int totalOphthalmology,
-// required int totalUrinary,
-// required int totalRespiratory,
-// required int totalOtorhinolaryngology,
-// required int totalInfectiousDisease,
-// required int totalBrainNeurology,
-// required int totalDentistry,
-// required int totalOncology,
-// required int totalDermatology,
-// required int totalEndocrinology,
-// required int totalEmergency,
   DiseaseType get diseaseType => throw _privateConstructorUsedError;
   int get totalTypeHistory => throw _privateConstructorUsedError;
   List<DiseaseHistoryItem> get diseaseTypeDetailList =>
@@ -149,21 +134,6 @@ class _$_DiseaseHistory implements _DiseaseHistory {
   factory _$_DiseaseHistory.fromJson(Map<String, dynamic> json) =>
       _$$_DiseaseHistoryFromJson(json);
 
-// required int totalDisease,
-// required int totalCardiovascular,
-// required int totalMusculoskeletal,
-// required int totalDigestive,
-// required int totalOphthalmology,
-// required int totalUrinary,
-// required int totalRespiratory,
-// required int totalOtorhinolaryngology,
-// required int totalInfectiousDisease,
-// required int totalBrainNeurology,
-// required int totalDentistry,
-// required int totalOncology,
-// required int totalDermatology,
-// required int totalEndocrinology,
-// required int totalEmergency,
   @override
   final DiseaseType diseaseType;
   @override
@@ -224,21 +194,7 @@ abstract class _DiseaseHistory implements DiseaseHistory {
   factory _DiseaseHistory.fromJson(Map<String, dynamic> json) =
       _$_DiseaseHistory.fromJson;
 
-  @override // required int totalDisease,
-// required int totalCardiovascular,
-// required int totalMusculoskeletal,
-// required int totalDigestive,
-// required int totalOphthalmology,
-// required int totalUrinary,
-// required int totalRespiratory,
-// required int totalOtorhinolaryngology,
-// required int totalInfectiousDisease,
-// required int totalBrainNeurology,
-// required int totalDentistry,
-// required int totalOncology,
-// required int totalDermatology,
-// required int totalEndocrinology,
-// required int totalEmergency,
+  @override
   DiseaseType get diseaseType;
   @override
   int get totalTypeHistory;

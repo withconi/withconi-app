@@ -8,21 +8,6 @@ part 'disease_history.g.dart';
 class DiseaseHistory with _$DiseaseHistory {
   @JsonSerializable(explicitToJson: true)
   factory DiseaseHistory({
-    // required int totalDisease,
-    // required int totalCardiovascular,
-    // required int totalMusculoskeletal,
-    // required int totalDigestive,
-    // required int totalOphthalmology,
-    // required int totalUrinary,
-    // required int totalRespiratory,
-    // required int totalOtorhinolaryngology,
-    // required int totalInfectiousDisease,
-    // required int totalBrainNeurology,
-    // required int totalDentistry,
-    // required int totalOncology,
-    // required int totalDermatology,
-    // required int totalEndocrinology,
-    // required int totalEmergency,
     required DiseaseType diseaseType,
     required int totalTypeHistory,
     required List<DiseaseHistoryItem> diseaseTypeDetailList,
