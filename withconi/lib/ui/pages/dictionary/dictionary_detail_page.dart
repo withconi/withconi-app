@@ -91,7 +91,7 @@ class DictionaryDetailPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  diseaseTypeToKorean(_controller.disease.diseaseType) + '질환',
+                  _controller.disease.diseaseType!.displayName + '질환',
                   style: TextStyle(
                       fontFamily: WcFontFamily.notoSans,
                       fontSize: 15.5,
@@ -124,7 +124,7 @@ class DictionaryDetailPage extends StatelessWidget {
                     WcBadge(
                       width: 55,
                       margin: EdgeInsets.only(right: 8),
-                      text: speciesToKorean(Species.dog),
+                      text: Species.dog.displayName,
                       textSize: 12,
                       backgroundColor: speciesBackgroundColor(Species.dog),
                       textColor: speciesTypeTextColor(Species.dog),
@@ -132,7 +132,7 @@ class DictionaryDetailPage extends StatelessWidget {
                     WcBadge(
                       width: 55,
                       margin: EdgeInsets.only(right: 8),
-                      text: speciesToKorean(Species.cat),
+                      text: Species.cat.displayName,
                       textSize: 12,
                       backgroundColor: speciesBackgroundColor(Species.cat),
                       textColor: speciesTypeTextColor(Species.cat),
@@ -336,14 +336,14 @@ class SymptomGroupWrap extends StatelessWidget {
         children: [
           Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
             Image.asset(
-              'assets/icons/diagnosis/symptoms_${symptomsToValue(symptomGroup.symptomType)}.png',
+              'assets/icons/diagnosis/symptoms_${symptomGroup.symptomType.code}.png',
               height: 27,
             ),
             SizedBox(
               width: 5,
             ),
             Text(
-              symptomsToKorean(symptomGroup.symptomType) + '이상',
+              symptomGroup.symptomType.displayName + '이상',
               style: TextStyle(
                   height: 1,
                   fontFamily: WcFontFamily.notoSans,
