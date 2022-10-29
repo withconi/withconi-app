@@ -124,9 +124,8 @@ class CommunityNewPostPage extends StatelessWidget {
                                 onTap: () {
                                   _controller.onPostTypeChanged(postType);
                                 },
-                                selectedValue: postTypeToKorean(
-                                    _controller.selectedPostType.value),
-                                value: postTypeToKorean(postType),
+                                selectedValue: postType.displayName,
+                                value: postType.displayName,
                               ))
                           .toList()),
                 ),
