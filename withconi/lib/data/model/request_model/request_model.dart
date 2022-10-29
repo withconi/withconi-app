@@ -1,6 +1,6 @@
 import 'package:withconi/configs/constants/enum.dart';
 import 'package:withconi/controller/ui_helper/infinite_scroll.dart';
-import 'package:withconi/ui/entities/location.dart';
+import 'package:withconi/ui/ui_model/location.dart';
 
 import '../comment.dart';
 import '../conimal.dart';
@@ -30,10 +30,10 @@ class MapFilterRequest {
         'page': paginationFilter.page,
         'listSize': paginationFilter.limit,
         'keyword': keyword,
-        'locType': placeTypeToValue(locType),
-        'filterByDisease': diseaseTypeToValue(diseaseType),
-        'filterBySpecies': speciesToValue(speciesType),
-        'filterByOpeningStatus': openingStatusToValue(openingStatus),
+        'locType': locType?.code,
+        'filterByDisease': diseaseType?.code,
+        'filterBySpecies': speciesType?.code,
+        'filterByOpeningStatus': openingStatus?.code,
         'lat': latLng.latitude,
         'lng': latLng.longitude,
         'distance': distance,
