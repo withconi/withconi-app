@@ -10,13 +10,13 @@ import 'package:withconi/data/model/request_model/request_model.dart';
 import 'package:withconi/data/model/response_model/response_model.dart';
 import 'package:withconi/data/provider/map_api.dart';
 import 'package:withconi/data/provider/user_api.dart';
-import 'package:withconi/ui/entities/location.dart';
-import 'package:withconi/ui/entities/place_verfication.dart';
-import 'package:withconi/ui/entities/review_rate_entity.dart';
-import '../../configs/constants/enum.dart';
+import 'package:withconi/module/ui_model/location.dart';
+import 'package:withconi/module/ui_model/place_verfication.dart';
+import 'package:withconi/module/ui_model/review_ui_class.dart';
+import '../enums/enum.dart';
 import '../../core/error_handling/failures.dart';
 import '../model/conimal.dart';
-import '../../ui/entities/review_entity.dart';
+import '../../module/ui_model/review_group_ui_class.dart';
 import '../model/hospital_preview.dart';
 import '../model/pharmacy_preview.dart';
 import '../model/response_model/place_preview_response.dart';
@@ -160,9 +160,7 @@ class MapRepository {
   }) async {
     try {
       Map<String, dynamic> data = await _api.getVerification(
-          locId: locId,
-          placeType: placeTypeToValue(placeType),
-          requiresToken: true);
+          locId: locId, placeType: placeType.code, requiresToken: true);
 
       try {
         VerificationGroup placeVerification = VerificationGroup.fromJson(data);
@@ -236,7 +234,7 @@ class MapRepository {
       required PlacePreview place,
       required List<Conimal> conimals,
       required List<DiseaseType> diseaseTypes,
-      required ReviewEntity reviewEntity}) async {
+      required ReviewUIClassImpl reviewEntity}) async {
     try {
       Review placeReview = Review(
         userId: userId,

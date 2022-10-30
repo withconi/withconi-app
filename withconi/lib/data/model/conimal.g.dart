@@ -33,9 +33,10 @@ Map<String, dynamic> _$$_ConimalToJson(_$_Conimal instance) =>
     };
 
 const _$SpeciesEnumMap = {
-  Species.all: 'all',
   Species.cat: 'cat',
   Species.dog: 'dog',
+  Species.all: 'all',
+  Species.undefined: 'undefined',
 };
 
 const _$GenderEnumMap = {

@@ -1,4 +1,4 @@
-import '../../../ui/entities/location.dart';
+import '../../../module/ui_model/location.dart';
 import '../abstract_class/place_preview.dart';
 import '../hospital_preview.dart';
 import '../pharmacy_preview.dart';

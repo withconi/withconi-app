@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../configs/constants/enum.dart';
+import '../enums/enum.dart';
 part 'report.freezed.dart';
 part 'report.g.dart';
 
@@ -28,9 +28,12 @@ class ReportItemConverter implements JsonConverter<List<ReportItem>, String> {
   }
 
   @override
-  String toJson(List<ReportItem> reportItem) {
-    if (reportItem.isNotEmpty) {
-      return reportItem.map((e) => reportItemToKorean(e)).toList().join(',');
+  String toJson(List<ReportItem> reportItemList) {
+    if (reportItemList.isNotEmpty) {
+      return reportItemList
+          .map((reportItem) => reportItem.displayName)
+          .toList()
+          .join(',');
     } else {
       return '';
     }

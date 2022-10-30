@@ -1,8 +1,8 @@
 import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/core/error_handling/error_message_object.dart';
 import 'package:withconi/data/model/abstract_class/place_preview.dart';
-import 'package:withconi/ui/entities/location.dart';
-import '../../configs/helpers/calculator.dart';
+import 'package:withconi/module/ui_model/location.dart';
+import '../../core/tools/helpers/calculator.dart';
 import '../../core/error_handling/failures.dart';
 import '../../data/repository/map_repository.dart';
 import '../../import_basic.dart';

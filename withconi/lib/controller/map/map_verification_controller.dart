@@ -1,13 +1,13 @@
 import 'package:dartz/dartz.dart';
 import 'package:withconi/controller/navigation_controller.dart';
 
-import '../../configs/constants/enum.dart';
+import '../../data/enums/enum.dart';
 import '../../core/error_handling/failures.dart';
 import '../../data/repository/map_repository.dart';
 import '../../import_basic.dart';
 import 'package:app_settings/app_settings.dart';
 
-import '../../ui/entities/place_verfication.dart';
+import '../../module/ui_model/place_verfication.dart';
 import '../ui_interpreter/failure_ui_interpreter.dart';
 
 class MapVerificationController extends GetxController {

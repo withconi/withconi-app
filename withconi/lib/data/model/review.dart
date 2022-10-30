@@ -1,12 +1,12 @@
 import 'package:withconi/data/model/abstract_class/place_preview.dart';
 import 'package:withconi/data/model/hospital_preview.dart';
 import 'package:withconi/data/model/pharmacy_preview.dart';
-import 'package:withconi/ui/entities/review_entity.dart';
-import 'package:withconi/ui/entities/review_rate_entity.dart';
+import 'package:withconi/module/ui_model/review_group_ui_class.dart';
+import 'package:withconi/module/ui_model/review_ui_class.dart';
 
-import '../../configs/constants/enum.dart';
+import '../enums/enum.dart';
 import 'conimal.dart';
-import 'package:withconi/configs/constants/enum.dart';
+import 'package:withconi/data/enums/enum.dart';
 import 'package:withconi/data/model/conimal.dart';
 
 class Review {
@@ -27,7 +27,7 @@ class Review {
   bool visitVerified;
   List<Conimal> conimals;
   List<DiseaseType> diseaseTypes;
-  ReviewEntity reviewEntity;
+  ReviewUIClassImpl reviewEntity;
   String name;
   String address;
   PlaceType placeType;
@@ -49,29 +49,29 @@ class Review {
     //       json['placePreview'] as Map<String, dynamic>, null);
     // }
 
-    ReviewRate reviewRate = reviewRateFromString(reviewRateString);
-    late ReviewEntity reviewEntity;
+    ReviewRate reviewRate = ReviewRate.getByCode(reviewRateString);
+    late ReviewUIClassImpl reviewEntity;
     switch (reviewRate) {
       case ReviewRate.low:
-        reviewEntity = LowReviewEntity(selectedReviewItems: []);
+        reviewEntity = LowReviewUIClass(selectedReviewItems: []);
         break;
       case ReviewRate.middle:
-        reviewEntity = MiddleReviewEntity(selectedReviewItems: []);
+        reviewEntity = MiddleReviewUIClass(selectedReviewItems: []);
         break;
       case ReviewRate.high:
-        reviewEntity = HighReviewEntity(selectedReviewItems: []);
+        reviewEntity = HighReviewUIClass(selectedReviewItems: []);
         break;
       default:
     }
 
     reviewEntity.selectedReviewItems =
-        reviewItemsListString.split(',').map((reviewRateString) {
-      return reviewItemsFromString(reviewRateString);
+        reviewItemsListString.split(',').map((reviewItemString) {
+      return ReviewItems.getByCode(reviewItemString);
     }).toList();
 
     List<DiseaseType> diseaseTypes =
         diseaseTypeString.split(',').map((diseaseTypeString) {
-      return diseaseTypeFromString(diseaseTypeString);
+      return DiseaseType.getByCode(diseaseTypeString);
     }).toList();
 
     List<Conimal> conimals =
@@ -80,7 +80,7 @@ class Review {
     return Review(
       userId: json['userId'] ?? '',
       placeId: json['locId'] ?? '',
-      placeType: placeTypeFromString(json['locType']),
+      placeType: PlaceType.getByCode(json['locType'] ?? ''),
       name: json['name'] ?? '',
       address: json['address'],
       visitVerified: json['isVisiting'] ?? false,
@@ -96,7 +96,7 @@ class Review {
     String selectedReviewItemString = '';
     int totalDogs = 0;
     int totalCats = 0;
-    String status = reviewRateToValue(reviewEntity.reviewRate);
+    String status = reviewEntity.reviewRate.code;
 
     conimalIdList = conimals.map((conimal) {
       if (conimal.species == Species.dog) {
@@ -109,14 +109,14 @@ class Review {
 
     diseaseTypeString = diseaseTypes
         .map((disease) {
-          return diseaseTypeToValue(disease);
+          return disease.code;
         })
         .toList()
         .join(',');
 
     selectedReviewItemString = reviewEntity.selectedReviewItems
         .map((reviewItem) {
-          return reviewItemsToValue(reviewItem);
+          return reviewItem.code;
         })
         .toList()
         .join(',');

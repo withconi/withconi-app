@@ -1,17 +1,17 @@
-import '../../../configs/constants/enum.dart';
-import '../../../ui/entities/review_rate_entity.dart';
+import '../../enums/enum.dart';
+import '../../../module/ui_model/review_ui_class.dart';
 
 class ReviewHistoryResponse {
-  List<ReviewEntity> reviewList;
+  List<ReviewUIClassImpl> reviewList;
   int totalReview = 0;
 
   ReviewHistoryResponse({required this.reviewList, required this.totalReview});
 
   factory ReviewHistoryResponse.fromJson(Map<String, dynamic> json) {
-    List<ReviewEntity> list = [
-      HighReviewEntity(selectedReviewItems: []),
-      MiddleReviewEntity(selectedReviewItems: []),
-      LowReviewEntity(selectedReviewItems: [])
+    List<ReviewUIClassImpl> list = [
+      HighReviewUIClass(selectedReviewItems: []),
+      MiddleReviewUIClass(selectedReviewItems: []),
+      LowReviewUIClass(selectedReviewItems: [])
     ];
     int totalNum = 0;
 
@@ -19,8 +19,7 @@ class ReviewHistoryResponse {
       (reviewRate) {
         Map<ReviewItems, int> itemMap = {};
         for (ReviewItems reviewItem in ReviewItems.values) {
-          itemMap[reviewItem] = json[reviewRateToValue(reviewRate)]
-              [reviewItemsToValue(reviewItem)] as int;
+          itemMap[reviewItem] = json[reviewRate.code][reviewItem.code] as int;
         }
         switch (reviewRate) {
           case ReviewRate.high:
@@ -41,7 +40,7 @@ class ReviewHistoryResponse {
       },
     );
 
-    for (ReviewEntity reviewItem in list) {
+    for (ReviewUIClassImpl reviewItem in list) {
       totalNum += reviewItem.reviewNum;
     }
 

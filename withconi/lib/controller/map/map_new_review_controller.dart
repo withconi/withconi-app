@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/services.dart';
-import 'package:withconi/configs/constants/enum.dart';
+import 'package:withconi/data/enums/enum.dart';
 import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/data/model/abstract_class/place_preview.dart';
 import 'package:withconi/data/model/disease.dart';
@@ -10,19 +10,19 @@ import 'package:withconi/data/repository/community_repository.dart';
 import 'package:withconi/data/repository/image_repository.dart';
 import 'package:withconi/data/repository/map_repository.dart';
 import 'package:withconi/data/repository/user_repository.dart';
-import 'package:withconi/ui/entities/place_verfication.dart';
-import 'package:withconi/ui/pages/map/map_place_verification_page.dart';
-import 'package:withconi/ui/widgets/dialog/place_verification_dialog.dart';
-import 'package:withconi/ui/widgets/loading/loading_overlay.dart';
-import '../../configs/helpers/image_picker_helper.dart';
+import 'package:withconi/module/ui_model/place_verfication.dart';
+import 'package:withconi/module/pages/map/map_place_verification_page.dart';
+import 'package:withconi/module/widgets/dialog/place_verification_dialog.dart';
+import 'package:withconi/module/widgets/loading/loading_overlay.dart';
+import '../../core/tools/helpers/image_picker_helper.dart';
 import '../../core/error_handling/failures.dart';
 import '../../data/model/conimal.dart';
 import '../../data/model/post.dart';
 import '../../import_basic.dart';
-import '../../ui/entities/review_rate_entity.dart';
-import '../../ui/theme/text_theme.dart';
-import '../../ui/widgets/dialog/selection_dialog.dart';
-import '../../ui/widgets/snackbar.dart';
+import '../../module/ui_model/review_ui_class.dart';
+import '../../module/theme/text_theme.dart';
+import '../../module/widgets/dialog/selection_dialog.dart';
+import '../../module/widgets/snackbar.dart';
 import '../ui_interpreter/failure_ui_interpreter.dart';
 
 class MapNewReviewController extends GetxController {
@@ -40,7 +40,7 @@ class MapNewReviewController extends GetxController {
   RxBool isLoading = false.obs;
   final RxBool validatePostButton = false.obs;
   // Rxn<ReviewRate> selectedReviewRate = Rxn<ReviewRate>();
-  Rxn<ReviewEntity> selectedReviewEntity = Rxn<ReviewEntity>();
+  Rxn<ReviewUIClassImpl> selectedReviewEntity = Rxn<ReviewUIClassImpl>();
   // RxList<ReviewItems> selectedReviewItemList = RxList<ReviewItems>();
   // late Rx<PlacePreview> preview;
   RxList<Conimal> selectedConimalList = RxList<Conimal>();
@@ -50,10 +50,10 @@ class MapNewReviewController extends GetxController {
   RxBool showReviewItemSection = false.obs;
   RxBool showReviewRateSection = false.obs;
   TextEditingController textController = TextEditingController();
-  List<ReviewEntity> reviewRateEntities = [
-    HighReviewEntity(selectedReviewItems: []),
-    MiddleReviewEntity(selectedReviewItems: []),
-    LowReviewEntity(selectedReviewItems: [])
+  List<ReviewUIClassImpl> reviewRateEntities = [
+    HighReviewUIClass(selectedReviewItems: []),
+    MiddleReviewUIClass(selectedReviewItems: []),
+    LowReviewUIClass(selectedReviewItems: [])
   ];
   ScrollController scrollController = ScrollController();
 
@@ -287,7 +287,7 @@ class MapNewReviewController extends GetxController {
     }
   }
 
-  onReviewRateChanged(ReviewEntity reviewRateEntity) {
+  onReviewRateChanged(ReviewUIClassImpl reviewRateEntity) {
     if (selectedReviewEntity.value != null) {
       selectedReviewEntity.value!.selectedReviewItems.clear();
     }

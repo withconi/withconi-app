@@ -2,7 +2,7 @@
 import 'dart:async';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:withconi/configs/constants/enum.dart';
+import 'package:withconi/data/enums/enum.dart';
 import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/controller/signup/data/signup_data_manager.dart';
 import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
@@ -11,8 +11,8 @@ import 'package:withconi/data/repository/platform_repository/apple_repository.da
 import 'package:withconi/data/repository/auth_repository.dart';
 import 'package:withconi/data/repository/platform_repository/kakao_repository.dart';
 import 'package:withconi/data/repository/platform_repository/naver_repository.dart';
-import '../configs/constants/regex.dart';
-import '../configs/constants/strings.dart';
+import '../core/values/constants/regex.dart';
+import '../core/values/constants/strings.dart';
 import '../core/custom_auth_info.dart';
 import '../data/repository/platform_repository/google_repository.dart';
 import '../import_basic.dart';
@@ -28,7 +28,7 @@ class StartPageController extends GetxController {
   final RxString _emailInputText = ''.obs;
   final RxString buttonText = '다음'.obs;
   late Provider _selectedProvider;
-  UserState2 _userState = UserState2.none;
+  UserState _userState = UserState.none;
   Rx<ButtonState> buttonState = ButtonState.none.obs;
   RxnString emailErrorText = RxnString();
   TextEditingController emailTextController = TextEditingController();
@@ -56,14 +56,14 @@ class StartPageController extends GetxController {
   }
 
   void _changeButton(
-      {required UserState2 userState, required ButtonState button}) {
-    if (userState == UserState2.signIn) {
+      {required UserState userState, required ButtonState button}) {
+    if (userState == UserState.signIn) {
       buttonText.value = '로그인';
       buttonState.value = button;
-    } else if (userState == UserState2.signUp) {
+    } else if (userState == UserState.signUp) {
       buttonText.value = '회원가입';
       buttonState.value = button;
-    } else if (userState == UserState2.none) {
+    } else if (userState == UserState.none) {
       buttonText.value = '다음';
       buttonState.value = button;
     }
@@ -97,20 +97,20 @@ class StartPageController extends GetxController {
 
     if (isDupliacteUser != null) {
       if (isDupliacteUser) {
-        _userState = UserState2.signIn;
+        _userState = UserState.signIn;
       } else {
-        _userState = UserState2.signUp;
+        _userState = UserState.signUp;
       }
     }
   }
 
   Future<void> _setNextStepByUserState(
-      UserState2 _userState, String _email) async {
+      UserState _userState, String _email) async {
     await _getCustomAuthInfo(_email);
-    if (_userState == UserState2.signUp) {
+    if (_userState == UserState.signUp) {
       //provider에 로그인 하여 oAuth 정보를 가져온 뒤 AuthController에 저장한다
       await _signUpNextPage();
-    } else if (_userState == UserState2.signIn) {
+    } else if (_userState == UserState.signIn) {
       if (_selectedProvider == Provider.email) {
         _signInEmailNextPage();
       } else {
@@ -226,7 +226,7 @@ class StartPageController extends GetxController {
       (_email.isEmpty)
           ? emailErrorText.value = null
           : emailErrorText(Strings.validator.email);
-      _changeButton(userState: UserState2.none, button: ButtonState.none);
+      _changeButton(userState: UserState.none, button: ButtonState.none);
     } else {
       emailErrorText.value = null;
       await _determineButtonState(_email);
@@ -234,13 +234,13 @@ class StartPageController extends GetxController {
   }
 
   Future<void> _determineButtonState(String _email) async {
-    _changeButton(userState: UserState2.none, button: ButtonState.loading);
+    _changeButton(userState: UserState.none, button: ButtonState.loading);
 
     await _setUserStateByEmail(email: _email);
     if (emailErrorText.value == null) {
       _changeButton(userState: _userState, button: ButtonState.success);
     } else {
-      _changeButton(userState: UserState2.none, button: ButtonState.none);
+      _changeButton(userState: UserState.none, button: ButtonState.none);
     }
   }
 

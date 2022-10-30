@@ -3,27 +3,26 @@ import 'package:app_settings/app_settings.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_naver_map/flutter_naver_map.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:withconi/configs/helpers/calculator.dart';
-import 'package:withconi/configs/helpers/quick_sort.dart';
+import 'package:withconi/core/tools/helpers/calculator.dart';
+import 'package:withconi/core/tools/helpers/quick_sort.dart';
 import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
 import 'package:withconi/data/model/abstract_class/place_preview.dart';
 import 'package:withconi/data/model/hospital_preview.dart';
 import 'package:withconi/data/repository/map_repository.dart';
-import 'package:withconi/ui/entities/location.dart';
-import 'package:withconi/ui/pages/map/map_location_permission_page.dart';
-import '../../configs/constants/enum.dart';
+import 'package:withconi/module/ui_model/location.dart';
+import 'package:withconi/module/pages/map/map_location_permission_page.dart';
+import '../../data/enums/enum.dart';
 import '../../core/error_handling/failures.dart';
 import '../../import_basic.dart';
-import '../../ui/entities/custom_marker.dart';
-import '../../ui/widgets/loading/loading_overlay.dart';
+import '../../module/ui_model/custom_marker.dart';
+import '../../module/widgets/loading/loading_overlay.dart';
 import '../ui_helper/infinite_scroll.dart';
 
 class MapMainPageController extends GetxController {
   static MapMainPageController get to => Get.find(tag: "Initial");
   RxBool hasLocationPermission = false.obs;
   late String _userId;
-
   Completer<NaverMapController> _controller = Completer();
   late NaverMapController mapController;
   final MapRepository _mapRepository = MapRepository();

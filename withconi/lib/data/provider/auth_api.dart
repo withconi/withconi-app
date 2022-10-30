@@ -8,16 +8,16 @@ import 'package:flutter_naver_login/flutter_naver_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart' as kakao;
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
-import 'package:withconi/configs/constants/api_url.dart';
-import 'package:withconi/configs/constants/enum.dart';
-import 'package:withconi/configs/constants/auth_variables.dart';
-import 'package:withconi/configs/helpers/extension.dart';
+import 'package:withconi/core/tools/api_url.dart';
+import 'package:withconi/data/enums/enum.dart';
+import 'package:withconi/core/values/constants/auth_variables.dart';
+import 'package:withconi/core/tools/helpers/extension.dart';
 import 'package:withconi/core/custom_auth_info.dart';
 import 'package:withconi/core/error_handling/exceptions.dart';
 import 'package:withconi/core/network_handling/network_service.dart';
 import 'package:withconi/data/model/custom_token.dart';
 
-import '../../configs/constants/app_info.dart';
+import '../../core/values/constants/app_info.dart';
 import '../../core/error_handling/failures.dart';
 import '../model/user.dart';
 
@@ -78,7 +78,9 @@ class AuthAPI {
 
   checkAppVersion() async {
     Map<String, dynamic> data = await _dio.apiCall(
-      header: {'os-name': AppInfo().os, 'version': AppInfo.version},
+      header: {
+        'application': AppInfo().os + '_' + AppInfo.version,
+      },
       url: HttpUrl.VERSION_CHECK,
       queryParameters: null,
       body: null,

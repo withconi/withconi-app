@@ -1,22 +1,18 @@
 import 'package:dartz/dartz.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
-import 'package:withconi/configs/constants/enum.dart';
-import 'package:withconi/configs/helpers/dynamic_link_manager.dart';
-import 'package:withconi/configs/helpers/token_manager.dart';
-import 'package:withconi/configs/helpers/url_launcher.dart';
+import 'package:withconi/data/enums/enum.dart';
+import 'package:withconi/core/tools/helpers/dynamic_link_manager.dart';
+import 'package:withconi/core/tools/helpers/url_launcher.dart';
 
 import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
 import 'package:withconi/core/error_handling/failures.dart';
 import 'package:withconi/data/repository/auth_repository.dart';
 import 'package:withconi/data/repository/user_repository.dart';
-import 'package:withconi/ui/widgets/dialog/disease_editing_dialog.dart';
-import '../configs/constants/auth_variables.dart';
+import '../core/values/constants/auth_variables.dart';
 import '../core/custom_auth_info.dart';
 import '../data/model/user.dart';
 import '../import_basic.dart';
-import '../ui/widgets/dialog/icon_dialog.dart';
-import '../ui/widgets/loading/loading_overlay.dart';
+import '../module/widgets/dialog/icon_dialog.dart';
+import '../module/widgets/loading/loading_overlay.dart';
 
 class AuthController extends GetxController {
   static AuthController get to => Get.find();

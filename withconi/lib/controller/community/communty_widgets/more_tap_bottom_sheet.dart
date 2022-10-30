@@ -1,6 +1,6 @@
 import 'package:flutter_svg/svg.dart';
-import 'package:withconi/configs/constants/enum.dart';
-import '../../../configs/constants/enum_icon.dart';
+import 'package:withconi/data/enums/enum.dart';
+import '../../../data/enums/enum_icon.dart';
 import '../../../data/model/comment.dart';
 import '../../../data/model/user.dart';
 import '../../../import_basic.dart';
@@ -70,7 +70,9 @@ GestureDetector _moreSheetListTile(
               width: 12,
             ),
             Text(
-                moreOptionsToKorean(option: moreOption, authorName: authorName),
+                (moreOption == MoreOption.block)
+                    ? '$authorName의 글 ${moreOption.displayName}'
+                    : moreOption.displayName,
                 style: GoogleFonts.notoSans(
                     fontSize: 17,
                     color: WcColors.black,

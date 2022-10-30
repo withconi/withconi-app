@@ -1,10 +1,10 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk_navi.dart';
-import 'package:withconi/configs/constants/enum.dart';
-import 'package:withconi/ui/entities/disease_history_group.dart';
+import 'package:withconi/data/enums/enum.dart';
+import 'package:withconi/module/ui_model/disease_history_group.dart';
 
-import '../../ui/entities/location.dart';
+import '../../module/ui_model/location.dart';
 import 'abstract_class/place_preview.dart';
 
 class HospitalPreview implements PlacePreview {
@@ -72,7 +72,7 @@ class HospitalPreview implements PlacePreview {
   HospitalPreview.fromJson(Map<String, dynamic> json, LatLngClass? baseLatLng) {
     locId = json['_id'] ?? '';
     name = json['name'] ?? '';
-    openingStatus = openingStatusFromJson(json['openingStatus'] as String);
+    openingStatus = OpeningStatus.getByCode(json['openingStatus'] ?? '');
     address = json['address'] ?? '';
     location = LatLngClass.fromJson(json['coordinate']);
     totalVisiting = json['totalVisiting'] ?? 0;

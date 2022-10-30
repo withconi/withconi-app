@@ -3,10 +3,10 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:withconi/configs/constants/api_url.dart';
-import 'package:withconi/configs/constants/enum.dart';
-import '../../configs/constants/auth_variables.dart';
-import '../../configs/helpers/token_manager.dart';
+import 'package:withconi/core/tools/api_url.dart';
+import 'package:withconi/data/enums/enum.dart';
+import '../values/constants/auth_variables.dart';
+import '../tools/helpers/token_manager.dart';
 import '../error_handling/exceptions.dart';
 
 enum RequestType { GET, POST, POST_FORM_DATA, PUT, PATCH, DELETE }
@@ -82,7 +82,7 @@ class Api {
             break;
           }
       }
-      if (result != null && result.data['success'] == true) {
+      if (result != null) {
         if (result.data['data'] != null) {
           return result.data['data'] as Map<String, dynamic>;
         } else {

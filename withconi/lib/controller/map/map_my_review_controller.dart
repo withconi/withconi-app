@@ -1,4 +1,4 @@
-import 'package:withconi/configs/constants/enum.dart';
+import 'package:withconi/data/enums/enum.dart';
 import 'package:withconi/controller/auth_controller.dart';
 
 import 'package:withconi/data/model/abstract_class/place_preview.dart';
@@ -8,9 +8,9 @@ import 'package:withconi/data/model/response_model/response_model.dart';
 import 'package:withconi/data/model/review.dart';
 import 'package:withconi/data/repository/community_repository.dart';
 import 'package:withconi/data/repository/map_repository.dart';
-import 'package:withconi/ui/entities/location.dart';
-import 'package:withconi/ui/entities/review_rate_entity.dart';
-import 'package:withconi/ui/widgets/loading/loading_overlay.dart';
+import 'package:withconi/module/ui_model/location.dart';
+import 'package:withconi/module/ui_model/review_ui_class.dart';
+import 'package:withconi/module/widgets/loading/loading_overlay.dart';
 import '../../import_basic.dart';
 import '../ui_helper/infinite_scroll.dart';
 import '../ui_interpreter/failure_ui_interpreter.dart';

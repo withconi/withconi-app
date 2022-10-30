@@ -1,9 +1,9 @@
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk_navi.dart';
 import 'package:withconi/data/model/disease_history.dart';
-import 'package:withconi/ui/entities/disease_history_group.dart';
-import 'package:withconi/configs/constants/enum.dart';
+import 'package:withconi/module/ui_model/disease_history_group.dart';
+import 'package:withconi/data/enums/enum.dart';
 
-import '../../ui/entities/location.dart';
+import '../../module/ui_model/location.dart';
 
 class PlaceDetail {
   String locId = '';

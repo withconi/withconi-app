@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:withconi/configs/constants/enum.dart';
-import 'package:withconi/configs/helpers/dynamic_link_manager.dart';
-import 'package:withconi/configs/helpers/token_manager.dart';
+import 'package:withconi/data/enums/enum.dart';
+import 'package:withconi/core/tools/helpers/dynamic_link_manager.dart';
+import 'package:withconi/core/tools/helpers/token_manager.dart';
 import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
 import 'package:withconi/core/error_handling/exceptions.dart';
 import 'package:withconi/core/error_handling/failures.dart';
@@ -12,7 +12,7 @@ import 'package:withconi/data/provider/google_api.dart';
 import 'package:withconi/data/provider/kakao_api.dart';
 import 'package:withconi/data/provider/naver_api.dart';
 import 'package:withconi/import_basic.dart';
-import '../../configs/constants/auth_variables.dart';
+import '../../core/values/constants/auth_variables.dart';
 import '../../core/custom_auth_info.dart';
 import '../model/user.dart';
 
@@ -31,7 +31,7 @@ class AuthRepository extends GetxController {
   Future<Either<Failure, bool>> checkAppVersion() async {
     try {
       Map<String, dynamic> result = await _api.checkAppVersion();
-      return Right(result['success'] as bool);
+      return Right(true);
     } catch (e) {
       return Left(VersionCheckFailure());
     }
@@ -67,30 +67,30 @@ class AuthRepository extends GetxController {
     }
   }
 
-  UserState determineUserState(bool isDuplicateUser, Provider provider) {
-    UserState userState;
-    if (isDuplicateUser) {
-      if (provider == Provider.email) {
-        userState = UserState.signInEmail;
-      } else if ((provider == Provider.apple) ||
-          (provider == Provider.google)) {
-        userState = UserState.signInAuthCredential;
-      } else if ((provider == Provider.naver) || (provider == Provider.kakao)) {
-        userState = UserState.signInToken;
-      } else {
-        userState = UserState.none;
-      }
-    } else {
-      if (provider == Provider.email) {
-        userState = UserState.signUpEmail;
-      } else if (provider == Provider.none) {
-        userState = UserState.none;
-      } else {
-        userState = UserState.signUpSns;
-      }
-    }
-    return userState;
-  }
+  // UserState determineUserState(bool isDuplicateUser, Provider provider) {
+  //   UserState userState;
+  //   if (isDuplicateUser) {
+  //     if (provider == Provider.email) {
+  //       userState = UserState.signInEmail;
+  //     } else if ((provider == Provider.apple) ||
+  //         (provider == Provider.google)) {
+  //       userState = UserState.signInAuthCredential;
+  //     } else if ((provider == Provider.naver) || (provider == Provider.kakao)) {
+  //       userState = UserState.signInToken;
+  //     } else {
+  //       userState = UserState.none;
+  //     }
+  //   } else {
+  //     if (provider == Provider.email) {
+  //       userState = UserState.signUpEmail;
+  //     } else if (provider == Provider.none) {
+  //       userState = UserState.none;
+  //     } else {
+  //       userState = UserState.signUpSns;
+  //     }
+  //   }
+  //   return userState;
+  // }
 
   // Future<Either<Failure, CustomAuthInfo>> getAppleAuthInfo() async {
   //   try {

@@ -51,7 +51,7 @@
               "client_id": "955745601928-10tpc48stffksv2v3g0fnudmjhp67al7.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.withconi"
+                "bundle_id": "co.yellowtoast.withconi"
               }
             }
           ]
@@ -62,7 +62,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:955745601928:android:421933ce6fcaaac969923d",
         "android_client_info": {
-          "package_name": "com.example.withconi_web"
+          "package_name": "co.yellowtoast.withconi_web"
         }
       },
       "oauth_client": [
@@ -87,7 +87,7 @@
               "client_id": "955745601928-10tpc48stffksv2v3g0fnudmjhp67al7.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.withconi"
+                "bundle_id": "co.yellowtoast.withconi"
               }
             }
           ]

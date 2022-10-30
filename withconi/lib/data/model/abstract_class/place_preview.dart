@@ -1,10 +1,10 @@
 import 'package:geolocator/geolocator.dart';
-import 'package:withconi/configs/constants/enum.dart';
+import 'package:withconi/data/enums/enum.dart';
 import 'package:withconi/data/model/disease.dart';
-import 'package:withconi/ui/entities/disease_history_group.dart';
-import 'package:withconi/ui/pages/map/map_main_page.dart';
+import 'package:withconi/module/ui_model/disease_history_group.dart';
+import 'package:withconi/module/pages/map/map_main_page.dart';
 
-import '../../../ui/entities/location.dart';
+import '../../../module/ui_model/location.dart';
 
 abstract class PlacePreview {
   PlaceType placeType = PlaceType.hospital;

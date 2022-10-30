@@ -1,7 +1,7 @@
-import 'package:withconi/ui/entities/disease_history_group.dart';
+import 'package:withconi/module/ui_model/disease_history_group.dart';
 
-import '../../configs/constants/enum.dart';
-import '../../ui/entities/location.dart';
+import '../enums/enum.dart';
+import '../../module/ui_model/location.dart';
 import 'abstract_class/place_preview.dart';
 
 import 'package:geolocator/geolocator.dart';
@@ -71,7 +71,7 @@ class PharmacyPreview implements PlacePreview {
   PharmacyPreview.fromJson(Map<String, dynamic> json, LatLngClass? baseLatLng) {
     locId = json['_id'] ?? '';
     name = json['name'] ?? '';
-    openingStatus = openingStatusFromJson(json['openingStatus'] ?? '');
+    openingStatus = OpeningStatus.getByCode(json['openingStatus'] ?? '');
     address = json['address'] ?? '';
     location = LatLngClass.fromJson(json['coordinate']);
     totalVisiting = json['totalVisiting'] ?? 0;

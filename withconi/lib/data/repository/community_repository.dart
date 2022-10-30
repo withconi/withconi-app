@@ -8,7 +8,7 @@ import 'package:withconi/data/model/disease.dart';
 import 'package:withconi/data/model/request_model/request_model.dart';
 import 'package:withconi/data/provider/community_api.dart';
 import 'package:withconi/data/provider/disease_api.dart';
-import '../../configs/constants/enum.dart';
+import '../enums/enum.dart';
 import '../../core/error_handling/failures.dart';
 import '../model/comment.dart';
 import '../model/report.dart';
@@ -42,7 +42,7 @@ class CommunityRepository {
         "page": paginationFilter.page,
         "listSize": paginationFilter.limit,
         "boardId": boardId,
-        "postType": postTypeToValue(postType),
+        "postType": postType.code,
         "keyword": keyword
       }, true);
       List<Post> postList = PostResponse.fromJson(data).results;

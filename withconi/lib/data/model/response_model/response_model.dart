@@ -1,16 +1,16 @@
-import 'package:withconi/configs/constants/enum.dart';
+import 'package:withconi/data/enums/enum.dart';
 import 'package:withconi/data/model/abstract_class/place_preview.dart';
 import 'package:withconi/data/model/comment.dart';
 import 'package:withconi/data/model/hospital_preview.dart';
 import 'package:withconi/data/model/pharmacy_preview.dart';
-import 'package:withconi/ui/entities/location.dart';
-import 'package:withconi/ui/entities/review_rate_entity.dart';
+import 'package:withconi/module/ui_model/location.dart';
+import 'package:withconi/module/ui_model/review_ui_class.dart';
 import '../board.dart';
 import '../conimal.dart';
 import '../disease.dart';
 import '../post.dart';
 import '../../../core/error_handling/exceptions.dart';
-import '../../../ui/entities/review_entity.dart';
+import '../../../module/ui_model/review_group_ui_class.dart';
 import '../review.dart';
 
 class UserStateResponse {

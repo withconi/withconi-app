@@ -30,7 +30,6 @@ Map<String, dynamic> _$$_DiseaseToJson(_$_Disease instance) =>
     };
 
 const _$DiseaseTypeEnumMap = {
-  DiseaseType.all: 'all',
   DiseaseType.cardiovascular: 'cardiovascular',
   DiseaseType.musculoskeletal: 'musculoskeletal',
   DiseaseType.digestive: 'digestive',
@@ -45,4 +44,5 @@ const _$DiseaseTypeEnumMap = {
   DiseaseType.dermatology: 'dermatology',
   DiseaseType.endocrinology: 'endocrinology',
   DiseaseType.emergency: 'emergency',
+  DiseaseType.all: 'all',
 };

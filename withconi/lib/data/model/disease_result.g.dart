@@ -24,4 +24,5 @@ const _$DiseasePosibilityEnumMap = {
   DiseasePosibility.high: 'high',
   DiseasePosibility.middle: 'middle',
   DiseasePosibility.low: 'low',
+  DiseasePosibility.undefined: 'undefined',
 };

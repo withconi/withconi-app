@@ -1,14 +1,14 @@
 import 'package:dartz/dartz.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:withconi/configs/constants/enum.dart';
-import 'package:withconi/configs/constants/enum_color.dart';
+import 'package:withconi/data/enums/enum.dart';
+import 'package:withconi/data/enums/enum_color.dart';
 import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
 import 'package:withconi/data/model/place_detail.dart';
 import 'package:withconi/data/model/response_model/review_history_response.dart';
 import 'package:withconi/data/repository/map_repository.dart';
-import 'package:withconi/ui/entities/chart_data.dart';
-import 'package:withconi/ui/widgets/loading/loading_overlay.dart';
+import 'package:withconi/module/ui_model/chart_data.dart';
+import 'package:withconi/module/widgets/loading/loading_overlay.dart';
 import '../../../core/error_handling/failures.dart';
 import '../../../data/model/abstract_class/place_preview.dart';
 import '../../../data/model/response_model/response_model.dart';
@@ -113,13 +113,13 @@ class MapDetailPageController extends GetxController
     int totalDiseaseNum = placeDetail.diseaseHistoryGroup.totalHistory;
 
     if (totalDiseaseNum != 0) {
-      placeDetail.diseaseHistoryGroup.diseaseMap.forEach((key, value) {
+      placeDetail.diseaseHistoryGroup.diseaseMap.forEach((diseaseType, value) {
         ChartData chartData = ChartData(
             value: value,
             percent:
                 calculatePercent(totalNum: totalDiseaseNum, valueNum: value),
-            color: colorByDisease(key),
-            title: diseaseTypeToKorean(key));
+            color: colorByDisease(diseaseType),
+            title: diseaseType.displayName);
         if (value != 0) {
           diseaseData.add(chartData);
         }
@@ -181,7 +181,7 @@ class MapDetailPageController extends GetxController
           percent: calculatePercent(
               totalNum: totalReview, valueNum: review.reviewNum),
           color: colorByReview(review.reviewRate),
-          title: reviewRateToKorean(review.reviewRate));
+          title: review.reviewRate.displayName);
       reviewData.add(chartData);
     }));
 
@@ -211,61 +211,3 @@ class MapDetailPageController extends GetxController
     Get.toNamed(Routes.MAP_NEW_REVIEW, arguments: _placeId);
   }
 }
-
-
-// int touchedIndex = -1;
-// List<PieChartSectionData> showingSections() {
-//   return List.generate(4, (i) {
-//     final isTouched = i == touchedIndex;
-//     final fontSize = isTouched ? 25.0 : 16.0;
-//     final radius = isTouched ? 50.0 : 40.0;
-//     switch (i) {
-//       case 0:
-//         return PieChartSectionData(
-//           color: WcColors.pinkLight,
-//           value: 0,
-//           title: '40%',
-//           radius: radius,
-//           titleStyle: TextStyle(
-//               fontSize: fontSize,
-//               fontWeight: FontWeight.bold,
-//               color: const Color(0xffffffff)),
-//         );
-//       case 1:
-//         return PieChartSectionData(
-//           color: WcColors.yellowLight,
-//           value: 0,
-//           title: '30%',
-//           radius: radius,
-//           titleStyle: TextStyle(
-//               fontSize: fontSize,
-//               fontWeight: FontWeight.bold,
-//               color: const Color(0xffffffff)),
-//         );
-//       case 2:
-//         return PieChartSectionData(
-//           color: WcColors.blueLight,
-//           value: 5,
-//           title: '15%',
-//           radius: radius,
-//           titleStyle: TextStyle(
-//               fontSize: fontSize,
-//               fontWeight: FontWeight.bold,
-//               color: const Color(0xffffffff)),
-//         );
-//       case 3:
-//         return PieChartSectionData(
-//           color: WcColors.mintLight,
-//           value: 10,
-//           title: '15%',
-//           radius: radius,
-//           titleStyle: TextStyle(
-//               fontSize: fontSize,
-//               fontWeight: FontWeight.bold,
-//               color: const Color(0xffffffff)),
-//         );
-//       default:
-//         throw Error();
-//     }
-//   });
-// }

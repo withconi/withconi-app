@@ -39,4 +39,5 @@ const _$PostTypeEnumMap = {
   PostType.cat: 'cat',
   PostType.dog: 'dog',
   PostType.all: 'all',
+  PostType.undefined: 'undefined',
 };
