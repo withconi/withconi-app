@@ -1,11 +1,11 @@
 import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/core/error_handling/error_message_object.dart';
 import 'package:withconi/data/repository/community_repository.dart';
-import '../../configs/constants/enum.dart';
-import '../../core/error_handling/failures.dart';
-import '../../data/model/post.dart';
-import '../../import_basic.dart';
-import '../ui_helper/infinite_scroll.dart';
+import '../../../data/enums/enum.dart';
+import '../../../core/error_handling/failures.dart';
+import '../../../data/model/post.dart';
+import '../../../import_basic.dart';
+import '../../../controller/ui_helper/infinite_scroll.dart';
 
 class CommunityPostSearchController extends GetxController
     with StateMixin<List<Post>> {

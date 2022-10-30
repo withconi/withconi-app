@@ -1,18 +1,18 @@
 import 'dart:io';
 import 'package:dartz/dartz.dart';
-import 'package:withconi/configs/constants/enum.dart';
+import 'package:withconi/data/enums/enum.dart';
 import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/data/repository/community_repository.dart';
 import 'package:withconi/data/repository/image_repository.dart';
-import 'package:withconi/ui/widgets/loading/loading_overlay.dart';
-import 'package:withconi/ui/widgets/photo_gallary/image_item.dart';
-import '../../configs/helpers/image_picker_helper.dart';
-import '../../core/error_handling/failures.dart';
-import '../../data/model/conimal.dart';
-import '../../data/model/post.dart';
-import '../../import_basic.dart';
-import '../../ui/widgets/dialog/selection_dialog.dart';
-import '../ui_interpreter/failure_ui_interpreter.dart';
+import 'package:withconi/module/widgets/loading/loading_overlay.dart';
+import 'package:withconi/module/widgets/photo_gallary/image_item.dart';
+import '../../../core/tools/helpers/image_picker_helper.dart';
+import '../../../core/error_handling/failures.dart';
+import '../../../data/model/conimal.dart';
+import '../../../data/model/post.dart';
+import '../../../import_basic.dart';
+import '../../widgets/dialog/selection_dialog.dart';
+import '../../../controller/ui_interpreter/failure_ui_interpreter.dart';
 
 class CommunityNewPostController extends GetxController {
   final CommunityRepository _communityRepository = CommunityRepository();

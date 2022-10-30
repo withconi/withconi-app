@@ -1,15 +1,15 @@
-import 'package:withconi/configs/helpers/calculator.dart';
+import 'package:withconi/core/tools/helpers/calculator.dart';
 import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/controller/infinite_scroll_controller.dart';
 import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
 import 'package:withconi/data/repository/community_repository.dart';
-import 'package:withconi/ui/widgets/loading/loading_overlay.dart';
+import 'package:withconi/module/widgets/loading/loading_overlay.dart';
 
-import '../../configs/constants/enum.dart';
-import '../../data/model/post.dart';
-import '../../import_basic.dart';
-import '../../ui/widgets/photo_gallary/image_item.dart';
-import '../ui_helper/infinite_scroll.dart';
+import '../../../data/enums/enum.dart';
+import '../../../data/model/post.dart';
+import '../../../import_basic.dart';
+import '../../widgets/photo_gallary/image_item.dart';
+import '../../../controller/ui_helper/infinite_scroll.dart';
 
 class LikedPostController extends GetxController {
   CommunityRepository _communityRepository = CommunityRepository();

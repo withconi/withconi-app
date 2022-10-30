@@ -1,16 +1,16 @@
 import 'package:dartz/dartz.dart';
 import 'package:withconi/core/tools/helpers/calculator.dart';
 import 'package:withconi/controller/auth_controller.dart';
-import 'package:withconi/controller/community/community_post_detail_controller.dart';
+import 'package:withconi/module/community/controllers/community_post_detail_controller.dart';
 import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
 import 'package:withconi/data/repository/community_repository.dart';
 import 'package:withconi/module/widgets/loading/loading_overlay.dart';
-import '../../data/enums/enum.dart';
-import '../../core/error_handling/failures.dart';
-import '../../data/model/post.dart';
-import '../../data/model/report.dart';
-import '../../import_basic.dart';
-import '../ui_helper/infinite_scroll.dart';
+import '../../../data/enums/enum.dart';
+import '../../../core/error_handling/failures.dart';
+import '../../../data/model/post.dart';
+import '../../../data/model/report.dart';
+import '../../../import_basic.dart';
+import '../../../controller/ui_helper/infinite_scroll.dart';
 
 class CommunityPostListController extends GetxController {
   final CommunityRepository _communityRepository = CommunityRepository();

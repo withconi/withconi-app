@@ -1,10 +1,10 @@
 import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
 import 'package:withconi/data/repository/community_repository.dart';
-import '../../configs/constants/enum.dart';
-import '../../data/model/board.dart';
-import '../../data/model/post.dart';
-import '../../import_basic.dart';
-import '../../ui/pages/community/community_setting_page.dart';
+import '../../../data/enums/enum.dart';
+import '../../../data/model/board.dart';
+import '../../../data/model/post.dart';
+import '../../../import_basic.dart';
+import '../../pages/community/community_setting_page.dart';
 
 class CommunityMainController extends GetxController {
   CommunityRepository _communityRepository = CommunityRepository();

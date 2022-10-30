@@ -1,25 +1,25 @@
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
-import 'package:withconi/configs/constants/enum.dart';
+import 'package:withconi/data/enums/enum.dart';
 import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/controller/community/communty_widgets/more_tap_bottom_sheet.dart';
 import 'package:withconi/data/model/report.dart';
 import 'package:withconi/data/model/response_model/response_model.dart';
-import 'package:withconi/ui/widgets/dialog/selection_dialog.dart';
-import 'package:withconi/ui/widgets/error_widget/error_widget.dart';
-import 'package:withconi/ui/widgets/loading/loading_page.dart';
-import '../../configs/helpers/calculator.dart';
-import '../../core/error_handling/failures.dart';
-import '../../data/model/comment.dart';
-import '../../data/model/post.dart';
-import '../../data/repository/community_repository.dart';
-import '../../import_basic.dart';
-import '../../ui/widgets/error_page/error_page.dart';
-import '../../ui/widgets/loading/loading_overlay.dart';
-import '../ui_helper/infinite_scroll.dart';
-import '../ui_interpreter/failure_ui_interpreter.dart';
-import 'communty_widgets/comment_bottom_sheet.dart';
+import 'package:withconi/module/widgets/dialog/selection_dialog.dart';
+import 'package:withconi/module/widgets/error_widget/error_widget.dart';
+import 'package:withconi/module/widgets/loading/loading_page.dart';
+import '../../../core/tools/helpers/calculator.dart';
+import '../../../core/error_handling/failures.dart';
+import '../../../data/model/comment.dart';
+import '../../../data/model/post.dart';
+import '../../../data/repository/community_repository.dart';
+import '../../../import_basic.dart';
+import '../../widgets/error_page/error_page.dart';
+import '../../widgets/loading/loading_overlay.dart';
+import '../../../controller/ui_helper/infinite_scroll.dart';
+import '../../../controller/ui_interpreter/failure_ui_interpreter.dart';
+import '../../../controller/community/communty_widgets/comment_bottom_sheet.dart';
 
 enum CommunityPageResultKey { blockAuthorId }
 

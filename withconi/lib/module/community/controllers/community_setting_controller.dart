@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:withconi/controller/auth_controller.dart';
-import '../../data/model/user.dart';
-import '../../routes/withconi_routes.dart';
+import '../../../data/model/user.dart';
+import '../../../routes/withconi_routes.dart';
 
 class CommunitySettingPageController extends GetxController {
   late WcUser _wcUser;
