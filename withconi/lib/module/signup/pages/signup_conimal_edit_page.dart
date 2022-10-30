@@ -1,6 +1,6 @@
 import 'package:flutter_svg/svg.dart';
 import 'package:withconi/data/enums/enum.dart';
-import 'package:withconi/controller/signup/signup_conimal_edit_controller.dart';
+import 'package:withconi/module/signup/controllers/signup_conimal_edit_controller.dart';
 import 'package:withconi/import_basic.dart';
 import 'package:withconi/module/widgets/button/wide_button.dart';
 import '../../../data/enums/enum_color.dart';
@@ -9,8 +9,8 @@ import '../../theme/text_theme.dart';
 import '../../widgets/button/text_button.dart';
 import '../../widgets/checkbox/custom_checkbox.dart';
 import '../../widgets/text_field/textfield.dart';
-import 'signup_widgets/gender_toggle_button.dart';
-import 'signup_widgets/species_radio_button.dart';
+import '../widgets/gender_toggle_button.dart';
+import '../widgets/species_radio_button.dart';
 
 class SignupConimalEditPage extends StatelessWidget {
   SignupConimalEditPage({Key? key}) : super(key: key);

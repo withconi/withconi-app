@@ -1,22 +1,22 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:withconi/configs/constants/enum.dart';
-import 'package:withconi/configs/helpers/calculator.dart';
+import 'package:withconi/data/enums/enum.dart';
+import 'package:withconi/core/tools/helpers/calculator.dart';
 import 'package:withconi/controller/auth_controller.dart';
-import 'package:withconi/controller/signup/data/signup_data_manager.dart';
+import 'package:withconi/module/signup/signup_data_brain.dart';
 import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
 import 'package:withconi/core/custom_auth_info.dart';
 import 'package:withconi/data/repository/auth_repository.dart';
-import 'package:withconi/ui/widgets/loading/loading_overlay.dart';
-import '../../core/error_handling/failures.dart';
-import '../../data/model/conimal.dart';
-import '../../data/model/user.dart';
-import '../../data/repository/conimal_repository.dart';
-import '../../import_basic.dart';
+import 'package:withconi/module/widgets/loading/loading_overlay.dart';
+import '../../../core/error_handling/failures.dart';
+import '../../../data/model/conimal.dart';
+import '../../../data/model/user.dart';
+import '../../../data/repository/conimal_repository.dart';
+import '../../../import_basic.dart';
 
 class SignupConimalFinalController extends GetxController {
   // final SignupRepository _signUpRepository = Get.find();
-  final SignUpDataManager _signUpDataManager = Get.find();
+  final SignUpDataBrain _signUpDataManager = Get.find();
   // final ConimalRepository _signUpRepository = ConimalRepository.to;
   final AuthRepository _authRepository = AuthRepository();
   final RxString _userName = ''.obs;

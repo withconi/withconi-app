@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:withconi/controller/signup/signup_pw_controller.dart';
+import 'package:withconi/module/signup/controllers/signup_pw_controller.dart';
 import 'package:withconi/module/theme/colors.dart';
 import 'package:withconi/module/theme/sizes.dart';
 import 'package:withconi/module/widgets/button/wide_button.dart';

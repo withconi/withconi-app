@@ -1,11 +1,11 @@
-import '../../configs/constants/regex.dart';
-import '../../configs/constants/strings.dart';
-import '../../import_basic.dart';
-import 'data/signup_data_manager.dart';
+import '../../../core/values/constants/regex.dart';
+import '../../../core/values/constants/strings.dart';
+import '../../../import_basic.dart';
+import '../signup_data_brain.dart';
 
 class SignupPwController extends GetxController {
   // final SignupRepository _userRepository = Get.find();
-  final SignUpDataManager _signUpDataManager = Get.find();
+  final SignUpDataBrain _signUpDataManager = Get.find();
   late RxString _email;
   late RxString _password;
   late RxString _confirmPassword;

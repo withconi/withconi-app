@@ -1,6 +1,6 @@
 import 'package:flutter_svg/svg.dart';
 
-import '../../../../import_basic.dart';
+import '../../../import_basic.dart';
 
 class DiseaseItemBox extends StatelessWidget {
   DiseaseItemBox({

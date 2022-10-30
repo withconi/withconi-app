@@ -1,8 +1,8 @@
 import 'package:flutter_svg/svg.dart';
 import 'package:withconi/module/theme/text_theme.dart';
 
-import '../../../../data/enums/enum.dart';
-import '../../../../import_basic.dart';
+import '../../../data/enums/enum.dart';
+import '../../../import_basic.dart';
 
 class GenderToggleButton extends StatelessWidget {
   GenderToggleButton({

@@ -2,19 +2,19 @@ import 'dart:io';
 import 'dart:math';
 import 'package:dartz/dartz.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:withconi/controller/signup/data/signup_data_manager.dart';
+import 'package:withconi/module/signup/signup_data_brain.dart';
 import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
 import 'package:withconi/core/error_handling/failures.dart';
-import 'package:withconi/ui/widgets/photo_gallary/image_item.dart';
-import '../../configs/constants/regex.dart';
-import '../../configs/constants/strings.dart';
-import '../../configs/helpers/image_picker_helper.dart';
-import '../../import_basic.dart';
+import 'package:withconi/module/widgets/photo_gallary/image_item.dart';
+import '../../../core/values/constants/regex.dart';
+import '../../../core/values/constants/strings.dart';
+import '../../../core/tools/helpers/image_picker_helper.dart';
+import '../../../import_basic.dart';
 
 class SignupProfileController extends GetxController {
   // final ConimalRepository _signUpRepository = ConimalRepository.to;
   // final SignupRepository _signUpRepository = Get.find();
-  final SignUpDataManager _signUpDataManager = Get.find();
+  final SignUpDataBrain _signUpDataManager = Get.find();
 
   final RxString _name = ''.obs;
   final RxString _nickName = ''.obs;

@@ -1,9 +1,9 @@
 import 'package:flutter_svg/svg.dart';
 import 'package:withconi/core/tools/helpers/search_highlighter.dart';
 
-import '../../../../data/model/disease.dart';
-import '../../../../import_basic.dart';
-import '../../../theme/text_theme.dart';
+import '../../../data/model/disease.dart';
+import '../../../import_basic.dart';
+import '../../theme/text_theme.dart';
 
 class DiseaseListTileButton extends StatelessWidget {
   DiseaseListTileButton({

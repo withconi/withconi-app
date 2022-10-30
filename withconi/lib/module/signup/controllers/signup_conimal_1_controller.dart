@@ -1,16 +1,16 @@
 import 'package:dartz/dartz.dart';
 import 'package:intl/intl.dart';
-import 'package:withconi/controller/signup/data/signup_data_manager.dart';
+import 'package:withconi/module/signup/signup_data_brain.dart';
 import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
-import '../../configs/constants/enum.dart';
-import '../../configs/constants/regex.dart';
-import '../../configs/constants/strings.dart';
-import '../../core/error_handling/failures.dart';
-import '../../data/model/disease.dart';
-import '../../import_basic.dart';
+import '../../../data/enums/enum.dart';
+import '../../../core/values/constants/regex.dart';
+import '../../../core/values/constants/strings.dart';
+import '../../../core/error_handling/failures.dart';
+import '../../../data/model/disease.dart';
+import '../../../import_basic.dart';
 
 class SignupConimal1Controller extends GetxController {
-  final SignUpDataManager _signUpDataManager = Get.find();
+  final SignUpDataBrain _signUpDataManager = Get.find();
   RxBool isConimalAdded = false.obs;
   final RxString _userName = ''.obs;
   final RxString _conimalName = ''.obs;

@@ -3,14 +3,14 @@ import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
 import 'package:withconi/core/custom_auth_info.dart';
 import 'package:withconi/data/model/user.dart';
-import '../../../configs/constants/enum.dart';
-import '../../../core/error_handling/exceptions.dart';
-import '../../../core/error_handling/failures.dart';
-import '../../../data/model/conimal.dart';
-import '../../../data/model/disease.dart';
-import '../../../ui/widgets/photo_gallary/image_item.dart';
+import '../../data/enums/enum.dart';
+import '../../core/error_handling/exceptions.dart';
+import '../../core/error_handling/failures.dart';
+import '../../data/model/conimal.dart';
+import '../../data/model/disease.dart';
+import '../widgets/photo_gallary/image_item.dart';
 
-class SignUpDataManager extends GetxController {
+class SignUpDataBrain extends GetxController {
   final RxString _email = ''.obs;
   final RxString _name = ''.obs;
   final RxString _password = ''.obs;

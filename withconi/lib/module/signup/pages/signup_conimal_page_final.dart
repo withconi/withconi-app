@@ -1,6 +1,6 @@
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:withconi/import_basic.dart';
-import '../../../controller/signup/signup_conimal_final_controller.dart';
+import '../controllers/signup_conimal_final_controller.dart';
 import '../../widgets/button/wide_button.dart';
 import '../../widgets/listtile/conimal_list_tile.dart';
 

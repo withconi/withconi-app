@@ -1,5 +1,5 @@
-import '../../../../data/enums/enum.dart';
-import '../../../../import_basic.dart';
+import '../../../data/enums/enum.dart';
+import '../../../import_basic.dart';
 
 class SpeciesRadioButtonGroup extends StatelessWidget {
   SpeciesRadioButtonGroup({
