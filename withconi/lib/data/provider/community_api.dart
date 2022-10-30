@@ -1,7 +1,7 @@
 import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/controller/ui_helper/infinite_scroll.dart';
 import 'package:withconi/core/network_handling/network_service.dart';
-import '../../configs/constants/api_url.dart';
+import '../../core/tools/api_url.dart';
 import '../model/post.dart';
 
 class CommunityAPI {

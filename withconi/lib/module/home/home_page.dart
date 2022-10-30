@@ -2,18 +2,18 @@ import 'dart:ui';
 
 import 'package:flutter_svg/svg.dart';
 import 'package:withconi/data/enums/enum.dart';
-import 'package:withconi/controller/home/home_controller.dart';
+import 'package:withconi/module/home/home_controller.dart';
 import 'package:withconi/controller/navigation_controller.dart';
 import 'package:withconi/import_basic.dart';
-import 'package:withconi/module/pages/home/widgets/conimal_setting_button.dart';
-import 'package:withconi/module/pages/home/widgets/cominal_toggle_button.dart';
-import 'package:withconi/module/pages/home/widgets/hot_post_listtile.dart';
+import 'package:withconi/module/home/widgets/conimal_setting_button.dart';
+import 'package:withconi/module/home/widgets/cominal_toggle_button.dart';
+import 'package:withconi/module/home/widgets/hot_post_listtile.dart';
 import 'package:withconi/module/theme/text_theme.dart';
 import 'package:withconi/module/widgets/button/icon_button.dart';
-import '../../../data/model/board.dart';
-import '../../../data/model/post.dart';
-import '../../widgets/dialog/selection_dialog.dart';
-import '../../widgets/navbar/bottom_navbar.dart';
+import '../../data/model/board.dart';
+import '../../data/model/post.dart';
+import '../widgets/dialog/selection_dialog.dart';
+import '../widgets/navbar/bottom_navbar.dart';
 import 'widgets/icon_big_button.dart';
 
 class HomePage extends StatelessWidget {

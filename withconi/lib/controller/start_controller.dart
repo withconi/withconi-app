@@ -4,7 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:withconi/data/enums/enum.dart';
 import 'package:withconi/controller/auth_controller.dart';
-import 'package:withconi/controller/signup/data/signup_data_manager.dart';
+import 'package:withconi/module/signup/signup_data_brain.dart';
 import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
 import 'package:withconi/core/error_handling/failures.dart';
 import 'package:withconi/data/repository/platform_repository/apple_repository.dart';
@@ -144,8 +144,8 @@ class StartPageController extends GetxController {
   //본격적인 회원가입 과정을 진행하기 전 정보를 저장할 singleton class를 생성한다.
   // class가 생성된 후 startController에서 얻은 customAuthInfo를 저장한다.
   _initSignUpDataManager() {
-    Get.lazyReplace(() => SignUpDataManager());
-    final SignUpDataManager signUpDataManager = Get.find();
+    Get.lazyReplace(() => SignUpDataBrain());
+    final SignUpDataBrain signUpDataManager = Get.find();
     signUpDataManager.storeAuthInfo(customAuthInfo!);
   }
 

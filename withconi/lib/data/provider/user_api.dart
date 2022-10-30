@@ -1,6 +1,6 @@
-import 'package:withconi/configs/constants/auth_variables.dart';
+import 'package:withconi/core/values/constants/auth_variables.dart';
 import 'package:withconi/core/network_handling/network_service.dart';
-import '../../configs/constants/api_url.dart';
+import '../../core/tools/api_url.dart';
 
 class UserAPI {
   final Api _dio = Api();

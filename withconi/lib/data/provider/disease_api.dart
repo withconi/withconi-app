@@ -1,4 +1,4 @@
-import 'package:withconi/configs/constants/api_url.dart';
+import 'package:withconi/core/tools/api_url.dart';
 import '../../core/network_handling/network_service.dart';
 
 class DiseaseAPI {
