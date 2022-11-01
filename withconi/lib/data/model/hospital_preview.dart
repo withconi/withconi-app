@@ -5,9 +5,9 @@ import 'package:withconi/data/enums/enum.dart';
 import 'package:withconi/module/ui_model/disease_history_group.dart';
 
 import '../../module/ui_model/location.dart';
-import 'abstract_class/place_preview.dart';
+import 'abstract_class/place_preview_impl.dart';
 
-class HospitalPreview implements PlacePreview {
+class HospitalPreview implements PlacePreviewImpl {
   @override
   String locId = "";
 
@@ -42,16 +42,13 @@ class HospitalPreview implements PlacePreview {
   String thumbnail = "";
 
   @override
-  double distanceByMeter = 0.0;
-
-  @override
   PlaceType placeType = PlaceType.hospital;
 
   @override
-  bool visitVerified = false;
+  late DiseaseType highestDiseaseType;
 
   @override
-  DiseaseHistoryGroup? diseaseInfo;
+  bool isVerified;
 
   HospitalPreview({
     required this.locId,
@@ -63,27 +60,26 @@ class HospitalPreview implements PlacePreview {
     required this.totalReviews,
     required this.openingStatus,
     required this.thumbnail,
-    required this.distanceByMeter,
-    required this.visitVerified,
-    this.diseaseInfo,
+    required this.highestDiseaseType,
+    required this.isVerified,
     this.placeType = PlaceType.hospital,
   });
 
-  HospitalPreview.fromJson(Map<String, dynamic> json, LatLngClass? baseLatLng) {
-    locId = json['_id'] ?? '';
-    name = json['name'] ?? '';
-    openingStatus = OpeningStatus.getByCode(json['openingStatus'] ?? '');
-    address = json['address'] ?? '';
-    location = LatLngClass.fromJson(json['coordinate']);
-    totalVisiting = json['totalVisiting'] ?? 0;
-    totalReviews = json['totalReviews'] ?? 0;
-    thumbnail = json['thumbnail'] ?? '';
-    distanceByMeter = _getMeterDistanceBetween(
-        baseLocation: baseLatLng ?? LatLngClass(latitude: 0, longitude: 0),
-        placeLocation: LatLngClass.fromJson(json['coordinate']));
-    visitVerified = json['isVisitVerified'] ?? false;
-    phone = json['phone'] ?? '';
-    diseaseInfo = DiseaseHistoryGroup.fromJson(json);
+  factory HospitalPreview.fromJson(Map<String, dynamic> json) {
+    return HospitalPreview(
+      locId: json['_id'] ?? '',
+      name: json['name'] ?? '',
+      location: LatLngClass.fromJson(json['coordinate']),
+      address: json['address'] ?? '',
+      phone: json['phone'] ?? '',
+      openingStatus: OpeningStatus.getByCode(json['openingStatus'] ?? ''),
+      thumbnail: json['thumbnail'] ?? '',
+      highestDiseaseType:
+          json['highestDiseaseType'] ?? DiseaseType.brainNeurology,
+      totalReviews: json['totalReviews'] ?? 0,
+      totalVisiting: json['totalVisiting'] ?? 0,
+      isVerified: json['isVerified'] ?? false,
+    );
   }
 
   // Map<String, dynamic> toJson() {

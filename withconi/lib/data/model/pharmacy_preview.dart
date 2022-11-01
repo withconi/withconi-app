@@ -1,12 +1,10 @@
+import 'package:geolocator/geolocator.dart';
 import 'package:withconi/module/ui_model/disease_history_group.dart';
-
 import '../enums/enum.dart';
 import '../../module/ui_model/location.dart';
-import 'abstract_class/place_preview.dart';
+import 'abstract_class/place_preview_impl.dart';
 
-import 'package:geolocator/geolocator.dart';
-
-class PharmacyPreview implements PlacePreview {
+class PharmacyPreview implements PlacePreviewImpl {
   @override
   String locId = "";
 
@@ -41,16 +39,13 @@ class PharmacyPreview implements PlacePreview {
   String thumbnail = "";
 
   @override
-  double distanceByMeter = 0.0;
-
-  @override
   PlaceType placeType = PlaceType.pharmacy;
 
   @override
-  bool visitVerified = false;
+  late DiseaseType highestDiseaseType;
 
   @override
-  DiseaseHistoryGroup? diseaseInfo;
+  bool isVerified;
 
   PharmacyPreview({
     required this.locId,
@@ -62,27 +57,37 @@ class PharmacyPreview implements PlacePreview {
     required this.totalReviews,
     required this.openingStatus,
     required this.thumbnail,
-    required this.distanceByMeter,
-    required this.visitVerified,
-    this.diseaseInfo,
+    required this.highestDiseaseType,
+    required this.isVerified,
     this.placeType = PlaceType.hospital,
   });
+  double _getMeterDistanceBetween(
+      {required LatLngClass baseLocation, required LatLngClass placeLocation}) {
+    double distanceMeters = GeolocatorPlatform.instance.distanceBetween(
+      baseLocation.latitude,
+      baseLocation.longitude,
+      placeLocation.latitude,
+      placeLocation.longitude,
+    );
 
-  PharmacyPreview.fromJson(Map<String, dynamic> json, LatLngClass? baseLatLng) {
-    locId = json['_id'] ?? '';
-    name = json['name'] ?? '';
-    openingStatus = OpeningStatus.getByCode(json['openingStatus'] ?? '');
-    address = json['address'] ?? '';
-    location = LatLngClass.fromJson(json['coordinate']);
-    totalVisiting = json['totalVisiting'] ?? 0;
-    totalReviews = json['totalReviews'] ?? 0;
-    thumbnail = json['thumbnail'] ?? '';
-    distanceByMeter = _getMeterDistanceBetween(
-        baseLocation: baseLatLng ?? LatLngClass(latitude: 0, longitude: 0),
-        placeLocation: LatLngClass.fromJson(json['coordinate']));
-    visitVerified = json['isVisitVerified'] ?? false;
-    phone = json['phone'] ?? '';
-    diseaseInfo = DiseaseHistoryGroup.fromJson(json);
+    return distanceMeters;
+  }
+
+  factory PharmacyPreview.fromJson(Map<String, dynamic> json) {
+    return PharmacyPreview(
+      locId: json['_id'] ?? '',
+      name: json['name'] ?? '',
+      location: LatLngClass.fromJson(json['coordinate']),
+      address: json['address'] ?? '',
+      phone: json['phone'] ?? '',
+      openingStatus: OpeningStatus.getByCode(json['openingStatus'] ?? ''),
+      thumbnail: json['thumbnail'] ?? '',
+      highestDiseaseType:
+          json['highestDiseaseType'] ?? DiseaseType.brainNeurology,
+      totalReviews: json['totalReviews'] ?? 0,
+      totalVisiting: json['[totalVisiting'] ?? 0,
+      isVerified: json['isVerified'] ?? false,
+    );
   }
 
   // Map<String, dynamic> toJson() {
@@ -98,17 +103,17 @@ class PharmacyPreview implements PlacePreview {
   //   return data;
   // }
 
-  double _getMeterDistanceBetween(
-      {required LatLngClass baseLocation, required LatLngClass placeLocation}) {
-    double distanceMeters = GeolocatorPlatform.instance.distanceBetween(
-      baseLocation.latitude,
-      baseLocation.longitude,
-      placeLocation.latitude,
-      placeLocation.longitude,
-    );
+  // double _getMeterDistanceBetween(
+  //     {required LatLngClass baseLocation, required LatLngClass placeLocation}) {
+  //   double distanceMeters = GeolocatorPlatform.instance.distanceBetween(
+  //     baseLocation.latitude,
+  //     baseLocation.longitude,
+  //     placeLocation.latitude,
+  //     placeLocation.longitude,
+  //   );
 
-    return distanceMeters;
-  }
+  //   return distanceMeters;
+  // }
 }
 
 // import '../../configs/constants/enum.dart';
