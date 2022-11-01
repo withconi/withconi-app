@@ -1,30 +1,20 @@
-import 'package:withconi/data/model/abstract_class/place_preview.dart';
 import 'package:withconi/module/ui_model/custom_marker.dart';
 
 import '../../../data/enums/enum.dart';
 
 class QuickSort {
   sortPlaceByType(
-      {required List<CustomMarker> placeMarkerList,
+      {required List<PlaceMarker> placeMarkerList,
       required SortType sortType}) {
     int high = placeMarkerList.length - 1;
     int low = 0;
-    List<CustomMarker> result =
-        _quickSort(placeMarkerList, low, high, sortType);
+    List<PlaceMarker> result = _quickSort(placeMarkerList, low, high, sortType);
 
     return result;
   }
 
-  // sortPlaceByVisiting({required List<CustomMarker> placeMarkerList}) {
-  //   int high = placeMarkerList.length - 1;
-  //   int low = 0;
-  //   List<CustomMarker> result = _quickSort(placeMarkerList, low, high);
-
-  //   return result;
-  // }
-
-  List<CustomMarker> _quickSort(
-      List<CustomMarker> list, int low, int high, SortType sortType) {
+  List<PlaceMarker> _quickSort(
+      List<PlaceMarker> list, int low, int high, SortType sortType) {
     if (low < high) {
       late int pi;
 
@@ -39,14 +29,14 @@ class QuickSort {
     return list;
   }
 
-  int distancePartition(List<CustomMarker> list, low, high) {
+  int distancePartition(List<PlaceMarker> list, low, high) {
     if (list.isEmpty) {
       return 0;
     }
-    double pivot = list[high].place.distanceByMeter;
+    double pivot = list[high].distanceMeter;
     int i = low - 1;
     for (int j = low; j < high; j++) {
-      if (list[j].place.distanceByMeter < pivot) {
+      if (list[j].distanceMeter < pivot) {
         i++;
         swap(list, i, j);
       }
@@ -55,7 +45,7 @@ class QuickSort {
     return i + 1;
   }
 
-  int visitingPartition(List<CustomMarker> list, low, high) {
+  int visitingPartition(List<PlaceMarker> list, low, high) {
     if (list.isEmpty) {
       return 0;
     }
@@ -71,8 +61,8 @@ class QuickSort {
     return i + 1;
   }
 
-  void swap(List<CustomMarker> list, int i, int j) {
-    CustomMarker temp = list[i];
+  void swap(List<PlaceMarker> list, int i, int j) {
+    PlaceMarker temp = list[i];
     list[i] = list[j];
     list[j] = temp;
   }
