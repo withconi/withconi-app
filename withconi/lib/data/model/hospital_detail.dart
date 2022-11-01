@@ -8,7 +8,7 @@ import '../../module/ui_model/location.dart';
 import 'abstract_class/place_detail_impl.dart';
 import 'abstract_class/place_preview_impl.dart';
 
-class PharmacyDetail implements PlaceDetailImpl {
+class HospitalDetail implements PlaceDetailImpl {
   @override
   String locId = "";
 
@@ -51,7 +51,7 @@ class PharmacyDetail implements PlaceDetailImpl {
   @override
   int totalVisitingCats;
 
-  PharmacyDetail({
+  HospitalDetail({
     required this.locId,
     required this.name,
     required this.location,
@@ -67,8 +67,8 @@ class PharmacyDetail implements PlaceDetailImpl {
     this.placeType = PlaceType.pharmacy,
   });
 
-  factory PharmacyDetail.fromJson(Map<String, dynamic> json) {
-    return PharmacyDetail(
+  factory HospitalDetail.fromJson(Map<String, dynamic> json) {
+    return HospitalDetail(
       locId: json['_id'] ?? '',
       name: json['name'] ?? '',
       location: LatLngClass.fromJson(json['coordinate']),
@@ -82,6 +82,18 @@ class PharmacyDetail implements PlaceDetailImpl {
       totalVisitingCats: json['totalVisitingCats'] ?? 0,
       totalVisitingDogs: json['totalVisitingDogs'] ?? 0,
     );
+  }
+
+  double _getMeterDistanceBetween(
+      {required LatLngClass baseLocation, required LatLngClass placeLocation}) {
+    double distanceMeters = GeolocatorPlatform.instance.distanceBetween(
+      baseLocation.latitude,
+      baseLocation.longitude,
+      placeLocation.latitude,
+      placeLocation.longitude,
+    );
+
+    return distanceMeters;
   }
 
   // distanceByMeter = _getMeterDistanceBetween(
