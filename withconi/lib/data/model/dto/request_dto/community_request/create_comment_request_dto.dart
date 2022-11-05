@@ -9,14 +9,14 @@ import '../../../../../module/ui_model/ui_model_impl/ui_model_impl.dart';
 import '../abstract_request/request_info_abstract.dart';
 
 class CreateCommentRequestDTO
-    extends RequestDTO<CreateCommentRequestDTO, CommentUIModel>
-    implements RequestInfo {
+    extends RequestConverter<CreateCommentRequestDTO, CommentUIModel>
+    implements RequestDTO {
   String authorId;
   String boardId;
   String postId;
   String content;
 
-  CreateCommentRequestDTO.fromData(CommentUIModel data)
+  CreateCommentRequestDTO.fromData({required CommentUIModel data})
       : content = data.content,
         authorId = data.authorId,
         boardId = data.boardId,
