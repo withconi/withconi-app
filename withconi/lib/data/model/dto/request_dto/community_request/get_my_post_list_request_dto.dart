@@ -2,17 +2,14 @@ import 'dart:html';
 import 'package:dartz/dartz.dart';
 import 'package:withconi/core/network_handling/network_service.dart';
 import 'package:withconi/core/tools/api_url.dart';
+import 'package:withconi/core/tools/helpers/infinite_scroll.dart';
 import '../abstract_request/request_dto_abstract.dart';
 import '../abstract_request/request_info_abstract.dart';
 
-typedef BoardId = String;
-typedef PostId = String;
-
-class GetPostDetailRequestDTO
-    extends RequestConverter<GetPostDetailRequestDTO, Tuple2<BoardId, PostId>>
+class GetMyPostListRequestDTO
+    extends RequestConverter<GetMyPostListRequestDTO, PaginationFilter>
     implements RequestDTO {
-  BoardId boardId;
-  PostId postId;
+  PaginationFilter paginationFilter;
 
   @override
   bool get requiresToken => true;
@@ -21,14 +18,15 @@ class GetPostDetailRequestDTO
   RequestType get requestType => RequestType.GET;
 
   @override
-  String get url => HttpUrl.COMMUNITY_GET_POST;
-  GetPostDetailRequestDTO.fromData(
-      {required this.boardId, required this.postId})
-      : super.fromData(Tuple2(boardId, postId));
+  String get url => HttpUrl.COMMUNITY_COMMENT_LIST;
+
+  GetMyPostListRequestDTO.fromData({required this.paginationFilter})
+      : super.fromData(paginationFilter);
 
   @override
   Map<String, dynamic> get dataMap => {
-        'boardId': boardId,
-        'postId': postId,
+        "page": paginationFilter.page,
+        "listSize": paginationFilter.limit,
+        // "userId": userId,
       };
 }

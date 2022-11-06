@@ -6,14 +6,15 @@ import 'package:withconi/core/tools/api_url.dart';
 import 'package:withconi/data/model/dto/api_dto/api_call_dto.dart';
 import 'package:withconi/data/model/dto/request_dto/abstract_request/request_info_abstract.dart';
 import 'package:withconi/module/ui_model/post_ui_model.dart';
-import 'package:withconi/module/ui_model/ui_model_impl/ui_model_impl.dart';
+import 'package:withconi/module/ui_model/ui_model_abstract/ui_model.dart';
 
 import '../../../../../global_widgets/photo_gallary/image_item.dart';
 import '../../../../enums/enum.dart';
 import '../abstract_request/request_dto_abstract.dart';
 
-class CreatePostRequestDTO extends RequestDTO<CreatePostRequestDTO, PostUIModel>
-    implements RequestInfo {
+class CreatePostRequestDTO
+    extends RequestConverter<CreatePostRequestDTO, PostUIModel>
+    implements RequestDTO {
   final String nickname;
   String content;
   final String authorId;
@@ -22,16 +23,13 @@ class CreatePostRequestDTO extends RequestDTO<CreatePostRequestDTO, PostUIModel>
   final PostType postType;
 
   @override
-  bool requiresToken = true;
+  bool get requiresToken => true;
 
   @override
-  RequestType requestType = RequestType.POST;
+  RequestType get requestType => RequestType.POST;
 
   @override
-  String url = HttpUrl.POST_CREATE;
-
-  @override
-  FormData? formData;
+  String get url => HttpUrl.POST_CREATE;
 
   CreatePostRequestDTO.fromData(PostUIModel postUiModel)
       : nickname = postUiModel.nickname,

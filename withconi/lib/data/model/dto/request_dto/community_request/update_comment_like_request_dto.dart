@@ -5,24 +5,21 @@ import 'package:withconi/core/tools/api_url.dart';
 import 'package:withconi/data/model/dto/request_dto/abstract_request/request_info_abstract.dart';
 import '../abstract_request/request_dto_abstract.dart';
 
-class UpdateCommentLikeRequestDTO extends RequestDTO<
+class UpdateCommentLikeRequestDTO extends RequestConverter<
     UpdateCommentLikeRequestDTO,
-    Tuple3<String, String, bool>> implements RequestInfo {
+    Tuple3<String, String, bool>> implements RequestDTO {
   String postId;
   String commentId;
   bool isLike;
 
   @override
-  bool requiresToken = true;
+  bool get requiresToken => true;
 
   @override
-  RequestType requestType = RequestType.POST;
+  RequestType get requestType => RequestType.POST;
 
   @override
-  String url = HttpUrl.COMMENT_LIKE_UPDATE;
-
-  @override
-  FormData? formData;
+  String get url => HttpUrl.COMMENT_LIKE_UPDATE;
 
   UpdateCommentLikeRequestDTO.fromData(
       {required this.postId, required this.commentId, required this.isLike})

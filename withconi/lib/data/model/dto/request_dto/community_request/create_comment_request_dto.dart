@@ -5,7 +5,7 @@ import 'dart:html';
 import 'package:withconi/data/model/dto/request_dto/abstract_request/request_dto_abstract.dart';
 import 'package:withconi/module/ui_model/comment_ui_model.dart';
 
-import '../../../../../module/ui_model/ui_model_impl/ui_model_impl.dart';
+import '../../../../../module/ui_model/ui_model_abstract/ui_model.dart';
 import '../abstract_request/request_info_abstract.dart';
 
 class CreateCommentRequestDTO
@@ -24,16 +24,13 @@ class CreateCommentRequestDTO
         super.fromData(data);
 
   @override
-  FormData? formData;
+  RequestType get requestType => RequestType.POST;
 
   @override
-  RequestType requestType = RequestType.POST;
+  bool get requiresToken => true;
 
   @override
-  bool requiresToken = true;
-
-  @override
-  String url = HttpUrl.COMMENT_CREATE;
+  String get url => HttpUrl.COMMENT_CREATE;
 
   @override
   Map<String, dynamic> get dataMap => {
