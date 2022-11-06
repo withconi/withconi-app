@@ -9,8 +9,8 @@ import '../../../../enums/enum.dart';
 import '../../api_dto/api_call_dto.dart';
 import '../../../disease.dart';
 
-class CreateConimalRequestDTO
-    extends RequestConverter<CreateConimalRequestDTO, ConimalUIModel>
+class UpdateConimalRequestDTO
+    extends RequestConverter<UpdateConimalRequestDTO, ConimalUIModel>
     implements RequestDTO {
   final String name;
   final Species species;
@@ -27,12 +27,12 @@ class CreateConimalRequestDTO
   RequestType get requestType => RequestType.POST;
 
   @override
-  String get url => HttpUrl.CONIMAL_CREATE;
+  String get url => HttpUrl.CONIMAL_UPDATE;
 
   @override
   FormData? formDataMap;
 
-  CreateConimalRequestDTO.fromData({required ConimalUIModel data})
+  UpdateConimalRequestDTO.fromData({required ConimalUIModel data})
       : adoptedDate = data.adoptedDate!,
         birthDate = data.birthDate!,
         breed = data.breed,
