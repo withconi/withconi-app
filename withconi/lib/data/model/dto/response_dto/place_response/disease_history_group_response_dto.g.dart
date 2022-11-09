@@ -6,19 +6,20 @@ part of 'disease_history_group_response_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_DiseaseHistoryGroupResponseDTO _$$_DiseaseHistoryGroupResponseDTOFromJson(
+_$_DiseaseHistoryListResponseDTO _$$_DiseaseHistoryListResponseDTOFromJson(
         Map<String, dynamic> json) =>
-    _$_DiseaseHistoryGroupResponseDTO(
-      historyList: (json['historyList'] as List<dynamic>)
+    _$_DiseaseHistoryListResponseDTO(
+      diseaseHistoryList: (json['diseaseHistoryList'] as List<dynamic>)
           .map((e) =>
               DiseaseHistoryResponseDTO.fromJson(e as Map<String, dynamic>))
           .toList(),
-      totalHistory: json['totalHistory'] as int,
+      totalDiseaseHistoryCount: json['totalDiseaseHistoryCount'] as int,
     );
 
-Map<String, dynamic> _$$_DiseaseHistoryGroupResponseDTOToJson(
-        _$_DiseaseHistoryGroupResponseDTO instance) =>
+Map<String, dynamic> _$$_DiseaseHistoryListResponseDTOToJson(
+        _$_DiseaseHistoryListResponseDTO instance) =>
     <String, dynamic>{
-      'historyList': instance.historyList.map((e) => e.toJson()).toList(),
-      'totalHistory': instance.totalHistory,
+      'diseaseHistoryList':
+          instance.diseaseHistoryList.map((e) => e.toJson()).toList(),
+      'totalDiseaseHistoryCount': instance.totalDiseaseHistoryCount,
     };

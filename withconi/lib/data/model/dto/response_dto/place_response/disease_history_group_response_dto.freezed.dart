@@ -14,96 +14,100 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-DiseaseHistoryGroupResponseDTO _$DiseaseHistoryGroupResponseDTOFromJson(
+DiseaseHistoryListResponseDTO _$DiseaseHistoryListResponseDTOFromJson(
     Map<String, dynamic> json) {
-  return _DiseaseHistoryGroupResponseDTO.fromJson(json);
+  return _DiseaseHistoryListResponseDTO.fromJson(json);
 }
 
 /// @nodoc
-mixin _$DiseaseHistoryGroupResponseDTO {
-  List<DiseaseHistoryResponseDTO> get historyList =>
+mixin _$DiseaseHistoryListResponseDTO {
+  List<DiseaseHistoryResponseDTO> get diseaseHistoryList =>
       throw _privateConstructorUsedError;
-  int get totalHistory => throw _privateConstructorUsedError;
+  int get totalDiseaseHistoryCount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $DiseaseHistoryGroupResponseDTOCopyWith<DiseaseHistoryGroupResponseDTO>
+  $DiseaseHistoryListResponseDTOCopyWith<DiseaseHistoryListResponseDTO>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DiseaseHistoryGroupResponseDTOCopyWith<$Res> {
-  factory $DiseaseHistoryGroupResponseDTOCopyWith(
-          DiseaseHistoryGroupResponseDTO value,
-          $Res Function(DiseaseHistoryGroupResponseDTO) then) =
-      _$DiseaseHistoryGroupResponseDTOCopyWithImpl<$Res>;
-  $Res call({List<DiseaseHistoryResponseDTO> historyList, int totalHistory});
+abstract class $DiseaseHistoryListResponseDTOCopyWith<$Res> {
+  factory $DiseaseHistoryListResponseDTOCopyWith(
+          DiseaseHistoryListResponseDTO value,
+          $Res Function(DiseaseHistoryListResponseDTO) then) =
+      _$DiseaseHistoryListResponseDTOCopyWithImpl<$Res>;
+  $Res call(
+      {List<DiseaseHistoryResponseDTO> diseaseHistoryList,
+      int totalDiseaseHistoryCount});
 }
 
 /// @nodoc
-class _$DiseaseHistoryGroupResponseDTOCopyWithImpl<$Res>
-    implements $DiseaseHistoryGroupResponseDTOCopyWith<$Res> {
-  _$DiseaseHistoryGroupResponseDTOCopyWithImpl(this._value, this._then);
+class _$DiseaseHistoryListResponseDTOCopyWithImpl<$Res>
+    implements $DiseaseHistoryListResponseDTOCopyWith<$Res> {
+  _$DiseaseHistoryListResponseDTOCopyWithImpl(this._value, this._then);
 
-  final DiseaseHistoryGroupResponseDTO _value;
+  final DiseaseHistoryListResponseDTO _value;
   // ignore: unused_field
-  final $Res Function(DiseaseHistoryGroupResponseDTO) _then;
+  final $Res Function(DiseaseHistoryListResponseDTO) _then;
 
   @override
   $Res call({
-    Object? historyList = freezed,
-    Object? totalHistory = freezed,
+    Object? diseaseHistoryList = freezed,
+    Object? totalDiseaseHistoryCount = freezed,
   }) {
     return _then(_value.copyWith(
-      historyList: historyList == freezed
-          ? _value.historyList
-          : historyList // ignore: cast_nullable_to_non_nullable
+      diseaseHistoryList: diseaseHistoryList == freezed
+          ? _value.diseaseHistoryList
+          : diseaseHistoryList // ignore: cast_nullable_to_non_nullable
               as List<DiseaseHistoryResponseDTO>,
-      totalHistory: totalHistory == freezed
-          ? _value.totalHistory
-          : totalHistory // ignore: cast_nullable_to_non_nullable
+      totalDiseaseHistoryCount: totalDiseaseHistoryCount == freezed
+          ? _value.totalDiseaseHistoryCount
+          : totalDiseaseHistoryCount // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
 }
 
 /// @nodoc
-abstract class _$$_DiseaseHistoryGroupResponseDTOCopyWith<$Res>
-    implements $DiseaseHistoryGroupResponseDTOCopyWith<$Res> {
-  factory _$$_DiseaseHistoryGroupResponseDTOCopyWith(
-          _$_DiseaseHistoryGroupResponseDTO value,
-          $Res Function(_$_DiseaseHistoryGroupResponseDTO) then) =
-      __$$_DiseaseHistoryGroupResponseDTOCopyWithImpl<$Res>;
+abstract class _$$_DiseaseHistoryListResponseDTOCopyWith<$Res>
+    implements $DiseaseHistoryListResponseDTOCopyWith<$Res> {
+  factory _$$_DiseaseHistoryListResponseDTOCopyWith(
+          _$_DiseaseHistoryListResponseDTO value,
+          $Res Function(_$_DiseaseHistoryListResponseDTO) then) =
+      __$$_DiseaseHistoryListResponseDTOCopyWithImpl<$Res>;
   @override
-  $Res call({List<DiseaseHistoryResponseDTO> historyList, int totalHistory});
+  $Res call(
+      {List<DiseaseHistoryResponseDTO> diseaseHistoryList,
+      int totalDiseaseHistoryCount});
 }
 
 /// @nodoc
-class __$$_DiseaseHistoryGroupResponseDTOCopyWithImpl<$Res>
-    extends _$DiseaseHistoryGroupResponseDTOCopyWithImpl<$Res>
-    implements _$$_DiseaseHistoryGroupResponseDTOCopyWith<$Res> {
-  __$$_DiseaseHistoryGroupResponseDTOCopyWithImpl(
-      _$_DiseaseHistoryGroupResponseDTO _value,
-      $Res Function(_$_DiseaseHistoryGroupResponseDTO) _then)
-      : super(_value, (v) => _then(v as _$_DiseaseHistoryGroupResponseDTO));
+class __$$_DiseaseHistoryListResponseDTOCopyWithImpl<$Res>
+    extends _$DiseaseHistoryListResponseDTOCopyWithImpl<$Res>
+    implements _$$_DiseaseHistoryListResponseDTOCopyWith<$Res> {
+  __$$_DiseaseHistoryListResponseDTOCopyWithImpl(
+      _$_DiseaseHistoryListResponseDTO _value,
+      $Res Function(_$_DiseaseHistoryListResponseDTO) _then)
+      : super(_value, (v) => _then(v as _$_DiseaseHistoryListResponseDTO));
 
   @override
-  _$_DiseaseHistoryGroupResponseDTO get _value =>
-      super._value as _$_DiseaseHistoryGroupResponseDTO;
+  _$_DiseaseHistoryListResponseDTO get _value =>
+      super._value as _$_DiseaseHistoryListResponseDTO;
 
   @override
   $Res call({
-    Object? historyList = freezed,
-    Object? totalHistory = freezed,
+    Object? diseaseHistoryList = freezed,
+    Object? totalDiseaseHistoryCount = freezed,
   }) {
-    return _then(_$_DiseaseHistoryGroupResponseDTO(
-      historyList: historyList == freezed
-          ? _value._historyList
-          : historyList // ignore: cast_nullable_to_non_nullable
+    return _then(_$_DiseaseHistoryListResponseDTO(
+      diseaseHistoryList: diseaseHistoryList == freezed
+          ? _value._diseaseHistoryList
+          : diseaseHistoryList // ignore: cast_nullable_to_non_nullable
               as List<DiseaseHistoryResponseDTO>,
-      totalHistory: totalHistory == freezed
-          ? _value.totalHistory
-          : totalHistory // ignore: cast_nullable_to_non_nullable
+      totalDiseaseHistoryCount: totalDiseaseHistoryCount == freezed
+          ? _value.totalDiseaseHistoryCount
+          : totalDiseaseHistoryCount // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -112,79 +116,80 @@ class __$$_DiseaseHistoryGroupResponseDTOCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_DiseaseHistoryGroupResponseDTO
-    implements _DiseaseHistoryGroupResponseDTO {
-  _$_DiseaseHistoryGroupResponseDTO(
-      {required final List<DiseaseHistoryResponseDTO> historyList,
-      required this.totalHistory})
-      : _historyList = historyList;
+class _$_DiseaseHistoryListResponseDTO
+    implements _DiseaseHistoryListResponseDTO {
+  _$_DiseaseHistoryListResponseDTO(
+      {required final List<DiseaseHistoryResponseDTO> diseaseHistoryList,
+      required this.totalDiseaseHistoryCount})
+      : _diseaseHistoryList = diseaseHistoryList;
 
-  factory _$_DiseaseHistoryGroupResponseDTO.fromJson(
+  factory _$_DiseaseHistoryListResponseDTO.fromJson(
           Map<String, dynamic> json) =>
-      _$$_DiseaseHistoryGroupResponseDTOFromJson(json);
+      _$$_DiseaseHistoryListResponseDTOFromJson(json);
 
-  final List<DiseaseHistoryResponseDTO> _historyList;
+  final List<DiseaseHistoryResponseDTO> _diseaseHistoryList;
   @override
-  List<DiseaseHistoryResponseDTO> get historyList {
+  List<DiseaseHistoryResponseDTO> get diseaseHistoryList {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_historyList);
+    return EqualUnmodifiableListView(_diseaseHistoryList);
   }
 
   @override
-  final int totalHistory;
+  final int totalDiseaseHistoryCount;
 
   @override
   String toString() {
-    return 'DiseaseHistoryGroupResponseDTO(historyList: $historyList, totalHistory: $totalHistory)';
+    return 'DiseaseHistoryListResponseDTO(diseaseHistoryList: $diseaseHistoryList, totalDiseaseHistoryCount: $totalDiseaseHistoryCount)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_DiseaseHistoryGroupResponseDTO &&
+            other is _$_DiseaseHistoryListResponseDTO &&
             const DeepCollectionEquality()
-                .equals(other._historyList, _historyList) &&
-            const DeepCollectionEquality()
-                .equals(other.totalHistory, totalHistory));
+                .equals(other._diseaseHistoryList, _diseaseHistoryList) &&
+            const DeepCollectionEquality().equals(
+                other.totalDiseaseHistoryCount, totalDiseaseHistoryCount));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(_historyList),
-      const DeepCollectionEquality().hash(totalHistory));
+      const DeepCollectionEquality().hash(_diseaseHistoryList),
+      const DeepCollectionEquality().hash(totalDiseaseHistoryCount));
 
   @JsonKey(ignore: true)
   @override
-  _$$_DiseaseHistoryGroupResponseDTOCopyWith<_$_DiseaseHistoryGroupResponseDTO>
-      get copyWith => __$$_DiseaseHistoryGroupResponseDTOCopyWithImpl<
-          _$_DiseaseHistoryGroupResponseDTO>(this, _$identity);
+  _$$_DiseaseHistoryListResponseDTOCopyWith<_$_DiseaseHistoryListResponseDTO>
+      get copyWith => __$$_DiseaseHistoryListResponseDTOCopyWithImpl<
+          _$_DiseaseHistoryListResponseDTO>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DiseaseHistoryGroupResponseDTOToJson(
+    return _$$_DiseaseHistoryListResponseDTOToJson(
       this,
     );
   }
 }
 
-abstract class _DiseaseHistoryGroupResponseDTO
-    implements DiseaseHistoryGroupResponseDTO {
-  factory _DiseaseHistoryGroupResponseDTO(
-      {required final List<DiseaseHistoryResponseDTO> historyList,
-      required final int totalHistory}) = _$_DiseaseHistoryGroupResponseDTO;
+abstract class _DiseaseHistoryListResponseDTO
+    implements DiseaseHistoryListResponseDTO {
+  factory _DiseaseHistoryListResponseDTO(
+          {required final List<DiseaseHistoryResponseDTO> diseaseHistoryList,
+          required final int totalDiseaseHistoryCount}) =
+      _$_DiseaseHistoryListResponseDTO;
 
-  factory _DiseaseHistoryGroupResponseDTO.fromJson(Map<String, dynamic> json) =
-      _$_DiseaseHistoryGroupResponseDTO.fromJson;
+  factory _DiseaseHistoryListResponseDTO.fromJson(Map<String, dynamic> json) =
+      _$_DiseaseHistoryListResponseDTO.fromJson;
 
   @override
-  List<DiseaseHistoryResponseDTO> get historyList;
+  List<DiseaseHistoryResponseDTO> get diseaseHistoryList;
   @override
-  int get totalHistory;
+  int get totalDiseaseHistoryCount;
   @override
   @JsonKey(ignore: true)
-  _$$_DiseaseHistoryGroupResponseDTOCopyWith<_$_DiseaseHistoryGroupResponseDTO>
+  _$$_DiseaseHistoryListResponseDTOCopyWith<_$_DiseaseHistoryListResponseDTO>
       get copyWith => throw _privateConstructorUsedError;
 }
