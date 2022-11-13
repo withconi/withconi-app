@@ -1,41 +1,35 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:withconi/global_widgets/photo_gallary/image_item.dart';
 
 import '../../core/tools/helpers/calculator.dart';
 import '../../data/enums/enum.dart';
-import '../../data/model/dto/response_dto/post_response_dto.dart';
+import '../../data/model/dto/response_dto/community_response/post_response_dto.dart';
+part 'post_ui_model.freezed.dart';
 
-class PostUIModel {
-  final String nickname;
-  final DateTime uploadAt;
-  final String content;
-  final PostType postType;
-  final List<ImageItem> images;
-  int likeNum;
-  int commentNum;
-  bool isLikeOn;
-  String postId;
-  String authorId;
-  String boardId;
+@unfreezed
+class PostUIModel with _$PostUIModel {
+  const PostUIModel._();
 
+  factory PostUIModel({
+    required DateTime uploadAt,
+    required final String nickname,
+    required String content,
+    PostType? postType,
+    required List<ImageItem> images,
+    required int likeNum,
+    required int commentNum,
+    required bool isLikeOn,
+    required final String postId,
+    required final String authorId,
+    required final String boardId,
+    required final DateTime createdAt,
+  }) = _PostUIModel;
   String get uploadAtStr => TimeCalculator().calculateUploadAt(uploadAt);
 
-  PostUIModel(
-      {required this.nickname,
-      required this.uploadAt,
-      required this.content,
-      required this.likeNum,
-      required this.commentNum,
-      required this.isLikeOn,
-      required this.postType,
-      required this.images,
-      required this.postId,
-      required this.authorId,
-      required this.boardId});
-
-  factory PostUIModel.fromDTO(Post postDTO) {
+  factory PostUIModel.fromDTO(PostResponseDTO postDTO) {
     return PostUIModel(
-        nickname: postDTO.nickname,
         uploadAt: postDTO.createdAt,
+        nickname: postDTO.nickname,
         content: postDTO.content,
         likeNum: postDTO.likeNum,
         commentNum: postDTO.commentNum,
@@ -44,6 +38,54 @@ class PostUIModel {
         images: postDTO.images,
         postId: postDTO.postId!,
         authorId: postDTO.authorId,
-        boardId: postDTO.boardId);
+        boardId: postDTO.boardId,
+        createdAt: postDTO.createdAt);
   }
 }
+
+// cla
+// class PostUIModel {
+//   final String nickname;
+//   DateTime _uploadAt;
+//   String content;
+//   PostType? postType;
+//   List<ImageItem> images;
+//   int likeNum;
+//   int commentNum;
+//   bool isLikeOn;
+//   final String postId;
+//   final String authorId;
+//   final String boardId;
+
+//   String get uploadAtStr => TimeCalculator().calculateUploadAt(_uploadAt);
+
+//   PostUIModel(
+//     this._uploadAt, {
+//     required this.nickname,
+//     required this.content,
+//     required this.likeNum,
+//     required this.commentNum,
+//     required this.isLikeOn,
+//     required this.postType,
+//     required this.images,
+//     required this.postId,
+//     required this.authorId,
+//     required this.boardId,
+//     required DateTime createdAt,
+//   });
+
+//   factory PostUIModel.fromDTO(PostResponseDTO postDTO) {
+//     return PostUIModel(postDTO.createdAt,
+//         nickname: postDTO.nickname,
+//         content: postDTO.content,
+//         likeNum: postDTO.likeNum,
+//         commentNum: postDTO.commentNum,
+//         isLikeOn: postDTO.isLike,
+//         postType: postDTO.postType,
+//         images: postDTO.images,
+//         postId: postDTO.postId!,
+//         authorId: postDTO.authorId,
+//         boardId: postDTO.boardId,
+//         createdAt: postDTO.createdAt);
+//   }
+// }
