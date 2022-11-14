@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-import '../../configs/constants/auth_variables.dart';
+import '../../../core/values/constants/auth_variables.dart';
 
 class GoogleAPI {
   Future<OAuthCredential> getGoogleCredential() async {

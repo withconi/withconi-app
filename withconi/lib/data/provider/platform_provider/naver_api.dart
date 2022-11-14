@@ -1,6 +1,6 @@
 import 'package:flutter_naver_login/flutter_naver_login.dart';
 
-import '../../core/error_handling/exceptions.dart';
+import '../../../core/error_handling/exceptions.dart';
 
 class NaverAPI {
   Future<String> getNaverToken() async {

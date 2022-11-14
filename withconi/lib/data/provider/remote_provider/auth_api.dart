@@ -1,25 +1,17 @@
-import 'dart:convert';
-import 'dart:math';
-import 'package:crypto/crypto.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
+
 import 'package:flutter_naver_login/flutter_naver_login.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart' as kakao;
-import 'package:sign_in_with_apple/sign_in_with_apple.dart';
-import 'package:withconi/core/tools/api_url.dart';
-import 'package:withconi/data/enums/enum.dart';
+
 import 'package:withconi/core/values/constants/auth_variables.dart';
-import 'package:withconi/core/tools/helpers/extension.dart';
-import 'package:withconi/core/custom_auth_info.dart';
+
 import 'package:withconi/core/error_handling/exceptions.dart';
 import 'package:withconi/core/network_handling/network_service.dart';
-import 'package:withconi/data/model/custom_token.dart';
 
-import '../../core/values/constants/app_info.dart';
-import '../../core/error_handling/failures.dart';
-import '../model/user.dart';
+import 'package:withconi/data/model/dto/api_call_dto.dart';
+import 'package:withconi/data/model/dto/request_dto/community_request/get_version_check_request_dto.dart';
+
+import '../../../core/error_handling/failures.dart';
 
 class AuthAPI {
   final Api _dio = Api();
@@ -77,15 +69,9 @@ class AuthAPI {
   // }
 
   checkAppVersion() async {
-    Map<String, dynamic> data = await _dio.apiCall(
-      header: {
-        'application': AppInfo().os + '_' + AppInfo.version,
-      },
-      url: HttpUrl.VERSION_CHECK,
-      queryParameters: null,
-      body: null,
-      requestType: RequestType.GET,
-    );
+    GetVersionCheckRequestDTO requestDTO = GetVersionCheckRequestDTO.fromData();
+    ApiCallDTO apiCallDTO = ApiCallDTO.fromDTO(requestDTO);
+    Map<String, dynamic> data = await _dio.apiCall(apiCallDTO);
 
     return data;
   }
@@ -276,25 +262,6 @@ class AuthAPI {
     }
   }
 
-  Future<User?> creatUserWithEmailPassword(
-      {required String email, required String password}) async {
-    try {
-      UserCredential _userCredential = await firebaseAuth
-          .createUserWithEmailAndPassword(email: email, password: password);
-      return _userCredential.user;
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'email-already-in-use') {
-        throw (CustomFirebaseAuthException(type: CREATE_EMAIL.existingEmail));
-      } else if (e.code == 'operation-not-allowed') {
-        throw (CustomFirebaseAuthException(type: CREATE_EMAIL.accountEnabled));
-      } else if (e.code == 'weak-password') {
-        throw (CustomFirebaseAuthException(type: CREATE_EMAIL.weakPassword));
-      } else {
-        throw SignInCredentialException();
-      }
-    }
-  }
-
   Future<User?> signInWithAuthCredential(
       {required OAuthCredential credential}) async {
     try {
@@ -307,51 +274,18 @@ class AuthAPI {
     }
   }
 
-  Future<String> signUpDB(WcUser user) async {
-    print('user toJson 결과 => ${user.toJson()} ');
-    try {
-      Map<String, dynamic> data = await _dio.apiCall(
-        url: HttpUrl.SIGN_UP,
-        queryParameters: null,
-        body: user.toJson(),
-        requestType: RequestType.POST,
-      );
-      return '';
-    } catch (e) {
-      rethrow;
-    }
+  Future<Map<String, dynamic>> refreshFirebaseCustomToken(
+      ApiCallDTO apiCallDTO) async {
+    Map<String, dynamic> customTokenData = await _dio.apiCall(apiCallDTO);
+
+    return customTokenData;
   }
 
-  Future<CustomToken> getNewCustomToken(
-      {required Provider provider, required String token}) async {
-    Map<String, dynamic> data = await _dio.apiCall(
-      url: HttpUrl.CUSTOM_TOKEN_GET,
-      header: {"Authorization": "Bearer $token"},
-      queryParameters: null,
-      body: {"provider": provider.toShortString()},
-      requestType: RequestType.POST,
-    );
-    CustomToken customToken = CustomToken.fromJson(data);
-    return customToken;
-  }
+  Future<Map<String, dynamic>> checkEmailDuplication(
+      ApiCallDTO apiCallDTO) async {
+    Map<String, dynamic> data = await _dio.apiCall(apiCallDTO);
 
-  Future<bool> checkUserEmailDuplicate({required String email}) async {
-    late bool isDuplicateUser;
-    Map<String, dynamic> data = await _dio.apiCall(
-      url: HttpUrl.VERIFY_EMAIL,
-      queryParameters: null,
-      body: {
-        "email": email,
-      },
-      requestType: RequestType.POST,
-    );
-    if (data['isAuth'] && data['isDB']) {
-      isDuplicateUser = true;
-    } else {
-      isDuplicateUser = false;
-    }
-
-    return isDuplicateUser;
+    return data;
   }
 
   // Future<bool> checkValidUserByPlatform({required Provider provider}) async {

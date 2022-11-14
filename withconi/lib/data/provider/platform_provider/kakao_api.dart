@@ -1,23 +1,4 @@
-import 'dart:convert';
-import 'dart:math';
-import 'package:crypto/crypto.dart';
-import 'package:dartz/dartz.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter_naver_login/flutter_naver_login.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart' as kakao;
-import 'package:sign_in_with_apple/sign_in_with_apple.dart';
-import 'package:withconi/configs/constants/api_url.dart';
-import 'package:withconi/configs/constants/enum.dart';
-import 'package:withconi/configs/constants/auth_variables.dart';
-import 'package:withconi/configs/helpers/extension.dart';
-import 'package:withconi/core/custom_auth_info.dart';
-import 'package:withconi/core/error_handling/exceptions.dart';
-import 'package:withconi/core/network_handling/network_service.dart';
-import 'package:withconi/data/model/custom_token.dart';
-
-import '../model/user.dart';
 
 class KakaoAPI {
   Future<String> getKakaoUserEmail() async {
