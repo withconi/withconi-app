@@ -1,75 +1,69 @@
 import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:withconi/data/enums/enum.dart';
-import 'package:withconi/controller/auth_controller.dart';
+import 'package:withconi/data/model/dto/request_dto/community_request/create_post_request_dto.dart';
+import 'package:withconi/module/auth/auth_controller.dart';
 import 'package:withconi/data/repository/community_repository.dart';
 import 'package:withconi/data/repository/image_repository.dart';
-import 'package:withconi/module/widgets/loading/loading_overlay.dart';
-import 'package:withconi/module/widgets/photo_gallary/image_item.dart';
+import 'package:withconi/global_widgets/loading/loading_overlay.dart';
+import 'package:withconi/global_widgets/photo_gallary/image_item.dart';
+import 'package:withconi/module/community/pages/community_post_detail_page.dart';
+import 'package:withconi/module/ui_model/edit_post_ui_model.dart';
+import 'package:withconi/module/ui_model/new_post_ui_model.dart';
+import 'package:withconi/module/ui_model/post_ui_model.dart';
 import '../../../core/tools/helpers/image_picker_helper.dart';
 import '../../../core/error_handling/failures.dart';
-import '../../../data/model/conimal.dart';
-import '../../../data/model/post.dart';
 import '../../../import_basic.dart';
-import '../../widgets/dialog/selection_dialog.dart';
-import '../../../controller/ui_interpreter/failure_ui_interpreter.dart';
+import '../../../global_widgets/dialog/selection_dialog.dart';
+import '../../../core/error_handling/failure_ui_interpreter.dart';
 
 class CommunityNewPostController extends GetxController {
-  final CommunityRepository _communityRepository = CommunityRepository();
-  final ImageRepository _imageRepository = ImageRepository();
-  final List<PostType> postType = [PostType.cat, PostType.dog];
-  final Rxn<PostType> selectedPostType = Rxn<PostType>();
+  CommunityNewPostController(this._communityRepository, this._imageRepository);
+  final CommunityRepository _communityRepository;
+  final ImageRepository _imageRepository;
   final int maxImageNum = 4;
-  final RxInt selectedImageNum = 0.obs;
-
-  RxList<ImageItem> imageItemList = RxList<ImageItem>();
+  late Rx<NewPostUIModel> newPost = NewPostUIModel(
+    content: '',
+    postType: null,
+    images: [],
+  ).obs;
   late String _boardId;
   final RxBool validatePostButton = false.obs;
-  RxList<Conimal> _selectedConimalList = RxList<Conimal>();
-  TextEditingController textController = TextEditingController();
+  TextEditingController contentsTextController = TextEditingController();
+
   @override
   void onReady() {
     super.onReady();
     _boardId = Get.arguments as String;
-    ever(imageItemList, setImageNum);
-  }
-
-  setImageNum(_imageList) {
-    selectedImageNum.value = _imageList.length;
   }
 
   void onPostTypeChanged(PostType postType) {
-    selectedPostType.value = postType;
+    newPost.value.postType = postType;
+    newPost.refresh();
   }
 
-  void onImageFileAdded(List<File> imageList) {
-    List<ImageItem> newImageFileList = imageList
-        .map(
-          (e) => ImageItem(
-              id: DateTime.now().microsecondsSinceEpoch.toString(),
-              resource: e.path,
-              imageType: ImageType.file),
-        )
-        .toList();
-
-    imageItemList.addAll(newImageFileList);
+  void onContentsChanged(String contentsText) {
+    newPost.value.content = contentsText;
   }
 
-  deleteImage(ImageItem imageItem) {
-    imageItemList.remove(imageItem);
+  deleteImage(int imageIndex) {
+    newPost.value.images.removeAt(imageIndex);
+    newPost.refresh();
   }
 
   void pickMultipleImageFiles() async {
     final ImagePickHelper _picker = ImagePickHelper();
-    final Either<Failure, List<File>>? imageFilesEither =
+    final Either<Failure, List<ImageItem>>? imageFilesEither =
         await _picker.pickMultipleImages(
-            maxImageNum: 4, selectedImageNum: selectedImageNum.value);
+            maxImageNum: maxImageNum,
+            selectedImageNum: newPost.value.images.length);
 
     if (imageFilesEither != null) {
       imageFilesEither.fold(
           (fail) => FailureInterpreter()
-              .mapFailureToSnackbar(fail, 'pickMultipleImages'), (files) {
-        onImageFileAdded(files);
+              .mapFailureToSnackbar(fail, 'pickMultipleImages'), (imageItems) {
+        newPost.value.images.addAll(imageItems);
+        newPost.refresh();
       });
     }
   }
@@ -85,21 +79,13 @@ class CommunityNewPostController extends GetxController {
     }
   }
 
-  onConimalSelected(Conimal conimal) {
-    if (_selectedConimalList.contains(conimal)) {
-      _selectedConimalList.remove(conimal);
-    } else {
-      _selectedConimalList.add(conimal);
-    }
-  }
-
   Future<void> onCreateButtonTap() async {
-    if (selectedPostType.value == null) {
+    if (newPost.value.postType == null) {
+      return FailureInterpreter().mapFailureToSnackbar(
+          const NoPostTypeSelectedFailure(), 'addNewPost');
+    } else if (contentsTextController.text.isEmpty) {
       return FailureInterpreter()
-          .mapFailureToSnackbar(NoPostTypeSelectedFailure(), 'addNewPost');
-    } else if (textController.text.isEmpty) {
-      return FailureInterpreter()
-          .mapFailureToSnackbar(NoPostContentsFailure(), 'addNewPost');
+          .mapFailureToSnackbar(const NoPostContentsFailure(), 'addNewPost');
     } else {
       bool isConfirmed = await showSelectionDialog(
         cancleText: '아니요',
@@ -108,40 +94,48 @@ class CommunityNewPostController extends GetxController {
       );
 
       if (isConfirmed) {
-        createNewPostDB();
+        _createNewPostDB();
       }
     }
   }
 
-  void createNewPostDB() async {
-    Either<Failure, List<ImageItem>> imageUploadRefsEither = await showLoading(
-        () => _imageRepository.uploadImageFileList(
-            imageFileItems: getOnlyFileImageItem()));
+  void _createNewPostDB() async {
+    var onlyFileImageItemList = _getOnlyFileImageItem();
+    List<String> imageRefList = [];
+    if (onlyFileImageItemList.isNotEmpty) {
+      imageRefList = await _uploadFileImageDB(onlyFileImageItemList);
+    }
 
-    imageUploadRefsEither.fold(
-        (fail) => FailureInterpreter().mapFailureToSnackbar(
-            fail, 'image upload error'), (imageRefList) async {
-      var newPostResultEither = await showLoading(() =>
-          _communityRepository.newPost(
-              newPost: Post(
-                  images: imageRefList,
-                  authorId: AuthController.to.wcUser.value!.uid,
-                  nickname: AuthController.to.wcUser.value!.nickname,
-                  boardId: _boardId,
-                  content: textController.text,
-                  createdAt: DateTime.now(),
-                  postType: selectedPostType.value!,
-                  isLike: false)));
-      newPostResultEither.fold(
-          (fail) => FailureInterpreter()
-              .mapFailureToSnackbar(fail, 'createNewPostDB'), (addedPost) {
-        Get.back(result: addedPost);
-      });
+    var newPostResultEither = await showLoading(() =>
+        _communityRepository.newPost(
+            newPost: newPost.value,
+            boardId: _boardId,
+            imageRefList: imageRefList));
+    newPostResultEither.fold(
+        (fail) =>
+            FailureInterpreter().mapFailureToSnackbar(fail, 'createNewPostDB'),
+        (addedPost) {
+      Get.back(result: newPost.value);
     });
   }
 
-  List<ImageItem> getOnlyFileImageItem() {
-    // imageItemList.where((p0) => p0.imageType == ImageType.file).toList();
-    return imageItemList.where((p0) => p0.imageType == ImageType.file).toList();
+  Future<List<String>> _uploadFileImageDB(
+      List<ImageItem> fileImageItems) async {
+    Either<Failure, List<String>> imageUploadRefsEither =
+        await _imageRepository.uploadImageFileList(fileImageItems);
+
+    List<String> imageRefListOrNull = imageUploadRefsEither.fold((fail) {
+      FailureInterpreter().mapFailureToSnackbar(fail, 'image upload error');
+      return [];
+    }, (imageRefList) {
+      return imageRefList;
+    });
+    return imageRefListOrNull;
+  }
+
+  List<ImageItem> _getOnlyFileImageItem() {
+    return newPost.value.images
+        .where((p0) => p0.imageType == ImageType.file)
+        .toList();
   }
 }

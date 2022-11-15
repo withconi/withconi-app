@@ -2,24 +2,23 @@ import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:withconi/core/tools/helpers/calculator.dart';
-import 'package:withconi/controller/auth_controller.dart';
-import 'package:withconi/controller/community/communty_widgets/more_tap_bottom_sheet.dart';
-import 'package:withconi/controller/infinite_scroll_controller.dart';
-import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
-import 'package:withconi/data/repository/auth_repository.dart';
+import 'package:withconi/data/model/dto/response_dto/community_response/post_response_dto.dart';
+import 'package:withconi/module/auth/auth_controller.dart';
+import 'package:withconi/core/error_handling/failure_ui_interpreter.dart';
+import 'package:withconi/data/repository/app_setting_repository.dart';
 import 'package:withconi/data/repository/community_repository.dart';
-import 'package:withconi/module/widgets/loading/loading_overlay.dart';
+import 'package:withconi/global_widgets/loading/loading_overlay.dart';
+import 'package:withconi/module/ui_model/post_ui_model.dart';
 
 import '../../../data/enums/enum.dart';
 import '../../../core/error_handling/failures.dart';
-import '../../../data/model/post.dart';
 import '../../../import_basic.dart';
-import '../../widgets/photo_gallary/image_item.dart';
-import '../../widgets/snackbar.dart';
-import '../../../controller/ui_helper/infinite_scroll.dart';
+import '../../../global_widgets/photo_gallary/image_item.dart';
+import '../../../core/tools/helpers/infinite_scroll.dart';
 
 class MyPostPageController extends GetxController {
-  CommunityRepository _communityRepository = CommunityRepository();
+  MyPostPageController(this._communityRepository);
+  final CommunityRepository _communityRepository;
 
   List<ImageItem> images = [
     ImageItem(
@@ -36,28 +35,27 @@ class MyPostPageController extends GetxController {
             'https://search.pstatic.net/common/?src=http%3A%2F%2Fshop1.phinf.naver.net%2F20210917_199%2F1631861436249TX26u_JPEG%2F32997264078967613_1334183573.jpg&type=sc960_832',
         imageType: ImageType.network),
   ];
-  RxList<Post> userPostList = <Post>[].obs;
-  late String _userId;
+  RxList<PostUIModel> myPostList = <PostUIModel>[].obs;
 
   Rx<ScrollController> scrollController = ScrollController().obs;
 
   final Rx<PaginationFilter> _paginationFilter = PaginationFilter(
     page: 1,
-    limit: 15,
+    listSize: 15,
   ).obs;
 
   final RxBool _lastPage = false.obs;
   final RxBool isLiked = false.obs;
   final RxBool _isLoading = false.obs;
 
-  int get limit => _paginationFilter.value.limit;
+  int get limit => _paginationFilter.value.listSize;
   int get _page => _paginationFilter.value.page;
 
   void loadNextPage() => _changePaginationFilter(_page + 1, limit);
   void loadNewPage() => _changePaginationFilter(1, limit);
 
   Color badgeBackgroundColor(int postIndex) {
-    switch (userPostList[postIndex].postType) {
+    switch (myPostList[postIndex].postType) {
       case PostType.all:
         return WcColors.purple20;
       case PostType.cat:
@@ -70,7 +68,7 @@ class MyPostPageController extends GetxController {
   }
 
   Color badgeTextColor(int postIndex) {
-    switch (userPostList[postIndex].postType) {
+    switch (myPostList[postIndex].postType) {
       case PostType.all:
         return WcColors.purple100;
       case PostType.cat:
@@ -81,12 +79,6 @@ class MyPostPageController extends GetxController {
       default:
         return Colors.transparent;
     }
-  }
-
-  @override
-  onInit() {
-    super.onInit();
-    _userId = AuthController.to.wcUser.value!.uid;
   }
 
   @override
@@ -113,8 +105,8 @@ class MyPostPageController extends GetxController {
     // TODO - 내 글에도 좋아요 기능 할 수 있도록 하기
   }
 
-  onPostTap(Post selectedPost) {
-    Get.toNamed(Routes.COMMUNITY_POST_DETAIL, arguments: selectedPost);
+  onPostTap(int postIndex) {
+    Get.toNamed(Routes.COMMUNITY_POST_DETAIL, arguments: myPostList[postIndex]);
   }
 
   _addScrollListener(
@@ -134,28 +126,34 @@ class MyPostPageController extends GetxController {
 
   Future<void> _getMyPostList() async {
     _isLoading.value = true;
-    final postDataEither = await _communityRepository.getMyPostList(
+    final Either<Failure, List<PostResponseDTO>> postDataEither =
+        await _communityRepository.getMyPostList(
       paginationFilter: _paginationFilter.value,
     );
 
     postDataEither.fold(
         (fail) => FailureInterpreter()
-            .mapFailureToSnackbar(fail, '_getPostListByPage'), (newPostList) {
+            .mapFailureToSnackbar(fail, '_getPostListByPage'), (postDto) {
       if (_paginationFilter.value.page == 1) {
-        userPostList.clear();
+        myPostList.clear();
       }
-      if (newPostList.isEmpty) {
+      if (postDto.isEmpty) {
         _lastPage.value = true;
       } else {
-        userPostList.addAll(newPostList);
+        myPostList.addAll(parsePostDto(postDto));
       }
       _isLoading.value = false;
     });
   }
 
-  _deletePost(Post post) async {
+  parsePostDto(List<PostResponseDTO> dtoList) {
+    return dtoList.map((e) => PostUIModel.fromDTO(e)).toList();
+  }
+
+  _deletePost(int postIndex) async {
     Either<Failure, bool> deleteEither = await _communityRepository.deletePost(
-        postId: post.postId!, boardId: post.boardId);
+        postId: myPostList[postIndex].postId,
+        boardId: myPostList[postIndex].boardId);
     deleteEither.fold((failure) {
       FailureInterpreter().mapFailureToDialog(failure, 'getPost');
     }, (success) {
@@ -164,14 +162,15 @@ class MyPostPageController extends GetxController {
     });
   }
 
-  onPostMoreTap(Post post, MoreOption? moreOption) async {
+  onPostMoreTap(int postIndex, MoreOption? moreOption) async {
     if (moreOption != null) {
       switch (moreOption) {
         case MoreOption.edit:
-          await Get.toNamed(Routes.COMMUNITY_POST_EDIT, arguments: post);
+          await Get.toNamed(Routes.COMMUNITY_POST_EDIT,
+              arguments: myPostList[postIndex]);
           break;
         case MoreOption.delete:
-          await _deletePost(post);
+          await _deletePost(postIndex);
           break;
         default:
           break;
@@ -185,7 +184,7 @@ class MyPostPageController extends GetxController {
   }
 
   void changeTotalPerPage(int limitValue) {
-    userPostList.clear();
+    myPostList.clear();
     _lastPage.value = false;
     _changePaginationFilter(1, limitValue);
   }
@@ -193,7 +192,7 @@ class MyPostPageController extends GetxController {
   void _changePaginationFilter(int page, int limit) {
     _paginationFilter.update((val) {
       val!.page = page;
-      val.limit = limit;
+      val.listSize = limit;
     });
   }
 }

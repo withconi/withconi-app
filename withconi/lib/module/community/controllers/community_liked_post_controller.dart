@@ -1,19 +1,19 @@
 import 'package:withconi/core/tools/helpers/calculator.dart';
-import 'package:withconi/controller/auth_controller.dart';
-import 'package:withconi/controller/infinite_scroll_controller.dart';
-import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
+import 'package:withconi/module/auth/auth_controller.dart';
+import 'package:withconi/core/error_handling/failure_ui_interpreter.dart';
 import 'package:withconi/data/repository/community_repository.dart';
-import 'package:withconi/module/widgets/loading/loading_overlay.dart';
+import 'package:withconi/global_widgets/loading/loading_overlay.dart';
 
 import '../../../data/enums/enum.dart';
-import '../../../data/model/post.dart';
 import '../../../import_basic.dart';
-import '../../widgets/photo_gallary/image_item.dart';
-import '../../../controller/ui_helper/infinite_scroll.dart';
+import '../../../global_widgets/photo_gallary/image_item.dart';
+
+import '../../ui_model/post_ui_model.dart';
 
 class LikedPostController extends GetxController {
-  CommunityRepository _communityRepository = CommunityRepository();
-  RxList<Post> likedPostList = <Post>[].obs;
+  LikedPostController(this._communityRepository);
+  final CommunityRepository _communityRepository;
+  RxList<PostUIModel> likedPostList = <PostUIModel>[].obs;
   late String _uid;
   // Rx<ScrollController> scrollController = ScrollController().obs;
 
@@ -79,28 +79,10 @@ class LikedPostController extends GetxController {
   }
 
   @override
-  onInit() async {
-    super.onInit();
-    _uid = Get.arguments as String;
-  }
-
-  @override
   Future<void> onReady() async {
     super.onReady();
 
     await showLoading((() => _getLikedPosts()));
-    // ever(_paginationFilter, (_) => _getLikedPosts());
-
-    // _addScrollListener(
-    //     isLastPage: _lastPage,
-    //     isLoading: _isLoading,
-    //     onEndOfScroll: loadNextPage,
-    //     scrollController: scrollController.value);
-  }
-
-  @override
-  onClose() {
-    super.onClose();
   }
 
   // _addScrollListener(
@@ -129,7 +111,11 @@ class LikedPostController extends GetxController {
 
       if (newPostList.isEmpty) {
       } else {
-        likedPostList.addAll(newPostList);
+        likedPostList.addAll(newPostList.map(
+          (postDTO) {
+            return PostUIModel.fromDTO(postDTO);
+          },
+        ).toList());
       }
     });
   }
@@ -151,14 +137,13 @@ class LikedPostController extends GetxController {
   //   });
   // }
 
-  onPostTap(Post selectedPost) {
-    Get.toNamed(Routes.COMMUNITY_POST_DETAIL, arguments: selectedPost);
+  onPostTap(int postIndex) {
+    Get.toNamed(Routes.COMMUNITY_POST_DETAIL,
+        arguments: likedPostList[postIndex]);
   }
 
-  onLikeChanged(String postId, bool isLiked) async {
+  onLikeChanged(int postIndex, bool isLiked) async {
     await _communityRepository.updateLikePost(
-        uid: AuthController.to.wcUser.value!.uid,
-        postId: postId,
-        isLiked: isLiked);
+        postId: likedPostList[postIndex].postId, isLiked: isLiked);
   }
 }

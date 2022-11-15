@@ -1,56 +1,67 @@
-import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
+import 'package:withconi/core/error_handling/failure_ui_interpreter.dart';
 import 'package:withconi/data/repository/community_repository.dart';
+import 'package:withconi/module/ui_model/board_ui_model.dart';
+import 'package:withconi/module/ui_model/hot_post_ui_model.dart';
+import 'package:withconi/module/ui_model/post_ui_model.dart';
 import '../../../data/enums/enum.dart';
-import '../../../data/model/board.dart';
-import '../../../data/model/post.dart';
 import '../../../import_basic.dart';
-import '../../pages/community/community_setting_page.dart';
+import '../pages/community_setting_page.dart';
 
 class CommunityMainController extends GetxController {
-  CommunityRepository _communityRepository = CommunityRepository();
-  RxList<Board> _boardList = RxList<Board>();
-  List<Post> hotPostList = [
-    Post(
-        boardId: 'boardId',
-        authorId: 'authorId',
-        nickname: 'nickname',
-        postType: PostType.cat,
-        content: '고양이를 위한 100가지 사료추천 글을 들고왔습니다',
-        images: [],
-        createdAt: DateTime.now()),
-    Post(
-        boardId: 'boardId',
-        authorId: 'authorId',
-        nickname: 'nickname',
-        postType: PostType.cat,
-        content: '고양이를 위한 100가지 사료추천 글을 들고왔습니다',
-        images: [],
-        createdAt: DateTime.now())
-  ];
-  List<Board> get boardList => _boardList.toList();
+  CommunityMainController(this._repository);
+  final CommunityRepository _repository;
+  RxList<BoardUIModel> boardList = RxList<BoardUIModel>();
+  RxList<PostUIModel> hotPostList = RxList<PostUIModel>();
+
+  static int hotPostListSize = 3;
 
   @override
   onInit() async {
     super.onInit();
     await _getBoardList();
+    await _getHotPostList();
   }
 
   Future<void> _getBoardList() async {
-    final boardListEither = await _communityRepository.getBoardList();
+    final boardListEither = await _repository.getBoardList();
 
     boardListEither.fold(
         (fail) =>
             FailureInterpreter().mapFailureToSnackbar(fail, '_getBoardList'),
         (newBoardList) {
-      _boardList.addAll(newBoardList);
+      boardList
+          .addAll(newBoardList.map((e) => BoardUIModel.fromDto(e)).toList());
+      boardList.refresh();
     });
   }
 
-  toBoardDetailPage({required String boardId}) {
-    Get.toNamed(Routes.COMMUNITY_DETAIL, arguments: boardId);
+  Future<void> _getHotPostList() async {
+    final hotPostListEither = await _repository.getHotPostList(hotPostListSize);
+
+    hotPostListEither.fold(
+        (fail) =>
+            FailureInterpreter().mapFailureToSnackbar(fail, '_getBoardList'),
+        (newHotPostList) {
+      hotPostList
+          .addAll(newHotPostList.map((e) => PostUIModel.fromDTO(e)).toList());
+      hotPostList.refresh();
+    });
   }
 
-  toSettingPage() {
-    Get.to(CommunitySettingPage());
+  goToBoardDetailPage({required int boardIndex}) {
+    Get.toNamed(
+      Routes.COMMUNITY_POST_LIST,
+      arguments: boardList[boardIndex],
+    );
+  }
+
+  goToPostDetailPage(PostUIModel selectedHotPost) {
+    Get.toNamed(Routes.COMMUNITY_POST_DETAIL, arguments: selectedHotPost);
+  }
+
+  goToSettingPage() {
+    Get.to(
+      CommunitySettingPage(),
+    );
   }
 }

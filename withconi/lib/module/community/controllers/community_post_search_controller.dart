@@ -1,165 +1,199 @@
-import 'package:withconi/controller/auth_controller.dart';
+import 'package:dartz/dartz.dart';
+import 'package:withconi/module/auth/auth_controller.dart';
 import 'package:withconi/core/error_handling/error_message_object.dart';
 import 'package:withconi/data/repository/community_repository.dart';
+import 'package:withconi/module/ui_model/post_list_filter_ui_model.dart';
+import '../../../core/error_handling/failure_ui_interpreter.dart';
 import '../../../data/enums/enum.dart';
 import '../../../core/error_handling/failures.dart';
-import '../../../data/model/post.dart';
+import '../../../data/model/dto/response_dto/community_response/post_response_dto.dart';
+import '../../../global_widgets/loading/loading_overlay.dart';
 import '../../../import_basic.dart';
-import '../../../controller/ui_helper/infinite_scroll.dart';
+import '../../../core/tools/helpers/infinite_scroll.dart';
+import '../../page_status.dart';
+import '../../ui_model/post_ui_model.dart';
 
 class CommunityPostSearchController extends GetxController
-    with StateMixin<List<Post>> {
-  final CommunityRepository _communityRepository = CommunityRepository();
+    implements InfiniteScroll {
+  CommunityPostSearchController(this._communityRepository);
+  final CommunityRepository _communityRepository;
+
   TextEditingController searchKeywordTextController = TextEditingController();
   RxBool listLoaded = false.obs;
-  late String _boardId;
-  late String _userId;
   Rxn<Failure> failure = Rxn<Failure>();
-  final RxString _searchKeywords = ''.obs;
-  RxList<Post> postListSearched = RxList<Post>();
-  List<PostType> postType = [
-    PostType.all,
-    PostType.cat,
-    PostType.dog,
-  ];
-  Rx<PostType> selectedPostType = PostType.all.obs;
-
+  final RxString _keywordText = ''.obs;
+  Rx<PostListFilterUIModel> postSearchFilter = Rx<PostListFilterUIModel>(
+      PostListFilterUIModel(postType: PostType.all, keyword: ''));
+  RxList<PostUIModel> postListSearched = RxList<PostUIModel>();
+  // Rx<PostType> selectedPostType = PostType.all.obs;
+  late String _boardId;
   final Rx<PaginationFilter> _paginationFilter = PaginationFilter(
     page: 1,
-    limit: 8,
+    listSize: 8,
   ).obs;
-
-  Rx<ScrollController> scrollController = ScrollController().obs;
-
-  final RxBool _lastPage = false.obs;
-  final RxBool _isLoading = false.obs;
-
-  int get limit => _paginationFilter.value.limit;
-  int get _page => _paginationFilter.value.page;
-
-  void loadNextPage() => _changePaginationFilter(_page + 1, limit);
 
   late Worker _debounceWorker;
 
   @override
-  void onInit() {
-    super.onInit();
-    _boardId = Get.arguments;
-    _userId = AuthController.to.wcUser.value!.uid;
-    _debounceWorker = debounce(_searchKeywords, _changeSearchKeyword,
-        time: const Duration(milliseconds: 400));
-    ever(_paginationFilter, _getSearchedPostList);
+  Rx<InfiniteScrollPageStatus> pageStatus =
+      Rx<InfiniteScrollPageStatus>(const InfiniteScrollPageStatus.init());
 
-    change(null, status: RxStatus.empty());
+  int get _page => _paginationFilter.value.page;
+  int get _listSize => _paginationFilter.value.listSize;
 
-    scrollController.value.addListener(() {
-      var nextPageTrigger =
-          scrollController.value.position.maxScrollExtent * 0.8;
-      if (!_isLoading.value &&
-          !_lastPage.value &&
-          scrollController.value.offset >= nextPageTrigger) {
+  @override
+  void loadNextPage() => changePaginationFilter(_page + 1, _listSize);
+
+  @override
+  void loadNewPage() => changePaginationFilter(1, _listSize);
+
+  @override
+  void changePaginationFilter(int page, int limit) {
+    _paginationFilter.update((val) {
+      val!.page = page;
+      val.listSize = limit;
+    });
+  }
+
+  @override
+  ScrollController infiniteScrollController = ScrollController();
+
+  @override
+  double get nextPageTrigger =>
+      0.8 * infiniteScrollController.position.maxScrollExtent;
+
+  @override
+  void addInfiniteScrollListener() {
+    infiniteScrollController.addListener(() {
+      if ((pageStatus.value == const InfiniteScrollPageStatus.success()) &&
+          infiniteScrollController.offset >= nextPageTrigger) {
         loadNextPage();
       }
     });
   }
 
   @override
+  Future<void> getDataByPaginationFilter(
+      PaginationFilter _paginationFilter) async {
+    if (_paginationFilter.page == 1) {
+      await _getPostList(_paginationFilter);
+    } else {
+      await _morePostList(_paginationFilter);
+    }
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
+    _boardId = Get.arguments as String;
+  }
+
+  @override
+  void onReady() {
+    super.onReady();
+
+    _debounceWorker = debounce(_keywordText, _setSearchFilterKeyword,
+        time: const Duration(milliseconds: 200));
+    ever(_paginationFilter, getDataByPaginationFilter);
+    ever(postSearchFilter, (searchFilter) {
+      if ((searchFilter as PostListFilterUIModel).keyword.isNotEmpty) {
+        loadNewPage();
+      }
+    });
+    addInfiniteScrollListener();
+  }
+
+  @override
   void onClose() {
     super.onClose();
-    scrollController.value.dispose();
+    infiniteScrollController.dispose();
     _debounceWorker.dispose();
+    postListSearched.close();
+    postSearchFilter.close();
   }
 
   void onKeywordChanged(String val) {
-    _searchKeywords.value = val;
+    _keywordText.value = val;
     if (val.isEmpty) clearResult();
   }
 
   void clearResult() {
     searchKeywordTextController.clear();
     postListSearched.clear();
-    change(null, status: RxStatus.empty());
   }
 
-  _getSearchedPostList(PaginationFilter paginationFilter) async {
-    if (_searchKeywords.value.isEmpty) {
-      clearResult();
-      return;
-    } else {
-      if (paginationFilter.page == 1) {
-        change(null, status: RxStatus.loading());
+  Future<void> _getPostList(PaginationFilter paginationFilter) async {
+    pageStatus.value = const InfiniteScrollPageStatus.loading();
+    final Either<Failure, List<PostResponseDTO>> postDataEither =
+        await _communityRepository.getPostList(
+            paginationFilter: paginationFilter,
+            postListFilterUiModel: postSearchFilter.value,
+            boardId: _boardId);
+
+    postDataEither.fold((fail) {
+      ErrorObject errorObject =
+          FailureInterpreter().mapFailureToSnackbar(fail, '_getPostListByPage');
+      pageStatus.value = InfiniteScrollPageStatus.error(errorObject.message);
+    }, (newPostListDto) {
+      if (newPostListDto.isEmpty) {
+        pageStatus.value = const InfiniteScrollPageStatus.empty();
+        return;
+      } else {
+        postListSearched.assignAll(_parsePostListDto(newPostListDto));
+        pageStatus.value = const InfiniteScrollPageStatus.success();
       }
-      _isLoading.value = true;
-      final postDataEither = await _communityRepository.getPostList(
-          keyword: _searchKeywords.value,
-          paginationFilter: _paginationFilter.value,
-          boardId: _boardId,
-          postType: selectedPostType.value);
 
-      postDataEither.fold((failure) {
-        ErrorMessage errorMessage =
-            ErrorMessage.mapFailureToErrorMessage(failure: failure);
-        change(null, status: RxStatus.error(errorMessage.message));
-      }, (postList) {
-        if (postList.isEmpty) {
-          _lastPage.value = true;
-        } else {
-          postListSearched.addAll(postList);
-        }
-        _isLoading.value = false;
-        change(postListSearched, status: RxStatus.success());
-      });
-    }
-    Get.focusScope!.unfocus();
-  }
-
-  Future<void> resetPage(PostType postType) async {
-    selectedPostType.value = postType;
-    _lastPage.value = false;
-    postListSearched.clear();
-    _changePaginationFilter(1, 15);
-  }
-
-  void onPostTypeChanged(PostType postType) {
-    selectedPostType.value = postType;
-    resetPage(selectedPostType.value);
-  }
-
-  void _changePaginationFilter(int page, int limit) {
-    _paginationFilter.update((val) {
-      val!.page = page;
-      val.limit = limit;
+      // changeLoadingState(LoadingStatus.dataReady);
+      return;
     });
   }
 
-  // Future<void> _getPostList() async {
-  //   _isLoading.value = true;
-  //   final postDataEither = await _communityRepository.getPostList(
-  //       userId: AuthController.to.wcUser.value!.uid,
-  //       paginationFilter: _paginationFilter.value,
-  //       boardId: _boardId,
-  //       postType: selectedPostType.value);
+  List<PostUIModel> _parsePostListDto(List<PostResponseDTO> postListDTO) {
+    return postListDTO.map((e) => PostUIModel.fromDTO(e)).toList();
+  }
 
-  //   postDataEither.fold(
-  //       (fail) => FailureInterpreter()
-  //           .mapFailureToSnackbar(fail, '_getPostListByPage'), (newPostList) {
-  //     if (_paginationFilter.value.page == 1) {
-  //       postList.clear();
-  //     }
-  //     if (newPostList.isEmpty) {
-  //       _lastPage.value = true;
-  //     } else {
-  //       likePostIdList.addAll(filterLikedPosts(postList: newPostList));
-  //       postList.addAll(newPostList);
-  //     }
-  //     postList.refresh();
-  //     _isLoading.value = false;
-  //   });
+  Future<void> _morePostList(PaginationFilter paginationFilter) async {
+    pageStatus.value = const InfiniteScrollPageStatus.loadingMore();
+
+    final Either<Failure, List<PostResponseDTO>> postDataEither =
+        await _communityRepository.getPostList(
+            postListFilterUiModel: postSearchFilter.value,
+            paginationFilter: paginationFilter,
+            boardId: _boardId);
+
+    postDataEither.fold((failure) {
+      ErrorObject errorMessage =
+          ErrorObject.mapFailureToErrorMessage(failure: failure);
+      pageStatus.value = InfiniteScrollPageStatus.error(errorMessage.message);
+    }, (morePostListDto) {
+      if (morePostListDto.isEmpty) {
+        pageStatus.value = const InfiniteScrollPageStatus.emptyLastPage();
+      } else {
+        postListSearched.addAll(_parsePostListDto(morePostListDto));
+        pageStatus.value = const InfiniteScrollPageStatus.success();
+      }
+    });
+  }
+
+  // Future<void> resetPage(PostType postType) async {
+  //   selectedPostType.value = postType;
+  //   _lastPage.value = false;
+  //   postListSearched.clear();
+  //   changePaginationFilter(1, 15);
   // }
 
-  void _changeSearchKeyword(_keyword) {
-    postListSearched.clear();
-    _lastPage.value = false;
-    _changePaginationFilter(1, limit);
+  void onPostTypeChanged(PostType postType) {
+    postSearchFilter.value.postType = postType;
+    postSearchFilter.refresh();
   }
+
+  void _setSearchFilterKeyword(_keyword) {
+    postSearchFilter.value.keyword = _keyword;
+    postSearchFilter.refresh();
+  }
+
+  // @override
+  // void changeLoadingState(LoadingStatus loadingStatus) {
+  //   super.changeLoadingState(loadingStatus);
+  // }
 }

@@ -1,47 +1,45 @@
-import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:withconi/data/enums/enum.dart';
-import 'package:withconi/controller/auth_controller.dart';
 import 'package:withconi/data/repository/community_repository.dart';
-import 'package:withconi/data/repository/image_repository.dart';
-import 'package:withconi/module/widgets/loading/loading_overlay.dart';
-import 'package:withconi/module/widgets/photo_gallary/image_item.dart';
-import '../../../core/tools/helpers/image_picker_helper.dart';
+
+import 'package:withconi/global_widgets/loading/loading_overlay.dart';
+
+import 'package:withconi/module/ui_model/report_ui_model.dart';
+
 import '../../../core/error_handling/failures.dart';
-import '../../../data/model/conimal.dart';
-import '../../../data/model/post.dart';
-import '../../../data/model/report.dart';
+
 import '../../../import_basic.dart';
-import '../../widgets/dialog/selection_dialog.dart';
-import '../../../controller/ui_interpreter/failure_ui_interpreter.dart';
+
+import '../../../core/error_handling/failure_ui_interpreter.dart';
 
 class CommunityNewReportController extends GetxController {
-  final CommunityRepository _communityRepository = CommunityRepository();
-  List<ReportItem> reportItemList = [
-    ReportItem.animalCruelty,
-    ReportItem.maliciousContents,
-    ReportItem.sexualContents,
-    ReportItem.wrongInformation,
-    ReportItem.promotionalContents,
-    ReportItem.ect
-  ];
-  Rxn<ReportItem> selectedReportItem = Rxn<ReportItem>();
+  CommunityNewReportController(this._communityRepository);
+  final CommunityRepository _communityRepository;
+  // List<ReportItem> reportItemList = [
+  //   ReportItem.animalCruelty,
+  //   ReportItem.maliciousContents,
+  //   ReportItem.sexualContents,
+  //   ReportItem.wrongInformation,
+  //   ReportItem.promotionalContents,
+  //   ReportItem.ect
+  // ];
+  // Rxn<ReportItem> selectedReportItem = Rxn<ReportItem>();
   TextEditingController reportDetailTextController = TextEditingController();
 
-  late Report newReport;
+  late Rx<ReportUIModel> newReport;
 
   @override
   onInit() {
     super.onInit();
-    newReport = Get.arguments as Report;
+    newReport = Rx<ReportUIModel>(Get.arguments as ReportUIModel);
   }
 
   onReportItemChanged(ReportItem reportItem) {
-    selectedReportItem.value = reportItem;
+    newReport.value.reportItem = reportItem;
   }
 
   validateButton() {
-    if (selectedReportItem.value != null) {
+    if (newReport.value.reportItem != null) {
       return true;
     } else {
       return false;
@@ -54,9 +52,7 @@ class CommunityNewReportController extends GetxController {
 
   _createNewReport() async {
     Either<Failure, bool> createEither = await showLoading(() =>
-        _communityRepository.createReport(
-            newReport:
-                newReport.copyWith(reviewDesc: [selectedReportItem.value!])));
+        _communityRepository.createReport(reportUiModel: newReport.value));
     createEither.fold((failure) {
       FailureInterpreter().mapFailureToDialog(failure, '_createNewReport');
     }, (success) {

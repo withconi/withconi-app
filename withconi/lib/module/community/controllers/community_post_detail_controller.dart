@@ -1,109 +1,69 @@
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
+import 'package:withconi/core/values/constants/auth_variables.dart';
 import 'package:withconi/data/enums/enum.dart';
-import 'package:withconi/controller/auth_controller.dart';
-import 'package:withconi/controller/community/communty_widgets/more_tap_bottom_sheet.dart';
-import 'package:withconi/data/model/report.dart';
-import 'package:withconi/data/model/response_model/response_model.dart';
-import 'package:withconi/module/widgets/dialog/selection_dialog.dart';
-import 'package:withconi/module/widgets/error_widget/error_widget.dart';
-import 'package:withconi/module/widgets/loading/loading_page.dart';
-import '../../../core/tools/helpers/calculator.dart';
+import 'package:withconi/data/model/dto/response_dto/community_response/comment_response_dto.dart';
+import 'package:withconi/module/auth/auth_controller.dart';
+import 'package:withconi/global_widgets/dialog/selection_dialog.dart';
+import 'package:withconi/module/ui_model/comment_ui_model.dart';
+import 'package:withconi/module/ui_model/post_ui_model.dart';
+import 'package:withconi/module/ui_model/report_ui_model.dart';
 import '../../../core/error_handling/failures.dart';
-import '../../../data/model/comment.dart';
-import '../../../data/model/post.dart';
 import '../../../data/repository/community_repository.dart';
 import '../../../import_basic.dart';
-import '../../widgets/error_page/error_page.dart';
-import '../../widgets/loading/loading_overlay.dart';
-import '../../../controller/ui_helper/infinite_scroll.dart';
-import '../../../controller/ui_interpreter/failure_ui_interpreter.dart';
-import '../../../controller/community/communty_widgets/comment_bottom_sheet.dart';
+import '../../../global_widgets/loading/loading_overlay.dart';
+import '../../../core/tools/helpers/infinite_scroll.dart';
+import '../../../core/error_handling/failure_ui_interpreter.dart';
+import '../widgets/comment_bottom_sheet.dart';
 
 enum CommunityPageResultKey { blockAuthorId }
 
 class CommunityPostDetailController extends GetxController {
-  final CommunityRepository _communityRepository = CommunityRepository();
+  CommunityPostDetailController(this._communityRepository);
+  final CommunityRepository _communityRepository;
 
-  late Rx<Post> thisPost;
-  RxList<Comment> commentList = <Comment>[
-    Comment(
-        authorId: '',
-        nickname: "nickname",
-        content: "고양이가 밥을 안 먹으려고 할 때 밥을 그냥 안줘버리면 어떻게 되나요?",
-        createdAt: DateTime.now(),
-        commentId: '123',
-        postId: '',
-        boardId: '',
-        isLike: false)
-  ].obs;
-  List<String> postType = [
-    '모두',
-    '강아지',
-    '고양이',
-  ];
-  RxString selectedPostType = '모두'.obs;
-  RxString selectedPostSort = '최신순'.obs;
-  List<String> postSort = ['최신순', '인기순'];
-  RxList<String> userLikedPost = ['먼지', 'c', 'd'].obs;
-  List<String> likeCommentIdList = <String>[];
+  late Rx<PostUIModel> thisPost;
+  RxList<CommentUIModel> commentList = <CommentUIModel>[].obs;
 
-  final _paginationFilter = PaginationFilter(page: 1, limit: 10).obs;
+  final _paginationFilter = PaginationFilter(page: 1, listSize: 10).obs;
   final _lastPage = false.obs;
-  RxBool dataLoaded = false.obs;
+  RxBool postLoading = true.obs;
   RxInt currentImageIndex = 0.obs;
-  int get limit => _paginationFilter.value.limit;
+  int get limit => _paginationFilter.value.listSize;
   int get page => _paginationFilter.value.page;
   bool get lastPage => _lastPage.value;
-  String uploadAtStr(DateTime createdAt) =>
-      TimeCalculator().calculateUploadAt(createdAt);
 
   GlobalKey commentWidgetKey = GlobalKey();
   ScrollController scrollController = ScrollController();
 
+  String get _nickname => AuthController.to.userInfo.value!.nickname;
+  String get _uid => firebaseAuth.currentUser!.uid;
+
   @override
   onInit() async {
     super.onInit();
-    Post post = Get.arguments as Post;
-    await _setPost(postId: post.postId!, boardId: post.boardId);
-    await _getCommentList(postId: post.postId!, boardId: post.boardId);
-  }
+    thisPost = Rx<PostUIModel>((Get.arguments as PostUIModel).copyWith());
 
-  void onPostSortingChanged(String? sortingType) {
-    selectedPostSort.value = sortingType!;
-  }
-
-  void onPostTypeChanged(String postType) {
-    selectedPostType.value = postType;
-  }
-
-  _setPost({required String postId, required String boardId}) async {
-    dataLoaded.value = false;
-    Either<Failure, Post> postEither = await _communityRepository.getPost(
-      postId: postId,
-      boardId: boardId,
-    );
-    postEither.fold((failure) {
-      Get.off(ErrorPage(
-        failure: failure,
-      ));
-      dataLoaded.value = false;
-    }, (post) {
-      thisPost = post.obs;
-      dataLoaded.value = true;
-    });
+    await _getCommentList(
+        postId: thisPost.value.postId, boardId: thisPost.value.boardId);
+    postLoading.value = false;
   }
 
   _getCommentList({required String postId, required String boardId}) async {
-    Either<Failure, CommentResponse> commentEither =
+    Either<Failure, List<CommentResponseDTO>> commentEither =
         await _communityRepository.getCommentList(
       postId: postId,
       boardId: boardId,
     );
-    commentEither.fold((failure) {}, (commentResponse) {
-      commentList.addAll(commentResponse.list);
+    commentEither.fold((failure) {}, (commentDto) {
+      commentList.addAll(_parseCommentDto(commentDto).reversed);
     });
+    commentList.refresh();
+  }
+
+  List<CommentUIModel> _parseCommentDto(List<CommentResponseDTO> commentDto) {
+    return commentDto.map((e) => CommentUIModel.fromDTO(e)).toList();
   }
 
   _deletePost() async {
@@ -118,29 +78,32 @@ class CommunityPostDetailController extends GetxController {
   }
 
   Future<void> addComment() async {
-    Comment? newComment = await showCommentBottomSheet(Comment(
-        isLike: false,
-        authorId: AuthController.to.wcUser.value!.uid,
-        postId: thisPost.value.postId!,
-        boardId: thisPost.value.boardId,
-        commentId: DateTime.now().microsecondsSinceEpoch.toString(),
-        nickname: AuthController.to.wcUser.value!.nickname,
-        content: '',
-        createdAt: DateTime.now()));
-    if (newComment != null && newComment.content.isNotEmpty) {
-      commentList.add(newComment);
-      updateCommentDB(newComment);
+    String? commentText = await showCommentBottomSheet(_nickname);
+    if (commentText != null && commentText.isNotEmpty) {
+      await _updateCommentDB(_makeNewCommentModel(commentText));
     }
   }
 
-  updateCommentDB(Comment _newComment) async {
-    var newPostResultEither = await showLoading(
+  CommentUIModel _makeNewCommentModel(String commentText) {
+    return CommentUIModel(DateTime.now(),
+        nickname: _nickname,
+        content: commentText,
+        likeNum: 0,
+        isLikeOn: false,
+        authorId: thisPost.value.authorId,
+        boardId: thisPost.value.boardId,
+        commentId: DateTime.now().microsecondsSinceEpoch.toString(),
+        postId: thisPost.value.postId);
+  }
+
+  Future<void> _updateCommentDB(CommentUIModel _newComment) async {
+    Either<Failure, CommentResponseDTO> newPostResultEither = await showLoading(
         () => _communityRepository.newComment(newComment: _newComment));
     newPostResultEither.fold((fail) {
       FailureInterpreter().mapFailureToSnackbar(fail, 'createComment');
       return;
-    }, (addedPost) {
-      return;
+    }, (newCommentDto) {
+      commentList.add(CommentUIModel.fromDTO(newCommentDto));
     });
     return;
   }
@@ -149,61 +112,50 @@ class CommunityPostDetailController extends GetxController {
     currentImageIndex.value = index;
   }
 
-  onLikeChanged(String postId, bool isLike) async {
-    print('asdfadf');
-    if (isLike) {
-      thisPost.value =
-          thisPost.value.copyWith(likeNum: thisPost.value.likeNum + 1);
-    } else {
-      thisPost.value =
-          thisPost.value.copyWith(likeNum: thisPost.value.likeNum - 1);
-    }
-
+  onLikeChanged(bool isLike) async {
+    _updatePostLikeUiChanges(isLike);
     var likePostsEither = await _communityRepository.updateLikePost(
-        uid: AuthController.to.wcUser.value!.uid,
-        postId: postId,
-        isLiked: isLike);
+        postId: thisPost.value.postId, isLiked: isLike);
 
-    likePostsEither.fold(
-        (l) => FailureInterpreter().mapFailureToSnackbar(l, 'updateLikePost'),
-        (r) {});
+    likePostsEither.fold((l) {
+      _updatePostLikeUiChanges(!isLike);
+    }, (r) {});
   }
 
-  updateCommentLike({required String commentId, required bool isLiked}) async {
+  updateCommentLike({required int commentIndex, required bool isLiked}) async {
+    _updateCommentLikeUiChanges(commentIndex, isLiked);
+    var likeCommentEither = await _communityRepository.updateLikeComment(
+        postId: commentList[commentIndex].postId,
+        isLiked: isLiked,
+        commentId: commentList[commentIndex].commentId);
+
+    likeCommentEither.fold((l) {
+      FailureInterpreter().mapFailureToSnackbar(l, 'updateCommentLike');
+      _updateCommentLikeUiChanges(commentIndex, !isLiked);
+    }, (r) {});
+  }
+
+  void _updatePostLikeUiChanges(bool isLiked) {
+    thisPost.value.isLikeOn = isLiked;
     if (isLiked) {
-      likeCommentIdList.add(commentId);
-      commentList.forEach((element) {
-        Comment changedComment = element.copyWith(likeNum: element.likeNum + 1);
-        if (element.commentId == commentId) {
-          commentList.replaceRange(commentList.indexOf(element),
-              commentList.indexOf(element) + 1, [changedComment]);
-        }
-      });
+      thisPost.value.likeNum += 1;
     } else {
-      likeCommentIdList.remove(commentId);
-      commentList.forEach((element) {
-        Comment changedComment = element.copyWith(likeNum: element.likeNum - 1);
-        if (element.commentId == commentId) {
-          commentList.replaceRange(commentList.indexOf(element),
-              commentList.indexOf(element) + 1, [changedComment]);
-        }
-      });
+      thisPost.value.likeNum -= 1;
+    }
+    thisPost.refresh();
+  }
+
+  void _updateCommentLikeUiChanges(int commentIndex, bool isLiked) {
+    commentList[commentIndex].isLikeOn = isLiked;
+    if (isLiked) {
+      commentList[commentIndex].likeNum += 1;
+    } else {
+      commentList[commentIndex].likeNum -= 1;
     }
     commentList.refresh();
-
-    var likeCommentEither = await _communityRepository.updateLikeComment(
-        uid: AuthController.to.wcUser.value!.uid,
-        postId: thisPost.value.postId!,
-        isLiked: isLiked,
-        commentId: commentId);
-
-    likeCommentEither.fold(
-        (l) =>
-            FailureInterpreter().mapFailureToSnackbar(l, 'updateCommentLike'),
-        (r) => likeCommentIdList.assignAll(r));
   }
 
-  onPostMoreTap(Post post, MoreOption? moreOption) async {
+  onPostMoreTap(PostUIModel post, MoreOption? moreOption) async {
     if (moreOption != null) {
       switch (moreOption) {
         case MoreOption.edit:
@@ -213,15 +165,13 @@ class CommunityPostDetailController extends GetxController {
           await _deletePost();
           break;
         case MoreOption.report:
-          Get.toNamed(Routes.COMMUNITY_NEW_REPORT,
-              arguments: Report(
-                  boardId: post.boardId,
-                  postId: post.postId!,
-                  userId: AuthController.to.wcUser.value!.uid,
-                  reviewDesc: []));
+          Get.toNamed(Routes.COMMUNITY_REPORT,
+              //TODO: report생성할때 authorid는 누구를 의미?
+              arguments: ReportUIModel(
+                  boardId: post.boardId, postId: post.postId, authorId: _uid));
           break;
         case MoreOption.block:
-          blockUserPosts(postInfo: post);
+          _blockUserPosts(postInfo: post);
           break;
         default:
           break;
@@ -229,7 +179,7 @@ class CommunityPostDetailController extends GetxController {
     }
   }
 
-  onCommentMoreTap(Comment comment, MoreOption? moreOption) async {
+  onCommentMoreTap(CommentUIModel comment, MoreOption? moreOption) async {
     if (moreOption != null) {
       switch (moreOption) {
         case MoreOption.edit:
@@ -239,15 +189,15 @@ class CommunityPostDetailController extends GetxController {
           await _deletePost();
           break;
         case MoreOption.report:
-          Get.toNamed(Routes.COMMUNITY_NEW_REPORT,
-              arguments: Report(
-                  boardId: comment.boardId,
-                  postId: comment.postId,
-                  userId: AuthController.to.wcUser.value!.uid,
-                  reviewDesc: []));
+          Get.toNamed(Routes.COMMUNITY_REPORT,
+              arguments: ReportUIModel(
+                boardId: comment.boardId,
+                postId: comment.postId,
+                authorId: _uid,
+              ));
           break;
         case MoreOption.block:
-          blockUserComments(commentInfo: comment);
+          _blockUserComments(commentInfo: comment);
           break;
         default:
           break;
@@ -255,7 +205,7 @@ class CommunityPostDetailController extends GetxController {
     }
   }
 
-  blockUserComments({required Comment commentInfo}) async {
+  _blockUserComments({required CommentUIModel commentInfo}) async {
     bool blockConfirmed = await showSelectionDialog(
         confirmText: '네',
         cancleText: '아니오',
@@ -269,7 +219,7 @@ class CommunityPostDetailController extends GetxController {
     }
   }
 
-  blockUserPosts({required Post postInfo}) async {
+  _blockUserPosts({required PostUIModel postInfo}) async {
     bool blockConfirmed = await showSelectionDialog(
         confirmText: '네',
         cancleText: '아니오',
