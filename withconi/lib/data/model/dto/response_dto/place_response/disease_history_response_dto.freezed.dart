@@ -36,7 +36,8 @@ mixin _$DiseaseHistoryResponseDTO {
 abstract class $DiseaseHistoryResponseDTOCopyWith<$Res> {
   factory $DiseaseHistoryResponseDTOCopyWith(DiseaseHistoryResponseDTO value,
           $Res Function(DiseaseHistoryResponseDTO) then) =
-      _$DiseaseHistoryResponseDTOCopyWithImpl<$Res>;
+      _$DiseaseHistoryResponseDTOCopyWithImpl<$Res, DiseaseHistoryResponseDTO>;
+  @useResult
   $Res call(
       {DiseaseType diseaseType,
       int totalDiseaseType,
@@ -44,34 +45,37 @@ abstract class $DiseaseHistoryResponseDTOCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$DiseaseHistoryResponseDTOCopyWithImpl<$Res>
+class _$DiseaseHistoryResponseDTOCopyWithImpl<$Res,
+        $Val extends DiseaseHistoryResponseDTO>
     implements $DiseaseHistoryResponseDTOCopyWith<$Res> {
   _$DiseaseHistoryResponseDTOCopyWithImpl(this._value, this._then);
 
-  final DiseaseHistoryResponseDTO _value;
   // ignore: unused_field
-  final $Res Function(DiseaseHistoryResponseDTO) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? diseaseType = freezed,
-    Object? totalDiseaseType = freezed,
-    Object? diseaseHistoryItems = freezed,
+    Object? diseaseType = null,
+    Object? totalDiseaseType = null,
+    Object? diseaseHistoryItems = null,
   }) {
     return _then(_value.copyWith(
-      diseaseType: diseaseType == freezed
+      diseaseType: null == diseaseType
           ? _value.diseaseType
           : diseaseType // ignore: cast_nullable_to_non_nullable
               as DiseaseType,
-      totalDiseaseType: totalDiseaseType == freezed
+      totalDiseaseType: null == totalDiseaseType
           ? _value.totalDiseaseType
           : totalDiseaseType // ignore: cast_nullable_to_non_nullable
               as int,
-      diseaseHistoryItems: diseaseHistoryItems == freezed
+      diseaseHistoryItems: null == diseaseHistoryItems
           ? _value.diseaseHistoryItems
           : diseaseHistoryItems // ignore: cast_nullable_to_non_nullable
               as List<DiseaseHistoryItemResponseDTO>,
-    ));
+    ) as $Val);
   }
 }
 
@@ -83,6 +87,7 @@ abstract class _$$_DiseaseHistoryResponseDTOCopyWith<$Res>
           $Res Function(_$_DiseaseHistoryResponseDTO) then) =
       __$$_DiseaseHistoryResponseDTOCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {DiseaseType diseaseType,
       int totalDiseaseType,
@@ -91,33 +96,31 @@ abstract class _$$_DiseaseHistoryResponseDTOCopyWith<$Res>
 
 /// @nodoc
 class __$$_DiseaseHistoryResponseDTOCopyWithImpl<$Res>
-    extends _$DiseaseHistoryResponseDTOCopyWithImpl<$Res>
+    extends _$DiseaseHistoryResponseDTOCopyWithImpl<$Res,
+        _$_DiseaseHistoryResponseDTO>
     implements _$$_DiseaseHistoryResponseDTOCopyWith<$Res> {
   __$$_DiseaseHistoryResponseDTOCopyWithImpl(
       _$_DiseaseHistoryResponseDTO _value,
       $Res Function(_$_DiseaseHistoryResponseDTO) _then)
-      : super(_value, (v) => _then(v as _$_DiseaseHistoryResponseDTO));
+      : super(_value, _then);
 
-  @override
-  _$_DiseaseHistoryResponseDTO get _value =>
-      super._value as _$_DiseaseHistoryResponseDTO;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? diseaseType = freezed,
-    Object? totalDiseaseType = freezed,
-    Object? diseaseHistoryItems = freezed,
+    Object? diseaseType = null,
+    Object? totalDiseaseType = null,
+    Object? diseaseHistoryItems = null,
   }) {
     return _then(_$_DiseaseHistoryResponseDTO(
-      diseaseType: diseaseType == freezed
+      diseaseType: null == diseaseType
           ? _value.diseaseType
           : diseaseType // ignore: cast_nullable_to_non_nullable
               as DiseaseType,
-      totalDiseaseType: totalDiseaseType == freezed
+      totalDiseaseType: null == totalDiseaseType
           ? _value.totalDiseaseType
           : totalDiseaseType // ignore: cast_nullable_to_non_nullable
               as int,
-      diseaseHistoryItems: diseaseHistoryItems == freezed
+      diseaseHistoryItems: null == diseaseHistoryItems
           ? _value._diseaseHistoryItems
           : diseaseHistoryItems // ignore: cast_nullable_to_non_nullable
               as List<DiseaseHistoryItemResponseDTO>,
@@ -159,24 +162,22 @@ class _$_DiseaseHistoryResponseDTO implements _DiseaseHistoryResponseDTO {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_DiseaseHistoryResponseDTO &&
-            const DeepCollectionEquality()
-                .equals(other.diseaseType, diseaseType) &&
-            const DeepCollectionEquality()
-                .equals(other.totalDiseaseType, totalDiseaseType) &&
+            (identical(other.diseaseType, diseaseType) ||
+                other.diseaseType == diseaseType) &&
+            (identical(other.totalDiseaseType, totalDiseaseType) ||
+                other.totalDiseaseType == totalDiseaseType) &&
             const DeepCollectionEquality()
                 .equals(other._diseaseHistoryItems, _diseaseHistoryItems));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(diseaseType),
-      const DeepCollectionEquality().hash(totalDiseaseType),
+  int get hashCode => Object.hash(runtimeType, diseaseType, totalDiseaseType,
       const DeepCollectionEquality().hash(_diseaseHistoryItems));
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_DiseaseHistoryResponseDTOCopyWith<_$_DiseaseHistoryResponseDTO>
       get copyWith => __$$_DiseaseHistoryResponseDTOCopyWithImpl<
           _$_DiseaseHistoryResponseDTO>(this, _$identity);

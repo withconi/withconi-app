@@ -27,8 +27,8 @@ Map<String, dynamic> _$$_DiseaseHistoryResponseDTOToJson(
     };
 
 const _$DiseaseTypeEnumMap = {
-  DiseaseType.all: 'all',
-  DiseaseType.cardiovascular: 'cardiovascular',
+  DiseaseType.all: '',
+  DiseaseType.cardiovacular: 'cardiovacular',
   DiseaseType.musculoskeletal: 'musculoskeletal',
   DiseaseType.digestive: 'digestive',
   DiseaseType.ophthalmology: 'ophthalmology',
@@ -42,4 +42,5 @@ const _$DiseaseTypeEnumMap = {
   DiseaseType.dermatology: 'dermatology',
   DiseaseType.endocrinology: 'endocrinology',
   DiseaseType.emergency: 'emergency',
+  DiseaseType.undefined: 'undefined',
 };

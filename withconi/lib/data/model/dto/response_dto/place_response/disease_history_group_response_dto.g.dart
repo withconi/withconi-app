@@ -13,7 +13,7 @@ _$_DiseaseHistoryListResponseDTO _$$_DiseaseHistoryListResponseDTOFromJson(
           .map((e) =>
               DiseaseHistoryResponseDTO.fromJson(e as Map<String, dynamic>))
           .toList(),
-      totalDiseaseHistoryCount: json['totalDiseaseHistoryCount'] as int,
+      totalDiseaseHistoryCount: json['totalDiseases'] as int,
     );
 
 Map<String, dynamic> _$$_DiseaseHistoryListResponseDTOToJson(
@@ -21,5 +21,5 @@ Map<String, dynamic> _$$_DiseaseHistoryListResponseDTOToJson(
     <String, dynamic>{
       'diseaseHistoryList':
           instance.diseaseHistoryList.map((e) => e.toJson()).toList(),
-      'totalDiseaseHistoryCount': instance.totalDiseaseHistoryCount,
+      'totalDiseases': instance.totalDiseaseHistoryCount,
     };

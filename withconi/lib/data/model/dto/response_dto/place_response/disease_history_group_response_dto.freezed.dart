@@ -23,6 +23,7 @@ DiseaseHistoryListResponseDTO _$DiseaseHistoryListResponseDTOFromJson(
 mixin _$DiseaseHistoryListResponseDTO {
   List<DiseaseHistoryResponseDTO> get diseaseHistoryList =>
       throw _privateConstructorUsedError;
+  @JsonKey(name: 'totalDiseases')
   int get totalDiseaseHistoryCount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,36 +37,41 @@ abstract class $DiseaseHistoryListResponseDTOCopyWith<$Res> {
   factory $DiseaseHistoryListResponseDTOCopyWith(
           DiseaseHistoryListResponseDTO value,
           $Res Function(DiseaseHistoryListResponseDTO) then) =
-      _$DiseaseHistoryListResponseDTOCopyWithImpl<$Res>;
+      _$DiseaseHistoryListResponseDTOCopyWithImpl<$Res,
+          DiseaseHistoryListResponseDTO>;
+  @useResult
   $Res call(
       {List<DiseaseHistoryResponseDTO> diseaseHistoryList,
-      int totalDiseaseHistoryCount});
+      @JsonKey(name: 'totalDiseases') int totalDiseaseHistoryCount});
 }
 
 /// @nodoc
-class _$DiseaseHistoryListResponseDTOCopyWithImpl<$Res>
+class _$DiseaseHistoryListResponseDTOCopyWithImpl<$Res,
+        $Val extends DiseaseHistoryListResponseDTO>
     implements $DiseaseHistoryListResponseDTOCopyWith<$Res> {
   _$DiseaseHistoryListResponseDTOCopyWithImpl(this._value, this._then);
 
-  final DiseaseHistoryListResponseDTO _value;
   // ignore: unused_field
-  final $Res Function(DiseaseHistoryListResponseDTO) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? diseaseHistoryList = freezed,
-    Object? totalDiseaseHistoryCount = freezed,
+    Object? diseaseHistoryList = null,
+    Object? totalDiseaseHistoryCount = null,
   }) {
     return _then(_value.copyWith(
-      diseaseHistoryList: diseaseHistoryList == freezed
+      diseaseHistoryList: null == diseaseHistoryList
           ? _value.diseaseHistoryList
           : diseaseHistoryList // ignore: cast_nullable_to_non_nullable
               as List<DiseaseHistoryResponseDTO>,
-      totalDiseaseHistoryCount: totalDiseaseHistoryCount == freezed
+      totalDiseaseHistoryCount: null == totalDiseaseHistoryCount
           ? _value.totalDiseaseHistoryCount
           : totalDiseaseHistoryCount // ignore: cast_nullable_to_non_nullable
               as int,
-    ));
+    ) as $Val);
   }
 }
 
@@ -77,35 +83,34 @@ abstract class _$$_DiseaseHistoryListResponseDTOCopyWith<$Res>
           $Res Function(_$_DiseaseHistoryListResponseDTO) then) =
       __$$_DiseaseHistoryListResponseDTOCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {List<DiseaseHistoryResponseDTO> diseaseHistoryList,
-      int totalDiseaseHistoryCount});
+      @JsonKey(name: 'totalDiseases') int totalDiseaseHistoryCount});
 }
 
 /// @nodoc
 class __$$_DiseaseHistoryListResponseDTOCopyWithImpl<$Res>
-    extends _$DiseaseHistoryListResponseDTOCopyWithImpl<$Res>
+    extends _$DiseaseHistoryListResponseDTOCopyWithImpl<$Res,
+        _$_DiseaseHistoryListResponseDTO>
     implements _$$_DiseaseHistoryListResponseDTOCopyWith<$Res> {
   __$$_DiseaseHistoryListResponseDTOCopyWithImpl(
       _$_DiseaseHistoryListResponseDTO _value,
       $Res Function(_$_DiseaseHistoryListResponseDTO) _then)
-      : super(_value, (v) => _then(v as _$_DiseaseHistoryListResponseDTO));
+      : super(_value, _then);
 
-  @override
-  _$_DiseaseHistoryListResponseDTO get _value =>
-      super._value as _$_DiseaseHistoryListResponseDTO;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? diseaseHistoryList = freezed,
-    Object? totalDiseaseHistoryCount = freezed,
+    Object? diseaseHistoryList = null,
+    Object? totalDiseaseHistoryCount = null,
   }) {
     return _then(_$_DiseaseHistoryListResponseDTO(
-      diseaseHistoryList: diseaseHistoryList == freezed
+      diseaseHistoryList: null == diseaseHistoryList
           ? _value._diseaseHistoryList
           : diseaseHistoryList // ignore: cast_nullable_to_non_nullable
               as List<DiseaseHistoryResponseDTO>,
-      totalDiseaseHistoryCount: totalDiseaseHistoryCount == freezed
+      totalDiseaseHistoryCount: null == totalDiseaseHistoryCount
           ? _value.totalDiseaseHistoryCount
           : totalDiseaseHistoryCount // ignore: cast_nullable_to_non_nullable
               as int,
@@ -120,7 +125,7 @@ class _$_DiseaseHistoryListResponseDTO
     implements _DiseaseHistoryListResponseDTO {
   _$_DiseaseHistoryListResponseDTO(
       {required final List<DiseaseHistoryResponseDTO> diseaseHistoryList,
-      required this.totalDiseaseHistoryCount})
+      @JsonKey(name: 'totalDiseases') required this.totalDiseaseHistoryCount})
       : _diseaseHistoryList = diseaseHistoryList;
 
   factory _$_DiseaseHistoryListResponseDTO.fromJson(
@@ -135,6 +140,7 @@ class _$_DiseaseHistoryListResponseDTO
   }
 
   @override
+  @JsonKey(name: 'totalDiseases')
   final int totalDiseaseHistoryCount;
 
   @override
@@ -149,8 +155,9 @@ class _$_DiseaseHistoryListResponseDTO
             other is _$_DiseaseHistoryListResponseDTO &&
             const DeepCollectionEquality()
                 .equals(other._diseaseHistoryList, _diseaseHistoryList) &&
-            const DeepCollectionEquality().equals(
-                other.totalDiseaseHistoryCount, totalDiseaseHistoryCount));
+            (identical(
+                    other.totalDiseaseHistoryCount, totalDiseaseHistoryCount) ||
+                other.totalDiseaseHistoryCount == totalDiseaseHistoryCount));
   }
 
   @JsonKey(ignore: true)
@@ -158,10 +165,11 @@ class _$_DiseaseHistoryListResponseDTO
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_diseaseHistoryList),
-      const DeepCollectionEquality().hash(totalDiseaseHistoryCount));
+      totalDiseaseHistoryCount);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_DiseaseHistoryListResponseDTOCopyWith<_$_DiseaseHistoryListResponseDTO>
       get copyWith => __$$_DiseaseHistoryListResponseDTOCopyWithImpl<
           _$_DiseaseHistoryListResponseDTO>(this, _$identity);
@@ -178,7 +186,8 @@ abstract class _DiseaseHistoryListResponseDTO
     implements DiseaseHistoryListResponseDTO {
   factory _DiseaseHistoryListResponseDTO(
           {required final List<DiseaseHistoryResponseDTO> diseaseHistoryList,
-          required final int totalDiseaseHistoryCount}) =
+          @JsonKey(name: 'totalDiseases')
+              required final int totalDiseaseHistoryCount}) =
       _$_DiseaseHistoryListResponseDTO;
 
   factory _DiseaseHistoryListResponseDTO.fromJson(Map<String, dynamic> json) =
@@ -187,6 +196,7 @@ abstract class _DiseaseHistoryListResponseDTO
   @override
   List<DiseaseHistoryResponseDTO> get diseaseHistoryList;
   @override
+  @JsonKey(name: 'totalDiseases')
   int get totalDiseaseHistoryCount;
   @override
   @JsonKey(ignore: true)

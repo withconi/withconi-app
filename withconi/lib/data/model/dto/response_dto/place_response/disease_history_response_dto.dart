@@ -1,6 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:withconi/data/model/dto/response_dto/place_response/place_abstract_dto/place_response_dto.dart';
-import 'package:withconi/data/model/dto/response_dto/post_response_dto.dart';
 
 import '../../../../enums/enum.dart';
 import '../abstract_dto/response_dto.dart';
