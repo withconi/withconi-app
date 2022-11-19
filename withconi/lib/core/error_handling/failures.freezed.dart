@@ -58,42 +58,42 @@ mixin _$Failure {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? versionCheckFailure,
-    TResult Function()? serverFailure,
-    TResult Function()? dataParsingFailure,
-    TResult Function()? noConnectionFailure,
-    TResult Function()? notFoundFailure,
-    TResult Function()? noUserDataFailure,
-    TResult Function()? maxDiseaseFailure,
-    TResult Function()? maxConimalFailure,
-    TResult Function()? emptyListFailure,
-    TResult Function()? noSuchDataInListFailure,
-    TResult Function()? registerConimalFaiure,
-    TResult Function()? removeConimalFailure,
-    TResult Function()? getConimalListFailure,
-    TResult Function()? signInCredentialFailure,
-    TResult Function()? signInTokenFailure,
-    TResult Function()? naverSigninFailure,
-    TResult Function()? kakaoSigninFailure,
-    TResult Function()? googleSigninFailure,
-    TResult Function()? appleSigninFailure,
-    TResult Function()? emailSigninFailure,
-    TResult Function()? getUserFailure,
-    TResult Function()? wrongPasswordFailure,
-    TResult Function()? noEmailUserFailure,
-    TResult Function()? wrongTokenFailure,
-    TResult Function()? existingEmailFailure,
-    TResult Function()? userEnabledFailure,
-    TResult Function()? weakPasswordFailure,
-    TResult Function()? maxImageSizeFailure,
-    TResult Function()? maxImageNumFailure,
-    TResult Function()? noPostTypeSelectedFailure,
-    TResult Function()? noPostContentsFailure,
-    TResult Function()? notFoundPostFailure,
-    TResult Function()? notEditablePasswordFailure,
-    TResult Function()? userInfoUpdateFailure,
-    TResult Function()? permissionDeniedFailure,
-    TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? versionCheckFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function()? dataParsingFailure,
+    TResult? Function()? noConnectionFailure,
+    TResult? Function()? notFoundFailure,
+    TResult? Function()? noUserDataFailure,
+    TResult? Function()? maxDiseaseFailure,
+    TResult? Function()? maxConimalFailure,
+    TResult? Function()? emptyListFailure,
+    TResult? Function()? noSuchDataInListFailure,
+    TResult? Function()? registerConimalFaiure,
+    TResult? Function()? removeConimalFailure,
+    TResult? Function()? getConimalListFailure,
+    TResult? Function()? signInCredentialFailure,
+    TResult? Function()? signInTokenFailure,
+    TResult? Function()? naverSigninFailure,
+    TResult? Function()? kakaoSigninFailure,
+    TResult? Function()? googleSigninFailure,
+    TResult? Function()? appleSigninFailure,
+    TResult? Function()? emailSigninFailure,
+    TResult? Function()? getUserFailure,
+    TResult? Function()? wrongPasswordFailure,
+    TResult? Function()? noEmailUserFailure,
+    TResult? Function()? wrongTokenFailure,
+    TResult? Function()? existingEmailFailure,
+    TResult? Function()? userEnabledFailure,
+    TResult? Function()? weakPasswordFailure,
+    TResult? Function()? maxImageSizeFailure,
+    TResult? Function()? maxImageNumFailure,
+    TResult? Function()? noPostTypeSelectedFailure,
+    TResult? Function()? noPostContentsFailure,
+    TResult? Function()? notFoundPostFailure,
+    TResult? Function()? notEditablePasswordFailure,
+    TResult? Function()? userInfoUpdateFailure,
+    TResult? Function()? permissionDeniedFailure,
+    TResult? Function()? permissionPermanentlyDeniedFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -189,44 +189,44 @@ mixin _$Failure {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(VersionCheckFailure value)? versionCheckFailure,
-    TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(DataParsingFailure value)? dataParsingFailure,
-    TResult Function(NoConnectionFailure value)? noConnectionFailure,
-    TResult Function(NotFoundFailure value)? notFoundFailure,
-    TResult Function(NoUserDataFailure value)? noUserDataFailure,
-    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
-    TResult Function(MaxConimalFailure value)? maxConimalFailure,
-    TResult Function(EmptyListFailure value)? emptyListFailure,
-    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
-    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
-    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
-    TResult Function(GetConimalListFailure value)? getConimalListFailure,
-    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
-    TResult Function(SignInTokenFailure value)? signInTokenFailure,
-    TResult Function(NaverSigninFailure value)? naverSigninFailure,
-    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
-    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
-    TResult Function(AppleSigninFailure value)? appleSigninFailure,
-    TResult Function(EmailSigninFailure value)? emailSigninFailure,
-    TResult Function(GetUserInfoFailure value)? getUserFailure,
-    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
-    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
-    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
-    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
-    TResult Function(UserEnabledFailure value)? userEnabledFailure,
-    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
-    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
-    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
-    TResult Function(NoPostTypeSelectedFailure value)?
+    TResult? Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult? Function(ServerFailure value)? serverFailure,
+    TResult? Function(DataParsingFailure value)? dataParsingFailure,
+    TResult? Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult? Function(NotFoundFailure value)? notFoundFailure,
+    TResult? Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult? Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult? Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult? Function(EmptyListFailure value)? emptyListFailure,
+    TResult? Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult? Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult? Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult? Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult? Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult? Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult? Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult? Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult? Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult? Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult? Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult? Function(GetUserInfoFailure value)? getUserFailure,
+    TResult? Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult? Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult? Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult? Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult? Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult? Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult? Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult? Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult? Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
-    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
-    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
-    TResult Function(NotEditablePasswordFailure value)?
+    TResult? Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult? Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult? Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
-    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
-    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
-    TResult Function(PermissionPermanentlyDeniedFailure value)?
+    TResult? Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
   }) =>
       throw _privateConstructorUsedError;
@@ -279,16 +279,18 @@ mixin _$Failure {
 /// @nodoc
 abstract class $FailureCopyWith<$Res> {
   factory $FailureCopyWith(Failure value, $Res Function(Failure) then) =
-      _$FailureCopyWithImpl<$Res>;
+      _$FailureCopyWithImpl<$Res, Failure>;
 }
 
 /// @nodoc
-class _$FailureCopyWithImpl<$Res> implements $FailureCopyWith<$Res> {
+class _$FailureCopyWithImpl<$Res, $Val extends Failure>
+    implements $FailureCopyWith<$Res> {
   _$FailureCopyWithImpl(this._value, this._then);
 
-  final Failure _value;
   // ignore: unused_field
-  final $Res Function(Failure) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
@@ -300,14 +302,11 @@ abstract class _$$VersionCheckFailureCopyWith<$Res> {
 
 /// @nodoc
 class __$$VersionCheckFailureCopyWithImpl<$Res>
-    extends _$FailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$VersionCheckFailure>
     implements _$$VersionCheckFailureCopyWith<$Res> {
   __$$VersionCheckFailureCopyWithImpl(
       _$VersionCheckFailure _value, $Res Function(_$VersionCheckFailure) _then)
-      : super(_value, (v) => _then(v as _$VersionCheckFailure));
-
-  @override
-  _$VersionCheckFailure get _value => super._value as _$VersionCheckFailure;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -375,42 +374,42 @@ class _$VersionCheckFailure extends VersionCheckFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? versionCheckFailure,
-    TResult Function()? serverFailure,
-    TResult Function()? dataParsingFailure,
-    TResult Function()? noConnectionFailure,
-    TResult Function()? notFoundFailure,
-    TResult Function()? noUserDataFailure,
-    TResult Function()? maxDiseaseFailure,
-    TResult Function()? maxConimalFailure,
-    TResult Function()? emptyListFailure,
-    TResult Function()? noSuchDataInListFailure,
-    TResult Function()? registerConimalFaiure,
-    TResult Function()? removeConimalFailure,
-    TResult Function()? getConimalListFailure,
-    TResult Function()? signInCredentialFailure,
-    TResult Function()? signInTokenFailure,
-    TResult Function()? naverSigninFailure,
-    TResult Function()? kakaoSigninFailure,
-    TResult Function()? googleSigninFailure,
-    TResult Function()? appleSigninFailure,
-    TResult Function()? emailSigninFailure,
-    TResult Function()? getUserFailure,
-    TResult Function()? wrongPasswordFailure,
-    TResult Function()? noEmailUserFailure,
-    TResult Function()? wrongTokenFailure,
-    TResult Function()? existingEmailFailure,
-    TResult Function()? userEnabledFailure,
-    TResult Function()? weakPasswordFailure,
-    TResult Function()? maxImageSizeFailure,
-    TResult Function()? maxImageNumFailure,
-    TResult Function()? noPostTypeSelectedFailure,
-    TResult Function()? noPostContentsFailure,
-    TResult Function()? notFoundPostFailure,
-    TResult Function()? notEditablePasswordFailure,
-    TResult Function()? userInfoUpdateFailure,
-    TResult Function()? permissionDeniedFailure,
-    TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? versionCheckFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function()? dataParsingFailure,
+    TResult? Function()? noConnectionFailure,
+    TResult? Function()? notFoundFailure,
+    TResult? Function()? noUserDataFailure,
+    TResult? Function()? maxDiseaseFailure,
+    TResult? Function()? maxConimalFailure,
+    TResult? Function()? emptyListFailure,
+    TResult? Function()? noSuchDataInListFailure,
+    TResult? Function()? registerConimalFaiure,
+    TResult? Function()? removeConimalFailure,
+    TResult? Function()? getConimalListFailure,
+    TResult? Function()? signInCredentialFailure,
+    TResult? Function()? signInTokenFailure,
+    TResult? Function()? naverSigninFailure,
+    TResult? Function()? kakaoSigninFailure,
+    TResult? Function()? googleSigninFailure,
+    TResult? Function()? appleSigninFailure,
+    TResult? Function()? emailSigninFailure,
+    TResult? Function()? getUserFailure,
+    TResult? Function()? wrongPasswordFailure,
+    TResult? Function()? noEmailUserFailure,
+    TResult? Function()? wrongTokenFailure,
+    TResult? Function()? existingEmailFailure,
+    TResult? Function()? userEnabledFailure,
+    TResult? Function()? weakPasswordFailure,
+    TResult? Function()? maxImageSizeFailure,
+    TResult? Function()? maxImageNumFailure,
+    TResult? Function()? noPostTypeSelectedFailure,
+    TResult? Function()? noPostContentsFailure,
+    TResult? Function()? notFoundPostFailure,
+    TResult? Function()? notEditablePasswordFailure,
+    TResult? Function()? userInfoUpdateFailure,
+    TResult? Function()? permissionDeniedFailure,
+    TResult? Function()? permissionPermanentlyDeniedFailure,
   }) {
     return versionCheckFailure?.call();
   }
@@ -518,44 +517,44 @@ class _$VersionCheckFailure extends VersionCheckFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(VersionCheckFailure value)? versionCheckFailure,
-    TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(DataParsingFailure value)? dataParsingFailure,
-    TResult Function(NoConnectionFailure value)? noConnectionFailure,
-    TResult Function(NotFoundFailure value)? notFoundFailure,
-    TResult Function(NoUserDataFailure value)? noUserDataFailure,
-    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
-    TResult Function(MaxConimalFailure value)? maxConimalFailure,
-    TResult Function(EmptyListFailure value)? emptyListFailure,
-    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
-    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
-    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
-    TResult Function(GetConimalListFailure value)? getConimalListFailure,
-    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
-    TResult Function(SignInTokenFailure value)? signInTokenFailure,
-    TResult Function(NaverSigninFailure value)? naverSigninFailure,
-    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
-    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
-    TResult Function(AppleSigninFailure value)? appleSigninFailure,
-    TResult Function(EmailSigninFailure value)? emailSigninFailure,
-    TResult Function(GetUserInfoFailure value)? getUserFailure,
-    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
-    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
-    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
-    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
-    TResult Function(UserEnabledFailure value)? userEnabledFailure,
-    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
-    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
-    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
-    TResult Function(NoPostTypeSelectedFailure value)?
+    TResult? Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult? Function(ServerFailure value)? serverFailure,
+    TResult? Function(DataParsingFailure value)? dataParsingFailure,
+    TResult? Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult? Function(NotFoundFailure value)? notFoundFailure,
+    TResult? Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult? Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult? Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult? Function(EmptyListFailure value)? emptyListFailure,
+    TResult? Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult? Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult? Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult? Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult? Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult? Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult? Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult? Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult? Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult? Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult? Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult? Function(GetUserInfoFailure value)? getUserFailure,
+    TResult? Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult? Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult? Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult? Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult? Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult? Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult? Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult? Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult? Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
-    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
-    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
-    TResult Function(NotEditablePasswordFailure value)?
+    TResult? Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult? Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult? Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
-    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
-    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
-    TResult Function(PermissionPermanentlyDeniedFailure value)?
+    TResult? Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
   }) {
     return versionCheckFailure?.call(this);
@@ -625,14 +624,12 @@ abstract class _$$ServerFailureCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$ServerFailureCopyWithImpl<$Res> extends _$FailureCopyWithImpl<$Res>
+class __$$ServerFailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$ServerFailure>
     implements _$$ServerFailureCopyWith<$Res> {
   __$$ServerFailureCopyWithImpl(
       _$ServerFailure _value, $Res Function(_$ServerFailure) _then)
-      : super(_value, (v) => _then(v as _$ServerFailure));
-
-  @override
-  _$ServerFailure get _value => super._value as _$ServerFailure;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -700,42 +697,42 @@ class _$ServerFailure extends ServerFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? versionCheckFailure,
-    TResult Function()? serverFailure,
-    TResult Function()? dataParsingFailure,
-    TResult Function()? noConnectionFailure,
-    TResult Function()? notFoundFailure,
-    TResult Function()? noUserDataFailure,
-    TResult Function()? maxDiseaseFailure,
-    TResult Function()? maxConimalFailure,
-    TResult Function()? emptyListFailure,
-    TResult Function()? noSuchDataInListFailure,
-    TResult Function()? registerConimalFaiure,
-    TResult Function()? removeConimalFailure,
-    TResult Function()? getConimalListFailure,
-    TResult Function()? signInCredentialFailure,
-    TResult Function()? signInTokenFailure,
-    TResult Function()? naverSigninFailure,
-    TResult Function()? kakaoSigninFailure,
-    TResult Function()? googleSigninFailure,
-    TResult Function()? appleSigninFailure,
-    TResult Function()? emailSigninFailure,
-    TResult Function()? getUserFailure,
-    TResult Function()? wrongPasswordFailure,
-    TResult Function()? noEmailUserFailure,
-    TResult Function()? wrongTokenFailure,
-    TResult Function()? existingEmailFailure,
-    TResult Function()? userEnabledFailure,
-    TResult Function()? weakPasswordFailure,
-    TResult Function()? maxImageSizeFailure,
-    TResult Function()? maxImageNumFailure,
-    TResult Function()? noPostTypeSelectedFailure,
-    TResult Function()? noPostContentsFailure,
-    TResult Function()? notFoundPostFailure,
-    TResult Function()? notEditablePasswordFailure,
-    TResult Function()? userInfoUpdateFailure,
-    TResult Function()? permissionDeniedFailure,
-    TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? versionCheckFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function()? dataParsingFailure,
+    TResult? Function()? noConnectionFailure,
+    TResult? Function()? notFoundFailure,
+    TResult? Function()? noUserDataFailure,
+    TResult? Function()? maxDiseaseFailure,
+    TResult? Function()? maxConimalFailure,
+    TResult? Function()? emptyListFailure,
+    TResult? Function()? noSuchDataInListFailure,
+    TResult? Function()? registerConimalFaiure,
+    TResult? Function()? removeConimalFailure,
+    TResult? Function()? getConimalListFailure,
+    TResult? Function()? signInCredentialFailure,
+    TResult? Function()? signInTokenFailure,
+    TResult? Function()? naverSigninFailure,
+    TResult? Function()? kakaoSigninFailure,
+    TResult? Function()? googleSigninFailure,
+    TResult? Function()? appleSigninFailure,
+    TResult? Function()? emailSigninFailure,
+    TResult? Function()? getUserFailure,
+    TResult? Function()? wrongPasswordFailure,
+    TResult? Function()? noEmailUserFailure,
+    TResult? Function()? wrongTokenFailure,
+    TResult? Function()? existingEmailFailure,
+    TResult? Function()? userEnabledFailure,
+    TResult? Function()? weakPasswordFailure,
+    TResult? Function()? maxImageSizeFailure,
+    TResult? Function()? maxImageNumFailure,
+    TResult? Function()? noPostTypeSelectedFailure,
+    TResult? Function()? noPostContentsFailure,
+    TResult? Function()? notFoundPostFailure,
+    TResult? Function()? notEditablePasswordFailure,
+    TResult? Function()? userInfoUpdateFailure,
+    TResult? Function()? permissionDeniedFailure,
+    TResult? Function()? permissionPermanentlyDeniedFailure,
   }) {
     return serverFailure?.call();
   }
@@ -843,44 +840,44 @@ class _$ServerFailure extends ServerFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(VersionCheckFailure value)? versionCheckFailure,
-    TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(DataParsingFailure value)? dataParsingFailure,
-    TResult Function(NoConnectionFailure value)? noConnectionFailure,
-    TResult Function(NotFoundFailure value)? notFoundFailure,
-    TResult Function(NoUserDataFailure value)? noUserDataFailure,
-    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
-    TResult Function(MaxConimalFailure value)? maxConimalFailure,
-    TResult Function(EmptyListFailure value)? emptyListFailure,
-    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
-    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
-    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
-    TResult Function(GetConimalListFailure value)? getConimalListFailure,
-    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
-    TResult Function(SignInTokenFailure value)? signInTokenFailure,
-    TResult Function(NaverSigninFailure value)? naverSigninFailure,
-    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
-    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
-    TResult Function(AppleSigninFailure value)? appleSigninFailure,
-    TResult Function(EmailSigninFailure value)? emailSigninFailure,
-    TResult Function(GetUserInfoFailure value)? getUserFailure,
-    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
-    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
-    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
-    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
-    TResult Function(UserEnabledFailure value)? userEnabledFailure,
-    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
-    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
-    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
-    TResult Function(NoPostTypeSelectedFailure value)?
+    TResult? Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult? Function(ServerFailure value)? serverFailure,
+    TResult? Function(DataParsingFailure value)? dataParsingFailure,
+    TResult? Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult? Function(NotFoundFailure value)? notFoundFailure,
+    TResult? Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult? Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult? Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult? Function(EmptyListFailure value)? emptyListFailure,
+    TResult? Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult? Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult? Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult? Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult? Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult? Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult? Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult? Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult? Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult? Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult? Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult? Function(GetUserInfoFailure value)? getUserFailure,
+    TResult? Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult? Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult? Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult? Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult? Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult? Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult? Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult? Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult? Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
-    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
-    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
-    TResult Function(NotEditablePasswordFailure value)?
+    TResult? Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult? Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult? Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
-    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
-    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
-    TResult Function(PermissionPermanentlyDeniedFailure value)?
+    TResult? Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
   }) {
     return serverFailure?.call(this);
@@ -951,14 +948,11 @@ abstract class _$$DataParsingFailureCopyWith<$Res> {
 
 /// @nodoc
 class __$$DataParsingFailureCopyWithImpl<$Res>
-    extends _$FailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$DataParsingFailure>
     implements _$$DataParsingFailureCopyWith<$Res> {
   __$$DataParsingFailureCopyWithImpl(
       _$DataParsingFailure _value, $Res Function(_$DataParsingFailure) _then)
-      : super(_value, (v) => _then(v as _$DataParsingFailure));
-
-  @override
-  _$DataParsingFailure get _value => super._value as _$DataParsingFailure;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -1026,42 +1020,42 @@ class _$DataParsingFailure extends DataParsingFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? versionCheckFailure,
-    TResult Function()? serverFailure,
-    TResult Function()? dataParsingFailure,
-    TResult Function()? noConnectionFailure,
-    TResult Function()? notFoundFailure,
-    TResult Function()? noUserDataFailure,
-    TResult Function()? maxDiseaseFailure,
-    TResult Function()? maxConimalFailure,
-    TResult Function()? emptyListFailure,
-    TResult Function()? noSuchDataInListFailure,
-    TResult Function()? registerConimalFaiure,
-    TResult Function()? removeConimalFailure,
-    TResult Function()? getConimalListFailure,
-    TResult Function()? signInCredentialFailure,
-    TResult Function()? signInTokenFailure,
-    TResult Function()? naverSigninFailure,
-    TResult Function()? kakaoSigninFailure,
-    TResult Function()? googleSigninFailure,
-    TResult Function()? appleSigninFailure,
-    TResult Function()? emailSigninFailure,
-    TResult Function()? getUserFailure,
-    TResult Function()? wrongPasswordFailure,
-    TResult Function()? noEmailUserFailure,
-    TResult Function()? wrongTokenFailure,
-    TResult Function()? existingEmailFailure,
-    TResult Function()? userEnabledFailure,
-    TResult Function()? weakPasswordFailure,
-    TResult Function()? maxImageSizeFailure,
-    TResult Function()? maxImageNumFailure,
-    TResult Function()? noPostTypeSelectedFailure,
-    TResult Function()? noPostContentsFailure,
-    TResult Function()? notFoundPostFailure,
-    TResult Function()? notEditablePasswordFailure,
-    TResult Function()? userInfoUpdateFailure,
-    TResult Function()? permissionDeniedFailure,
-    TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? versionCheckFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function()? dataParsingFailure,
+    TResult? Function()? noConnectionFailure,
+    TResult? Function()? notFoundFailure,
+    TResult? Function()? noUserDataFailure,
+    TResult? Function()? maxDiseaseFailure,
+    TResult? Function()? maxConimalFailure,
+    TResult? Function()? emptyListFailure,
+    TResult? Function()? noSuchDataInListFailure,
+    TResult? Function()? registerConimalFaiure,
+    TResult? Function()? removeConimalFailure,
+    TResult? Function()? getConimalListFailure,
+    TResult? Function()? signInCredentialFailure,
+    TResult? Function()? signInTokenFailure,
+    TResult? Function()? naverSigninFailure,
+    TResult? Function()? kakaoSigninFailure,
+    TResult? Function()? googleSigninFailure,
+    TResult? Function()? appleSigninFailure,
+    TResult? Function()? emailSigninFailure,
+    TResult? Function()? getUserFailure,
+    TResult? Function()? wrongPasswordFailure,
+    TResult? Function()? noEmailUserFailure,
+    TResult? Function()? wrongTokenFailure,
+    TResult? Function()? existingEmailFailure,
+    TResult? Function()? userEnabledFailure,
+    TResult? Function()? weakPasswordFailure,
+    TResult? Function()? maxImageSizeFailure,
+    TResult? Function()? maxImageNumFailure,
+    TResult? Function()? noPostTypeSelectedFailure,
+    TResult? Function()? noPostContentsFailure,
+    TResult? Function()? notFoundPostFailure,
+    TResult? Function()? notEditablePasswordFailure,
+    TResult? Function()? userInfoUpdateFailure,
+    TResult? Function()? permissionDeniedFailure,
+    TResult? Function()? permissionPermanentlyDeniedFailure,
   }) {
     return dataParsingFailure?.call();
   }
@@ -1169,44 +1163,44 @@ class _$DataParsingFailure extends DataParsingFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(VersionCheckFailure value)? versionCheckFailure,
-    TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(DataParsingFailure value)? dataParsingFailure,
-    TResult Function(NoConnectionFailure value)? noConnectionFailure,
-    TResult Function(NotFoundFailure value)? notFoundFailure,
-    TResult Function(NoUserDataFailure value)? noUserDataFailure,
-    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
-    TResult Function(MaxConimalFailure value)? maxConimalFailure,
-    TResult Function(EmptyListFailure value)? emptyListFailure,
-    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
-    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
-    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
-    TResult Function(GetConimalListFailure value)? getConimalListFailure,
-    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
-    TResult Function(SignInTokenFailure value)? signInTokenFailure,
-    TResult Function(NaverSigninFailure value)? naverSigninFailure,
-    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
-    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
-    TResult Function(AppleSigninFailure value)? appleSigninFailure,
-    TResult Function(EmailSigninFailure value)? emailSigninFailure,
-    TResult Function(GetUserInfoFailure value)? getUserFailure,
-    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
-    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
-    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
-    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
-    TResult Function(UserEnabledFailure value)? userEnabledFailure,
-    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
-    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
-    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
-    TResult Function(NoPostTypeSelectedFailure value)?
+    TResult? Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult? Function(ServerFailure value)? serverFailure,
+    TResult? Function(DataParsingFailure value)? dataParsingFailure,
+    TResult? Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult? Function(NotFoundFailure value)? notFoundFailure,
+    TResult? Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult? Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult? Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult? Function(EmptyListFailure value)? emptyListFailure,
+    TResult? Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult? Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult? Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult? Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult? Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult? Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult? Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult? Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult? Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult? Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult? Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult? Function(GetUserInfoFailure value)? getUserFailure,
+    TResult? Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult? Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult? Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult? Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult? Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult? Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult? Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult? Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult? Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
-    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
-    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
-    TResult Function(NotEditablePasswordFailure value)?
+    TResult? Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult? Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult? Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
-    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
-    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
-    TResult Function(PermissionPermanentlyDeniedFailure value)?
+    TResult? Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
   }) {
     return dataParsingFailure?.call(this);
@@ -1277,14 +1271,11 @@ abstract class _$$NoConnectionFailureCopyWith<$Res> {
 
 /// @nodoc
 class __$$NoConnectionFailureCopyWithImpl<$Res>
-    extends _$FailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$NoConnectionFailure>
     implements _$$NoConnectionFailureCopyWith<$Res> {
   __$$NoConnectionFailureCopyWithImpl(
       _$NoConnectionFailure _value, $Res Function(_$NoConnectionFailure) _then)
-      : super(_value, (v) => _then(v as _$NoConnectionFailure));
-
-  @override
-  _$NoConnectionFailure get _value => super._value as _$NoConnectionFailure;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -1352,42 +1343,42 @@ class _$NoConnectionFailure extends NoConnectionFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? versionCheckFailure,
-    TResult Function()? serverFailure,
-    TResult Function()? dataParsingFailure,
-    TResult Function()? noConnectionFailure,
-    TResult Function()? notFoundFailure,
-    TResult Function()? noUserDataFailure,
-    TResult Function()? maxDiseaseFailure,
-    TResult Function()? maxConimalFailure,
-    TResult Function()? emptyListFailure,
-    TResult Function()? noSuchDataInListFailure,
-    TResult Function()? registerConimalFaiure,
-    TResult Function()? removeConimalFailure,
-    TResult Function()? getConimalListFailure,
-    TResult Function()? signInCredentialFailure,
-    TResult Function()? signInTokenFailure,
-    TResult Function()? naverSigninFailure,
-    TResult Function()? kakaoSigninFailure,
-    TResult Function()? googleSigninFailure,
-    TResult Function()? appleSigninFailure,
-    TResult Function()? emailSigninFailure,
-    TResult Function()? getUserFailure,
-    TResult Function()? wrongPasswordFailure,
-    TResult Function()? noEmailUserFailure,
-    TResult Function()? wrongTokenFailure,
-    TResult Function()? existingEmailFailure,
-    TResult Function()? userEnabledFailure,
-    TResult Function()? weakPasswordFailure,
-    TResult Function()? maxImageSizeFailure,
-    TResult Function()? maxImageNumFailure,
-    TResult Function()? noPostTypeSelectedFailure,
-    TResult Function()? noPostContentsFailure,
-    TResult Function()? notFoundPostFailure,
-    TResult Function()? notEditablePasswordFailure,
-    TResult Function()? userInfoUpdateFailure,
-    TResult Function()? permissionDeniedFailure,
-    TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? versionCheckFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function()? dataParsingFailure,
+    TResult? Function()? noConnectionFailure,
+    TResult? Function()? notFoundFailure,
+    TResult? Function()? noUserDataFailure,
+    TResult? Function()? maxDiseaseFailure,
+    TResult? Function()? maxConimalFailure,
+    TResult? Function()? emptyListFailure,
+    TResult? Function()? noSuchDataInListFailure,
+    TResult? Function()? registerConimalFaiure,
+    TResult? Function()? removeConimalFailure,
+    TResult? Function()? getConimalListFailure,
+    TResult? Function()? signInCredentialFailure,
+    TResult? Function()? signInTokenFailure,
+    TResult? Function()? naverSigninFailure,
+    TResult? Function()? kakaoSigninFailure,
+    TResult? Function()? googleSigninFailure,
+    TResult? Function()? appleSigninFailure,
+    TResult? Function()? emailSigninFailure,
+    TResult? Function()? getUserFailure,
+    TResult? Function()? wrongPasswordFailure,
+    TResult? Function()? noEmailUserFailure,
+    TResult? Function()? wrongTokenFailure,
+    TResult? Function()? existingEmailFailure,
+    TResult? Function()? userEnabledFailure,
+    TResult? Function()? weakPasswordFailure,
+    TResult? Function()? maxImageSizeFailure,
+    TResult? Function()? maxImageNumFailure,
+    TResult? Function()? noPostTypeSelectedFailure,
+    TResult? Function()? noPostContentsFailure,
+    TResult? Function()? notFoundPostFailure,
+    TResult? Function()? notEditablePasswordFailure,
+    TResult? Function()? userInfoUpdateFailure,
+    TResult? Function()? permissionDeniedFailure,
+    TResult? Function()? permissionPermanentlyDeniedFailure,
   }) {
     return noConnectionFailure?.call();
   }
@@ -1495,44 +1486,44 @@ class _$NoConnectionFailure extends NoConnectionFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(VersionCheckFailure value)? versionCheckFailure,
-    TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(DataParsingFailure value)? dataParsingFailure,
-    TResult Function(NoConnectionFailure value)? noConnectionFailure,
-    TResult Function(NotFoundFailure value)? notFoundFailure,
-    TResult Function(NoUserDataFailure value)? noUserDataFailure,
-    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
-    TResult Function(MaxConimalFailure value)? maxConimalFailure,
-    TResult Function(EmptyListFailure value)? emptyListFailure,
-    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
-    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
-    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
-    TResult Function(GetConimalListFailure value)? getConimalListFailure,
-    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
-    TResult Function(SignInTokenFailure value)? signInTokenFailure,
-    TResult Function(NaverSigninFailure value)? naverSigninFailure,
-    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
-    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
-    TResult Function(AppleSigninFailure value)? appleSigninFailure,
-    TResult Function(EmailSigninFailure value)? emailSigninFailure,
-    TResult Function(GetUserInfoFailure value)? getUserFailure,
-    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
-    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
-    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
-    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
-    TResult Function(UserEnabledFailure value)? userEnabledFailure,
-    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
-    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
-    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
-    TResult Function(NoPostTypeSelectedFailure value)?
+    TResult? Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult? Function(ServerFailure value)? serverFailure,
+    TResult? Function(DataParsingFailure value)? dataParsingFailure,
+    TResult? Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult? Function(NotFoundFailure value)? notFoundFailure,
+    TResult? Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult? Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult? Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult? Function(EmptyListFailure value)? emptyListFailure,
+    TResult? Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult? Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult? Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult? Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult? Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult? Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult? Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult? Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult? Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult? Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult? Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult? Function(GetUserInfoFailure value)? getUserFailure,
+    TResult? Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult? Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult? Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult? Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult? Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult? Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult? Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult? Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult? Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
-    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
-    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
-    TResult Function(NotEditablePasswordFailure value)?
+    TResult? Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult? Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult? Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
-    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
-    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
-    TResult Function(PermissionPermanentlyDeniedFailure value)?
+    TResult? Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
   }) {
     return noConnectionFailure?.call(this);
@@ -1602,14 +1593,12 @@ abstract class _$$NotFoundFailureCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$NotFoundFailureCopyWithImpl<$Res> extends _$FailureCopyWithImpl<$Res>
+class __$$NotFoundFailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$NotFoundFailure>
     implements _$$NotFoundFailureCopyWith<$Res> {
   __$$NotFoundFailureCopyWithImpl(
       _$NotFoundFailure _value, $Res Function(_$NotFoundFailure) _then)
-      : super(_value, (v) => _then(v as _$NotFoundFailure));
-
-  @override
-  _$NotFoundFailure get _value => super._value as _$NotFoundFailure;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -1677,42 +1666,42 @@ class _$NotFoundFailure extends NotFoundFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? versionCheckFailure,
-    TResult Function()? serverFailure,
-    TResult Function()? dataParsingFailure,
-    TResult Function()? noConnectionFailure,
-    TResult Function()? notFoundFailure,
-    TResult Function()? noUserDataFailure,
-    TResult Function()? maxDiseaseFailure,
-    TResult Function()? maxConimalFailure,
-    TResult Function()? emptyListFailure,
-    TResult Function()? noSuchDataInListFailure,
-    TResult Function()? registerConimalFaiure,
-    TResult Function()? removeConimalFailure,
-    TResult Function()? getConimalListFailure,
-    TResult Function()? signInCredentialFailure,
-    TResult Function()? signInTokenFailure,
-    TResult Function()? naverSigninFailure,
-    TResult Function()? kakaoSigninFailure,
-    TResult Function()? googleSigninFailure,
-    TResult Function()? appleSigninFailure,
-    TResult Function()? emailSigninFailure,
-    TResult Function()? getUserFailure,
-    TResult Function()? wrongPasswordFailure,
-    TResult Function()? noEmailUserFailure,
-    TResult Function()? wrongTokenFailure,
-    TResult Function()? existingEmailFailure,
-    TResult Function()? userEnabledFailure,
-    TResult Function()? weakPasswordFailure,
-    TResult Function()? maxImageSizeFailure,
-    TResult Function()? maxImageNumFailure,
-    TResult Function()? noPostTypeSelectedFailure,
-    TResult Function()? noPostContentsFailure,
-    TResult Function()? notFoundPostFailure,
-    TResult Function()? notEditablePasswordFailure,
-    TResult Function()? userInfoUpdateFailure,
-    TResult Function()? permissionDeniedFailure,
-    TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? versionCheckFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function()? dataParsingFailure,
+    TResult? Function()? noConnectionFailure,
+    TResult? Function()? notFoundFailure,
+    TResult? Function()? noUserDataFailure,
+    TResult? Function()? maxDiseaseFailure,
+    TResult? Function()? maxConimalFailure,
+    TResult? Function()? emptyListFailure,
+    TResult? Function()? noSuchDataInListFailure,
+    TResult? Function()? registerConimalFaiure,
+    TResult? Function()? removeConimalFailure,
+    TResult? Function()? getConimalListFailure,
+    TResult? Function()? signInCredentialFailure,
+    TResult? Function()? signInTokenFailure,
+    TResult? Function()? naverSigninFailure,
+    TResult? Function()? kakaoSigninFailure,
+    TResult? Function()? googleSigninFailure,
+    TResult? Function()? appleSigninFailure,
+    TResult? Function()? emailSigninFailure,
+    TResult? Function()? getUserFailure,
+    TResult? Function()? wrongPasswordFailure,
+    TResult? Function()? noEmailUserFailure,
+    TResult? Function()? wrongTokenFailure,
+    TResult? Function()? existingEmailFailure,
+    TResult? Function()? userEnabledFailure,
+    TResult? Function()? weakPasswordFailure,
+    TResult? Function()? maxImageSizeFailure,
+    TResult? Function()? maxImageNumFailure,
+    TResult? Function()? noPostTypeSelectedFailure,
+    TResult? Function()? noPostContentsFailure,
+    TResult? Function()? notFoundPostFailure,
+    TResult? Function()? notEditablePasswordFailure,
+    TResult? Function()? userInfoUpdateFailure,
+    TResult? Function()? permissionDeniedFailure,
+    TResult? Function()? permissionPermanentlyDeniedFailure,
   }) {
     return notFoundFailure?.call();
   }
@@ -1820,44 +1809,44 @@ class _$NotFoundFailure extends NotFoundFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(VersionCheckFailure value)? versionCheckFailure,
-    TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(DataParsingFailure value)? dataParsingFailure,
-    TResult Function(NoConnectionFailure value)? noConnectionFailure,
-    TResult Function(NotFoundFailure value)? notFoundFailure,
-    TResult Function(NoUserDataFailure value)? noUserDataFailure,
-    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
-    TResult Function(MaxConimalFailure value)? maxConimalFailure,
-    TResult Function(EmptyListFailure value)? emptyListFailure,
-    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
-    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
-    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
-    TResult Function(GetConimalListFailure value)? getConimalListFailure,
-    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
-    TResult Function(SignInTokenFailure value)? signInTokenFailure,
-    TResult Function(NaverSigninFailure value)? naverSigninFailure,
-    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
-    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
-    TResult Function(AppleSigninFailure value)? appleSigninFailure,
-    TResult Function(EmailSigninFailure value)? emailSigninFailure,
-    TResult Function(GetUserInfoFailure value)? getUserFailure,
-    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
-    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
-    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
-    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
-    TResult Function(UserEnabledFailure value)? userEnabledFailure,
-    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
-    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
-    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
-    TResult Function(NoPostTypeSelectedFailure value)?
+    TResult? Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult? Function(ServerFailure value)? serverFailure,
+    TResult? Function(DataParsingFailure value)? dataParsingFailure,
+    TResult? Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult? Function(NotFoundFailure value)? notFoundFailure,
+    TResult? Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult? Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult? Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult? Function(EmptyListFailure value)? emptyListFailure,
+    TResult? Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult? Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult? Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult? Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult? Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult? Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult? Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult? Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult? Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult? Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult? Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult? Function(GetUserInfoFailure value)? getUserFailure,
+    TResult? Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult? Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult? Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult? Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult? Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult? Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult? Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult? Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult? Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
-    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
-    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
-    TResult Function(NotEditablePasswordFailure value)?
+    TResult? Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult? Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult? Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
-    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
-    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
-    TResult Function(PermissionPermanentlyDeniedFailure value)?
+    TResult? Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
   }) {
     return notFoundFailure?.call(this);
@@ -1928,14 +1917,11 @@ abstract class _$$NoUserDataFailureCopyWith<$Res> {
 
 /// @nodoc
 class __$$NoUserDataFailureCopyWithImpl<$Res>
-    extends _$FailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$NoUserDataFailure>
     implements _$$NoUserDataFailureCopyWith<$Res> {
   __$$NoUserDataFailureCopyWithImpl(
       _$NoUserDataFailure _value, $Res Function(_$NoUserDataFailure) _then)
-      : super(_value, (v) => _then(v as _$NoUserDataFailure));
-
-  @override
-  _$NoUserDataFailure get _value => super._value as _$NoUserDataFailure;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -2003,42 +1989,42 @@ class _$NoUserDataFailure extends NoUserDataFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? versionCheckFailure,
-    TResult Function()? serverFailure,
-    TResult Function()? dataParsingFailure,
-    TResult Function()? noConnectionFailure,
-    TResult Function()? notFoundFailure,
-    TResult Function()? noUserDataFailure,
-    TResult Function()? maxDiseaseFailure,
-    TResult Function()? maxConimalFailure,
-    TResult Function()? emptyListFailure,
-    TResult Function()? noSuchDataInListFailure,
-    TResult Function()? registerConimalFaiure,
-    TResult Function()? removeConimalFailure,
-    TResult Function()? getConimalListFailure,
-    TResult Function()? signInCredentialFailure,
-    TResult Function()? signInTokenFailure,
-    TResult Function()? naverSigninFailure,
-    TResult Function()? kakaoSigninFailure,
-    TResult Function()? googleSigninFailure,
-    TResult Function()? appleSigninFailure,
-    TResult Function()? emailSigninFailure,
-    TResult Function()? getUserFailure,
-    TResult Function()? wrongPasswordFailure,
-    TResult Function()? noEmailUserFailure,
-    TResult Function()? wrongTokenFailure,
-    TResult Function()? existingEmailFailure,
-    TResult Function()? userEnabledFailure,
-    TResult Function()? weakPasswordFailure,
-    TResult Function()? maxImageSizeFailure,
-    TResult Function()? maxImageNumFailure,
-    TResult Function()? noPostTypeSelectedFailure,
-    TResult Function()? noPostContentsFailure,
-    TResult Function()? notFoundPostFailure,
-    TResult Function()? notEditablePasswordFailure,
-    TResult Function()? userInfoUpdateFailure,
-    TResult Function()? permissionDeniedFailure,
-    TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? versionCheckFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function()? dataParsingFailure,
+    TResult? Function()? noConnectionFailure,
+    TResult? Function()? notFoundFailure,
+    TResult? Function()? noUserDataFailure,
+    TResult? Function()? maxDiseaseFailure,
+    TResult? Function()? maxConimalFailure,
+    TResult? Function()? emptyListFailure,
+    TResult? Function()? noSuchDataInListFailure,
+    TResult? Function()? registerConimalFaiure,
+    TResult? Function()? removeConimalFailure,
+    TResult? Function()? getConimalListFailure,
+    TResult? Function()? signInCredentialFailure,
+    TResult? Function()? signInTokenFailure,
+    TResult? Function()? naverSigninFailure,
+    TResult? Function()? kakaoSigninFailure,
+    TResult? Function()? googleSigninFailure,
+    TResult? Function()? appleSigninFailure,
+    TResult? Function()? emailSigninFailure,
+    TResult? Function()? getUserFailure,
+    TResult? Function()? wrongPasswordFailure,
+    TResult? Function()? noEmailUserFailure,
+    TResult? Function()? wrongTokenFailure,
+    TResult? Function()? existingEmailFailure,
+    TResult? Function()? userEnabledFailure,
+    TResult? Function()? weakPasswordFailure,
+    TResult? Function()? maxImageSizeFailure,
+    TResult? Function()? maxImageNumFailure,
+    TResult? Function()? noPostTypeSelectedFailure,
+    TResult? Function()? noPostContentsFailure,
+    TResult? Function()? notFoundPostFailure,
+    TResult? Function()? notEditablePasswordFailure,
+    TResult? Function()? userInfoUpdateFailure,
+    TResult? Function()? permissionDeniedFailure,
+    TResult? Function()? permissionPermanentlyDeniedFailure,
   }) {
     return noUserDataFailure?.call();
   }
@@ -2146,44 +2132,44 @@ class _$NoUserDataFailure extends NoUserDataFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(VersionCheckFailure value)? versionCheckFailure,
-    TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(DataParsingFailure value)? dataParsingFailure,
-    TResult Function(NoConnectionFailure value)? noConnectionFailure,
-    TResult Function(NotFoundFailure value)? notFoundFailure,
-    TResult Function(NoUserDataFailure value)? noUserDataFailure,
-    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
-    TResult Function(MaxConimalFailure value)? maxConimalFailure,
-    TResult Function(EmptyListFailure value)? emptyListFailure,
-    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
-    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
-    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
-    TResult Function(GetConimalListFailure value)? getConimalListFailure,
-    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
-    TResult Function(SignInTokenFailure value)? signInTokenFailure,
-    TResult Function(NaverSigninFailure value)? naverSigninFailure,
-    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
-    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
-    TResult Function(AppleSigninFailure value)? appleSigninFailure,
-    TResult Function(EmailSigninFailure value)? emailSigninFailure,
-    TResult Function(GetUserInfoFailure value)? getUserFailure,
-    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
-    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
-    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
-    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
-    TResult Function(UserEnabledFailure value)? userEnabledFailure,
-    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
-    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
-    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
-    TResult Function(NoPostTypeSelectedFailure value)?
+    TResult? Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult? Function(ServerFailure value)? serverFailure,
+    TResult? Function(DataParsingFailure value)? dataParsingFailure,
+    TResult? Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult? Function(NotFoundFailure value)? notFoundFailure,
+    TResult? Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult? Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult? Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult? Function(EmptyListFailure value)? emptyListFailure,
+    TResult? Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult? Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult? Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult? Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult? Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult? Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult? Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult? Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult? Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult? Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult? Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult? Function(GetUserInfoFailure value)? getUserFailure,
+    TResult? Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult? Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult? Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult? Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult? Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult? Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult? Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult? Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult? Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
-    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
-    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
-    TResult Function(NotEditablePasswordFailure value)?
+    TResult? Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult? Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult? Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
-    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
-    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
-    TResult Function(PermissionPermanentlyDeniedFailure value)?
+    TResult? Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
   }) {
     return noUserDataFailure?.call(this);
@@ -2254,14 +2240,11 @@ abstract class _$$MaxDiseaseFailureCopyWith<$Res> {
 
 /// @nodoc
 class __$$MaxDiseaseFailureCopyWithImpl<$Res>
-    extends _$FailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$MaxDiseaseFailure>
     implements _$$MaxDiseaseFailureCopyWith<$Res> {
   __$$MaxDiseaseFailureCopyWithImpl(
       _$MaxDiseaseFailure _value, $Res Function(_$MaxDiseaseFailure) _then)
-      : super(_value, (v) => _then(v as _$MaxDiseaseFailure));
-
-  @override
-  _$MaxDiseaseFailure get _value => super._value as _$MaxDiseaseFailure;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -2329,42 +2312,42 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? versionCheckFailure,
-    TResult Function()? serverFailure,
-    TResult Function()? dataParsingFailure,
-    TResult Function()? noConnectionFailure,
-    TResult Function()? notFoundFailure,
-    TResult Function()? noUserDataFailure,
-    TResult Function()? maxDiseaseFailure,
-    TResult Function()? maxConimalFailure,
-    TResult Function()? emptyListFailure,
-    TResult Function()? noSuchDataInListFailure,
-    TResult Function()? registerConimalFaiure,
-    TResult Function()? removeConimalFailure,
-    TResult Function()? getConimalListFailure,
-    TResult Function()? signInCredentialFailure,
-    TResult Function()? signInTokenFailure,
-    TResult Function()? naverSigninFailure,
-    TResult Function()? kakaoSigninFailure,
-    TResult Function()? googleSigninFailure,
-    TResult Function()? appleSigninFailure,
-    TResult Function()? emailSigninFailure,
-    TResult Function()? getUserFailure,
-    TResult Function()? wrongPasswordFailure,
-    TResult Function()? noEmailUserFailure,
-    TResult Function()? wrongTokenFailure,
-    TResult Function()? existingEmailFailure,
-    TResult Function()? userEnabledFailure,
-    TResult Function()? weakPasswordFailure,
-    TResult Function()? maxImageSizeFailure,
-    TResult Function()? maxImageNumFailure,
-    TResult Function()? noPostTypeSelectedFailure,
-    TResult Function()? noPostContentsFailure,
-    TResult Function()? notFoundPostFailure,
-    TResult Function()? notEditablePasswordFailure,
-    TResult Function()? userInfoUpdateFailure,
-    TResult Function()? permissionDeniedFailure,
-    TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? versionCheckFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function()? dataParsingFailure,
+    TResult? Function()? noConnectionFailure,
+    TResult? Function()? notFoundFailure,
+    TResult? Function()? noUserDataFailure,
+    TResult? Function()? maxDiseaseFailure,
+    TResult? Function()? maxConimalFailure,
+    TResult? Function()? emptyListFailure,
+    TResult? Function()? noSuchDataInListFailure,
+    TResult? Function()? registerConimalFaiure,
+    TResult? Function()? removeConimalFailure,
+    TResult? Function()? getConimalListFailure,
+    TResult? Function()? signInCredentialFailure,
+    TResult? Function()? signInTokenFailure,
+    TResult? Function()? naverSigninFailure,
+    TResult? Function()? kakaoSigninFailure,
+    TResult? Function()? googleSigninFailure,
+    TResult? Function()? appleSigninFailure,
+    TResult? Function()? emailSigninFailure,
+    TResult? Function()? getUserFailure,
+    TResult? Function()? wrongPasswordFailure,
+    TResult? Function()? noEmailUserFailure,
+    TResult? Function()? wrongTokenFailure,
+    TResult? Function()? existingEmailFailure,
+    TResult? Function()? userEnabledFailure,
+    TResult? Function()? weakPasswordFailure,
+    TResult? Function()? maxImageSizeFailure,
+    TResult? Function()? maxImageNumFailure,
+    TResult? Function()? noPostTypeSelectedFailure,
+    TResult? Function()? noPostContentsFailure,
+    TResult? Function()? notFoundPostFailure,
+    TResult? Function()? notEditablePasswordFailure,
+    TResult? Function()? userInfoUpdateFailure,
+    TResult? Function()? permissionDeniedFailure,
+    TResult? Function()? permissionPermanentlyDeniedFailure,
   }) {
     return maxDiseaseFailure?.call();
   }
@@ -2472,44 +2455,44 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(VersionCheckFailure value)? versionCheckFailure,
-    TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(DataParsingFailure value)? dataParsingFailure,
-    TResult Function(NoConnectionFailure value)? noConnectionFailure,
-    TResult Function(NotFoundFailure value)? notFoundFailure,
-    TResult Function(NoUserDataFailure value)? noUserDataFailure,
-    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
-    TResult Function(MaxConimalFailure value)? maxConimalFailure,
-    TResult Function(EmptyListFailure value)? emptyListFailure,
-    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
-    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
-    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
-    TResult Function(GetConimalListFailure value)? getConimalListFailure,
-    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
-    TResult Function(SignInTokenFailure value)? signInTokenFailure,
-    TResult Function(NaverSigninFailure value)? naverSigninFailure,
-    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
-    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
-    TResult Function(AppleSigninFailure value)? appleSigninFailure,
-    TResult Function(EmailSigninFailure value)? emailSigninFailure,
-    TResult Function(GetUserInfoFailure value)? getUserFailure,
-    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
-    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
-    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
-    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
-    TResult Function(UserEnabledFailure value)? userEnabledFailure,
-    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
-    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
-    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
-    TResult Function(NoPostTypeSelectedFailure value)?
+    TResult? Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult? Function(ServerFailure value)? serverFailure,
+    TResult? Function(DataParsingFailure value)? dataParsingFailure,
+    TResult? Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult? Function(NotFoundFailure value)? notFoundFailure,
+    TResult? Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult? Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult? Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult? Function(EmptyListFailure value)? emptyListFailure,
+    TResult? Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult? Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult? Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult? Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult? Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult? Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult? Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult? Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult? Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult? Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult? Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult? Function(GetUserInfoFailure value)? getUserFailure,
+    TResult? Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult? Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult? Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult? Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult? Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult? Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult? Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult? Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult? Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
-    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
-    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
-    TResult Function(NotEditablePasswordFailure value)?
+    TResult? Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult? Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult? Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
-    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
-    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
-    TResult Function(PermissionPermanentlyDeniedFailure value)?
+    TResult? Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
   }) {
     return maxDiseaseFailure?.call(this);
@@ -2580,14 +2563,11 @@ abstract class _$$MaxConimalFailureCopyWith<$Res> {
 
 /// @nodoc
 class __$$MaxConimalFailureCopyWithImpl<$Res>
-    extends _$FailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$MaxConimalFailure>
     implements _$$MaxConimalFailureCopyWith<$Res> {
   __$$MaxConimalFailureCopyWithImpl(
       _$MaxConimalFailure _value, $Res Function(_$MaxConimalFailure) _then)
-      : super(_value, (v) => _then(v as _$MaxConimalFailure));
-
-  @override
-  _$MaxConimalFailure get _value => super._value as _$MaxConimalFailure;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -2655,42 +2635,42 @@ class _$MaxConimalFailure extends MaxConimalFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? versionCheckFailure,
-    TResult Function()? serverFailure,
-    TResult Function()? dataParsingFailure,
-    TResult Function()? noConnectionFailure,
-    TResult Function()? notFoundFailure,
-    TResult Function()? noUserDataFailure,
-    TResult Function()? maxDiseaseFailure,
-    TResult Function()? maxConimalFailure,
-    TResult Function()? emptyListFailure,
-    TResult Function()? noSuchDataInListFailure,
-    TResult Function()? registerConimalFaiure,
-    TResult Function()? removeConimalFailure,
-    TResult Function()? getConimalListFailure,
-    TResult Function()? signInCredentialFailure,
-    TResult Function()? signInTokenFailure,
-    TResult Function()? naverSigninFailure,
-    TResult Function()? kakaoSigninFailure,
-    TResult Function()? googleSigninFailure,
-    TResult Function()? appleSigninFailure,
-    TResult Function()? emailSigninFailure,
-    TResult Function()? getUserFailure,
-    TResult Function()? wrongPasswordFailure,
-    TResult Function()? noEmailUserFailure,
-    TResult Function()? wrongTokenFailure,
-    TResult Function()? existingEmailFailure,
-    TResult Function()? userEnabledFailure,
-    TResult Function()? weakPasswordFailure,
-    TResult Function()? maxImageSizeFailure,
-    TResult Function()? maxImageNumFailure,
-    TResult Function()? noPostTypeSelectedFailure,
-    TResult Function()? noPostContentsFailure,
-    TResult Function()? notFoundPostFailure,
-    TResult Function()? notEditablePasswordFailure,
-    TResult Function()? userInfoUpdateFailure,
-    TResult Function()? permissionDeniedFailure,
-    TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? versionCheckFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function()? dataParsingFailure,
+    TResult? Function()? noConnectionFailure,
+    TResult? Function()? notFoundFailure,
+    TResult? Function()? noUserDataFailure,
+    TResult? Function()? maxDiseaseFailure,
+    TResult? Function()? maxConimalFailure,
+    TResult? Function()? emptyListFailure,
+    TResult? Function()? noSuchDataInListFailure,
+    TResult? Function()? registerConimalFaiure,
+    TResult? Function()? removeConimalFailure,
+    TResult? Function()? getConimalListFailure,
+    TResult? Function()? signInCredentialFailure,
+    TResult? Function()? signInTokenFailure,
+    TResult? Function()? naverSigninFailure,
+    TResult? Function()? kakaoSigninFailure,
+    TResult? Function()? googleSigninFailure,
+    TResult? Function()? appleSigninFailure,
+    TResult? Function()? emailSigninFailure,
+    TResult? Function()? getUserFailure,
+    TResult? Function()? wrongPasswordFailure,
+    TResult? Function()? noEmailUserFailure,
+    TResult? Function()? wrongTokenFailure,
+    TResult? Function()? existingEmailFailure,
+    TResult? Function()? userEnabledFailure,
+    TResult? Function()? weakPasswordFailure,
+    TResult? Function()? maxImageSizeFailure,
+    TResult? Function()? maxImageNumFailure,
+    TResult? Function()? noPostTypeSelectedFailure,
+    TResult? Function()? noPostContentsFailure,
+    TResult? Function()? notFoundPostFailure,
+    TResult? Function()? notEditablePasswordFailure,
+    TResult? Function()? userInfoUpdateFailure,
+    TResult? Function()? permissionDeniedFailure,
+    TResult? Function()? permissionPermanentlyDeniedFailure,
   }) {
     return maxConimalFailure?.call();
   }
@@ -2798,44 +2778,44 @@ class _$MaxConimalFailure extends MaxConimalFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(VersionCheckFailure value)? versionCheckFailure,
-    TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(DataParsingFailure value)? dataParsingFailure,
-    TResult Function(NoConnectionFailure value)? noConnectionFailure,
-    TResult Function(NotFoundFailure value)? notFoundFailure,
-    TResult Function(NoUserDataFailure value)? noUserDataFailure,
-    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
-    TResult Function(MaxConimalFailure value)? maxConimalFailure,
-    TResult Function(EmptyListFailure value)? emptyListFailure,
-    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
-    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
-    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
-    TResult Function(GetConimalListFailure value)? getConimalListFailure,
-    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
-    TResult Function(SignInTokenFailure value)? signInTokenFailure,
-    TResult Function(NaverSigninFailure value)? naverSigninFailure,
-    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
-    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
-    TResult Function(AppleSigninFailure value)? appleSigninFailure,
-    TResult Function(EmailSigninFailure value)? emailSigninFailure,
-    TResult Function(GetUserInfoFailure value)? getUserFailure,
-    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
-    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
-    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
-    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
-    TResult Function(UserEnabledFailure value)? userEnabledFailure,
-    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
-    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
-    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
-    TResult Function(NoPostTypeSelectedFailure value)?
+    TResult? Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult? Function(ServerFailure value)? serverFailure,
+    TResult? Function(DataParsingFailure value)? dataParsingFailure,
+    TResult? Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult? Function(NotFoundFailure value)? notFoundFailure,
+    TResult? Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult? Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult? Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult? Function(EmptyListFailure value)? emptyListFailure,
+    TResult? Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult? Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult? Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult? Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult? Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult? Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult? Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult? Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult? Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult? Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult? Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult? Function(GetUserInfoFailure value)? getUserFailure,
+    TResult? Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult? Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult? Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult? Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult? Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult? Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult? Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult? Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult? Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
-    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
-    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
-    TResult Function(NotEditablePasswordFailure value)?
+    TResult? Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult? Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult? Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
-    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
-    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
-    TResult Function(PermissionPermanentlyDeniedFailure value)?
+    TResult? Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
   }) {
     return maxConimalFailure?.call(this);
@@ -2905,14 +2885,12 @@ abstract class _$$EmptyListFailureCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$EmptyListFailureCopyWithImpl<$Res> extends _$FailureCopyWithImpl<$Res>
+class __$$EmptyListFailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$EmptyListFailure>
     implements _$$EmptyListFailureCopyWith<$Res> {
   __$$EmptyListFailureCopyWithImpl(
       _$EmptyListFailure _value, $Res Function(_$EmptyListFailure) _then)
-      : super(_value, (v) => _then(v as _$EmptyListFailure));
-
-  @override
-  _$EmptyListFailure get _value => super._value as _$EmptyListFailure;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -2980,42 +2958,42 @@ class _$EmptyListFailure extends EmptyListFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? versionCheckFailure,
-    TResult Function()? serverFailure,
-    TResult Function()? dataParsingFailure,
-    TResult Function()? noConnectionFailure,
-    TResult Function()? notFoundFailure,
-    TResult Function()? noUserDataFailure,
-    TResult Function()? maxDiseaseFailure,
-    TResult Function()? maxConimalFailure,
-    TResult Function()? emptyListFailure,
-    TResult Function()? noSuchDataInListFailure,
-    TResult Function()? registerConimalFaiure,
-    TResult Function()? removeConimalFailure,
-    TResult Function()? getConimalListFailure,
-    TResult Function()? signInCredentialFailure,
-    TResult Function()? signInTokenFailure,
-    TResult Function()? naverSigninFailure,
-    TResult Function()? kakaoSigninFailure,
-    TResult Function()? googleSigninFailure,
-    TResult Function()? appleSigninFailure,
-    TResult Function()? emailSigninFailure,
-    TResult Function()? getUserFailure,
-    TResult Function()? wrongPasswordFailure,
-    TResult Function()? noEmailUserFailure,
-    TResult Function()? wrongTokenFailure,
-    TResult Function()? existingEmailFailure,
-    TResult Function()? userEnabledFailure,
-    TResult Function()? weakPasswordFailure,
-    TResult Function()? maxImageSizeFailure,
-    TResult Function()? maxImageNumFailure,
-    TResult Function()? noPostTypeSelectedFailure,
-    TResult Function()? noPostContentsFailure,
-    TResult Function()? notFoundPostFailure,
-    TResult Function()? notEditablePasswordFailure,
-    TResult Function()? userInfoUpdateFailure,
-    TResult Function()? permissionDeniedFailure,
-    TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? versionCheckFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function()? dataParsingFailure,
+    TResult? Function()? noConnectionFailure,
+    TResult? Function()? notFoundFailure,
+    TResult? Function()? noUserDataFailure,
+    TResult? Function()? maxDiseaseFailure,
+    TResult? Function()? maxConimalFailure,
+    TResult? Function()? emptyListFailure,
+    TResult? Function()? noSuchDataInListFailure,
+    TResult? Function()? registerConimalFaiure,
+    TResult? Function()? removeConimalFailure,
+    TResult? Function()? getConimalListFailure,
+    TResult? Function()? signInCredentialFailure,
+    TResult? Function()? signInTokenFailure,
+    TResult? Function()? naverSigninFailure,
+    TResult? Function()? kakaoSigninFailure,
+    TResult? Function()? googleSigninFailure,
+    TResult? Function()? appleSigninFailure,
+    TResult? Function()? emailSigninFailure,
+    TResult? Function()? getUserFailure,
+    TResult? Function()? wrongPasswordFailure,
+    TResult? Function()? noEmailUserFailure,
+    TResult? Function()? wrongTokenFailure,
+    TResult? Function()? existingEmailFailure,
+    TResult? Function()? userEnabledFailure,
+    TResult? Function()? weakPasswordFailure,
+    TResult? Function()? maxImageSizeFailure,
+    TResult? Function()? maxImageNumFailure,
+    TResult? Function()? noPostTypeSelectedFailure,
+    TResult? Function()? noPostContentsFailure,
+    TResult? Function()? notFoundPostFailure,
+    TResult? Function()? notEditablePasswordFailure,
+    TResult? Function()? userInfoUpdateFailure,
+    TResult? Function()? permissionDeniedFailure,
+    TResult? Function()? permissionPermanentlyDeniedFailure,
   }) {
     return emptyListFailure?.call();
   }
@@ -3123,44 +3101,44 @@ class _$EmptyListFailure extends EmptyListFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(VersionCheckFailure value)? versionCheckFailure,
-    TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(DataParsingFailure value)? dataParsingFailure,
-    TResult Function(NoConnectionFailure value)? noConnectionFailure,
-    TResult Function(NotFoundFailure value)? notFoundFailure,
-    TResult Function(NoUserDataFailure value)? noUserDataFailure,
-    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
-    TResult Function(MaxConimalFailure value)? maxConimalFailure,
-    TResult Function(EmptyListFailure value)? emptyListFailure,
-    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
-    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
-    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
-    TResult Function(GetConimalListFailure value)? getConimalListFailure,
-    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
-    TResult Function(SignInTokenFailure value)? signInTokenFailure,
-    TResult Function(NaverSigninFailure value)? naverSigninFailure,
-    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
-    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
-    TResult Function(AppleSigninFailure value)? appleSigninFailure,
-    TResult Function(EmailSigninFailure value)? emailSigninFailure,
-    TResult Function(GetUserInfoFailure value)? getUserFailure,
-    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
-    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
-    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
-    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
-    TResult Function(UserEnabledFailure value)? userEnabledFailure,
-    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
-    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
-    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
-    TResult Function(NoPostTypeSelectedFailure value)?
+    TResult? Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult? Function(ServerFailure value)? serverFailure,
+    TResult? Function(DataParsingFailure value)? dataParsingFailure,
+    TResult? Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult? Function(NotFoundFailure value)? notFoundFailure,
+    TResult? Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult? Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult? Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult? Function(EmptyListFailure value)? emptyListFailure,
+    TResult? Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult? Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult? Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult? Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult? Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult? Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult? Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult? Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult? Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult? Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult? Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult? Function(GetUserInfoFailure value)? getUserFailure,
+    TResult? Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult? Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult? Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult? Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult? Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult? Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult? Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult? Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult? Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
-    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
-    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
-    TResult Function(NotEditablePasswordFailure value)?
+    TResult? Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult? Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult? Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
-    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
-    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
-    TResult Function(PermissionPermanentlyDeniedFailure value)?
+    TResult? Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
   }) {
     return emptyListFailure?.call(this);
@@ -3231,15 +3209,11 @@ abstract class _$$NoSuchDataInListFailureCopyWith<$Res> {
 
 /// @nodoc
 class __$$NoSuchDataInListFailureCopyWithImpl<$Res>
-    extends _$FailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$NoSuchDataInListFailure>
     implements _$$NoSuchDataInListFailureCopyWith<$Res> {
   __$$NoSuchDataInListFailureCopyWithImpl(_$NoSuchDataInListFailure _value,
       $Res Function(_$NoSuchDataInListFailure) _then)
-      : super(_value, (v) => _then(v as _$NoSuchDataInListFailure));
-
-  @override
-  _$NoSuchDataInListFailure get _value =>
-      super._value as _$NoSuchDataInListFailure;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -3308,42 +3282,42 @@ class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? versionCheckFailure,
-    TResult Function()? serverFailure,
-    TResult Function()? dataParsingFailure,
-    TResult Function()? noConnectionFailure,
-    TResult Function()? notFoundFailure,
-    TResult Function()? noUserDataFailure,
-    TResult Function()? maxDiseaseFailure,
-    TResult Function()? maxConimalFailure,
-    TResult Function()? emptyListFailure,
-    TResult Function()? noSuchDataInListFailure,
-    TResult Function()? registerConimalFaiure,
-    TResult Function()? removeConimalFailure,
-    TResult Function()? getConimalListFailure,
-    TResult Function()? signInCredentialFailure,
-    TResult Function()? signInTokenFailure,
-    TResult Function()? naverSigninFailure,
-    TResult Function()? kakaoSigninFailure,
-    TResult Function()? googleSigninFailure,
-    TResult Function()? appleSigninFailure,
-    TResult Function()? emailSigninFailure,
-    TResult Function()? getUserFailure,
-    TResult Function()? wrongPasswordFailure,
-    TResult Function()? noEmailUserFailure,
-    TResult Function()? wrongTokenFailure,
-    TResult Function()? existingEmailFailure,
-    TResult Function()? userEnabledFailure,
-    TResult Function()? weakPasswordFailure,
-    TResult Function()? maxImageSizeFailure,
-    TResult Function()? maxImageNumFailure,
-    TResult Function()? noPostTypeSelectedFailure,
-    TResult Function()? noPostContentsFailure,
-    TResult Function()? notFoundPostFailure,
-    TResult Function()? notEditablePasswordFailure,
-    TResult Function()? userInfoUpdateFailure,
-    TResult Function()? permissionDeniedFailure,
-    TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? versionCheckFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function()? dataParsingFailure,
+    TResult? Function()? noConnectionFailure,
+    TResult? Function()? notFoundFailure,
+    TResult? Function()? noUserDataFailure,
+    TResult? Function()? maxDiseaseFailure,
+    TResult? Function()? maxConimalFailure,
+    TResult? Function()? emptyListFailure,
+    TResult? Function()? noSuchDataInListFailure,
+    TResult? Function()? registerConimalFaiure,
+    TResult? Function()? removeConimalFailure,
+    TResult? Function()? getConimalListFailure,
+    TResult? Function()? signInCredentialFailure,
+    TResult? Function()? signInTokenFailure,
+    TResult? Function()? naverSigninFailure,
+    TResult? Function()? kakaoSigninFailure,
+    TResult? Function()? googleSigninFailure,
+    TResult? Function()? appleSigninFailure,
+    TResult? Function()? emailSigninFailure,
+    TResult? Function()? getUserFailure,
+    TResult? Function()? wrongPasswordFailure,
+    TResult? Function()? noEmailUserFailure,
+    TResult? Function()? wrongTokenFailure,
+    TResult? Function()? existingEmailFailure,
+    TResult? Function()? userEnabledFailure,
+    TResult? Function()? weakPasswordFailure,
+    TResult? Function()? maxImageSizeFailure,
+    TResult? Function()? maxImageNumFailure,
+    TResult? Function()? noPostTypeSelectedFailure,
+    TResult? Function()? noPostContentsFailure,
+    TResult? Function()? notFoundPostFailure,
+    TResult? Function()? notEditablePasswordFailure,
+    TResult? Function()? userInfoUpdateFailure,
+    TResult? Function()? permissionDeniedFailure,
+    TResult? Function()? permissionPermanentlyDeniedFailure,
   }) {
     return noSuchDataInListFailure?.call();
   }
@@ -3451,44 +3425,44 @@ class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(VersionCheckFailure value)? versionCheckFailure,
-    TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(DataParsingFailure value)? dataParsingFailure,
-    TResult Function(NoConnectionFailure value)? noConnectionFailure,
-    TResult Function(NotFoundFailure value)? notFoundFailure,
-    TResult Function(NoUserDataFailure value)? noUserDataFailure,
-    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
-    TResult Function(MaxConimalFailure value)? maxConimalFailure,
-    TResult Function(EmptyListFailure value)? emptyListFailure,
-    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
-    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
-    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
-    TResult Function(GetConimalListFailure value)? getConimalListFailure,
-    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
-    TResult Function(SignInTokenFailure value)? signInTokenFailure,
-    TResult Function(NaverSigninFailure value)? naverSigninFailure,
-    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
-    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
-    TResult Function(AppleSigninFailure value)? appleSigninFailure,
-    TResult Function(EmailSigninFailure value)? emailSigninFailure,
-    TResult Function(GetUserInfoFailure value)? getUserFailure,
-    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
-    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
-    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
-    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
-    TResult Function(UserEnabledFailure value)? userEnabledFailure,
-    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
-    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
-    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
-    TResult Function(NoPostTypeSelectedFailure value)?
+    TResult? Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult? Function(ServerFailure value)? serverFailure,
+    TResult? Function(DataParsingFailure value)? dataParsingFailure,
+    TResult? Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult? Function(NotFoundFailure value)? notFoundFailure,
+    TResult? Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult? Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult? Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult? Function(EmptyListFailure value)? emptyListFailure,
+    TResult? Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult? Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult? Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult? Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult? Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult? Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult? Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult? Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult? Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult? Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult? Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult? Function(GetUserInfoFailure value)? getUserFailure,
+    TResult? Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult? Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult? Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult? Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult? Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult? Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult? Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult? Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult? Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
-    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
-    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
-    TResult Function(NotEditablePasswordFailure value)?
+    TResult? Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult? Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult? Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
-    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
-    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
-    TResult Function(PermissionPermanentlyDeniedFailure value)?
+    TResult? Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
   }) {
     return noSuchDataInListFailure?.call(this);
@@ -3559,15 +3533,11 @@ abstract class _$$RegisterConimalFailureCopyWith<$Res> {
 
 /// @nodoc
 class __$$RegisterConimalFailureCopyWithImpl<$Res>
-    extends _$FailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$RegisterConimalFailure>
     implements _$$RegisterConimalFailureCopyWith<$Res> {
   __$$RegisterConimalFailureCopyWithImpl(_$RegisterConimalFailure _value,
       $Res Function(_$RegisterConimalFailure) _then)
-      : super(_value, (v) => _then(v as _$RegisterConimalFailure));
-
-  @override
-  _$RegisterConimalFailure get _value =>
-      super._value as _$RegisterConimalFailure;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -3635,42 +3605,42 @@ class _$RegisterConimalFailure extends RegisterConimalFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? versionCheckFailure,
-    TResult Function()? serverFailure,
-    TResult Function()? dataParsingFailure,
-    TResult Function()? noConnectionFailure,
-    TResult Function()? notFoundFailure,
-    TResult Function()? noUserDataFailure,
-    TResult Function()? maxDiseaseFailure,
-    TResult Function()? maxConimalFailure,
-    TResult Function()? emptyListFailure,
-    TResult Function()? noSuchDataInListFailure,
-    TResult Function()? registerConimalFaiure,
-    TResult Function()? removeConimalFailure,
-    TResult Function()? getConimalListFailure,
-    TResult Function()? signInCredentialFailure,
-    TResult Function()? signInTokenFailure,
-    TResult Function()? naverSigninFailure,
-    TResult Function()? kakaoSigninFailure,
-    TResult Function()? googleSigninFailure,
-    TResult Function()? appleSigninFailure,
-    TResult Function()? emailSigninFailure,
-    TResult Function()? getUserFailure,
-    TResult Function()? wrongPasswordFailure,
-    TResult Function()? noEmailUserFailure,
-    TResult Function()? wrongTokenFailure,
-    TResult Function()? existingEmailFailure,
-    TResult Function()? userEnabledFailure,
-    TResult Function()? weakPasswordFailure,
-    TResult Function()? maxImageSizeFailure,
-    TResult Function()? maxImageNumFailure,
-    TResult Function()? noPostTypeSelectedFailure,
-    TResult Function()? noPostContentsFailure,
-    TResult Function()? notFoundPostFailure,
-    TResult Function()? notEditablePasswordFailure,
-    TResult Function()? userInfoUpdateFailure,
-    TResult Function()? permissionDeniedFailure,
-    TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? versionCheckFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function()? dataParsingFailure,
+    TResult? Function()? noConnectionFailure,
+    TResult? Function()? notFoundFailure,
+    TResult? Function()? noUserDataFailure,
+    TResult? Function()? maxDiseaseFailure,
+    TResult? Function()? maxConimalFailure,
+    TResult? Function()? emptyListFailure,
+    TResult? Function()? noSuchDataInListFailure,
+    TResult? Function()? registerConimalFaiure,
+    TResult? Function()? removeConimalFailure,
+    TResult? Function()? getConimalListFailure,
+    TResult? Function()? signInCredentialFailure,
+    TResult? Function()? signInTokenFailure,
+    TResult? Function()? naverSigninFailure,
+    TResult? Function()? kakaoSigninFailure,
+    TResult? Function()? googleSigninFailure,
+    TResult? Function()? appleSigninFailure,
+    TResult? Function()? emailSigninFailure,
+    TResult? Function()? getUserFailure,
+    TResult? Function()? wrongPasswordFailure,
+    TResult? Function()? noEmailUserFailure,
+    TResult? Function()? wrongTokenFailure,
+    TResult? Function()? existingEmailFailure,
+    TResult? Function()? userEnabledFailure,
+    TResult? Function()? weakPasswordFailure,
+    TResult? Function()? maxImageSizeFailure,
+    TResult? Function()? maxImageNumFailure,
+    TResult? Function()? noPostTypeSelectedFailure,
+    TResult? Function()? noPostContentsFailure,
+    TResult? Function()? notFoundPostFailure,
+    TResult? Function()? notEditablePasswordFailure,
+    TResult? Function()? userInfoUpdateFailure,
+    TResult? Function()? permissionDeniedFailure,
+    TResult? Function()? permissionPermanentlyDeniedFailure,
   }) {
     return registerConimalFaiure?.call();
   }
@@ -3778,44 +3748,44 @@ class _$RegisterConimalFailure extends RegisterConimalFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(VersionCheckFailure value)? versionCheckFailure,
-    TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(DataParsingFailure value)? dataParsingFailure,
-    TResult Function(NoConnectionFailure value)? noConnectionFailure,
-    TResult Function(NotFoundFailure value)? notFoundFailure,
-    TResult Function(NoUserDataFailure value)? noUserDataFailure,
-    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
-    TResult Function(MaxConimalFailure value)? maxConimalFailure,
-    TResult Function(EmptyListFailure value)? emptyListFailure,
-    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
-    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
-    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
-    TResult Function(GetConimalListFailure value)? getConimalListFailure,
-    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
-    TResult Function(SignInTokenFailure value)? signInTokenFailure,
-    TResult Function(NaverSigninFailure value)? naverSigninFailure,
-    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
-    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
-    TResult Function(AppleSigninFailure value)? appleSigninFailure,
-    TResult Function(EmailSigninFailure value)? emailSigninFailure,
-    TResult Function(GetUserInfoFailure value)? getUserFailure,
-    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
-    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
-    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
-    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
-    TResult Function(UserEnabledFailure value)? userEnabledFailure,
-    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
-    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
-    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
-    TResult Function(NoPostTypeSelectedFailure value)?
+    TResult? Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult? Function(ServerFailure value)? serverFailure,
+    TResult? Function(DataParsingFailure value)? dataParsingFailure,
+    TResult? Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult? Function(NotFoundFailure value)? notFoundFailure,
+    TResult? Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult? Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult? Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult? Function(EmptyListFailure value)? emptyListFailure,
+    TResult? Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult? Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult? Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult? Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult? Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult? Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult? Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult? Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult? Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult? Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult? Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult? Function(GetUserInfoFailure value)? getUserFailure,
+    TResult? Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult? Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult? Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult? Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult? Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult? Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult? Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult? Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult? Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
-    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
-    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
-    TResult Function(NotEditablePasswordFailure value)?
+    TResult? Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult? Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult? Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
-    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
-    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
-    TResult Function(PermissionPermanentlyDeniedFailure value)?
+    TResult? Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
   }) {
     return registerConimalFaiure?.call(this);
@@ -3886,14 +3856,11 @@ abstract class _$$RemoveConimalFailureCopyWith<$Res> {
 
 /// @nodoc
 class __$$RemoveConimalFailureCopyWithImpl<$Res>
-    extends _$FailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$RemoveConimalFailure>
     implements _$$RemoveConimalFailureCopyWith<$Res> {
   __$$RemoveConimalFailureCopyWithImpl(_$RemoveConimalFailure _value,
       $Res Function(_$RemoveConimalFailure) _then)
-      : super(_value, (v) => _then(v as _$RemoveConimalFailure));
-
-  @override
-  _$RemoveConimalFailure get _value => super._value as _$RemoveConimalFailure;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -3961,42 +3928,42 @@ class _$RemoveConimalFailure extends RemoveConimalFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? versionCheckFailure,
-    TResult Function()? serverFailure,
-    TResult Function()? dataParsingFailure,
-    TResult Function()? noConnectionFailure,
-    TResult Function()? notFoundFailure,
-    TResult Function()? noUserDataFailure,
-    TResult Function()? maxDiseaseFailure,
-    TResult Function()? maxConimalFailure,
-    TResult Function()? emptyListFailure,
-    TResult Function()? noSuchDataInListFailure,
-    TResult Function()? registerConimalFaiure,
-    TResult Function()? removeConimalFailure,
-    TResult Function()? getConimalListFailure,
-    TResult Function()? signInCredentialFailure,
-    TResult Function()? signInTokenFailure,
-    TResult Function()? naverSigninFailure,
-    TResult Function()? kakaoSigninFailure,
-    TResult Function()? googleSigninFailure,
-    TResult Function()? appleSigninFailure,
-    TResult Function()? emailSigninFailure,
-    TResult Function()? getUserFailure,
-    TResult Function()? wrongPasswordFailure,
-    TResult Function()? noEmailUserFailure,
-    TResult Function()? wrongTokenFailure,
-    TResult Function()? existingEmailFailure,
-    TResult Function()? userEnabledFailure,
-    TResult Function()? weakPasswordFailure,
-    TResult Function()? maxImageSizeFailure,
-    TResult Function()? maxImageNumFailure,
-    TResult Function()? noPostTypeSelectedFailure,
-    TResult Function()? noPostContentsFailure,
-    TResult Function()? notFoundPostFailure,
-    TResult Function()? notEditablePasswordFailure,
-    TResult Function()? userInfoUpdateFailure,
-    TResult Function()? permissionDeniedFailure,
-    TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? versionCheckFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function()? dataParsingFailure,
+    TResult? Function()? noConnectionFailure,
+    TResult? Function()? notFoundFailure,
+    TResult? Function()? noUserDataFailure,
+    TResult? Function()? maxDiseaseFailure,
+    TResult? Function()? maxConimalFailure,
+    TResult? Function()? emptyListFailure,
+    TResult? Function()? noSuchDataInListFailure,
+    TResult? Function()? registerConimalFaiure,
+    TResult? Function()? removeConimalFailure,
+    TResult? Function()? getConimalListFailure,
+    TResult? Function()? signInCredentialFailure,
+    TResult? Function()? signInTokenFailure,
+    TResult? Function()? naverSigninFailure,
+    TResult? Function()? kakaoSigninFailure,
+    TResult? Function()? googleSigninFailure,
+    TResult? Function()? appleSigninFailure,
+    TResult? Function()? emailSigninFailure,
+    TResult? Function()? getUserFailure,
+    TResult? Function()? wrongPasswordFailure,
+    TResult? Function()? noEmailUserFailure,
+    TResult? Function()? wrongTokenFailure,
+    TResult? Function()? existingEmailFailure,
+    TResult? Function()? userEnabledFailure,
+    TResult? Function()? weakPasswordFailure,
+    TResult? Function()? maxImageSizeFailure,
+    TResult? Function()? maxImageNumFailure,
+    TResult? Function()? noPostTypeSelectedFailure,
+    TResult? Function()? noPostContentsFailure,
+    TResult? Function()? notFoundPostFailure,
+    TResult? Function()? notEditablePasswordFailure,
+    TResult? Function()? userInfoUpdateFailure,
+    TResult? Function()? permissionDeniedFailure,
+    TResult? Function()? permissionPermanentlyDeniedFailure,
   }) {
     return removeConimalFailure?.call();
   }
@@ -4104,44 +4071,44 @@ class _$RemoveConimalFailure extends RemoveConimalFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(VersionCheckFailure value)? versionCheckFailure,
-    TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(DataParsingFailure value)? dataParsingFailure,
-    TResult Function(NoConnectionFailure value)? noConnectionFailure,
-    TResult Function(NotFoundFailure value)? notFoundFailure,
-    TResult Function(NoUserDataFailure value)? noUserDataFailure,
-    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
-    TResult Function(MaxConimalFailure value)? maxConimalFailure,
-    TResult Function(EmptyListFailure value)? emptyListFailure,
-    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
-    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
-    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
-    TResult Function(GetConimalListFailure value)? getConimalListFailure,
-    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
-    TResult Function(SignInTokenFailure value)? signInTokenFailure,
-    TResult Function(NaverSigninFailure value)? naverSigninFailure,
-    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
-    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
-    TResult Function(AppleSigninFailure value)? appleSigninFailure,
-    TResult Function(EmailSigninFailure value)? emailSigninFailure,
-    TResult Function(GetUserInfoFailure value)? getUserFailure,
-    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
-    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
-    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
-    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
-    TResult Function(UserEnabledFailure value)? userEnabledFailure,
-    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
-    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
-    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
-    TResult Function(NoPostTypeSelectedFailure value)?
+    TResult? Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult? Function(ServerFailure value)? serverFailure,
+    TResult? Function(DataParsingFailure value)? dataParsingFailure,
+    TResult? Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult? Function(NotFoundFailure value)? notFoundFailure,
+    TResult? Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult? Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult? Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult? Function(EmptyListFailure value)? emptyListFailure,
+    TResult? Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult? Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult? Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult? Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult? Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult? Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult? Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult? Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult? Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult? Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult? Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult? Function(GetUserInfoFailure value)? getUserFailure,
+    TResult? Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult? Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult? Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult? Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult? Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult? Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult? Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult? Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult? Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
-    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
-    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
-    TResult Function(NotEditablePasswordFailure value)?
+    TResult? Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult? Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult? Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
-    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
-    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
-    TResult Function(PermissionPermanentlyDeniedFailure value)?
+    TResult? Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
   }) {
     return removeConimalFailure?.call(this);
@@ -4212,14 +4179,11 @@ abstract class _$$GetConimalListFailureCopyWith<$Res> {
 
 /// @nodoc
 class __$$GetConimalListFailureCopyWithImpl<$Res>
-    extends _$FailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$GetConimalListFailure>
     implements _$$GetConimalListFailureCopyWith<$Res> {
   __$$GetConimalListFailureCopyWithImpl(_$GetConimalListFailure _value,
       $Res Function(_$GetConimalListFailure) _then)
-      : super(_value, (v) => _then(v as _$GetConimalListFailure));
-
-  @override
-  _$GetConimalListFailure get _value => super._value as _$GetConimalListFailure;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -4287,42 +4251,42 @@ class _$GetConimalListFailure extends GetConimalListFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? versionCheckFailure,
-    TResult Function()? serverFailure,
-    TResult Function()? dataParsingFailure,
-    TResult Function()? noConnectionFailure,
-    TResult Function()? notFoundFailure,
-    TResult Function()? noUserDataFailure,
-    TResult Function()? maxDiseaseFailure,
-    TResult Function()? maxConimalFailure,
-    TResult Function()? emptyListFailure,
-    TResult Function()? noSuchDataInListFailure,
-    TResult Function()? registerConimalFaiure,
-    TResult Function()? removeConimalFailure,
-    TResult Function()? getConimalListFailure,
-    TResult Function()? signInCredentialFailure,
-    TResult Function()? signInTokenFailure,
-    TResult Function()? naverSigninFailure,
-    TResult Function()? kakaoSigninFailure,
-    TResult Function()? googleSigninFailure,
-    TResult Function()? appleSigninFailure,
-    TResult Function()? emailSigninFailure,
-    TResult Function()? getUserFailure,
-    TResult Function()? wrongPasswordFailure,
-    TResult Function()? noEmailUserFailure,
-    TResult Function()? wrongTokenFailure,
-    TResult Function()? existingEmailFailure,
-    TResult Function()? userEnabledFailure,
-    TResult Function()? weakPasswordFailure,
-    TResult Function()? maxImageSizeFailure,
-    TResult Function()? maxImageNumFailure,
-    TResult Function()? noPostTypeSelectedFailure,
-    TResult Function()? noPostContentsFailure,
-    TResult Function()? notFoundPostFailure,
-    TResult Function()? notEditablePasswordFailure,
-    TResult Function()? userInfoUpdateFailure,
-    TResult Function()? permissionDeniedFailure,
-    TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? versionCheckFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function()? dataParsingFailure,
+    TResult? Function()? noConnectionFailure,
+    TResult? Function()? notFoundFailure,
+    TResult? Function()? noUserDataFailure,
+    TResult? Function()? maxDiseaseFailure,
+    TResult? Function()? maxConimalFailure,
+    TResult? Function()? emptyListFailure,
+    TResult? Function()? noSuchDataInListFailure,
+    TResult? Function()? registerConimalFaiure,
+    TResult? Function()? removeConimalFailure,
+    TResult? Function()? getConimalListFailure,
+    TResult? Function()? signInCredentialFailure,
+    TResult? Function()? signInTokenFailure,
+    TResult? Function()? naverSigninFailure,
+    TResult? Function()? kakaoSigninFailure,
+    TResult? Function()? googleSigninFailure,
+    TResult? Function()? appleSigninFailure,
+    TResult? Function()? emailSigninFailure,
+    TResult? Function()? getUserFailure,
+    TResult? Function()? wrongPasswordFailure,
+    TResult? Function()? noEmailUserFailure,
+    TResult? Function()? wrongTokenFailure,
+    TResult? Function()? existingEmailFailure,
+    TResult? Function()? userEnabledFailure,
+    TResult? Function()? weakPasswordFailure,
+    TResult? Function()? maxImageSizeFailure,
+    TResult? Function()? maxImageNumFailure,
+    TResult? Function()? noPostTypeSelectedFailure,
+    TResult? Function()? noPostContentsFailure,
+    TResult? Function()? notFoundPostFailure,
+    TResult? Function()? notEditablePasswordFailure,
+    TResult? Function()? userInfoUpdateFailure,
+    TResult? Function()? permissionDeniedFailure,
+    TResult? Function()? permissionPermanentlyDeniedFailure,
   }) {
     return getConimalListFailure?.call();
   }
@@ -4430,44 +4394,44 @@ class _$GetConimalListFailure extends GetConimalListFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(VersionCheckFailure value)? versionCheckFailure,
-    TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(DataParsingFailure value)? dataParsingFailure,
-    TResult Function(NoConnectionFailure value)? noConnectionFailure,
-    TResult Function(NotFoundFailure value)? notFoundFailure,
-    TResult Function(NoUserDataFailure value)? noUserDataFailure,
-    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
-    TResult Function(MaxConimalFailure value)? maxConimalFailure,
-    TResult Function(EmptyListFailure value)? emptyListFailure,
-    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
-    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
-    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
-    TResult Function(GetConimalListFailure value)? getConimalListFailure,
-    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
-    TResult Function(SignInTokenFailure value)? signInTokenFailure,
-    TResult Function(NaverSigninFailure value)? naverSigninFailure,
-    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
-    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
-    TResult Function(AppleSigninFailure value)? appleSigninFailure,
-    TResult Function(EmailSigninFailure value)? emailSigninFailure,
-    TResult Function(GetUserInfoFailure value)? getUserFailure,
-    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
-    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
-    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
-    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
-    TResult Function(UserEnabledFailure value)? userEnabledFailure,
-    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
-    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
-    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
-    TResult Function(NoPostTypeSelectedFailure value)?
+    TResult? Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult? Function(ServerFailure value)? serverFailure,
+    TResult? Function(DataParsingFailure value)? dataParsingFailure,
+    TResult? Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult? Function(NotFoundFailure value)? notFoundFailure,
+    TResult? Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult? Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult? Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult? Function(EmptyListFailure value)? emptyListFailure,
+    TResult? Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult? Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult? Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult? Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult? Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult? Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult? Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult? Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult? Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult? Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult? Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult? Function(GetUserInfoFailure value)? getUserFailure,
+    TResult? Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult? Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult? Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult? Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult? Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult? Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult? Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult? Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult? Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
-    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
-    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
-    TResult Function(NotEditablePasswordFailure value)?
+    TResult? Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult? Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult? Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
-    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
-    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
-    TResult Function(PermissionPermanentlyDeniedFailure value)?
+    TResult? Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
   }) {
     return getConimalListFailure?.call(this);
@@ -4538,15 +4502,11 @@ abstract class _$$SignInCredentialFailureCopyWith<$Res> {
 
 /// @nodoc
 class __$$SignInCredentialFailureCopyWithImpl<$Res>
-    extends _$FailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$SignInCredentialFailure>
     implements _$$SignInCredentialFailureCopyWith<$Res> {
   __$$SignInCredentialFailureCopyWithImpl(_$SignInCredentialFailure _value,
       $Res Function(_$SignInCredentialFailure) _then)
-      : super(_value, (v) => _then(v as _$SignInCredentialFailure));
-
-  @override
-  _$SignInCredentialFailure get _value =>
-      super._value as _$SignInCredentialFailure;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -4615,42 +4575,42 @@ class _$SignInCredentialFailure extends SignInCredentialFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? versionCheckFailure,
-    TResult Function()? serverFailure,
-    TResult Function()? dataParsingFailure,
-    TResult Function()? noConnectionFailure,
-    TResult Function()? notFoundFailure,
-    TResult Function()? noUserDataFailure,
-    TResult Function()? maxDiseaseFailure,
-    TResult Function()? maxConimalFailure,
-    TResult Function()? emptyListFailure,
-    TResult Function()? noSuchDataInListFailure,
-    TResult Function()? registerConimalFaiure,
-    TResult Function()? removeConimalFailure,
-    TResult Function()? getConimalListFailure,
-    TResult Function()? signInCredentialFailure,
-    TResult Function()? signInTokenFailure,
-    TResult Function()? naverSigninFailure,
-    TResult Function()? kakaoSigninFailure,
-    TResult Function()? googleSigninFailure,
-    TResult Function()? appleSigninFailure,
-    TResult Function()? emailSigninFailure,
-    TResult Function()? getUserFailure,
-    TResult Function()? wrongPasswordFailure,
-    TResult Function()? noEmailUserFailure,
-    TResult Function()? wrongTokenFailure,
-    TResult Function()? existingEmailFailure,
-    TResult Function()? userEnabledFailure,
-    TResult Function()? weakPasswordFailure,
-    TResult Function()? maxImageSizeFailure,
-    TResult Function()? maxImageNumFailure,
-    TResult Function()? noPostTypeSelectedFailure,
-    TResult Function()? noPostContentsFailure,
-    TResult Function()? notFoundPostFailure,
-    TResult Function()? notEditablePasswordFailure,
-    TResult Function()? userInfoUpdateFailure,
-    TResult Function()? permissionDeniedFailure,
-    TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? versionCheckFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function()? dataParsingFailure,
+    TResult? Function()? noConnectionFailure,
+    TResult? Function()? notFoundFailure,
+    TResult? Function()? noUserDataFailure,
+    TResult? Function()? maxDiseaseFailure,
+    TResult? Function()? maxConimalFailure,
+    TResult? Function()? emptyListFailure,
+    TResult? Function()? noSuchDataInListFailure,
+    TResult? Function()? registerConimalFaiure,
+    TResult? Function()? removeConimalFailure,
+    TResult? Function()? getConimalListFailure,
+    TResult? Function()? signInCredentialFailure,
+    TResult? Function()? signInTokenFailure,
+    TResult? Function()? naverSigninFailure,
+    TResult? Function()? kakaoSigninFailure,
+    TResult? Function()? googleSigninFailure,
+    TResult? Function()? appleSigninFailure,
+    TResult? Function()? emailSigninFailure,
+    TResult? Function()? getUserFailure,
+    TResult? Function()? wrongPasswordFailure,
+    TResult? Function()? noEmailUserFailure,
+    TResult? Function()? wrongTokenFailure,
+    TResult? Function()? existingEmailFailure,
+    TResult? Function()? userEnabledFailure,
+    TResult? Function()? weakPasswordFailure,
+    TResult? Function()? maxImageSizeFailure,
+    TResult? Function()? maxImageNumFailure,
+    TResult? Function()? noPostTypeSelectedFailure,
+    TResult? Function()? noPostContentsFailure,
+    TResult? Function()? notFoundPostFailure,
+    TResult? Function()? notEditablePasswordFailure,
+    TResult? Function()? userInfoUpdateFailure,
+    TResult? Function()? permissionDeniedFailure,
+    TResult? Function()? permissionPermanentlyDeniedFailure,
   }) {
     return signInCredentialFailure?.call();
   }
@@ -4758,44 +4718,44 @@ class _$SignInCredentialFailure extends SignInCredentialFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(VersionCheckFailure value)? versionCheckFailure,
-    TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(DataParsingFailure value)? dataParsingFailure,
-    TResult Function(NoConnectionFailure value)? noConnectionFailure,
-    TResult Function(NotFoundFailure value)? notFoundFailure,
-    TResult Function(NoUserDataFailure value)? noUserDataFailure,
-    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
-    TResult Function(MaxConimalFailure value)? maxConimalFailure,
-    TResult Function(EmptyListFailure value)? emptyListFailure,
-    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
-    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
-    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
-    TResult Function(GetConimalListFailure value)? getConimalListFailure,
-    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
-    TResult Function(SignInTokenFailure value)? signInTokenFailure,
-    TResult Function(NaverSigninFailure value)? naverSigninFailure,
-    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
-    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
-    TResult Function(AppleSigninFailure value)? appleSigninFailure,
-    TResult Function(EmailSigninFailure value)? emailSigninFailure,
-    TResult Function(GetUserInfoFailure value)? getUserFailure,
-    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
-    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
-    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
-    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
-    TResult Function(UserEnabledFailure value)? userEnabledFailure,
-    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
-    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
-    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
-    TResult Function(NoPostTypeSelectedFailure value)?
+    TResult? Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult? Function(ServerFailure value)? serverFailure,
+    TResult? Function(DataParsingFailure value)? dataParsingFailure,
+    TResult? Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult? Function(NotFoundFailure value)? notFoundFailure,
+    TResult? Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult? Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult? Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult? Function(EmptyListFailure value)? emptyListFailure,
+    TResult? Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult? Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult? Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult? Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult? Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult? Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult? Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult? Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult? Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult? Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult? Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult? Function(GetUserInfoFailure value)? getUserFailure,
+    TResult? Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult? Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult? Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult? Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult? Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult? Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult? Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult? Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult? Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
-    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
-    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
-    TResult Function(NotEditablePasswordFailure value)?
+    TResult? Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult? Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult? Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
-    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
-    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
-    TResult Function(PermissionPermanentlyDeniedFailure value)?
+    TResult? Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
   }) {
     return signInCredentialFailure?.call(this);
@@ -4866,14 +4826,11 @@ abstract class _$$SignInTokenFailureCopyWith<$Res> {
 
 /// @nodoc
 class __$$SignInTokenFailureCopyWithImpl<$Res>
-    extends _$FailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$SignInTokenFailure>
     implements _$$SignInTokenFailureCopyWith<$Res> {
   __$$SignInTokenFailureCopyWithImpl(
       _$SignInTokenFailure _value, $Res Function(_$SignInTokenFailure) _then)
-      : super(_value, (v) => _then(v as _$SignInTokenFailure));
-
-  @override
-  _$SignInTokenFailure get _value => super._value as _$SignInTokenFailure;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -4941,42 +4898,42 @@ class _$SignInTokenFailure extends SignInTokenFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? versionCheckFailure,
-    TResult Function()? serverFailure,
-    TResult Function()? dataParsingFailure,
-    TResult Function()? noConnectionFailure,
-    TResult Function()? notFoundFailure,
-    TResult Function()? noUserDataFailure,
-    TResult Function()? maxDiseaseFailure,
-    TResult Function()? maxConimalFailure,
-    TResult Function()? emptyListFailure,
-    TResult Function()? noSuchDataInListFailure,
-    TResult Function()? registerConimalFaiure,
-    TResult Function()? removeConimalFailure,
-    TResult Function()? getConimalListFailure,
-    TResult Function()? signInCredentialFailure,
-    TResult Function()? signInTokenFailure,
-    TResult Function()? naverSigninFailure,
-    TResult Function()? kakaoSigninFailure,
-    TResult Function()? googleSigninFailure,
-    TResult Function()? appleSigninFailure,
-    TResult Function()? emailSigninFailure,
-    TResult Function()? getUserFailure,
-    TResult Function()? wrongPasswordFailure,
-    TResult Function()? noEmailUserFailure,
-    TResult Function()? wrongTokenFailure,
-    TResult Function()? existingEmailFailure,
-    TResult Function()? userEnabledFailure,
-    TResult Function()? weakPasswordFailure,
-    TResult Function()? maxImageSizeFailure,
-    TResult Function()? maxImageNumFailure,
-    TResult Function()? noPostTypeSelectedFailure,
-    TResult Function()? noPostContentsFailure,
-    TResult Function()? notFoundPostFailure,
-    TResult Function()? notEditablePasswordFailure,
-    TResult Function()? userInfoUpdateFailure,
-    TResult Function()? permissionDeniedFailure,
-    TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? versionCheckFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function()? dataParsingFailure,
+    TResult? Function()? noConnectionFailure,
+    TResult? Function()? notFoundFailure,
+    TResult? Function()? noUserDataFailure,
+    TResult? Function()? maxDiseaseFailure,
+    TResult? Function()? maxConimalFailure,
+    TResult? Function()? emptyListFailure,
+    TResult? Function()? noSuchDataInListFailure,
+    TResult? Function()? registerConimalFaiure,
+    TResult? Function()? removeConimalFailure,
+    TResult? Function()? getConimalListFailure,
+    TResult? Function()? signInCredentialFailure,
+    TResult? Function()? signInTokenFailure,
+    TResult? Function()? naverSigninFailure,
+    TResult? Function()? kakaoSigninFailure,
+    TResult? Function()? googleSigninFailure,
+    TResult? Function()? appleSigninFailure,
+    TResult? Function()? emailSigninFailure,
+    TResult? Function()? getUserFailure,
+    TResult? Function()? wrongPasswordFailure,
+    TResult? Function()? noEmailUserFailure,
+    TResult? Function()? wrongTokenFailure,
+    TResult? Function()? existingEmailFailure,
+    TResult? Function()? userEnabledFailure,
+    TResult? Function()? weakPasswordFailure,
+    TResult? Function()? maxImageSizeFailure,
+    TResult? Function()? maxImageNumFailure,
+    TResult? Function()? noPostTypeSelectedFailure,
+    TResult? Function()? noPostContentsFailure,
+    TResult? Function()? notFoundPostFailure,
+    TResult? Function()? notEditablePasswordFailure,
+    TResult? Function()? userInfoUpdateFailure,
+    TResult? Function()? permissionDeniedFailure,
+    TResult? Function()? permissionPermanentlyDeniedFailure,
   }) {
     return signInTokenFailure?.call();
   }
@@ -5084,44 +5041,44 @@ class _$SignInTokenFailure extends SignInTokenFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(VersionCheckFailure value)? versionCheckFailure,
-    TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(DataParsingFailure value)? dataParsingFailure,
-    TResult Function(NoConnectionFailure value)? noConnectionFailure,
-    TResult Function(NotFoundFailure value)? notFoundFailure,
-    TResult Function(NoUserDataFailure value)? noUserDataFailure,
-    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
-    TResult Function(MaxConimalFailure value)? maxConimalFailure,
-    TResult Function(EmptyListFailure value)? emptyListFailure,
-    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
-    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
-    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
-    TResult Function(GetConimalListFailure value)? getConimalListFailure,
-    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
-    TResult Function(SignInTokenFailure value)? signInTokenFailure,
-    TResult Function(NaverSigninFailure value)? naverSigninFailure,
-    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
-    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
-    TResult Function(AppleSigninFailure value)? appleSigninFailure,
-    TResult Function(EmailSigninFailure value)? emailSigninFailure,
-    TResult Function(GetUserInfoFailure value)? getUserFailure,
-    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
-    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
-    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
-    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
-    TResult Function(UserEnabledFailure value)? userEnabledFailure,
-    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
-    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
-    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
-    TResult Function(NoPostTypeSelectedFailure value)?
+    TResult? Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult? Function(ServerFailure value)? serverFailure,
+    TResult? Function(DataParsingFailure value)? dataParsingFailure,
+    TResult? Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult? Function(NotFoundFailure value)? notFoundFailure,
+    TResult? Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult? Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult? Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult? Function(EmptyListFailure value)? emptyListFailure,
+    TResult? Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult? Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult? Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult? Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult? Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult? Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult? Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult? Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult? Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult? Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult? Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult? Function(GetUserInfoFailure value)? getUserFailure,
+    TResult? Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult? Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult? Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult? Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult? Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult? Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult? Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult? Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult? Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
-    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
-    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
-    TResult Function(NotEditablePasswordFailure value)?
+    TResult? Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult? Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult? Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
-    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
-    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
-    TResult Function(PermissionPermanentlyDeniedFailure value)?
+    TResult? Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
   }) {
     return signInTokenFailure?.call(this);
@@ -5192,14 +5149,11 @@ abstract class _$$NaverSigninFailureCopyWith<$Res> {
 
 /// @nodoc
 class __$$NaverSigninFailureCopyWithImpl<$Res>
-    extends _$FailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$NaverSigninFailure>
     implements _$$NaverSigninFailureCopyWith<$Res> {
   __$$NaverSigninFailureCopyWithImpl(
       _$NaverSigninFailure _value, $Res Function(_$NaverSigninFailure) _then)
-      : super(_value, (v) => _then(v as _$NaverSigninFailure));
-
-  @override
-  _$NaverSigninFailure get _value => super._value as _$NaverSigninFailure;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -5267,42 +5221,42 @@ class _$NaverSigninFailure extends NaverSigninFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? versionCheckFailure,
-    TResult Function()? serverFailure,
-    TResult Function()? dataParsingFailure,
-    TResult Function()? noConnectionFailure,
-    TResult Function()? notFoundFailure,
-    TResult Function()? noUserDataFailure,
-    TResult Function()? maxDiseaseFailure,
-    TResult Function()? maxConimalFailure,
-    TResult Function()? emptyListFailure,
-    TResult Function()? noSuchDataInListFailure,
-    TResult Function()? registerConimalFaiure,
-    TResult Function()? removeConimalFailure,
-    TResult Function()? getConimalListFailure,
-    TResult Function()? signInCredentialFailure,
-    TResult Function()? signInTokenFailure,
-    TResult Function()? naverSigninFailure,
-    TResult Function()? kakaoSigninFailure,
-    TResult Function()? googleSigninFailure,
-    TResult Function()? appleSigninFailure,
-    TResult Function()? emailSigninFailure,
-    TResult Function()? getUserFailure,
-    TResult Function()? wrongPasswordFailure,
-    TResult Function()? noEmailUserFailure,
-    TResult Function()? wrongTokenFailure,
-    TResult Function()? existingEmailFailure,
-    TResult Function()? userEnabledFailure,
-    TResult Function()? weakPasswordFailure,
-    TResult Function()? maxImageSizeFailure,
-    TResult Function()? maxImageNumFailure,
-    TResult Function()? noPostTypeSelectedFailure,
-    TResult Function()? noPostContentsFailure,
-    TResult Function()? notFoundPostFailure,
-    TResult Function()? notEditablePasswordFailure,
-    TResult Function()? userInfoUpdateFailure,
-    TResult Function()? permissionDeniedFailure,
-    TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? versionCheckFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function()? dataParsingFailure,
+    TResult? Function()? noConnectionFailure,
+    TResult? Function()? notFoundFailure,
+    TResult? Function()? noUserDataFailure,
+    TResult? Function()? maxDiseaseFailure,
+    TResult? Function()? maxConimalFailure,
+    TResult? Function()? emptyListFailure,
+    TResult? Function()? noSuchDataInListFailure,
+    TResult? Function()? registerConimalFaiure,
+    TResult? Function()? removeConimalFailure,
+    TResult? Function()? getConimalListFailure,
+    TResult? Function()? signInCredentialFailure,
+    TResult? Function()? signInTokenFailure,
+    TResult? Function()? naverSigninFailure,
+    TResult? Function()? kakaoSigninFailure,
+    TResult? Function()? googleSigninFailure,
+    TResult? Function()? appleSigninFailure,
+    TResult? Function()? emailSigninFailure,
+    TResult? Function()? getUserFailure,
+    TResult? Function()? wrongPasswordFailure,
+    TResult? Function()? noEmailUserFailure,
+    TResult? Function()? wrongTokenFailure,
+    TResult? Function()? existingEmailFailure,
+    TResult? Function()? userEnabledFailure,
+    TResult? Function()? weakPasswordFailure,
+    TResult? Function()? maxImageSizeFailure,
+    TResult? Function()? maxImageNumFailure,
+    TResult? Function()? noPostTypeSelectedFailure,
+    TResult? Function()? noPostContentsFailure,
+    TResult? Function()? notFoundPostFailure,
+    TResult? Function()? notEditablePasswordFailure,
+    TResult? Function()? userInfoUpdateFailure,
+    TResult? Function()? permissionDeniedFailure,
+    TResult? Function()? permissionPermanentlyDeniedFailure,
   }) {
     return naverSigninFailure?.call();
   }
@@ -5410,44 +5364,44 @@ class _$NaverSigninFailure extends NaverSigninFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(VersionCheckFailure value)? versionCheckFailure,
-    TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(DataParsingFailure value)? dataParsingFailure,
-    TResult Function(NoConnectionFailure value)? noConnectionFailure,
-    TResult Function(NotFoundFailure value)? notFoundFailure,
-    TResult Function(NoUserDataFailure value)? noUserDataFailure,
-    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
-    TResult Function(MaxConimalFailure value)? maxConimalFailure,
-    TResult Function(EmptyListFailure value)? emptyListFailure,
-    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
-    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
-    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
-    TResult Function(GetConimalListFailure value)? getConimalListFailure,
-    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
-    TResult Function(SignInTokenFailure value)? signInTokenFailure,
-    TResult Function(NaverSigninFailure value)? naverSigninFailure,
-    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
-    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
-    TResult Function(AppleSigninFailure value)? appleSigninFailure,
-    TResult Function(EmailSigninFailure value)? emailSigninFailure,
-    TResult Function(GetUserInfoFailure value)? getUserFailure,
-    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
-    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
-    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
-    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
-    TResult Function(UserEnabledFailure value)? userEnabledFailure,
-    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
-    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
-    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
-    TResult Function(NoPostTypeSelectedFailure value)?
+    TResult? Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult? Function(ServerFailure value)? serverFailure,
+    TResult? Function(DataParsingFailure value)? dataParsingFailure,
+    TResult? Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult? Function(NotFoundFailure value)? notFoundFailure,
+    TResult? Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult? Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult? Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult? Function(EmptyListFailure value)? emptyListFailure,
+    TResult? Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult? Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult? Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult? Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult? Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult? Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult? Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult? Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult? Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult? Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult? Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult? Function(GetUserInfoFailure value)? getUserFailure,
+    TResult? Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult? Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult? Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult? Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult? Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult? Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult? Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult? Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult? Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
-    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
-    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
-    TResult Function(NotEditablePasswordFailure value)?
+    TResult? Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult? Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult? Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
-    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
-    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
-    TResult Function(PermissionPermanentlyDeniedFailure value)?
+    TResult? Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
   }) {
     return naverSigninFailure?.call(this);
@@ -5518,14 +5472,11 @@ abstract class _$$KakaoSigninFailureCopyWith<$Res> {
 
 /// @nodoc
 class __$$KakaoSigninFailureCopyWithImpl<$Res>
-    extends _$FailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$KakaoSigninFailure>
     implements _$$KakaoSigninFailureCopyWith<$Res> {
   __$$KakaoSigninFailureCopyWithImpl(
       _$KakaoSigninFailure _value, $Res Function(_$KakaoSigninFailure) _then)
-      : super(_value, (v) => _then(v as _$KakaoSigninFailure));
-
-  @override
-  _$KakaoSigninFailure get _value => super._value as _$KakaoSigninFailure;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -5593,42 +5544,42 @@ class _$KakaoSigninFailure extends KakaoSigninFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? versionCheckFailure,
-    TResult Function()? serverFailure,
-    TResult Function()? dataParsingFailure,
-    TResult Function()? noConnectionFailure,
-    TResult Function()? notFoundFailure,
-    TResult Function()? noUserDataFailure,
-    TResult Function()? maxDiseaseFailure,
-    TResult Function()? maxConimalFailure,
-    TResult Function()? emptyListFailure,
-    TResult Function()? noSuchDataInListFailure,
-    TResult Function()? registerConimalFaiure,
-    TResult Function()? removeConimalFailure,
-    TResult Function()? getConimalListFailure,
-    TResult Function()? signInCredentialFailure,
-    TResult Function()? signInTokenFailure,
-    TResult Function()? naverSigninFailure,
-    TResult Function()? kakaoSigninFailure,
-    TResult Function()? googleSigninFailure,
-    TResult Function()? appleSigninFailure,
-    TResult Function()? emailSigninFailure,
-    TResult Function()? getUserFailure,
-    TResult Function()? wrongPasswordFailure,
-    TResult Function()? noEmailUserFailure,
-    TResult Function()? wrongTokenFailure,
-    TResult Function()? existingEmailFailure,
-    TResult Function()? userEnabledFailure,
-    TResult Function()? weakPasswordFailure,
-    TResult Function()? maxImageSizeFailure,
-    TResult Function()? maxImageNumFailure,
-    TResult Function()? noPostTypeSelectedFailure,
-    TResult Function()? noPostContentsFailure,
-    TResult Function()? notFoundPostFailure,
-    TResult Function()? notEditablePasswordFailure,
-    TResult Function()? userInfoUpdateFailure,
-    TResult Function()? permissionDeniedFailure,
-    TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? versionCheckFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function()? dataParsingFailure,
+    TResult? Function()? noConnectionFailure,
+    TResult? Function()? notFoundFailure,
+    TResult? Function()? noUserDataFailure,
+    TResult? Function()? maxDiseaseFailure,
+    TResult? Function()? maxConimalFailure,
+    TResult? Function()? emptyListFailure,
+    TResult? Function()? noSuchDataInListFailure,
+    TResult? Function()? registerConimalFaiure,
+    TResult? Function()? removeConimalFailure,
+    TResult? Function()? getConimalListFailure,
+    TResult? Function()? signInCredentialFailure,
+    TResult? Function()? signInTokenFailure,
+    TResult? Function()? naverSigninFailure,
+    TResult? Function()? kakaoSigninFailure,
+    TResult? Function()? googleSigninFailure,
+    TResult? Function()? appleSigninFailure,
+    TResult? Function()? emailSigninFailure,
+    TResult? Function()? getUserFailure,
+    TResult? Function()? wrongPasswordFailure,
+    TResult? Function()? noEmailUserFailure,
+    TResult? Function()? wrongTokenFailure,
+    TResult? Function()? existingEmailFailure,
+    TResult? Function()? userEnabledFailure,
+    TResult? Function()? weakPasswordFailure,
+    TResult? Function()? maxImageSizeFailure,
+    TResult? Function()? maxImageNumFailure,
+    TResult? Function()? noPostTypeSelectedFailure,
+    TResult? Function()? noPostContentsFailure,
+    TResult? Function()? notFoundPostFailure,
+    TResult? Function()? notEditablePasswordFailure,
+    TResult? Function()? userInfoUpdateFailure,
+    TResult? Function()? permissionDeniedFailure,
+    TResult? Function()? permissionPermanentlyDeniedFailure,
   }) {
     return kakaoSigninFailure?.call();
   }
@@ -5736,44 +5687,44 @@ class _$KakaoSigninFailure extends KakaoSigninFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(VersionCheckFailure value)? versionCheckFailure,
-    TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(DataParsingFailure value)? dataParsingFailure,
-    TResult Function(NoConnectionFailure value)? noConnectionFailure,
-    TResult Function(NotFoundFailure value)? notFoundFailure,
-    TResult Function(NoUserDataFailure value)? noUserDataFailure,
-    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
-    TResult Function(MaxConimalFailure value)? maxConimalFailure,
-    TResult Function(EmptyListFailure value)? emptyListFailure,
-    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
-    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
-    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
-    TResult Function(GetConimalListFailure value)? getConimalListFailure,
-    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
-    TResult Function(SignInTokenFailure value)? signInTokenFailure,
-    TResult Function(NaverSigninFailure value)? naverSigninFailure,
-    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
-    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
-    TResult Function(AppleSigninFailure value)? appleSigninFailure,
-    TResult Function(EmailSigninFailure value)? emailSigninFailure,
-    TResult Function(GetUserInfoFailure value)? getUserFailure,
-    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
-    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
-    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
-    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
-    TResult Function(UserEnabledFailure value)? userEnabledFailure,
-    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
-    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
-    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
-    TResult Function(NoPostTypeSelectedFailure value)?
+    TResult? Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult? Function(ServerFailure value)? serverFailure,
+    TResult? Function(DataParsingFailure value)? dataParsingFailure,
+    TResult? Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult? Function(NotFoundFailure value)? notFoundFailure,
+    TResult? Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult? Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult? Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult? Function(EmptyListFailure value)? emptyListFailure,
+    TResult? Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult? Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult? Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult? Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult? Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult? Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult? Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult? Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult? Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult? Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult? Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult? Function(GetUserInfoFailure value)? getUserFailure,
+    TResult? Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult? Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult? Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult? Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult? Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult? Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult? Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult? Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult? Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
-    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
-    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
-    TResult Function(NotEditablePasswordFailure value)?
+    TResult? Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult? Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult? Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
-    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
-    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
-    TResult Function(PermissionPermanentlyDeniedFailure value)?
+    TResult? Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
   }) {
     return kakaoSigninFailure?.call(this);
@@ -5844,14 +5795,11 @@ abstract class _$$GoogleSigninFailureCopyWith<$Res> {
 
 /// @nodoc
 class __$$GoogleSigninFailureCopyWithImpl<$Res>
-    extends _$FailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$GoogleSigninFailure>
     implements _$$GoogleSigninFailureCopyWith<$Res> {
   __$$GoogleSigninFailureCopyWithImpl(
       _$GoogleSigninFailure _value, $Res Function(_$GoogleSigninFailure) _then)
-      : super(_value, (v) => _then(v as _$GoogleSigninFailure));
-
-  @override
-  _$GoogleSigninFailure get _value => super._value as _$GoogleSigninFailure;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -5919,42 +5867,42 @@ class _$GoogleSigninFailure extends GoogleSigninFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? versionCheckFailure,
-    TResult Function()? serverFailure,
-    TResult Function()? dataParsingFailure,
-    TResult Function()? noConnectionFailure,
-    TResult Function()? notFoundFailure,
-    TResult Function()? noUserDataFailure,
-    TResult Function()? maxDiseaseFailure,
-    TResult Function()? maxConimalFailure,
-    TResult Function()? emptyListFailure,
-    TResult Function()? noSuchDataInListFailure,
-    TResult Function()? registerConimalFaiure,
-    TResult Function()? removeConimalFailure,
-    TResult Function()? getConimalListFailure,
-    TResult Function()? signInCredentialFailure,
-    TResult Function()? signInTokenFailure,
-    TResult Function()? naverSigninFailure,
-    TResult Function()? kakaoSigninFailure,
-    TResult Function()? googleSigninFailure,
-    TResult Function()? appleSigninFailure,
-    TResult Function()? emailSigninFailure,
-    TResult Function()? getUserFailure,
-    TResult Function()? wrongPasswordFailure,
-    TResult Function()? noEmailUserFailure,
-    TResult Function()? wrongTokenFailure,
-    TResult Function()? existingEmailFailure,
-    TResult Function()? userEnabledFailure,
-    TResult Function()? weakPasswordFailure,
-    TResult Function()? maxImageSizeFailure,
-    TResult Function()? maxImageNumFailure,
-    TResult Function()? noPostTypeSelectedFailure,
-    TResult Function()? noPostContentsFailure,
-    TResult Function()? notFoundPostFailure,
-    TResult Function()? notEditablePasswordFailure,
-    TResult Function()? userInfoUpdateFailure,
-    TResult Function()? permissionDeniedFailure,
-    TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? versionCheckFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function()? dataParsingFailure,
+    TResult? Function()? noConnectionFailure,
+    TResult? Function()? notFoundFailure,
+    TResult? Function()? noUserDataFailure,
+    TResult? Function()? maxDiseaseFailure,
+    TResult? Function()? maxConimalFailure,
+    TResult? Function()? emptyListFailure,
+    TResult? Function()? noSuchDataInListFailure,
+    TResult? Function()? registerConimalFaiure,
+    TResult? Function()? removeConimalFailure,
+    TResult? Function()? getConimalListFailure,
+    TResult? Function()? signInCredentialFailure,
+    TResult? Function()? signInTokenFailure,
+    TResult? Function()? naverSigninFailure,
+    TResult? Function()? kakaoSigninFailure,
+    TResult? Function()? googleSigninFailure,
+    TResult? Function()? appleSigninFailure,
+    TResult? Function()? emailSigninFailure,
+    TResult? Function()? getUserFailure,
+    TResult? Function()? wrongPasswordFailure,
+    TResult? Function()? noEmailUserFailure,
+    TResult? Function()? wrongTokenFailure,
+    TResult? Function()? existingEmailFailure,
+    TResult? Function()? userEnabledFailure,
+    TResult? Function()? weakPasswordFailure,
+    TResult? Function()? maxImageSizeFailure,
+    TResult? Function()? maxImageNumFailure,
+    TResult? Function()? noPostTypeSelectedFailure,
+    TResult? Function()? noPostContentsFailure,
+    TResult? Function()? notFoundPostFailure,
+    TResult? Function()? notEditablePasswordFailure,
+    TResult? Function()? userInfoUpdateFailure,
+    TResult? Function()? permissionDeniedFailure,
+    TResult? Function()? permissionPermanentlyDeniedFailure,
   }) {
     return googleSigninFailure?.call();
   }
@@ -6062,44 +6010,44 @@ class _$GoogleSigninFailure extends GoogleSigninFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(VersionCheckFailure value)? versionCheckFailure,
-    TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(DataParsingFailure value)? dataParsingFailure,
-    TResult Function(NoConnectionFailure value)? noConnectionFailure,
-    TResult Function(NotFoundFailure value)? notFoundFailure,
-    TResult Function(NoUserDataFailure value)? noUserDataFailure,
-    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
-    TResult Function(MaxConimalFailure value)? maxConimalFailure,
-    TResult Function(EmptyListFailure value)? emptyListFailure,
-    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
-    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
-    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
-    TResult Function(GetConimalListFailure value)? getConimalListFailure,
-    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
-    TResult Function(SignInTokenFailure value)? signInTokenFailure,
-    TResult Function(NaverSigninFailure value)? naverSigninFailure,
-    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
-    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
-    TResult Function(AppleSigninFailure value)? appleSigninFailure,
-    TResult Function(EmailSigninFailure value)? emailSigninFailure,
-    TResult Function(GetUserInfoFailure value)? getUserFailure,
-    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
-    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
-    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
-    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
-    TResult Function(UserEnabledFailure value)? userEnabledFailure,
-    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
-    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
-    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
-    TResult Function(NoPostTypeSelectedFailure value)?
+    TResult? Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult? Function(ServerFailure value)? serverFailure,
+    TResult? Function(DataParsingFailure value)? dataParsingFailure,
+    TResult? Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult? Function(NotFoundFailure value)? notFoundFailure,
+    TResult? Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult? Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult? Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult? Function(EmptyListFailure value)? emptyListFailure,
+    TResult? Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult? Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult? Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult? Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult? Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult? Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult? Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult? Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult? Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult? Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult? Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult? Function(GetUserInfoFailure value)? getUserFailure,
+    TResult? Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult? Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult? Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult? Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult? Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult? Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult? Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult? Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult? Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
-    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
-    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
-    TResult Function(NotEditablePasswordFailure value)?
+    TResult? Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult? Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult? Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
-    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
-    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
-    TResult Function(PermissionPermanentlyDeniedFailure value)?
+    TResult? Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
   }) {
     return googleSigninFailure?.call(this);
@@ -6170,14 +6118,11 @@ abstract class _$$AppleSigninFailureCopyWith<$Res> {
 
 /// @nodoc
 class __$$AppleSigninFailureCopyWithImpl<$Res>
-    extends _$FailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$AppleSigninFailure>
     implements _$$AppleSigninFailureCopyWith<$Res> {
   __$$AppleSigninFailureCopyWithImpl(
       _$AppleSigninFailure _value, $Res Function(_$AppleSigninFailure) _then)
-      : super(_value, (v) => _then(v as _$AppleSigninFailure));
-
-  @override
-  _$AppleSigninFailure get _value => super._value as _$AppleSigninFailure;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -6245,42 +6190,42 @@ class _$AppleSigninFailure extends AppleSigninFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? versionCheckFailure,
-    TResult Function()? serverFailure,
-    TResult Function()? dataParsingFailure,
-    TResult Function()? noConnectionFailure,
-    TResult Function()? notFoundFailure,
-    TResult Function()? noUserDataFailure,
-    TResult Function()? maxDiseaseFailure,
-    TResult Function()? maxConimalFailure,
-    TResult Function()? emptyListFailure,
-    TResult Function()? noSuchDataInListFailure,
-    TResult Function()? registerConimalFaiure,
-    TResult Function()? removeConimalFailure,
-    TResult Function()? getConimalListFailure,
-    TResult Function()? signInCredentialFailure,
-    TResult Function()? signInTokenFailure,
-    TResult Function()? naverSigninFailure,
-    TResult Function()? kakaoSigninFailure,
-    TResult Function()? googleSigninFailure,
-    TResult Function()? appleSigninFailure,
-    TResult Function()? emailSigninFailure,
-    TResult Function()? getUserFailure,
-    TResult Function()? wrongPasswordFailure,
-    TResult Function()? noEmailUserFailure,
-    TResult Function()? wrongTokenFailure,
-    TResult Function()? existingEmailFailure,
-    TResult Function()? userEnabledFailure,
-    TResult Function()? weakPasswordFailure,
-    TResult Function()? maxImageSizeFailure,
-    TResult Function()? maxImageNumFailure,
-    TResult Function()? noPostTypeSelectedFailure,
-    TResult Function()? noPostContentsFailure,
-    TResult Function()? notFoundPostFailure,
-    TResult Function()? notEditablePasswordFailure,
-    TResult Function()? userInfoUpdateFailure,
-    TResult Function()? permissionDeniedFailure,
-    TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? versionCheckFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function()? dataParsingFailure,
+    TResult? Function()? noConnectionFailure,
+    TResult? Function()? notFoundFailure,
+    TResult? Function()? noUserDataFailure,
+    TResult? Function()? maxDiseaseFailure,
+    TResult? Function()? maxConimalFailure,
+    TResult? Function()? emptyListFailure,
+    TResult? Function()? noSuchDataInListFailure,
+    TResult? Function()? registerConimalFaiure,
+    TResult? Function()? removeConimalFailure,
+    TResult? Function()? getConimalListFailure,
+    TResult? Function()? signInCredentialFailure,
+    TResult? Function()? signInTokenFailure,
+    TResult? Function()? naverSigninFailure,
+    TResult? Function()? kakaoSigninFailure,
+    TResult? Function()? googleSigninFailure,
+    TResult? Function()? appleSigninFailure,
+    TResult? Function()? emailSigninFailure,
+    TResult? Function()? getUserFailure,
+    TResult? Function()? wrongPasswordFailure,
+    TResult? Function()? noEmailUserFailure,
+    TResult? Function()? wrongTokenFailure,
+    TResult? Function()? existingEmailFailure,
+    TResult? Function()? userEnabledFailure,
+    TResult? Function()? weakPasswordFailure,
+    TResult? Function()? maxImageSizeFailure,
+    TResult? Function()? maxImageNumFailure,
+    TResult? Function()? noPostTypeSelectedFailure,
+    TResult? Function()? noPostContentsFailure,
+    TResult? Function()? notFoundPostFailure,
+    TResult? Function()? notEditablePasswordFailure,
+    TResult? Function()? userInfoUpdateFailure,
+    TResult? Function()? permissionDeniedFailure,
+    TResult? Function()? permissionPermanentlyDeniedFailure,
   }) {
     return appleSigninFailure?.call();
   }
@@ -6388,44 +6333,44 @@ class _$AppleSigninFailure extends AppleSigninFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(VersionCheckFailure value)? versionCheckFailure,
-    TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(DataParsingFailure value)? dataParsingFailure,
-    TResult Function(NoConnectionFailure value)? noConnectionFailure,
-    TResult Function(NotFoundFailure value)? notFoundFailure,
-    TResult Function(NoUserDataFailure value)? noUserDataFailure,
-    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
-    TResult Function(MaxConimalFailure value)? maxConimalFailure,
-    TResult Function(EmptyListFailure value)? emptyListFailure,
-    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
-    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
-    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
-    TResult Function(GetConimalListFailure value)? getConimalListFailure,
-    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
-    TResult Function(SignInTokenFailure value)? signInTokenFailure,
-    TResult Function(NaverSigninFailure value)? naverSigninFailure,
-    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
-    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
-    TResult Function(AppleSigninFailure value)? appleSigninFailure,
-    TResult Function(EmailSigninFailure value)? emailSigninFailure,
-    TResult Function(GetUserInfoFailure value)? getUserFailure,
-    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
-    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
-    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
-    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
-    TResult Function(UserEnabledFailure value)? userEnabledFailure,
-    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
-    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
-    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
-    TResult Function(NoPostTypeSelectedFailure value)?
+    TResult? Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult? Function(ServerFailure value)? serverFailure,
+    TResult? Function(DataParsingFailure value)? dataParsingFailure,
+    TResult? Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult? Function(NotFoundFailure value)? notFoundFailure,
+    TResult? Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult? Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult? Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult? Function(EmptyListFailure value)? emptyListFailure,
+    TResult? Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult? Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult? Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult? Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult? Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult? Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult? Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult? Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult? Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult? Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult? Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult? Function(GetUserInfoFailure value)? getUserFailure,
+    TResult? Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult? Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult? Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult? Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult? Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult? Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult? Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult? Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult? Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
-    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
-    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
-    TResult Function(NotEditablePasswordFailure value)?
+    TResult? Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult? Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult? Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
-    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
-    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
-    TResult Function(PermissionPermanentlyDeniedFailure value)?
+    TResult? Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
   }) {
     return appleSigninFailure?.call(this);
@@ -6496,14 +6441,11 @@ abstract class _$$EmailSigninFailureCopyWith<$Res> {
 
 /// @nodoc
 class __$$EmailSigninFailureCopyWithImpl<$Res>
-    extends _$FailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$EmailSigninFailure>
     implements _$$EmailSigninFailureCopyWith<$Res> {
   __$$EmailSigninFailureCopyWithImpl(
       _$EmailSigninFailure _value, $Res Function(_$EmailSigninFailure) _then)
-      : super(_value, (v) => _then(v as _$EmailSigninFailure));
-
-  @override
-  _$EmailSigninFailure get _value => super._value as _$EmailSigninFailure;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -6571,42 +6513,42 @@ class _$EmailSigninFailure extends EmailSigninFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? versionCheckFailure,
-    TResult Function()? serverFailure,
-    TResult Function()? dataParsingFailure,
-    TResult Function()? noConnectionFailure,
-    TResult Function()? notFoundFailure,
-    TResult Function()? noUserDataFailure,
-    TResult Function()? maxDiseaseFailure,
-    TResult Function()? maxConimalFailure,
-    TResult Function()? emptyListFailure,
-    TResult Function()? noSuchDataInListFailure,
-    TResult Function()? registerConimalFaiure,
-    TResult Function()? removeConimalFailure,
-    TResult Function()? getConimalListFailure,
-    TResult Function()? signInCredentialFailure,
-    TResult Function()? signInTokenFailure,
-    TResult Function()? naverSigninFailure,
-    TResult Function()? kakaoSigninFailure,
-    TResult Function()? googleSigninFailure,
-    TResult Function()? appleSigninFailure,
-    TResult Function()? emailSigninFailure,
-    TResult Function()? getUserFailure,
-    TResult Function()? wrongPasswordFailure,
-    TResult Function()? noEmailUserFailure,
-    TResult Function()? wrongTokenFailure,
-    TResult Function()? existingEmailFailure,
-    TResult Function()? userEnabledFailure,
-    TResult Function()? weakPasswordFailure,
-    TResult Function()? maxImageSizeFailure,
-    TResult Function()? maxImageNumFailure,
-    TResult Function()? noPostTypeSelectedFailure,
-    TResult Function()? noPostContentsFailure,
-    TResult Function()? notFoundPostFailure,
-    TResult Function()? notEditablePasswordFailure,
-    TResult Function()? userInfoUpdateFailure,
-    TResult Function()? permissionDeniedFailure,
-    TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? versionCheckFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function()? dataParsingFailure,
+    TResult? Function()? noConnectionFailure,
+    TResult? Function()? notFoundFailure,
+    TResult? Function()? noUserDataFailure,
+    TResult? Function()? maxDiseaseFailure,
+    TResult? Function()? maxConimalFailure,
+    TResult? Function()? emptyListFailure,
+    TResult? Function()? noSuchDataInListFailure,
+    TResult? Function()? registerConimalFaiure,
+    TResult? Function()? removeConimalFailure,
+    TResult? Function()? getConimalListFailure,
+    TResult? Function()? signInCredentialFailure,
+    TResult? Function()? signInTokenFailure,
+    TResult? Function()? naverSigninFailure,
+    TResult? Function()? kakaoSigninFailure,
+    TResult? Function()? googleSigninFailure,
+    TResult? Function()? appleSigninFailure,
+    TResult? Function()? emailSigninFailure,
+    TResult? Function()? getUserFailure,
+    TResult? Function()? wrongPasswordFailure,
+    TResult? Function()? noEmailUserFailure,
+    TResult? Function()? wrongTokenFailure,
+    TResult? Function()? existingEmailFailure,
+    TResult? Function()? userEnabledFailure,
+    TResult? Function()? weakPasswordFailure,
+    TResult? Function()? maxImageSizeFailure,
+    TResult? Function()? maxImageNumFailure,
+    TResult? Function()? noPostTypeSelectedFailure,
+    TResult? Function()? noPostContentsFailure,
+    TResult? Function()? notFoundPostFailure,
+    TResult? Function()? notEditablePasswordFailure,
+    TResult? Function()? userInfoUpdateFailure,
+    TResult? Function()? permissionDeniedFailure,
+    TResult? Function()? permissionPermanentlyDeniedFailure,
   }) {
     return emailSigninFailure?.call();
   }
@@ -6714,44 +6656,44 @@ class _$EmailSigninFailure extends EmailSigninFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(VersionCheckFailure value)? versionCheckFailure,
-    TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(DataParsingFailure value)? dataParsingFailure,
-    TResult Function(NoConnectionFailure value)? noConnectionFailure,
-    TResult Function(NotFoundFailure value)? notFoundFailure,
-    TResult Function(NoUserDataFailure value)? noUserDataFailure,
-    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
-    TResult Function(MaxConimalFailure value)? maxConimalFailure,
-    TResult Function(EmptyListFailure value)? emptyListFailure,
-    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
-    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
-    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
-    TResult Function(GetConimalListFailure value)? getConimalListFailure,
-    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
-    TResult Function(SignInTokenFailure value)? signInTokenFailure,
-    TResult Function(NaverSigninFailure value)? naverSigninFailure,
-    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
-    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
-    TResult Function(AppleSigninFailure value)? appleSigninFailure,
-    TResult Function(EmailSigninFailure value)? emailSigninFailure,
-    TResult Function(GetUserInfoFailure value)? getUserFailure,
-    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
-    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
-    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
-    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
-    TResult Function(UserEnabledFailure value)? userEnabledFailure,
-    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
-    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
-    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
-    TResult Function(NoPostTypeSelectedFailure value)?
+    TResult? Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult? Function(ServerFailure value)? serverFailure,
+    TResult? Function(DataParsingFailure value)? dataParsingFailure,
+    TResult? Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult? Function(NotFoundFailure value)? notFoundFailure,
+    TResult? Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult? Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult? Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult? Function(EmptyListFailure value)? emptyListFailure,
+    TResult? Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult? Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult? Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult? Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult? Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult? Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult? Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult? Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult? Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult? Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult? Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult? Function(GetUserInfoFailure value)? getUserFailure,
+    TResult? Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult? Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult? Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult? Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult? Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult? Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult? Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult? Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult? Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
-    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
-    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
-    TResult Function(NotEditablePasswordFailure value)?
+    TResult? Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult? Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult? Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
-    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
-    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
-    TResult Function(PermissionPermanentlyDeniedFailure value)?
+    TResult? Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
   }) {
     return emailSigninFailure?.call(this);
@@ -6822,14 +6764,11 @@ abstract class _$$GetUserInfoFailureCopyWith<$Res> {
 
 /// @nodoc
 class __$$GetUserInfoFailureCopyWithImpl<$Res>
-    extends _$FailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$GetUserInfoFailure>
     implements _$$GetUserInfoFailureCopyWith<$Res> {
   __$$GetUserInfoFailureCopyWithImpl(
       _$GetUserInfoFailure _value, $Res Function(_$GetUserInfoFailure) _then)
-      : super(_value, (v) => _then(v as _$GetUserInfoFailure));
-
-  @override
-  _$GetUserInfoFailure get _value => super._value as _$GetUserInfoFailure;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -6897,42 +6836,42 @@ class _$GetUserInfoFailure extends GetUserInfoFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? versionCheckFailure,
-    TResult Function()? serverFailure,
-    TResult Function()? dataParsingFailure,
-    TResult Function()? noConnectionFailure,
-    TResult Function()? notFoundFailure,
-    TResult Function()? noUserDataFailure,
-    TResult Function()? maxDiseaseFailure,
-    TResult Function()? maxConimalFailure,
-    TResult Function()? emptyListFailure,
-    TResult Function()? noSuchDataInListFailure,
-    TResult Function()? registerConimalFaiure,
-    TResult Function()? removeConimalFailure,
-    TResult Function()? getConimalListFailure,
-    TResult Function()? signInCredentialFailure,
-    TResult Function()? signInTokenFailure,
-    TResult Function()? naverSigninFailure,
-    TResult Function()? kakaoSigninFailure,
-    TResult Function()? googleSigninFailure,
-    TResult Function()? appleSigninFailure,
-    TResult Function()? emailSigninFailure,
-    TResult Function()? getUserFailure,
-    TResult Function()? wrongPasswordFailure,
-    TResult Function()? noEmailUserFailure,
-    TResult Function()? wrongTokenFailure,
-    TResult Function()? existingEmailFailure,
-    TResult Function()? userEnabledFailure,
-    TResult Function()? weakPasswordFailure,
-    TResult Function()? maxImageSizeFailure,
-    TResult Function()? maxImageNumFailure,
-    TResult Function()? noPostTypeSelectedFailure,
-    TResult Function()? noPostContentsFailure,
-    TResult Function()? notFoundPostFailure,
-    TResult Function()? notEditablePasswordFailure,
-    TResult Function()? userInfoUpdateFailure,
-    TResult Function()? permissionDeniedFailure,
-    TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? versionCheckFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function()? dataParsingFailure,
+    TResult? Function()? noConnectionFailure,
+    TResult? Function()? notFoundFailure,
+    TResult? Function()? noUserDataFailure,
+    TResult? Function()? maxDiseaseFailure,
+    TResult? Function()? maxConimalFailure,
+    TResult? Function()? emptyListFailure,
+    TResult? Function()? noSuchDataInListFailure,
+    TResult? Function()? registerConimalFaiure,
+    TResult? Function()? removeConimalFailure,
+    TResult? Function()? getConimalListFailure,
+    TResult? Function()? signInCredentialFailure,
+    TResult? Function()? signInTokenFailure,
+    TResult? Function()? naverSigninFailure,
+    TResult? Function()? kakaoSigninFailure,
+    TResult? Function()? googleSigninFailure,
+    TResult? Function()? appleSigninFailure,
+    TResult? Function()? emailSigninFailure,
+    TResult? Function()? getUserFailure,
+    TResult? Function()? wrongPasswordFailure,
+    TResult? Function()? noEmailUserFailure,
+    TResult? Function()? wrongTokenFailure,
+    TResult? Function()? existingEmailFailure,
+    TResult? Function()? userEnabledFailure,
+    TResult? Function()? weakPasswordFailure,
+    TResult? Function()? maxImageSizeFailure,
+    TResult? Function()? maxImageNumFailure,
+    TResult? Function()? noPostTypeSelectedFailure,
+    TResult? Function()? noPostContentsFailure,
+    TResult? Function()? notFoundPostFailure,
+    TResult? Function()? notEditablePasswordFailure,
+    TResult? Function()? userInfoUpdateFailure,
+    TResult? Function()? permissionDeniedFailure,
+    TResult? Function()? permissionPermanentlyDeniedFailure,
   }) {
     return getUserFailure?.call();
   }
@@ -7040,44 +6979,44 @@ class _$GetUserInfoFailure extends GetUserInfoFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(VersionCheckFailure value)? versionCheckFailure,
-    TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(DataParsingFailure value)? dataParsingFailure,
-    TResult Function(NoConnectionFailure value)? noConnectionFailure,
-    TResult Function(NotFoundFailure value)? notFoundFailure,
-    TResult Function(NoUserDataFailure value)? noUserDataFailure,
-    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
-    TResult Function(MaxConimalFailure value)? maxConimalFailure,
-    TResult Function(EmptyListFailure value)? emptyListFailure,
-    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
-    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
-    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
-    TResult Function(GetConimalListFailure value)? getConimalListFailure,
-    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
-    TResult Function(SignInTokenFailure value)? signInTokenFailure,
-    TResult Function(NaverSigninFailure value)? naverSigninFailure,
-    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
-    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
-    TResult Function(AppleSigninFailure value)? appleSigninFailure,
-    TResult Function(EmailSigninFailure value)? emailSigninFailure,
-    TResult Function(GetUserInfoFailure value)? getUserFailure,
-    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
-    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
-    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
-    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
-    TResult Function(UserEnabledFailure value)? userEnabledFailure,
-    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
-    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
-    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
-    TResult Function(NoPostTypeSelectedFailure value)?
+    TResult? Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult? Function(ServerFailure value)? serverFailure,
+    TResult? Function(DataParsingFailure value)? dataParsingFailure,
+    TResult? Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult? Function(NotFoundFailure value)? notFoundFailure,
+    TResult? Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult? Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult? Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult? Function(EmptyListFailure value)? emptyListFailure,
+    TResult? Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult? Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult? Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult? Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult? Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult? Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult? Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult? Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult? Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult? Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult? Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult? Function(GetUserInfoFailure value)? getUserFailure,
+    TResult? Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult? Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult? Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult? Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult? Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult? Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult? Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult? Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult? Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
-    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
-    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
-    TResult Function(NotEditablePasswordFailure value)?
+    TResult? Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult? Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult? Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
-    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
-    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
-    TResult Function(PermissionPermanentlyDeniedFailure value)?
+    TResult? Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
   }) {
     return getUserFailure?.call(this);
@@ -7148,14 +7087,11 @@ abstract class _$$WrongPasswordFailureCopyWith<$Res> {
 
 /// @nodoc
 class __$$WrongPasswordFailureCopyWithImpl<$Res>
-    extends _$FailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$WrongPasswordFailure>
     implements _$$WrongPasswordFailureCopyWith<$Res> {
   __$$WrongPasswordFailureCopyWithImpl(_$WrongPasswordFailure _value,
       $Res Function(_$WrongPasswordFailure) _then)
-      : super(_value, (v) => _then(v as _$WrongPasswordFailure));
-
-  @override
-  _$WrongPasswordFailure get _value => super._value as _$WrongPasswordFailure;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -7223,42 +7159,42 @@ class _$WrongPasswordFailure extends WrongPasswordFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? versionCheckFailure,
-    TResult Function()? serverFailure,
-    TResult Function()? dataParsingFailure,
-    TResult Function()? noConnectionFailure,
-    TResult Function()? notFoundFailure,
-    TResult Function()? noUserDataFailure,
-    TResult Function()? maxDiseaseFailure,
-    TResult Function()? maxConimalFailure,
-    TResult Function()? emptyListFailure,
-    TResult Function()? noSuchDataInListFailure,
-    TResult Function()? registerConimalFaiure,
-    TResult Function()? removeConimalFailure,
-    TResult Function()? getConimalListFailure,
-    TResult Function()? signInCredentialFailure,
-    TResult Function()? signInTokenFailure,
-    TResult Function()? naverSigninFailure,
-    TResult Function()? kakaoSigninFailure,
-    TResult Function()? googleSigninFailure,
-    TResult Function()? appleSigninFailure,
-    TResult Function()? emailSigninFailure,
-    TResult Function()? getUserFailure,
-    TResult Function()? wrongPasswordFailure,
-    TResult Function()? noEmailUserFailure,
-    TResult Function()? wrongTokenFailure,
-    TResult Function()? existingEmailFailure,
-    TResult Function()? userEnabledFailure,
-    TResult Function()? weakPasswordFailure,
-    TResult Function()? maxImageSizeFailure,
-    TResult Function()? maxImageNumFailure,
-    TResult Function()? noPostTypeSelectedFailure,
-    TResult Function()? noPostContentsFailure,
-    TResult Function()? notFoundPostFailure,
-    TResult Function()? notEditablePasswordFailure,
-    TResult Function()? userInfoUpdateFailure,
-    TResult Function()? permissionDeniedFailure,
-    TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? versionCheckFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function()? dataParsingFailure,
+    TResult? Function()? noConnectionFailure,
+    TResult? Function()? notFoundFailure,
+    TResult? Function()? noUserDataFailure,
+    TResult? Function()? maxDiseaseFailure,
+    TResult? Function()? maxConimalFailure,
+    TResult? Function()? emptyListFailure,
+    TResult? Function()? noSuchDataInListFailure,
+    TResult? Function()? registerConimalFaiure,
+    TResult? Function()? removeConimalFailure,
+    TResult? Function()? getConimalListFailure,
+    TResult? Function()? signInCredentialFailure,
+    TResult? Function()? signInTokenFailure,
+    TResult? Function()? naverSigninFailure,
+    TResult? Function()? kakaoSigninFailure,
+    TResult? Function()? googleSigninFailure,
+    TResult? Function()? appleSigninFailure,
+    TResult? Function()? emailSigninFailure,
+    TResult? Function()? getUserFailure,
+    TResult? Function()? wrongPasswordFailure,
+    TResult? Function()? noEmailUserFailure,
+    TResult? Function()? wrongTokenFailure,
+    TResult? Function()? existingEmailFailure,
+    TResult? Function()? userEnabledFailure,
+    TResult? Function()? weakPasswordFailure,
+    TResult? Function()? maxImageSizeFailure,
+    TResult? Function()? maxImageNumFailure,
+    TResult? Function()? noPostTypeSelectedFailure,
+    TResult? Function()? noPostContentsFailure,
+    TResult? Function()? notFoundPostFailure,
+    TResult? Function()? notEditablePasswordFailure,
+    TResult? Function()? userInfoUpdateFailure,
+    TResult? Function()? permissionDeniedFailure,
+    TResult? Function()? permissionPermanentlyDeniedFailure,
   }) {
     return wrongPasswordFailure?.call();
   }
@@ -7366,44 +7302,44 @@ class _$WrongPasswordFailure extends WrongPasswordFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(VersionCheckFailure value)? versionCheckFailure,
-    TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(DataParsingFailure value)? dataParsingFailure,
-    TResult Function(NoConnectionFailure value)? noConnectionFailure,
-    TResult Function(NotFoundFailure value)? notFoundFailure,
-    TResult Function(NoUserDataFailure value)? noUserDataFailure,
-    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
-    TResult Function(MaxConimalFailure value)? maxConimalFailure,
-    TResult Function(EmptyListFailure value)? emptyListFailure,
-    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
-    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
-    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
-    TResult Function(GetConimalListFailure value)? getConimalListFailure,
-    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
-    TResult Function(SignInTokenFailure value)? signInTokenFailure,
-    TResult Function(NaverSigninFailure value)? naverSigninFailure,
-    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
-    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
-    TResult Function(AppleSigninFailure value)? appleSigninFailure,
-    TResult Function(EmailSigninFailure value)? emailSigninFailure,
-    TResult Function(GetUserInfoFailure value)? getUserFailure,
-    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
-    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
-    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
-    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
-    TResult Function(UserEnabledFailure value)? userEnabledFailure,
-    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
-    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
-    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
-    TResult Function(NoPostTypeSelectedFailure value)?
+    TResult? Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult? Function(ServerFailure value)? serverFailure,
+    TResult? Function(DataParsingFailure value)? dataParsingFailure,
+    TResult? Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult? Function(NotFoundFailure value)? notFoundFailure,
+    TResult? Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult? Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult? Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult? Function(EmptyListFailure value)? emptyListFailure,
+    TResult? Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult? Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult? Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult? Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult? Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult? Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult? Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult? Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult? Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult? Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult? Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult? Function(GetUserInfoFailure value)? getUserFailure,
+    TResult? Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult? Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult? Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult? Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult? Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult? Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult? Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult? Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult? Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
-    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
-    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
-    TResult Function(NotEditablePasswordFailure value)?
+    TResult? Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult? Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult? Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
-    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
-    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
-    TResult Function(PermissionPermanentlyDeniedFailure value)?
+    TResult? Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
   }) {
     return wrongPasswordFailure?.call(this);
@@ -7474,14 +7410,11 @@ abstract class _$$NoEmailUserFailureCopyWith<$Res> {
 
 /// @nodoc
 class __$$NoEmailUserFailureCopyWithImpl<$Res>
-    extends _$FailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$NoEmailUserFailure>
     implements _$$NoEmailUserFailureCopyWith<$Res> {
   __$$NoEmailUserFailureCopyWithImpl(
       _$NoEmailUserFailure _value, $Res Function(_$NoEmailUserFailure) _then)
-      : super(_value, (v) => _then(v as _$NoEmailUserFailure));
-
-  @override
-  _$NoEmailUserFailure get _value => super._value as _$NoEmailUserFailure;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -7549,42 +7482,42 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? versionCheckFailure,
-    TResult Function()? serverFailure,
-    TResult Function()? dataParsingFailure,
-    TResult Function()? noConnectionFailure,
-    TResult Function()? notFoundFailure,
-    TResult Function()? noUserDataFailure,
-    TResult Function()? maxDiseaseFailure,
-    TResult Function()? maxConimalFailure,
-    TResult Function()? emptyListFailure,
-    TResult Function()? noSuchDataInListFailure,
-    TResult Function()? registerConimalFaiure,
-    TResult Function()? removeConimalFailure,
-    TResult Function()? getConimalListFailure,
-    TResult Function()? signInCredentialFailure,
-    TResult Function()? signInTokenFailure,
-    TResult Function()? naverSigninFailure,
-    TResult Function()? kakaoSigninFailure,
-    TResult Function()? googleSigninFailure,
-    TResult Function()? appleSigninFailure,
-    TResult Function()? emailSigninFailure,
-    TResult Function()? getUserFailure,
-    TResult Function()? wrongPasswordFailure,
-    TResult Function()? noEmailUserFailure,
-    TResult Function()? wrongTokenFailure,
-    TResult Function()? existingEmailFailure,
-    TResult Function()? userEnabledFailure,
-    TResult Function()? weakPasswordFailure,
-    TResult Function()? maxImageSizeFailure,
-    TResult Function()? maxImageNumFailure,
-    TResult Function()? noPostTypeSelectedFailure,
-    TResult Function()? noPostContentsFailure,
-    TResult Function()? notFoundPostFailure,
-    TResult Function()? notEditablePasswordFailure,
-    TResult Function()? userInfoUpdateFailure,
-    TResult Function()? permissionDeniedFailure,
-    TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? versionCheckFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function()? dataParsingFailure,
+    TResult? Function()? noConnectionFailure,
+    TResult? Function()? notFoundFailure,
+    TResult? Function()? noUserDataFailure,
+    TResult? Function()? maxDiseaseFailure,
+    TResult? Function()? maxConimalFailure,
+    TResult? Function()? emptyListFailure,
+    TResult? Function()? noSuchDataInListFailure,
+    TResult? Function()? registerConimalFaiure,
+    TResult? Function()? removeConimalFailure,
+    TResult? Function()? getConimalListFailure,
+    TResult? Function()? signInCredentialFailure,
+    TResult? Function()? signInTokenFailure,
+    TResult? Function()? naverSigninFailure,
+    TResult? Function()? kakaoSigninFailure,
+    TResult? Function()? googleSigninFailure,
+    TResult? Function()? appleSigninFailure,
+    TResult? Function()? emailSigninFailure,
+    TResult? Function()? getUserFailure,
+    TResult? Function()? wrongPasswordFailure,
+    TResult? Function()? noEmailUserFailure,
+    TResult? Function()? wrongTokenFailure,
+    TResult? Function()? existingEmailFailure,
+    TResult? Function()? userEnabledFailure,
+    TResult? Function()? weakPasswordFailure,
+    TResult? Function()? maxImageSizeFailure,
+    TResult? Function()? maxImageNumFailure,
+    TResult? Function()? noPostTypeSelectedFailure,
+    TResult? Function()? noPostContentsFailure,
+    TResult? Function()? notFoundPostFailure,
+    TResult? Function()? notEditablePasswordFailure,
+    TResult? Function()? userInfoUpdateFailure,
+    TResult? Function()? permissionDeniedFailure,
+    TResult? Function()? permissionPermanentlyDeniedFailure,
   }) {
     return noEmailUserFailure?.call();
   }
@@ -7692,44 +7625,44 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(VersionCheckFailure value)? versionCheckFailure,
-    TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(DataParsingFailure value)? dataParsingFailure,
-    TResult Function(NoConnectionFailure value)? noConnectionFailure,
-    TResult Function(NotFoundFailure value)? notFoundFailure,
-    TResult Function(NoUserDataFailure value)? noUserDataFailure,
-    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
-    TResult Function(MaxConimalFailure value)? maxConimalFailure,
-    TResult Function(EmptyListFailure value)? emptyListFailure,
-    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
-    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
-    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
-    TResult Function(GetConimalListFailure value)? getConimalListFailure,
-    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
-    TResult Function(SignInTokenFailure value)? signInTokenFailure,
-    TResult Function(NaverSigninFailure value)? naverSigninFailure,
-    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
-    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
-    TResult Function(AppleSigninFailure value)? appleSigninFailure,
-    TResult Function(EmailSigninFailure value)? emailSigninFailure,
-    TResult Function(GetUserInfoFailure value)? getUserFailure,
-    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
-    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
-    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
-    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
-    TResult Function(UserEnabledFailure value)? userEnabledFailure,
-    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
-    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
-    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
-    TResult Function(NoPostTypeSelectedFailure value)?
+    TResult? Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult? Function(ServerFailure value)? serverFailure,
+    TResult? Function(DataParsingFailure value)? dataParsingFailure,
+    TResult? Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult? Function(NotFoundFailure value)? notFoundFailure,
+    TResult? Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult? Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult? Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult? Function(EmptyListFailure value)? emptyListFailure,
+    TResult? Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult? Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult? Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult? Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult? Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult? Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult? Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult? Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult? Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult? Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult? Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult? Function(GetUserInfoFailure value)? getUserFailure,
+    TResult? Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult? Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult? Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult? Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult? Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult? Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult? Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult? Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult? Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
-    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
-    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
-    TResult Function(NotEditablePasswordFailure value)?
+    TResult? Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult? Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult? Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
-    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
-    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
-    TResult Function(PermissionPermanentlyDeniedFailure value)?
+    TResult? Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
   }) {
     return noEmailUserFailure?.call(this);
@@ -7800,14 +7733,11 @@ abstract class _$$WrongTokenFailureCopyWith<$Res> {
 
 /// @nodoc
 class __$$WrongTokenFailureCopyWithImpl<$Res>
-    extends _$FailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$WrongTokenFailure>
     implements _$$WrongTokenFailureCopyWith<$Res> {
   __$$WrongTokenFailureCopyWithImpl(
       _$WrongTokenFailure _value, $Res Function(_$WrongTokenFailure) _then)
-      : super(_value, (v) => _then(v as _$WrongTokenFailure));
-
-  @override
-  _$WrongTokenFailure get _value => super._value as _$WrongTokenFailure;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -7875,42 +7805,42 @@ class _$WrongTokenFailure extends WrongTokenFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? versionCheckFailure,
-    TResult Function()? serverFailure,
-    TResult Function()? dataParsingFailure,
-    TResult Function()? noConnectionFailure,
-    TResult Function()? notFoundFailure,
-    TResult Function()? noUserDataFailure,
-    TResult Function()? maxDiseaseFailure,
-    TResult Function()? maxConimalFailure,
-    TResult Function()? emptyListFailure,
-    TResult Function()? noSuchDataInListFailure,
-    TResult Function()? registerConimalFaiure,
-    TResult Function()? removeConimalFailure,
-    TResult Function()? getConimalListFailure,
-    TResult Function()? signInCredentialFailure,
-    TResult Function()? signInTokenFailure,
-    TResult Function()? naverSigninFailure,
-    TResult Function()? kakaoSigninFailure,
-    TResult Function()? googleSigninFailure,
-    TResult Function()? appleSigninFailure,
-    TResult Function()? emailSigninFailure,
-    TResult Function()? getUserFailure,
-    TResult Function()? wrongPasswordFailure,
-    TResult Function()? noEmailUserFailure,
-    TResult Function()? wrongTokenFailure,
-    TResult Function()? existingEmailFailure,
-    TResult Function()? userEnabledFailure,
-    TResult Function()? weakPasswordFailure,
-    TResult Function()? maxImageSizeFailure,
-    TResult Function()? maxImageNumFailure,
-    TResult Function()? noPostTypeSelectedFailure,
-    TResult Function()? noPostContentsFailure,
-    TResult Function()? notFoundPostFailure,
-    TResult Function()? notEditablePasswordFailure,
-    TResult Function()? userInfoUpdateFailure,
-    TResult Function()? permissionDeniedFailure,
-    TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? versionCheckFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function()? dataParsingFailure,
+    TResult? Function()? noConnectionFailure,
+    TResult? Function()? notFoundFailure,
+    TResult? Function()? noUserDataFailure,
+    TResult? Function()? maxDiseaseFailure,
+    TResult? Function()? maxConimalFailure,
+    TResult? Function()? emptyListFailure,
+    TResult? Function()? noSuchDataInListFailure,
+    TResult? Function()? registerConimalFaiure,
+    TResult? Function()? removeConimalFailure,
+    TResult? Function()? getConimalListFailure,
+    TResult? Function()? signInCredentialFailure,
+    TResult? Function()? signInTokenFailure,
+    TResult? Function()? naverSigninFailure,
+    TResult? Function()? kakaoSigninFailure,
+    TResult? Function()? googleSigninFailure,
+    TResult? Function()? appleSigninFailure,
+    TResult? Function()? emailSigninFailure,
+    TResult? Function()? getUserFailure,
+    TResult? Function()? wrongPasswordFailure,
+    TResult? Function()? noEmailUserFailure,
+    TResult? Function()? wrongTokenFailure,
+    TResult? Function()? existingEmailFailure,
+    TResult? Function()? userEnabledFailure,
+    TResult? Function()? weakPasswordFailure,
+    TResult? Function()? maxImageSizeFailure,
+    TResult? Function()? maxImageNumFailure,
+    TResult? Function()? noPostTypeSelectedFailure,
+    TResult? Function()? noPostContentsFailure,
+    TResult? Function()? notFoundPostFailure,
+    TResult? Function()? notEditablePasswordFailure,
+    TResult? Function()? userInfoUpdateFailure,
+    TResult? Function()? permissionDeniedFailure,
+    TResult? Function()? permissionPermanentlyDeniedFailure,
   }) {
     return wrongTokenFailure?.call();
   }
@@ -8018,44 +7948,44 @@ class _$WrongTokenFailure extends WrongTokenFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(VersionCheckFailure value)? versionCheckFailure,
-    TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(DataParsingFailure value)? dataParsingFailure,
-    TResult Function(NoConnectionFailure value)? noConnectionFailure,
-    TResult Function(NotFoundFailure value)? notFoundFailure,
-    TResult Function(NoUserDataFailure value)? noUserDataFailure,
-    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
-    TResult Function(MaxConimalFailure value)? maxConimalFailure,
-    TResult Function(EmptyListFailure value)? emptyListFailure,
-    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
-    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
-    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
-    TResult Function(GetConimalListFailure value)? getConimalListFailure,
-    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
-    TResult Function(SignInTokenFailure value)? signInTokenFailure,
-    TResult Function(NaverSigninFailure value)? naverSigninFailure,
-    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
-    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
-    TResult Function(AppleSigninFailure value)? appleSigninFailure,
-    TResult Function(EmailSigninFailure value)? emailSigninFailure,
-    TResult Function(GetUserInfoFailure value)? getUserFailure,
-    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
-    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
-    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
-    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
-    TResult Function(UserEnabledFailure value)? userEnabledFailure,
-    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
-    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
-    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
-    TResult Function(NoPostTypeSelectedFailure value)?
+    TResult? Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult? Function(ServerFailure value)? serverFailure,
+    TResult? Function(DataParsingFailure value)? dataParsingFailure,
+    TResult? Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult? Function(NotFoundFailure value)? notFoundFailure,
+    TResult? Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult? Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult? Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult? Function(EmptyListFailure value)? emptyListFailure,
+    TResult? Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult? Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult? Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult? Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult? Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult? Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult? Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult? Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult? Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult? Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult? Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult? Function(GetUserInfoFailure value)? getUserFailure,
+    TResult? Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult? Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult? Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult? Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult? Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult? Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult? Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult? Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult? Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
-    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
-    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
-    TResult Function(NotEditablePasswordFailure value)?
+    TResult? Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult? Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult? Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
-    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
-    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
-    TResult Function(PermissionPermanentlyDeniedFailure value)?
+    TResult? Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
   }) {
     return wrongTokenFailure?.call(this);
@@ -8126,14 +8056,11 @@ abstract class _$$ExistingEmailFailureCopyWith<$Res> {
 
 /// @nodoc
 class __$$ExistingEmailFailureCopyWithImpl<$Res>
-    extends _$FailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$ExistingEmailFailure>
     implements _$$ExistingEmailFailureCopyWith<$Res> {
   __$$ExistingEmailFailureCopyWithImpl(_$ExistingEmailFailure _value,
       $Res Function(_$ExistingEmailFailure) _then)
-      : super(_value, (v) => _then(v as _$ExistingEmailFailure));
-
-  @override
-  _$ExistingEmailFailure get _value => super._value as _$ExistingEmailFailure;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -8201,42 +8128,42 @@ class _$ExistingEmailFailure extends ExistingEmailFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? versionCheckFailure,
-    TResult Function()? serverFailure,
-    TResult Function()? dataParsingFailure,
-    TResult Function()? noConnectionFailure,
-    TResult Function()? notFoundFailure,
-    TResult Function()? noUserDataFailure,
-    TResult Function()? maxDiseaseFailure,
-    TResult Function()? maxConimalFailure,
-    TResult Function()? emptyListFailure,
-    TResult Function()? noSuchDataInListFailure,
-    TResult Function()? registerConimalFaiure,
-    TResult Function()? removeConimalFailure,
-    TResult Function()? getConimalListFailure,
-    TResult Function()? signInCredentialFailure,
-    TResult Function()? signInTokenFailure,
-    TResult Function()? naverSigninFailure,
-    TResult Function()? kakaoSigninFailure,
-    TResult Function()? googleSigninFailure,
-    TResult Function()? appleSigninFailure,
-    TResult Function()? emailSigninFailure,
-    TResult Function()? getUserFailure,
-    TResult Function()? wrongPasswordFailure,
-    TResult Function()? noEmailUserFailure,
-    TResult Function()? wrongTokenFailure,
-    TResult Function()? existingEmailFailure,
-    TResult Function()? userEnabledFailure,
-    TResult Function()? weakPasswordFailure,
-    TResult Function()? maxImageSizeFailure,
-    TResult Function()? maxImageNumFailure,
-    TResult Function()? noPostTypeSelectedFailure,
-    TResult Function()? noPostContentsFailure,
-    TResult Function()? notFoundPostFailure,
-    TResult Function()? notEditablePasswordFailure,
-    TResult Function()? userInfoUpdateFailure,
-    TResult Function()? permissionDeniedFailure,
-    TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? versionCheckFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function()? dataParsingFailure,
+    TResult? Function()? noConnectionFailure,
+    TResult? Function()? notFoundFailure,
+    TResult? Function()? noUserDataFailure,
+    TResult? Function()? maxDiseaseFailure,
+    TResult? Function()? maxConimalFailure,
+    TResult? Function()? emptyListFailure,
+    TResult? Function()? noSuchDataInListFailure,
+    TResult? Function()? registerConimalFaiure,
+    TResult? Function()? removeConimalFailure,
+    TResult? Function()? getConimalListFailure,
+    TResult? Function()? signInCredentialFailure,
+    TResult? Function()? signInTokenFailure,
+    TResult? Function()? naverSigninFailure,
+    TResult? Function()? kakaoSigninFailure,
+    TResult? Function()? googleSigninFailure,
+    TResult? Function()? appleSigninFailure,
+    TResult? Function()? emailSigninFailure,
+    TResult? Function()? getUserFailure,
+    TResult? Function()? wrongPasswordFailure,
+    TResult? Function()? noEmailUserFailure,
+    TResult? Function()? wrongTokenFailure,
+    TResult? Function()? existingEmailFailure,
+    TResult? Function()? userEnabledFailure,
+    TResult? Function()? weakPasswordFailure,
+    TResult? Function()? maxImageSizeFailure,
+    TResult? Function()? maxImageNumFailure,
+    TResult? Function()? noPostTypeSelectedFailure,
+    TResult? Function()? noPostContentsFailure,
+    TResult? Function()? notFoundPostFailure,
+    TResult? Function()? notEditablePasswordFailure,
+    TResult? Function()? userInfoUpdateFailure,
+    TResult? Function()? permissionDeniedFailure,
+    TResult? Function()? permissionPermanentlyDeniedFailure,
   }) {
     return existingEmailFailure?.call();
   }
@@ -8344,44 +8271,44 @@ class _$ExistingEmailFailure extends ExistingEmailFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(VersionCheckFailure value)? versionCheckFailure,
-    TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(DataParsingFailure value)? dataParsingFailure,
-    TResult Function(NoConnectionFailure value)? noConnectionFailure,
-    TResult Function(NotFoundFailure value)? notFoundFailure,
-    TResult Function(NoUserDataFailure value)? noUserDataFailure,
-    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
-    TResult Function(MaxConimalFailure value)? maxConimalFailure,
-    TResult Function(EmptyListFailure value)? emptyListFailure,
-    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
-    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
-    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
-    TResult Function(GetConimalListFailure value)? getConimalListFailure,
-    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
-    TResult Function(SignInTokenFailure value)? signInTokenFailure,
-    TResult Function(NaverSigninFailure value)? naverSigninFailure,
-    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
-    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
-    TResult Function(AppleSigninFailure value)? appleSigninFailure,
-    TResult Function(EmailSigninFailure value)? emailSigninFailure,
-    TResult Function(GetUserInfoFailure value)? getUserFailure,
-    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
-    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
-    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
-    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
-    TResult Function(UserEnabledFailure value)? userEnabledFailure,
-    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
-    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
-    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
-    TResult Function(NoPostTypeSelectedFailure value)?
+    TResult? Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult? Function(ServerFailure value)? serverFailure,
+    TResult? Function(DataParsingFailure value)? dataParsingFailure,
+    TResult? Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult? Function(NotFoundFailure value)? notFoundFailure,
+    TResult? Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult? Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult? Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult? Function(EmptyListFailure value)? emptyListFailure,
+    TResult? Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult? Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult? Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult? Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult? Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult? Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult? Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult? Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult? Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult? Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult? Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult? Function(GetUserInfoFailure value)? getUserFailure,
+    TResult? Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult? Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult? Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult? Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult? Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult? Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult? Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult? Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult? Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
-    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
-    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
-    TResult Function(NotEditablePasswordFailure value)?
+    TResult? Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult? Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult? Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
-    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
-    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
-    TResult Function(PermissionPermanentlyDeniedFailure value)?
+    TResult? Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
   }) {
     return existingEmailFailure?.call(this);
@@ -8452,14 +8379,11 @@ abstract class _$$UserEnabledFailureCopyWith<$Res> {
 
 /// @nodoc
 class __$$UserEnabledFailureCopyWithImpl<$Res>
-    extends _$FailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$UserEnabledFailure>
     implements _$$UserEnabledFailureCopyWith<$Res> {
   __$$UserEnabledFailureCopyWithImpl(
       _$UserEnabledFailure _value, $Res Function(_$UserEnabledFailure) _then)
-      : super(_value, (v) => _then(v as _$UserEnabledFailure));
-
-  @override
-  _$UserEnabledFailure get _value => super._value as _$UserEnabledFailure;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -8527,42 +8451,42 @@ class _$UserEnabledFailure extends UserEnabledFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? versionCheckFailure,
-    TResult Function()? serverFailure,
-    TResult Function()? dataParsingFailure,
-    TResult Function()? noConnectionFailure,
-    TResult Function()? notFoundFailure,
-    TResult Function()? noUserDataFailure,
-    TResult Function()? maxDiseaseFailure,
-    TResult Function()? maxConimalFailure,
-    TResult Function()? emptyListFailure,
-    TResult Function()? noSuchDataInListFailure,
-    TResult Function()? registerConimalFaiure,
-    TResult Function()? removeConimalFailure,
-    TResult Function()? getConimalListFailure,
-    TResult Function()? signInCredentialFailure,
-    TResult Function()? signInTokenFailure,
-    TResult Function()? naverSigninFailure,
-    TResult Function()? kakaoSigninFailure,
-    TResult Function()? googleSigninFailure,
-    TResult Function()? appleSigninFailure,
-    TResult Function()? emailSigninFailure,
-    TResult Function()? getUserFailure,
-    TResult Function()? wrongPasswordFailure,
-    TResult Function()? noEmailUserFailure,
-    TResult Function()? wrongTokenFailure,
-    TResult Function()? existingEmailFailure,
-    TResult Function()? userEnabledFailure,
-    TResult Function()? weakPasswordFailure,
-    TResult Function()? maxImageSizeFailure,
-    TResult Function()? maxImageNumFailure,
-    TResult Function()? noPostTypeSelectedFailure,
-    TResult Function()? noPostContentsFailure,
-    TResult Function()? notFoundPostFailure,
-    TResult Function()? notEditablePasswordFailure,
-    TResult Function()? userInfoUpdateFailure,
-    TResult Function()? permissionDeniedFailure,
-    TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? versionCheckFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function()? dataParsingFailure,
+    TResult? Function()? noConnectionFailure,
+    TResult? Function()? notFoundFailure,
+    TResult? Function()? noUserDataFailure,
+    TResult? Function()? maxDiseaseFailure,
+    TResult? Function()? maxConimalFailure,
+    TResult? Function()? emptyListFailure,
+    TResult? Function()? noSuchDataInListFailure,
+    TResult? Function()? registerConimalFaiure,
+    TResult? Function()? removeConimalFailure,
+    TResult? Function()? getConimalListFailure,
+    TResult? Function()? signInCredentialFailure,
+    TResult? Function()? signInTokenFailure,
+    TResult? Function()? naverSigninFailure,
+    TResult? Function()? kakaoSigninFailure,
+    TResult? Function()? googleSigninFailure,
+    TResult? Function()? appleSigninFailure,
+    TResult? Function()? emailSigninFailure,
+    TResult? Function()? getUserFailure,
+    TResult? Function()? wrongPasswordFailure,
+    TResult? Function()? noEmailUserFailure,
+    TResult? Function()? wrongTokenFailure,
+    TResult? Function()? existingEmailFailure,
+    TResult? Function()? userEnabledFailure,
+    TResult? Function()? weakPasswordFailure,
+    TResult? Function()? maxImageSizeFailure,
+    TResult? Function()? maxImageNumFailure,
+    TResult? Function()? noPostTypeSelectedFailure,
+    TResult? Function()? noPostContentsFailure,
+    TResult? Function()? notFoundPostFailure,
+    TResult? Function()? notEditablePasswordFailure,
+    TResult? Function()? userInfoUpdateFailure,
+    TResult? Function()? permissionDeniedFailure,
+    TResult? Function()? permissionPermanentlyDeniedFailure,
   }) {
     return userEnabledFailure?.call();
   }
@@ -8670,44 +8594,44 @@ class _$UserEnabledFailure extends UserEnabledFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(VersionCheckFailure value)? versionCheckFailure,
-    TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(DataParsingFailure value)? dataParsingFailure,
-    TResult Function(NoConnectionFailure value)? noConnectionFailure,
-    TResult Function(NotFoundFailure value)? notFoundFailure,
-    TResult Function(NoUserDataFailure value)? noUserDataFailure,
-    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
-    TResult Function(MaxConimalFailure value)? maxConimalFailure,
-    TResult Function(EmptyListFailure value)? emptyListFailure,
-    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
-    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
-    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
-    TResult Function(GetConimalListFailure value)? getConimalListFailure,
-    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
-    TResult Function(SignInTokenFailure value)? signInTokenFailure,
-    TResult Function(NaverSigninFailure value)? naverSigninFailure,
-    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
-    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
-    TResult Function(AppleSigninFailure value)? appleSigninFailure,
-    TResult Function(EmailSigninFailure value)? emailSigninFailure,
-    TResult Function(GetUserInfoFailure value)? getUserFailure,
-    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
-    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
-    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
-    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
-    TResult Function(UserEnabledFailure value)? userEnabledFailure,
-    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
-    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
-    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
-    TResult Function(NoPostTypeSelectedFailure value)?
+    TResult? Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult? Function(ServerFailure value)? serverFailure,
+    TResult? Function(DataParsingFailure value)? dataParsingFailure,
+    TResult? Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult? Function(NotFoundFailure value)? notFoundFailure,
+    TResult? Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult? Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult? Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult? Function(EmptyListFailure value)? emptyListFailure,
+    TResult? Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult? Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult? Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult? Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult? Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult? Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult? Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult? Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult? Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult? Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult? Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult? Function(GetUserInfoFailure value)? getUserFailure,
+    TResult? Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult? Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult? Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult? Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult? Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult? Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult? Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult? Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult? Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
-    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
-    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
-    TResult Function(NotEditablePasswordFailure value)?
+    TResult? Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult? Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult? Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
-    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
-    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
-    TResult Function(PermissionPermanentlyDeniedFailure value)?
+    TResult? Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
   }) {
     return userEnabledFailure?.call(this);
@@ -8778,14 +8702,11 @@ abstract class _$$WeakPasswordFailureCopyWith<$Res> {
 
 /// @nodoc
 class __$$WeakPasswordFailureCopyWithImpl<$Res>
-    extends _$FailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$WeakPasswordFailure>
     implements _$$WeakPasswordFailureCopyWith<$Res> {
   __$$WeakPasswordFailureCopyWithImpl(
       _$WeakPasswordFailure _value, $Res Function(_$WeakPasswordFailure) _then)
-      : super(_value, (v) => _then(v as _$WeakPasswordFailure));
-
-  @override
-  _$WeakPasswordFailure get _value => super._value as _$WeakPasswordFailure;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -8853,42 +8774,42 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? versionCheckFailure,
-    TResult Function()? serverFailure,
-    TResult Function()? dataParsingFailure,
-    TResult Function()? noConnectionFailure,
-    TResult Function()? notFoundFailure,
-    TResult Function()? noUserDataFailure,
-    TResult Function()? maxDiseaseFailure,
-    TResult Function()? maxConimalFailure,
-    TResult Function()? emptyListFailure,
-    TResult Function()? noSuchDataInListFailure,
-    TResult Function()? registerConimalFaiure,
-    TResult Function()? removeConimalFailure,
-    TResult Function()? getConimalListFailure,
-    TResult Function()? signInCredentialFailure,
-    TResult Function()? signInTokenFailure,
-    TResult Function()? naverSigninFailure,
-    TResult Function()? kakaoSigninFailure,
-    TResult Function()? googleSigninFailure,
-    TResult Function()? appleSigninFailure,
-    TResult Function()? emailSigninFailure,
-    TResult Function()? getUserFailure,
-    TResult Function()? wrongPasswordFailure,
-    TResult Function()? noEmailUserFailure,
-    TResult Function()? wrongTokenFailure,
-    TResult Function()? existingEmailFailure,
-    TResult Function()? userEnabledFailure,
-    TResult Function()? weakPasswordFailure,
-    TResult Function()? maxImageSizeFailure,
-    TResult Function()? maxImageNumFailure,
-    TResult Function()? noPostTypeSelectedFailure,
-    TResult Function()? noPostContentsFailure,
-    TResult Function()? notFoundPostFailure,
-    TResult Function()? notEditablePasswordFailure,
-    TResult Function()? userInfoUpdateFailure,
-    TResult Function()? permissionDeniedFailure,
-    TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? versionCheckFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function()? dataParsingFailure,
+    TResult? Function()? noConnectionFailure,
+    TResult? Function()? notFoundFailure,
+    TResult? Function()? noUserDataFailure,
+    TResult? Function()? maxDiseaseFailure,
+    TResult? Function()? maxConimalFailure,
+    TResult? Function()? emptyListFailure,
+    TResult? Function()? noSuchDataInListFailure,
+    TResult? Function()? registerConimalFaiure,
+    TResult? Function()? removeConimalFailure,
+    TResult? Function()? getConimalListFailure,
+    TResult? Function()? signInCredentialFailure,
+    TResult? Function()? signInTokenFailure,
+    TResult? Function()? naverSigninFailure,
+    TResult? Function()? kakaoSigninFailure,
+    TResult? Function()? googleSigninFailure,
+    TResult? Function()? appleSigninFailure,
+    TResult? Function()? emailSigninFailure,
+    TResult? Function()? getUserFailure,
+    TResult? Function()? wrongPasswordFailure,
+    TResult? Function()? noEmailUserFailure,
+    TResult? Function()? wrongTokenFailure,
+    TResult? Function()? existingEmailFailure,
+    TResult? Function()? userEnabledFailure,
+    TResult? Function()? weakPasswordFailure,
+    TResult? Function()? maxImageSizeFailure,
+    TResult? Function()? maxImageNumFailure,
+    TResult? Function()? noPostTypeSelectedFailure,
+    TResult? Function()? noPostContentsFailure,
+    TResult? Function()? notFoundPostFailure,
+    TResult? Function()? notEditablePasswordFailure,
+    TResult? Function()? userInfoUpdateFailure,
+    TResult? Function()? permissionDeniedFailure,
+    TResult? Function()? permissionPermanentlyDeniedFailure,
   }) {
     return weakPasswordFailure?.call();
   }
@@ -8996,44 +8917,44 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(VersionCheckFailure value)? versionCheckFailure,
-    TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(DataParsingFailure value)? dataParsingFailure,
-    TResult Function(NoConnectionFailure value)? noConnectionFailure,
-    TResult Function(NotFoundFailure value)? notFoundFailure,
-    TResult Function(NoUserDataFailure value)? noUserDataFailure,
-    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
-    TResult Function(MaxConimalFailure value)? maxConimalFailure,
-    TResult Function(EmptyListFailure value)? emptyListFailure,
-    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
-    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
-    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
-    TResult Function(GetConimalListFailure value)? getConimalListFailure,
-    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
-    TResult Function(SignInTokenFailure value)? signInTokenFailure,
-    TResult Function(NaverSigninFailure value)? naverSigninFailure,
-    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
-    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
-    TResult Function(AppleSigninFailure value)? appleSigninFailure,
-    TResult Function(EmailSigninFailure value)? emailSigninFailure,
-    TResult Function(GetUserInfoFailure value)? getUserFailure,
-    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
-    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
-    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
-    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
-    TResult Function(UserEnabledFailure value)? userEnabledFailure,
-    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
-    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
-    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
-    TResult Function(NoPostTypeSelectedFailure value)?
+    TResult? Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult? Function(ServerFailure value)? serverFailure,
+    TResult? Function(DataParsingFailure value)? dataParsingFailure,
+    TResult? Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult? Function(NotFoundFailure value)? notFoundFailure,
+    TResult? Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult? Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult? Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult? Function(EmptyListFailure value)? emptyListFailure,
+    TResult? Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult? Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult? Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult? Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult? Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult? Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult? Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult? Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult? Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult? Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult? Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult? Function(GetUserInfoFailure value)? getUserFailure,
+    TResult? Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult? Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult? Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult? Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult? Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult? Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult? Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult? Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult? Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
-    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
-    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
-    TResult Function(NotEditablePasswordFailure value)?
+    TResult? Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult? Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult? Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
-    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
-    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
-    TResult Function(PermissionPermanentlyDeniedFailure value)?
+    TResult? Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
   }) {
     return weakPasswordFailure?.call(this);
@@ -9104,14 +9025,11 @@ abstract class _$$MaxImageSizeFailureCopyWith<$Res> {
 
 /// @nodoc
 class __$$MaxImageSizeFailureCopyWithImpl<$Res>
-    extends _$FailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$MaxImageSizeFailure>
     implements _$$MaxImageSizeFailureCopyWith<$Res> {
   __$$MaxImageSizeFailureCopyWithImpl(
       _$MaxImageSizeFailure _value, $Res Function(_$MaxImageSizeFailure) _then)
-      : super(_value, (v) => _then(v as _$MaxImageSizeFailure));
-
-  @override
-  _$MaxImageSizeFailure get _value => super._value as _$MaxImageSizeFailure;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -9179,42 +9097,42 @@ class _$MaxImageSizeFailure extends MaxImageSizeFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? versionCheckFailure,
-    TResult Function()? serverFailure,
-    TResult Function()? dataParsingFailure,
-    TResult Function()? noConnectionFailure,
-    TResult Function()? notFoundFailure,
-    TResult Function()? noUserDataFailure,
-    TResult Function()? maxDiseaseFailure,
-    TResult Function()? maxConimalFailure,
-    TResult Function()? emptyListFailure,
-    TResult Function()? noSuchDataInListFailure,
-    TResult Function()? registerConimalFaiure,
-    TResult Function()? removeConimalFailure,
-    TResult Function()? getConimalListFailure,
-    TResult Function()? signInCredentialFailure,
-    TResult Function()? signInTokenFailure,
-    TResult Function()? naverSigninFailure,
-    TResult Function()? kakaoSigninFailure,
-    TResult Function()? googleSigninFailure,
-    TResult Function()? appleSigninFailure,
-    TResult Function()? emailSigninFailure,
-    TResult Function()? getUserFailure,
-    TResult Function()? wrongPasswordFailure,
-    TResult Function()? noEmailUserFailure,
-    TResult Function()? wrongTokenFailure,
-    TResult Function()? existingEmailFailure,
-    TResult Function()? userEnabledFailure,
-    TResult Function()? weakPasswordFailure,
-    TResult Function()? maxImageSizeFailure,
-    TResult Function()? maxImageNumFailure,
-    TResult Function()? noPostTypeSelectedFailure,
-    TResult Function()? noPostContentsFailure,
-    TResult Function()? notFoundPostFailure,
-    TResult Function()? notEditablePasswordFailure,
-    TResult Function()? userInfoUpdateFailure,
-    TResult Function()? permissionDeniedFailure,
-    TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? versionCheckFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function()? dataParsingFailure,
+    TResult? Function()? noConnectionFailure,
+    TResult? Function()? notFoundFailure,
+    TResult? Function()? noUserDataFailure,
+    TResult? Function()? maxDiseaseFailure,
+    TResult? Function()? maxConimalFailure,
+    TResult? Function()? emptyListFailure,
+    TResult? Function()? noSuchDataInListFailure,
+    TResult? Function()? registerConimalFaiure,
+    TResult? Function()? removeConimalFailure,
+    TResult? Function()? getConimalListFailure,
+    TResult? Function()? signInCredentialFailure,
+    TResult? Function()? signInTokenFailure,
+    TResult? Function()? naverSigninFailure,
+    TResult? Function()? kakaoSigninFailure,
+    TResult? Function()? googleSigninFailure,
+    TResult? Function()? appleSigninFailure,
+    TResult? Function()? emailSigninFailure,
+    TResult? Function()? getUserFailure,
+    TResult? Function()? wrongPasswordFailure,
+    TResult? Function()? noEmailUserFailure,
+    TResult? Function()? wrongTokenFailure,
+    TResult? Function()? existingEmailFailure,
+    TResult? Function()? userEnabledFailure,
+    TResult? Function()? weakPasswordFailure,
+    TResult? Function()? maxImageSizeFailure,
+    TResult? Function()? maxImageNumFailure,
+    TResult? Function()? noPostTypeSelectedFailure,
+    TResult? Function()? noPostContentsFailure,
+    TResult? Function()? notFoundPostFailure,
+    TResult? Function()? notEditablePasswordFailure,
+    TResult? Function()? userInfoUpdateFailure,
+    TResult? Function()? permissionDeniedFailure,
+    TResult? Function()? permissionPermanentlyDeniedFailure,
   }) {
     return maxImageSizeFailure?.call();
   }
@@ -9322,44 +9240,44 @@ class _$MaxImageSizeFailure extends MaxImageSizeFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(VersionCheckFailure value)? versionCheckFailure,
-    TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(DataParsingFailure value)? dataParsingFailure,
-    TResult Function(NoConnectionFailure value)? noConnectionFailure,
-    TResult Function(NotFoundFailure value)? notFoundFailure,
-    TResult Function(NoUserDataFailure value)? noUserDataFailure,
-    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
-    TResult Function(MaxConimalFailure value)? maxConimalFailure,
-    TResult Function(EmptyListFailure value)? emptyListFailure,
-    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
-    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
-    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
-    TResult Function(GetConimalListFailure value)? getConimalListFailure,
-    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
-    TResult Function(SignInTokenFailure value)? signInTokenFailure,
-    TResult Function(NaverSigninFailure value)? naverSigninFailure,
-    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
-    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
-    TResult Function(AppleSigninFailure value)? appleSigninFailure,
-    TResult Function(EmailSigninFailure value)? emailSigninFailure,
-    TResult Function(GetUserInfoFailure value)? getUserFailure,
-    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
-    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
-    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
-    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
-    TResult Function(UserEnabledFailure value)? userEnabledFailure,
-    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
-    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
-    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
-    TResult Function(NoPostTypeSelectedFailure value)?
+    TResult? Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult? Function(ServerFailure value)? serverFailure,
+    TResult? Function(DataParsingFailure value)? dataParsingFailure,
+    TResult? Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult? Function(NotFoundFailure value)? notFoundFailure,
+    TResult? Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult? Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult? Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult? Function(EmptyListFailure value)? emptyListFailure,
+    TResult? Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult? Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult? Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult? Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult? Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult? Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult? Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult? Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult? Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult? Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult? Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult? Function(GetUserInfoFailure value)? getUserFailure,
+    TResult? Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult? Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult? Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult? Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult? Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult? Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult? Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult? Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult? Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
-    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
-    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
-    TResult Function(NotEditablePasswordFailure value)?
+    TResult? Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult? Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult? Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
-    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
-    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
-    TResult Function(PermissionPermanentlyDeniedFailure value)?
+    TResult? Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
   }) {
     return maxImageSizeFailure?.call(this);
@@ -9430,14 +9348,11 @@ abstract class _$$MaxImageNumFailureCopyWith<$Res> {
 
 /// @nodoc
 class __$$MaxImageNumFailureCopyWithImpl<$Res>
-    extends _$FailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$MaxImageNumFailure>
     implements _$$MaxImageNumFailureCopyWith<$Res> {
   __$$MaxImageNumFailureCopyWithImpl(
       _$MaxImageNumFailure _value, $Res Function(_$MaxImageNumFailure) _then)
-      : super(_value, (v) => _then(v as _$MaxImageNumFailure));
-
-  @override
-  _$MaxImageNumFailure get _value => super._value as _$MaxImageNumFailure;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -9505,42 +9420,42 @@ class _$MaxImageNumFailure extends MaxImageNumFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? versionCheckFailure,
-    TResult Function()? serverFailure,
-    TResult Function()? dataParsingFailure,
-    TResult Function()? noConnectionFailure,
-    TResult Function()? notFoundFailure,
-    TResult Function()? noUserDataFailure,
-    TResult Function()? maxDiseaseFailure,
-    TResult Function()? maxConimalFailure,
-    TResult Function()? emptyListFailure,
-    TResult Function()? noSuchDataInListFailure,
-    TResult Function()? registerConimalFaiure,
-    TResult Function()? removeConimalFailure,
-    TResult Function()? getConimalListFailure,
-    TResult Function()? signInCredentialFailure,
-    TResult Function()? signInTokenFailure,
-    TResult Function()? naverSigninFailure,
-    TResult Function()? kakaoSigninFailure,
-    TResult Function()? googleSigninFailure,
-    TResult Function()? appleSigninFailure,
-    TResult Function()? emailSigninFailure,
-    TResult Function()? getUserFailure,
-    TResult Function()? wrongPasswordFailure,
-    TResult Function()? noEmailUserFailure,
-    TResult Function()? wrongTokenFailure,
-    TResult Function()? existingEmailFailure,
-    TResult Function()? userEnabledFailure,
-    TResult Function()? weakPasswordFailure,
-    TResult Function()? maxImageSizeFailure,
-    TResult Function()? maxImageNumFailure,
-    TResult Function()? noPostTypeSelectedFailure,
-    TResult Function()? noPostContentsFailure,
-    TResult Function()? notFoundPostFailure,
-    TResult Function()? notEditablePasswordFailure,
-    TResult Function()? userInfoUpdateFailure,
-    TResult Function()? permissionDeniedFailure,
-    TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? versionCheckFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function()? dataParsingFailure,
+    TResult? Function()? noConnectionFailure,
+    TResult? Function()? notFoundFailure,
+    TResult? Function()? noUserDataFailure,
+    TResult? Function()? maxDiseaseFailure,
+    TResult? Function()? maxConimalFailure,
+    TResult? Function()? emptyListFailure,
+    TResult? Function()? noSuchDataInListFailure,
+    TResult? Function()? registerConimalFaiure,
+    TResult? Function()? removeConimalFailure,
+    TResult? Function()? getConimalListFailure,
+    TResult? Function()? signInCredentialFailure,
+    TResult? Function()? signInTokenFailure,
+    TResult? Function()? naverSigninFailure,
+    TResult? Function()? kakaoSigninFailure,
+    TResult? Function()? googleSigninFailure,
+    TResult? Function()? appleSigninFailure,
+    TResult? Function()? emailSigninFailure,
+    TResult? Function()? getUserFailure,
+    TResult? Function()? wrongPasswordFailure,
+    TResult? Function()? noEmailUserFailure,
+    TResult? Function()? wrongTokenFailure,
+    TResult? Function()? existingEmailFailure,
+    TResult? Function()? userEnabledFailure,
+    TResult? Function()? weakPasswordFailure,
+    TResult? Function()? maxImageSizeFailure,
+    TResult? Function()? maxImageNumFailure,
+    TResult? Function()? noPostTypeSelectedFailure,
+    TResult? Function()? noPostContentsFailure,
+    TResult? Function()? notFoundPostFailure,
+    TResult? Function()? notEditablePasswordFailure,
+    TResult? Function()? userInfoUpdateFailure,
+    TResult? Function()? permissionDeniedFailure,
+    TResult? Function()? permissionPermanentlyDeniedFailure,
   }) {
     return maxImageNumFailure?.call();
   }
@@ -9648,44 +9563,44 @@ class _$MaxImageNumFailure extends MaxImageNumFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(VersionCheckFailure value)? versionCheckFailure,
-    TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(DataParsingFailure value)? dataParsingFailure,
-    TResult Function(NoConnectionFailure value)? noConnectionFailure,
-    TResult Function(NotFoundFailure value)? notFoundFailure,
-    TResult Function(NoUserDataFailure value)? noUserDataFailure,
-    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
-    TResult Function(MaxConimalFailure value)? maxConimalFailure,
-    TResult Function(EmptyListFailure value)? emptyListFailure,
-    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
-    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
-    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
-    TResult Function(GetConimalListFailure value)? getConimalListFailure,
-    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
-    TResult Function(SignInTokenFailure value)? signInTokenFailure,
-    TResult Function(NaverSigninFailure value)? naverSigninFailure,
-    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
-    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
-    TResult Function(AppleSigninFailure value)? appleSigninFailure,
-    TResult Function(EmailSigninFailure value)? emailSigninFailure,
-    TResult Function(GetUserInfoFailure value)? getUserFailure,
-    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
-    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
-    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
-    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
-    TResult Function(UserEnabledFailure value)? userEnabledFailure,
-    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
-    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
-    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
-    TResult Function(NoPostTypeSelectedFailure value)?
+    TResult? Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult? Function(ServerFailure value)? serverFailure,
+    TResult? Function(DataParsingFailure value)? dataParsingFailure,
+    TResult? Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult? Function(NotFoundFailure value)? notFoundFailure,
+    TResult? Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult? Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult? Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult? Function(EmptyListFailure value)? emptyListFailure,
+    TResult? Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult? Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult? Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult? Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult? Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult? Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult? Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult? Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult? Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult? Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult? Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult? Function(GetUserInfoFailure value)? getUserFailure,
+    TResult? Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult? Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult? Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult? Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult? Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult? Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult? Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult? Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult? Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
-    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
-    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
-    TResult Function(NotEditablePasswordFailure value)?
+    TResult? Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult? Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult? Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
-    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
-    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
-    TResult Function(PermissionPermanentlyDeniedFailure value)?
+    TResult? Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
   }) {
     return maxImageNumFailure?.call(this);
@@ -9757,15 +9672,11 @@ abstract class _$$NoPostTypeSelectedFailureCopyWith<$Res> {
 
 /// @nodoc
 class __$$NoPostTypeSelectedFailureCopyWithImpl<$Res>
-    extends _$FailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$NoPostTypeSelectedFailure>
     implements _$$NoPostTypeSelectedFailureCopyWith<$Res> {
   __$$NoPostTypeSelectedFailureCopyWithImpl(_$NoPostTypeSelectedFailure _value,
       $Res Function(_$NoPostTypeSelectedFailure) _then)
-      : super(_value, (v) => _then(v as _$NoPostTypeSelectedFailure));
-
-  @override
-  _$NoPostTypeSelectedFailure get _value =>
-      super._value as _$NoPostTypeSelectedFailure;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -9834,42 +9745,42 @@ class _$NoPostTypeSelectedFailure extends NoPostTypeSelectedFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? versionCheckFailure,
-    TResult Function()? serverFailure,
-    TResult Function()? dataParsingFailure,
-    TResult Function()? noConnectionFailure,
-    TResult Function()? notFoundFailure,
-    TResult Function()? noUserDataFailure,
-    TResult Function()? maxDiseaseFailure,
-    TResult Function()? maxConimalFailure,
-    TResult Function()? emptyListFailure,
-    TResult Function()? noSuchDataInListFailure,
-    TResult Function()? registerConimalFaiure,
-    TResult Function()? removeConimalFailure,
-    TResult Function()? getConimalListFailure,
-    TResult Function()? signInCredentialFailure,
-    TResult Function()? signInTokenFailure,
-    TResult Function()? naverSigninFailure,
-    TResult Function()? kakaoSigninFailure,
-    TResult Function()? googleSigninFailure,
-    TResult Function()? appleSigninFailure,
-    TResult Function()? emailSigninFailure,
-    TResult Function()? getUserFailure,
-    TResult Function()? wrongPasswordFailure,
-    TResult Function()? noEmailUserFailure,
-    TResult Function()? wrongTokenFailure,
-    TResult Function()? existingEmailFailure,
-    TResult Function()? userEnabledFailure,
-    TResult Function()? weakPasswordFailure,
-    TResult Function()? maxImageSizeFailure,
-    TResult Function()? maxImageNumFailure,
-    TResult Function()? noPostTypeSelectedFailure,
-    TResult Function()? noPostContentsFailure,
-    TResult Function()? notFoundPostFailure,
-    TResult Function()? notEditablePasswordFailure,
-    TResult Function()? userInfoUpdateFailure,
-    TResult Function()? permissionDeniedFailure,
-    TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? versionCheckFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function()? dataParsingFailure,
+    TResult? Function()? noConnectionFailure,
+    TResult? Function()? notFoundFailure,
+    TResult? Function()? noUserDataFailure,
+    TResult? Function()? maxDiseaseFailure,
+    TResult? Function()? maxConimalFailure,
+    TResult? Function()? emptyListFailure,
+    TResult? Function()? noSuchDataInListFailure,
+    TResult? Function()? registerConimalFaiure,
+    TResult? Function()? removeConimalFailure,
+    TResult? Function()? getConimalListFailure,
+    TResult? Function()? signInCredentialFailure,
+    TResult? Function()? signInTokenFailure,
+    TResult? Function()? naverSigninFailure,
+    TResult? Function()? kakaoSigninFailure,
+    TResult? Function()? googleSigninFailure,
+    TResult? Function()? appleSigninFailure,
+    TResult? Function()? emailSigninFailure,
+    TResult? Function()? getUserFailure,
+    TResult? Function()? wrongPasswordFailure,
+    TResult? Function()? noEmailUserFailure,
+    TResult? Function()? wrongTokenFailure,
+    TResult? Function()? existingEmailFailure,
+    TResult? Function()? userEnabledFailure,
+    TResult? Function()? weakPasswordFailure,
+    TResult? Function()? maxImageSizeFailure,
+    TResult? Function()? maxImageNumFailure,
+    TResult? Function()? noPostTypeSelectedFailure,
+    TResult? Function()? noPostContentsFailure,
+    TResult? Function()? notFoundPostFailure,
+    TResult? Function()? notEditablePasswordFailure,
+    TResult? Function()? userInfoUpdateFailure,
+    TResult? Function()? permissionDeniedFailure,
+    TResult? Function()? permissionPermanentlyDeniedFailure,
   }) {
     return noPostTypeSelectedFailure?.call();
   }
@@ -9977,44 +9888,44 @@ class _$NoPostTypeSelectedFailure extends NoPostTypeSelectedFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(VersionCheckFailure value)? versionCheckFailure,
-    TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(DataParsingFailure value)? dataParsingFailure,
-    TResult Function(NoConnectionFailure value)? noConnectionFailure,
-    TResult Function(NotFoundFailure value)? notFoundFailure,
-    TResult Function(NoUserDataFailure value)? noUserDataFailure,
-    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
-    TResult Function(MaxConimalFailure value)? maxConimalFailure,
-    TResult Function(EmptyListFailure value)? emptyListFailure,
-    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
-    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
-    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
-    TResult Function(GetConimalListFailure value)? getConimalListFailure,
-    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
-    TResult Function(SignInTokenFailure value)? signInTokenFailure,
-    TResult Function(NaverSigninFailure value)? naverSigninFailure,
-    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
-    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
-    TResult Function(AppleSigninFailure value)? appleSigninFailure,
-    TResult Function(EmailSigninFailure value)? emailSigninFailure,
-    TResult Function(GetUserInfoFailure value)? getUserFailure,
-    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
-    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
-    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
-    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
-    TResult Function(UserEnabledFailure value)? userEnabledFailure,
-    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
-    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
-    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
-    TResult Function(NoPostTypeSelectedFailure value)?
+    TResult? Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult? Function(ServerFailure value)? serverFailure,
+    TResult? Function(DataParsingFailure value)? dataParsingFailure,
+    TResult? Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult? Function(NotFoundFailure value)? notFoundFailure,
+    TResult? Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult? Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult? Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult? Function(EmptyListFailure value)? emptyListFailure,
+    TResult? Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult? Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult? Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult? Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult? Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult? Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult? Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult? Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult? Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult? Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult? Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult? Function(GetUserInfoFailure value)? getUserFailure,
+    TResult? Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult? Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult? Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult? Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult? Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult? Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult? Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult? Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult? Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
-    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
-    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
-    TResult Function(NotEditablePasswordFailure value)?
+    TResult? Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult? Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult? Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
-    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
-    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
-    TResult Function(PermissionPermanentlyDeniedFailure value)?
+    TResult? Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
   }) {
     return noPostTypeSelectedFailure?.call(this);
@@ -10085,14 +9996,11 @@ abstract class _$$NoPostContentsFailureCopyWith<$Res> {
 
 /// @nodoc
 class __$$NoPostContentsFailureCopyWithImpl<$Res>
-    extends _$FailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$NoPostContentsFailure>
     implements _$$NoPostContentsFailureCopyWith<$Res> {
   __$$NoPostContentsFailureCopyWithImpl(_$NoPostContentsFailure _value,
       $Res Function(_$NoPostContentsFailure) _then)
-      : super(_value, (v) => _then(v as _$NoPostContentsFailure));
-
-  @override
-  _$NoPostContentsFailure get _value => super._value as _$NoPostContentsFailure;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -10160,42 +10068,42 @@ class _$NoPostContentsFailure extends NoPostContentsFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? versionCheckFailure,
-    TResult Function()? serverFailure,
-    TResult Function()? dataParsingFailure,
-    TResult Function()? noConnectionFailure,
-    TResult Function()? notFoundFailure,
-    TResult Function()? noUserDataFailure,
-    TResult Function()? maxDiseaseFailure,
-    TResult Function()? maxConimalFailure,
-    TResult Function()? emptyListFailure,
-    TResult Function()? noSuchDataInListFailure,
-    TResult Function()? registerConimalFaiure,
-    TResult Function()? removeConimalFailure,
-    TResult Function()? getConimalListFailure,
-    TResult Function()? signInCredentialFailure,
-    TResult Function()? signInTokenFailure,
-    TResult Function()? naverSigninFailure,
-    TResult Function()? kakaoSigninFailure,
-    TResult Function()? googleSigninFailure,
-    TResult Function()? appleSigninFailure,
-    TResult Function()? emailSigninFailure,
-    TResult Function()? getUserFailure,
-    TResult Function()? wrongPasswordFailure,
-    TResult Function()? noEmailUserFailure,
-    TResult Function()? wrongTokenFailure,
-    TResult Function()? existingEmailFailure,
-    TResult Function()? userEnabledFailure,
-    TResult Function()? weakPasswordFailure,
-    TResult Function()? maxImageSizeFailure,
-    TResult Function()? maxImageNumFailure,
-    TResult Function()? noPostTypeSelectedFailure,
-    TResult Function()? noPostContentsFailure,
-    TResult Function()? notFoundPostFailure,
-    TResult Function()? notEditablePasswordFailure,
-    TResult Function()? userInfoUpdateFailure,
-    TResult Function()? permissionDeniedFailure,
-    TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? versionCheckFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function()? dataParsingFailure,
+    TResult? Function()? noConnectionFailure,
+    TResult? Function()? notFoundFailure,
+    TResult? Function()? noUserDataFailure,
+    TResult? Function()? maxDiseaseFailure,
+    TResult? Function()? maxConimalFailure,
+    TResult? Function()? emptyListFailure,
+    TResult? Function()? noSuchDataInListFailure,
+    TResult? Function()? registerConimalFaiure,
+    TResult? Function()? removeConimalFailure,
+    TResult? Function()? getConimalListFailure,
+    TResult? Function()? signInCredentialFailure,
+    TResult? Function()? signInTokenFailure,
+    TResult? Function()? naverSigninFailure,
+    TResult? Function()? kakaoSigninFailure,
+    TResult? Function()? googleSigninFailure,
+    TResult? Function()? appleSigninFailure,
+    TResult? Function()? emailSigninFailure,
+    TResult? Function()? getUserFailure,
+    TResult? Function()? wrongPasswordFailure,
+    TResult? Function()? noEmailUserFailure,
+    TResult? Function()? wrongTokenFailure,
+    TResult? Function()? existingEmailFailure,
+    TResult? Function()? userEnabledFailure,
+    TResult? Function()? weakPasswordFailure,
+    TResult? Function()? maxImageSizeFailure,
+    TResult? Function()? maxImageNumFailure,
+    TResult? Function()? noPostTypeSelectedFailure,
+    TResult? Function()? noPostContentsFailure,
+    TResult? Function()? notFoundPostFailure,
+    TResult? Function()? notEditablePasswordFailure,
+    TResult? Function()? userInfoUpdateFailure,
+    TResult? Function()? permissionDeniedFailure,
+    TResult? Function()? permissionPermanentlyDeniedFailure,
   }) {
     return noPostContentsFailure?.call();
   }
@@ -10303,44 +10211,44 @@ class _$NoPostContentsFailure extends NoPostContentsFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(VersionCheckFailure value)? versionCheckFailure,
-    TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(DataParsingFailure value)? dataParsingFailure,
-    TResult Function(NoConnectionFailure value)? noConnectionFailure,
-    TResult Function(NotFoundFailure value)? notFoundFailure,
-    TResult Function(NoUserDataFailure value)? noUserDataFailure,
-    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
-    TResult Function(MaxConimalFailure value)? maxConimalFailure,
-    TResult Function(EmptyListFailure value)? emptyListFailure,
-    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
-    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
-    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
-    TResult Function(GetConimalListFailure value)? getConimalListFailure,
-    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
-    TResult Function(SignInTokenFailure value)? signInTokenFailure,
-    TResult Function(NaverSigninFailure value)? naverSigninFailure,
-    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
-    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
-    TResult Function(AppleSigninFailure value)? appleSigninFailure,
-    TResult Function(EmailSigninFailure value)? emailSigninFailure,
-    TResult Function(GetUserInfoFailure value)? getUserFailure,
-    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
-    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
-    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
-    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
-    TResult Function(UserEnabledFailure value)? userEnabledFailure,
-    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
-    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
-    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
-    TResult Function(NoPostTypeSelectedFailure value)?
+    TResult? Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult? Function(ServerFailure value)? serverFailure,
+    TResult? Function(DataParsingFailure value)? dataParsingFailure,
+    TResult? Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult? Function(NotFoundFailure value)? notFoundFailure,
+    TResult? Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult? Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult? Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult? Function(EmptyListFailure value)? emptyListFailure,
+    TResult? Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult? Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult? Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult? Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult? Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult? Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult? Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult? Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult? Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult? Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult? Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult? Function(GetUserInfoFailure value)? getUserFailure,
+    TResult? Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult? Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult? Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult? Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult? Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult? Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult? Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult? Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult? Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
-    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
-    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
-    TResult Function(NotEditablePasswordFailure value)?
+    TResult? Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult? Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult? Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
-    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
-    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
-    TResult Function(PermissionPermanentlyDeniedFailure value)?
+    TResult? Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
   }) {
     return noPostContentsFailure?.call(this);
@@ -10411,14 +10319,11 @@ abstract class _$$NotFoundPostFailureCopyWith<$Res> {
 
 /// @nodoc
 class __$$NotFoundPostFailureCopyWithImpl<$Res>
-    extends _$FailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$NotFoundPostFailure>
     implements _$$NotFoundPostFailureCopyWith<$Res> {
   __$$NotFoundPostFailureCopyWithImpl(
       _$NotFoundPostFailure _value, $Res Function(_$NotFoundPostFailure) _then)
-      : super(_value, (v) => _then(v as _$NotFoundPostFailure));
-
-  @override
-  _$NotFoundPostFailure get _value => super._value as _$NotFoundPostFailure;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -10486,42 +10391,42 @@ class _$NotFoundPostFailure extends NotFoundPostFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? versionCheckFailure,
-    TResult Function()? serverFailure,
-    TResult Function()? dataParsingFailure,
-    TResult Function()? noConnectionFailure,
-    TResult Function()? notFoundFailure,
-    TResult Function()? noUserDataFailure,
-    TResult Function()? maxDiseaseFailure,
-    TResult Function()? maxConimalFailure,
-    TResult Function()? emptyListFailure,
-    TResult Function()? noSuchDataInListFailure,
-    TResult Function()? registerConimalFaiure,
-    TResult Function()? removeConimalFailure,
-    TResult Function()? getConimalListFailure,
-    TResult Function()? signInCredentialFailure,
-    TResult Function()? signInTokenFailure,
-    TResult Function()? naverSigninFailure,
-    TResult Function()? kakaoSigninFailure,
-    TResult Function()? googleSigninFailure,
-    TResult Function()? appleSigninFailure,
-    TResult Function()? emailSigninFailure,
-    TResult Function()? getUserFailure,
-    TResult Function()? wrongPasswordFailure,
-    TResult Function()? noEmailUserFailure,
-    TResult Function()? wrongTokenFailure,
-    TResult Function()? existingEmailFailure,
-    TResult Function()? userEnabledFailure,
-    TResult Function()? weakPasswordFailure,
-    TResult Function()? maxImageSizeFailure,
-    TResult Function()? maxImageNumFailure,
-    TResult Function()? noPostTypeSelectedFailure,
-    TResult Function()? noPostContentsFailure,
-    TResult Function()? notFoundPostFailure,
-    TResult Function()? notEditablePasswordFailure,
-    TResult Function()? userInfoUpdateFailure,
-    TResult Function()? permissionDeniedFailure,
-    TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? versionCheckFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function()? dataParsingFailure,
+    TResult? Function()? noConnectionFailure,
+    TResult? Function()? notFoundFailure,
+    TResult? Function()? noUserDataFailure,
+    TResult? Function()? maxDiseaseFailure,
+    TResult? Function()? maxConimalFailure,
+    TResult? Function()? emptyListFailure,
+    TResult? Function()? noSuchDataInListFailure,
+    TResult? Function()? registerConimalFaiure,
+    TResult? Function()? removeConimalFailure,
+    TResult? Function()? getConimalListFailure,
+    TResult? Function()? signInCredentialFailure,
+    TResult? Function()? signInTokenFailure,
+    TResult? Function()? naverSigninFailure,
+    TResult? Function()? kakaoSigninFailure,
+    TResult? Function()? googleSigninFailure,
+    TResult? Function()? appleSigninFailure,
+    TResult? Function()? emailSigninFailure,
+    TResult? Function()? getUserFailure,
+    TResult? Function()? wrongPasswordFailure,
+    TResult? Function()? noEmailUserFailure,
+    TResult? Function()? wrongTokenFailure,
+    TResult? Function()? existingEmailFailure,
+    TResult? Function()? userEnabledFailure,
+    TResult? Function()? weakPasswordFailure,
+    TResult? Function()? maxImageSizeFailure,
+    TResult? Function()? maxImageNumFailure,
+    TResult? Function()? noPostTypeSelectedFailure,
+    TResult? Function()? noPostContentsFailure,
+    TResult? Function()? notFoundPostFailure,
+    TResult? Function()? notEditablePasswordFailure,
+    TResult? Function()? userInfoUpdateFailure,
+    TResult? Function()? permissionDeniedFailure,
+    TResult? Function()? permissionPermanentlyDeniedFailure,
   }) {
     return notFoundPostFailure?.call();
   }
@@ -10629,44 +10534,44 @@ class _$NotFoundPostFailure extends NotFoundPostFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(VersionCheckFailure value)? versionCheckFailure,
-    TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(DataParsingFailure value)? dataParsingFailure,
-    TResult Function(NoConnectionFailure value)? noConnectionFailure,
-    TResult Function(NotFoundFailure value)? notFoundFailure,
-    TResult Function(NoUserDataFailure value)? noUserDataFailure,
-    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
-    TResult Function(MaxConimalFailure value)? maxConimalFailure,
-    TResult Function(EmptyListFailure value)? emptyListFailure,
-    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
-    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
-    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
-    TResult Function(GetConimalListFailure value)? getConimalListFailure,
-    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
-    TResult Function(SignInTokenFailure value)? signInTokenFailure,
-    TResult Function(NaverSigninFailure value)? naverSigninFailure,
-    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
-    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
-    TResult Function(AppleSigninFailure value)? appleSigninFailure,
-    TResult Function(EmailSigninFailure value)? emailSigninFailure,
-    TResult Function(GetUserInfoFailure value)? getUserFailure,
-    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
-    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
-    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
-    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
-    TResult Function(UserEnabledFailure value)? userEnabledFailure,
-    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
-    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
-    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
-    TResult Function(NoPostTypeSelectedFailure value)?
+    TResult? Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult? Function(ServerFailure value)? serverFailure,
+    TResult? Function(DataParsingFailure value)? dataParsingFailure,
+    TResult? Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult? Function(NotFoundFailure value)? notFoundFailure,
+    TResult? Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult? Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult? Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult? Function(EmptyListFailure value)? emptyListFailure,
+    TResult? Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult? Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult? Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult? Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult? Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult? Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult? Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult? Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult? Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult? Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult? Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult? Function(GetUserInfoFailure value)? getUserFailure,
+    TResult? Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult? Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult? Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult? Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult? Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult? Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult? Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult? Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult? Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
-    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
-    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
-    TResult Function(NotEditablePasswordFailure value)?
+    TResult? Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult? Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult? Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
-    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
-    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
-    TResult Function(PermissionPermanentlyDeniedFailure value)?
+    TResult? Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
   }) {
     return notFoundPostFailure?.call(this);
@@ -10738,16 +10643,12 @@ abstract class _$$NotEditablePasswordFailureCopyWith<$Res> {
 
 /// @nodoc
 class __$$NotEditablePasswordFailureCopyWithImpl<$Res>
-    extends _$FailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$NotEditablePasswordFailure>
     implements _$$NotEditablePasswordFailureCopyWith<$Res> {
   __$$NotEditablePasswordFailureCopyWithImpl(
       _$NotEditablePasswordFailure _value,
       $Res Function(_$NotEditablePasswordFailure) _then)
-      : super(_value, (v) => _then(v as _$NotEditablePasswordFailure));
-
-  @override
-  _$NotEditablePasswordFailure get _value =>
-      super._value as _$NotEditablePasswordFailure;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -10816,42 +10717,42 @@ class _$NotEditablePasswordFailure extends NotEditablePasswordFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? versionCheckFailure,
-    TResult Function()? serverFailure,
-    TResult Function()? dataParsingFailure,
-    TResult Function()? noConnectionFailure,
-    TResult Function()? notFoundFailure,
-    TResult Function()? noUserDataFailure,
-    TResult Function()? maxDiseaseFailure,
-    TResult Function()? maxConimalFailure,
-    TResult Function()? emptyListFailure,
-    TResult Function()? noSuchDataInListFailure,
-    TResult Function()? registerConimalFaiure,
-    TResult Function()? removeConimalFailure,
-    TResult Function()? getConimalListFailure,
-    TResult Function()? signInCredentialFailure,
-    TResult Function()? signInTokenFailure,
-    TResult Function()? naverSigninFailure,
-    TResult Function()? kakaoSigninFailure,
-    TResult Function()? googleSigninFailure,
-    TResult Function()? appleSigninFailure,
-    TResult Function()? emailSigninFailure,
-    TResult Function()? getUserFailure,
-    TResult Function()? wrongPasswordFailure,
-    TResult Function()? noEmailUserFailure,
-    TResult Function()? wrongTokenFailure,
-    TResult Function()? existingEmailFailure,
-    TResult Function()? userEnabledFailure,
-    TResult Function()? weakPasswordFailure,
-    TResult Function()? maxImageSizeFailure,
-    TResult Function()? maxImageNumFailure,
-    TResult Function()? noPostTypeSelectedFailure,
-    TResult Function()? noPostContentsFailure,
-    TResult Function()? notFoundPostFailure,
-    TResult Function()? notEditablePasswordFailure,
-    TResult Function()? userInfoUpdateFailure,
-    TResult Function()? permissionDeniedFailure,
-    TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? versionCheckFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function()? dataParsingFailure,
+    TResult? Function()? noConnectionFailure,
+    TResult? Function()? notFoundFailure,
+    TResult? Function()? noUserDataFailure,
+    TResult? Function()? maxDiseaseFailure,
+    TResult? Function()? maxConimalFailure,
+    TResult? Function()? emptyListFailure,
+    TResult? Function()? noSuchDataInListFailure,
+    TResult? Function()? registerConimalFaiure,
+    TResult? Function()? removeConimalFailure,
+    TResult? Function()? getConimalListFailure,
+    TResult? Function()? signInCredentialFailure,
+    TResult? Function()? signInTokenFailure,
+    TResult? Function()? naverSigninFailure,
+    TResult? Function()? kakaoSigninFailure,
+    TResult? Function()? googleSigninFailure,
+    TResult? Function()? appleSigninFailure,
+    TResult? Function()? emailSigninFailure,
+    TResult? Function()? getUserFailure,
+    TResult? Function()? wrongPasswordFailure,
+    TResult? Function()? noEmailUserFailure,
+    TResult? Function()? wrongTokenFailure,
+    TResult? Function()? existingEmailFailure,
+    TResult? Function()? userEnabledFailure,
+    TResult? Function()? weakPasswordFailure,
+    TResult? Function()? maxImageSizeFailure,
+    TResult? Function()? maxImageNumFailure,
+    TResult? Function()? noPostTypeSelectedFailure,
+    TResult? Function()? noPostContentsFailure,
+    TResult? Function()? notFoundPostFailure,
+    TResult? Function()? notEditablePasswordFailure,
+    TResult? Function()? userInfoUpdateFailure,
+    TResult? Function()? permissionDeniedFailure,
+    TResult? Function()? permissionPermanentlyDeniedFailure,
   }) {
     return notEditablePasswordFailure?.call();
   }
@@ -10959,44 +10860,44 @@ class _$NotEditablePasswordFailure extends NotEditablePasswordFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(VersionCheckFailure value)? versionCheckFailure,
-    TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(DataParsingFailure value)? dataParsingFailure,
-    TResult Function(NoConnectionFailure value)? noConnectionFailure,
-    TResult Function(NotFoundFailure value)? notFoundFailure,
-    TResult Function(NoUserDataFailure value)? noUserDataFailure,
-    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
-    TResult Function(MaxConimalFailure value)? maxConimalFailure,
-    TResult Function(EmptyListFailure value)? emptyListFailure,
-    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
-    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
-    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
-    TResult Function(GetConimalListFailure value)? getConimalListFailure,
-    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
-    TResult Function(SignInTokenFailure value)? signInTokenFailure,
-    TResult Function(NaverSigninFailure value)? naverSigninFailure,
-    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
-    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
-    TResult Function(AppleSigninFailure value)? appleSigninFailure,
-    TResult Function(EmailSigninFailure value)? emailSigninFailure,
-    TResult Function(GetUserInfoFailure value)? getUserFailure,
-    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
-    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
-    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
-    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
-    TResult Function(UserEnabledFailure value)? userEnabledFailure,
-    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
-    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
-    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
-    TResult Function(NoPostTypeSelectedFailure value)?
+    TResult? Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult? Function(ServerFailure value)? serverFailure,
+    TResult? Function(DataParsingFailure value)? dataParsingFailure,
+    TResult? Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult? Function(NotFoundFailure value)? notFoundFailure,
+    TResult? Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult? Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult? Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult? Function(EmptyListFailure value)? emptyListFailure,
+    TResult? Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult? Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult? Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult? Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult? Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult? Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult? Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult? Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult? Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult? Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult? Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult? Function(GetUserInfoFailure value)? getUserFailure,
+    TResult? Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult? Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult? Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult? Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult? Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult? Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult? Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult? Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult? Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
-    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
-    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
-    TResult Function(NotEditablePasswordFailure value)?
+    TResult? Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult? Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult? Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
-    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
-    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
-    TResult Function(PermissionPermanentlyDeniedFailure value)?
+    TResult? Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
   }) {
     return notEditablePasswordFailure?.call(this);
@@ -11067,14 +10968,11 @@ abstract class _$$UserInfoUpdateFailureCopyWith<$Res> {
 
 /// @nodoc
 class __$$UserInfoUpdateFailureCopyWithImpl<$Res>
-    extends _$FailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$UserInfoUpdateFailure>
     implements _$$UserInfoUpdateFailureCopyWith<$Res> {
   __$$UserInfoUpdateFailureCopyWithImpl(_$UserInfoUpdateFailure _value,
       $Res Function(_$UserInfoUpdateFailure) _then)
-      : super(_value, (v) => _then(v as _$UserInfoUpdateFailure));
-
-  @override
-  _$UserInfoUpdateFailure get _value => super._value as _$UserInfoUpdateFailure;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -11142,42 +11040,42 @@ class _$UserInfoUpdateFailure extends UserInfoUpdateFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? versionCheckFailure,
-    TResult Function()? serverFailure,
-    TResult Function()? dataParsingFailure,
-    TResult Function()? noConnectionFailure,
-    TResult Function()? notFoundFailure,
-    TResult Function()? noUserDataFailure,
-    TResult Function()? maxDiseaseFailure,
-    TResult Function()? maxConimalFailure,
-    TResult Function()? emptyListFailure,
-    TResult Function()? noSuchDataInListFailure,
-    TResult Function()? registerConimalFaiure,
-    TResult Function()? removeConimalFailure,
-    TResult Function()? getConimalListFailure,
-    TResult Function()? signInCredentialFailure,
-    TResult Function()? signInTokenFailure,
-    TResult Function()? naverSigninFailure,
-    TResult Function()? kakaoSigninFailure,
-    TResult Function()? googleSigninFailure,
-    TResult Function()? appleSigninFailure,
-    TResult Function()? emailSigninFailure,
-    TResult Function()? getUserFailure,
-    TResult Function()? wrongPasswordFailure,
-    TResult Function()? noEmailUserFailure,
-    TResult Function()? wrongTokenFailure,
-    TResult Function()? existingEmailFailure,
-    TResult Function()? userEnabledFailure,
-    TResult Function()? weakPasswordFailure,
-    TResult Function()? maxImageSizeFailure,
-    TResult Function()? maxImageNumFailure,
-    TResult Function()? noPostTypeSelectedFailure,
-    TResult Function()? noPostContentsFailure,
-    TResult Function()? notFoundPostFailure,
-    TResult Function()? notEditablePasswordFailure,
-    TResult Function()? userInfoUpdateFailure,
-    TResult Function()? permissionDeniedFailure,
-    TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? versionCheckFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function()? dataParsingFailure,
+    TResult? Function()? noConnectionFailure,
+    TResult? Function()? notFoundFailure,
+    TResult? Function()? noUserDataFailure,
+    TResult? Function()? maxDiseaseFailure,
+    TResult? Function()? maxConimalFailure,
+    TResult? Function()? emptyListFailure,
+    TResult? Function()? noSuchDataInListFailure,
+    TResult? Function()? registerConimalFaiure,
+    TResult? Function()? removeConimalFailure,
+    TResult? Function()? getConimalListFailure,
+    TResult? Function()? signInCredentialFailure,
+    TResult? Function()? signInTokenFailure,
+    TResult? Function()? naverSigninFailure,
+    TResult? Function()? kakaoSigninFailure,
+    TResult? Function()? googleSigninFailure,
+    TResult? Function()? appleSigninFailure,
+    TResult? Function()? emailSigninFailure,
+    TResult? Function()? getUserFailure,
+    TResult? Function()? wrongPasswordFailure,
+    TResult? Function()? noEmailUserFailure,
+    TResult? Function()? wrongTokenFailure,
+    TResult? Function()? existingEmailFailure,
+    TResult? Function()? userEnabledFailure,
+    TResult? Function()? weakPasswordFailure,
+    TResult? Function()? maxImageSizeFailure,
+    TResult? Function()? maxImageNumFailure,
+    TResult? Function()? noPostTypeSelectedFailure,
+    TResult? Function()? noPostContentsFailure,
+    TResult? Function()? notFoundPostFailure,
+    TResult? Function()? notEditablePasswordFailure,
+    TResult? Function()? userInfoUpdateFailure,
+    TResult? Function()? permissionDeniedFailure,
+    TResult? Function()? permissionPermanentlyDeniedFailure,
   }) {
     return userInfoUpdateFailure?.call();
   }
@@ -11285,44 +11183,44 @@ class _$UserInfoUpdateFailure extends UserInfoUpdateFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(VersionCheckFailure value)? versionCheckFailure,
-    TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(DataParsingFailure value)? dataParsingFailure,
-    TResult Function(NoConnectionFailure value)? noConnectionFailure,
-    TResult Function(NotFoundFailure value)? notFoundFailure,
-    TResult Function(NoUserDataFailure value)? noUserDataFailure,
-    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
-    TResult Function(MaxConimalFailure value)? maxConimalFailure,
-    TResult Function(EmptyListFailure value)? emptyListFailure,
-    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
-    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
-    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
-    TResult Function(GetConimalListFailure value)? getConimalListFailure,
-    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
-    TResult Function(SignInTokenFailure value)? signInTokenFailure,
-    TResult Function(NaverSigninFailure value)? naverSigninFailure,
-    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
-    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
-    TResult Function(AppleSigninFailure value)? appleSigninFailure,
-    TResult Function(EmailSigninFailure value)? emailSigninFailure,
-    TResult Function(GetUserInfoFailure value)? getUserFailure,
-    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
-    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
-    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
-    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
-    TResult Function(UserEnabledFailure value)? userEnabledFailure,
-    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
-    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
-    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
-    TResult Function(NoPostTypeSelectedFailure value)?
+    TResult? Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult? Function(ServerFailure value)? serverFailure,
+    TResult? Function(DataParsingFailure value)? dataParsingFailure,
+    TResult? Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult? Function(NotFoundFailure value)? notFoundFailure,
+    TResult? Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult? Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult? Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult? Function(EmptyListFailure value)? emptyListFailure,
+    TResult? Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult? Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult? Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult? Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult? Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult? Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult? Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult? Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult? Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult? Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult? Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult? Function(GetUserInfoFailure value)? getUserFailure,
+    TResult? Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult? Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult? Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult? Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult? Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult? Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult? Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult? Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult? Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
-    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
-    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
-    TResult Function(NotEditablePasswordFailure value)?
+    TResult? Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult? Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult? Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
-    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
-    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
-    TResult Function(PermissionPermanentlyDeniedFailure value)?
+    TResult? Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
   }) {
     return userInfoUpdateFailure?.call(this);
@@ -11393,15 +11291,11 @@ abstract class _$$PermissionDeniedFailureCopyWith<$Res> {
 
 /// @nodoc
 class __$$PermissionDeniedFailureCopyWithImpl<$Res>
-    extends _$FailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$PermissionDeniedFailure>
     implements _$$PermissionDeniedFailureCopyWith<$Res> {
   __$$PermissionDeniedFailureCopyWithImpl(_$PermissionDeniedFailure _value,
       $Res Function(_$PermissionDeniedFailure) _then)
-      : super(_value, (v) => _then(v as _$PermissionDeniedFailure));
-
-  @override
-  _$PermissionDeniedFailure get _value =>
-      super._value as _$PermissionDeniedFailure;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -11470,42 +11364,42 @@ class _$PermissionDeniedFailure extends PermissionDeniedFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? versionCheckFailure,
-    TResult Function()? serverFailure,
-    TResult Function()? dataParsingFailure,
-    TResult Function()? noConnectionFailure,
-    TResult Function()? notFoundFailure,
-    TResult Function()? noUserDataFailure,
-    TResult Function()? maxDiseaseFailure,
-    TResult Function()? maxConimalFailure,
-    TResult Function()? emptyListFailure,
-    TResult Function()? noSuchDataInListFailure,
-    TResult Function()? registerConimalFaiure,
-    TResult Function()? removeConimalFailure,
-    TResult Function()? getConimalListFailure,
-    TResult Function()? signInCredentialFailure,
-    TResult Function()? signInTokenFailure,
-    TResult Function()? naverSigninFailure,
-    TResult Function()? kakaoSigninFailure,
-    TResult Function()? googleSigninFailure,
-    TResult Function()? appleSigninFailure,
-    TResult Function()? emailSigninFailure,
-    TResult Function()? getUserFailure,
-    TResult Function()? wrongPasswordFailure,
-    TResult Function()? noEmailUserFailure,
-    TResult Function()? wrongTokenFailure,
-    TResult Function()? existingEmailFailure,
-    TResult Function()? userEnabledFailure,
-    TResult Function()? weakPasswordFailure,
-    TResult Function()? maxImageSizeFailure,
-    TResult Function()? maxImageNumFailure,
-    TResult Function()? noPostTypeSelectedFailure,
-    TResult Function()? noPostContentsFailure,
-    TResult Function()? notFoundPostFailure,
-    TResult Function()? notEditablePasswordFailure,
-    TResult Function()? userInfoUpdateFailure,
-    TResult Function()? permissionDeniedFailure,
-    TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? versionCheckFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function()? dataParsingFailure,
+    TResult? Function()? noConnectionFailure,
+    TResult? Function()? notFoundFailure,
+    TResult? Function()? noUserDataFailure,
+    TResult? Function()? maxDiseaseFailure,
+    TResult? Function()? maxConimalFailure,
+    TResult? Function()? emptyListFailure,
+    TResult? Function()? noSuchDataInListFailure,
+    TResult? Function()? registerConimalFaiure,
+    TResult? Function()? removeConimalFailure,
+    TResult? Function()? getConimalListFailure,
+    TResult? Function()? signInCredentialFailure,
+    TResult? Function()? signInTokenFailure,
+    TResult? Function()? naverSigninFailure,
+    TResult? Function()? kakaoSigninFailure,
+    TResult? Function()? googleSigninFailure,
+    TResult? Function()? appleSigninFailure,
+    TResult? Function()? emailSigninFailure,
+    TResult? Function()? getUserFailure,
+    TResult? Function()? wrongPasswordFailure,
+    TResult? Function()? noEmailUserFailure,
+    TResult? Function()? wrongTokenFailure,
+    TResult? Function()? existingEmailFailure,
+    TResult? Function()? userEnabledFailure,
+    TResult? Function()? weakPasswordFailure,
+    TResult? Function()? maxImageSizeFailure,
+    TResult? Function()? maxImageNumFailure,
+    TResult? Function()? noPostTypeSelectedFailure,
+    TResult? Function()? noPostContentsFailure,
+    TResult? Function()? notFoundPostFailure,
+    TResult? Function()? notEditablePasswordFailure,
+    TResult? Function()? userInfoUpdateFailure,
+    TResult? Function()? permissionDeniedFailure,
+    TResult? Function()? permissionPermanentlyDeniedFailure,
   }) {
     return permissionDeniedFailure?.call();
   }
@@ -11613,44 +11507,44 @@ class _$PermissionDeniedFailure extends PermissionDeniedFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(VersionCheckFailure value)? versionCheckFailure,
-    TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(DataParsingFailure value)? dataParsingFailure,
-    TResult Function(NoConnectionFailure value)? noConnectionFailure,
-    TResult Function(NotFoundFailure value)? notFoundFailure,
-    TResult Function(NoUserDataFailure value)? noUserDataFailure,
-    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
-    TResult Function(MaxConimalFailure value)? maxConimalFailure,
-    TResult Function(EmptyListFailure value)? emptyListFailure,
-    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
-    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
-    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
-    TResult Function(GetConimalListFailure value)? getConimalListFailure,
-    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
-    TResult Function(SignInTokenFailure value)? signInTokenFailure,
-    TResult Function(NaverSigninFailure value)? naverSigninFailure,
-    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
-    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
-    TResult Function(AppleSigninFailure value)? appleSigninFailure,
-    TResult Function(EmailSigninFailure value)? emailSigninFailure,
-    TResult Function(GetUserInfoFailure value)? getUserFailure,
-    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
-    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
-    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
-    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
-    TResult Function(UserEnabledFailure value)? userEnabledFailure,
-    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
-    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
-    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
-    TResult Function(NoPostTypeSelectedFailure value)?
+    TResult? Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult? Function(ServerFailure value)? serverFailure,
+    TResult? Function(DataParsingFailure value)? dataParsingFailure,
+    TResult? Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult? Function(NotFoundFailure value)? notFoundFailure,
+    TResult? Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult? Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult? Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult? Function(EmptyListFailure value)? emptyListFailure,
+    TResult? Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult? Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult? Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult? Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult? Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult? Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult? Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult? Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult? Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult? Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult? Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult? Function(GetUserInfoFailure value)? getUserFailure,
+    TResult? Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult? Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult? Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult? Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult? Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult? Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult? Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult? Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult? Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
-    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
-    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
-    TResult Function(NotEditablePasswordFailure value)?
+    TResult? Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult? Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult? Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
-    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
-    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
-    TResult Function(PermissionPermanentlyDeniedFailure value)?
+    TResult? Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
   }) {
     return permissionDeniedFailure?.call(this);
@@ -11722,16 +11616,12 @@ abstract class _$$PermissionPermanentlyDeniedFailureCopyWith<$Res> {
 
 /// @nodoc
 class __$$PermissionPermanentlyDeniedFailureCopyWithImpl<$Res>
-    extends _$FailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$PermissionPermanentlyDeniedFailure>
     implements _$$PermissionPermanentlyDeniedFailureCopyWith<$Res> {
   __$$PermissionPermanentlyDeniedFailureCopyWithImpl(
       _$PermissionPermanentlyDeniedFailure _value,
       $Res Function(_$PermissionPermanentlyDeniedFailure) _then)
-      : super(_value, (v) => _then(v as _$PermissionPermanentlyDeniedFailure));
-
-  @override
-  _$PermissionPermanentlyDeniedFailure get _value =>
-      super._value as _$PermissionPermanentlyDeniedFailure;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -11801,42 +11691,42 @@ class _$PermissionPermanentlyDeniedFailure
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? versionCheckFailure,
-    TResult Function()? serverFailure,
-    TResult Function()? dataParsingFailure,
-    TResult Function()? noConnectionFailure,
-    TResult Function()? notFoundFailure,
-    TResult Function()? noUserDataFailure,
-    TResult Function()? maxDiseaseFailure,
-    TResult Function()? maxConimalFailure,
-    TResult Function()? emptyListFailure,
-    TResult Function()? noSuchDataInListFailure,
-    TResult Function()? registerConimalFaiure,
-    TResult Function()? removeConimalFailure,
-    TResult Function()? getConimalListFailure,
-    TResult Function()? signInCredentialFailure,
-    TResult Function()? signInTokenFailure,
-    TResult Function()? naverSigninFailure,
-    TResult Function()? kakaoSigninFailure,
-    TResult Function()? googleSigninFailure,
-    TResult Function()? appleSigninFailure,
-    TResult Function()? emailSigninFailure,
-    TResult Function()? getUserFailure,
-    TResult Function()? wrongPasswordFailure,
-    TResult Function()? noEmailUserFailure,
-    TResult Function()? wrongTokenFailure,
-    TResult Function()? existingEmailFailure,
-    TResult Function()? userEnabledFailure,
-    TResult Function()? weakPasswordFailure,
-    TResult Function()? maxImageSizeFailure,
-    TResult Function()? maxImageNumFailure,
-    TResult Function()? noPostTypeSelectedFailure,
-    TResult Function()? noPostContentsFailure,
-    TResult Function()? notFoundPostFailure,
-    TResult Function()? notEditablePasswordFailure,
-    TResult Function()? userInfoUpdateFailure,
-    TResult Function()? permissionDeniedFailure,
-    TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? versionCheckFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function()? dataParsingFailure,
+    TResult? Function()? noConnectionFailure,
+    TResult? Function()? notFoundFailure,
+    TResult? Function()? noUserDataFailure,
+    TResult? Function()? maxDiseaseFailure,
+    TResult? Function()? maxConimalFailure,
+    TResult? Function()? emptyListFailure,
+    TResult? Function()? noSuchDataInListFailure,
+    TResult? Function()? registerConimalFaiure,
+    TResult? Function()? removeConimalFailure,
+    TResult? Function()? getConimalListFailure,
+    TResult? Function()? signInCredentialFailure,
+    TResult? Function()? signInTokenFailure,
+    TResult? Function()? naverSigninFailure,
+    TResult? Function()? kakaoSigninFailure,
+    TResult? Function()? googleSigninFailure,
+    TResult? Function()? appleSigninFailure,
+    TResult? Function()? emailSigninFailure,
+    TResult? Function()? getUserFailure,
+    TResult? Function()? wrongPasswordFailure,
+    TResult? Function()? noEmailUserFailure,
+    TResult? Function()? wrongTokenFailure,
+    TResult? Function()? existingEmailFailure,
+    TResult? Function()? userEnabledFailure,
+    TResult? Function()? weakPasswordFailure,
+    TResult? Function()? maxImageSizeFailure,
+    TResult? Function()? maxImageNumFailure,
+    TResult? Function()? noPostTypeSelectedFailure,
+    TResult? Function()? noPostContentsFailure,
+    TResult? Function()? notFoundPostFailure,
+    TResult? Function()? notEditablePasswordFailure,
+    TResult? Function()? userInfoUpdateFailure,
+    TResult? Function()? permissionDeniedFailure,
+    TResult? Function()? permissionPermanentlyDeniedFailure,
   }) {
     return permissionPermanentlyDeniedFailure?.call();
   }
@@ -11944,44 +11834,44 @@ class _$PermissionPermanentlyDeniedFailure
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(VersionCheckFailure value)? versionCheckFailure,
-    TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(DataParsingFailure value)? dataParsingFailure,
-    TResult Function(NoConnectionFailure value)? noConnectionFailure,
-    TResult Function(NotFoundFailure value)? notFoundFailure,
-    TResult Function(NoUserDataFailure value)? noUserDataFailure,
-    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
-    TResult Function(MaxConimalFailure value)? maxConimalFailure,
-    TResult Function(EmptyListFailure value)? emptyListFailure,
-    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
-    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
-    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
-    TResult Function(GetConimalListFailure value)? getConimalListFailure,
-    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
-    TResult Function(SignInTokenFailure value)? signInTokenFailure,
-    TResult Function(NaverSigninFailure value)? naverSigninFailure,
-    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
-    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
-    TResult Function(AppleSigninFailure value)? appleSigninFailure,
-    TResult Function(EmailSigninFailure value)? emailSigninFailure,
-    TResult Function(GetUserInfoFailure value)? getUserFailure,
-    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
-    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
-    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
-    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
-    TResult Function(UserEnabledFailure value)? userEnabledFailure,
-    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
-    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
-    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
-    TResult Function(NoPostTypeSelectedFailure value)?
+    TResult? Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult? Function(ServerFailure value)? serverFailure,
+    TResult? Function(DataParsingFailure value)? dataParsingFailure,
+    TResult? Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult? Function(NotFoundFailure value)? notFoundFailure,
+    TResult? Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult? Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult? Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult? Function(EmptyListFailure value)? emptyListFailure,
+    TResult? Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult? Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult? Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult? Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult? Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult? Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult? Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult? Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult? Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult? Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult? Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult? Function(GetUserInfoFailure value)? getUserFailure,
+    TResult? Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult? Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult? Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult? Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult? Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult? Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult? Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult? Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult? Function(NoPostTypeSelectedFailure value)?
         noPostTypeSelectedFailure,
-    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
-    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
-    TResult Function(NotEditablePasswordFailure value)?
+    TResult? Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult? Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult? Function(NotEditablePasswordFailure value)?
         notEditablePasswordFailure,
-    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
-    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
-    TResult Function(PermissionPermanentlyDeniedFailure value)?
+    TResult? Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
   }) {
     return permissionPermanentlyDeniedFailure?.call(this);
