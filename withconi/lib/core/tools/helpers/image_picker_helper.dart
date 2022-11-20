@@ -4,7 +4,7 @@ import 'dart:math';
 
 import 'package:dartz/dartz.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:withconi/module/widgets/photo_gallary/image_item.dart';
+import 'package:withconi/global_widgets/photo_gallary/image_item.dart';
 
 import '../../error_handling/failures.dart';
 
@@ -37,7 +37,7 @@ class ImagePickHelper {
     }
   }
 
-  Future<Either<Failure, List<File>>?> pickMultipleImages(
+  Future<Either<Failure, List<ImageItem>>?> pickMultipleImages(
       {required int maxImageNum, required int selectedImageNum}) async {
     final ImagePicker _picker = ImagePicker();
     final List<XFile>? _pickedImages =
@@ -66,8 +66,13 @@ class ImagePickHelper {
       if (_filteredImages.isEmpty) {
         return Left(MaxImageSizeFailure());
       } else {
-        print(_filteredImages);
-        return Right(_filteredImages);
+        List<ImageItem> filteredImageItems = _filteredImages
+            .map((e) => ImageItem(
+                id: hashCode.toString(),
+                resource: e.path,
+                imageType: ImageType.file))
+            .toList();
+        return Right(filteredImageItems);
       }
     } else {
       return Right([]);

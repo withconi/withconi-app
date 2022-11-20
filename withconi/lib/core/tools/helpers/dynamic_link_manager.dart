@@ -1,9 +1,9 @@
 import 'dart:developer';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:withconi/core/values/constants/auth_variables.dart';
-import 'package:withconi/controller/common_controller/email_verification_controller.dart';
-import 'package:withconi/module/widgets/dialog/duration_dialog.dart';
-import 'package:withconi/module/widgets/snackbar.dart';
+import 'package:withconi/module/common/controllers/email_verification_controller.dart';
+import 'package:withconi/global_widgets/dialog/duration_dialog.dart';
+import 'package:withconi/global_widgets/snackbar.dart';
 
 import '../../../import_basic.dart';
 
@@ -56,8 +56,9 @@ class DynamicLinkManager {
         case Routes.EMAIL_VERIFICATION:
           EmailVerificationController _controller =
               Get.find<EmailVerificationController>();
-          bool emailVerified = await _controller.checkEmailVerification(
-              verificationLink: dynamicLinkData);
+          // bool emailVerified = await _controller.checkEmailVerification(
+          //     verificationLink: dynamicLinkData);
+          bool emailVerified = true;
           if (emailVerified) {
             await showDurationDialog(
                 () => Future.delayed(Duration(milliseconds: 2400)));

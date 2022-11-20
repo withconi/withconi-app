@@ -1,8 +1,8 @@
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
-import 'package:withconi/configs/constants/auth_variables.dart';
-import 'package:withconi/routes/withconi_bindings.dart';
+import 'package:withconi/core/values/constants/auth_variables.dart';
+import 'package:withconi/routes/bindings.dart';
 import 'import_basic.dart';
 
 Future<void> main() async {
@@ -31,6 +31,7 @@ Future<void> main() async {
       const Locale('ko', 'KR'),
     ],
 
+    // navigatorKey: Utils.mainAppNav,
     // translationsKeys: AppTranslation.translations,
   ));
 }

@@ -5,11 +5,14 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:withconi/core/tools/api_url.dart';
 import 'package:withconi/data/enums/enum.dart';
+import 'package:withconi/data/model/dto/api_call_dto.dart';
 import '../values/constants/auth_variables.dart';
 import '../tools/helpers/token_manager.dart';
 import '../error_handling/exceptions.dart';
 
-enum RequestType { GET, POST, POST_FORM_DATA, PUT, PATCH, DELETE }
+//TODO: PUT, PATCH 사용할지 말지 정하기
+
+enum RequestType { GET, POST, POST_FORM_DATA, DELETE }
 
 class Api {
   final dio = createDio();
@@ -42,43 +45,42 @@ class Api {
     return dio;
   }
 
-  Future<Map<String, dynamic>> apiCall(
-      {required String url,
-      Map<String, dynamic>? header,
-      Map<String, dynamic>? queryParameters,
-      Map<String, dynamic>? body,
-      FormData? formData,
-      required RequestType requestType}) async {
+  Future<Map<String, dynamic>> apiCall(ApiCallDTO apiCallModel) async {
     Response? result;
     try {
-      switch (requestType) {
+      switch (apiCallModel.requestType) {
         case RequestType.GET:
           {
-            Options options = Options(headers: header ?? default_header);
+            Options options = Options(headers: apiCallModel.header);
 
-            result = await dio.get(url,
-                queryParameters: queryParameters, options: options);
+            result = await dio.get(apiCallModel.url,
+                queryParameters: apiCallModel.data, options: options);
             break;
           }
         case RequestType.POST:
           {
-            Options options = Options(headers: header ?? default_header);
-            result = await dio.post(url, data: body, options: options);
+            Options options = Options(headers: apiCallModel.header);
+            result = await dio.post(apiCallModel.url,
+                data: apiCallModel.data, options: options);
 
             break;
           }
         case RequestType.POST_FORM_DATA:
           {
-            Options options = Options(headers: header ?? default_header);
-            result = await dio.post(url, data: formData, options: options);
+            Options options = Options(headers: apiCallModel.header);
+            result = await dio.post(apiCallModel.url,
+                data: apiCallModel.formData, options: options);
 
             break;
           }
         case RequestType.DELETE:
           {
-            Options options = Options(headers: header ?? default_header);
-            result =
-                await dio.delete(url, data: queryParameters, options: options);
+            Options options = Options(headers: apiCallModel.header);
+            //TODO: 원래는 dio.delete 사용이 맞지만 백앤드와 합의 전이라 post 사용
+            result = await dio.post(apiCallModel.url,
+                data: apiCallModel.data, options: options);
+            // result = await dio.delete(apiCallModel.url,
+            //     data: apiCallModel.data, options: options);
             break;
           }
       }
@@ -131,12 +133,10 @@ class AuthInterceptor extends Interceptor {
 
       options.headers.remove('requiresToken');
       if (firebaseAuth.currentUser != null) {
-        String firebaseToken = await firebaseAuth.currentUser!.getIdToken(true);
-        print(firebaseToken);
+        String firebaseToken = await firebaseAuth.currentUser!.getIdToken();
         options.headers['Authorization'] = 'Bearer $firebaseToken';
       }
     }
-    print(firebaseAuth.currentUser);
 
     return handler.next(options);
   }
@@ -193,8 +193,10 @@ class Logging extends Interceptor {
         var prettyHeader =
             const JsonEncoder.withIndent('  ').convert(options.headers);
         log('\n🧡 REQUEST[${options.method}] => PATH: ${options.path}\n🔸 HEADER: $prettyHeader\n🔸 QUERY: $prettyQuery\n🔸 BODY: $prettyBody');
+        // log('\n🧡 REQUEST[${options.method}] => PATH: ${options.uri}\n🔸 BODY: ${options.data}');
       } else {
         log('\n🧡 REQUEST[${options.method}] => PATH: ${options.path}\n🔸 BODY: ${options.data}');
+        // log('\n🧡 REQUEST[${options.method}] => PATH: ${options.uri}\n🔸 BODY: ${options.data}');
       }
     }
     return super.onRequest(options, handler);
@@ -223,13 +225,3 @@ class Logging extends Interceptor {
     return super.onError(err, handler);
   }
 }
-
-final Map<String, String> default_header = {
-  'Content-type': 'application/json',
-  'Accept': 'application/json',
-  'client-secret': 'xyz',
-  'client-id': 'abc',
-  'package-name': 'com.sasa.abc',
-  'platform': 'android',
-  'accessToken': "access_token"
-};

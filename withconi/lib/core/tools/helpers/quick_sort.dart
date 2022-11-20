@@ -1,20 +1,22 @@
-import 'package:withconi/module/ui_model/custom_marker.dart';
+import 'package:withconi/module/ui_model/place_marker_ui_model.dart';
+import 'package:withconi/module/ui_model/place_ui_model/abstract_class/place_preview_ui.dart';
 
 import '../../../data/enums/enum.dart';
 
 class QuickSort {
   sortPlaceByType(
-      {required List<PlaceMarker> placeMarkerList,
+      {required List<PlacePreviewUiModel> placeMarkerList,
       required SortType sortType}) {
     int high = placeMarkerList.length - 1;
     int low = 0;
-    List<PlaceMarker> result = _quickSort(placeMarkerList, low, high, sortType);
+    List<PlacePreviewUiModel> result =
+        _quickSort(placeMarkerList, low, high, sortType);
 
     return result;
   }
 
-  List<PlaceMarker> _quickSort(
-      List<PlaceMarker> list, int low, int high, SortType sortType) {
+  List<PlacePreviewUiModel> _quickSort(
+      List<PlacePreviewUiModel> list, int low, int high, SortType sortType) {
     if (low < high) {
       late int pi;
 
@@ -29,14 +31,14 @@ class QuickSort {
     return list;
   }
 
-  int distancePartition(List<PlaceMarker> list, low, high) {
+  int distancePartition(List<PlacePreviewUiModel> list, low, high) {
     if (list.isEmpty) {
       return 0;
     }
-    double pivot = list[high].distanceMeter;
+    double pivot = list[high].meterDistance;
     int i = low - 1;
     for (int j = low; j < high; j++) {
-      if (list[j].distanceMeter < pivot) {
+      if (list[j].meterDistance < pivot) {
         i++;
         swap(list, i, j);
       }
@@ -45,14 +47,14 @@ class QuickSort {
     return i + 1;
   }
 
-  int visitingPartition(List<PlaceMarker> list, low, high) {
+  int visitingPartition(List<PlacePreviewUiModel> list, low, high) {
     if (list.isEmpty) {
       return 0;
     }
-    int pivot = list[high].place.totalReviews;
+    int pivot = list[high].totalReviews;
     int i = low - 1;
     for (int j = low; j < high; j++) {
-      if (list[j].place.totalReviews > pivot) {
+      if (list[j].totalReviews > pivot) {
         i++;
         swap(list, i, j);
       }
@@ -61,8 +63,8 @@ class QuickSort {
     return i + 1;
   }
 
-  void swap(List<PlaceMarker> list, int i, int j) {
-    PlaceMarker temp = list[i];
+  void swap(List<PlacePreviewUiModel> list, int i, int j) {
+    PlacePreviewUiModel temp = list[i];
     list[i] = list[j];
     list[j] = temp;
   }

@@ -42,7 +42,7 @@ class TimeCalculator {
 }
 
 class DistanceCalculator {
-  String getDistanceToString({required double distanceMeter}) {
+  static String getDistanceToString({required double distanceMeter}) {
     String distanceResult = '';
 
     double distanceMeters = distanceMeter;
