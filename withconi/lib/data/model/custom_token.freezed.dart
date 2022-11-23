@@ -14,97 +14,104 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-CustomToken _$CustomTokenFromJson(Map<String, dynamic> json) {
-  return _CustomToken.fromJson(json);
+CustomTokenResponseDTO _$CustomTokenResponseDTOFromJson(
+    Map<String, dynamic> json) {
+  return _CustomTokenResponseDTO.fromJson(json);
 }
 
 /// @nodoc
-mixin _$CustomToken {
+mixin _$CustomTokenResponseDTO {
   Provider get provider => throw _privateConstructorUsedError;
   String get uid => throw _privateConstructorUsedError;
   String get accessToken => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $CustomTokenCopyWith<CustomToken> get copyWith =>
+  $CustomTokenResponseDTOCopyWith<CustomTokenResponseDTO> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CustomTokenCopyWith<$Res> {
-  factory $CustomTokenCopyWith(
-          CustomToken value, $Res Function(CustomToken) then) =
-      _$CustomTokenCopyWithImpl<$Res>;
+abstract class $CustomTokenResponseDTOCopyWith<$Res> {
+  factory $CustomTokenResponseDTOCopyWith(CustomTokenResponseDTO value,
+          $Res Function(CustomTokenResponseDTO) then) =
+      _$CustomTokenResponseDTOCopyWithImpl<$Res, CustomTokenResponseDTO>;
+  @useResult
   $Res call({Provider provider, String uid, String accessToken});
 }
 
 /// @nodoc
-class _$CustomTokenCopyWithImpl<$Res> implements $CustomTokenCopyWith<$Res> {
-  _$CustomTokenCopyWithImpl(this._value, this._then);
+class _$CustomTokenResponseDTOCopyWithImpl<$Res,
+        $Val extends CustomTokenResponseDTO>
+    implements $CustomTokenResponseDTOCopyWith<$Res> {
+  _$CustomTokenResponseDTOCopyWithImpl(this._value, this._then);
 
-  final CustomToken _value;
   // ignore: unused_field
-  final $Res Function(CustomToken) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? provider = freezed,
-    Object? uid = freezed,
-    Object? accessToken = freezed,
+    Object? provider = null,
+    Object? uid = null,
+    Object? accessToken = null,
   }) {
     return _then(_value.copyWith(
-      provider: provider == freezed
+      provider: null == provider
           ? _value.provider
           : provider // ignore: cast_nullable_to_non_nullable
               as Provider,
-      uid: uid == freezed
+      uid: null == uid
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as String,
-      accessToken: accessToken == freezed
+      accessToken: null == accessToken
           ? _value.accessToken
           : accessToken // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_CustomTokenCopyWith<$Res>
-    implements $CustomTokenCopyWith<$Res> {
-  factory _$$_CustomTokenCopyWith(
-          _$_CustomToken value, $Res Function(_$_CustomToken) then) =
-      __$$_CustomTokenCopyWithImpl<$Res>;
+abstract class _$$_CustomTokenResponseDTOCopyWith<$Res>
+    implements $CustomTokenResponseDTOCopyWith<$Res> {
+  factory _$$_CustomTokenResponseDTOCopyWith(_$_CustomTokenResponseDTO value,
+          $Res Function(_$_CustomTokenResponseDTO) then) =
+      __$$_CustomTokenResponseDTOCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({Provider provider, String uid, String accessToken});
 }
 
 /// @nodoc
-class __$$_CustomTokenCopyWithImpl<$Res> extends _$CustomTokenCopyWithImpl<$Res>
-    implements _$$_CustomTokenCopyWith<$Res> {
-  __$$_CustomTokenCopyWithImpl(
-      _$_CustomToken _value, $Res Function(_$_CustomToken) _then)
-      : super(_value, (v) => _then(v as _$_CustomToken));
+class __$$_CustomTokenResponseDTOCopyWithImpl<$Res>
+    extends _$CustomTokenResponseDTOCopyWithImpl<$Res,
+        _$_CustomTokenResponseDTO>
+    implements _$$_CustomTokenResponseDTOCopyWith<$Res> {
+  __$$_CustomTokenResponseDTOCopyWithImpl(_$_CustomTokenResponseDTO _value,
+      $Res Function(_$_CustomTokenResponseDTO) _then)
+      : super(_value, _then);
 
-  @override
-  _$_CustomToken get _value => super._value as _$_CustomToken;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? provider = freezed,
-    Object? uid = freezed,
-    Object? accessToken = freezed,
+    Object? provider = null,
+    Object? uid = null,
+    Object? accessToken = null,
   }) {
-    return _then(_$_CustomToken(
-      provider: provider == freezed
+    return _then(_$_CustomTokenResponseDTO(
+      provider: null == provider
           ? _value.provider
           : provider // ignore: cast_nullable_to_non_nullable
               as Provider,
-      uid: uid == freezed
+      uid: null == uid
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as String,
-      accessToken: accessToken == freezed
+      accessToken: null == accessToken
           ? _value.accessToken
           : accessToken // ignore: cast_nullable_to_non_nullable
               as String,
@@ -114,12 +121,12 @@ class __$$_CustomTokenCopyWithImpl<$Res> extends _$CustomTokenCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CustomToken implements _CustomToken {
-  _$_CustomToken(
+class _$_CustomTokenResponseDTO implements _CustomTokenResponseDTO {
+  _$_CustomTokenResponseDTO(
       {required this.provider, required this.uid, required this.accessToken});
 
-  factory _$_CustomToken.fromJson(Map<String, dynamic> json) =>
-      _$$_CustomTokenFromJson(json);
+  factory _$_CustomTokenResponseDTO.fromJson(Map<String, dynamic> json) =>
+      _$$_CustomTokenResponseDTOFromJson(json);
 
   @override
   final Provider provider;
@@ -130,49 +137,48 @@ class _$_CustomToken implements _CustomToken {
 
   @override
   String toString() {
-    return 'CustomToken(provider: $provider, uid: $uid, accessToken: $accessToken)';
+    return 'CustomTokenResponseDTO(provider: $provider, uid: $uid, accessToken: $accessToken)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CustomToken &&
-            const DeepCollectionEquality().equals(other.provider, provider) &&
-            const DeepCollectionEquality().equals(other.uid, uid) &&
-            const DeepCollectionEquality()
-                .equals(other.accessToken, accessToken));
+            other is _$_CustomTokenResponseDTO &&
+            (identical(other.provider, provider) ||
+                other.provider == provider) &&
+            (identical(other.uid, uid) || other.uid == uid) &&
+            (identical(other.accessToken, accessToken) ||
+                other.accessToken == accessToken));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(provider),
-      const DeepCollectionEquality().hash(uid),
-      const DeepCollectionEquality().hash(accessToken));
+  int get hashCode => Object.hash(runtimeType, provider, uid, accessToken);
 
   @JsonKey(ignore: true)
   @override
-  _$$_CustomTokenCopyWith<_$_CustomToken> get copyWith =>
-      __$$_CustomTokenCopyWithImpl<_$_CustomToken>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$_CustomTokenResponseDTOCopyWith<_$_CustomTokenResponseDTO> get copyWith =>
+      __$$_CustomTokenResponseDTOCopyWithImpl<_$_CustomTokenResponseDTO>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CustomTokenToJson(
+    return _$$_CustomTokenResponseDTOToJson(
       this,
     );
   }
 }
 
-abstract class _CustomToken implements CustomToken {
-  factory _CustomToken(
+abstract class _CustomTokenResponseDTO implements CustomTokenResponseDTO {
+  factory _CustomTokenResponseDTO(
       {required final Provider provider,
       required final String uid,
-      required final String accessToken}) = _$_CustomToken;
+      required final String accessToken}) = _$_CustomTokenResponseDTO;
 
-  factory _CustomToken.fromJson(Map<String, dynamic> json) =
-      _$_CustomToken.fromJson;
+  factory _CustomTokenResponseDTO.fromJson(Map<String, dynamic> json) =
+      _$_CustomTokenResponseDTO.fromJson;
 
   @override
   Provider get provider;
@@ -182,6 +188,6 @@ abstract class _CustomToken implements CustomToken {
   String get accessToken;
   @override
   @JsonKey(ignore: true)
-  _$$_CustomTokenCopyWith<_$_CustomToken> get copyWith =>
+  _$$_CustomTokenResponseDTOCopyWith<_$_CustomTokenResponseDTO> get copyWith =>
       throw _privateConstructorUsedError;
 }

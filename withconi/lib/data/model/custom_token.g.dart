@@ -6,14 +6,16 @@ part of 'custom_token.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_CustomToken _$$_CustomTokenFromJson(Map<String, dynamic> json) =>
-    _$_CustomToken(
+_$_CustomTokenResponseDTO _$$_CustomTokenResponseDTOFromJson(
+        Map<String, dynamic> json) =>
+    _$_CustomTokenResponseDTO(
       provider: $enumDecode(_$ProviderEnumMap, json['provider']),
       uid: json['uid'] as String,
       accessToken: json['accessToken'] as String,
     );
 
-Map<String, dynamic> _$$_CustomTokenToJson(_$_CustomToken instance) =>
+Map<String, dynamic> _$$_CustomTokenResponseDTOToJson(
+        _$_CustomTokenResponseDTO instance) =>
     <String, dynamic>{
       'provider': _$ProviderEnumMap[instance.provider]!,
       'uid': instance.uid,
@@ -26,5 +28,5 @@ const _$ProviderEnumMap = {
   Provider.google: 'google',
   Provider.apple: 'apple',
   Provider.email: 'email',
-  Provider.none: 'none',
+  Provider.undefined: 'undefined',
 };
