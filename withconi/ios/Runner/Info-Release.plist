@@ -129,9 +129,5 @@
 	<string>Withconi</string>
 	<key>naverServiceAppUrlScheme</key>
 	<string>withconimal.page.link</string>
-	<key>NSBonjourServices</key>
-	<array>
-		<string>_dartobservatory._tcp</string>
-	</array>
 </dict>
 </plist>
