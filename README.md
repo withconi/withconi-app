@@ -1,6 +1,6 @@
 </br>
 
-<img src="https://user-images.githubusercontent.com/47681139/203914388-bcc9d1ac-9633-402b-8e39-59f043a79a1a.png"  style="height: 500px; width: auto;">
+<img src="https://user-images.githubusercontent.com/47681139/203914388-bcc9d1ac-9633-402b-8e39-59f043a79a1a.png" >
 </br>
 
 
@@ -155,5 +155,26 @@
 <img width="906" alt="Screen Shot 2022-11-25 at 4 05 11 PM" src="https://user-images.githubusercontent.com/47681139/203921413-9882b946-1202-47a0-b0d4-debb236d8df1.png">
 
 
+</br>
+</br>
 
-    
+ # 👨🏻‍💻 Team
+
+</br>
+
+- Flutter 개발자 1명
+- 백엔드 개발자 1명
+
+
+</br>
+
+
+# ✋🏻 맡은 부분
+
+</br>
+
+- **프론트 앱 전체 개발**
+    - Flutter 기반 Android/iOS에 동시 대응할 수 있는 앱 개발 담당
+- **디자인**
+    - 직접 Figma를 이용한 디자인/프로토타이핑을 담당. 해당 디자인을 기반으로 앱 개발 진행
+- **아이디어 기획**
