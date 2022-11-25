@@ -78,7 +78,12 @@
     </thead>
     <tbody>
    <tr>
-           <td><img src="https://user-images.githubusercontent.com/47681139/203929316-a048da82-bf69-46b8-a057-ba5000265f55.gif"                  width="200"></td>     <td><img src="https://user-images.githubusercontent.com/47681139/203927136-db0e9d95-a01f-42a5-9869-33eaa675ef1a.gif"                  width="200"></td>
+           <td><img src="https://user-images.githubusercontent.com/47681139/203929316-a048da82-bf69-46b8-a057-ba5000265f55.gif"                  width="200"></td>    
+           
+
+           
+           
+           <td><img src="https://user-images.githubusercontent.com/47681139/203933739-f200c589-478e-4b45-aa3d-245776843a0c.gif"                  width="200"></td>
       <td><img src="https://user-images.githubusercontent.com/47681139/203930235-2e39e4e7-04f2-4314-9dc4-5822a1a3df22.gif"                  width="200"></td>
              <td><img src="https://user-images.githubusercontent.com/47681139/203929546-a2e8cd2d-9d0b-40a3-8b2e-607ad3bfec46.gif"                  width="200"></td>
  
