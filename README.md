@@ -9,6 +9,9 @@
 
 
 
+
+
+
 <img src="https://user-images.githubusercontent.com/47681139/203910273-4f1d65d3-6afa-4fb2-9b07-e67acd3ef202.png"  width="400">
 
 
@@ -39,7 +42,7 @@
     </tbody>
 </table>
 
-
+</br>
 
 </br>
 
@@ -57,18 +60,44 @@
 
 
 </br>
+</br></br>
+
+# 📱 앱 데모 영상
+
 </br>
 
 
-#📱  앱 데모 영상
+
+
+
+<table>
+    <thead>
+        <tr>
+            <th>로그인/회원가입</th>    <th>홈화면 코니멀 및 질병 편집</th>    <th>병원/약국 찾기& 리뷰</th>    <th>커뮤니티</th> 
+        </tr>
+    </thead>
+    <tbody>
+   <tr>
+           <td><img src="https://user-images.githubusercontent.com/47681139/203929316-a048da82-bf69-46b8-a057-ba5000265f55.gif"                  width="200"></td>     <td><img src="https://user-images.githubusercontent.com/47681139/203927136-db0e9d95-a01f-42a5-9869-33eaa675ef1a.gif"                  width="200"></td>
+      <td><img src="https://user-images.githubusercontent.com/47681139/203930235-2e39e4e7-04f2-4314-9dc4-5822a1a3df22.gif"                  width="200"></td>
+             <td><img src="https://user-images.githubusercontent.com/47681139/203929546-a2e8cd2d-9d0b-40a3-8b2e-607ad3bfec46.gif"                  width="200"></td>
+ 
+
+       
+       
+       
+ 
+ 
+
+  </tr>
+    </tbody>
+</table>
+
+
+
+
 
 </br>
-
-|이런 문제가 있었어요.|이렇게 해결하고 싶었어요.|
-|---|---|
-|🔒 반려동물을 **함께하는 가족**으로 여기는 사람들|🔑 **의심되는 질병**과 그 질병의 정보을 보호자가 신속히 알도록 돕자!|
-|🔒 질병별로 **전문성있는 동물의료기관을 찾기 어려움**|🔑 병원/약국에 **방문한 반려동물과 질병**에 대한 **상세한 정보**를 제공하자!|
-|🔒 질병을 위한 **진단법/치료법/약,수술법** 등의 정보를 얻기가 힘듦|🔑 비슷한 질병으로 고민하는 **보호자들이 정보를 공유**할 수 있도록 돕자.|
 
 
 </br>
@@ -106,7 +135,7 @@
     - Api DTO의 존재 이유? header나 formData, query나 body 에 필요한 별개의 설정을 할 수 있도록
 - **Dio** : api 직접 통신을 담당 + 구현한 Auth, Error Interceptor를 통해 token을 발급하고 적절한 Exception throw함
 
-
+</br>
 
 </br>
 </br>
