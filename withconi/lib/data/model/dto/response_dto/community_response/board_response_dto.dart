@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../../../enums/enum.dart';
 import '../../../json_converter/datetime_converter.dart';
 import '../abstract_dto/response_dto.dart';
 
@@ -11,6 +12,7 @@ class BoardResponseDTO with _$BoardResponseDTO implements ResponseDTO {
   factory BoardResponseDTO({
     required String id,
     required String name,
+    @Default(DiseaseType.undefined) DiseaseType diseaseType,
   }) = _BoardResponseDTO;
 
   factory BoardResponseDTO.fromJson(Map<String, dynamic> json) =>

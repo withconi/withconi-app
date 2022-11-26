@@ -22,6 +22,7 @@ BoardResponseDTO _$BoardResponseDTOFromJson(Map<String, dynamic> json) {
 mixin _$BoardResponseDTO {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  DiseaseType get diseaseType => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +36,7 @@ abstract class $BoardResponseDTOCopyWith<$Res> {
           BoardResponseDTO value, $Res Function(BoardResponseDTO) then) =
       _$BoardResponseDTOCopyWithImpl<$Res, BoardResponseDTO>;
   @useResult
-  $Res call({String id, String name});
+  $Res call({String id, String name, DiseaseType diseaseType});
 }
 
 /// @nodoc
@@ -53,6 +54,7 @@ class _$BoardResponseDTOCopyWithImpl<$Res, $Val extends BoardResponseDTO>
   $Res call({
     Object? id = null,
     Object? name = null,
+    Object? diseaseType = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -63,6 +65,10 @@ class _$BoardResponseDTOCopyWithImpl<$Res, $Val extends BoardResponseDTO>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      diseaseType: null == diseaseType
+          ? _value.diseaseType
+          : diseaseType // ignore: cast_nullable_to_non_nullable
+              as DiseaseType,
     ) as $Val);
   }
 }
@@ -75,7 +81,7 @@ abstract class _$$_BoardResponseDTOCopyWith<$Res>
       __$$_BoardResponseDTOCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String name});
+  $Res call({String id, String name, DiseaseType diseaseType});
 }
 
 /// @nodoc
@@ -91,6 +97,7 @@ class __$$_BoardResponseDTOCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
+    Object? diseaseType = null,
   }) {
     return _then(_$_BoardResponseDTO(
       id: null == id
@@ -101,6 +108,10 @@ class __$$_BoardResponseDTOCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      diseaseType: null == diseaseType
+          ? _value.diseaseType
+          : diseaseType // ignore: cast_nullable_to_non_nullable
+              as DiseaseType,
     ));
   }
 }
@@ -109,7 +120,10 @@ class __$$_BoardResponseDTOCopyWithImpl<$Res>
 
 @JsonSerializable(explicitToJson: true)
 class _$_BoardResponseDTO implements _BoardResponseDTO {
-  _$_BoardResponseDTO({required this.id, required this.name});
+  _$_BoardResponseDTO(
+      {required this.id,
+      required this.name,
+      this.diseaseType = DiseaseType.undefined});
 
   factory _$_BoardResponseDTO.fromJson(Map<String, dynamic> json) =>
       _$$_BoardResponseDTOFromJson(json);
@@ -118,10 +132,13 @@ class _$_BoardResponseDTO implements _BoardResponseDTO {
   final String id;
   @override
   final String name;
+  @override
+  @JsonKey()
+  final DiseaseType diseaseType;
 
   @override
   String toString() {
-    return 'BoardResponseDTO(id: $id, name: $name)';
+    return 'BoardResponseDTO(id: $id, name: $name, diseaseType: $diseaseType)';
   }
 
   @override
@@ -130,12 +147,14 @@ class _$_BoardResponseDTO implements _BoardResponseDTO {
         (other.runtimeType == runtimeType &&
             other is _$_BoardResponseDTO &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name));
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.diseaseType, diseaseType) ||
+                other.diseaseType == diseaseType));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name);
+  int get hashCode => Object.hash(runtimeType, id, name, diseaseType);
 
   @JsonKey(ignore: true)
   @override
@@ -154,7 +173,8 @@ class _$_BoardResponseDTO implements _BoardResponseDTO {
 abstract class _BoardResponseDTO implements BoardResponseDTO {
   factory _BoardResponseDTO(
       {required final String id,
-      required final String name}) = _$_BoardResponseDTO;
+      required final String name,
+      final DiseaseType diseaseType}) = _$_BoardResponseDTO;
 
   factory _BoardResponseDTO.fromJson(Map<String, dynamic> json) =
       _$_BoardResponseDTO.fromJson;
@@ -163,6 +183,8 @@ abstract class _BoardResponseDTO implements BoardResponseDTO {
   String get id;
   @override
   String get name;
+  @override
+  DiseaseType get diseaseType;
   @override
   @JsonKey(ignore: true)
   _$$_BoardResponseDTOCopyWith<_$_BoardResponseDTO> get copyWith =>
