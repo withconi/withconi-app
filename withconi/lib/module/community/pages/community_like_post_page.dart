@@ -74,16 +74,13 @@ class CommunityLikePostPage extends StatelessWidget {
                           itemCount: _controller.likedPostList.length,
                           shrinkWrap: true,
                           itemBuilder: ((context, index) {
-                            PostUIModel thisPost =
-                                _controller.likedPostList[index];
                             return PostListTile(
-                              liked:
-                                  _controller.likedPostList.contains(thisPost),
+                              liked: _controller.likedPostList[index].isLikeOn,
                               onLikeTap: (p0) {
                                 _controller.onLikeChanged(index, p0);
                               },
                               onPostTap: _controller.onPostTap,
-                              post: thisPost,
+                              post: _controller.likedPostList[index],
                               onMoreTap: (p0, p1) {},
                               postIndex: index,
                             );

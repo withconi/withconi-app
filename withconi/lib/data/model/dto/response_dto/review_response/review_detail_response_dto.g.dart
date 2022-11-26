@@ -26,17 +26,6 @@ _$_ReviewDetailResponseDTO _$$_ReviewDetailResponseDTOFromJson(
           .map((e) => $enumDecode(_$ReviewItemEnumMap, e))
           .toList(),
       reviewDesc: json['reviewDesc'] as String,
-      definition: json['definition'] as String? ?? '',
-      diagnosisTechnique: json['diagnosisTechnique'] as String? ?? '',
-      treatment: json['treatment'] as String? ?? '',
-      advice: json['advice'] as String? ?? '',
-      symptomGroupList: (json['symptomGroupList'] as List<dynamic>?)
-              ?.map((e) => SymptomGroup.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
-      diseaseType:
-          $enumDecodeNullable(_$DiseaseTypeEnumMap, json['diseaseType']) ??
-              DiseaseType.brainNeurology,
     );
 
 Map<String, dynamic> _$$_ReviewDetailResponseDTOToJson(
@@ -53,18 +42,11 @@ Map<String, dynamic> _$$_ReviewDetailResponseDTOToJson(
       'reviewItems':
           instance.reviewItems.map((e) => _$ReviewItemEnumMap[e]!).toList(),
       'reviewDesc': instance.reviewDesc,
-      'definition': instance.definition,
-      'diagnosisTechnique': instance.diagnosisTechnique,
-      'treatment': instance.treatment,
-      'advice': instance.advice,
-      'symptomGroupList':
-          instance.symptomGroupList.map((e) => e.toJson()).toList(),
-      'diseaseType': _$DiseaseTypeEnumMap[instance.diseaseType]!,
     };
 
 const _$DiseaseTypeEnumMap = {
-  DiseaseType.all: 'all',
-  DiseaseType.cardiovascular: 'cardiovascular',
+  DiseaseType.all: '',
+  DiseaseType.cardiovacular: 'cardiovacular',
   DiseaseType.musculoskeletal: 'musculoskeletal',
   DiseaseType.digestive: 'digestive',
   DiseaseType.ophthalmology: 'ophthalmology',
@@ -78,6 +60,7 @@ const _$DiseaseTypeEnumMap = {
   DiseaseType.dermatology: 'dermatology',
   DiseaseType.endocrinology: 'endocrinology',
   DiseaseType.emergency: 'emergency',
+  DiseaseType.undefined: 'undefined',
 };
 
 const _$ReviewRateEnumMap = {
@@ -90,7 +73,7 @@ const _$ReviewItemEnumMap = {
   ReviewItem.explanation: 'explanation',
   ReviewItem.kindness: 'kindness',
   ReviewItem.price: 'price',
-  ReviewItem.adequateExamination: 'adequate_examination',
+  ReviewItem.adequateExamination: 'adequateExamination',
   ReviewItem.effectiveness: 'effectiveness',
-  ReviewItem.waitingExperience: 'waiting_experience',
+  ReviewItem.waitingExperience: 'waitingExperience',
 };

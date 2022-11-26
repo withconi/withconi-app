@@ -5,7 +5,7 @@ import 'package:withconi/global_widgets/appbar/appbar.dart';
 import '../../../global_widgets/button/tile_button.dart';
 
 class CommunitySettingPage extends StatelessWidget {
-  CommunitySettingPage({Key? key}) : super(key: key);
+  const CommunitySettingPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

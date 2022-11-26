@@ -1,13 +1,9 @@
-import 'dart:html';
 import 'package:withconi/data/model/dto/request_dto/abstract_request/request_dto_abstract.dart';
 import 'package:withconi/data/model/dto/request_dto/abstract_request/request_info_abstract.dart';
 import 'package:withconi/module/ui_model/conimal_ui_model.dart';
-import 'package:withconi/module/ui_model/ui_model_abstract/ui_model.dart';
 import '../../../../../core/network_handling/network_service.dart';
 import '../../../../../core/tools/api_url.dart';
 import '../../../../enums/enum.dart';
-import '../../api_dto/api_call_dto.dart';
-import '../../../disease.dart';
 
 class UpdateConimalRequestDTO
     extends RequestConverter<UpdateConimalRequestDTO, ConimalUIModel>
@@ -17,7 +13,7 @@ class UpdateConimalRequestDTO
   final Gender gender;
   final DateTime birthDate;
   final DateTime adoptedDate;
-  final List<Disease> diseases;
+  final List<String> diseaseIdList;
   final String breed;
 
   @override
@@ -29,35 +25,18 @@ class UpdateConimalRequestDTO
   @override
   String get url => HttpUrl.CONIMAL_UPDATE;
 
-  @override
-  FormData? formDataMap;
-
   UpdateConimalRequestDTO.fromData({required ConimalUIModel data})
       : adoptedDate = data.adoptedDate!,
         birthDate = data.birthDate!,
         breed = data.breed,
-        diseases = data.diseases,
+        diseaseIdList = data.diseases.map((e) => e.code).toList(),
         gender = data.gender!,
         name = data.name,
         species = data.species!,
         super.fromData(data);
 
-  // @override
-  // factory CreateConimalRequestDTO.fromData(ConimalUIModel conimalUIModel) {
-  //   return CreateConimalRequestDTO._(
-  //     adoptedDate: conimalUIModel.adoptedDate!,
-  //     birthDate: conimalUIModel.birthDate!,
-  //     breed: conimalUIModel.breed,
-  //     diseases: conimalUIModel.diseases,
-  //     gender: conimalUIModel.gender!,
-  //     name: conimalUIModel.name,
-  //     species: conimalUIModel.species!,
-  //   );
-  // }
-
   @override
   Map<String, dynamic> get dataMap {
-    List<String> diseaseIdList = diseases.map((e) => e.name).toList();
     return {
       'diseases': diseaseIdList,
       'name': name,

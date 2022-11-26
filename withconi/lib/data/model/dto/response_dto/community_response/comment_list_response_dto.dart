@@ -12,7 +12,7 @@ class CommentListResponseDTO
     implements ResponseDTO {
   @JsonSerializable(explicitToJson: true)
   factory CommentListResponseDTO({
-    required List<CommentResponseDTO> results,
+    required List<CommentResponseDTO> list,
     required int totalDocuments,
   }) = _CommentListResponseDTO;
 

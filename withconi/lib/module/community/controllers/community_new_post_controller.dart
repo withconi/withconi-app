@@ -13,6 +13,7 @@ import 'package:withconi/module/ui_model/new_post_ui_model.dart';
 import 'package:withconi/module/ui_model/post_ui_model.dart';
 import '../../../core/tools/helpers/image_picker_helper.dart';
 import '../../../core/error_handling/failures.dart';
+import '../../../data/model/dto/response_dto/community_response/post_response_dto.dart';
 import '../../../import_basic.dart';
 import '../../../global_widgets/dialog/selection_dialog.dart';
 import '../../../core/error_handling/failure_ui_interpreter.dart';
@@ -100,38 +101,59 @@ class CommunityNewPostController extends GetxController {
   }
 
   void _createNewPostDB() async {
-    var onlyFileImageItemList = _getOnlyFileImageItem();
-    List<String> imageRefList = [];
-    if (onlyFileImageItemList.isNotEmpty) {
-      imageRefList = await _uploadFileImageDB(onlyFileImageItemList);
-    }
+    // var onlyFileImageItemList = _getOnlyFileImageItem();
+    // List<String> imageRefList = [];
+    // if (onlyFileImageItemList.isNotEmpty) {
+    //   imageRefList = await _uploadFileImageDB(onlyFileImageItemList);
+    // }
+    List<String> newlyUploadImageRef = await _uploadImageFileListDb();
 
-    var newPostResultEither = await showLoading(() =>
-        _communityRepository.newPost(
+    Either<Failure, PostResponseDTO> newPostResultEither = await showLoading(
+        () => _communityRepository.newPost(
             newPost: newPost.value,
             boardId: _boardId,
-            imageRefList: imageRefList));
+            imageRefList: newlyUploadImageRef));
     newPostResultEither.fold(
         (fail) =>
             FailureInterpreter().mapFailureToSnackbar(fail, 'createNewPostDB'),
-        (addedPost) {
-      Get.back(result: newPost.value);
+        (addedPostDto) {
+      Get.back(result: PostUIModel.fromDTO(addedPostDto));
     });
   }
 
-  Future<List<String>> _uploadFileImageDB(
-      List<ImageItem> fileImageItems) async {
-    Either<Failure, List<String>> imageUploadRefsEither =
-        await _imageRepository.uploadImageFileList(fileImageItems);
+  _uploadImageFileListDb() async {
+    List<String> uploadImageRefList = [];
+    var onlyFileImage = _getOnlyFileImageItem();
+    if (onlyFileImage.isNotEmpty) {
+      Either<Failure, List<String>> imageUploadRefsEither = await showLoading(
+          () => _imageRepository.uploadImageFileList(onlyFileImage));
 
-    List<String> imageRefListOrNull = imageUploadRefsEither.fold((fail) {
-      FailureInterpreter().mapFailureToSnackbar(fail, 'image upload error');
-      return [];
-    }, (imageRefList) {
-      return imageRefList;
-    });
-    return imageRefListOrNull;
+      uploadImageRefList = imageUploadRefsEither.fold((fail) {
+        FailureInterpreter().mapFailureToSnackbar(fail, 'image upload error');
+        return [];
+      }, (imageRefList) {
+        return imageRefList;
+      });
+    }
+    return uploadImageRefList;
   }
+
+  // _uploadSingleImageFileDb() async {
+  //   String uploadImageRef = '';
+  //   var onlyFileImage = _getOnlyFileImageItem();
+  //   if (onlyFileImage.isNotEmpty) {
+  //     Either<Failure, String> imageUploadRefsEither = await showLoading(
+  //         () => _imageRepository.uploadImageFile(imageItem: onlyFileImage[0]));
+
+  //     uploadImageRef = imageUploadRefsEither.fold((fail) {
+  //       FailureInterpreter().mapFailureToSnackbar(fail, 'image upload error');
+  //       return '';
+  //     }, (imageRef) {
+  //       return imageRef;
+  //     });
+  //   }
+  //   return uploadImageRef;
+  // }
 
   List<ImageItem> _getOnlyFileImageItem() {
     return newPost.value.images

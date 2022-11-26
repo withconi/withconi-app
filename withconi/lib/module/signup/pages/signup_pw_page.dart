@@ -4,14 +4,15 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:withconi/module/signup/controllers/signup_pw_controller.dart';
 import 'package:withconi/module/theme/colors.dart';
 import 'package:withconi/module/theme/sizes.dart';
-import 'package:withconi/module/widgets/button/wide_button.dart';
-import '../../widgets/text_field/textfield.dart';
+import 'package:withconi/global_widgets/button/wide_button.dart';
+import '../../../global_widgets/text_field/textfield.dart';
+import '../../theme/text_theme.dart';
 
 class SignupPwPage extends StatelessWidget {
   SignupPwPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    SignupPwController _controller = Get.put(SignupPwController());
+    SignupPwController _controller = Get.find();
 
     return GestureDetector(
       onTap: () {
@@ -37,8 +38,10 @@ class SignupPwPage extends StatelessWidget {
                     ),
                     Text(
                       '비밀번호를\n설정해주세요',
-                      style: GoogleFonts.notoSans(
-                          fontSize: 25, fontWeight: FontWeight.w600),
+                      style: TextStyle(
+                          fontFamily: WcFontFamily.notoSans,
+                          fontSize: 25,
+                          fontWeight: FontWeight.w600),
                     ),
                     const SizedBox(
                       height: 45,

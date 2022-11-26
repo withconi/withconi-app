@@ -166,8 +166,7 @@ class MyPostPageController extends GetxController {
     if (moreOption != null) {
       switch (moreOption) {
         case MoreOption.edit:
-          await Get.toNamed(Routes.COMMUNITY_POST_EDIT,
-              arguments: myPostList[postIndex]);
+          _goToEditPostPage(postIndex);
           break;
         case MoreOption.delete:
           await _deletePost(postIndex);
@@ -176,6 +175,19 @@ class MyPostPageController extends GetxController {
           break;
       }
     }
+  }
+
+  _goToEditPostPage(int postIndex) async {
+    PostUIModel? editedPost = await Get.toNamed(Routes.COMMUNITY_POST_EDIT,
+        arguments: myPostList[postIndex]) as PostUIModel?;
+    if (editedPost != null) {
+      _setEditedPost(editedPost, postIndex);
+    }
+  }
+
+  _setEditedPost(PostUIModel editedPost, int postIndex) {
+    myPostList.replaceRange(postIndex, postIndex + 1, [editedPost.copyWith()]);
+    myPostList.refresh();
   }
 
   Future<void> resetPage({SortType? sortType, PostType? postType}) async {

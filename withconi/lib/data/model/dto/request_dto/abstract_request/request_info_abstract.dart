@@ -1,11 +1,10 @@
-import 'dart:html';
+import 'package:dio/dio.dart' as dio;
 
 import '../../../../../core/network_handling/network_service.dart';
 
-abstract class RequestInfo {
-  bool requiresToken = true;
-  RequestType requestType = RequestType.GET;
-  String url = '';
-  FormData? formData;
+abstract class RequestDTO {
   Map<String, dynamic> get dataMap;
+  bool get requiresToken;
+  RequestType get requestType;
+  String get url;
 }

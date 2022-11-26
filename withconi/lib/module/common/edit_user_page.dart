@@ -1,0 +1,268 @@
+import 'package:flutter_svg/svg.dart';
+import 'package:withconi/module/common/controllers/edit_user_controller.dart';
+import 'package:withconi/import_basic.dart';
+import 'package:withconi/module/home/home_page.dart';
+import 'package:withconi/global_widgets/appbar/appbar.dart';
+import 'package:withconi/global_widgets/button/profile_picker_button.dart';
+import 'package:withconi/global_widgets/button/wide_button.dart';
+import 'package:withconi/global_widgets/text_field/suffix_button_textfield.dart';
+import '../../global_widgets/text_field/textfield.dart';
+
+class EditUserPage extends StatelessWidget {
+  const EditUserPage({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    EditUserController _controller = Get.find();
+
+    return GestureDetector(
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
+
+        if (!currentFocus.hasPrimaryFocus) {
+          currentFocus.unfocus();
+        }
+      },
+      child: Scaffold(
+        resizeToAvoidBottomInset: true,
+        appBar: WcAppBar(
+            title: '내 정보 수정',
+            onLeadingTap: _controller.getBack,
+            onActionTap: _controller.onFinishButtonTap,
+            action: Obx(
+              () => Text(
+                '완료',
+                style: GoogleFonts.notoSans(
+                    fontSize: 17,
+                    color: (_controller.validateButton())
+                        ? WcColors.blue100
+                        : WcColors.grey120,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 0.6),
+              ),
+            )),
+        body: SingleChildScrollView(
+          child: SafeArea(
+            child: SizedBox(
+              width: WcWidth,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        const SizedBox(
+                          height: 25,
+                        ),
+                        Obx(
+                          () => Center(
+                            child: ProfileImagePickerButton(
+                              onTap: _controller.pickImage,
+                              imageItem:
+                                  _controller.editUser.value.profileImage,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Obx(() {
+                          return WcTextField(
+                            errorText: _controller.nickNameErrorText.value,
+                            labelText: '닉네임',
+                            hintText: '닉네임',
+                            onChanged: _controller.onNickNameChanged,
+                            textController: _controller.nickNameTextController,
+                            keyboardType: TextInputType.name,
+                          );
+                        }),
+                        const SizedBox(
+                          height: 24,
+                        ),
+                        Obx(() {
+                          return WcTextField(
+                            errorText: _controller.nameErrorText.value,
+                            labelText: '이름',
+                            hintText: '이름',
+                            onChanged: _controller.onNameChanged,
+                            textController: _controller.nameTextController,
+                            keyboardType: TextInputType.name,
+                          );
+                        }),
+                        const SizedBox(
+                          height: 24,
+                        ),
+                        WcSuffixIconTextField(
+                          readOnly: true,
+                          labelText: '비밀번호',
+                          hintText: '비밀번호',
+                          keyboardType: TextInputType.name,
+                          textObscure: true,
+                          textController:
+                              TextEditingController(text: '********'),
+                          suffixIcon: WcTextButton(
+                            onTap: _controller.changePassword,
+                            activeButtonColor: WcColors.blue100,
+                            inactiveButtonColor: WcColors.grey80,
+                            active:
+                                _controller.editUser.value.passwordChangable,
+                            width: 72,
+                            height: 33,
+                            text: '변경하기',
+                            textSize: 14,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 24,
+                        ),
+                        Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              WcSuffixIconTextField(
+                                width: WcWidth - 40,
+                                errorText: _controller.nickNameErrorText.value,
+                                labelText: '아이디 (이메일)',
+                                hintText: '아이디',
+                                readOnly: true,
+                                textController: _controller.emailTextController,
+                                keyboardType: TextInputType.emailAddress,
+                                suffixIcon: _controller.providerIcon,
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Obx(
+                                () => Visibility(
+                                  visible: _controller
+                                      .editUser.value.passwordChangable,
+                                  child: EmailVerificationButton(
+                                    isEmailVerified: _controller
+                                        .editUser.value.isEmailVerified,
+                                    onTap: _controller
+                                        .onEmailVerificationButtonTap,
+                                  ),
+                                ),
+                              )
+                            ]),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 80,
+                    ),
+                    Column(
+                      children: [
+                        Center(
+                          child: GestureDetector(
+                            onTap: _controller.signOut,
+                            child: Container(
+                              width: 70,
+                              height: 35,
+                              color: WcColors.white,
+                              child: Column(
+                                children: [
+                                  const Text(
+                                    '로그아웃',
+                                    style: TextStyle(color: WcColors.grey120),
+                                  ),
+                                  Container(
+                                    width: 55,
+                                    height: 1,
+                                    color: WcColors.grey120,
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Center(
+                          child: GestureDetector(
+                            onTap: _controller.unregister,
+                            child: Container(
+                              width: 70,
+                              height: 35,
+                              color: WcColors.white,
+                              child: Column(
+                                children: [
+                                  const Text(
+                                    '탈퇴하기',
+                                    style: TextStyle(color: WcColors.grey120),
+                                  ),
+                                  Container(
+                                    width: 55,
+                                    height: 1,
+                                    color: WcColors.grey120,
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class EmailVerificationButton extends StatelessWidget {
+  EmailVerificationButton({
+    Key? key,
+    required this.isEmailVerified,
+    this.onTap,
+  }) : super(key: key);
+
+  bool isEmailVerified;
+  void Function()? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: (!isEmailVerified) ? () {} : onTap,
+      child: Container(
+        height: 38,
+        width: 145,
+        decoration: BoxDecoration(
+            color: (isEmailVerified) ? WcColors.blue20 : WcColors.red20,
+            borderRadius: BorderRadius.circular(5)),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            (isEmailVerified)
+                ? SvgPicture.asset(
+                    'assets/icons/email_verified.svg',
+                  )
+                : SvgPicture.asset(
+                    'assets/icons/email_unverified.svg',
+                  ),
+            const SizedBox(
+              width: 7,
+            ),
+            Text(
+              (isEmailVerified) ? '이메일 인증 완료' : '이메일 인증하기',
+              style: GoogleFonts.notoSans(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 14.5,
+                  color:
+                      (isEmailVerified) ? WcColors.blue100 : WcColors.red100),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

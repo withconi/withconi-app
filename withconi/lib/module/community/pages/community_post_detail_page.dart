@@ -32,6 +32,7 @@ class CommunityPostDetailPage extends StatelessWidget {
       () => (_controller.postLoading.value)
           ? LoadingPage()
           : Scaffold(
+              resizeToAvoidBottomInset: false,
               floatingActionButton: FloatingActionButton(
                   mini: false,
                   child: const Icon(
@@ -262,12 +263,13 @@ class PostDetail extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: 10,
-                ),
+                // SizedBox(
+                //   height: 10,
+                // ),
                 Offstage(
                   offstage: post.images.isEmpty,
-                  child: SizedBox(
+                  child: Container(
+                    margin: EdgeInsets.only(top: 10),
                     height: 180,
                     child: Material(
                       clipBehavior: Clip.antiAlias,
@@ -381,8 +383,8 @@ class PostDetail extends StatelessWidget {
             ),
           ),
           Container(
-            height: 40,
-            padding: EdgeInsets.only(left: 20),
+            height: 30,
+            margin: EdgeInsets.only(left: 20, bottom: 15),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -390,18 +392,9 @@ class PostDetail extends StatelessWidget {
                 Row(
                   children: [
                     WcLikeButton(
+                      likeNum: post.likeNum,
                       isLikeOn: post.isLikeOn,
                       onLikeTap: (p0) => onLikeTap.call(p0),
-                    ),
-                    Text(
-                      post.likeNum.toString(),
-                      style: GoogleFonts.montserrat(
-                        fontSize: 14,
-                        color: WcColors.grey140,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 20,
                     ),
                     WcIconTextButton(
                       active: true,
@@ -435,9 +428,6 @@ class PostDetail extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(
-            height: 20,
-          )
         ],
       ),
     );

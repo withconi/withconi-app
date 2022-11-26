@@ -10,12 +10,12 @@ import '../../../global_widgets/button/icon_button.dart';
 import '../../home/widgets/hot_post_listtile.dart';
 
 class CommunityMainPage extends StatelessWidget {
-  CommunityMainPage({Key? key}) : super(key: key);
+  const CommunityMainPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     // CommunityMainController _controller = Get.put(CommunityMainController());
-    CommunityMainController _controller = Get.find();
+    final CommunityMainController _controller = Get.find();
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
@@ -64,7 +64,9 @@ class CommunityMainPage extends StatelessWidget {
                     ),
                     SearchBarWidget(
                       hintText: '게시판을 검색해보세요',
-                      textController: null,
+                      textController: _controller.boardKeywordTextController,
+                      onTapClear: _controller.clearResult,
+                      onTextChanged: _controller.onBoardKeywordChanged,
                     ),
                     const SizedBox(
                       height: 40,
@@ -79,7 +81,7 @@ class CommunityMainPage extends StatelessWidget {
                                   fontFamily: WcFontFamily.notoSans,
                                   fontWeight: FontWeight.w500,
                                   height: 1,
-                                  fontSize: 18)),
+                                  fontSize: 19)),
                           const SizedBox(
                             width: 8,
                           ),
@@ -108,7 +110,7 @@ class CommunityMainPage extends StatelessWidget {
                               )),
                     ),
                     const SizedBox(
-                      height: 30,
+                      height: 35,
                     ),
                     SizedBox(
                       width: WcWidth - 40,
@@ -120,7 +122,7 @@ class CommunityMainPage extends StatelessWidget {
                                   fontFamily: WcFontFamily.notoSans,
                                   fontWeight: FontWeight.w500,
                                   height: 1,
-                                  fontSize: 18)),
+                                  fontSize: 19)),
                         ],
                       ),
                     ),
@@ -131,7 +133,7 @@ class CommunityMainPage extends StatelessWidget {
                       () => ListView.builder(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
-                          itemCount: _controller.boardList.length,
+                          itemCount: _controller.searchedBoardList.length,
                           itemBuilder: (context, index) => InkWell(
                                 onTap: () {
                                   _controller.goToBoardDetailPage(
@@ -142,12 +144,35 @@ class CommunityMainPage extends StatelessWidget {
                                   height: 45,
                                   width: WcWidth,
                                   padding: EdgeInsets.symmetric(horizontal: 30),
-                                  child: Text(
-                                      _controller.boardList[index].title,
-                                      style: TextStyle(
-                                          fontFamily: WcFontFamily.notoSans,
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 16)),
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        height: 10,
+                                        width: 10,
+                                        decoration: BoxDecoration(
+                                            color: _controller
+                                                .searchedBoardList[index]
+                                                .diseaseType
+                                                .color,
+                                            borderRadius:
+                                                BorderRadius.circular(2)),
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(
+                                          '${_controller.searchedBoardList[index].title}',
+                                          style: TextStyle(
+                                              fontFamily: WcFontFamily.notoSans,
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: 16)),
+                                      Text(' 질환 게시판',
+                                          style: TextStyle(
+                                              fontFamily: WcFontFamily.notoSans,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 16)),
+                                    ],
+                                  ),
                                 ),
                               )),
                     ),

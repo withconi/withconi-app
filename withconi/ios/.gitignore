@@ -33,4 +33,7 @@ Runner/GeneratedPluginRegistrant.*
 !default.pbxuser
 !default.perspectivev3
 
-/ios/Runner/GoogleService-info.plist
+
+Runner/GoogleService-info.plist
+Runner/Info-Debug.plist
+Runner/Info-Release.plist

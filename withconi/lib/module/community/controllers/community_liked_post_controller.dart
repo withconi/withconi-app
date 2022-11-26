@@ -142,8 +142,30 @@ class LikedPostController extends GetxController {
         arguments: likedPostList[postIndex]);
   }
 
+  // onLikeChanged(int postIndex, bool isLiked) async {
+  //   await _communityRepository.updateLikePost(
+  //       postId: likedPostList[postIndex].postId, isLiked: isLiked);
+  // }
+
   onLikeChanged(int postIndex, bool isLiked) async {
-    await _communityRepository.updateLikePost(
+    _updateLikeUiChanges(postIndex, isLiked);
+
+    var likePostsEither = await _communityRepository.updateLikePost(
         postId: likedPostList[postIndex].postId, isLiked: isLiked);
+
+    likePostsEither.fold((l) {
+      FailureInterpreter().mapFailureToSnackbar(l, 'updateLikePost');
+      _updateLikeUiChanges(postIndex, !isLiked);
+    }, (success) {});
+  }
+
+  void _updateLikeUiChanges(int postIndex, bool isLiked) {
+    likedPostList[postIndex].isLikeOn = isLiked;
+    if (isLiked) {
+      likedPostList[postIndex].likeNum += 1;
+    } else {
+      likedPostList[postIndex].likeNum -= 1;
+    }
+    likedPostList.refresh();
   }
 }

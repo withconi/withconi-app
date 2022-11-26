@@ -11,18 +11,19 @@ part 'post_response_dto.g.dart';
 class PostResponseDTO with _$PostResponseDTO {
   @JsonSerializable(explicitToJson: true)
   factory PostResponseDTO({
+    // @JsonKey(name: '_id') required String id,
     required String boardId,
-    @Default('') String? postId,
+    @JsonKey(name: '_id') required String postId,
     required String authorId,
-    required String nickname,
-    required PostType postType,
-    required DiseaseType diseaseType,
+    @Default('글 닉네임 없음') String nickname,
+    @Default(PostType.cat) PostType postType,
+    @Default(DiseaseType.dentistry) DiseaseType diseaseType,
     required String content,
     @ImageItemConverter() required List<ImageItem> images,
     @DateTimeConverter() required DateTime createdAt,
     @Default(false) bool isLike,
-    @Default(12) int likeNum,
-    @Default(3) int commentNum,
+    @JsonKey(name: 'totalLike') @Default(0) int likeNum,
+    @JsonKey(name: 'totalComment') @Default(0) int commentNum,
     // @ImageItemConverter() @Default([]) required List<ImageItem> images,
   }) = _PostResponseDTO;
 

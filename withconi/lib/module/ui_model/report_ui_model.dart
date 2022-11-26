@@ -7,12 +7,12 @@ class ReportUIModel implements UIModel {
     required this.authorId,
     required this.boardId,
     required this.postId,
-    required this.reportDesc,
-    required this.reportItems,
+    this.reportDesc = '',
+    this.reportItem,
   });
   String boardId;
   String postId;
   String authorId;
-  List<ReportItem> reportItems;
-  String reportDesc;
+  ReportItem? reportItem;
+  String reportDesc = '';
 }

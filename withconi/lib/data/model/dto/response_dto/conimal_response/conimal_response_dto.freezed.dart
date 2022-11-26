@@ -24,7 +24,8 @@ mixin _$ConimalResponseDTO {
   String get name => throw _privateConstructorUsedError;
   Species get species => throw _privateConstructorUsedError;
   Gender get gender => throw _privateConstructorUsedError;
-  bool get isNutralized => throw _privateConstructorUsedError;
+  bool get isNeutralized => throw _privateConstructorUsedError;
+  @JsonKey(name: 'speciesName')
   String get breed => throw _privateConstructorUsedError;
   String? get userId => throw _privateConstructorUsedError;
   @DateTimeConverter()
@@ -43,14 +44,15 @@ mixin _$ConimalResponseDTO {
 abstract class $ConimalResponseDTOCopyWith<$Res> {
   factory $ConimalResponseDTOCopyWith(
           ConimalResponseDTO value, $Res Function(ConimalResponseDTO) then) =
-      _$ConimalResponseDTOCopyWithImpl<$Res>;
+      _$ConimalResponseDTOCopyWithImpl<$Res, ConimalResponseDTO>;
+  @useResult
   $Res call(
       {String conimalId,
       String name,
       Species species,
       Gender gender,
-      bool isNutralized,
-      String breed,
+      bool isNeutralized,
+      @JsonKey(name: 'speciesName') String breed,
       String? userId,
       @DateTimeConverter() DateTime birthDate,
       @DateTimeConverter() DateTime adoptedDate,
@@ -58,69 +60,71 @@ abstract class $ConimalResponseDTOCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ConimalResponseDTOCopyWithImpl<$Res>
+class _$ConimalResponseDTOCopyWithImpl<$Res, $Val extends ConimalResponseDTO>
     implements $ConimalResponseDTOCopyWith<$Res> {
   _$ConimalResponseDTOCopyWithImpl(this._value, this._then);
 
-  final ConimalResponseDTO _value;
   // ignore: unused_field
-  final $Res Function(ConimalResponseDTO) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? conimalId = freezed,
-    Object? name = freezed,
-    Object? species = freezed,
-    Object? gender = freezed,
-    Object? isNutralized = freezed,
-    Object? breed = freezed,
+    Object? conimalId = null,
+    Object? name = null,
+    Object? species = null,
+    Object? gender = null,
+    Object? isNeutralized = null,
+    Object? breed = null,
     Object? userId = freezed,
-    Object? birthDate = freezed,
-    Object? adoptedDate = freezed,
-    Object? diseases = freezed,
+    Object? birthDate = null,
+    Object? adoptedDate = null,
+    Object? diseases = null,
   }) {
     return _then(_value.copyWith(
-      conimalId: conimalId == freezed
+      conimalId: null == conimalId
           ? _value.conimalId
           : conimalId // ignore: cast_nullable_to_non_nullable
               as String,
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      species: species == freezed
+      species: null == species
           ? _value.species
           : species // ignore: cast_nullable_to_non_nullable
               as Species,
-      gender: gender == freezed
+      gender: null == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as Gender,
-      isNutralized: isNutralized == freezed
-          ? _value.isNutralized
-          : isNutralized // ignore: cast_nullable_to_non_nullable
+      isNeutralized: null == isNeutralized
+          ? _value.isNeutralized
+          : isNeutralized // ignore: cast_nullable_to_non_nullable
               as bool,
-      breed: breed == freezed
+      breed: null == breed
           ? _value.breed
           : breed // ignore: cast_nullable_to_non_nullable
               as String,
-      userId: userId == freezed
+      userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String?,
-      birthDate: birthDate == freezed
+      birthDate: null == birthDate
           ? _value.birthDate
           : birthDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      adoptedDate: adoptedDate == freezed
+      adoptedDate: null == adoptedDate
           ? _value.adoptedDate
           : adoptedDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      diseases: diseases == freezed
+      diseases: null == diseases
           ? _value.diseases
           : diseases // ignore: cast_nullable_to_non_nullable
               as List<DiseaseResponseDTO>,
-    ));
+    ) as $Val);
   }
 }
 
@@ -131,13 +135,14 @@ abstract class _$$_ConimalResponseDTOCopyWith<$Res>
           $Res Function(_$_ConimalResponseDTO) then) =
       __$$_ConimalResponseDTOCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String conimalId,
       String name,
       Species species,
       Gender gender,
-      bool isNutralized,
-      String breed,
+      bool isNeutralized,
+      @JsonKey(name: 'speciesName') String breed,
       String? userId,
       @DateTimeConverter() DateTime birthDate,
       @DateTimeConverter() DateTime adoptedDate,
@@ -146,66 +151,64 @@ abstract class _$$_ConimalResponseDTOCopyWith<$Res>
 
 /// @nodoc
 class __$$_ConimalResponseDTOCopyWithImpl<$Res>
-    extends _$ConimalResponseDTOCopyWithImpl<$Res>
+    extends _$ConimalResponseDTOCopyWithImpl<$Res, _$_ConimalResponseDTO>
     implements _$$_ConimalResponseDTOCopyWith<$Res> {
   __$$_ConimalResponseDTOCopyWithImpl(
       _$_ConimalResponseDTO _value, $Res Function(_$_ConimalResponseDTO) _then)
-      : super(_value, (v) => _then(v as _$_ConimalResponseDTO));
+      : super(_value, _then);
 
-  @override
-  _$_ConimalResponseDTO get _value => super._value as _$_ConimalResponseDTO;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? conimalId = freezed,
-    Object? name = freezed,
-    Object? species = freezed,
-    Object? gender = freezed,
-    Object? isNutralized = freezed,
-    Object? breed = freezed,
+    Object? conimalId = null,
+    Object? name = null,
+    Object? species = null,
+    Object? gender = null,
+    Object? isNeutralized = null,
+    Object? breed = null,
     Object? userId = freezed,
-    Object? birthDate = freezed,
-    Object? adoptedDate = freezed,
-    Object? diseases = freezed,
+    Object? birthDate = null,
+    Object? adoptedDate = null,
+    Object? diseases = null,
   }) {
     return _then(_$_ConimalResponseDTO(
-      conimalId: conimalId == freezed
+      conimalId: null == conimalId
           ? _value.conimalId
           : conimalId // ignore: cast_nullable_to_non_nullable
               as String,
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      species: species == freezed
+      species: null == species
           ? _value.species
           : species // ignore: cast_nullable_to_non_nullable
               as Species,
-      gender: gender == freezed
+      gender: null == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as Gender,
-      isNutralized: isNutralized == freezed
-          ? _value.isNutralized
-          : isNutralized // ignore: cast_nullable_to_non_nullable
+      isNeutralized: null == isNeutralized
+          ? _value.isNeutralized
+          : isNeutralized // ignore: cast_nullable_to_non_nullable
               as bool,
-      breed: breed == freezed
+      breed: null == breed
           ? _value.breed
           : breed // ignore: cast_nullable_to_non_nullable
               as String,
-      userId: userId == freezed
+      userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String?,
-      birthDate: birthDate == freezed
+      birthDate: null == birthDate
           ? _value.birthDate
           : birthDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      adoptedDate: adoptedDate == freezed
+      adoptedDate: null == adoptedDate
           ? _value.adoptedDate
           : adoptedDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      diseases: diseases == freezed
+      diseases: null == diseases
           ? _value._diseases
           : diseases // ignore: cast_nullable_to_non_nullable
               as List<DiseaseResponseDTO>,
@@ -218,12 +221,12 @@ class __$$_ConimalResponseDTOCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_ConimalResponseDTO implements _ConimalResponseDTO {
   _$_ConimalResponseDTO(
-      {required this.conimalId,
+      {this.conimalId = 'wow',
       required this.name,
       required this.species,
       required this.gender,
-      this.isNutralized = false,
-      this.breed = 'breed',
+      this.isNeutralized = false,
+      @JsonKey(name: 'speciesName') this.breed = 'breed',
       this.userId = '',
       @DateTimeConverter() required this.birthDate,
       @DateTimeConverter() required this.adoptedDate,
@@ -234,6 +237,7 @@ class _$_ConimalResponseDTO implements _ConimalResponseDTO {
       _$$_ConimalResponseDTOFromJson(json);
 
   @override
+  @JsonKey()
   final String conimalId;
   @override
   final String name;
@@ -243,9 +247,9 @@ class _$_ConimalResponseDTO implements _ConimalResponseDTO {
   final Gender gender;
   @override
   @JsonKey()
-  final bool isNutralized;
+  final bool isNeutralized;
   @override
-  @JsonKey()
+  @JsonKey(name: 'speciesName')
   final String breed;
   @override
   @JsonKey()
@@ -266,7 +270,7 @@ class _$_ConimalResponseDTO implements _ConimalResponseDTO {
 
   @override
   String toString() {
-    return 'ConimalResponseDTO(conimalId: $conimalId, name: $name, species: $species, gender: $gender, isNutralized: $isNutralized, breed: $breed, userId: $userId, birthDate: $birthDate, adoptedDate: $adoptedDate, diseases: $diseases)';
+    return 'ConimalResponseDTO(conimalId: $conimalId, name: $name, species: $species, gender: $gender, isNeutralized: $isNeutralized, breed: $breed, userId: $userId, birthDate: $birthDate, adoptedDate: $adoptedDate, diseases: $diseases)';
   }
 
   @override
@@ -274,17 +278,19 @@ class _$_ConimalResponseDTO implements _ConimalResponseDTO {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ConimalResponseDTO &&
-            const DeepCollectionEquality().equals(other.conimalId, conimalId) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.species, species) &&
-            const DeepCollectionEquality().equals(other.gender, gender) &&
-            const DeepCollectionEquality()
-                .equals(other.isNutralized, isNutralized) &&
-            const DeepCollectionEquality().equals(other.breed, breed) &&
-            const DeepCollectionEquality().equals(other.userId, userId) &&
-            const DeepCollectionEquality().equals(other.birthDate, birthDate) &&
-            const DeepCollectionEquality()
-                .equals(other.adoptedDate, adoptedDate) &&
+            (identical(other.conimalId, conimalId) ||
+                other.conimalId == conimalId) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.species, species) || other.species == species) &&
+            (identical(other.gender, gender) || other.gender == gender) &&
+            (identical(other.isNeutralized, isNeutralized) ||
+                other.isNeutralized == isNeutralized) &&
+            (identical(other.breed, breed) || other.breed == breed) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.birthDate, birthDate) ||
+                other.birthDate == birthDate) &&
+            (identical(other.adoptedDate, adoptedDate) ||
+                other.adoptedDate == adoptedDate) &&
             const DeepCollectionEquality().equals(other._diseases, _diseases));
   }
 
@@ -292,19 +298,20 @@ class _$_ConimalResponseDTO implements _ConimalResponseDTO {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(conimalId),
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(species),
-      const DeepCollectionEquality().hash(gender),
-      const DeepCollectionEquality().hash(isNutralized),
-      const DeepCollectionEquality().hash(breed),
-      const DeepCollectionEquality().hash(userId),
-      const DeepCollectionEquality().hash(birthDate),
-      const DeepCollectionEquality().hash(adoptedDate),
+      conimalId,
+      name,
+      species,
+      gender,
+      isNeutralized,
+      breed,
+      userId,
+      birthDate,
+      adoptedDate,
       const DeepCollectionEquality().hash(_diseases));
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ConimalResponseDTOCopyWith<_$_ConimalResponseDTO> get copyWith =>
       __$$_ConimalResponseDTOCopyWithImpl<_$_ConimalResponseDTO>(
           this, _$identity);
@@ -319,12 +326,12 @@ class _$_ConimalResponseDTO implements _ConimalResponseDTO {
 
 abstract class _ConimalResponseDTO implements ConimalResponseDTO {
   factory _ConimalResponseDTO(
-      {required final String conimalId,
+      {final String conimalId,
       required final String name,
       required final Species species,
       required final Gender gender,
-      final bool isNutralized,
-      final String breed,
+      final bool isNeutralized,
+      @JsonKey(name: 'speciesName') final String breed,
       final String? userId,
       @DateTimeConverter() required final DateTime birthDate,
       @DateTimeConverter() required final DateTime adoptedDate,
@@ -342,8 +349,9 @@ abstract class _ConimalResponseDTO implements ConimalResponseDTO {
   @override
   Gender get gender;
   @override
-  bool get isNutralized;
+  bool get isNeutralized;
   @override
+  @JsonKey(name: 'speciesName')
   String get breed;
   @override
   String? get userId;

@@ -1,7 +1,7 @@
 import 'package:withconi/core/tools/api_url.dart';
-import 'package:withconi/data/model/dto/api_dto/api_call_dto.dart';
+import 'package:withconi/data/model/dto/api_call_dto.dart';
 import 'package:withconi/core/network_handling/network_service.dart';
-import 'dart:html';
+
 import 'package:withconi/data/model/dto/request_dto/abstract_request/request_dto_abstract.dart';
 import 'package:withconi/module/ui_model/comment_ui_model.dart';
 

@@ -2,6 +2,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 import 'package:withconi/data/enums/enum.dart';
 import 'package:withconi/import_basic.dart';
+import 'package:withconi/module/common/lazy_load.dart';
+import 'package:withconi/module/community/controllers/custom_state_mixin.dart';
 import 'package:withconi/module/theme/text_theme.dart';
 import 'package:withconi/module/ui_model/post_ui_model.dart';
 import '../../../global_widgets/error_widget/error_widget.dart';
@@ -76,7 +78,7 @@ class CommunityPostListPage extends StatelessWidget {
           strokeWidth: 2.5,
           backgroundColor: WcColors.white,
           color: WcColors.blue100,
-          onRefresh: () async {},
+          onRefresh: _controller.refreshPage,
           child: SingleChildScrollView(
             physics: const AlwaysScrollableScrollPhysics(),
             controller: _controller.infiniteScrollController,
@@ -95,17 +97,16 @@ class CommunityPostListPage extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Text(
-                                (_controller.pageStatus.value ==
-                                        const InfiniteScrollPageStatus.init())
-                                    ? ''
-                                    : '${_controller.boardUIModel.title}\n게시판',
-                                style: const TextStyle(
-                                    color: WcColors.black,
-                                    fontSize: 23,
-                                    fontWeight: FontWeight.w500,
-                                    height: 1.4,
-                                    fontFamily: WcFontFamily.notoSans)),
+                            Obx(
+                              () => Text(
+                                  '${_controller.boardName.value} 질환\n게시판',
+                                  style: const TextStyle(
+                                      color: WcColors.black,
+                                      fontSize: 23,
+                                      fontWeight: FontWeight.w500,
+                                      height: 1.4,
+                                      fontFamily: WcFontFamily.notoSans)),
+                            ),
                             GestureDetector(
                               child: Container(
                                   alignment: Alignment.topLeft,
@@ -146,7 +147,7 @@ class CommunityPostListPage extends StatelessWidget {
                     const SizedBox(
                       height: 30,
                     ),
-                    _getWidgetByState(_controller.pageStatus.value, _controller)
+                    _getWidgetByState(_controller)
                   ],
                 ),
               ),
@@ -157,32 +158,11 @@ class CommunityPostListPage extends StatelessWidget {
     );
   }
 
-  Widget _getWidgetByState(InfiniteScrollPageStatus status,
-      CommunityPostListController _controller) {
-    return status.maybeWhen(
-      init: () => const SizedBox.shrink(),
-      loading: () => LoadingPage(
-        height: WcHeight - 350,
-      ),
-      empty: () => WcErrorWidget(
-        image: Image.asset(
-          'assets/icons/no_result.png',
-          height: 90,
-        ),
-        title: '아직 글이 없네요',
-        message: '첫번째 글을 작성해주시겠어요? :)',
-      ),
-      error: (message) => WcErrorWidget(
-        image: Image.asset(
-          'assets/icons/no_result.png',
-          height: 90,
-        ),
-        title: message,
-        message: '',
-      ),
-      orElse: () => LazyLoadScrollView(
-        isLoading: (status == const InfiniteScrollPageStatus.loadingMore() ||
-            status == const InfiniteScrollPageStatus.emptyLastPage()),
+  Widget _getWidgetByState(CommunityPostListController _controller) {
+    return _controller.obx(
+      onSuccess: MyLazyLoadScrollView(
+        isLoading: (_controller.status == const PageStatus.loadingMore() ||
+            _controller.status == const PageStatus.emptyLastPage()),
         onEndOfPage: _controller.loadNextPage,
         child: ListView.builder(
             cacheExtent: 1000,
@@ -204,6 +184,15 @@ class CommunityPostListPage extends StatelessWidget {
                 // onCommentTap: () {},
               );
             })),
+      ),
+      onEmpty: WcErrorWidget(
+        height: WcHeight - 400,
+        image: Image.asset(
+          'assets/icons/no_result.png',
+          height: 80,
+        ),
+        title: '아직 작성된 글이 없어요.',
+        message: '첫번째 글을 작성해주시겠어요?',
       ),
     );
   }

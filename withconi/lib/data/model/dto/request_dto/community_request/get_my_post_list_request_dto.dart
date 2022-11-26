@@ -1,5 +1,3 @@
-import 'dart:html';
-import 'package:dartz/dartz.dart';
 import 'package:withconi/core/network_handling/network_service.dart';
 import 'package:withconi/core/tools/api_url.dart';
 import 'package:withconi/core/tools/helpers/infinite_scroll.dart';
@@ -18,7 +16,7 @@ class GetMyPostListRequestDTO
   RequestType get requestType => RequestType.GET;
 
   @override
-  String get url => HttpUrl.COMMUNITY_COMMENT_LIST;
+  String get url => HttpUrl.COMMUNITY_GET_MY_POST_LIST;
 
   GetMyPostListRequestDTO.fromData({required this.paginationFilter})
       : super.fromData(paginationFilter);
@@ -26,7 +24,7 @@ class GetMyPostListRequestDTO
   @override
   Map<String, dynamic> get dataMap => {
         "page": paginationFilter.page,
-        "listSize": paginationFilter.limit,
+        "listSize": paginationFilter.listSize,
         // "userId": userId,
       };
 }

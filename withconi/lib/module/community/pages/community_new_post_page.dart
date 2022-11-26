@@ -159,6 +159,14 @@ class CommunityNewPostPage extends StatelessWidget {
                                       fit: BoxFit.cover,
                                       image: thisImage.getImageByType,
                                     ),
+                                    boxShadow: const [
+                                      BoxShadow(
+                                        color: Color.fromARGB(50, 0, 0, 0),
+                                        spreadRadius: 0,
+                                        blurRadius: 8,
+                                        offset: Offset(0, 0),
+                                      ),
+                                    ],
                                   ),
                                   child: GestureDetector(
                                     onTap: () {

@@ -33,34 +33,37 @@ mixin _$LatLngResponseDTO {
 abstract class $LatLngResponseDTOCopyWith<$Res> {
   factory $LatLngResponseDTOCopyWith(
           LatLngResponseDTO value, $Res Function(LatLngResponseDTO) then) =
-      _$LatLngResponseDTOCopyWithImpl<$Res>;
+      _$LatLngResponseDTOCopyWithImpl<$Res, LatLngResponseDTO>;
+  @useResult
   $Res call({double lat, double lng});
 }
 
 /// @nodoc
-class _$LatLngResponseDTOCopyWithImpl<$Res>
+class _$LatLngResponseDTOCopyWithImpl<$Res, $Val extends LatLngResponseDTO>
     implements $LatLngResponseDTOCopyWith<$Res> {
   _$LatLngResponseDTOCopyWithImpl(this._value, this._then);
 
-  final LatLngResponseDTO _value;
   // ignore: unused_field
-  final $Res Function(LatLngResponseDTO) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? lat = freezed,
-    Object? lng = freezed,
+    Object? lat = null,
+    Object? lng = null,
   }) {
     return _then(_value.copyWith(
-      lat: lat == freezed
+      lat: null == lat
           ? _value.lat
           : lat // ignore: cast_nullable_to_non_nullable
               as double,
-      lng: lng == freezed
+      lng: null == lng
           ? _value.lng
           : lng // ignore: cast_nullable_to_non_nullable
               as double,
-    ));
+    ) as $Val);
   }
 }
 
@@ -71,31 +74,30 @@ abstract class _$$_LatLngResponseDTOCopyWith<$Res>
           $Res Function(_$_LatLngResponseDTO) then) =
       __$$_LatLngResponseDTOCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({double lat, double lng});
 }
 
 /// @nodoc
 class __$$_LatLngResponseDTOCopyWithImpl<$Res>
-    extends _$LatLngResponseDTOCopyWithImpl<$Res>
+    extends _$LatLngResponseDTOCopyWithImpl<$Res, _$_LatLngResponseDTO>
     implements _$$_LatLngResponseDTOCopyWith<$Res> {
   __$$_LatLngResponseDTOCopyWithImpl(
       _$_LatLngResponseDTO _value, $Res Function(_$_LatLngResponseDTO) _then)
-      : super(_value, (v) => _then(v as _$_LatLngResponseDTO));
+      : super(_value, _then);
 
-  @override
-  _$_LatLngResponseDTO get _value => super._value as _$_LatLngResponseDTO;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? lat = freezed,
-    Object? lng = freezed,
+    Object? lat = null,
+    Object? lng = null,
   }) {
     return _then(_$_LatLngResponseDTO(
-      lat: lat == freezed
+      lat: null == lat
           ? _value.lat
           : lat // ignore: cast_nullable_to_non_nullable
               as double,
-      lng: lng == freezed
+      lng: null == lng
           ? _value.lng
           : lng // ignore: cast_nullable_to_non_nullable
               as double,
@@ -127,19 +129,17 @@ class _$_LatLngResponseDTO implements _LatLngResponseDTO {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_LatLngResponseDTO &&
-            const DeepCollectionEquality().equals(other.lat, lat) &&
-            const DeepCollectionEquality().equals(other.lng, lng));
+            (identical(other.lat, lat) || other.lat == lat) &&
+            (identical(other.lng, lng) || other.lng == lng));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(lat),
-      const DeepCollectionEquality().hash(lng));
+  int get hashCode => Object.hash(runtimeType, lat, lng);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_LatLngResponseDTOCopyWith<_$_LatLngResponseDTO> get copyWith =>
       __$$_LatLngResponseDTOCopyWithImpl<_$_LatLngResponseDTO>(
           this, _$identity);

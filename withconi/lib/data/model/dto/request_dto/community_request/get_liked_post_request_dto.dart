@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_void_to_null
 
-import 'dart:html';
 import 'package:dartz/dartz.dart';
 import 'package:dio/src/form_data.dart';
 import 'package:withconi/core/network_handling/network_service.dart';

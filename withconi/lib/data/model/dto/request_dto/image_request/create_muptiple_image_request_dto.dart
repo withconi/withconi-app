@@ -25,18 +25,61 @@ class CreateMultipleImagesRequestDTO
       : imageItems = images,
         super.fromData(images);
 
-  Future<dio.FormData> get formDataMap async {
-    // io.File imageFile = io.File(imageItems[0].resource);
+  // Future<dio.FormData> get formDataMap async {
+  //   dio.FormData _formData;
+  //   // List<io.File> imageFileList =
+  //   //     imageItems.map((e) => io.File(e.resource)).toList();
+
+  //   final List<dio.MultipartFile> _files = imageItems
+  //       .map((img) => dio.MultipartFile.fromFileSync(
+  //             img.resource,
+  //           ))
+  //       .toList();
+  //   _formData = dio.FormData.fromMap({"file": _files});
+  //   // String fileName = imageFile.path.split('/').last;
+  //   // dio.FormData dataMap = dio.FormData.fromMap({
+  //   //   "field": imageFileList
+  //   //       .map(
+  //   //         (e) async => await dio.MultipartFile.fromFile(
+  //   //           e.path,
+  //   //         ),
+  //   //       )
+  //   //       .toList()
+  //   // });
+
+  //   return _formData;
+  // }
+
+  Future<List<dio.FormData>> get formDataMapList async {
+    List<dio.FormData> _formDataList;
+    // List<io.File> imageFileList =
+    //     imageItems.map((e) => io.File(e.resource)).toList();
+
+    // final List<dio.MultipartFile> _files = imageItems
+    //     .map((img) => dio.MultipartFile.fromFileSync(
+    //           img.resource,
+    //         ))
+    //     .toList();
+    // _formDataList = dio.FormData.fromMap({"file": _files});
     // String fileName = imageFile.path.split('/').last;
-    dio.FormData dataMap = dio.FormData.fromMap({
-      "imageFiles": imageItems.map((imageFile) async {
-        return await dio.MultipartFile.fromFile(
-          imageFile.resource,
-          filename: imageFile.resource.split('/').last,
-        );
-      }).toList()
-    });
-    return dataMap;
+    // dio.FormData dataMap = dio.FormData.fromMap({
+    //   "field": imageFileList
+    //       .map(
+    //         (e) async => await dio.MultipartFile.fromFile(
+    //           e.path,
+    //         ),
+    //       )
+    //       .toList()
+    // });
+
+    _formDataList = imageItems.map((imageItem) {
+      dio.MultipartFile _file = dio.MultipartFile.fromFileSync(
+        imageItem.resource,
+      );
+      return dio.FormData.fromMap({'file': _file});
+    }).toList();
+
+    return _formDataList;
   }
 
   @override

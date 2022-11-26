@@ -10,7 +10,7 @@ _$_DiseaseResponseDTO _$$_DiseaseResponseDTOFromJson(
         Map<String, dynamic> json) =>
     _$_DiseaseResponseDTO(
       createdAt: const DateTimeConverter().fromJson(json['createdAt'] as int),
-      code: json['code'] as String,
+      code: json['_id'] as String,
       name: json['name'] as String,
       definition: json['definition'] as String? ?? '',
       diagnosisTechnique: json['diagnosisTechnique'] as String? ?? '',
@@ -29,7 +29,7 @@ Map<String, dynamic> _$$_DiseaseResponseDTOToJson(
         _$_DiseaseResponseDTO instance) =>
     <String, dynamic>{
       'createdAt': const DateTimeConverter().toJson(instance.createdAt),
-      'code': instance.code,
+      '_id': instance.code,
       'name': instance.name,
       'definition': instance.definition,
       'diagnosisTechnique': instance.diagnosisTechnique,

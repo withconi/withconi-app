@@ -1,11 +1,13 @@
+import 'package:withconi/data/enums/enum.dart';
+import 'package:withconi/data/repository/signup_repository.dart';
+
+import '../../../core/signing_auth_info.dart';
 import '../../../core/values/constants/regex.dart';
 import '../../../core/values/constants/strings.dart';
 import '../../../import_basic.dart';
-import '../signup_data_brain.dart';
+import '../signup_data_storage.dart';
 
 class SignupPwController extends GetxController {
-  // final SignupRepository _userRepository = Get.find();
-  final SignUpDataBrain _signUpDataManager = Get.find();
   late RxString _email;
   late RxString _password;
   late RxString _confirmPassword;
@@ -41,7 +43,7 @@ class SignupPwController extends GetxController {
   void onReady() {
     super.onReady();
 
-    _email.value = _signUpDataManager.email;
+    _email.value = Get.arguments as String;
     emailTextController.text = _email.value;
 
     debounce(_password, validatePassword,
@@ -71,9 +73,9 @@ class SignupPwController extends GetxController {
   }
 
   nextStep() {
-    // _userRepository.saveUserPassword(password);
-    _signUpDataManager.storeUserPassword(password);
-    Get.toNamed(Routes.SIGNUP_PROFILE);
+    Get.toNamed(Routes.SIGNUP_PROFILE,
+        arguments: EmailPwdSigningAuthInfo(
+            email: email, password: password, provider: Provider.email));
   }
 
   validateName(String value) {

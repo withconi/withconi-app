@@ -9,7 +9,7 @@ part of 'comment_list_response_dto.dart';
 _$_CommentListResponseDTO _$$_CommentListResponseDTOFromJson(
         Map<String, dynamic> json) =>
     _$_CommentListResponseDTO(
-      results: (json['results'] as List<dynamic>)
+      list: (json['list'] as List<dynamic>)
           .map((e) => CommentResponseDTO.fromJson(e as Map<String, dynamic>))
           .toList(),
       totalDocuments: json['totalDocuments'] as int,
@@ -18,6 +18,6 @@ _$_CommentListResponseDTO _$$_CommentListResponseDTOFromJson(
 Map<String, dynamic> _$$_CommentListResponseDTOToJson(
         _$_CommentListResponseDTO instance) =>
     <String, dynamic>{
-      'results': instance.results.map((e) => e.toJson()).toList(),
+      'list': instance.list.map((e) => e.toJson()).toList(),
       'totalDocuments': instance.totalDocuments,
     };

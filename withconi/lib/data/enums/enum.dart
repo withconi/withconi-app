@@ -13,6 +13,10 @@ enum Gender {
   male('male', '수컷', WcColors.blue100, WcColors.blue20,
       'assets/icons/gender_male.svg');
 
+  // @JsonValue("mail")
+  // mail('male', '수컷', WcColors.blue100, WcColors.blue20,
+  //     'assets/icons/gender_male.svg');
+
   const Gender(this.code, this.displayName, this.mainColor, this.backgoundColor,
       this.svgSrc);
   final String code;
@@ -49,23 +53,24 @@ enum PostType {
 }
 
 enum SortType {
-  @JsonValue("recent")
-  recent('recent', '최신순'),
-  @JsonValue("popular")
-  popular('popular', '인기순'),
+  // @JsonValue("recent")
+  // recent('recent', '최신순'),
+  // @JsonValue("popular")
+  // popular('popular', '인기순'),
   @JsonValue("nearest")
   nearest('nearest', '거리순'),
   @JsonValue("visiting")
-  visiting('visiting', '많이 찾은순'),
-  undefined('undefined', '');
+  visiting('visiting', '많이 찾은순');
+  // undefined('undefined', '');
 
   const SortType(this.code, this.displayName);
   final String code;
   final String displayName;
 
   factory SortType.getByCode(String code) {
-    return SortType.values.firstWhere((value) => value.code == code,
-        orElse: () => SortType.undefined);
+    return SortType.values.firstWhere(
+      (value) => value.code == code,
+    );
   }
 }
 
@@ -77,31 +82,29 @@ enum Species {
     WcColors.white,
     WcColors.white,
     '',
+    WcColors.white,
   ),
   @JsonValue('cat')
   cat(
     'cat',
     '고양이',
-    WcColors.blue80,
+    WcColors.blue100,
     WcColors.blue60,
     'assets/icons/cat_black.png',
+    WcColors.blue80,
   ),
   @JsonValue("dog")
-  dog(
-    'dog',
-    '강아지',
-    WcColors.orange100,
-    WcColors.orange20,
-    'assets/icons/dog.png',
-  );
+  dog('dog', '강아지', WcColors.orange100, WcColors.orange20,
+      'assets/icons/dog.png', WcColors.green80);
 
   const Species(this.code, this.displayName, this.mainColor,
-      this.backgroundColor, this.imageSrc);
+      this.backgroundColor, this.imageSrc, this.graphColor);
   final String code;
   final String displayName;
   final Color mainColor;
   final Color backgroundColor;
   final String imageSrc;
+  final Color graphColor;
 
   factory Species.getByCode(String? code) {
     return Species.values.firstWhere(
@@ -127,6 +130,8 @@ enum Symptom {
   nerve('nerve', '신경'),
   @JsonValue("stomach")
   stomach('stomach', '복부'),
+  @JsonValue("stomach")
+  skin('skin', '피부'),
   @JsonValue("urinary")
   urinary('urinary', '생식비뇨');
 
@@ -182,7 +187,6 @@ enum ReviewRate {
   low(
       'low',
       '아쉬워요',
-      LowRateReviewItem.values,
       '어떤 점이 아쉬우신가요?',
       WcColors.pink20,
       'assets/icons/bad_face.svg',
@@ -192,7 +196,6 @@ enum ReviewRate {
   middle(
       'middle',
       '적당해요',
-      MiddleRateReviewItem.values,
       '어떤 점 때문에 아쉬우신가요?',
       WcColors.yellow20,
       'assets/icons/neutral_face.svg',
@@ -202,7 +205,6 @@ enum ReviewRate {
   high(
       'high',
       '추천해요',
-      HightRateReviewItem.values,
       '어떤 점 때문에 추천하시나요?',
       WcColors.blue60,
       'assets/icons/good_face.svg',
@@ -212,7 +214,6 @@ enum ReviewRate {
   const ReviewRate(
       this.code,
       this.displayName,
-      this.reviewItems,
       this.question,
       this.activeBackgroundColor,
       this.activeIconSrc,
@@ -220,7 +221,6 @@ enum ReviewRate {
       this.mainColor);
   final String code;
   final String displayName;
-  final List<ReviewItem> reviewItems;
   final String question;
   final String activeIconSrc;
   final String inactiveIconSrc;
@@ -235,64 +235,152 @@ enum ReviewRate {
   }
 }
 
-abstract class ReviewItem {}
+// extension ParseToString on ReviewItem {
+//   String toShortString() {
+//     return toString().split('.').last;
+//   }
 
-enum LowRateReviewItem implements ReviewItem {
-  explanation('explanation', '설명이 상세하지 않아요'),
-  kindness('kindness', '불친절해요'),
-  price('price', '진료 금액이 생각보다 비싸요'),
-  adequateExamination('adequate_examination', '필요 이상의 진료를 해요'),
-  effectiveness('effectiveness', '진료 효과가 미비했어요'),
-  waitingExperience('waiting_experience', '진료 대기 환경이 좋지 않아요');
+//   List<Re> get values => T.values;
+// }
 
-  const LowRateReviewItem(this.code, this.displayText);
-  final String code;
-  final String displayText;
+// enum ReviewItems {
+//   low(),
+//   middle(),
+//   high();
 
-  factory LowRateReviewItem.getByCode(String code) {
-    return LowRateReviewItem.values.firstWhere(
-      (value) => value.code == code,
+//   const ReviewItems();
+//   List items() {
+//     return [];
+//   }
+// }
+
+enum ReviewItem {
+  @JsonValue("explanation")
+  explanation(
+      'explanation', '설명이 상세하지 않아요', '설명이 상세해요', '설명이 상세해요', ReviewRate.values),
+
+  @JsonValue("kindness")
+  kindness('kindness', '불친절해요', '친절해요', '친절해요', ReviewRate.values),
+
+  @JsonValue("price")
+  price('price', '진료 금액이 생각보다 비싸요', '진료금액이 적당해요', '진료금액이 합리적이에요',
+      ReviewRate.values),
+
+  @JsonValue("adequateExamination")
+  adequateExamination('adequateExamination', '필요 이상의 진료를 해요', '필요한 진료만 해요',
+      '필요한 진료만 해요', ReviewRate.values),
+
+  @JsonValue("effectiveness")
+  effectiveness('effectiveness', '진료 효과가 미비했어요', '진료가 꽤 효과적이에요', '진료가 효과적이에요',
+      ReviewRate.values),
+
+  @JsonValue("waitingExperience")
+  waitingExperience('waitingExperience', '진료 대기 환경이 좋지 않아요', '진료 대기 환경이 괜찮았어요',
+      '진료 대기 환경이 좋았어요', ReviewRate.values);
+
+  const ReviewItem(this.itemCode, this._lowRateText, this._middleRateText,
+      this._highRateText, this.itemReviewRateList);
+
+  final String itemCode;
+
+  final String _highRateText;
+  final String _middleRateText;
+  final String _lowRateText;
+  final List<ReviewRate> itemReviewRateList;
+
+  factory ReviewItem.getByCode(String code) {
+    return ReviewItem.values.firstWhere(
+      (value) => value.itemCode == code,
     );
   }
 }
 
-enum MiddleRateReviewItem implements ReviewItem {
-  explanation('explanation', '설명이 상세해요'),
-  kindness('kindness', '친절해요'),
-  price('price', '진료 금액이 적당해요'),
-  adequateExamination('adequate_examination', '필요한 진료만 해요'),
-  effectiveness('effectiveness', '진료가 꽤 효과적이에요'),
-  waitingExperience('waiting_experience', '진료 대기 환경이 괜찮았어요');
+extension ReviewRateItems on ReviewRate {
+  List<ReviewItem> get reviewItems => ReviewItem.values
+      .where((element) => element.itemReviewRateList.contains(this))
+      .toList();
+}
 
-  const MiddleRateReviewItem(this.code, this.displayText);
-  final String code;
-  final String displayText;
-
-  factory MiddleRateReviewItem.getByCode(String code) {
-    return MiddleRateReviewItem.values.firstWhere(
-      (value) => value.code == code,
-    );
+extension ReviewItemDisplayText on ReviewItem {
+  String displayText(ReviewRate reviewRate) {
+    switch (reviewRate) {
+      case ReviewRate.low:
+        return _lowRateText;
+      case ReviewRate.middle:
+        return _middleRateText;
+      case ReviewRate.high:
+        return _highRateText;
+      default:
+        return '리뷰 항목을 표시할 수 없습니다';
+    }
   }
 }
 
-enum HightRateReviewItem implements ReviewItem {
-  explanation('explanation', '설명이 상세해요'),
-  kindness('kindness', '친절해요'),
-  price('price', '진료 금액이 적절해요'),
-  adequateExamination('adequate_examination', '필요한 진료만 해요'),
-  effectiveness('effectiveness', '진료가 효과적이에요'),
-  waitingExperience('waiting_experience', '진료 대기 환경이 좋았어요');
+// enum MiddleRateReviewItem implements ReviewItem<MiddleRateReviewItem> {
+//   @JsonValue("explanation")
+//   explanation('explanation', '설명이 상세해요'),
 
-  const HightRateReviewItem(this.code, this.displayText);
-  final String code;
-  final String displayText;
+//   @JsonValue("kindness")
+//   kindness('kindness', '친절해요'),
 
-  factory HightRateReviewItem.getByCode(String code) {
-    return HightRateReviewItem.values.firstWhere(
-      (value) => value.code == code,
-    );
-  }
-}
+//   @JsonValue("price")
+//   price('price', '진료 금액이 적당해요'),
+
+//   @JsonValue("adequate_examination")
+//   adequateExamination('adequate_examination', '필요한 진료만 해요'),
+
+//   @JsonValue("effectiveness")
+//   effectiveness('effectiveness', '진료가 꽤 효과적이에요'),
+
+//   @JsonValue("waiting_experience")
+//   waitingExperience('waiting_experience', '진료 대기 환경이 괜찮았어요');
+
+//   const MiddleRateReviewItem(this.itemCode, this.displayText);
+//   @override
+//   final String itemCode;
+//   @override
+//   final String displayText;
+
+//   factory MiddleRateReviewItem.getByCode(String code) {
+//     return MiddleRateReviewItem.values.firstWhere(
+//       (value) => value.itemCode == code,
+//     );
+//   }
+// }
+
+// // @jsonSerializable
+// // @Json(enumValues: Category.values)
+// enum HighRateReviewItem implements ReviewItem<HighRateReviewItem> {
+//   @JsonValue("explanation")
+//   explanation('explanation', '설명이 상세해요'),
+
+//   @JsonValue("kindness")
+//   kindness('kindness', '친절해요'),
+
+//   @JsonValue("price")
+//   price('price', '진료 금액이 적절해요'),
+
+//   @JsonValue("adequate_examination")
+//   adequateExamination('adequate_examination', '필요한 진료만 해요'),
+
+//   @JsonValue("effectiveness")
+//   effectiveness('effectiveness', '진료가 효과적이에요'),
+
+//   @JsonValue("waiting_experience")
+//   waitingExperience('waiting_experience', '진료 대기 환경이 좋았어요');
+
+//   const HighRateReviewItem(this.itemCode, this.displayText);
+//   @override
+//   final String itemCode;
+//   @override
+//   final String displayText;
+
+//   factory HighRateReviewItem.getByCode(String code) {
+//     return HighRateReviewItem.values.firstWhere(
+//       (value) => value.itemCode == code,
+//     );
+//   }
+// }
 
 enum ReportItem {
   animalCruelty('animalCruelty', "동물 학대 관련 글"),
@@ -315,38 +403,47 @@ enum ReportItem {
 
 enum Provider {
   @JsonValue("kakao")
-  kakao("kakao", '카카오'),
+  kakao("kakao", '카카오', SignMethod.sns),
   @JsonValue("naver")
-  naver("naver", '네이버'),
+  naver("naver", '네이버', SignMethod.sns),
   @JsonValue("google")
-  google("google", '구글'),
+  google("google", '구글', SignMethod.sns),
   @JsonValue("apple")
-  apple("apple", '애플'),
+  apple("apple", '애플', SignMethod.sns),
   @JsonValue("email")
-  email("email", '이메일'),
-  @JsonValue("none")
-  none("none", '');
+  email("email", '이메일', SignMethod.email),
+  @JsonValue('undefined')
+  undefined('undefined', '', SignMethod.undefined);
+  // @JsonValue("none")
+  // none("none", '');
 
-  const Provider(this.code, this.displayName);
+  const Provider(this.code, this.displayName, this.signMethod);
   final String code;
   final String displayName;
+  final SignMethod signMethod;
 
   factory Provider.getByCode(String code) {
-    return Provider.values
-        .firstWhere((value) => value.code == code, orElse: () => Provider.none);
+    if (code == 'password') {
+      return Provider.email;
+    }
+    return Provider.values.firstWhere((value) => value.code == code);
   }
 }
 
-enum LocationType {
+// enum SignMethod { token, credential, pwd, undefined }
+
+enum SignMethod { sns, email, undefined }
+
+enum LocationSearchType {
   mapLocation('mapLocation', '현재 지도 기준'),
   currentLocation('currentLocation', '내 위치 기준');
 
-  const LocationType(this.code, this.displayName);
+  const LocationSearchType(this.code, this.displayName);
   final String code;
   final String displayName;
 
-  factory LocationType.getByCode(String code) {
-    return LocationType.values.firstWhere(
+  factory LocationSearchType.getByCode(String code) {
+    return LocationSearchType.values.firstWhere(
       (value) => value.code == code,
     );
   }
@@ -373,8 +470,9 @@ enum PlaceType {
 }
 
 enum DiseaseType {
+  @JsonValue("")
   all('all', '', WcColors.grey20),
-  cardiovascular('cardiovascular', '심혈관', WcColors.pinkLight), //심혈관
+  cardiovacular('cardiovacular', '심혈관', WcColors.pinkLight), //심혈관
   musculoskeletal('musculoskeletal', '근골격', WcColors.grey160), // 근골격
   digestive('digestive', '소화기/간담췌', WcColors.mintLight), //소화기,간담췌
   ophthalmology('ophthalmology', '안과', WcColors.blue100), // 안과
@@ -383,13 +481,15 @@ enum DiseaseType {
   //예전버전은 여기까지
   otorhinolaryngology(
       'otorhinolaryngology', '이비인후', WcColors.mustardLight), // 이비인후
-  infectiousDisease('infectiousDisease', '감염성', WcColors.grey110), //감염성
-  brainNeurology('brainNeurology', '뇌/신경/정신', WcColors.orange100), // 뇌신경정신질환
+  infectiousDisease('infectiousDisease', '감염성', WcColors.greenLight), //감염성
+  brainNeurology('brainNeurology', '뇌/신경정신', WcColors.orange100), // 뇌신경정신질환
   dentistry('dentistry', '치과', WcColors.babyPinkLight), //치과
-  oncology('oncology', '암/종양혈액', Color.fromARGB(255, 0, 67, 149)), //암,종양혈액질환
+  oncology('oncology', '암/종양혈액', Color.fromARGB(255, 0, 87, 193)), //암,종양혈액질환
   dermatology('dermatology', '피부과', WcColors.beidgeLight), //피부과
   endocrinology('endocrinology', '대사/면역', WcColors.green100), //내분비,호르몬
-  emergency('emergency', '응급', WcColors.red100); //응급
+  emergency('emergency', '응급', WcColors.red100),
+
+  undefined('undefined', '질병없음', WcColors.white); //응급
 
   const DiseaseType(this.code, this.displayName, this.color);
   final String code;
@@ -398,13 +498,16 @@ enum DiseaseType {
 
   factory DiseaseType.getByCode(String code) {
     return DiseaseType.values.firstWhere((value) => value.code == code,
-        orElse: () => DiseaseType.all);
+        orElse: () => DiseaseType.undefined);
   }
 }
 
 enum OpeningStatus {
+  @JsonValue("open")
   open('open', '영업중'),
+  @JsonValue(null)
   all('all', '전체'),
+  @JsonValue("closed")
   closed('closed', '영업종료');
 
   const OpeningStatus(this.code, this.displayName);
@@ -417,7 +520,18 @@ enum OpeningStatus {
   }
 }
 
-enum UserState { signIn, signUp, none }
+enum SigningState {
+  signInEmail('로그인'),
+  signUpEmail('회원가입'),
+  signInSns('SNS 계정 로그인'),
+  signUp('회원가입'),
+  none('다음');
+  // signInSns('SNS 계정으로 로그인');
+
+  const SigningState(this.displayName);
+
+  final String displayName;
+}
 
 enum CacheControllerKey {
   accessToken,

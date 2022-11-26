@@ -41,9 +41,9 @@ class DateTextButton extends StatelessWidget {
                 children: [
                   Text(
                     text,
-                    style: GoogleFonts.montserrat(
+                    style: GoogleFonts.workSans(
                         color: (active) ? activeTextColor : inactiveTextColor,
-                        fontSize: 18,
+                        fontSize: 19,
                         fontWeight:
                             (active) ? FontWeight.w600 : FontWeight.w400),
                   ),

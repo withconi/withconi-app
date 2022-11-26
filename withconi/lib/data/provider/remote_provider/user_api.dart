@@ -9,23 +9,19 @@ class UserAPI {
   Future<Map<String, dynamic>> getUserInfo(ApiCallDTO apiCallDTO) async {
     Map<String, dynamic> userData = await _dio.apiCall(apiCallDTO);
 
-    // header: {'requiresToken': true},
-    // url: HttpUrl.USER_GET,
-    // queryParameters: null,
-    // body: null,
-    // requestType: RequestType.GET
-
     return userData;
   }
 
   Future<Map<String, dynamic>> updateUser(ApiCallDTO apiCallDTO) async {
     Map<String, dynamic> data = await _dio.apiCall(apiCallDTO);
 
-    //     header: {'requiresToken': true},
-    // url: HttpUrl.USER_UPDATE,
-    // queryParameters: null,
-    // body: {...updateData},
-    // requestType: RequestType.POST,
+    return data;
+  }
+
+  Future<Map<String, dynamic>> getUserInfoExistence(
+      ApiCallDTO apiCallDTO) async {
+    Map<String, dynamic> data = await _dio.apiCall(apiCallDTO);
+
     return data;
   }
 }

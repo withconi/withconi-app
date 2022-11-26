@@ -11,6 +11,7 @@ class PostUIModel with _$PostUIModel {
   const PostUIModel._();
 
   factory PostUIModel({
+    required final String postId,
     required DateTime uploadAt,
     required final String nickname,
     required String content,
@@ -19,15 +20,16 @@ class PostUIModel with _$PostUIModel {
     required int likeNum,
     required int commentNum,
     required bool isLikeOn,
-    required final String postId,
     required final String authorId,
     required final String boardId,
     required final DateTime createdAt,
+    required final DiseaseType diseaseType,
   }) = _PostUIModel;
   String get uploadAtStr => TimeCalculator().calculateUploadAt(uploadAt);
 
   factory PostUIModel.fromDTO(PostResponseDTO postDTO) {
     return PostUIModel(
+        diseaseType: postDTO.diseaseType,
         uploadAt: postDTO.createdAt,
         nickname: postDTO.nickname,
         content: postDTO.content,
@@ -36,7 +38,8 @@ class PostUIModel with _$PostUIModel {
         isLikeOn: postDTO.isLike,
         postType: postDTO.postType,
         images: postDTO.images,
-        postId: postDTO.postId!,
+        //TODO: postId 에 id값 어떤거 사용해야 하는지 물어보기
+        postId: postDTO.postId,
         authorId: postDTO.authorId,
         boardId: postDTO.boardId,
         createdAt: postDTO.createdAt);

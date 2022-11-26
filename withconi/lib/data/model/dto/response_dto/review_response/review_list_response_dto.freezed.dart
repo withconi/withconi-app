@@ -21,8 +21,7 @@ ReviewListResponseDTO _$ReviewListResponseDTOFromJson(
 
 /// @nodoc
 mixin _$ReviewListResponseDTO {
-  List<ReviewDetailResponseDTO> get results =>
-      throw _privateConstructorUsedError;
+  List<ReviewDetailResponseDTO> get list => throw _privateConstructorUsedError;
   int get totalDocuments => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,34 +34,38 @@ mixin _$ReviewListResponseDTO {
 abstract class $ReviewListResponseDTOCopyWith<$Res> {
   factory $ReviewListResponseDTOCopyWith(ReviewListResponseDTO value,
           $Res Function(ReviewListResponseDTO) then) =
-      _$ReviewListResponseDTOCopyWithImpl<$Res>;
-  $Res call({List<ReviewDetailResponseDTO> results, int totalDocuments});
+      _$ReviewListResponseDTOCopyWithImpl<$Res, ReviewListResponseDTO>;
+  @useResult
+  $Res call({List<ReviewDetailResponseDTO> list, int totalDocuments});
 }
 
 /// @nodoc
-class _$ReviewListResponseDTOCopyWithImpl<$Res>
+class _$ReviewListResponseDTOCopyWithImpl<$Res,
+        $Val extends ReviewListResponseDTO>
     implements $ReviewListResponseDTOCopyWith<$Res> {
   _$ReviewListResponseDTOCopyWithImpl(this._value, this._then);
 
-  final ReviewListResponseDTO _value;
   // ignore: unused_field
-  final $Res Function(ReviewListResponseDTO) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? results = freezed,
-    Object? totalDocuments = freezed,
+    Object? list = null,
+    Object? totalDocuments = null,
   }) {
     return _then(_value.copyWith(
-      results: results == freezed
-          ? _value.results
-          : results // ignore: cast_nullable_to_non_nullable
+      list: null == list
+          ? _value.list
+          : list // ignore: cast_nullable_to_non_nullable
               as List<ReviewDetailResponseDTO>,
-      totalDocuments: totalDocuments == freezed
+      totalDocuments: null == totalDocuments
           ? _value.totalDocuments
           : totalDocuments // ignore: cast_nullable_to_non_nullable
               as int,
-    ));
+    ) as $Val);
   }
 }
 
@@ -73,32 +76,30 @@ abstract class _$$_ReviewListResponseDTOCopyWith<$Res>
           $Res Function(_$_ReviewListResponseDTO) then) =
       __$$_ReviewListResponseDTOCopyWithImpl<$Res>;
   @override
-  $Res call({List<ReviewDetailResponseDTO> results, int totalDocuments});
+  @useResult
+  $Res call({List<ReviewDetailResponseDTO> list, int totalDocuments});
 }
 
 /// @nodoc
 class __$$_ReviewListResponseDTOCopyWithImpl<$Res>
-    extends _$ReviewListResponseDTOCopyWithImpl<$Res>
+    extends _$ReviewListResponseDTOCopyWithImpl<$Res, _$_ReviewListResponseDTO>
     implements _$$_ReviewListResponseDTOCopyWith<$Res> {
   __$$_ReviewListResponseDTOCopyWithImpl(_$_ReviewListResponseDTO _value,
       $Res Function(_$_ReviewListResponseDTO) _then)
-      : super(_value, (v) => _then(v as _$_ReviewListResponseDTO));
+      : super(_value, _then);
 
-  @override
-  _$_ReviewListResponseDTO get _value =>
-      super._value as _$_ReviewListResponseDTO;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? results = freezed,
-    Object? totalDocuments = freezed,
+    Object? list = null,
+    Object? totalDocuments = null,
   }) {
     return _then(_$_ReviewListResponseDTO(
-      results: results == freezed
-          ? _value._results
-          : results // ignore: cast_nullable_to_non_nullable
+      list: null == list
+          ? _value._list
+          : list // ignore: cast_nullable_to_non_nullable
               as List<ReviewDetailResponseDTO>,
-      totalDocuments: totalDocuments == freezed
+      totalDocuments: null == totalDocuments
           ? _value.totalDocuments
           : totalDocuments // ignore: cast_nullable_to_non_nullable
               as int,
@@ -111,18 +112,18 @@ class __$$_ReviewListResponseDTOCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_ReviewListResponseDTO implements _ReviewListResponseDTO {
   _$_ReviewListResponseDTO(
-      {required final List<ReviewDetailResponseDTO> results,
+      {required final List<ReviewDetailResponseDTO> list,
       required this.totalDocuments})
-      : _results = results;
+      : _list = list;
 
   factory _$_ReviewListResponseDTO.fromJson(Map<String, dynamic> json) =>
       _$$_ReviewListResponseDTOFromJson(json);
 
-  final List<ReviewDetailResponseDTO> _results;
+  final List<ReviewDetailResponseDTO> _list;
   @override
-  List<ReviewDetailResponseDTO> get results {
+  List<ReviewDetailResponseDTO> get list {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_results);
+    return EqualUnmodifiableListView(_list);
   }
 
   @override
@@ -130,7 +131,7 @@ class _$_ReviewListResponseDTO implements _ReviewListResponseDTO {
 
   @override
   String toString() {
-    return 'ReviewListResponseDTO(results: $results, totalDocuments: $totalDocuments)';
+    return 'ReviewListResponseDTO(list: $list, totalDocuments: $totalDocuments)';
   }
 
   @override
@@ -138,20 +139,19 @@ class _$_ReviewListResponseDTO implements _ReviewListResponseDTO {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ReviewListResponseDTO &&
-            const DeepCollectionEquality().equals(other._results, _results) &&
-            const DeepCollectionEquality()
-                .equals(other.totalDocuments, totalDocuments));
+            const DeepCollectionEquality().equals(other._list, _list) &&
+            (identical(other.totalDocuments, totalDocuments) ||
+                other.totalDocuments == totalDocuments));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_results),
-      const DeepCollectionEquality().hash(totalDocuments));
+      runtimeType, const DeepCollectionEquality().hash(_list), totalDocuments);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ReviewListResponseDTOCopyWith<_$_ReviewListResponseDTO> get copyWith =>
       __$$_ReviewListResponseDTOCopyWithImpl<_$_ReviewListResponseDTO>(
           this, _$identity);
@@ -166,14 +166,14 @@ class _$_ReviewListResponseDTO implements _ReviewListResponseDTO {
 
 abstract class _ReviewListResponseDTO implements ReviewListResponseDTO {
   factory _ReviewListResponseDTO(
-      {required final List<ReviewDetailResponseDTO> results,
+      {required final List<ReviewDetailResponseDTO> list,
       required final int totalDocuments}) = _$_ReviewListResponseDTO;
 
   factory _ReviewListResponseDTO.fromJson(Map<String, dynamic> json) =
       _$_ReviewListResponseDTO.fromJson;
 
   @override
-  List<ReviewDetailResponseDTO> get results;
+  List<ReviewDetailResponseDTO> get list;
   @override
   int get totalDocuments;
   @override

@@ -32,12 +32,6 @@ mixin _$ReviewDetailResponseDTO {
   ReviewRate get reviewRate => throw _privateConstructorUsedError;
   List<ReviewItem> get reviewItems => throw _privateConstructorUsedError;
   String get reviewDesc => throw _privateConstructorUsedError;
-  String get definition => throw _privateConstructorUsedError;
-  String get diagnosisTechnique => throw _privateConstructorUsedError;
-  String get treatment => throw _privateConstructorUsedError;
-  String get advice => throw _privateConstructorUsedError;
-  List<SymptomGroup> get symptomGroupList => throw _privateConstructorUsedError;
-  DiseaseType get diseaseType => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -49,7 +43,8 @@ mixin _$ReviewDetailResponseDTO {
 abstract class $ReviewDetailResponseDTOCopyWith<$Res> {
   factory $ReviewDetailResponseDTOCopyWith(ReviewDetailResponseDTO value,
           $Res Function(ReviewDetailResponseDTO) then) =
-      _$ReviewDetailResponseDTOCopyWithImpl<$Res>;
+      _$ReviewDetailResponseDTOCopyWithImpl<$Res, ReviewDetailResponseDTO>;
+  @useResult
   $Res call(
       {@DateTimeConverter() DateTime createdAt,
       PlacePreviewResponseDTO placePreview,
@@ -58,107 +53,75 @@ abstract class $ReviewDetailResponseDTOCopyWith<$Res> {
       List<DiseaseResponseDTO> diseaseList,
       ReviewRate reviewRate,
       List<ReviewItem> reviewItems,
-      String reviewDesc,
-      String definition,
-      String diagnosisTechnique,
-      String treatment,
-      String advice,
-      List<SymptomGroup> symptomGroupList,
-      DiseaseType diseaseType});
+      String reviewDesc});
 
   $PlacePreviewResponseDTOCopyWith<$Res> get placePreview;
 }
 
 /// @nodoc
-class _$ReviewDetailResponseDTOCopyWithImpl<$Res>
+class _$ReviewDetailResponseDTOCopyWithImpl<$Res,
+        $Val extends ReviewDetailResponseDTO>
     implements $ReviewDetailResponseDTOCopyWith<$Res> {
   _$ReviewDetailResponseDTOCopyWithImpl(this._value, this._then);
 
-  final ReviewDetailResponseDTO _value;
   // ignore: unused_field
-  final $Res Function(ReviewDetailResponseDTO) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? createdAt = freezed,
-    Object? placePreview = freezed,
-    Object? conimals = freezed,
-    Object? diseaseTypeList = freezed,
-    Object? diseaseList = freezed,
-    Object? reviewRate = freezed,
-    Object? reviewItems = freezed,
-    Object? reviewDesc = freezed,
-    Object? definition = freezed,
-    Object? diagnosisTechnique = freezed,
-    Object? treatment = freezed,
-    Object? advice = freezed,
-    Object? symptomGroupList = freezed,
-    Object? diseaseType = freezed,
+    Object? createdAt = null,
+    Object? placePreview = null,
+    Object? conimals = null,
+    Object? diseaseTypeList = null,
+    Object? diseaseList = null,
+    Object? reviewRate = null,
+    Object? reviewItems = null,
+    Object? reviewDesc = null,
   }) {
     return _then(_value.copyWith(
-      createdAt: createdAt == freezed
+      createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      placePreview: placePreview == freezed
+      placePreview: null == placePreview
           ? _value.placePreview
           : placePreview // ignore: cast_nullable_to_non_nullable
               as PlacePreviewResponseDTO,
-      conimals: conimals == freezed
+      conimals: null == conimals
           ? _value.conimals
           : conimals // ignore: cast_nullable_to_non_nullable
               as List<ConimalResponseDTO>,
-      diseaseTypeList: diseaseTypeList == freezed
+      diseaseTypeList: null == diseaseTypeList
           ? _value.diseaseTypeList
           : diseaseTypeList // ignore: cast_nullable_to_non_nullable
               as List<DiseaseType>,
-      diseaseList: diseaseList == freezed
+      diseaseList: null == diseaseList
           ? _value.diseaseList
           : diseaseList // ignore: cast_nullable_to_non_nullable
               as List<DiseaseResponseDTO>,
-      reviewRate: reviewRate == freezed
+      reviewRate: null == reviewRate
           ? _value.reviewRate
           : reviewRate // ignore: cast_nullable_to_non_nullable
               as ReviewRate,
-      reviewItems: reviewItems == freezed
+      reviewItems: null == reviewItems
           ? _value.reviewItems
           : reviewItems // ignore: cast_nullable_to_non_nullable
               as List<ReviewItem>,
-      reviewDesc: reviewDesc == freezed
+      reviewDesc: null == reviewDesc
           ? _value.reviewDesc
           : reviewDesc // ignore: cast_nullable_to_non_nullable
               as String,
-      definition: definition == freezed
-          ? _value.definition
-          : definition // ignore: cast_nullable_to_non_nullable
-              as String,
-      diagnosisTechnique: diagnosisTechnique == freezed
-          ? _value.diagnosisTechnique
-          : diagnosisTechnique // ignore: cast_nullable_to_non_nullable
-              as String,
-      treatment: treatment == freezed
-          ? _value.treatment
-          : treatment // ignore: cast_nullable_to_non_nullable
-              as String,
-      advice: advice == freezed
-          ? _value.advice
-          : advice // ignore: cast_nullable_to_non_nullable
-              as String,
-      symptomGroupList: symptomGroupList == freezed
-          ? _value.symptomGroupList
-          : symptomGroupList // ignore: cast_nullable_to_non_nullable
-              as List<SymptomGroup>,
-      diseaseType: diseaseType == freezed
-          ? _value.diseaseType
-          : diseaseType // ignore: cast_nullable_to_non_nullable
-              as DiseaseType,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $PlacePreviewResponseDTOCopyWith<$Res> get placePreview {
     return $PlacePreviewResponseDTOCopyWith<$Res>(_value.placePreview, (value) {
-      return _then(_value.copyWith(placePreview: value));
+      return _then(_value.copyWith(placePreview: value) as $Val);
     });
   }
 }
@@ -170,6 +133,7 @@ abstract class _$$_ReviewDetailResponseDTOCopyWith<$Res>
           $Res Function(_$_ReviewDetailResponseDTO) then) =
       __$$_ReviewDetailResponseDTOCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@DateTimeConverter() DateTime createdAt,
       PlacePreviewResponseDTO placePreview,
@@ -178,13 +142,7 @@ abstract class _$$_ReviewDetailResponseDTOCopyWith<$Res>
       List<DiseaseResponseDTO> diseaseList,
       ReviewRate reviewRate,
       List<ReviewItem> reviewItems,
-      String reviewDesc,
-      String definition,
-      String diagnosisTechnique,
-      String treatment,
-      String advice,
-      List<SymptomGroup> symptomGroupList,
-      DiseaseType diseaseType});
+      String reviewDesc});
 
   @override
   $PlacePreviewResponseDTOCopyWith<$Res> get placePreview;
@@ -192,90 +150,58 @@ abstract class _$$_ReviewDetailResponseDTOCopyWith<$Res>
 
 /// @nodoc
 class __$$_ReviewDetailResponseDTOCopyWithImpl<$Res>
-    extends _$ReviewDetailResponseDTOCopyWithImpl<$Res>
+    extends _$ReviewDetailResponseDTOCopyWithImpl<$Res,
+        _$_ReviewDetailResponseDTO>
     implements _$$_ReviewDetailResponseDTOCopyWith<$Res> {
   __$$_ReviewDetailResponseDTOCopyWithImpl(_$_ReviewDetailResponseDTO _value,
       $Res Function(_$_ReviewDetailResponseDTO) _then)
-      : super(_value, (v) => _then(v as _$_ReviewDetailResponseDTO));
+      : super(_value, _then);
 
-  @override
-  _$_ReviewDetailResponseDTO get _value =>
-      super._value as _$_ReviewDetailResponseDTO;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? createdAt = freezed,
-    Object? placePreview = freezed,
-    Object? conimals = freezed,
-    Object? diseaseTypeList = freezed,
-    Object? diseaseList = freezed,
-    Object? reviewRate = freezed,
-    Object? reviewItems = freezed,
-    Object? reviewDesc = freezed,
-    Object? definition = freezed,
-    Object? diagnosisTechnique = freezed,
-    Object? treatment = freezed,
-    Object? advice = freezed,
-    Object? symptomGroupList = freezed,
-    Object? diseaseType = freezed,
+    Object? createdAt = null,
+    Object? placePreview = null,
+    Object? conimals = null,
+    Object? diseaseTypeList = null,
+    Object? diseaseList = null,
+    Object? reviewRate = null,
+    Object? reviewItems = null,
+    Object? reviewDesc = null,
   }) {
     return _then(_$_ReviewDetailResponseDTO(
-      createdAt: createdAt == freezed
+      createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      placePreview: placePreview == freezed
+      placePreview: null == placePreview
           ? _value.placePreview
           : placePreview // ignore: cast_nullable_to_non_nullable
               as PlacePreviewResponseDTO,
-      conimals: conimals == freezed
+      conimals: null == conimals
           ? _value._conimals
           : conimals // ignore: cast_nullable_to_non_nullable
               as List<ConimalResponseDTO>,
-      diseaseTypeList: diseaseTypeList == freezed
+      diseaseTypeList: null == diseaseTypeList
           ? _value._diseaseTypeList
           : diseaseTypeList // ignore: cast_nullable_to_non_nullable
               as List<DiseaseType>,
-      diseaseList: diseaseList == freezed
+      diseaseList: null == diseaseList
           ? _value._diseaseList
           : diseaseList // ignore: cast_nullable_to_non_nullable
               as List<DiseaseResponseDTO>,
-      reviewRate: reviewRate == freezed
+      reviewRate: null == reviewRate
           ? _value.reviewRate
           : reviewRate // ignore: cast_nullable_to_non_nullable
               as ReviewRate,
-      reviewItems: reviewItems == freezed
+      reviewItems: null == reviewItems
           ? _value._reviewItems
           : reviewItems // ignore: cast_nullable_to_non_nullable
               as List<ReviewItem>,
-      reviewDesc: reviewDesc == freezed
+      reviewDesc: null == reviewDesc
           ? _value.reviewDesc
           : reviewDesc // ignore: cast_nullable_to_non_nullable
               as String,
-      definition: definition == freezed
-          ? _value.definition
-          : definition // ignore: cast_nullable_to_non_nullable
-              as String,
-      diagnosisTechnique: diagnosisTechnique == freezed
-          ? _value.diagnosisTechnique
-          : diagnosisTechnique // ignore: cast_nullable_to_non_nullable
-              as String,
-      treatment: treatment == freezed
-          ? _value.treatment
-          : treatment // ignore: cast_nullable_to_non_nullable
-              as String,
-      advice: advice == freezed
-          ? _value.advice
-          : advice // ignore: cast_nullable_to_non_nullable
-              as String,
-      symptomGroupList: symptomGroupList == freezed
-          ? _value._symptomGroupList
-          : symptomGroupList // ignore: cast_nullable_to_non_nullable
-              as List<SymptomGroup>,
-      diseaseType: diseaseType == freezed
-          ? _value.diseaseType
-          : diseaseType // ignore: cast_nullable_to_non_nullable
-              as DiseaseType,
     ));
   }
 }
@@ -292,18 +218,11 @@ class _$_ReviewDetailResponseDTO implements _ReviewDetailResponseDTO {
       required final List<DiseaseResponseDTO> diseaseList,
       required this.reviewRate,
       required final List<ReviewItem> reviewItems,
-      required this.reviewDesc,
-      this.definition = '',
-      this.diagnosisTechnique = '',
-      this.treatment = '',
-      this.advice = '',
-      final List<SymptomGroup> symptomGroupList = const [],
-      this.diseaseType = DiseaseType.brainNeurology})
+      required this.reviewDesc})
       : _conimals = conimals,
         _diseaseTypeList = diseaseTypeList,
         _diseaseList = diseaseList,
-        _reviewItems = reviewItems,
-        _symptomGroupList = symptomGroupList;
+        _reviewItems = reviewItems;
 
   factory _$_ReviewDetailResponseDTO.fromJson(Map<String, dynamic> json) =>
       _$$_ReviewDetailResponseDTOFromJson(json);
@@ -345,33 +264,10 @@ class _$_ReviewDetailResponseDTO implements _ReviewDetailResponseDTO {
 
   @override
   final String reviewDesc;
-  @override
-  @JsonKey()
-  final String definition;
-  @override
-  @JsonKey()
-  final String diagnosisTechnique;
-  @override
-  @JsonKey()
-  final String treatment;
-  @override
-  @JsonKey()
-  final String advice;
-  final List<SymptomGroup> _symptomGroupList;
-  @override
-  @JsonKey()
-  List<SymptomGroup> get symptomGroupList {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_symptomGroupList);
-  }
-
-  @override
-  @JsonKey()
-  final DiseaseType diseaseType;
 
   @override
   String toString() {
-    return 'ReviewDetailResponseDTO(createdAt: $createdAt, placePreview: $placePreview, conimals: $conimals, diseaseTypeList: $diseaseTypeList, diseaseList: $diseaseList, reviewRate: $reviewRate, reviewItems: $reviewItems, reviewDesc: $reviewDesc, definition: $definition, diagnosisTechnique: $diagnosisTechnique, treatment: $treatment, advice: $advice, symptomGroupList: $symptomGroupList, diseaseType: $diseaseType)';
+    return 'ReviewDetailResponseDTO(createdAt: $createdAt, placePreview: $placePreview, conimals: $conimals, diseaseTypeList: $diseaseTypeList, diseaseList: $diseaseList, reviewRate: $reviewRate, reviewItems: $reviewItems, reviewDesc: $reviewDesc)';
   }
 
   @override
@@ -379,53 +275,39 @@ class _$_ReviewDetailResponseDTO implements _ReviewDetailResponseDTO {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ReviewDetailResponseDTO &&
-            const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
-            const DeepCollectionEquality()
-                .equals(other.placePreview, placePreview) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.placePreview, placePreview) ||
+                other.placePreview == placePreview) &&
             const DeepCollectionEquality().equals(other._conimals, _conimals) &&
             const DeepCollectionEquality()
                 .equals(other._diseaseTypeList, _diseaseTypeList) &&
             const DeepCollectionEquality()
                 .equals(other._diseaseList, _diseaseList) &&
-            const DeepCollectionEquality()
-                .equals(other.reviewRate, reviewRate) &&
+            (identical(other.reviewRate, reviewRate) ||
+                other.reviewRate == reviewRate) &&
             const DeepCollectionEquality()
                 .equals(other._reviewItems, _reviewItems) &&
-            const DeepCollectionEquality()
-                .equals(other.reviewDesc, reviewDesc) &&
-            const DeepCollectionEquality()
-                .equals(other.definition, definition) &&
-            const DeepCollectionEquality()
-                .equals(other.diagnosisTechnique, diagnosisTechnique) &&
-            const DeepCollectionEquality().equals(other.treatment, treatment) &&
-            const DeepCollectionEquality().equals(other.advice, advice) &&
-            const DeepCollectionEquality()
-                .equals(other._symptomGroupList, _symptomGroupList) &&
-            const DeepCollectionEquality()
-                .equals(other.diseaseType, diseaseType));
+            (identical(other.reviewDesc, reviewDesc) ||
+                other.reviewDesc == reviewDesc));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(createdAt),
-      const DeepCollectionEquality().hash(placePreview),
+      createdAt,
+      placePreview,
       const DeepCollectionEquality().hash(_conimals),
       const DeepCollectionEquality().hash(_diseaseTypeList),
       const DeepCollectionEquality().hash(_diseaseList),
-      const DeepCollectionEquality().hash(reviewRate),
+      reviewRate,
       const DeepCollectionEquality().hash(_reviewItems),
-      const DeepCollectionEquality().hash(reviewDesc),
-      const DeepCollectionEquality().hash(definition),
-      const DeepCollectionEquality().hash(diagnosisTechnique),
-      const DeepCollectionEquality().hash(treatment),
-      const DeepCollectionEquality().hash(advice),
-      const DeepCollectionEquality().hash(_symptomGroupList),
-      const DeepCollectionEquality().hash(diseaseType));
+      reviewDesc);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ReviewDetailResponseDTOCopyWith<_$_ReviewDetailResponseDTO>
       get copyWith =>
           __$$_ReviewDetailResponseDTOCopyWithImpl<_$_ReviewDetailResponseDTO>(
@@ -448,13 +330,7 @@ abstract class _ReviewDetailResponseDTO implements ReviewDetailResponseDTO {
       required final List<DiseaseResponseDTO> diseaseList,
       required final ReviewRate reviewRate,
       required final List<ReviewItem> reviewItems,
-      required final String reviewDesc,
-      final String definition,
-      final String diagnosisTechnique,
-      final String treatment,
-      final String advice,
-      final List<SymptomGroup> symptomGroupList,
-      final DiseaseType diseaseType}) = _$_ReviewDetailResponseDTO;
+      required final String reviewDesc}) = _$_ReviewDetailResponseDTO;
 
   factory _ReviewDetailResponseDTO.fromJson(Map<String, dynamic> json) =
       _$_ReviewDetailResponseDTO.fromJson;
@@ -476,18 +352,6 @@ abstract class _ReviewDetailResponseDTO implements ReviewDetailResponseDTO {
   List<ReviewItem> get reviewItems;
   @override
   String get reviewDesc;
-  @override
-  String get definition;
-  @override
-  String get diagnosisTechnique;
-  @override
-  String get treatment;
-  @override
-  String get advice;
-  @override
-  List<SymptomGroup> get symptomGroupList;
-  @override
-  DiseaseType get diseaseType;
   @override
   @JsonKey(ignore: true)
   _$$_ReviewDetailResponseDTOCopyWith<_$_ReviewDetailResponseDTO>

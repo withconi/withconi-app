@@ -1,82 +1,103 @@
-import 'dart:developer';
-
-import 'package:dartz/dartz.dart';
-import 'package:intl/intl.dart';
-import 'package:withconi/module/auth/auth_controller.dart';
-import 'package:withconi/data/repository/conimal_repository.dart';
-import '../../../core/values/constants/auth_variables.dart';
+import 'package:withconi/module/ui_model/disease_ui_model.dart';
 import '../../../data/enums/enum.dart';
 import '../../../core/values/constants/regex.dart';
 import '../../../core/values/constants/strings.dart';
-import '../../../core/error_handling/failures.dart';
-import '../../../data/model/conimal.dart';
-import '../../../data/model/disease.dart';
 import '../../../import_basic.dart';
-import '../../../global_widgets/dialog/selection_dialog.dart';
-import '../../../global_widgets/loading/loading_overlay.dart';
-import '../../../core/error_handling/failure_ui_interpreter.dart';
+import '../../ui_model/breed_ui_model.dart';
 import '../../ui_model/conimal_ui_model.dart';
 
 class EditConimalController extends GetxController {
-  final ConimalRepository _conimalRepository = Get.put(ConimalRepository());
   RxBool isConimalAdded = false.obs;
-  final RxString _conimalName = ''.obs;
+  final RxString _conimalNameText = ''.obs;
   final RxBool isButtonValid = false.obs;
   late Rx<ConimalUIModel> editConimal;
   RxBool showAddConimalButton = false.obs;
   RxList<bool> genderSelectionList = [false, false].obs;
   RxnString conimalNameErrorText = RxnString();
   TextEditingController conimalNameTextController = TextEditingController();
-  String get _userId => AuthController.to.wcUser.value!.uid;
   RxBool dataInited = false.obs;
+  RxList<DiseaseUIModel> selectedDiseaseList = RxList<DiseaseUIModel>();
 
   @override
   void onInit() {
     super.onInit();
 
-    editConimal = Rx<ConimalUIModel>(Get.arguments as ConimalUIModel);
+    editConimal =
+        Rx<ConimalUIModel>((Get.arguments as ConimalUIModel).copyWith());
+    conimalNameTextController.text = editConimal.value.name;
+    selectedDiseaseList.assignAll(editConimal.value.diseases.toList());
     dataInited.value = true;
   }
 
   @override
   void onReady() {
     super.onReady();
-    ever(_conimalName, validateName);
+    ever(_conimalNameText, validateName);
     ever(editConimal, validateButton);
   }
 
+  // @override
+  // void onClose() {
+  //   super.onClose();
+  //   editConimal.close();
+  //   showAddConimalButton.close();
+  //   genderSelectionList.close();
+  //   conimalNameErrorText.close();
+  //   dataInited.close();
+  //   _conimalName.close();
+  //   isConimalAdded.close();
+  //   conimalNameErrorText.close();
+  // }
+
   void onConimalNameChanged(String val) {
-    _conimalName.value = val;
+    _conimalNameText.value = val;
+  }
+
+  void onNeutralizedChanged(bool val) {
+    editConimal.value = editConimal.value.copyWith(isNeutralized: !val);
+    editConimal.refresh();
   }
 
   void onGenderChanged(Gender gender) {
-    editConimal.value.gender = gender;
+    editConimal.value = editConimal.value.copyWith(gender: gender);
     editConimal.refresh();
   }
 
   void onSpeicesChanged(Species species) {
-    editConimal.value.species = species;
+    editConimal.value = editConimal.value.copyWith(species: species);
     editConimal.refresh();
   }
 
   void onBirthDateChanged(DateTime birthDate) {
-    editConimal.value.birthDate = birthDate;
+    editConimal.value = editConimal.value.copyWith(birthDate: birthDate);
     editConimal.refresh();
   }
 
   void onAdoptedDateChanged(DateTime adoptedDate) {
-    editConimal.value.adoptedDate = adoptedDate;
+    editConimal.value = editConimal.value.copyWith(adoptedDate: adoptedDate);
     editConimal.refresh();
   }
 
-  void onDiseaseListChanged(List<Disease> diseaseList) {
-    editConimal.value.diseases.assignAll(diseaseList);
+  void onDiseaseListChanged(List<DiseaseUIModel> diseaseList) {
+    selectedDiseaseList.assignAll(diseaseList);
+    editConimal.value = editConimal.value.copyWith(diseases: diseaseList);
     editConimal.refresh();
+    selectedDiseaseList.refresh();
+  }
+
+  void onBreedChanged(String breed) {
+    editConimal.value.breed = breed;
+    editConimal.refresh();
+  }
+
+  void onDeleteDiseaseItem(int index) {
+    selectedDiseaseList.removeAt(index);
+    onDiseaseListChanged(selectedDiseaseList.toList());
   }
 
   validateButton(ConimalUIModel _newConimal) {
     if (_newConimal.species != null &&
-        _newConimal.name.isNotEmpty &&
+        conimalNameErrorText.value == null &&
         _newConimal.gender != null &&
         _newConimal.birthDate != null &&
         _newConimal.adoptedDate != null &&
@@ -89,12 +110,15 @@ class EditConimalController extends GetxController {
 
   validateName(String value) {
     final nameRegExp = Regex.nickName;
-    conimalNameErrorText.value = null;
+    // conimalNameErrorText.value = null;
     if (!nameRegExp.hasMatch(value)) {
       conimalNameErrorText.value = Strings.validator.name;
+      editConimal.value = editConimal.value.copyWith(name: '');
     } else {
       conimalNameErrorText.value = null;
+      editConimal.value = editConimal.value.copyWith(name: value);
     }
+    editConimal.refresh();
   }
 
   selectBirthDate() async {
@@ -125,48 +149,46 @@ class EditConimalController extends GetxController {
 
   selectDisease() async {
     Get.focusScope!.unfocus();
-    List<Disease>? newDiseaseList = await Get.toNamed(Routes.DISEASE_ADD,
-        arguments: editConimal.value.diseases) as List<Disease>?;
+    List<DiseaseUIModel>? newDiseaseList = await Get.toNamed(
+        Routes.DISEASE_SEARCH,
+        arguments: editConimal.value.diseases) as List<DiseaseUIModel>?;
     if (newDiseaseList != null) {
-      onDiseaseListChanged(newDiseaseList);
+      onDiseaseListChanged(newDiseaseList.toList());
     }
   }
 
-  Future<void> getBack() async {
-    bool isConfirmed = await showSelectionDialog(
-        cancleText: '계속하기',
-        confirmText: '그만하기',
-        title: '코니멀 수정을 그만할까요?',
-        subtitle: '변경된 정보는 모두 사라집니다');
-    if (isConfirmed) {
-      Get.back();
+  goToSearchBreedPage() async {
+    Get.focusScope!.unfocus();
+
+    BreedUIModel? selectedBreed = await Get.toNamed(
+      Routes.BREED_SEARCH,
+    ) as BreedUIModel?;
+    if (selectedBreed != null) {
+      onBreedChanged(selectedBreed.name);
     }
   }
 
-  Future<void> onEditButtonTap() async {
-    bool isConfirmed = await showSelectionDialog(
-        cancleText: '아니요',
-        confirmText: '네',
-        title: '정보를 수정할까요?',
-        subtitle: '변경된 코니멀 정보를 수정합니다');
-
-    if (isConfirmed) {
-      editConimalDB();
-    }
+  getBack() {
+    Get.focusScope!.unfocus();
+    Get.back();
   }
 
-  Future<void> editConimalDB() async {
-    Conimal editedConimal = editConimal.value.toDTO();
-
-    Either<Failure, bool> addResultEither = await showLoading(
-        () => _conimalRepository.updateConimal(editConimal: editedConimal));
-
-    addResultEither.fold(
-        (fail) =>
-            FailureInterpreter().mapFailureToDialog(fail, 'updateConimalList'),
-        (success) {
-      AuthController.to.refreshWcUserInfo();
-      Get.back(result: editedConimal);
-    });
+  onEditButtonTap() {
+    Get.focusScope!.unfocus();
+    Get.back(result: editConimal.value);
   }
+
+  // Future<void> editConimalDB() async {
+  //   // Either<Failure, bool> addResultEither = await showLoading(
+  //   //     () => _conimalRepository.updateConimal(editConimal: editConimal.value));
+
+  //   // addResultEither.fold(
+  //   //     (fail) =>
+  //   //         FailureInterpreter().mapFailureToDialog(fail, 'updateConimalList'),
+  //   //     (success) {
+  //   //   AuthController.to.refreshWcUserInfo();
+  //   //   Get.back(result: editConimal.value);
+  //   // });
+  //   Get.back(result: editConimal.value);
+  // }
 }

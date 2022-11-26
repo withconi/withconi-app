@@ -11,12 +11,12 @@ part 'conimal_response_dto.g.dart';
 class ConimalResponseDTO with _$ConimalResponseDTO implements ResponseDTO {
   @JsonSerializable(explicitToJson: true)
   factory ConimalResponseDTO({
-    required String conimalId,
+    @Default('wow') String conimalId,
     required String name,
     required Species species,
     required Gender gender,
-    @Default(false) bool isNutralized,
-    @Default('breed') String breed,
+    @Default(false) bool isNeutralized,
+    @JsonKey(name: 'speciesName') @Default('breed') String breed,
     @Default('') String? userId,
     @DateTimeConverter() required DateTime birthDate,
     @DateTimeConverter() required DateTime adoptedDate,

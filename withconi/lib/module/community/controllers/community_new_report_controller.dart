@@ -36,6 +36,7 @@ class CommunityNewReportController extends GetxController {
 
   onReportItemChanged(ReportItem reportItem) {
     newReport.value.reportItem = reportItem;
+    newReport.refresh();
   }
 
   validateButton() {

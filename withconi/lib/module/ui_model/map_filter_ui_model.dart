@@ -1,26 +1,25 @@
 import 'package:withconi/data/enums/enum.dart';
 import 'package:withconi/core/tools/helpers/infinite_scroll.dart';
 import 'package:withconi/module/ui_model/ui_model_abstract/ui_model.dart';
-import '../../data/model/latlng.dart';
+import 'latlng_ui_model.dart';
 
-class MapFilterUIModel implements UIModel<MapFilterUIModel> {
+class MapFilterUIModel implements UIModel {
   MapFilterUIModel({
-    required this.paginationFilter,
-    required this.latLng,
     this.keyword,
-    this.locType,
-    this.openingStatus,
+    required this.placeType,
+    required this.openingStatus,
     this.diseaseType,
     this.speciesType,
-    required this.distance,
+    required this.sortType,
+    required this.locationType,
+    required this.searchArea,
   });
-
-  PaginationFilter paginationFilter;
   String? keyword;
-  PlaceType? locType;
+  PlaceType placeType;
   Species? speciesType;
-  OpeningStatus? openingStatus;
-  LatLngClass latLng;
+  SortType sortType;
+  OpeningStatus openingStatus;
   DiseaseType? diseaseType;
-  int distance;
+  LocationSearchType locationType;
+  int searchArea;
 }

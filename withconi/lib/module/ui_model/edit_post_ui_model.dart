@@ -2,13 +2,13 @@ import 'package:withconi/global_widgets/photo_gallary/image_item.dart';
 
 import '../../core/tools/helpers/calculator.dart';
 import '../../data/enums/enum.dart';
-import '../../data/model/dto/response_dto/post_response_dto.dart';
+import '../../data/model/dto/response_dto/community_response/post_response_dto.dart';
 
 class EditPostUIModel {
   final String nickname;
-  final String content;
-  final PostType postType;
-  final List<ImageItem> images;
+  String content;
+  PostType postType;
+  List<ImageItem> images;
   String postId;
   String boardId;
 
@@ -20,7 +20,7 @@ class EditPostUIModel {
       required this.postId,
       required this.boardId});
 
-  factory EditPostUIModel.fromDTO(Post postDTO) {
+  factory EditPostUIModel.fromDTO(PostResponseDTO postDTO) {
     return EditPostUIModel(
         nickname: postDTO.nickname,
         content: postDTO.content,

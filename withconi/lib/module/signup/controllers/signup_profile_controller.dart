@@ -2,19 +2,25 @@ import 'dart:io';
 import 'dart:math';
 import 'package:dartz/dartz.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:withconi/module/signup/signup_data_brain.dart';
-import 'package:withconi/controller/ui_interpreter/failure_ui_interpreter.dart';
+import 'package:withconi/core/signing_auth_info.dart';
+import 'package:withconi/module/signup/signup_data_storage.dart';
+import 'package:withconi/core/error_handling/failure_ui_interpreter.dart';
 import 'package:withconi/core/error_handling/failures.dart';
-import 'package:withconi/module/widgets/photo_gallary/image_item.dart';
+import 'package:withconi/global_widgets/photo_gallary/image_item.dart';
+import 'package:withconi/module/ui_model/signup_user_ui_model.dart';
 import '../../../core/values/constants/regex.dart';
 import '../../../core/values/constants/strings.dart';
 import '../../../core/tools/helpers/image_picker_helper.dart';
+import '../../../data/repository/signup_repository.dart';
 import '../../../import_basic.dart';
 
 class SignupProfileController extends GetxController {
   // final ConimalRepository _signUpRepository = ConimalRepository.to;
   // final SignupRepository _signUpRepository = Get.find();
-  final SignUpDataBrain _signUpDataManager = Get.find();
+
+  SignupProfileController(this._signUpDataManager);
+  // final SignupRepository _repository;
+  final SignUpDataStorage _signUpDataManager;
 
   final RxString _name = ''.obs;
   final RxString _nickName = ''.obs;
@@ -35,6 +41,10 @@ class SignupProfileController extends GetxController {
   @override
   void onReady() {
     super.onReady();
+
+    _signUpDataManager.storeAuthInfo(Get.arguments as SigningAuthInfo);
+
+    (_signUpDataManager.email);
 
     debounce(_name, validateName, time: const Duration(milliseconds: 200));
     debounce(_nickName, validateNickname,
@@ -105,18 +115,17 @@ class SignupProfileController extends GetxController {
   }
 
   nextStep() {
-    // _signUpRepository.saveUserName(name);
-    // _signUpRepository.saveUserNickname(nickName);
-    // _signUpRepository.saveUserProfile(profileImg.value);
-
     _signUpDataManager.storeUserName(name);
     _signUpDataManager.storeUserNickname(nickName);
     _signUpDataManager.storeUserProfile(profileImg.value);
 
-    if (_signUpDataManager.conimalList.isNotEmpty) {
-      Get.toNamed(Routes.SIGNUP_CONIMAL_STEP2);
-    } else {
-      Get.toNamed(Routes.SIGNUP_CONIMAL_STEP1);
-    }
+    // if (_signUpDataManager.conimalList.isNotEmpty) {
+    //   Get.toNamed(Routes.CONIMAL_MANAGE,
+    //       arguments: _signUpDataManager.conimalList);
+    // } else {
+    //   Get.toNamed(Routes.CONIMAL_ADD);
+    // }
+    Get.toNamed(Routes.SIGNUP_CONIMAL_MANAGE,
+        arguments: _signUpDataManager.conimalList);
   }
 }

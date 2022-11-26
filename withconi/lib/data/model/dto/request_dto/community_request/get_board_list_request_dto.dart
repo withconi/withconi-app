@@ -1,4 +1,3 @@
-import 'dart:html';
 import 'package:withconi/core/network_handling/network_service.dart';
 import 'package:withconi/core/tools/api_url.dart';
 import 'package:withconi/data/model/dto/request_dto/abstract_request/request_info_abstract.dart';

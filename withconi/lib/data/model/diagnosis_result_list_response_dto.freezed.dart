@@ -36,34 +36,39 @@ abstract class $DiagnosisResultListResponseDTOCopyWith<$Res> {
   factory $DiagnosisResultListResponseDTOCopyWith(
           DiagnosisResultListResponseDTO value,
           $Res Function(DiagnosisResultListResponseDTO) then) =
-      _$DiagnosisResultListResponseDTOCopyWithImpl<$Res>;
+      _$DiagnosisResultListResponseDTOCopyWithImpl<$Res,
+          DiagnosisResultListResponseDTO>;
+  @useResult
   $Res call({List<DiagnosisResultResponseDTO> list, int totalDocuments});
 }
 
 /// @nodoc
-class _$DiagnosisResultListResponseDTOCopyWithImpl<$Res>
+class _$DiagnosisResultListResponseDTOCopyWithImpl<$Res,
+        $Val extends DiagnosisResultListResponseDTO>
     implements $DiagnosisResultListResponseDTOCopyWith<$Res> {
   _$DiagnosisResultListResponseDTOCopyWithImpl(this._value, this._then);
 
-  final DiagnosisResultListResponseDTO _value;
   // ignore: unused_field
-  final $Res Function(DiagnosisResultListResponseDTO) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? list = freezed,
-    Object? totalDocuments = freezed,
+    Object? list = null,
+    Object? totalDocuments = null,
   }) {
     return _then(_value.copyWith(
-      list: list == freezed
+      list: null == list
           ? _value.list
           : list // ignore: cast_nullable_to_non_nullable
               as List<DiagnosisResultResponseDTO>,
-      totalDocuments: totalDocuments == freezed
+      totalDocuments: null == totalDocuments
           ? _value.totalDocuments
           : totalDocuments // ignore: cast_nullable_to_non_nullable
               as int,
-    ));
+    ) as $Val);
   }
 }
 
@@ -75,33 +80,32 @@ abstract class _$$_DiagnosisResultListResponseDTOCopyWith<$Res>
           $Res Function(_$_DiagnosisResultListResponseDTO) then) =
       __$$_DiagnosisResultListResponseDTOCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({List<DiagnosisResultResponseDTO> list, int totalDocuments});
 }
 
 /// @nodoc
 class __$$_DiagnosisResultListResponseDTOCopyWithImpl<$Res>
-    extends _$DiagnosisResultListResponseDTOCopyWithImpl<$Res>
+    extends _$DiagnosisResultListResponseDTOCopyWithImpl<$Res,
+        _$_DiagnosisResultListResponseDTO>
     implements _$$_DiagnosisResultListResponseDTOCopyWith<$Res> {
   __$$_DiagnosisResultListResponseDTOCopyWithImpl(
       _$_DiagnosisResultListResponseDTO _value,
       $Res Function(_$_DiagnosisResultListResponseDTO) _then)
-      : super(_value, (v) => _then(v as _$_DiagnosisResultListResponseDTO));
+      : super(_value, _then);
 
-  @override
-  _$_DiagnosisResultListResponseDTO get _value =>
-      super._value as _$_DiagnosisResultListResponseDTO;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? list = freezed,
-    Object? totalDocuments = freezed,
+    Object? list = null,
+    Object? totalDocuments = null,
   }) {
     return _then(_$_DiagnosisResultListResponseDTO(
-      list: list == freezed
+      list: null == list
           ? _value._list
           : list // ignore: cast_nullable_to_non_nullable
               as List<DiagnosisResultResponseDTO>,
-      totalDocuments: totalDocuments == freezed
+      totalDocuments: null == totalDocuments
           ? _value.totalDocuments
           : totalDocuments // ignore: cast_nullable_to_non_nullable
               as int,
@@ -144,19 +148,18 @@ class _$_DiagnosisResultListResponseDTO
         (other.runtimeType == runtimeType &&
             other is _$_DiagnosisResultListResponseDTO &&
             const DeepCollectionEquality().equals(other._list, _list) &&
-            const DeepCollectionEquality()
-                .equals(other.totalDocuments, totalDocuments));
+            (identical(other.totalDocuments, totalDocuments) ||
+                other.totalDocuments == totalDocuments));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_list),
-      const DeepCollectionEquality().hash(totalDocuments));
+      runtimeType, const DeepCollectionEquality().hash(_list), totalDocuments);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_DiagnosisResultListResponseDTOCopyWith<_$_DiagnosisResultListResponseDTO>
       get copyWith => __$$_DiagnosisResultListResponseDTOCopyWithImpl<
           _$_DiagnosisResultListResponseDTO>(this, _$identity);

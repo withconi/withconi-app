@@ -26,15 +26,39 @@ class CreateImageRequestDTO
         super.fromData(image);
 
   Future<dio.FormData> get formDataMap async {
-    io.File imageFile = io.File(imageItem.resource);
-    String fileName = imageFile.path.split('/').last;
-    dio.FormData dataMap = dio.FormData.fromMap({
-      "imageFile": await dio.MultipartFile.fromFile(
-        imageFile.path,
-        filename: fileName,
-      ),
-    });
-    return dataMap;
+    // io.File imageFile = io.File(imageItem.resource);
+    // String fileName = imageFile.path.split('/').last;
+    // dio.FormData dataMap = dio.FormData.fromMap({
+    //   "field": await dio.MultipartFile.fromFile(
+    //     imageFile.path,
+    //     filename: fileName,
+    //   ),
+    // });
+    // print(imageFile.path);
+    // print(imageFile);
+    // return dataMap;
+
+    dio.FormData _formData;
+    // List<io.File> imageFileList =
+    //     imageItems.map((e) => io.File(e.resource)).toList();
+
+    final dio.MultipartFile _file = dio.MultipartFile.fromFileSync(
+      imageItem.resource,
+    );
+
+    _formData = dio.FormData.fromMap({"file": _file});
+    // String fileName = imageFile.path.split('/').last;
+    // dio.FormData dataMap = dio.FormData.fromMap({
+    //   "field": imageFileList
+    //       .map(
+    //         (e) async => await dio.MultipartFile.fromFile(
+    //           e.path,
+    //         ),
+    //       )
+    //       .toList()
+    // });
+
+    return _formData;
   }
 
   @override

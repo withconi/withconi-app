@@ -9,12 +9,12 @@ part of 'conimal_response_dto.dart';
 _$_ConimalResponseDTO _$$_ConimalResponseDTOFromJson(
         Map<String, dynamic> json) =>
     _$_ConimalResponseDTO(
-      conimalId: json['conimalId'] as String,
+      conimalId: json['conimalId'] as String? ?? 'wow',
       name: json['name'] as String,
       species: $enumDecode(_$SpeciesEnumMap, json['species']),
       gender: $enumDecode(_$GenderEnumMap, json['gender']),
-      isNutralized: json['isNutralized'] as bool? ?? false,
-      breed: json['breed'] as String? ?? 'breed',
+      isNeutralized: json['isNeutralized'] as bool? ?? false,
+      breed: json['speciesName'] as String? ?? 'breed',
       userId: json['userId'] as String? ?? '',
       birthDate: const DateTimeConverter().fromJson(json['birthDate'] as int),
       adoptedDate:
@@ -33,8 +33,8 @@ Map<String, dynamic> _$$_ConimalResponseDTOToJson(
       'name': instance.name,
       'species': _$SpeciesEnumMap[instance.species]!,
       'gender': _$GenderEnumMap[instance.gender]!,
-      'isNutralized': instance.isNutralized,
-      'breed': instance.breed,
+      'isNeutralized': instance.isNeutralized,
+      'speciesName': instance.breed,
       'userId': instance.userId,
       'birthDate': const DateTimeConverter().toJson(instance.birthDate),
       'adoptedDate': const DateTimeConverter().toJson(instance.adoptedDate),

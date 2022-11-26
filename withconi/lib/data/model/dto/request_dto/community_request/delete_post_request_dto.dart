@@ -1,4 +1,3 @@
-import 'dart:html';
 import 'dart:ffi';
 import 'package:dartz/dartz.dart';
 import 'package:withconi/core/network_handling/network_service.dart';

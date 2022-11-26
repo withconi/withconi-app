@@ -21,7 +21,7 @@ CommentListResponseDTO _$CommentListResponseDTOFromJson(
 
 /// @nodoc
 mixin _$CommentListResponseDTO {
-  List<CommentResponseDTO> get results => throw _privateConstructorUsedError;
+  List<CommentResponseDTO> get list => throw _privateConstructorUsedError;
   int get totalDocuments => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -34,34 +34,38 @@ mixin _$CommentListResponseDTO {
 abstract class $CommentListResponseDTOCopyWith<$Res> {
   factory $CommentListResponseDTOCopyWith(CommentListResponseDTO value,
           $Res Function(CommentListResponseDTO) then) =
-      _$CommentListResponseDTOCopyWithImpl<$Res>;
-  $Res call({List<CommentResponseDTO> results, int totalDocuments});
+      _$CommentListResponseDTOCopyWithImpl<$Res, CommentListResponseDTO>;
+  @useResult
+  $Res call({List<CommentResponseDTO> list, int totalDocuments});
 }
 
 /// @nodoc
-class _$CommentListResponseDTOCopyWithImpl<$Res>
+class _$CommentListResponseDTOCopyWithImpl<$Res,
+        $Val extends CommentListResponseDTO>
     implements $CommentListResponseDTOCopyWith<$Res> {
   _$CommentListResponseDTOCopyWithImpl(this._value, this._then);
 
-  final CommentListResponseDTO _value;
   // ignore: unused_field
-  final $Res Function(CommentListResponseDTO) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? results = freezed,
-    Object? totalDocuments = freezed,
+    Object? list = null,
+    Object? totalDocuments = null,
   }) {
     return _then(_value.copyWith(
-      results: results == freezed
-          ? _value.results
-          : results // ignore: cast_nullable_to_non_nullable
+      list: null == list
+          ? _value.list
+          : list // ignore: cast_nullable_to_non_nullable
               as List<CommentResponseDTO>,
-      totalDocuments: totalDocuments == freezed
+      totalDocuments: null == totalDocuments
           ? _value.totalDocuments
           : totalDocuments // ignore: cast_nullable_to_non_nullable
               as int,
-    ));
+    ) as $Val);
   }
 }
 
@@ -72,32 +76,31 @@ abstract class _$$_CommentListResponseDTOCopyWith<$Res>
           $Res Function(_$_CommentListResponseDTO) then) =
       __$$_CommentListResponseDTOCopyWithImpl<$Res>;
   @override
-  $Res call({List<CommentResponseDTO> results, int totalDocuments});
+  @useResult
+  $Res call({List<CommentResponseDTO> list, int totalDocuments});
 }
 
 /// @nodoc
 class __$$_CommentListResponseDTOCopyWithImpl<$Res>
-    extends _$CommentListResponseDTOCopyWithImpl<$Res>
+    extends _$CommentListResponseDTOCopyWithImpl<$Res,
+        _$_CommentListResponseDTO>
     implements _$$_CommentListResponseDTOCopyWith<$Res> {
   __$$_CommentListResponseDTOCopyWithImpl(_$_CommentListResponseDTO _value,
       $Res Function(_$_CommentListResponseDTO) _then)
-      : super(_value, (v) => _then(v as _$_CommentListResponseDTO));
+      : super(_value, _then);
 
-  @override
-  _$_CommentListResponseDTO get _value =>
-      super._value as _$_CommentListResponseDTO;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? results = freezed,
-    Object? totalDocuments = freezed,
+    Object? list = null,
+    Object? totalDocuments = null,
   }) {
     return _then(_$_CommentListResponseDTO(
-      results: results == freezed
-          ? _value._results
-          : results // ignore: cast_nullable_to_non_nullable
+      list: null == list
+          ? _value._list
+          : list // ignore: cast_nullable_to_non_nullable
               as List<CommentResponseDTO>,
-      totalDocuments: totalDocuments == freezed
+      totalDocuments: null == totalDocuments
           ? _value.totalDocuments
           : totalDocuments // ignore: cast_nullable_to_non_nullable
               as int,
@@ -110,18 +113,18 @@ class __$$_CommentListResponseDTOCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_CommentListResponseDTO implements _CommentListResponseDTO {
   _$_CommentListResponseDTO(
-      {required final List<CommentResponseDTO> results,
+      {required final List<CommentResponseDTO> list,
       required this.totalDocuments})
-      : _results = results;
+      : _list = list;
 
   factory _$_CommentListResponseDTO.fromJson(Map<String, dynamic> json) =>
       _$$_CommentListResponseDTOFromJson(json);
 
-  final List<CommentResponseDTO> _results;
+  final List<CommentResponseDTO> _list;
   @override
-  List<CommentResponseDTO> get results {
+  List<CommentResponseDTO> get list {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_results);
+    return EqualUnmodifiableListView(_list);
   }
 
   @override
@@ -129,7 +132,7 @@ class _$_CommentListResponseDTO implements _CommentListResponseDTO {
 
   @override
   String toString() {
-    return 'CommentListResponseDTO(results: $results, totalDocuments: $totalDocuments)';
+    return 'CommentListResponseDTO(list: $list, totalDocuments: $totalDocuments)';
   }
 
   @override
@@ -137,20 +140,19 @@ class _$_CommentListResponseDTO implements _CommentListResponseDTO {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_CommentListResponseDTO &&
-            const DeepCollectionEquality().equals(other._results, _results) &&
-            const DeepCollectionEquality()
-                .equals(other.totalDocuments, totalDocuments));
+            const DeepCollectionEquality().equals(other._list, _list) &&
+            (identical(other.totalDocuments, totalDocuments) ||
+                other.totalDocuments == totalDocuments));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_results),
-      const DeepCollectionEquality().hash(totalDocuments));
+      runtimeType, const DeepCollectionEquality().hash(_list), totalDocuments);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_CommentListResponseDTOCopyWith<_$_CommentListResponseDTO> get copyWith =>
       __$$_CommentListResponseDTOCopyWithImpl<_$_CommentListResponseDTO>(
           this, _$identity);
@@ -165,14 +167,14 @@ class _$_CommentListResponseDTO implements _CommentListResponseDTO {
 
 abstract class _CommentListResponseDTO implements CommentListResponseDTO {
   factory _CommentListResponseDTO(
-      {required final List<CommentResponseDTO> results,
+      {required final List<CommentResponseDTO> list,
       required final int totalDocuments}) = _$_CommentListResponseDTO;
 
   factory _CommentListResponseDTO.fromJson(Map<String, dynamic> json) =
       _$_CommentListResponseDTO.fromJson;
 
   @override
-  List<CommentResponseDTO> get results;
+  List<CommentResponseDTO> get list;
   @override
   int get totalDocuments;
   @override

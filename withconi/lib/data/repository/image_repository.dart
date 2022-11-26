@@ -2,21 +2,31 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
+import 'package:dio/dio.dart' as dio;
+import 'package:get/get_state_manager/src/rx_flutter/rx_disposable.dart';
 import 'package:withconi/core/error_handling/exceptions.dart';
-import 'package:withconi/data/provider/image_api.dart';
+import 'package:withconi/data/model/dto/api_call_dto.dart';
+import 'package:withconi/data/model/dto/request_dto/image_request/create_image_request_dto.dart';
+import 'package:withconi/data/model/dto/request_dto/image_request/create_muptiple_image_request_dto.dart';
+import 'package:withconi/data/provider/remote_provider/image_api.dart';
 import '../../core/error_handling/failures.dart';
-import '../../ui/widgets/photo_gallary/image_item.dart';
+import '../../global_widgets/photo_gallary/image_item.dart';
 
-class ImageRepository {
-  final ImageAPI _api = ImageAPI();
+class ImageRepository extends GetxService {
+  ImageRepository(this._api);
+  final ImageAPI _api;
+  List<String> _imageFileRefList = List.empty(growable: true);
 
   Future<Either<Failure, String>> uploadImageFile(
-      {required File imageFile}) async {
+      {required ImageItem imageItem}) async {
     try {
-      Map<String, dynamic> data =
-          await _api.uploadImageFile(imageFile: imageFile);
-      String imageFileId = data["field"] as String;
+      CreateImageRequestDTO requestDTO =
+          CreateImageRequestDTO.fromData(imageItem);
+      dio.FormData formData = await requestDTO.formDataMap;
+      ApiCallDTO apiCallDTO =
+          ApiCallDTO.fromDataDtoWithFormData(requestDTO, formData);
+      Map<String, dynamic> data = await _api.uploadImageFile(apiCallDTO);
+      String imageFileId = data['ref'] as String;
       return Right(imageFileId);
     } on NoInternetConnectionException {
       return Left(NoConnectionFailure());
@@ -25,23 +35,43 @@ class ImageRepository {
     }
   }
 
-  Future<Either<Failure, List<ImageItem>>> uploadImageFileList(
-      {required List<ImageItem> imageFileItems}) async {
+  Future<Either<Failure, List<String>>> uploadImageFileList(
+      List<ImageItem> imageItems) async {
     try {
-      List<ImageItem> imageFileRefs = [];
-      for (ImageItem imageFile in imageFileItems) {
-        Map<String, dynamic> data =
-            await _api.uploadImageFile(imageFile: File(imageFile.resource));
-        String imageFileId = data["field"] as String;
-        imageFileRefs.add(ImageItem(
-            id: imageFileId, resource: imageFileId, imageType: ImageType.file));
+      _imageFileRefList.clear();
+      CreateMultipleImagesRequestDTO requestDTO =
+          CreateMultipleImagesRequestDTO.fromData(imageItems);
+      List<dio.FormData> formData = await requestDTO.formDataMapList;
+
+      List<ApiCallDTO> apiCallDTOList = formData
+          .map((e) => ApiCallDTO.fromDataDtoWithFormData(requestDTO, e))
+          .toList();
+      // ApiCallDTO.fromDataDtoWithFormData(requestDTO, formData);
+
+      for (ApiCallDTO apiCallDTO in apiCallDTOList) {
+        Map<String, dynamic> data = await _api.uploadImageFile(apiCallDTO);
+        _imageFileRefList.add(data['ref']);
       }
 
-      return Right(imageFileRefs);
-    } on NoInternetConnectionException {
-      return Left(NoConnectionFailure());
-    } on DataParsingException {
-      return Left(DataParsingFailure());
+      // Map<String, dynamic> data = await _api.uploadImageFile(apiCallDTO);
+      // List<String> imageFileRefList = data['ref'] as List<String>;
+
+      return Right(_imageFileRefList.toList());
+    } catch (e) {
+      if (_imageFileRefList.isEmpty) {
+        return Left(ServerFailure());
+      } else {
+        return Right(_imageFileRefList);
+      }
+
+      // on NoInternetConnectionException {
+      //   if
+      //   return Left(NoConnectionFailure());
+      // } on DataParsingException {
+      //   return Left(DataParsingFailure());
+      // } on InternalServerErrorException {
+      //   return Left(ServerFailure());
+      // }
     }
   }
 }

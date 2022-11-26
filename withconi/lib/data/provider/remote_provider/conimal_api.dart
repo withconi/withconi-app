@@ -7,6 +7,11 @@ import '../../../core/tools/api_url.dart';
 class ConimalAPI {
   final Api _dio = Api();
 
+  Future<Map<String, dynamic>> getBreedList(ApiCallDTO apiCallDTO) async {
+    Map<String, dynamic> data = await _dio.apiCall(apiCallDTO);
+    return data;
+  }
+
   Future<String?> createConimal(ApiCallDTO apiCallDTO) async {
     Map<String, dynamic> data = await _dio.apiCall(apiCallDTO);
   }

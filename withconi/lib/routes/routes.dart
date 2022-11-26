@@ -8,21 +8,24 @@ abstract class Routes {
   static const SIGNUP_PW = '/signup/name_pw';
   static const SIGNUP_PROFILE = '/signup/profile';
   static const SIGNUP_CONIMAL_STEP1 = '/signup/conimal/1';
-  static const SIGNUP_CONIMAL_STEP2 = '/signup/conimal/2';
+  static const SIGNUP_CONIMAL_MANAGE = '/signup/conimal/2';
   static const SIGNUP_CONIMAL_EDIT = '/signup/conimal/edit';
   static const SIGNIN_EMAIL = '/signin/email';
-  static const DISEASE_ADD = '/disease/add';
+  static const DISEASE_SEARCH = '/disease/add';
+
+  static const BREED_SEARCH = '/breed/search';
 
   static const CONIMAL_MANAGE = '/conimal/manage';
   static const CONIMAL_ADD = '/conimal/manage/add';
   static const CONIMAL_EDIT = '/conimal/manage/edit';
   static const COMMUNITY_MAIN = '/community';
-  static const COMMUNITY_DETAIL = '/community/detail';
+  static const COMMUNITY_POST_LIST = '/community/detail';
   static const COMMUNITY_NEW_POST = '/community/new_post';
   static const COMMUNITY_POST_EDIT = '/community/edit_post';
   static const COMMUNITY_POST_DETAIL = '/community/post/detail';
   static const COMMUNITY_POST_SEARCH = '/community/search';
-  static const COMMUNITY_NEW_REPORT = '/community/report';
+  static const COMMUNITY_REPORT = '/community/report';
+  static const COMMUNITY_SETTING = '/community/setting';
 
   static const DICTIONARY_MAIN = '/dictionary';
 
@@ -34,8 +37,8 @@ abstract class Routes {
   static const DIAGNOSIS_RESULT = '/disease/main/step1/step2/result';
   static const SETTING_MAIN = '/setting/main';
   static const USER_EDIT = '/user/edit';
-  static const USER_MY_POST = '/user/mypost';
-  static const USER_LIKED_POST = '/user/likepost';
+  static const COMMUNITY_MY_POST = '/user/mypost';
+  static const COMMUNITY_LIKE_POST = '/user/likepost';
   static const USER_MYCONIMAL = '/user/myconimal';
   static const EMAIL_VERIFICATION = '/emailverification';
   static const MAP_MAIN = '/map';

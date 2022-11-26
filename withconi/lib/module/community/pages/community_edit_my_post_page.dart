@@ -5,15 +5,16 @@ import 'package:withconi/module/community/controllers/community_new_post_control
 import 'package:withconi/import_basic.dart';
 import 'package:withconi/global_widgets/appbar/appbar.dart';
 import 'package:withconi/global_widgets/button/text_radio_button.dart';
+import 'package:withconi/module/community/controllers/custom_state_mixin.dart';
 
 class CommunityEditMyPostPage extends StatelessWidget {
-  CommunityEditMyPostPage({Key? key}) : super(key: key);
-
-  final CommunityEditMyPostController _controller = Get.find();
+  const CommunityEditMyPostPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    final CommunityEditMyPostController _controller = Get.find();
+    return _controller.obx(
+        onSuccess: Scaffold(
       appBar: WcAppBar(
         title: '내 글 수정',
         action: Text(
@@ -43,7 +44,7 @@ class CommunityEditMyPostPage extends StatelessWidget {
                   TextSpan(
                     children: [
                       TextSpan(
-                        text: '${_controller.post.value.images.length} ',
+                        text: '${_controller.selectedImageItem.length} ',
                         style: GoogleFonts.workSans(
                             color: WcColors.blue100,
                             fontWeight: FontWeight.w500),
@@ -125,7 +126,8 @@ class CommunityEditMyPostPage extends StatelessWidget {
                                   _controller
                                       .onPostTypeChanged(value as PostType);
                                 },
-                                selectedValue: _controller.post.value.postType,
+                                selectedValue:
+                                    _controller.selectedPostType.value,
                                 value: postType,
                                 text: postType.displayName,
                               ))
@@ -133,14 +135,14 @@ class CommunityEditMyPostPage extends StatelessWidget {
                 ),
               ),
               Obx(
-                () => (_controller.post.value.images.isNotEmpty)
+                () => (_controller.selectedImageItem.isNotEmpty)
                     ? Container(
                         height: 135,
-                        margin: EdgeInsets.only(left: 20),
+                        margin: const EdgeInsets.only(left: 20),
                         child: SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
                           child: Row(
-                            children: _controller.post.value.images
+                            children: _controller.selectedImageItem
                                 .map(
                                   (image) => Container(
                                     margin: const EdgeInsets.only(right: 10),
@@ -226,6 +228,6 @@ class CommunityEditMyPostPage extends StatelessWidget {
           ),
         ),
       ),
-    );
+    ));
   }
 }

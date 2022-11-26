@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$PostUIModel {
+  String get postId => throw _privateConstructorUsedError;
   DateTime get uploadAt => throw _privateConstructorUsedError;
   set uploadAt(DateTime value) => throw _privateConstructorUsedError;
   String get nickname => throw _privateConstructorUsedError;
@@ -31,10 +32,10 @@ mixin _$PostUIModel {
   set commentNum(int value) => throw _privateConstructorUsedError;
   bool get isLikeOn => throw _privateConstructorUsedError;
   set isLikeOn(bool value) => throw _privateConstructorUsedError;
-  String get postId => throw _privateConstructorUsedError;
   String get authorId => throw _privateConstructorUsedError;
   String get boardId => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
+  DiseaseType get diseaseType => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PostUIModelCopyWith<PostUIModel> get copyWith =>
@@ -45,9 +46,11 @@ mixin _$PostUIModel {
 abstract class $PostUIModelCopyWith<$Res> {
   factory $PostUIModelCopyWith(
           PostUIModel value, $Res Function(PostUIModel) then) =
-      _$PostUIModelCopyWithImpl<$Res>;
+      _$PostUIModelCopyWithImpl<$Res, PostUIModel>;
+  @useResult
   $Res call(
-      {DateTime uploadAt,
+      {String postId,
+      DateTime uploadAt,
       String nickname,
       String content,
       PostType? postType,
@@ -55,85 +58,93 @@ abstract class $PostUIModelCopyWith<$Res> {
       int likeNum,
       int commentNum,
       bool isLikeOn,
-      String postId,
       String authorId,
       String boardId,
-      DateTime createdAt});
+      DateTime createdAt,
+      DiseaseType diseaseType});
 }
 
 /// @nodoc
-class _$PostUIModelCopyWithImpl<$Res> implements $PostUIModelCopyWith<$Res> {
+class _$PostUIModelCopyWithImpl<$Res, $Val extends PostUIModel>
+    implements $PostUIModelCopyWith<$Res> {
   _$PostUIModelCopyWithImpl(this._value, this._then);
 
-  final PostUIModel _value;
   // ignore: unused_field
-  final $Res Function(PostUIModel) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? uploadAt = freezed,
-    Object? nickname = freezed,
-    Object? content = freezed,
+    Object? postId = null,
+    Object? uploadAt = null,
+    Object? nickname = null,
+    Object? content = null,
     Object? postType = freezed,
-    Object? images = freezed,
-    Object? likeNum = freezed,
-    Object? commentNum = freezed,
-    Object? isLikeOn = freezed,
-    Object? postId = freezed,
-    Object? authorId = freezed,
-    Object? boardId = freezed,
-    Object? createdAt = freezed,
+    Object? images = null,
+    Object? likeNum = null,
+    Object? commentNum = null,
+    Object? isLikeOn = null,
+    Object? authorId = null,
+    Object? boardId = null,
+    Object? createdAt = null,
+    Object? diseaseType = null,
   }) {
     return _then(_value.copyWith(
-      uploadAt: uploadAt == freezed
-          ? _value.uploadAt
-          : uploadAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      nickname: nickname == freezed
-          ? _value.nickname
-          : nickname // ignore: cast_nullable_to_non_nullable
-              as String,
-      content: content == freezed
-          ? _value.content
-          : content // ignore: cast_nullable_to_non_nullable
-              as String,
-      postType: postType == freezed
-          ? _value.postType
-          : postType // ignore: cast_nullable_to_non_nullable
-              as PostType?,
-      images: images == freezed
-          ? _value.images
-          : images // ignore: cast_nullable_to_non_nullable
-              as List<ImageItem>,
-      likeNum: likeNum == freezed
-          ? _value.likeNum
-          : likeNum // ignore: cast_nullable_to_non_nullable
-              as int,
-      commentNum: commentNum == freezed
-          ? _value.commentNum
-          : commentNum // ignore: cast_nullable_to_non_nullable
-              as int,
-      isLikeOn: isLikeOn == freezed
-          ? _value.isLikeOn
-          : isLikeOn // ignore: cast_nullable_to_non_nullable
-              as bool,
-      postId: postId == freezed
+      postId: null == postId
           ? _value.postId
           : postId // ignore: cast_nullable_to_non_nullable
               as String,
-      authorId: authorId == freezed
+      uploadAt: null == uploadAt
+          ? _value.uploadAt
+          : uploadAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      nickname: null == nickname
+          ? _value.nickname
+          : nickname // ignore: cast_nullable_to_non_nullable
+              as String,
+      content: null == content
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as String,
+      postType: freezed == postType
+          ? _value.postType
+          : postType // ignore: cast_nullable_to_non_nullable
+              as PostType?,
+      images: null == images
+          ? _value.images
+          : images // ignore: cast_nullable_to_non_nullable
+              as List<ImageItem>,
+      likeNum: null == likeNum
+          ? _value.likeNum
+          : likeNum // ignore: cast_nullable_to_non_nullable
+              as int,
+      commentNum: null == commentNum
+          ? _value.commentNum
+          : commentNum // ignore: cast_nullable_to_non_nullable
+              as int,
+      isLikeOn: null == isLikeOn
+          ? _value.isLikeOn
+          : isLikeOn // ignore: cast_nullable_to_non_nullable
+              as bool,
+      authorId: null == authorId
           ? _value.authorId
           : authorId // ignore: cast_nullable_to_non_nullable
               as String,
-      boardId: boardId == freezed
+      boardId: null == boardId
           ? _value.boardId
           : boardId // ignore: cast_nullable_to_non_nullable
               as String,
-      createdAt: createdAt == freezed
+      createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-    ));
+      diseaseType: null == diseaseType
+          ? _value.diseaseType
+          : diseaseType // ignore: cast_nullable_to_non_nullable
+              as DiseaseType,
+    ) as $Val);
   }
 }
 
@@ -144,8 +155,10 @@ abstract class _$$_PostUIModelCopyWith<$Res>
           _$_PostUIModel value, $Res Function(_$_PostUIModel) then) =
       __$$_PostUIModelCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
-      {DateTime uploadAt,
+      {String postId,
+      DateTime uploadAt,
       String nickname,
       String content,
       PostType? postType,
@@ -153,86 +166,90 @@ abstract class _$$_PostUIModelCopyWith<$Res>
       int likeNum,
       int commentNum,
       bool isLikeOn,
-      String postId,
       String authorId,
       String boardId,
-      DateTime createdAt});
+      DateTime createdAt,
+      DiseaseType diseaseType});
 }
 
 /// @nodoc
-class __$$_PostUIModelCopyWithImpl<$Res> extends _$PostUIModelCopyWithImpl<$Res>
+class __$$_PostUIModelCopyWithImpl<$Res>
+    extends _$PostUIModelCopyWithImpl<$Res, _$_PostUIModel>
     implements _$$_PostUIModelCopyWith<$Res> {
   __$$_PostUIModelCopyWithImpl(
       _$_PostUIModel _value, $Res Function(_$_PostUIModel) _then)
-      : super(_value, (v) => _then(v as _$_PostUIModel));
+      : super(_value, _then);
 
-  @override
-  _$_PostUIModel get _value => super._value as _$_PostUIModel;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? uploadAt = freezed,
-    Object? nickname = freezed,
-    Object? content = freezed,
+    Object? postId = null,
+    Object? uploadAt = null,
+    Object? nickname = null,
+    Object? content = null,
     Object? postType = freezed,
-    Object? images = freezed,
-    Object? likeNum = freezed,
-    Object? commentNum = freezed,
-    Object? isLikeOn = freezed,
-    Object? postId = freezed,
-    Object? authorId = freezed,
-    Object? boardId = freezed,
-    Object? createdAt = freezed,
+    Object? images = null,
+    Object? likeNum = null,
+    Object? commentNum = null,
+    Object? isLikeOn = null,
+    Object? authorId = null,
+    Object? boardId = null,
+    Object? createdAt = null,
+    Object? diseaseType = null,
   }) {
     return _then(_$_PostUIModel(
-      uploadAt: uploadAt == freezed
-          ? _value.uploadAt
-          : uploadAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      nickname: nickname == freezed
-          ? _value.nickname
-          : nickname // ignore: cast_nullable_to_non_nullable
-              as String,
-      content: content == freezed
-          ? _value.content
-          : content // ignore: cast_nullable_to_non_nullable
-              as String,
-      postType: postType == freezed
-          ? _value.postType
-          : postType // ignore: cast_nullable_to_non_nullable
-              as PostType?,
-      images: images == freezed
-          ? _value.images
-          : images // ignore: cast_nullable_to_non_nullable
-              as List<ImageItem>,
-      likeNum: likeNum == freezed
-          ? _value.likeNum
-          : likeNum // ignore: cast_nullable_to_non_nullable
-              as int,
-      commentNum: commentNum == freezed
-          ? _value.commentNum
-          : commentNum // ignore: cast_nullable_to_non_nullable
-              as int,
-      isLikeOn: isLikeOn == freezed
-          ? _value.isLikeOn
-          : isLikeOn // ignore: cast_nullable_to_non_nullable
-              as bool,
-      postId: postId == freezed
+      postId: null == postId
           ? _value.postId
           : postId // ignore: cast_nullable_to_non_nullable
               as String,
-      authorId: authorId == freezed
+      uploadAt: null == uploadAt
+          ? _value.uploadAt
+          : uploadAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      nickname: null == nickname
+          ? _value.nickname
+          : nickname // ignore: cast_nullable_to_non_nullable
+              as String,
+      content: null == content
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as String,
+      postType: freezed == postType
+          ? _value.postType
+          : postType // ignore: cast_nullable_to_non_nullable
+              as PostType?,
+      images: null == images
+          ? _value.images
+          : images // ignore: cast_nullable_to_non_nullable
+              as List<ImageItem>,
+      likeNum: null == likeNum
+          ? _value.likeNum
+          : likeNum // ignore: cast_nullable_to_non_nullable
+              as int,
+      commentNum: null == commentNum
+          ? _value.commentNum
+          : commentNum // ignore: cast_nullable_to_non_nullable
+              as int,
+      isLikeOn: null == isLikeOn
+          ? _value.isLikeOn
+          : isLikeOn // ignore: cast_nullable_to_non_nullable
+              as bool,
+      authorId: null == authorId
           ? _value.authorId
           : authorId // ignore: cast_nullable_to_non_nullable
               as String,
-      boardId: boardId == freezed
+      boardId: null == boardId
           ? _value.boardId
           : boardId // ignore: cast_nullable_to_non_nullable
               as String,
-      createdAt: createdAt == freezed
+      createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      diseaseType: null == diseaseType
+          ? _value.diseaseType
+          : diseaseType // ignore: cast_nullable_to_non_nullable
+              as DiseaseType,
     ));
   }
 }
@@ -241,7 +258,8 @@ class __$$_PostUIModelCopyWithImpl<$Res> extends _$PostUIModelCopyWithImpl<$Res>
 
 class _$_PostUIModel extends _PostUIModel {
   _$_PostUIModel(
-      {required this.uploadAt,
+      {required this.postId,
+      required this.uploadAt,
       required this.nickname,
       required this.content,
       this.postType,
@@ -249,12 +267,14 @@ class _$_PostUIModel extends _PostUIModel {
       required this.likeNum,
       required this.commentNum,
       required this.isLikeOn,
-      required this.postId,
       required this.authorId,
       required this.boardId,
-      required this.createdAt})
+      required this.createdAt,
+      required this.diseaseType})
       : super._();
 
+  @override
+  final String postId;
   @override
   DateTime uploadAt;
   @override
@@ -272,28 +292,30 @@ class _$_PostUIModel extends _PostUIModel {
   @override
   bool isLikeOn;
   @override
-  final String postId;
-  @override
   final String authorId;
   @override
   final String boardId;
   @override
   final DateTime createdAt;
+  @override
+  final DiseaseType diseaseType;
 
   @override
   String toString() {
-    return 'PostUIModel(uploadAt: $uploadAt, nickname: $nickname, content: $content, postType: $postType, images: $images, likeNum: $likeNum, commentNum: $commentNum, isLikeOn: $isLikeOn, postId: $postId, authorId: $authorId, boardId: $boardId, createdAt: $createdAt)';
+    return 'PostUIModel(postId: $postId, uploadAt: $uploadAt, nickname: $nickname, content: $content, postType: $postType, images: $images, likeNum: $likeNum, commentNum: $commentNum, isLikeOn: $isLikeOn, authorId: $authorId, boardId: $boardId, createdAt: $createdAt, diseaseType: $diseaseType)';
   }
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_PostUIModelCopyWith<_$_PostUIModel> get copyWith =>
       __$$_PostUIModelCopyWithImpl<_$_PostUIModel>(this, _$identity);
 }
 
 abstract class _PostUIModel extends PostUIModel {
   factory _PostUIModel(
-      {required DateTime uploadAt,
+      {required final String postId,
+      required DateTime uploadAt,
       required final String nickname,
       required String content,
       PostType? postType,
@@ -301,12 +323,14 @@ abstract class _PostUIModel extends PostUIModel {
       required int likeNum,
       required int commentNum,
       required bool isLikeOn,
-      required final String postId,
       required final String authorId,
       required final String boardId,
-      required final DateTime createdAt}) = _$_PostUIModel;
+      required final DateTime createdAt,
+      required final DiseaseType diseaseType}) = _$_PostUIModel;
   _PostUIModel._() : super._();
 
+  @override
+  String get postId;
   @override
   DateTime get uploadAt;
   set uploadAt(DateTime value);
@@ -331,13 +355,13 @@ abstract class _PostUIModel extends PostUIModel {
   bool get isLikeOn;
   set isLikeOn(bool value);
   @override
-  String get postId;
-  @override
   String get authorId;
   @override
   String get boardId;
   @override
   DateTime get createdAt;
+  @override
+  DiseaseType get diseaseType;
   @override
   @JsonKey(ignore: true)
   _$$_PostUIModelCopyWith<_$_PostUIModel> get copyWith =>

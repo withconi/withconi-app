@@ -1,5 +1,6 @@
 import 'package:flutter_svg/svg.dart';
 
+import '../../../data/enums/enum.dart';
 import '../../../import_basic.dart';
 
 class DiseaseItemBox extends StatelessWidget {
@@ -7,9 +8,11 @@ class DiseaseItemBox extends StatelessWidget {
     Key? key,
     required this.diseaseName,
     required this.onTap,
+    required this.diseaseType,
   }) : super(key: key);
   String diseaseName;
   void Function()? onTap;
+  DiseaseType diseaseType;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,12 +30,14 @@ class DiseaseItemBox extends StatelessWidget {
             padding: const EdgeInsets.only(left: 10),
             child: ConstrainedBox(
               constraints:
-                  BoxConstraints(maxWidth: (WcWidth - 40 - (8 * 3)) / 3),
+                  // BoxConstraints(maxWidth: (WcWidth - 40 - (8 * 3)) / 3),
+                  BoxConstraints(maxWidth: WcWidth / 3),
               child: Text(
                 diseaseName,
                 style:
                     GoogleFonts.notoSans(fontSize: 13, color: WcColors.white),
-                overflow: TextOverflow.ellipsis,
+                overflow: TextOverflow.fade,
+                softWrap: false,
               ),
             ),
           ),

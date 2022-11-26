@@ -1,4 +1,3 @@
-import 'dart:html';
 import 'package:withconi/core/network_handling/network_service.dart';
 import 'package:withconi/core/tools/api_url.dart';
 import 'package:withconi/module/ui_model/ui_model_abstract/ui_model.dart';
@@ -7,12 +6,12 @@ import '../../../../enums/enum.dart';
 import '../abstract_request/request_dto_abstract.dart';
 import '../abstract_request/request_info_abstract.dart';
 
-class CreateRepostRequestDTO
-    extends RequestConverter<CreateRepostRequestDTO, ReportUIModel>
+class CreateReportRequestDTO
+    extends RequestConverter<CreateReportRequestDTO, ReportUIModel>
     implements RequestDTO {
   final String boardId;
   final String postId;
-  final List<ReportItem> reportItems;
+  final ReportItem reportItem;
   final String reportDesc;
 
   @override
@@ -22,32 +21,22 @@ class CreateRepostRequestDTO
   RequestType get requestType => RequestType.POST;
 
   @override
-  String get url => HttpUrl.POST_CREATE;
+  String get url => HttpUrl.COMMUNITY_CREATE_REPORT;
 
-  CreateRepostRequestDTO.fromData(ReportUIModel reportUIModel)
+  CreateReportRequestDTO.fromData(ReportUIModel reportUIModel)
       : boardId = reportUIModel.boardId,
         reportDesc = reportUIModel.reportDesc,
-        reportItems = reportUIModel.reportItems,
+        reportItem = reportUIModel.reportItem!,
         postId = reportUIModel.postId,
         super.fromData(reportUIModel);
 
-  // @override
-  // factory CreateRepostRequestDTO.fromData(ReportUIModel reportUIModel) {
-  //   return CreateRepostRequestDTO._(
-  //     boardId: reportUIModel.boardId,
-  //     reportDesc: reportUIModel.reportDesc,
-  //     reportItems: reportUIModel.reportItems,
-  //     postId: reportUIModel.postId,
-  //   );
-  // }
-
   @override
   Map<String, dynamic> get dataMap {
-    List<String> reportItemStringList = reportItems.map((e) => e.code).toList();
     return {
       'boardId': boardId,
       'postId': postId,
-      'reportDesc': reportItemStringList,
+      'reportDesc': reportDesc,
+      'reportItem': reportItem.code,
     };
   }
 }

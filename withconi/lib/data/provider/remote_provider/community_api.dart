@@ -2,6 +2,7 @@ import 'package:withconi/data/model/dto/api_call_dto.dart';
 import 'package:withconi/data/model/dto/request_dto/community_request/create_comment_request_dto.dart';
 import 'package:withconi/data/model/dto/request_dto/community_request/create_post_request_dto.dart';
 import 'package:withconi/data/model/dto/request_dto/community_request/delete_post_request_dto.dart';
+import 'package:withconi/data/model/dto/request_dto/community_request/get_hot_post_list_request_dto.dart';
 import 'package:withconi/data/model/dto/request_dto/community_request/update_my_post_request_dto.dart';
 import 'package:withconi/data/model/dto/request_dto/community_request/get_comment_list_request_dto.dart';
 import 'package:withconi/data/model/dto/request_dto/community_request/get_liked_post_request_dto.dart';
@@ -9,7 +10,10 @@ import 'package:withconi/data/model/dto/request_dto/community_request/get_my_pos
 import 'package:withconi/data/model/dto/request_dto/community_request/update_comment_like_request_dto.dart';
 import 'package:withconi/import_basic.dart';
 import 'package:withconi/core/network_handling/network_service.dart';
+import '../../model/dto/request_dto/community_request/block_comment_request_dto.dart';
+import '../../model/dto/request_dto/community_request/block_post_request_dto.dart';
 import '../../model/dto/request_dto/community_request/create_report_request_dto.dart';
+import '../../model/dto/request_dto/community_request/delete_comment_request_dto.dart';
 import '../../model/dto/request_dto/community_request/get_board_list_request_dto.dart';
 import '../../model/dto/request_dto/community_request/get_post_detail_request_dto.dart';
 import '../../model/dto/request_dto/community_request/get_post_list_request_dto.dart';
@@ -23,6 +27,13 @@ class CommunityAPI extends GetxService {
     ApiCallDTO apiCallDTO = ApiCallDTO.fromDTO(requestDto);
     Map<String, dynamic> boardsData = await _dio.apiCall(apiCallDTO);
     return boardsData;
+  }
+
+  Future<Map<String, dynamic>> getHotPostList(
+      GetHotPostListRequestDTO requestDto) async {
+    ApiCallDTO apiCallDTO = ApiCallDTO.fromDTO(requestDto);
+    Map<String, dynamic> hotPostsData = await _dio.apiCall(apiCallDTO);
+    return hotPostsData;
   }
 
   Future<Map<String, dynamic>> getPostList(
@@ -48,8 +59,31 @@ class CommunityAPI extends GetxService {
     return postData;
   }
 
+  Future<Map<String, dynamic>> blockPost(BlockPostRequestDTO requestDto) async {
+    ApiCallDTO apiCallDTO = ApiCallDTO.fromDTO(requestDto);
+
+    Map<String, dynamic> postData = await _dio.apiCall(apiCallDTO);
+    return postData;
+  }
+
+  Future<Map<String, dynamic>> blockComment(
+      BlockCommentRequestDTO requestDto) async {
+    ApiCallDTO apiCallDTO = ApiCallDTO.fromDTO(requestDto);
+
+    Map<String, dynamic> postData = await _dio.apiCall(apiCallDTO);
+    return postData;
+  }
+
+  Future<Map<String, dynamic>> deleteComment(
+      DeleteCommentRequestDTO requestDto) async {
+    ApiCallDTO apiCallDTO = ApiCallDTO.fromDTO(requestDto);
+
+    Map<String, dynamic> commentData = await _dio.apiCall(apiCallDTO);
+    return commentData;
+  }
+
   Future<Map<String, dynamic>> createReport(
-      CreateRepostRequestDTO requestDto) async {
+      CreateReportRequestDTO requestDto) async {
     ApiCallDTO apiCallDTO = ApiCallDTO.fromDTO(requestDto);
     Map<String, dynamic> postData = await _dio.apiCall(apiCallDTO);
     return postData;

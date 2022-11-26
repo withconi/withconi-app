@@ -1,4 +1,3 @@
-import 'dart:html';
 import 'package:dartz/dartz.dart';
 import 'package:withconi/core/network_handling/network_service.dart';
 import 'package:withconi/core/tools/api_url.dart';
@@ -37,5 +36,6 @@ class UpdateCommentLikeRequestDTO extends RequestConverter<
   // }
 
   @override
-  Map<String, dynamic> get dataMap => {"postId": postId, "isLike": isLike};
+  Map<String, dynamic> get dataMap =>
+      {"postId": postId, "lineReplyId": commentId, "isLike": isLike};
 }

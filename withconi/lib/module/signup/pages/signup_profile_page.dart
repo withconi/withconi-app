@@ -7,16 +7,16 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:withconi/module/signup/controllers/signup_profile_controller.dart';
 import 'package:withconi/module/theme/colors.dart';
 import 'package:withconi/module/theme/sizes.dart';
-import 'package:withconi/module/widgets/button/wide_button.dart';
-import '../../widgets/button/profile_picker_button.dart';
-import '../../widgets/text_field/textfield.dart';
+import 'package:withconi/global_widgets/button/wide_button.dart';
+import 'package:withconi/module/theme/text_theme.dart';
+import '../../../global_widgets/button/profile_picker_button.dart';
+import '../../../global_widgets/text_field/textfield.dart';
 
 class SignupProfilePage extends StatelessWidget {
   SignupProfilePage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    SignupProfileController _controller = Get.put(SignupProfileController());
-
+    SignupProfileController _controller = Get.find();
     return GestureDetector(
       onTap: () {
         FocusScopeNode currentFocus = FocusScope.of(context);
@@ -41,8 +41,10 @@ class SignupProfilePage extends StatelessWidget {
                   ),
                   Text(
                     '사용자의 이름과\n프로필을 알려주세요',
-                    style: GoogleFonts.notoSans(
-                        fontSize: 25, fontWeight: FontWeight.w600),
+                    style: TextStyle(
+                        fontFamily: WcFontFamily.notoSans,
+                        fontSize: 25,
+                        fontWeight: FontWeight.w600),
                   ),
                   const SizedBox(
                     height: 45,

@@ -5,12 +5,12 @@ part 'review_list_response_dto.freezed.dart';
 part 'review_list_response_dto.g.dart';
 
 @freezed
-abstract class ReviewListResponseDTO
+class ReviewListResponseDTO
     with _$ReviewListResponseDTO
     implements ResponseDTO {
   @JsonSerializable(explicitToJson: true)
   factory ReviewListResponseDTO({
-    required List<ReviewDetailResponseDTO> results,
+    required List<ReviewDetailResponseDTO> list,
     required int totalDocuments,
   }) = _ReviewListResponseDTO;
 

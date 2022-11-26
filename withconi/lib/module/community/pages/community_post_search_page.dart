@@ -64,8 +64,8 @@ class CommunityPostSearchPage extends StatelessWidget {
     );
   }
 
-  Widget _getWidgetByState(InfiniteScrollPageStatus status,
-      CommunityPostSearchController _controller) {
+  Widget _getWidgetByState(
+      PageStatus status, CommunityPostSearchController _controller) {
     return status.maybeWhen(
       init: () => SizedBox.shrink(),
       loading: () => LoadingPage(
@@ -88,10 +88,11 @@ class CommunityPostSearchPage extends StatelessWidget {
         message: '',
       ),
       orElse: () => LazyLoadScrollView(
-        isLoading: (status == const InfiniteScrollPageStatus.loadingMore() ||
-            status == const InfiniteScrollPageStatus.emptyLastPage()),
+        isLoading: (status == const PageStatus.loadingMore() ||
+            status == const PageStatus.emptyLastPage()),
         onEndOfPage: _controller.loadNextPage,
         child: ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemCount: _controller.postListSearched.length,
             itemBuilder: (context, index) {

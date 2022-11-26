@@ -6,6 +6,7 @@ import 'package:withconi/module/community/controllers/community_post_detail_cont
 import 'package:withconi/core/error_handling/failure_ui_interpreter.dart';
 import 'package:withconi/data/repository/community_repository.dart';
 import 'package:withconi/global_widgets/loading/loading_overlay.dart';
+import 'package:withconi/module/community/controllers/custom_state_mixin.dart';
 import 'package:withconi/module/page_status.dart';
 import 'package:withconi/module/ui_model/board_ui_model.dart';
 import 'package:withconi/module/ui_model/post_list_filter_ui_model.dart';
@@ -17,6 +18,7 @@ import '../../../import_basic.dart';
 import '../../../core/tools/helpers/infinite_scroll.dart';
 
 class CommunityPostListController extends GetxController
+    with WcStateMixin
     implements InfiniteScroll {
   CommunityPostListController(this._communityRepository);
   final CommunityRepository _communityRepository;
@@ -24,8 +26,8 @@ class CommunityPostListController extends GetxController
   late Rx<PostListFilterUIModel> postListFilter;
   RxList<PostUIModel> postUIList = <PostUIModel>[].obs;
 
-  late final BoardUIModel boardUIModel;
-  String get _boardId => boardUIModel.boardId;
+  RxString boardName = ''.obs;
+  late final String _boardId;
 
   @override
   final Rx<PaginationFilter> _paginationFilter = PaginationFilter(
@@ -46,17 +48,13 @@ class CommunityPostListController extends GetxController
   ScrollController infiniteScrollController = ScrollController();
 
   @override
-  Rx<InfiniteScrollPageStatus> pageStatus =
-      Rx<InfiniteScrollPageStatus>(InfiniteScrollPageStatus.init());
-
-  @override
   double get nextPageTrigger =>
       0.8 * infiniteScrollController.position.maxScrollExtent;
 
   @override
   void addInfiniteScrollListener() {
     infiniteScrollController.addListener(() {
-      if ((pageStatus.value == InfiniteScrollPageStatus.success()) &&
+      if ((status == PageStatus.success()) &&
           infiniteScrollController.offset >= nextPageTrigger) {
         loadNextPage();
       }
@@ -76,7 +74,10 @@ class CommunityPostListController extends GetxController
   @override
   onInit() {
     super.onInit();
-    boardUIModel = Get.arguments as BoardUIModel;
+    change(null, status: PageStatus.init());
+    var boardUIModel = (Get.arguments as BoardUIModel);
+    _boardId = boardUIModel.boardId;
+    boardName.value = boardUIModel.title;
     postListFilter = Rx<PostListFilterUIModel>(
         PostListFilterUIModel(postType: PostType.all, keyword: ''));
   }
@@ -87,7 +88,7 @@ class CommunityPostListController extends GetxController
 
     ever(_paginationFilter, getDataByPaginationFilter);
     ever(postListFilter, (_) => loadNewPage());
-    changePaginationFilter(1, _listSize);
+    loadNewPage();
     addInfiniteScrollListener();
   }
 
@@ -123,7 +124,7 @@ class CommunityPostListController extends GetxController
   }
 
   Future<void> _getPostList(PaginationFilter paginationFilter) async {
-    pageStatus.value = InfiniteScrollPageStatus.loading();
+    change(null, status: PageStatus.loading());
     final Either<Failure, List<PostResponseDTO>> postDataEither =
         await _communityRepository.getPostList(
             paginationFilter: paginationFilter,
@@ -134,13 +135,19 @@ class CommunityPostListController extends GetxController
         (fail) => FailureInterpreter().mapFailureToSnackbar(
             fail, '_getPostListByPage'), (newPostListDto) {
       if (newPostListDto.isEmpty) {
-        pageStatus.value = InfiniteScrollPageStatus.empty();
+        change(null, status: PageStatus.empty());
+      } else {
+        postUIList.assignAll(_parsePostListDto(newPostListDto));
+        change(null, status: PageStatus.success());
+        postUIList.refresh();
       }
-      postUIList.assignAll(_parsePostListDto(newPostListDto));
-      pageStatus.value = InfiniteScrollPageStatus.success();
-      postUIList.refresh();
+
       return;
     });
+  }
+
+  Future<void> refreshPage() async {
+    loadNewPage();
   }
 
   List<PostUIModel> _parsePostListDto(List<PostResponseDTO> postListDTO) {
@@ -148,7 +155,7 @@ class CommunityPostListController extends GetxController
   }
 
   Future<void> _morePostList(PaginationFilter paginationFilter) async {
-    pageStatus.value = InfiniteScrollPageStatus.loadingMore();
+    change(null, status: PageStatus.loadingMore());
 
     final Either<Failure, List<PostResponseDTO>> postDataEither =
         await _communityRepository.getPostList(
@@ -160,10 +167,10 @@ class CommunityPostListController extends GetxController
         (fail) => FailureInterpreter().mapFailureToSnackbar(
             fail, '_getPostListByPage'), (morePostListDto) {
       if (morePostListDto.isEmpty) {
-        pageStatus.value = InfiniteScrollPageStatus.emptyLastPage();
+        change(null, status: PageStatus.emptyLastPage());
       } else {
         postUIList.addAll(_parsePostListDto(morePostListDto));
-        pageStatus.value = InfiniteScrollPageStatus.success();
+        change(null, status: PageStatus.success());
         postUIList.refresh();
       }
     });

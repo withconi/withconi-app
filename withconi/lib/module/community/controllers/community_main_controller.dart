@@ -10,8 +10,11 @@ import '../pages/community_setting_page.dart';
 class CommunityMainController extends GetxController {
   CommunityMainController(this._repository);
   final CommunityRepository _repository;
+  TextEditingController boardKeywordTextController = TextEditingController();
   RxList<BoardUIModel> boardList = RxList<BoardUIModel>();
   RxList<PostUIModel> hotPostList = RxList<PostUIModel>();
+  RxList<BoardUIModel> searchedBoardList = RxList<BoardUIModel>();
+  String boardKeyword = '';
 
   static int hotPostListSize = 3;
 
@@ -22,6 +25,31 @@ class CommunityMainController extends GetxController {
     await _getHotPostList();
   }
 
+  onBoardKeywordChanged(String keyword) {
+    boardKeyword = keyword;
+    _setSearchBoardList(keyword);
+  }
+
+  _setSearchBoardList(String keyword) {
+    if (keyword.isEmpty) {
+      clearResult();
+      return;
+    } else {
+      searchedBoardList.assignAll(
+          boardList.where((p0) => p0.title.contains(keyword)).toList());
+    }
+  }
+
+  clearResult() {
+    boardKeywordTextController.clear();
+    _resetSearchBoardList();
+  }
+
+  _resetSearchBoardList() {
+    searchedBoardList.assignAll(boardList.toList());
+    searchedBoardList.refresh();
+  }
+
   Future<void> _getBoardList() async {
     final boardListEither = await _repository.getBoardList();
 
@@ -30,8 +58,9 @@ class CommunityMainController extends GetxController {
             FailureInterpreter().mapFailureToSnackbar(fail, '_getBoardList'),
         (newBoardList) {
       boardList
-          .addAll(newBoardList.map((e) => BoardUIModel.fromDto(e)).toList());
-      boardList.refresh();
+          .assignAll(newBoardList.map((e) => BoardUIModel.fromDto(e)).toList());
+      searchedBoardList.assignAll(boardList.toList());
+      searchedBoardList.refresh();
     });
   }
 
@@ -60,8 +89,6 @@ class CommunityMainController extends GetxController {
   }
 
   goToSettingPage() {
-    Get.to(
-      CommunitySettingPage(),
-    );
+    Get.toNamed(Routes.COMMUNITY_SETTING);
   }
 }

@@ -6,7 +6,7 @@ abstract class InfiniteScroll {
   late ScrollController infiniteScrollController;
   double get nextPageTrigger;
 
-  late Rx<PageStatus> pageStatus;
+  // late Rx<PageStatus> pageStatus;
 
   void addInfiniteScrollListener() {}
 

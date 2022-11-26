@@ -1,88 +1,58 @@
 import 'dart:async';
 import 'package:dartz/dartz.dart';
-import 'package:get/get.dart';
-import 'package:withconi/controller/auth_controller.dart';
-import 'package:withconi/controller/ui_helper/infinite_scroll.dart';
+import 'package:flutter/foundation.dart';
+import 'package:withconi/data/model/dto/request_dto/place_request/create_review_request_dto.dart';
+import 'package:withconi/data/model/dto/request_dto/place_request/get_my_review_detail_request.dart';
+import 'package:withconi/data/model/dto/request_dto/place_request/get_my_review_list_request.dart';
+import 'package:withconi/data/model/dto/request_dto/place_request/get_place_detail_request_dto.dart';
+import 'package:withconi/data/model/dto/request_dto/place_request/get_place_verification_request_dto.dart';
+import 'package:withconi/data/model/dto/request_dto/place_request/get_review_history_request.dart';
+import 'package:withconi/data/model/dto/request_dto/place_request/update_place_bookmark_request_dto.dart';
+import 'package:withconi/data/model/dto/response_dto/place_response/place_detail_response_dto.dart';
+import 'package:withconi/data/model/dto/api_call_dto.dart';
+import 'package:withconi/core/tools/helpers/infinite_scroll.dart';
 import 'package:withconi/core/error_handling/exceptions.dart';
-import 'package:withconi/data/model/abstract_class/place_preview.dart';
-import 'package:withconi/data/model/place_detail.dart';
-import 'package:withconi/data/model/request_model/request_model.dart';
-import 'package:withconi/data/model/response_model/response_model.dart';
-import 'package:withconi/data/provider/map_api.dart';
-import 'package:withconi/data/provider/user_api.dart';
-import 'package:withconi/module/ui_model/location.dart';
-import 'package:withconi/module/ui_model/place_verfication.dart';
-import 'package:withconi/module/ui_model/review_ui_class.dart';
+import 'package:withconi/data/model/dto/response_dto/place_response/review_history_response_dto.dart';
+import 'package:withconi/data/model/dto/response_dto/review_response/review_detail_response_dto.dart';
+import 'package:withconi/data/model/dto/response_dto/review_response/review_list_response_dto.dart';
+import 'package:withconi/data/provider/remote_provider/map_api.dart';
+import 'package:withconi/data/model/place_verfication.dart';
+import 'package:withconi/import_basic.dart';
+import 'package:withconi/module/ui_model/latlng_ui_model.dart';
+import 'package:withconi/module/ui_model/review_detail_ui_model.dart';
+import '../../module/ui_model/map_filter_ui_model.dart';
 import '../enums/enum.dart';
 import '../../core/error_handling/failures.dart';
-import '../model/conimal.dart';
-import '../../module/ui_model/review_group_ui_class.dart';
-import '../model/hospital_preview.dart';
-import '../model/pharmacy_preview.dart';
-import '../model/response_model/place_preview_response.dart';
-import '../model/response_model/review_history_response.dart';
-import '../model/review.dart';
-import '../model/user.dart';
+import '../model/dto/request_dto/place_request/get_bookmarked_place_list_request.dart';
+import '../model/dto/request_dto/place_request/get_place_list_request_dto.dart';
+import '../model/dto/response_dto/place_response/place_preview_list_response_dto.dart';
+import '../model/dto/response_dto/place_response/place_preview_response_dto.dart';
 
-class MapRepository {
-  MapRepository._internal();
-  static final _singleton = MapRepository._internal();
-  factory MapRepository() => _singleton;
+class MapRepository extends GetxService {
+  // MapRepository._internal();
+  // static final _singleton = MapRepository._internal();
+  // factory MapRepository() => _singleton;
+  MapRepository(this._api);
+  final MapAPI _api;
 
-  final MapAPI _api = MapAPI();
-
-  Future<Either<Failure, PlacePreviewResponse>> getPlacePreviewList({
-    required PaginationFilter paginationFilter,
-    required LatLngClass baseLatLng,
-    String? keyword,
-    PlaceType? locType,
-    OpeningStatus? openingStatus,
-    DiseaseType? diseaseType,
-    Species? conimalType,
-    required int distance,
-  }) async {
+  Future<Either<Failure, List<PlacePreviewResponseDTO>>> getPlacePreviewList(
+      {required MapFilterUIModel mapFilterUIModel,
+      required PaginationFilter paginationFilter,
+      required LatLngUIModel baseLatLng}) async {
     try {
-      MapFilterRequest mapFilterRequest = MapFilterRequest(
-          paginationFilter: paginationFilter,
-          latLng: baseLatLng,
-          locType: locType,
-          keyword: keyword,
-          openingStatus: openingStatus,
-          speciesType: conimalType,
-          diseaseType: diseaseType,
-          distance: distance);
-      Map<String, dynamic> data = await _api.getPlacePreviewListByFilter(
-          requestData: mapFilterRequest.toJson(), requiresToken: true);
-
-      try {
-        PlacePreviewResponse placeResponse =
-            PlacePreviewResponse.fromJson(data, baseLatLng);
-        return Right(placeResponse);
-      } catch (e) {
-        throw DataParsingException();
-      }
-    } on NoInternetConnectionException {
-      return Left(NoConnectionFailure());
-    } on DataParsingException {
-      return Left(DataParsingFailure());
-    } on NotFoundException {
-      return Left(NotFoundFailure());
-    } catch (e) {
-      return Left(NoUserDataFailure());
-    }
-  }
-
-  Future<Either<Failure, PlaceDetail>> getPlaceDetailById({
-    required String locId,
-    required String userId,
-  }) async {
-    try {
+      GetPlacePreviewListRequestDTO requestDTO =
+          GetPlacePreviewListRequestDTO.fromData(
+              data: mapFilterUIModel,
+              paginationFilter: paginationFilter,
+              latlng: baseLatLng);
+      ApiCallDTO apiCallDTO = ApiCallDTO.fromDTO(requestDTO);
       Map<String, dynamic> data =
-          await _api.getPlaceDetailById(locId: locId, requiresToken: true);
+          await _api.getPlacePreviewListByFilter(apiCallDTO);
 
       try {
-        PlaceDetail placeDetail = PlaceDetail.fromJson(data);
-        return Right(placeDetail);
+        List<PlacePreviewResponseDTO> placePreviewListDto =
+            PlacePreviewListResponseDTO.fromJson(data).list;
+        return Right(placePreviewListDto);
       } catch (e) {
         throw DataParsingException();
       }
@@ -97,22 +67,26 @@ class MapRepository {
     }
   }
 
-  Future<Either<Failure, PlacePreview>> getPlacePreviewById({
-    required String locId,
-    required String userId,
-  }) async {
+  // Either<Failure, List<PlacePreviewResponseDTO>> _parsePlacePreviewListDTO(
+  //     Map<String, dynamic> data) {
+  //   List<PlacePreviewResponseDTO> previewList =
+  //       PlacePreviewListResponseDTO.fromJson(data).list;
+  //   return Right(previewList);
+  // }
+
+  Future<Either<Failure, List<PlacePreviewResponseDTO>>> getBookmarkedPlaceList(
+      {required PaginationFilter paginationFilter}) async {
     try {
+      GetBookmarkedPlaceListRequestDTO requestDTO =
+          GetBookmarkedPlaceListRequestDTO.fromData(paginationFilter);
+      ApiCallDTO apiCallDTO = ApiCallDTO.fromDTO(requestDTO);
       Map<String, dynamic> data =
-          await _api.getPlaceDetailById(locId: locId, requiresToken: true);
+          await _api.getPlacePreviewListByFilter(apiCallDTO);
 
       try {
-        late PlacePreview placePreview;
-        if (data['locType'] == 'hospital') {
-          placePreview = HospitalPreview.fromJson(data, null);
-        } else if (data['locType'] == 'pharmacy') {
-          placePreview = PharmacyPreview.fromJson(data, null);
-        }
-        return Right(placePreview);
+        List<PlacePreviewResponseDTO> placePreviewListDto =
+            PlacePreviewListResponseDTO.fromJson(data).list;
+        return Right(placePreviewListDto);
       } catch (e) {
         throw DataParsingException();
       }
@@ -127,17 +101,60 @@ class MapRepository {
     }
   }
 
-  Future<Either<Failure, ReviewHistoryResponse>> getTotalReviewData({
-    required String locId,
-    required bool onlyVerfiedReview,
+  Future<Either<Failure, PlaceDetailResponseDTO>> getPlaceDetailById({
+    required String placeId,
+    required PlaceType placeType,
   }) async {
     try {
-      Map<String, dynamic> data = await _api.getPlaceReviews(
-          locId: locId, onlyVerified: onlyVerfiedReview, requiresToken: true);
+      GetPlaceDetailRequestDTO requestDTO = GetPlaceDetailRequestDTO.fromData(
+          placeId: placeId, placeType: placeType);
+      ApiCallDTO apiCallDTO = ApiCallDTO.fromDTO(requestDTO);
+      Map<String, dynamic> data = await _api.getHospitalDetailById(apiCallDTO);
+
+      PlaceDetailResponseDTO responseDTO =
+          PlaceDetailResponseDTO.fromJson(data);
+      //  late PlaceDetailResponseDTO placeDetailUiModel;
+      //   switch (placeType) {
+      //     case PlaceType.hospital:
+      //    data =
+      //       await _api.getHospitalDetailById(apiCallDTO);
+      //       placeDetailUiModel = HospitalDetailResponseDTO.fromJson(data);
+      //       break;
+      //    case PlaceType.pharmacy:
+      //        data =
+      //       await _api.getHospitalDetailById(apiCallDTO);
+      //              placeDetailUiModel = PharmacyDetailResponseDTO.fromJson(data);
+      //       break;
+      //     default:
+
+      //   }
+
+      return Right(responseDTO);
+    } on NoInternetConnectionException {
+      return Left(NoConnectionFailure());
+    } on DataParsingException {
+      return Left(DataParsingFailure());
+    } on NotFoundException {
+      return Left(NotFoundFailure());
+    } catch (e) {
+      return Left(NoUserDataFailure());
+    }
+  }
+
+  //TODO : placeDetail에다가 reviewData 합쳐서 보내달라하기
+  Future<Either<Failure, ReviewHistoryResponseDTO>> getReviewHistory({
+    required String locId,
+    required bool onlyVerfied,
+  }) async {
+    try {
+      var requestDTO = GetReviewHistoryRequestDTO.fromData(
+          placeId: locId, onlyVerified: onlyVerfied);
+      var apiCallDto = ApiCallDTO.fromDTO(requestDTO);
+      Map<String, dynamic> data = await _api.getReviewHistory(apiCallDto);
 
       try {
-        ReviewHistoryResponse reviewResponse =
-            ReviewHistoryResponse.fromJson(data);
+        ReviewHistoryResponseDTO reviewResponse =
+            ReviewHistoryResponseDTO.fromJson(data);
 
         return Right(reviewResponse);
       } catch (e) {
@@ -155,12 +172,15 @@ class MapRepository {
   }
 
   Future<Either<Failure, VerificationGroup>> getPlaceVerification({
-    required String locId,
+    required String placeId,
     required PlaceType placeType,
   }) async {
     try {
-      Map<String, dynamic> data = await _api.getVerification(
-          locId: locId, placeType: placeType.code, requiresToken: true);
+      var requestDTO = GetPlaceVerificationRequestDTO.fromData(
+          placeId: placeId, placeType: placeType);
+      var apiCallDTO = ApiCallDTO.fromDTO(requestDTO);
+
+      Map<String, dynamic> data = await _api.getVerification(apiCallDTO);
 
       try {
         VerificationGroup placeVerification = VerificationGroup.fromJson(data);
@@ -179,18 +199,17 @@ class MapRepository {
     }
   }
 
-  Future<Either<Failure, PlaceReviewListResponse>> getMyReviewList({
+  Future<Either<Failure, ReviewListResponseDTO>> getMyReviewList({
     required PaginationFilter paginationFilter,
   }) async {
     try {
-      Map<String, dynamic> data = await _api.getMyReviewList(requestData: {
-        "page": paginationFilter.page,
-        "listSize": paginationFilter.limit
-      }, requiresToken: true);
+      var requestDTO = GetMyReviewListRequestDTO.fromData(paginationFilter);
+      var apiCallDTO = ApiCallDTO.fromDTO(requestDTO);
+      Map<String, dynamic> data = await _api.getMyReviewList(apiCallDTO);
 
       try {
-        PlaceReviewListResponse placeReviewResponse =
-            PlaceReviewListResponse.fromJson(data);
+        ReviewListResponseDTO placeReviewResponse =
+            ReviewListResponseDTO.fromJson(data);
         return Right(placeReviewResponse);
       } catch (e) {
         throw DataParsingException();
@@ -206,15 +225,39 @@ class MapRepository {
     }
   }
 
-  Future<Either<Failure, Review>> getReviewDetail(
-      {required String reviewId, required String userId}) async {
-    try {
-      Map<String, dynamic> data = await _api.getReviewDetail(
-          requestData: {"reviewId": reviewId, "userId": userId});
+  // Future<Either<Failure, ReviewDetailUIModel>> getMyReviewDetail(
+  //     {required String reviewId}) async {
+  //   try {
+  //    var requestDTO= GetMyReviewDetailRequestDTO.fromData(reviewId: reviewId);
+  //    var apiCallDTO = ApiCallDTO.fromDTO(requestDTO);
+  //     Map<String, dynamic> data = await _api.getMyReviewDetail(
+  //        apiCallDTO);
 
+  //     try {
+  //       ReviewDetailUIModel reviewDetail = ReviewDetailUIModel(conimals: conimals, diseaseTypes: diseaseTypes, reviewItems: reviewItems, reviewRate: reviewRate, diseaseList: diseaseList, placePreview: placePreview, reviewDesc: reviewDesc)
+  //       return Right(placeReview);
+  //     } catch (e) {
+  //       throw DataParsingException();
+  //     }
+  //   } on NoInternetConnectionException {
+  //     return Left(NoConnectionFailure());
+  //   } on DataParsingException {
+  //     return Left(DataParsingFailure());
+  //   } on NotFoundException {
+  //     return Left(NotFoundFailure());
+  //   } catch (e) {
+  //     return Left(NoUserDataFailure());
+  //   }
+  // }
+
+  Future<Either<Failure, bool>> createPlaceReview(
+      {required ReviewDetailUIModel reviewUIModel}) async {
+    try {
+      var requestDTO = CreateReviewRequestDTO.fromData(data: reviewUIModel);
+      var apiCallDTO = ApiCallDTO.fromDTO(requestDTO);
       try {
-        Review placeReview = Review.fromJson(data);
-        return Right(placeReview);
+        await _api.createPlaceReview(apiCallDTO);
+        return Right(true);
       } catch (e) {
         throw DataParsingException();
       }
@@ -229,48 +272,14 @@ class MapRepository {
     }
   }
 
-  Future<Either<Failure, String>> createPlaceReview(
-      {required String userId,
-      required PlacePreview place,
-      required List<Conimal> conimals,
-      required List<DiseaseType> diseaseTypes,
-      required ReviewUIClassImpl reviewEntity}) async {
-    try {
-      Review placeReview = Review(
-        userId: userId,
-        placeId: place.locId,
-        visitVerified: place.visitVerified,
-        conimals: conimals,
-        diseaseTypes: diseaseTypes,
-        reviewEntity: reviewEntity,
-        placeType: place.placeType,
-        name: place.name,
-        address: place.name,
-      );
-      try {
-        await _api.createPlaceReview(
-            requestData: placeReview.toJson(), requiresToken: true);
-        return Right('');
-      } catch (e) {
-        throw DataParsingException();
-      }
-    } on NoInternetConnectionException {
-      return Left(NoConnectionFailure());
-    } on DataParsingException {
-      return Left(DataParsingFailure());
-    } on NotFoundException {
-      return Left(NotFoundFailure());
-    } catch (e) {
-      return Left(NoUserDataFailure());
-    }
-  }
-
-  Future<Either<Failure, String>> updateBookmark(
+  Future<Either<Failure, bool>> updateBookmark(
       {required String placeId, required bool isBookmarked}) async {
     try {
-      Map<String, dynamic> updateResult = await _api.updatePlaceBookmark(
-          requiresToken: true,
-          requestData: {"placeId": placeId, "isBookmarked": isBookmarked});
+      var requestDTO = UpdatePlaceBookmarkRequestDTO.fromData(
+          placeId: placeId, isBookmarked: isBookmarked);
+      var apiCallDTO = ApiCallDTO.fromDTO(requestDTO);
+      Map<String, dynamic> updateResult =
+          await _api.updatePlaceBookmark(apiCallDTO);
 
       // List<String> likedPostIdList =
       //     (likePostsData['likePosts'] as List<dynamic>)
@@ -278,7 +287,7 @@ class MapRepository {
       //         .toList();
 
       // print("Liked Post Number => ${likedPostIdList.length}");
-      return Right('');
+      return Right(true);
     } on NoInternetConnectionException {
       return Left(NoConnectionFailure());
     } on DataParsingException {

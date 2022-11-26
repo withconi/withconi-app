@@ -1,7 +1,7 @@
-import 'dart:html';
+import 'package:dartz/dartz.dart';
 import 'package:withconi/core/network_handling/network_service.dart';
 import 'package:withconi/core/tools/api_url.dart';
-import 'package:withconi/data/model/dto/api_dto/api_call_dto.dart';
+import 'package:withconi/data/model/dto/api_call_dto.dart';
 import 'package:withconi/module/ui_model/ui_model_abstract/ui_model.dart';
 import '../../../../../core/tools/helpers/infinite_scroll.dart';
 import '../../../../../module/ui_model/post_list_filter_ui_model.dart';
@@ -9,10 +9,9 @@ import '../../../../enums/enum.dart';
 import '../abstract_request/request_dto_abstract.dart';
 import '../abstract_request/request_info_abstract.dart';
 
-class GetPostListRequestDTO
-    extends RequestConverter<GetPostListRequestDTO, PostListFilterUIModel>
-    implements RequestDTO {
-  PaginationFilter paginationFilter;
+class GetPostListRequestDTO extends RequestConverter<GetPostListRequestDTO,
+    Tuple2<PostListFilterUIModel, PaginationFilter>> implements RequestDTO {
+  PaginationFilter _paginationFilter;
   String boardId;
   PostType postType;
   String? keyword;
@@ -33,12 +32,13 @@ class GetPostListRequestDTO
   //       keyword = data.keyword,
   //       super.fromData(data);
 
-  GetPostListRequestDTO.fromData(PostListFilterUIModel data)
-      : paginationFilter = data.paginationFilter,
-        boardId = data.boardId,
+  GetPostListRequestDTO.fromData(PostListFilterUIModel data,
+      PaginationFilter paginationFilter, String _boardId)
+      : _paginationFilter = paginationFilter,
+        boardId = _boardId,
         postType = data.postType,
         keyword = data.keyword,
-        super.fromData(data);
+        super.fromData(Tuple2(data, paginationFilter));
 
   // @override
   // factory GetPostListRequestDTO.fromData(PostListFilterUIModel data) {
@@ -52,8 +52,8 @@ class GetPostListRequestDTO
 
   @override
   Map<String, dynamic> get dataMap => {
-        "page": paginationFilter.page,
-        "listSize": paginationFilter.limit,
+        "page": _paginationFilter.page,
+        "listSize": _paginationFilter.listSize,
         "boardId": boardId,
         "postType": postType.code,
         "keyword": keyword

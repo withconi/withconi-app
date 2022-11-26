@@ -9,7 +9,7 @@ part of 'review_list_response_dto.dart';
 _$_ReviewListResponseDTO _$$_ReviewListResponseDTOFromJson(
         Map<String, dynamic> json) =>
     _$_ReviewListResponseDTO(
-      results: (json['results'] as List<dynamic>)
+      list: (json['list'] as List<dynamic>)
           .map((e) =>
               ReviewDetailResponseDTO.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -19,6 +19,6 @@ _$_ReviewListResponseDTO _$$_ReviewListResponseDTOFromJson(
 Map<String, dynamic> _$$_ReviewListResponseDTOToJson(
         _$_ReviewListResponseDTO instance) =>
     <String, dynamic>{
-      'results': instance.results.map((e) => e.toJson()).toList(),
+      'list': instance.list.map((e) => e.toJson()).toList(),
       'totalDocuments': instance.totalDocuments,
     };

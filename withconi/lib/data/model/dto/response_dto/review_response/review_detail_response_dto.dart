@@ -24,13 +24,6 @@ class ReviewDetailResponseDTO
     required ReviewRate reviewRate,
     required List<ReviewItem> reviewItems,
     required String reviewDesc,
-    @Default('') String definition,
-    @Default('') String diagnosisTechnique,
-    @Default('') String treatment,
-    @Default('') String advice,
-    @Default([]) List<SymptomGroup> symptomGroupList,
-    @Default(DiseaseType.brainNeurology) DiseaseType diseaseType,
-    // @ImageItemConverter() @Default([]) required List<ImageItem> images,
   }) = _ReviewDetailResponseDTO;
 
   factory ReviewDetailResponseDTO.fromJson(Map<String, dynamic> json) =>

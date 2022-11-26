@@ -22,7 +22,9 @@ DiseaseResponseDTO _$DiseaseResponseDTOFromJson(Map<String, dynamic> json) {
 mixin _$DiseaseResponseDTO {
   @DateTimeConverter()
   DateTime get createdAt => throw _privateConstructorUsedError;
-  String get code => throw _privateConstructorUsedError;
+  @JsonKey(name: '_id')
+  String get code =>
+      throw _privateConstructorUsedError; // @JsonKey(name: '_id') required String diseaseId,
   String get name => throw _privateConstructorUsedError;
   String get definition => throw _privateConstructorUsedError;
   String get diagnosisTechnique => throw _privateConstructorUsedError;
@@ -46,7 +48,7 @@ abstract class $DiseaseResponseDTOCopyWith<$Res> {
   @useResult
   $Res call(
       {@DateTimeConverter() DateTime createdAt,
-      String code,
+      @JsonKey(name: '_id') String code,
       String name,
       String definition,
       String diagnosisTechnique,
@@ -130,7 +132,7 @@ abstract class _$$_DiseaseResponseDTOCopyWith<$Res>
   @useResult
   $Res call(
       {@DateTimeConverter() DateTime createdAt,
-      String code,
+      @JsonKey(name: '_id') String code,
       String name,
       String definition,
       String diagnosisTechnique,
@@ -208,7 +210,7 @@ class __$$_DiseaseResponseDTOCopyWithImpl<$Res>
 class _$_DiseaseResponseDTO implements _DiseaseResponseDTO {
   _$_DiseaseResponseDTO(
       {@DateTimeConverter() required this.createdAt,
-      required this.code,
+      @JsonKey(name: '_id') required this.code,
       required this.name,
       this.definition = '',
       this.diagnosisTechnique = '',
@@ -225,7 +227,9 @@ class _$_DiseaseResponseDTO implements _DiseaseResponseDTO {
   @DateTimeConverter()
   final DateTime createdAt;
   @override
+  @JsonKey(name: '_id')
   final String code;
+// @JsonKey(name: '_id') required String diseaseId,
   @override
   final String name;
   @override
@@ -311,7 +315,7 @@ class _$_DiseaseResponseDTO implements _DiseaseResponseDTO {
 abstract class _DiseaseResponseDTO implements DiseaseResponseDTO {
   factory _DiseaseResponseDTO(
       {@DateTimeConverter() required final DateTime createdAt,
-      required final String code,
+      @JsonKey(name: '_id') required final String code,
       required final String name,
       final String definition,
       final String diagnosisTechnique,
@@ -327,8 +331,9 @@ abstract class _DiseaseResponseDTO implements DiseaseResponseDTO {
   @DateTimeConverter()
   DateTime get createdAt;
   @override
+  @JsonKey(name: '_id')
   String get code;
-  @override
+  @override // @JsonKey(name: '_id') required String diseaseId,
   String get name;
   @override
   String get definition;

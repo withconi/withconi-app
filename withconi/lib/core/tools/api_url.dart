@@ -26,6 +26,8 @@ class HttpUrl {
   static const COMMENT_LIST_GET = '/board/listPostLineReply';
   static const COMMUNITY_GET_POST = '/board/getPost';
   static const COMMUNITY_DELETE_POST = '/board/deletePost';
+  static const COMMUNITY_BLOCK_POST = '/board/updateBlockPost';
+  static const COMMUNITY_BLOCK_COMMENT = '/board/deletePost';
   static const COMMUNITY_DELETE_COMMENT = '/board/deletePostLineReply';
   static const COMMUNITY_CREATE_REPORT = '/board/reportPost';
   static const POST_CREATE = '/board/createPost';

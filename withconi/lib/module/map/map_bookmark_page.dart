@@ -3,19 +3,18 @@ import 'package:withconi/data/enums/enum.dart';
 import 'package:withconi/module/community/controllers/community_my_post_controller.dart';
 import 'package:withconi/module/map/controllers/map_my_bookmark_controller.dart';
 import 'package:withconi/import_basic.dart';
-import 'package:withconi/module/ui_model/place_preview_ui.dart';
+import 'package:withconi/module/ui_model/place_ui_model/abstract_class/place_preview_ui.dart';
 import '../theme/text_theme.dart';
 import '../../global_widgets/appbar/appbar.dart';
 import '../../global_widgets/listtile/post_list_tile.dart';
 import 'map_search_page.dart';
 
 class MapBookmarkPage extends StatelessWidget {
-  MapBookmarkPage({Key? key}) : super(key: key);
-  final MapMyBookmarkController _controller =
-      Get.put(MapMyBookmarkController());
+  const MapBookmarkPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final MapMyBookmarkController _controller = Get.find();
     return Scaffold(
       appBar: WcAppBar(
         title: '',
@@ -57,7 +56,7 @@ class MapBookmarkPage extends StatelessWidget {
                       child: Row(
                         children: [
                           Text(
-                            '${_controller.initialBookmarkPlaceList.length}',
+                            '${_controller.bookmarkedPlaceList.length}',
                             style: GoogleFonts.workSans(
                               color: WcColors.black,
                               fontSize: 22,
@@ -79,12 +78,11 @@ class MapBookmarkPage extends StatelessWidget {
                       () => ListView.builder(
                           cacheExtent: 1000,
                           physics: const NeverScrollableScrollPhysics(),
-                          itemCount:
-                              _controller.initialBookmarkPlaceList.length,
+                          itemCount: _controller.bookmarkedPlaceList.length,
                           shrinkWrap: true,
                           itemBuilder: ((context, index) {
-                            PlacePreviewUIModel thisPlace =
-                                _controller.initialBookmarkPlaceList[index];
+                            PlacePreviewUiModel thisPlace =
+                                _controller.bookmarkedPlaceList[index];
                             return PlaceBookmarkListTile(
                               onBookmarkTap: _controller.onBookmarkTap,
                               isBookmarked: _controller.bookmarkedPlaceList
@@ -113,9 +111,9 @@ class PlaceBookmarkListTile extends StatelessWidget {
     required this.isBookmarked,
   }) : super(key: key);
 
-  PlacePreviewUIModel place;
+  PlacePreviewUiModel place;
   void Function()? onTap;
-  void Function(PlacePreviewUIModel)? onBookmarkTap;
+  void Function(PlacePreviewUiModel)? onBookmarkTap;
   bool isBookmarked;
 
   @override
@@ -133,7 +131,7 @@ class PlaceBookmarkListTile extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(top: 4),
             child: Image.asset(
-              place.unselectedMarkerImage,
+              place.placeType.unselectedImagePng,
               height: 23,
             ),
           ),

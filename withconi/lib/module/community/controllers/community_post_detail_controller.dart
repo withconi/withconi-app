@@ -37,7 +37,7 @@ class CommunityPostDetailController extends GetxController {
   GlobalKey commentWidgetKey = GlobalKey();
   ScrollController scrollController = ScrollController();
 
-  String get _nickname => AuthController.to.userInfo.value!.nickname;
+  String get _nickname => AuthController.to.userInfo!.nickname;
   String get _uid => firebaseAuth.currentUser!.uid;
 
   @override
@@ -74,6 +74,21 @@ class CommunityPostDetailController extends GetxController {
     }, (success) {
       log('게시물 삭제 완료');
       Get.back();
+    });
+  }
+
+  _deleteComment(CommentUIModel comment) async {
+    Either<Failure, bool> deleteEither =
+        await _communityRepository.deleteComment(
+            postId: comment.postId,
+            boardId: comment.boardId,
+            commentId: comment.commentId);
+    deleteEither.fold((failure) {
+      FailureInterpreter().mapFailureToDialog(failure, '_deleteComment');
+    }, (success) {
+      log('댓글 삭제 완료');
+      commentList.remove(comment);
+      commentList.refresh();
     });
   }
 
@@ -183,10 +198,10 @@ class CommunityPostDetailController extends GetxController {
     if (moreOption != null) {
       switch (moreOption) {
         case MoreOption.edit:
-          await Get.toNamed(Routes.COMMUNITY_POST_EDIT, arguments: comment);
+          // await Get.toNamed(Routes.COMMUNITY_POST_EDIT, arguments: comment);
           break;
         case MoreOption.delete:
-          await _deletePost();
+          await _deleteComment(comment);
           break;
         case MoreOption.report:
           Get.toNamed(Routes.COMMUNITY_REPORT,
