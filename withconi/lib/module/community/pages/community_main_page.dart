@@ -20,9 +20,9 @@ class CommunityMainPage extends StatelessWidget {
       onWillPop: () async => false,
       child: Scaffold(
         backgroundColor: WcColors.white,
-        body: SingleChildScrollView(
-          child: SafeArea(
-            bottom: false,
+        body: SafeArea(
+          bottom: false,
+          child: SingleChildScrollView(
             child: Center(
               child: SizedBox(
                 width: WcWidth,
