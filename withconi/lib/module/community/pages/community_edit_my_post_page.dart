@@ -67,9 +67,9 @@ class CommunityEditMyPostPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(5),
                 boxShadow: const [
                   BoxShadow(
-                      color: Color.fromARGB(30, 0, 0, 0),
-                      blurRadius: 6,
-                      spreadRadius: -1),
+                      color: Color.fromARGB(80, 0, 0, 0),
+                      blurRadius: 3,
+                      spreadRadius: 0),
                 ],
               ),
             ),
@@ -78,7 +78,7 @@ class CommunityEditMyPostPage extends StatelessWidget {
               highlightElevation: 2,
               elevation: 0,
               backgroundColor: Colors.white,
-              onPressed: _controller.pickMultipleImageFiles,
+              onPressed: _controller.onTapImageAddButton,
               child: Container(
                 decoration: const BoxDecoration(
                   shape: BoxShape.circle,
