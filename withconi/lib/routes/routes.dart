@@ -48,6 +48,7 @@ abstract class Routes {
   static const MAP_BOOKMARK = '/map/boormark';
   static const MAP_MY_REVIEW = '/map/myreview';
   static const MAP_LOCATION_PERMISSION = '/map/permission';
+  static const MAP_IMAGE_VERIFICATION = '/map/imageVerification';
   static const DICTIONARY_SEARCH = '/dictionary/search';
   // static const EMAIL_VERIFI_COMPLETE = '/authentication/email_verify_complete';
 }

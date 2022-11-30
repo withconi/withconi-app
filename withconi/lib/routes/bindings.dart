@@ -13,6 +13,7 @@ import 'package:withconi/data/repository/app_setting_repository.dart';
 import 'package:withconi/data/repository/community_repository.dart';
 import 'package:withconi/data/repository/conimal_repository.dart';
 import 'package:withconi/data/repository/disease_repository.dart';
+import 'package:withconi/data/repository/fcm_repository.dart';
 import 'package:withconi/data/repository/signin_respository.dart';
 import 'package:withconi/data/repository/signup_repository.dart';
 import 'package:withconi/data/repository/signing_auth_repository.dart';
@@ -37,6 +38,7 @@ import 'package:withconi/module/dictionary/controllers/dictionary_detail_control
 import 'package:withconi/module/dictionary/controllers/dictionary_main_controller.dart';
 import 'package:withconi/module/dictionary/controllers/dictionary_search_controller.dart';
 import 'package:withconi/module/map/controllers/map_detail_controller.dart';
+import 'package:withconi/module/map/controllers/map_image_verification_controller.dart';
 import 'package:withconi/module/map/controllers/map_my_bookmark_controller.dart';
 import 'package:withconi/module/map/controllers/map_new_review_controller.dart';
 import 'package:withconi/module/map/controllers/map_search_controller.dart';
@@ -67,9 +69,15 @@ import '../module/signup/controllers/signup_conimal_manage_controller.dart';
 class InitialBinding implements Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<AppSettingAPI>(() => AppSettingAPI());
-    Get.lazyPut<UserAPI>(() => UserAPI());
-    Get.lazyPut<ImageAPI>(() => ImageAPI());
+    Get.lazyPut<AppSettingAPI>(
+      () => AppSettingAPI(),
+    );
+    Get.lazyPut<UserAPI>(
+      () => UserAPI(),
+    );
+    Get.lazyPut<ImageAPI>(
+      () => ImageAPI(),
+    );
 
     Get.lazyPut<AppSettingRepository>(() => AppSettingRepository(
           Get.find<AppSettingAPI>(),
@@ -77,12 +85,17 @@ class InitialBinding implements Bindings {
     Get.lazyPut<UserRepository>(() => UserRepository(
           Get.find<UserAPI>(),
         ));
-    Get.lazyPut<ImageRepository>(() => ImageRepository(Get.find<ImageAPI>()));
+    Get.lazyPut<ImageRepository>(() => ImageRepository(
+          Get.find<ImageAPI>(),
+        ));
+
+    Get.lazyPut<FcmRepository>(() => FcmRepository());
 
     Get.put<AuthController>(
         AuthController(
           Get.find<AppSettingRepository>(),
           Get.find<UserRepository>(),
+          Get.find<FcmRepository>(),
         ),
         permanent: true);
     Get.put<LifeCycleController>(
@@ -102,6 +115,17 @@ class NavigationBinding implements Bindings {
     //   ),
     // );
     Get.lazyPut(() => NavigationController());
+    HomeBinding().dependencies();
+    CommunityMainBinding().dependencies();
+    MapMainBinding().dependencies();
+    DictionaryMainBinding().dependencies();
+  }
+
+  closeBinding() {
+    HomeBinding().closeBinding();
+    CommunityMainBinding().closeBinding();
+    MapMainBinding().closeBinding();
+    DictionaryMainBinding().closeBinding();
   }
 }
 
@@ -110,16 +134,22 @@ class HomeBinding implements Bindings {
   void dependencies() {
     Get.lazyPut<ConimalAPI>(() => ConimalAPI());
     Get.lazyPut<CommunityAPI>(() => CommunityAPI());
-    // Get.lazyPut<UserAPI>(() => UserAPI());
     Get.lazyPut<ConimalRepository>(
         () => ConimalRepository(Get.find<ConimalAPI>()));
     Get.lazyPut<CommunityRepository>(
         () => CommunityRepository(Get.find<CommunityAPI>()));
-    // Get.lazyPut<UserRepository>(() => UserRepository(Get.find<UserAPI>()));
-    Get.lazyPut<HomeController>(
-        () => HomeController(Get.find<ConimalRepository>(),
-            Get.find<UserRepository>(), Get.find<CommunityRepository>()),
-        fenix: true);
+    Get.put<HomeController>(
+        HomeController(
+            Get.find<ConimalRepository>(), Get.find<CommunityRepository>()),
+        permanent: true);
+  }
+
+  closeBinding() {
+    Get.delete<ConimalAPI>(force: true);
+    Get.delete<CommunityAPI>(force: true);
+    Get.delete<ConimalRepository>(force: true);
+    Get.delete<CommunityRepository>(force: true);
+    Get.delete<HomeController>(force: true);
   }
 }
 
@@ -147,11 +177,17 @@ class MapMainBinding implements Bindings {
   void dependencies() {
     Get.lazyPut<MapAPI>(() => MapAPI());
     Get.lazyPut<MapRepository>(() => MapRepository(Get.find<MapAPI>()));
-    Get.lazyPut<MapMainPageController>(
-        () => MapMainPageController(
-              Get.find<MapRepository>(),
-            ),
-        tag: 'tag');
+    Get.replace<MapMainPageController>(
+      MapMainPageController(
+        Get.find<MapRepository>(),
+      ),
+    );
+  }
+
+  closeBinding() {
+    Get.delete<MapAPI>(force: true);
+    Get.delete<MapRepository>(force: true);
+    Get.delete<MapMainPageController>(force: true);
   }
 }
 
@@ -161,11 +197,29 @@ class CommunityMainBinding implements Bindings {
     Get.lazyPut<CommunityAPI>(() => CommunityAPI());
     Get.lazyPut<CommunityRepository>(
         () => CommunityRepository(Get.find<CommunityAPI>()));
-    Get.lazyPut<CommunityMainController>(
-        () => CommunityMainController(Get.find<CommunityRepository>()),
-        fenix: true);
+    Get.put<CommunityMainController>(
+        CommunityMainController(
+          Get.find<CommunityRepository>(),
+        ),
+        permanent: true);
+  }
+
+  closeBinding() {
+    Get.delete<CommunityAPI>(force: true);
+    Get.delete<CommunityRepository>(force: true);
+    Get.delete<CommunityMainController>(force: true);
   }
 }
+
+// class HomeMainBinding implements Bindings {
+//   @override
+//   void dependencies() {
+//     HomeBinding().dependencies();
+//     CommunityMainBinding().dependencies();
+//     MapMainBinding().dependencies();
+//     DictionaryMainBinding().dependencies();
+//   }
+// }
 
 class SignUpPwBinding implements Bindings {
   @override
@@ -364,22 +418,30 @@ class ConimalManageBinding implements Bindings {
   }
 }
 
-class MapMainPageBinding implements Bindings {
-  @override
-  void dependencies() {
-    Get.lazyPut(() => MapAPI());
-    Get.lazyPut(() => MapRepository(Get.find<MapAPI>()));
-    Get.lazyPut<MapMainPageController>(
-        () => MapMainPageController(Get.find<MapRepository>()),
-        fenix: true);
-  }
-}
+// class MapMainPageBinding implements Bindings {
+//   @override
+//   void dependencies() {
+//     Get.lazyPut(() => MapAPI());
+//     Get.lazyPut(() => MapRepository(Get.find<MapAPI>()));
+//     Get.lazyPut<MapMainPageController>(
+//         () => MapMainPageController(Get.find<MapRepository>()),
+//         fenix: true);
+//   }
+// }
 
 class MapDetailPageBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<MapDetailPageController>(
         () => MapDetailPageController(Get.find<MapRepository>()));
+  }
+}
+
+class MapImageVerificationBinding implements Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut<MapImageVerificationController>(
+        () => MapImageVerificationController());
   }
 }
 
@@ -398,8 +460,16 @@ class DictionaryMainBinding implements Bindings {
     Get.lazyPut(() => DiseaseAPI());
     Get.lazyPut(() => DiseaseRepository(Get.find<DiseaseAPI>()));
     Get.lazyPut<DictionaryMainController>(
-      () => DictionaryMainController(Get.find<DiseaseRepository>()),
-    );
+        () => DictionaryMainController(
+              Get.find<DiseaseRepository>(),
+            ),
+        fenix: true);
+  }
+
+  closeBinding() {
+    Get.delete<DiseaseAPI>(force: true);
+    Get.delete<DiseaseRepository>(force: true);
+    Get.delete<DictionaryMainController>(force: true);
   }
 }
 
@@ -407,7 +477,7 @@ class SettingPageBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<SettingPageController>(
-      () => SettingPageController(AuthController.to.userInfo!),
+      () => SettingPageController(),
     );
   }
 }

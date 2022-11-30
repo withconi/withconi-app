@@ -42,6 +42,7 @@ import '../module/community/pages/community_setting_page.dart';
 import '../module/diagnosis/pages/diagnosis_result_page.dart';
 import '../module/diagnosis/pages/diagnosis_step2_page.dart';
 import '../module/dictionary/pages/dictionary_search_page.dart';
+import '../module/map/map_image_verification_page.dart';
 import '../module/map/map_main_page.dart';
 import '../module/signup/pages/signup_conimal_manage_page.dart';
 import 'middlewares/change_password_middleware.dart';
@@ -57,7 +58,7 @@ class WcPages {
     GetPage(
         name: Routes.HOME,
         page: () => const HomePage(),
-        binding: HomeBinding(),
+        // binding: HomeBinding(),
         transition: Transition.noTransition),
     GetPage(
       name: Routes.SPLASH,
@@ -125,10 +126,11 @@ class WcPages {
       binding: ConimalManageBinding(),
     ),
     GetPage(
-        name: Routes.COMMUNITY_MAIN,
-        page: () => CommunityMainPage(),
-        transition: Transition.noTransition,
-        binding: CommunityMainBinding()),
+      name: Routes.COMMUNITY_MAIN,
+      page: () => CommunityMainPage(),
+      transition: Transition.noTransition,
+      // binding: CommunityMainBinding(),
+    ),
     GetPage(
       name: Routes.COMMUNITY_POST_LIST,
       page: () => CommunityPostListPage(),
@@ -190,6 +192,15 @@ class WcPages {
       transition: Transition.fade,
       transitionDuration: const Duration(milliseconds: 200),
       binding: MapDetailPageBinding(),
+      //  gestureWidth: (context) => 200
+    ),
+
+    GetPage(
+      name: Routes.MAP_IMAGE_VERIFICATION,
+      page: () => const MapImageVerificationPage(),
+      popGesture: true,
+
+      binding: MapImageVerificationBinding(),
       //  gestureWidth: (context) => 200
     ),
     GetPage(
