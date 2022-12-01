@@ -5,7 +5,7 @@ import 'latlng_ui_model.dart';
 
 class MapFilterUIModel implements UIModel {
   MapFilterUIModel({
-    this.keyword,
+    // this.keyword,
     required this.placeType,
     required this.openingStatus,
     this.diseaseType,
@@ -14,7 +14,7 @@ class MapFilterUIModel implements UIModel {
     required this.locationType,
     required this.searchArea,
   });
-  String? keyword;
+  // String? keyword;
   PlaceType placeType;
   Species? speciesType;
   SortType sortType;
