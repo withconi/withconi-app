@@ -66,15 +66,18 @@ class WcSearchAppBar extends StatelessWidget with PreferredSizeWidget {
                     enabled: true,
                     controller: textEditingController,
                     onChanged: onTextChanged,
-                    style: GoogleFonts.notoSans(
+                    style: TextStyle(
+                        fontFamily: WcFontFamily.notoSans,
                         color: WcColors.black,
                         fontSize: 16,
                         fontWeight: FontWeight.w500),
                     decoration: InputDecoration(
                       hintText: hintText,
-                      hintStyle: GoogleFonts.notoSans(
-                          color: WcColors.grey120,
-                          fontSize: 16,
+                      hintStyle: TextStyle(
+                          fontFamily: WcFontFamily.notoSans,
+                          color: WcColors.grey140,
+                          fontSize: 15,
+                          height: 1.5,
                           fontWeight: FontWeight.w400),
                       border: InputBorder.none,
                     ),
@@ -86,15 +89,15 @@ class WcSearchAppBar extends StatelessWidget with PreferredSizeWidget {
                   ),
                   GestureDetector(
                     onTap: onClearTap,
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                          left: 12, right: 14, top: 12, bottom: 12),
-                      child: SvgPicture.asset(
-                        'assets/icons/cancle.svg',
-                        color: WcColors.grey120,
-                        height: 15,
-                      ),
-                    ),
+                    child: Container(
+                        color: Colors.transparent,
+                        padding: const EdgeInsets.only(
+                            left: 10, right: 14, top: 12, bottom: 12),
+                        child: Icon(
+                          Icons.close_rounded,
+                          size: 23,
+                          color: WcColors.grey140.withOpacity(0.9),
+                        )),
                   )
                 ],
               ),
