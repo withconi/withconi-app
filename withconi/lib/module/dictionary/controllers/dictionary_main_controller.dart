@@ -46,9 +46,9 @@ class DictionaryMainController extends GetxController with WcStateMixin {
   onInit() async {
     super.onInit();
     catDiseaseList
-        .assignAll(AuthController.to.userInfo!.conimals[0].diseases.toList());
+        .assignAll(AuthController.to.userInfo.conimals[0].diseases.toList());
     dogDiseaseList
-        .assignAll(AuthController.to.userInfo!.conimals[0].diseases.toList());
+        .assignAll(AuthController.to.userInfo.conimals[0].diseases.toList());
 
     change(null, status: const PageStatus.init());
   }

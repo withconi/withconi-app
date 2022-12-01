@@ -83,25 +83,26 @@ class DictionaryMainPage extends StatelessWidget {
 
   Widget _getWidgetByState(DictionaryMainController _controller) {
     return _controller.obx(
-        onSuccess: MyLazyLoadScrollView(
-          isLoading: (_controller.status == const PageStatus.loadingMore() ||
-              _controller.status == const PageStatus.emptyLastPage()),
-          onEndOfPage: () => _controller.loadNextPage(),
-          child: Obx(
-            () => ListView.builder(
-              shrinkWrap: true,
-              itemCount: _controller.diseaseListSearched.length,
-              itemBuilder: (context, index) => DictionaryListTile(
-                disease: _controller.diseaseListSearched[index],
-                searchKeyword: _controller.diseaseKeywords,
-                width: WcWidth,
-                diseaseIndex: index,
-                onTap: (disease) =>
-                    Get.toNamed(Routes.DICTIONARY_DETAIL, arguments: disease),
+        onSuccess: (value) => MyLazyLoadScrollView(
+              isLoading:
+                  (_controller.status == const PageStatus.loadingMore() ||
+                      _controller.status == const PageStatus.emptyLastPage()),
+              onEndOfPage: () => _controller.loadNextPage(),
+              child: Obx(
+                () => ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: _controller.diseaseListSearched.length,
+                  itemBuilder: (context, index) => DictionaryListTile(
+                    disease: _controller.diseaseListSearched[index],
+                    searchKeyword: _controller.diseaseKeywords,
+                    width: WcWidth,
+                    diseaseIndex: index,
+                    onTap: (disease) => Get.toNamed(Routes.DICTIONARY_DETAIL,
+                        arguments: disease),
+                  ),
+                ),
               ),
             ),
-          ),
-        ),
         onInit: Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.start,

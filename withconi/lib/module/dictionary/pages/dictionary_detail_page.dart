@@ -25,7 +25,7 @@ class DictionaryDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     DictionaryDetailController _controller = Get.find();
     return Scaffold(
-      persistentFooterButtons: (AuthController.to.isUserLoggedIn)
+      persistentFooterButtons: (AuthController.to.isUserValid)
           ? [
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -199,73 +199,87 @@ class DictionaryDetailPage extends StatelessWidget {
             thickness: 10,
             color: WcColors.grey40,
           ),
-          SizedBox(
-            width: WcWidth - 40,
+          Offstage(
+            offstage: _controller.disease.diagnosisTechnique.isEmpty,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  '진단법',
-                  style: TextStyle(
-                      fontFamily: WcFontFamily.notoSans,
-                      fontSize: 18.5,
-                      height: 1,
-                      color: WcColors.black,
-                      fontWeight: FontWeight.w500),
-                ),
                 SizedBox(
-                  height: 15,
+                  width: WcWidth - 40,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '진단법',
+                        style: TextStyle(
+                            fontFamily: WcFontFamily.notoSans,
+                            fontSize: 18.5,
+                            height: 1,
+                            color: WcColors.black,
+                            fontWeight: FontWeight.w500),
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Text(
+                        _controller.disease.diagnosisTechnique,
+                        style: TextStyle(
+                            fontFamily: WcFontFamily.notoSans,
+                            fontSize: 16,
+                            height: 1.5,
+                            color: WcColors.grey200,
+                            fontWeight: FontWeight.w400),
+                      ),
+                    ],
+                  ),
                 ),
-                Text(
-                  _controller.disease.diagnosisTechnique,
-                  style: TextStyle(
-                      fontFamily: WcFontFamily.notoSans,
-                      fontSize: 16,
-                      height: 1.5,
-                      color: WcColors.grey200,
-                      fontWeight: FontWeight.w400),
+                Divider(
+                  height: 80,
+                  thickness: 10,
+                  color: WcColors.grey40,
                 ),
               ],
             ),
           ),
-          Divider(
-            height: 80,
-            thickness: 10,
-            color: WcColors.grey40,
-          ),
-          SizedBox(
-            width: WcWidth - 40,
+          Offstage(
+            offstage: _controller.disease.treatment.isEmpty,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  '치료법',
-                  style: TextStyle(
-                      fontFamily: WcFontFamily.notoSans,
-                      fontSize: 18.5,
-                      height: 1,
-                      color: WcColors.black,
-                      fontWeight: FontWeight.w500),
-                ),
                 SizedBox(
-                  height: 15,
+                  width: WcWidth - 40,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '치료법',
+                        style: TextStyle(
+                            fontFamily: WcFontFamily.notoSans,
+                            fontSize: 18.5,
+                            height: 1,
+                            color: WcColors.black,
+                            fontWeight: FontWeight.w500),
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Text(
+                        _controller.disease.treatment,
+                        style: TextStyle(
+                            fontFamily: WcFontFamily.notoSans,
+                            fontSize: 16,
+                            height: 1.5,
+                            color: WcColors.grey200,
+                            fontWeight: FontWeight.w400),
+                      ),
+                    ],
+                  ),
                 ),
-                Text(
-                  _controller.disease.treatment,
-                  style: TextStyle(
-                      fontFamily: WcFontFamily.notoSans,
-                      fontSize: 16,
-                      height: 1.5,
-                      color: WcColors.grey200,
-                      fontWeight: FontWeight.w400),
+                Divider(
+                  height: 80,
+                  thickness: 10,
+                  color: WcColors.grey40,
                 ),
               ],
             ),
-          ),
-          Divider(
-            height: 80,
-            thickness: 10,
-            color: WcColors.grey40,
           ),
           SizedBox(
             width: WcWidth - 40,
@@ -320,34 +334,34 @@ class DiseaseManageButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        GestureDetector(
-          onTap: onButtonTap,
-          child: CircleAvatar(
-            radius: 18,
-            backgroundColor:
-                (isDiseaseManaged) ? WcColors.red100 : WcColors.grey110,
-            child: SvgPicture.asset(
-              'assets/icons/paw.svg',
-              color: WcColors.white,
+    return GestureDetector(
+        onTap: onButtonTap,
+        child: Row(
+          children: [
+            CircleAvatar(
+              radius: 18,
+              backgroundColor:
+                  (isDiseaseManaged) ? WcColors.red100 : WcColors.grey110,
+              child: SvgPicture.asset(
+                'assets/icons/paw.svg',
+                color: WcColors.white,
+              ),
             ),
-          ),
-        ),
-        SizedBox(
-          width: 10,
-        ),
-        Text(
-          (isDiseaseManaged) ? '관리중인 질병' : '관리중이 아닌 질병',
-          style: TextStyle(
-              fontFamily: WcFontFamily.notoSans,
-              fontSize: 16,
-              height: 1,
-              color: (isDiseaseManaged) ? WcColors.red100 : WcColors.grey120,
-              fontWeight: FontWeight.w400),
-        ),
-      ],
-    );
+            SizedBox(
+              width: 10,
+            ),
+            Text(
+              (isDiseaseManaged) ? '관리중인 질병' : '관리중이 아닌 질병',
+              style: TextStyle(
+                  fontFamily: WcFontFamily.notoSans,
+                  fontSize: 16,
+                  height: 1,
+                  color:
+                      (isDiseaseManaged) ? WcColors.red100 : WcColors.grey120,
+                  fontWeight: FontWeight.w400),
+            ),
+          ],
+        ));
   }
 }
 
