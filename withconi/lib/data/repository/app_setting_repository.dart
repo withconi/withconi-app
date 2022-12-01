@@ -16,36 +16,4 @@ class AppSettingRepository extends GetxController {
       return Left(VersionCheckFailure());
     }
   }
-
-  // Future<Either<Failure, bool>?> sendVerificationEmail(
-  //     {required String email,
-  //     required String currentRoute,
-  //     required String nextRoute}) async {
-  //   try {
-  //     var acs = ActionCodeSettings(
-  //         url: await _dynamicLinkManager.getShortLink(
-  //             Routes.EMAIL_VERIFICATION, nextRoute),
-  //         // This must be true
-  //         handleCodeInApp: true,
-  //         iOSBundleId: 'co.yellowtoast.withconi',
-  //         androidPackageName: 'co.yellowtoast.withconi',
-  //         // installIfNotAvailable
-  //         androidInstallApp: true,
-
-  //         // minimumVersion
-  //         dynamicLinkDomain: 'withconimal.page.link',
-  //         androidMinimumVersion: '12');
-
-  //     var emailAuth = email;
-  //     await firebaseAuth.sendSignInLinkToEmail(
-  //         email: emailAuth, actionCodeSettings: acs);
-  //     return Right(true);
-  //   } catch (e) {
-  //     return Left(SignInCredentialFailure());
-  //   }
-  // }
-
-  // signOut() async {
-  //   await firebaseAuth.signOut();
-  // }
 }
