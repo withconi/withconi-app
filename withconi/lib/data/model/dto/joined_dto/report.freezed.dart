@@ -24,7 +24,8 @@ mixin _$Report {
   String get postId => throw _privateConstructorUsedError;
   String get userId => throw _privateConstructorUsedError;
   @ReportItemConverter()
-  List<ReportItem> get reviewDesc => throw _privateConstructorUsedError;
+  ReportItem get reportItem => throw _privateConstructorUsedError;
+  String get reportDesc => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -40,7 +41,8 @@ abstract class $ReportCopyWith<$Res> {
       {String boardId,
       String postId,
       String userId,
-      @ReportItemConverter() List<ReportItem> reviewDesc});
+      @ReportItemConverter() ReportItem reportItem,
+      String reportDesc});
 }
 
 /// @nodoc
@@ -59,7 +61,8 @@ class _$ReportCopyWithImpl<$Res, $Val extends Report>
     Object? boardId = null,
     Object? postId = null,
     Object? userId = null,
-    Object? reviewDesc = null,
+    Object? reportItem = null,
+    Object? reportDesc = null,
   }) {
     return _then(_value.copyWith(
       boardId: null == boardId
@@ -74,10 +77,14 @@ class _$ReportCopyWithImpl<$Res, $Val extends Report>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String,
-      reviewDesc: null == reviewDesc
-          ? _value.reviewDesc
-          : reviewDesc // ignore: cast_nullable_to_non_nullable
-              as List<ReportItem>,
+      reportItem: null == reportItem
+          ? _value.reportItem
+          : reportItem // ignore: cast_nullable_to_non_nullable
+              as ReportItem,
+      reportDesc: null == reportDesc
+          ? _value.reportDesc
+          : reportDesc // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -92,7 +99,8 @@ abstract class _$$_ReportCopyWith<$Res> implements $ReportCopyWith<$Res> {
       {String boardId,
       String postId,
       String userId,
-      @ReportItemConverter() List<ReportItem> reviewDesc});
+      @ReportItemConverter() ReportItem reportItem,
+      String reportDesc});
 }
 
 /// @nodoc
@@ -108,7 +116,8 @@ class __$$_ReportCopyWithImpl<$Res>
     Object? boardId = null,
     Object? postId = null,
     Object? userId = null,
-    Object? reviewDesc = null,
+    Object? reportItem = null,
+    Object? reportDesc = null,
   }) {
     return _then(_$_Report(
       boardId: null == boardId
@@ -123,10 +132,14 @@ class __$$_ReportCopyWithImpl<$Res>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String,
-      reviewDesc: null == reviewDesc
-          ? _value._reviewDesc
-          : reviewDesc // ignore: cast_nullable_to_non_nullable
-              as List<ReportItem>,
+      reportItem: null == reportItem
+          ? _value.reportItem
+          : reportItem // ignore: cast_nullable_to_non_nullable
+              as ReportItem,
+      reportDesc: null == reportDesc
+          ? _value.reportDesc
+          : reportDesc // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -139,8 +152,8 @@ class _$_Report implements _Report {
       {required this.boardId,
       required this.postId,
       required this.userId,
-      @ReportItemConverter() required final List<ReportItem> reviewDesc})
-      : _reviewDesc = reviewDesc;
+      @ReportItemConverter() required this.reportItem,
+      required this.reportDesc});
 
   factory _$_Report.fromJson(Map<String, dynamic> json) =>
       _$$_ReportFromJson(json);
@@ -151,17 +164,15 @@ class _$_Report implements _Report {
   final String postId;
   @override
   final String userId;
-  final List<ReportItem> _reviewDesc;
   @override
   @ReportItemConverter()
-  List<ReportItem> get reviewDesc {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_reviewDesc);
-  }
+  final ReportItem reportItem;
+  @override
+  final String reportDesc;
 
   @override
   String toString() {
-    return 'Report(boardId: $boardId, postId: $postId, userId: $userId, reviewDesc: $reviewDesc)';
+    return 'Report(boardId: $boardId, postId: $postId, userId: $userId, reportItem: $reportItem, reportDesc: $reportDesc)';
   }
 
   @override
@@ -172,14 +183,16 @@ class _$_Report implements _Report {
             (identical(other.boardId, boardId) || other.boardId == boardId) &&
             (identical(other.postId, postId) || other.postId == postId) &&
             (identical(other.userId, userId) || other.userId == userId) &&
-            const DeepCollectionEquality()
-                .equals(other._reviewDesc, _reviewDesc));
+            (identical(other.reportItem, reportItem) ||
+                other.reportItem == reportItem) &&
+            (identical(other.reportDesc, reportDesc) ||
+                other.reportDesc == reportDesc));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, boardId, postId, userId,
-      const DeepCollectionEquality().hash(_reviewDesc));
+  int get hashCode =>
+      Object.hash(runtimeType, boardId, postId, userId, reportItem, reportDesc);
 
   @JsonKey(ignore: true)
   @override
@@ -197,11 +210,11 @@ class _$_Report implements _Report {
 
 abstract class _Report implements Report {
   factory _Report(
-          {required final String boardId,
-          required final String postId,
-          required final String userId,
-          @ReportItemConverter() required final List<ReportItem> reviewDesc}) =
-      _$_Report;
+      {required final String boardId,
+      required final String postId,
+      required final String userId,
+      @ReportItemConverter() required final ReportItem reportItem,
+      required final String reportDesc}) = _$_Report;
 
   factory _Report.fromJson(Map<String, dynamic> json) = _$_Report.fromJson;
 
@@ -213,7 +226,9 @@ abstract class _Report implements Report {
   String get userId;
   @override
   @ReportItemConverter()
-  List<ReportItem> get reviewDesc;
+  ReportItem get reportItem;
+  @override
+  String get reportDesc;
   @override
   @JsonKey(ignore: true)
   _$$_ReportCopyWith<_$_Report> get copyWith =>

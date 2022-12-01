@@ -11,31 +11,23 @@ class Report with _$Report {
     required String boardId,
     required String postId,
     required String userId,
-    @ReportItemConverter() required List<ReportItem> reviewDesc,
-
-    // @ImageItemConverter() @Default([]) required List<ImageItem> images,
+    @ReportItemConverter() required ReportItem reportItem,
+    required String reportDesc,
   }) = _Report;
 
   factory Report.fromJson(Map<String, dynamic> json) => _$ReportFromJson(json);
 }
 
-class ReportItemConverter implements JsonConverter<List<ReportItem>, String> {
+class ReportItemConverter implements JsonConverter<ReportItem, String> {
   const ReportItemConverter();
 
   @override
-  List<ReportItem> fromJson(String reportItem) {
-    return [];
+  ReportItem fromJson(String reportItemStr) {
+    return ReportItem.getByCode(reportItemStr);
   }
 
   @override
-  String toJson(List<ReportItem> reportItemList) {
-    if (reportItemList.isNotEmpty) {
-      return reportItemList
-          .map((reportItem) => reportItem.displayName)
-          .toList()
-          .join(',');
-    } else {
-      return '';
-    }
+  String toJson(ReportItem reportItem) {
+    return reportItem.displayName;
   }
 }
