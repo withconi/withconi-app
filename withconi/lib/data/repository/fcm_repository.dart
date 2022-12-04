@@ -1,39 +1,49 @@
+import 'dart:convert';
 import 'dart:io';
-
 import 'package:dartz/dartz.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:withconi/core/error_handling/failures.dart';
+import 'package:withconi/core/values/constants/auth_variables.dart';
 import 'package:withconi/data/model/dto/request_dto/fcm_request/fcm_create_request.dart';
-import 'package:withconi/data/provider/remote_provider/app_config_api.dart';
-import 'package:withconi/data/repository/local_notification_repository.dart';
 import 'package:withconi/import_basic.dart';
-import 'package:withconi/module/community/controllers/community_main_controller.dart';
-
 import '../../core/error_handling/exceptions.dart';
 import '../../core/network_handling/network_service.dart';
 import '../model/dto/api_call_dto.dart';
+import 'local_notification_repository.dart';
+
+@pragma('vm:entry-point')
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  print("Handling a background message: ${message.messageId}");
+  // if (Platform.isAndroid) {
+  // await firebaseInitialization;
+  var jsonMap = jsonEncode(message.data);
+  LocalNotificationService.onTapForegroundNotification(
+      1, 'android background에서 들어온 메세지', '메세지', jsonMap);
+  // }
+}
 
 class FcmRepository extends GetxService {
+  FcmRepository(this._notificationService);
   final Api _dio = Api();
 
   final FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
+  final LocalNotificationService _notificationService;
 
   Future<Either<Failure, String?>> getFcmToken() async {
     try {
       final fcmToken = await firebaseMessaging.getToken();
-      print('⭐️ fcm Token 발급 완료 => ${fcmToken}');
+      await _notificationService.initLoacalNotificationPlugin();
+      if (kDebugMode) {
+        print('⭐️ fcm Token 발급 완료 => $fcmToken');
+      }
       firebaseMessaging.onTokenRefresh.listen((fcmToken) {
-        // TODO: If necessary send token to application server.
-
-        // Note: This callback is fired at each app startup and whenever a new
-        // token is generated.
-      }).onError((err) {
-        // Error getting token.
-      });
+        saveFcmTokenDB(fcmToken);
+      }).onError((err) {});
       return Right(fcmToken);
     } catch (e) {
-      return Left(UserInfoUpdateFailure());
+      return const Left(UserInfoUpdateFailure());
     }
   }
 
@@ -44,13 +54,13 @@ class FcmRepository extends GetxService {
       ApiCallDTO apiCallDTO = ApiCallDTO.fromDTO(requestDTO);
       var result = await _dio.apiCall(apiCallDTO);
 
-      return Right(true);
+      return const Right(true);
     } on NoInternetConnectionException {
-      return Left(NoConnectionFailure());
+      return const Left(NoConnectionFailure());
     } on PlatformException {
-      return Left(NoUserDataFailure());
+      return const Left(NoUserDataFailure());
     } catch (e) {
-      return Left(NoUserDataFailure());
+      return const Left(NoUserDataFailure());
     }
   }
 
@@ -76,28 +86,14 @@ class FcmRepository extends GetxService {
       _handleMessage(initialMessage);
     }
 
-    // Also handle any interaction when the app is in the background via a
-    // Stream listener
-    FirebaseMessaging.onMessageOpenedApp
-        .listen(_handleMessage, onDone: () => print('onMessageOpenedApp'));
-
-    // FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-    //   _handleMessage(message);
-    // });
+    FirebaseMessaging.onMessage.listen(_handleMessage,
+        onDone: () => print('FirebaseMessaging.onMessage ==> _handleMessage'));
 
     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-  }
 
-  @pragma('vm:entry-point')
-  static Future<void> _firebaseMessagingBackgroundHandler(
-      RemoteMessage message) async {
-    print("Handling a background message: ${message.messageId}");
-    if (message.data['type'] == 'post') {
-      Get.toNamed(message.data['route'], arguments: {
-        'postId': message.data['postId'],
-        'boardId': message.data['boardId'],
-      });
-    }
+    FirebaseMessaging.onMessageOpenedApp.listen((message) {
+      _firebaseMessagingBackgroundHandler(message);
+    });
   }
 
   requestPermisstion() async {
@@ -115,19 +111,17 @@ class FcmRepository extends GetxService {
   }
 
   void _handleMessage(RemoteMessage message) {
-    // LocalNotificationService.showSampleNotification();
-    // print('Got a message whilst in the foreground!');
-    // print('Message data: ${message.data}');
-
-    // if (message.notification != null) {
-    //   print('Message also contained a notification: ${message.notification}');
-    // }
-    // if (message.data['type'] == 'post') {
-    //   Get.find<CommunityMainController>();
-    //   Get.toNamed(message.data['route'], arguments: {
-    //     'postId': message.data['postId'],
-    //     'boardId': message.data['boardId'],
-    //   });
-    // }
+    if (Platform.isAndroid)
+      LocalNotificationService.showSampleNotification(
+          id: 1,
+          title: message.data['title'] ?? '위드코니',
+          message: message.data['message'] ?? '위드코니에서 보낸 메세지입니다.',
+          payload: message.data.toString());
+    else
+      LocalNotificationService.showSampleNotification(
+          id: 1,
+          title: message.data['title'] ?? '위드코니',
+          message: message.data['message'] ?? '새로운 댓글이 있습니다.',
+          payload: jsonEncode(message.data));
   }
 }
