@@ -8,17 +8,26 @@ import '../routes.dart';
 class AuthMiddleware extends GetMiddleware {
   @override
   RouteSettings? redirect(String? route) {
-    if (!AuthController.to.isUserLoggedIn) {
-      return const RouteSettings(name: Routes.START);
-    } else if (!AuthController.to.isEmailVerified &&
-        !AuthController.to.emailVerificationSkipped) {
-      return const RouteSettings(name: Routes.EMAIL_VERIFICATION);
-    } else if (AuthController.to.isUserLoggedIn &&
-        (AuthController.to.isEmailVerified ||
-            AuthController.to.emailVerificationSkipped)) {
-      return null;
+    late RouteSettings? routeSettings;
+
+    if (!AuthController.to.isVersionValid) {
+      //버전 페이지 이동
+      routeSettings = null;
+    } else if (!AuthController.to.isUserValid) {
+      routeSettings = const RouteSettings(name: Routes.START);
+    } else if (AuthController.to.isUserValid &&
+        !AuthController.to.isEmailVerified &&
+        !AuthController.to.isVerifySkipped) {
+      routeSettings = const RouteSettings(name: Routes.EMAIL_VERIFICATION);
+    } else if (AuthController.to.isUserValid &&
+        !AuthController.to.isEmailVerified &&
+        !AuthController.to.isVerifySkipped) {
+      //홈페이지 이동
+      routeSettings = null;
     } else {
-      return null;
+      routeSettings = null;
     }
+
+    return routeSettings;
   }
 }
