@@ -9,10 +9,10 @@ import 'package:withconi/global_widgets/photo_gallary/image_item.dart';
 import '../../error_handling/failures.dart';
 
 class ImagePickHelper {
-  Future<Either<Failure, ImageItem?>?> pickSingleImage() async {
+  Future<Either<Failure, ImageItem?>> pickImage(ImageSource imageSource) async {
     final ImagePicker _picker = ImagePicker();
     final XFile? image = await _picker.pickImage(
-        source: ImageSource.gallery, maxHeight: 500, imageQuality: 80);
+        source: imageSource, maxHeight: 800, imageQuality: 85);
 
     if (image != null) {
       Map<String, dynamic> pictureSizeMap =
@@ -20,10 +20,10 @@ class ImagePickHelper {
 
       if (pictureSizeMap['suffix'] == "GB" ||
           pictureSizeMap['suffix'] == "TB") {
-        return Left(MaxImageSizeFailure());
+        return const Left(MaxImageSizeFailure());
       } else if (pictureSizeMap['suffix'] == "MB") {
         if (pictureSizeMap['size'] > 2) {
-          return Left(MaxImageSizeFailure());
+          return const Left(MaxImageSizeFailure());
         }
       } else {
         ImageItem imageItem = ImageItem(
@@ -32,16 +32,15 @@ class ImagePickHelper {
             imageType: ImageType.file);
         return Right(imageItem);
       }
-    } else {
-      return Right(null);
     }
+    return const Right(null);
   }
 
   Future<Either<Failure, List<ImageItem>>?> pickMultipleImages(
       {required int maxImageNum, required int selectedImageNum}) async {
     final ImagePicker _picker = ImagePicker();
     final List<XFile>? _pickedImages =
-        await _picker.pickMultiImage(maxHeight: 500, imageQuality: 80);
+        await _picker.pickMultiImage(maxHeight: 800, imageQuality: 85);
     List<File> _filteredImages = [];
 
     if (_pickedImages != null) {
