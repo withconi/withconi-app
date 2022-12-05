@@ -16,7 +16,7 @@ class BlockCommentRequestDTO
   RequestType get requestType => RequestType.POST;
 
   @override
-  String get url => HttpUrl.COMMUNITY_BLOCK_POST;
+  String get url => HttpUrl.COMMUNITY_BLOCK_COMMENT;
 
   BlockCommentRequestDTO.fromData({required String authorId})
       : _authorId = authorId,
