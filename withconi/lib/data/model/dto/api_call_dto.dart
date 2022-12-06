@@ -25,13 +25,37 @@ class ApiCallDTO {
 
   factory ApiCallDTO.fromDTO(RequestDTO requestDTO) {
     Map<String, dynamic> header = Map.from(defaultHeader);
-    if (requestDTO.requiresToken) {
-      header['requiresToken'] = requestDTO.requiresToken;
-    }
+
+    header['requiresToken'] = requestDTO.requiresToken;
 
     if (requestDTO.requestType == RequestType.POST_FORM_DATA) {
       header.remove('Content-Type');
       header['Content-Type'] = "multipart/form-data";
+    } else {
+      header.remove('Content-Type');
+      header['Content-Type'] = 'application/json';
+    }
+
+    return ApiCallDTO._(
+        url: requestDTO.url,
+        header: header,
+        data: requestDTO.dataMap,
+        requestType: requestDTO.requestType);
+  }
+
+  factory ApiCallDTO.fromDTOWithPlatformToken(
+      RequestDTO requestDTO, String platformToken) {
+    Map<String, dynamic> header = Map.from(defaultHeader);
+
+    header['requiresToken'] = requestDTO.requiresToken;
+    header['platformToken'] = platformToken;
+
+    if (requestDTO.requestType == RequestType.POST_FORM_DATA) {
+      header.remove('Content-Type');
+      header['Content-Type'] = "multipart/form-data";
+    } else {
+      header.remove('Content-Type');
+      header['Content-Type'] = 'application/json';
     }
 
     return ApiCallDTO._(
@@ -44,14 +68,13 @@ class ApiCallDTO {
   factory ApiCallDTO.fromDataDtoWithFormData(
       RequestDTO requestDTO, FormData formData) {
     Map<String, dynamic> header = defaultHeader;
-    if (requestDTO.requiresToken) {
-      header['requiresToken'] = requestDTO.requiresToken;
-    }
 
-    if (requestDTO.requestType == RequestType.POST_FORM_DATA) {
-      header.remove('Content-Type');
-      header['Content-Type'] = "multipart/form-data";
-    }
+    header['requiresToken'] = requestDTO.requiresToken;
+
+    // if (requestDTO.requestType == RequestType.POST_FORM_DATA) {
+    header.remove('Content-Type');
+    header['Content-Type'] = "multipart/form-data";
+    // }
 
     return ApiCallDTO._(
         url: requestDTO.url,
