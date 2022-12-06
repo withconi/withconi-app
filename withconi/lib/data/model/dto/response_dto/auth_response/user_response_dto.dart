@@ -16,7 +16,7 @@ class UserResponseDTO with _$UserResponseDTO {
       required Provider provider,
       required bool isEmailVerified,
       required bool verificationSkipped,
-      @Default('') String photoURL,
+      @JsonKey(name: 'profileImageUrl') @Default('') String photoURL,
       @Default(false) bool isWrittenReview,
       required List<ConimalResponseDTO> conimals}) = _WcUser;
 

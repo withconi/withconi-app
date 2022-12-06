@@ -14,7 +14,7 @@ _$_WcUser _$$_WcUserFromJson(Map<String, dynamic> json) => _$_WcUser(
       provider: $enumDecode(_$ProviderEnumMap, json['provider']),
       isEmailVerified: json['isEmailVerified'] as bool,
       verificationSkipped: json['verificationSkipped'] as bool,
-      photoURL: json['photoURL'] as String? ?? '',
+      photoURL: json['profileImageUrl'] as String? ?? '',
       isWrittenReview: json['isWrittenReview'] as bool? ?? false,
       conimals: (json['conimals'] as List<dynamic>)
           .map((e) => ConimalResponseDTO.fromJson(e as Map<String, dynamic>))
@@ -29,7 +29,7 @@ Map<String, dynamic> _$$_WcUserToJson(_$_WcUser instance) => <String, dynamic>{
       'provider': _$ProviderEnumMap[instance.provider]!,
       'isEmailVerified': instance.isEmailVerified,
       'verificationSkipped': instance.verificationSkipped,
-      'photoURL': instance.photoURL,
+      'profileImageUrl': instance.photoURL,
       'isWrittenReview': instance.isWrittenReview,
       'conimals': instance.conimals.map((e) => e.toJson()).toList(),
     };

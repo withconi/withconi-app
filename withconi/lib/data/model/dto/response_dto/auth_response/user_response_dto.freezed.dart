@@ -27,6 +27,7 @@ mixin _$UserResponseDTO {
   Provider get provider => throw _privateConstructorUsedError;
   bool get isEmailVerified => throw _privateConstructorUsedError;
   bool get verificationSkipped => throw _privateConstructorUsedError;
+  @JsonKey(name: 'profileImageUrl')
   String get photoURL => throw _privateConstructorUsedError;
   bool get isWrittenReview => throw _privateConstructorUsedError;
   List<ConimalResponseDTO> get conimals => throw _privateConstructorUsedError;
@@ -51,7 +52,7 @@ abstract class $UserResponseDTOCopyWith<$Res> {
       Provider provider,
       bool isEmailVerified,
       bool verificationSkipped,
-      String photoURL,
+      @JsonKey(name: 'profileImageUrl') String photoURL,
       bool isWrittenReview,
       List<ConimalResponseDTO> conimals});
 }
@@ -140,7 +141,7 @@ abstract class _$$_WcUserCopyWith<$Res>
       Provider provider,
       bool isEmailVerified,
       bool verificationSkipped,
-      String photoURL,
+      @JsonKey(name: 'profileImageUrl') String photoURL,
       bool isWrittenReview,
       List<ConimalResponseDTO> conimals});
 }
@@ -223,7 +224,7 @@ class _$_WcUser implements _WcUser {
       required this.provider,
       required this.isEmailVerified,
       required this.verificationSkipped,
-      this.photoURL = '',
+      @JsonKey(name: 'profileImageUrl') this.photoURL = '',
       this.isWrittenReview = false,
       required final List<ConimalResponseDTO> conimals})
       : _conimals = conimals;
@@ -246,7 +247,7 @@ class _$_WcUser implements _WcUser {
   @override
   final bool verificationSkipped;
   @override
-  @JsonKey()
+  @JsonKey(name: 'profileImageUrl')
   final String photoURL;
   @override
   @JsonKey()
@@ -325,7 +326,7 @@ abstract class _WcUser implements UserResponseDTO {
       required final Provider provider,
       required final bool isEmailVerified,
       required final bool verificationSkipped,
-      final String photoURL,
+      @JsonKey(name: 'profileImageUrl') final String photoURL,
       final bool isWrittenReview,
       required final List<ConimalResponseDTO> conimals}) = _$_WcUser;
 
@@ -346,6 +347,7 @@ abstract class _WcUser implements UserResponseDTO {
   @override
   bool get verificationSkipped;
   @override
+  @JsonKey(name: 'profileImageUrl')
   String get photoURL;
   @override
   bool get isWrittenReview;
