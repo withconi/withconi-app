@@ -22,6 +22,7 @@ import '../../../core/error_handling/failures.dart';
 import '../../../data/enums/enum.dart';
 import '../../../data/model/dto/response_dto/place_response/place_detail_response_dto.dart';
 import '../../../import_basic.dart';
+import '../../auth/auth_controller.dart';
 
 class MapDetailPageController extends GetxController
     with GetSingleTickerProviderStateMixin {
@@ -34,10 +35,11 @@ class MapDetailPageController extends GetxController
   RxBool isBookmarked = false.obs;
   RxInt picChartTouchedIndex = (-1).obs;
   RxBool dataInitialized = false.obs;
-
-  RxBool isBusinessHourInfoOpen = false.obs;
+  ScrollController pageScrollController = ScrollController();
+  RxBool openHourInfo = false.obs;
   RxBool openDetailAddress = false.obs;
-  RxBool onlyVisitVerified = false.obs;
+  RxBool onlyPhotoReview = false.obs;
+  RxBool showReviewHistory = AuthController.to.userInfo.isWrittenReview.obs;
 
   late TabController tabController;
 
@@ -145,11 +147,10 @@ class MapDetailPageController extends GetxController
   //   return;
   // }
 
-  getPlaceReview(
-      {required String locId, required bool onlyVerifiedReviews}) async {
+  getPlaceReview({required String locId, required bool onlyPhotoReview}) async {
     Either<Failure, ReviewHistoryResponseDTO> reviewResponseResult =
         await _mapRepository.getReviewHistory(
-            locId: locId, onlyVerfied: onlyVerifiedReviews);
+            locId: locId, onlyPhotoReview: onlyPhotoReview);
 
     reviewResponseResult.fold(
         (l) => FailureInterpreter().mapFailureToSnackbar(l, 'getPlaceReview'),
@@ -160,11 +161,11 @@ class MapDetailPageController extends GetxController
     return;
   }
 
-  onOnlyVerifiedReviewChanged(bool onlyVerified) async {
-    onlyVisitVerified.value = onlyVerified;
+  onOnlyVerifiedReviewChanged(bool _onlyPhotoReview) async {
+    onlyPhotoReview.value = _onlyPhotoReview;
     await showLoading(() => getPlaceReview(
         locId: placeDetail.value.address,
-        onlyVerifiedReviews: onlyVisitVerified.value));
+        onlyPhotoReview: onlyPhotoReview.value));
   }
 
   calculatePercent({required int totalNum, required int valueNum}) {
