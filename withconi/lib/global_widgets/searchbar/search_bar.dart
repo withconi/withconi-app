@@ -17,8 +17,7 @@ class SearchBarWidget extends StatelessWidget {
     double? width,
     bool? activeAction,
     required TextEditingController? textController,
-  })  : _iconSrc = iconSrc ?? 'assets/icons/search.svg',
-        _onTapAction = onTapClear,
+  })  : _onTapAction = onTapClear,
         _onTextChanged = onTextChanged,
         _onTapLeading = onTapLeading,
         _hintText = hintText,
@@ -34,7 +33,6 @@ class SearchBarWidget extends StatelessWidget {
               ),
             ],
         _margin = margin ?? EdgeInsets.fromLTRB(0, 0, 0, 0),
-        _iconColor = iconColor ?? WcColors.grey100,
         _width = width ?? WcWidth - 40,
         _activeAction = activeAction ?? true,
         _textController = textController,
@@ -47,8 +45,7 @@ class SearchBarWidget extends StatelessWidget {
   final void Function()? _onTextFieldTapped;
   final List<BoxShadow> _boxShadow;
   final EdgeInsetsGeometry _margin;
-  final String _iconSrc;
-  final Color _iconColor;
+
   final double _width;
   final bool _activeAction;
   final TextEditingController? _textController;
@@ -69,13 +66,12 @@ class SearchBarWidget extends StatelessWidget {
           GestureDetector(
             onTap: _onTapLeading,
             child: Padding(
-              padding: const EdgeInsets.only(left: 13, right: 12),
-              child: SvgPicture.asset(
-                _iconSrc,
-                color: _iconColor,
-                height: 20,
-              ),
-            ),
+                padding: const EdgeInsets.only(left: 13, right: 12),
+                child: Icon(
+                  Icons.search_rounded,
+                  size: 24,
+                  color: WcColors.grey140.withOpacity(0.9),
+                )),
           ),
           // SizedBox(
           //   width: 20,
@@ -96,9 +92,10 @@ class SearchBarWidget extends StatelessWidget {
                 hintText: _hintText,
                 hintStyle: TextStyle(
                     fontFamily: WcFontFamily.notoSans,
-                    color: WcColors.grey140.withOpacity(0.7),
-                    fontSize: 15.5,
-                    height: 1.5,
+                    color: WcColors.grey140.withOpacity(0.95),
+                    fontSize: 15.3,
+                    height: 1.6,
+                    letterSpacing: 0.1,
                     fontWeight: FontWeight.w400),
                 border: InputBorder.none,
               ),
@@ -112,15 +109,19 @@ class SearchBarWidget extends StatelessWidget {
           (_activeAction)
               ? GestureDetector(
                   onTap: _onTapAction,
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        left: 12, right: 14, top: 12, bottom: 12),
-                    child: SvgPicture.asset(
-                      'assets/icons/cancle.svg',
-                      color: WcColors.grey120,
-                      height: 15,
-                    ),
-                  ),
+                  child: Container(
+                      // color: WcColors.babyPinkLight,
+                      padding: const EdgeInsets.only(
+                        left: 9,
+                        right: 13,
+                        top: 11,
+                        bottom: 11,
+                      ),
+                      child: Icon(
+                        Icons.close_rounded,
+                        size: 23,
+                        color: WcColors.grey140.withOpacity(0.8),
+                      )),
                 )
               : SizedBox.shrink(),
         ],
