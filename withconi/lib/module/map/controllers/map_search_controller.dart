@@ -1,8 +1,13 @@
+import 'dart:async';
+
 import 'package:dartz/dartz.dart';
+import 'package:flutter_naver_map/flutter_naver_map.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:withconi/data/enums/enum.dart';
 import 'package:withconi/data/model/dto/response_dto/place_response/place_preview_response_dto.dart';
 import 'package:withconi/core/error_handling/error_message_object.dart';
+import 'package:withconi/global_widgets/snackbar.dart';
+import 'package:withconi/module/community/controllers/custom_state_mixin.dart';
 import 'package:withconi/module/page_status.dart';
 import 'package:withconi/module/ui_model/latlng_ui_model.dart';
 import 'package:withconi/module/ui_model/map_filter_ui_model.dart';
@@ -14,175 +19,201 @@ import '../../../import_basic.dart';
 import '../../../core/tools/helpers/infinite_scroll.dart';
 import '../../ui_model/place_ui_model/abstract_class/place_preview_ui.dart';
 
-class MapSearchController extends GetxController implements InfiniteScroll {
+class MapSearchController extends GetxController with WcStateMixin {
   MapSearchController(this._mapRepository);
   final MapRepository _mapRepository;
 
   TextEditingController placeNameTextController = TextEditingController();
   RxBool listLoaded = false.obs;
   // String get disease => _disease.value;
+  Completer<NaverMapController> mapController = Completer();
   Rxn<Failure> failure = Rxn<Failure>();
+  late LatLngUIModel _currentLocation;
   // final RxString keywordText = ''.obs;
   RxList<PlacePreviewUiModel> placeListSearched = RxList<PlacePreviewUiModel>();
+  RxBool isLocationChanged = false.obs;
 
+  late CameraPosition _cameraPosition;
   @override
   final Rx<PaginationFilter> _paginationFilter =
-      PaginationFilter(page: 1, listSize: 20).obs;
+      PaginationFilter(page: 1, listSize: 15).obs;
 
   Rx<MapFilterUIModel> mapSearchFilter = MapFilterUIModel(
-          placeType: PlaceType.all,
-          openingStatus: OpeningStatus.all,
-          sortType: SortType.nearest,
-          locationType: LocationSearchType.currentLocation,
-          searchArea: 2000,
-          keyword: '')
-      .obs;
-  @override
-  ScrollController infiniteScrollController = ScrollController();
+    placeType: PlaceType.all,
+    openingStatus: OpeningStatus.all,
+    sortType: Sorting.nearest,
+    distanceBaseType: DistanceBaseType.currentLocation,
+    searchArea: 30,
+  ).obs;
 
-  @override
-  double get nextPageTrigger =>
-      0.8 * infiniteScrollController.position.maxScrollExtent;
+  RxString _searchKeyword = ''.obs;
+  String get searchKeyword => _searchKeyword.value;
 
   int get _page => _paginationFilter.value.page;
   int get _listSize => _paginationFilter.value.listSize;
 
-  @override
   void loadNextPage() => changePaginationFilter(_page + 1, _listSize);
-  @override
+
   void loadNewPage() => changePaginationFilter(1, _listSize);
-  @override
-  Rx<PageStatus> pageStatus = PageStatus.init().obs;
 
   Rx<PlaceType> selectedPlaceType = PlaceType.all.obs;
 
   late Worker _debounceWorker;
 
-  late LatLngUIModel _baseLocation;
+  late Rx<LatLngUIModel> baseLocation;
+
+  // LatLngUIModel get baseLocation => _baseLocation;
 
   @override
   Future<void> onInit() async {
     super.onInit();
-    _baseLocation = await _getCurrentLocation();
-    // _debounceWorker = debounce(searchKeywords, _changeSearchKeyword,
-    //     time: const Duration(milliseconds: 500));
-    // ever(_paginationFilter, _getPlacePreviewList);
+    change([], status: const PageStatus.success());
+    var previousBaseLocation = Get.arguments as LatLngUIModel?;
+    _currentLocation = await _getCurrentLocation();
 
-    // change(null, status: RxStatus.empty());
+    if (previousBaseLocation != null) {
+      baseLocation = LatLngUIModel(
+              lat: (Get.arguments as LatLngUIModel).lat,
+              lng: (Get.arguments as LatLngUIModel).lng)
+          .obs;
+    } else {
+      baseLocation =
+          LatLngUIModel(lat: _currentLocation.lat, lng: _currentLocation.lng)
+              .obs;
+    }
 
-    // infiniteScrollController.value.addListener(() {
-    //   var nextPageTrigger =
-    //       infiniteScrollController.value.position.maxScrollExtent * 0.8;
-    //   if (!_isLoading.value &&
-    //       !_lastPage.value &&
-    //       infiniteScrollController.value.offset >= nextPageTrigger) {
-    //     loadNextPage();
-    //   }
-    // });
+    // _setCameraPosition(CameraPosition(target: baseLocation.value, zoom: 0));
+
+    change([], status: PageStatus.init());
   }
 
-  Future<LatLngUIModel> _getCurrentLocation() async {
-    return await Geolocator.getCurrentPosition().then(
-        (value) => LatLngUIModel(lat: value.latitude, lng: value.longitude));
+  // _setCameraPosition(CameraPosition cameraPosition) {
+  //   _cameraPosition = CameraPosition(
+  //       target: cameraPosition.target, zoom: cameraPosition.zoom);
+  // }
+
+  onCurrentLocationButtonTap() async {
+    // _currentLocation = await _getCurrentLocation();
+    await _moveCameraToLocation(_currentLocation);
+  }
+
+  _moveCameraToLocation(LatLngUIModel? location) async {
+    if (location != null) {
+      final _mapController = await mapController.future;
+      await _mapController.moveCamera(
+        CameraUpdate.scrollWithOptions(location, zoom: 15),
+      );
+    }
   }
 
   @override
   void onReady() {
     super.onReady();
 
-    _debounceWorker = debounce(mapSearchFilter, (_) => loadNewPage());
+    _debounceWorker = debounce(_searchKeyword, (keyword) => loadNewPage(),
+        time: Duration(milliseconds: 500));
+
     ever(_paginationFilter, getDataByPaginationFilter);
-    addInfiniteScrollListener();
   }
 
-  @override
   getDataByPaginationFilter(PaginationFilter _paginationFilter) async {
-    if (_paginationFilter.page == 1) {
+    if (_paginationFilter.page == 1 && searchKeyword.isNotEmpty) {
       await _getPlacePreviewList(_paginationFilter);
-    } else if (_paginationFilter.page > 1) {
+    } else if (_paginationFilter.page > 1 && searchKeyword.isNotEmpty) {
       await _morePlacePreviewList(_paginationFilter);
     }
   }
 
   @override
-  void addInfiniteScrollListener() {
-    infiniteScrollController.addListener(() {
-      if ((pageStatus.value == const PageStatus.success()) &&
-          infiniteScrollController.offset >= nextPageTrigger) {
-        loadNextPage();
-      }
-    });
-  }
-
-  @override
   void onClose() {
     super.onClose();
-    infiniteScrollController.dispose();
     _debounceWorker.dispose();
   }
 
   void onSearchChanged(String val) {
+    if (!isLocationChanged.value) {
+      // showCustomSnackbar(text: '검색할 위치를 먼저 설정해주세요');
+      clearResult();
+      return;
+    }
     if (val.isEmpty) {
       clearResult();
-    } else {
-      mapSearchFilter.value.keyword = val;
-      mapSearchFilter.refresh();
     }
+    _searchKeyword.value = val;
   }
 
-  // void _changeSearchKeyword(_keyword) {
-  //   mapSearchFilter.value.keyword = _keyword;
-  //   mapSearchFilter.refresh();
-  // }
+  goToSetLocationPage() async {
+    LatLngUIModel? searchBaseLocation = await Get.toNamed(
+        Routes.MAP_SET_SERCH_LOCATION,
+        arguments: baseLocation) as LatLngUIModel?;
+
+    if (searchBaseLocation != null) {
+      baseLocation = LatLngUIModel(
+              lat: searchBaseLocation.lat, lng: searchBaseLocation.lng)
+          .obs;
+    }
+  }
 
   void clearResult() {
     placeNameTextController.clear();
     placeListSearched.clear();
-    pageStatus.value = PageStatus.empty();
   }
 
   _getPlacePreviewList(paginationFilter) async {
-    pageStatus.value = PageStatus.loading();
+    change(null, status: const PageStatus.loading());
     Either<Failure, List<PlacePreviewResponseDTO>> previewListResponse =
         await _mapRepository.getPlacePreviewList(
+            keyword: searchKeyword,
             mapFilterUIModel: mapSearchFilter.value,
             paginationFilter: _paginationFilter.value,
-            baseLatLng: _baseLocation);
+            baseLatLng: baseLocation.value);
 
     previewListResponse.fold((failure) {
       ErrorObject errorObject =
           ErrorObject.mapFailureToErrorMessage(failure: failure);
-      pageStatus.value = PageStatus.error(errorObject.message);
+      change(null, status: PageStatus.error(errorObject.message));
     }, (dtoList) {
       if (dtoList.isEmpty) {
-        pageStatus.value = PageStatus.empty();
+        change(null, status: const PageStatus.empty());
       } else {
         placeListSearched.assignAll(parseDtoToUiModel(dtoList));
-        pageStatus.value = PageStatus.success();
+        change(placeListSearched, status: const PageStatus.success());
       }
     });
+  }
 
-    Get.focusScope!.unfocus();
+  onCameraChange(
+      LatLng? latLng, CameraChangeReason changeReason, bool? isChanged) {
+    if (changeReason == CameraChangeReason.gesture) {
+      if (latLng != null) {
+        baseLocation.value =
+            LatLngUIModel(lat: latLng.latitude, lng: latLng.longitude);
+        isLocationChanged.value = true;
+      }
+    }
   }
 
   _morePlacePreviewList(paginationFilter) async {
-    pageStatus.value = const PageStatus.loadingMore();
+    change(placeListSearched, status: PageStatus.loadingMore());
     Either<Failure, List<PlacePreviewResponseDTO>> previewListResponse =
         await _mapRepository.getPlacePreviewList(
+            keyword: searchKeyword,
             mapFilterUIModel: mapSearchFilter.value,
             paginationFilter: _paginationFilter.value,
-            baseLatLng: _baseLocation);
+            baseLatLng: baseLocation.value);
 
     previewListResponse.fold((failure) {
       ErrorObject errorObject =
           ErrorObject.mapFailureToErrorMessage(failure: failure);
-      pageStatus.value = PageStatus.error(errorObject.message);
+      change(null, status: PageStatus.error(errorObject.message));
     }, (dtoList) {
       if (dtoList.isEmpty) {
-        pageStatus.value = const PageStatus.empty();
+        // mapSearchFilter.value.searchArea += 1;
+
+        change(placeListSearched, status: const PageStatus.emptyLastPage());
       } else {
         placeListSearched.addAll(parseDtoToUiModel(dtoList));
-        pageStatus.value = const PageStatus.success();
+        change(placeListSearched, status: const PageStatus.success());
       }
     });
 
@@ -194,13 +225,12 @@ class MapSearchController extends GetxController implements InfiniteScroll {
     return dto
         .map((e) => e.map(
             pharmacy: (value) =>
-                PharmacyPreviewUIModel.fromDTO(value, _baseLocation),
+                PharmacyPreviewUIModel.fromDTO(value, baseLocation.value),
             hospital: (value) =>
-                HospitalPreviewUIModel.fromDTO(value, _baseLocation)))
+                HospitalPreviewUIModel.fromDTO(value, baseLocation.value)))
         .toList();
   }
 
-  @override
   void changePaginationFilter(int page, int limit) {
     _paginationFilter.update((val) {
       val!.page = page;
@@ -210,5 +240,46 @@ class MapSearchController extends GetxController implements InfiniteScroll {
 
   onPlaceSelected(int placeIndex) {
     Get.back(result: placeListSearched[placeIndex]);
+  }
+
+  // _moveCameraToBaseLocation(LatLngUIModel baseLocation) async {
+  //   final _mapController = await mapController.future;
+
+  //   await _mapController.moveCamera(CameraUpdate.scrollTo(baseLocation),
+  //       animationDuration: 200);
+  // }
+
+  Future<void> onMapCreated(NaverMapController controller) async {
+    // mapController = controller;
+    if (mapController.isCompleted) mapController = Completer();
+    mapController.complete(controller);
+    await _moveCameraToLocation(baseLocation.value);
+  }
+
+  Future<LatLngUIModel> _getCurrentLocation() async {
+    return await Geolocator.getCurrentPosition().then(
+        (value) => LatLngUIModel(lat: value.latitude, lng: value.longitude));
+  }
+
+  _setSearchBaseLocation(LatLng? newBaseLocation) async {
+    if (newBaseLocation != null) {
+      baseLocation.value = LatLngUIModel(
+          lat: newBaseLocation.latitude, lng: newBaseLocation.longitude);
+    } else {
+      final _mapController = await mapController.future;
+      baseLocation.value = await _mapController.getCameraPosition().then(
+          (value) => LatLngUIModel(
+              lat: value.target.latitude, lng: value.target.longitude));
+      print('Lat - 현재 위도 : ${baseLocation.value.lat}');
+      print('Lng - 현재 경도 : ${baseLocation.value.lng}');
+    }
+  }
+
+  changePageStatus(PageStatus pageStatus) async {
+    if (status == PageStatus.init()) {
+      change([], status: PageStatus.success());
+    } else {
+      change([], status: PageStatus.init());
+    }
   }
 }
