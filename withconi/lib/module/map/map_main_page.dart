@@ -2,11 +2,17 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter_naver_map/flutter_naver_map.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:withconi/data/enums/enum.dart';
+import 'package:withconi/data/repository/map_repository.dart';
 import 'package:withconi/module/auth/auth_controller.dart';
 import 'package:withconi/import_basic.dart';
+import 'package:withconi/module/common/my_lazy_load_scroll_view.dart';
+import 'package:withconi/module/community/controllers/custom_state_mixin.dart';
+import 'package:withconi/module/map/widgets/place_list_show_button.dart';
 import 'package:withconi/module/ui_model/dropdown_data_ui_model.dart';
 import 'package:withconi/global_widgets/button/wide_button.dart';
+import 'package:withconi/module/ui_model/latlng_ui_model.dart';
 import 'package:withconi/module/ui_model/place_ui_model/abstract_class/place_preview_ui.dart';
+import '../page_status.dart';
 import 'controllers/map_main_page_controller.dart';
 import '../theme/text_theme.dart';
 import '../../global_widgets/searchbar/search_bar.dart';
@@ -20,591 +26,576 @@ class MapMainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final MapMainPageController _controller = Get.find(tag: 'tag');
-    return WillPopScope(
-      onWillPop: () async => false,
-      child: Scaffold(
-        // backgroundColor: WcColors.white,s
-        body: Obx(
-          () => Center(
-            child: (_controller.pageLoading.value)
-                ? SizedBox.shrink()
-                // : (!_controller.hasLocationPermission.value)
-                //     ? LocationPermissionWidget(controller: _controller)
-                : Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      SizedBox(
-                        width: WcWidth,
-                        height: WcHeight,
-                        child: NaverMap(
-                          onMapCreated: _controller.onMapCreated,
-                          mapType: _controller.mapType,
-                          locationButtonEnable: false,
-                          initLocationTrackingMode: LocationTrackingMode.Follow,
-                          markers: _controller.placeMarkers.toList(),
-                          onMapTap: _controller.onMapTap,
-                          logoClickEnabled: true,
-                          onCameraChange: _controller.onCameraChange,
-                        ),
+    final MapMainPageController _controller =
+        Get.put(MapMainPageController(Get.find()));
+
+    return Scaffold(
+        body: _controller.obx(
+      onSuccess: (state) => Center(
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            MyNaverMapView(
+              searchAreaCircleRadius: _controller.searchAreaCircleRadius.value,
+              baseSearchLocation: _controller.baseLocation.value,
+              onCameraChange: _controller.onCameraChange,
+              onMapCreated: _controller.onMapCreated,
+              onMapTap: _controller.onMapTap,
+              placeMarkers: _controller.placeMarkers,
+            ),
+            Positioned(
+              top: WcSafePaddingTop - 110,
+              left: 15,
+              child: Center(
+                child: SearchBarWidget(
+                  width: WcWidth - 40 - 45,
+                  onTextChanged: (_) {},
+                  onTapClear: () {},
+                  textController: null,
+                  hintText: '동물병원/약국 검색',
+                  isEditable: false,
+                  onTextFieldTapped: _controller.goToSearchPlacePage,
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Color.fromARGB(50, 0, 0, 0),
+                      spreadRadius: -1,
+                      blurRadius: 5,
+                      offset: Offset(0, 1),
+                    ),
+                  ],
+                  activeAction: false,
+                ),
+              ),
+            ),
+            Positioned(
+              top: WcSafePaddingTop - 58,
+              left: 15,
+              child: Container(
+                  height: 45,
+                  decoration: BoxDecoration(
+                    color: WcColors.white,
+                    borderRadius: BorderRadius.circular(50),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Color.fromARGB(50, 0, 0, 0),
+                        spreadRadius: -1,
+                        blurRadius: 5,
+                        offset: Offset(0, 1),
                       ),
-                      Positioned(
-                        top: 35,
-                        left: 15,
-                        child: Center(
-                          child: SearchBarWidget(
-                            width: WcWidth - 40 - 45,
-                            onTextChanged: (_) {},
-                            onTapClear: () {},
-                            textController: null,
-                            hintText: '동물병원/약국 검색',
-                            isEditable: false,
-                            onTextFieldTapped: _controller.goToSearchPlacePage,
-                            boxShadow: const [
-                              BoxShadow(
-                                color: Color.fromARGB(50, 0, 0, 0),
-                                spreadRadius: -1,
-                                blurRadius: 5,
-                                offset: Offset(0, 1),
-                              ),
-                            ],
-                            activeAction: false,
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        top: 88,
-                        left: 15,
-                        child: Container(
-                            height: 45,
-                            decoration: BoxDecoration(
-                              color: WcColors.white,
-                              borderRadius: BorderRadius.circular(50),
-                              boxShadow: const [
-                                BoxShadow(
-                                  color: Color.fromARGB(50, 0, 0, 0),
-                                  spreadRadius: -1,
-                                  blurRadius: 5,
-                                  offset: Offset(0, 1),
-                                ),
-                              ],
-                            ),
-                            child: Obx(
-                              () => PlaceTypeToggleButton(
-                                onPressed:
-                                    _controller.onSelectedPlaceTypeChanged,
-                                placeTypeList: PlaceType.values,
-                                selectedPlaceType: _controller
-                                    .mapFilterUiModel.value.placeType,
-                              ),
-                            )),
-                      ),
-                      Positioned(
-                        right: 13,
-                        top: 88,
-                        child: GestureDetector(
-                          onTap: () {
-                            Get.toNamed(
-                              Routes.MAP_BOOKMARK,
-                            );
-                          },
-                          child: Container(
-                            width: 48,
-                            height: 48,
-                            padding: const EdgeInsets.all(12),
-                            decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: WcColors.white,
-                                boxShadow: [
-                                  BoxShadow(
-                                      color: WcColors.grey120,
-                                      blurRadius: 5,
-                                      offset: Offset(0, 1),
-                                      spreadRadius: -1)
-                                ]),
-                            child: SvgPicture.asset(
-                              'assets/icons/bookmark.svg',
-                              color: WcColors.blue100,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        right: 13,
-                        top: 35,
-                        child: GestureDetector(
-                          onTap: () {
-                            Get.toNamed(
-                              Routes.MAP_MY_REVIEW,
-                            );
-                          },
-                          child: Container(
-                            width: 48,
-                            height: 48,
-                            padding: EdgeInsets.all(12.8),
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: WcColors.white,
-                                boxShadow: [
-                                  BoxShadow(
-                                      color: WcColors.grey120,
-                                      blurRadius: 5,
-                                      offset: Offset(0, 1),
-                                      spreadRadius: -1)
-                                ]),
-                            child: SvgPicture.asset(
-                              'assets/icons/review.svg',
-                              color: WcColors.blue100,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Obx(
-                        () => Visibility(
-                            visible: _controller.showResearchButton.value,
-                            child: Positioned(
-                              top: 145,
-                              child: SearchRefreshButton(
-                                onTap: _controller.searchRefresh,
-                              ),
-                            )),
-                      ),
-                      Obx(
-                        () => Visibility(
-                          visible: _controller.showPlaceListBottomSheet.value,
-                          maintainState: true,
-                          child: DraggableScrollableSheet(
-                              initialChildSize: 0.39,
-                              minChildSize: 93 / WcHeight,
-                              maxChildSize: 1,
-                              controller:
-                                  _controller.placePreviewListDragController,
-                              builder: (context, scrollController) {
-                                _controller.placeListScrollController =
-                                    scrollController;
-                                _controller.addInfiniteScrollListener();
-                                return SingleChildScrollView(
-                                  // physics: ClampingScrollPhysics(),
-                                  controller:
-                                      _controller.placeListScrollController,
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                    children: [
-                                      MyLocationButton(
-                                        onTap: _controller
-                                            .onCurrentLocationButtonTap,
-                                      ),
-                                      Container(
-                                        constraints: BoxConstraints(
-                                          minHeight: WcHeight,
-                                        ),
-                                        decoration: BoxDecoration(
-                                            color: WcColors.white,
-                                            boxShadow: [
-                                              BoxShadow(
-                                                  color: WcColors.grey120,
-                                                  blurRadius: 10,
-                                                  offset: Offset(0, 2),
-                                                  spreadRadius: -5)
-                                            ]),
-                                        child: Column(
-                                          children: [
-                                            DraggableIndicator(),
-                                            SingleChildScrollView(
-                                              scrollDirection: Axis.horizontal,
-                                              child: Row(
-                                                children: [
-                                                  Container(
-                                                    padding: const EdgeInsets
-                                                            .symmetric(
-                                                        horizontal: 13),
-                                                    child: Row(
-                                                      children: [
-                                                        Obx(
-                                                          () =>
-                                                              CustomDropdownButton(
-                                                                  dropdownList:
-                                                                      DiseaseType
-                                                                          .values
-                                                                          .map(
-                                                                              (diseaseType) {
-                                                                    return DropdownDataUIModel(
-                                                                        value: (diseaseType == DiseaseType.all)
-                                                                            ? null
-                                                                            : diseaseType,
-                                                                        text: diseaseType
-                                                                            .displayName);
-                                                                  }).toList(),
-                                                                  hintText:
-                                                                      '질병별 방문 많은',
-                                                                  selectedValue:
-                                                                      _controller
-                                                                          .mapFilterUiModel
-                                                                          .value
-                                                                          .diseaseType,
-                                                                  onValueChanged:
-                                                                      _controller
-                                                                          .onSelectedDiseaseTypeChanged),
-                                                        ),
-                                                        SizedBox(
-                                                          width: 10,
-                                                        ),
-                                                        Obx(
-                                                          () =>
-                                                              CustomDropdownButton(
-                                                            dropdownList: Species
-                                                                .values
-                                                                .map((species) => DropdownDataUIModel(
-                                                                    value: (species ==
-                                                                            Species
-                                                                                .all)
-                                                                        ? null
-                                                                        : species,
-                                                                    text: species
-                                                                        .displayName))
-                                                                .toList(),
-                                                            hintText:
-                                                                '품종별 많이 찾는',
-                                                            selectedValue:
-                                                                _controller
-                                                                    .mapFilterUiModel
-                                                                    .value
-                                                                    .speciesType,
-                                                            onValueChanged:
-                                                                _controller
-                                                                    .onSelectedSpeciesTypeChanged,
-                                                          ),
-                                                        ),
-                                                        SizedBox(
-                                                          width: 10,
-                                                        ),
-                                                        Obx(
-                                                          () =>
-                                                              OpeningStatusButton(
-                                                            openingStatus: _controller
-                                                                .mapFilterUiModel
-                                                                .value
-                                                                .openingStatus,
-                                                            onTap: _controller
-                                                                .onOpeningStatusTypeChanged,
-                                                          ),
-                                                        )
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              height: 15,
-                                            ),
-                                            Divider(
-                                                height: 1,
-                                                thickness: 1,
-                                                color: WcColors.grey60),
-                                            SizedBox(
-                                              height: 4,
-                                            ),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.end,
-                                              children: [
-                                                Obx(
-                                                  () => Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            right: 8.0),
-                                                    child: CustomDropdownButton(
-                                                      buttonPadding:
-                                                          const EdgeInsets.only(
-                                                              left: 3,
-                                                              right: 0),
-                                                      buttonWidth: (_controller
-                                                                  .mapFilterUiModel
-                                                                  .value
-                                                                  .locationType ==
-                                                              LocationSearchType
-                                                                  .currentLocation)
-                                                          ? 92
-                                                          : 105,
-                                                      selectedButtonColor:
-                                                          WcColors.white,
-                                                      selectedTextColor:
-                                                          WcColors.black,
-                                                      dropdownList: LocationSearchType
-                                                          .values
-                                                          .map((locationType) =>
-                                                              DropdownDataUIModel(
-                                                                  value:
-                                                                      locationType,
-                                                                  text: locationType
-                                                                      .displayName))
-                                                          .toList(),
-                                                      hintText: '',
-                                                      selectedValue: _controller
-                                                          .mapFilterUiModel
-                                                          .value
-                                                          .locationType,
-                                                      onValueChanged: (item) {
-                                                        _controller
-                                                            .onBaseLocationChanged(item
-                                                                as LocationSearchType);
-                                                      },
-                                                    ),
-                                                  ),
-                                                ),
-                                                Obx(
-                                                  () => Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            right: 8.0),
-                                                    child: CustomDropdownButton(
-                                                      buttonPadding:
-                                                          const EdgeInsets.only(
-                                                              left: 3,
-                                                              right: 0),
-                                                      buttonWidth: (_controller
-                                                                  .mapFilterUiModel
-                                                                  .value
-                                                                  .sortType ==
-                                                              SortType.nearest)
-                                                          ? 65
-                                                          : 95,
-                                                      selectedButtonColor:
-                                                          WcColors.white,
-                                                      selectedTextColor:
-                                                          WcColors.black,
-                                                      dropdownList: SortType
-                                                          .values
-                                                          .map((sortType) =>
-                                                              DropdownDataUIModel(
-                                                                  value:
-                                                                      sortType,
-                                                                  text: sortType
-                                                                      .displayName))
-                                                          .toList(),
-                                                      hintText: '',
-                                                      selectedValue: _controller
-                                                          .mapFilterUiModel
-                                                          .value
-                                                          .sortType,
-                                                      onValueChanged: (item) {
-                                                        _controller
-                                                            .onSortTypeChanged(
-                                                                item
-                                                                    as SortType);
-                                                      },
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            Obx(
-                                              () => Visibility(
-                                                visible: _controller
-                                                    .placePreviewList
-                                                    .isNotEmpty,
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.end,
-                                                  children: [
-                                                    ListView.builder(
-                                                        cacheExtent: 2000,
-                                                        padding:
-                                                            EdgeInsets.all(0),
-                                                        physics:
-                                                            NeverScrollableScrollPhysics(),
-                                                        shrinkWrap: true,
-                                                        itemCount: _controller
-                                                            .placePreviewList
-                                                            .length,
-                                                        itemBuilder:
-                                                            (context, index) {
-                                                          PlacePreviewUiModel
-                                                              place =
-                                                              _controller
-                                                                      .placePreviewList[
-                                                                  index];
-                                                          return PlacePreviewListTile(
-                                                            isFirstList:
-                                                                (index == 0),
-                                                            place: place,
-                                                            onTap: (PlacePreviewUiModel
-                                                                placePreview) {
-                                                              _controller
-                                                                      .selectedPlacePreview
-                                                                      .value =
-                                                                  placePreview;
-                                                            },
-                                                          );
-                                                        }),
-                                                  ],
-                                                ),
-                                                replacement: Container(
-                                                  width: WcWidth,
-                                                  height: 220,
-                                                  decoration: BoxDecoration(
-                                                      color: WcColors.white),
-                                                  child: Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      SvgPicture.asset(
-                                                        'assets/icons/location_grey.svg',
-                                                        color: WcColors.grey120,
-                                                        height: 35,
-                                                      ),
-                                                      SizedBox(
-                                                        height: 10,
-                                                      ),
-                                                      Text(
-                                                        '일치하는 장소가 없어요',
-                                                        style: TextStyle(
-                                                            fontFamily:
-                                                                WcFontFamily
-                                                                    .notoSans,
-                                                            fontSize: 18,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            color: WcColors
-                                                                .grey140),
-                                                      ),
-                                                      SizedBox(
-                                                        height: 10,
-                                                      ),
-                                                      Text(
-                                                        '소중한 리뷰를 남겨주시면\n도움되는 정보로 꼭 보답할게요!',
-                                                        style: TextStyle(
-                                                            fontFamily:
-                                                                WcFontFamily
-                                                                    .notoSans,
-                                                            fontSize: 15,
-                                                            color: WcColors
-                                                                .grey140),
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              }),
-                        ),
-                      ),
-                      Obx(
-                        () => Visibility(
-                          visible:
-                              (_controller.selectedPlacePreview.value != null),
-                          child: DraggableScrollableSheet(
-                              controller:
-                                  // DraggableScrollableController(),
-                                  _controller.selectedPlaceDragController,
-                              // _controller.makeNewDraggableSelected(),
-                              minChildSize: 250 / WcHeight,
-                              initialChildSize: 250 / WcHeight,
-                              maxChildSize: 0.90,
-                              // snap: true,
-                              // snapSizes: [250 / WcHeight, 0.8],
-                              builder: (context, scrollController) {
-                                _controller.selectedPlaceScrollController =
-                                    scrollController;
-                                return SingleChildScrollView(
-                                    controller: _controller
-                                        .selectedPlaceScrollController,
-                                    child: GestureDetector(
-                                      onTap:
-                                          _controller.goToSelectedPlaceDetail,
-                                      child: Container(
-                                        margin: EdgeInsets.only(top: 20),
-                                        decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(20),
-                                                topRight: Radius.circular(20)),
-                                            color: WcColors.white,
-                                            boxShadow: [
-                                              BoxShadow(
-                                                  color: WcColors.grey140,
-                                                  blurRadius: 10,
-                                                  offset: Offset(0, 0),
-                                                  spreadRadius: -6)
-                                            ]),
-                                        height: WcHeight,
-                                        width: WcWidth,
-                                        child: Column(
-                                          children: [
-                                            Container(
-                                              height: 5,
-                                              width: 38,
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                color: WcColors.grey80,
-                                              ),
-                                              margin: EdgeInsets.only(
-                                                  top: 13, bottom: 0),
-                                            ),
-                                            PlacePreviewListTile(
-                                              isFirstList: false,
-                                              place: _controller
-                                                  .selectedPlacePreview.value!,
-                                              hasDivider: false,
-                                              onTap: (placePreview) {
-                                                _controller
-                                                    .goToSelectedPlaceDetail(
-                                                        placePreview);
-                                              },
-                                            ),
-                                            Container(
-                                              width: WcWidth - 30,
-                                              height: 50,
-                                              child: Row(
-                                                children: [
-                                                  PhoneCallButton(
-                                                      phoneNumber: _controller
-                                                          .selectedPlacePreview
-                                                          .value!
-                                                          .phone),
-                                                  SizedBox(
-                                                    width: 10,
-                                                  ),
-                                                  WcWideButtonWidget(
-                                                      buttonText: '리뷰쓰기',
-                                                      onTap: () {
-                                                        _controller
-                                                            .newPlaceReviewPage(
-                                                                _controller
-                                                                    .selectedPlacePreview
-                                                                    .value!);
-                                                      },
-                                                      buttonWidth:
-                                                          WcWidth - 30 - 60,
-                                                      activeButtonColor:
-                                                          WcColors.blue100,
-                                                      active: true,
-                                                      activeTextColor:
-                                                          WcColors.white),
-                                                ],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ));
-                              }),
-                        ),
-                      )
                     ],
                   ),
-          ),
+                  child: Obx(
+                    () => PlaceTypeToggleButton(
+                      onPressed: _controller.onSelectedPlaceTypeChanged,
+                      placeTypeList: PlaceType.values,
+                      selectedPlaceType: _controller.selectedPlaceType.value,
+                    ),
+                  )),
+            ),
+            Positioned(
+              right: 13,
+              top: WcSafePaddingTop - 110,
+              child: GestureDetector(
+                onTap: () {
+                  Get.toNamed(
+                    Routes.MAP_MY_REVIEW,
+                  );
+                },
+                child: Container(
+                    width: 48,
+                    height: 48,
+                    padding: const EdgeInsets.all(12.8),
+                    decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: WcColors.white,
+                        boxShadow: [
+                          BoxShadow(
+                              color: WcColors.grey120,
+                              blurRadius: 5,
+                              offset: Offset(0, 1),
+                              spreadRadius: -1)
+                        ]),
+                    child: const Icon(
+                      Icons.rate_review_rounded,
+                      color: WcColors.blue100,
+                    )),
+              ),
+            ),
+            Positioned(
+              right: 13,
+              top: WcSafePaddingTop - 58,
+              child: GestureDetector(
+                onTap: () {
+                  Get.toNamed(
+                    Routes.MAP_BOOKMARK,
+                  );
+                },
+                child: Container(
+                  width: 48,
+                  height: 48,
+                  padding: const EdgeInsets.all(12.5),
+                  decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: WcColors.white,
+                      boxShadow: [
+                        BoxShadow(
+                            color: WcColors.grey120,
+                            blurRadius: 5,
+                            offset: Offset(0, 1),
+                            spreadRadius: -1)
+                      ]),
+                  child: SvgPicture.asset(
+                    'assets/icons/bookmark.svg',
+                    height: 20,
+                    color: WcColors.blue100,
+                  ),
+                ),
+              ),
+            ),
+            Obx(
+              () => Visibility(
+                  visible: (_controller.showResearchButton.value ||
+                      _controller.status == const PageStatus.init()),
+                  child: Positioned(
+                    top: WcSafePaddingTop + 9,
+                    child: SearchRefreshButton(
+                      onTap: _controller.onSearchRefreshTap,
+                    ),
+                  )),
+            ),
+            Obx(
+              () => Visibility(
+                visible: (_controller.showPlaceListBottomSheet.value),
+                child: DraggableScrollableSheet(
+                    initialChildSize: 190 / WcHeight,
+                    minChildSize: 90 / WcHeight,
+                    maxChildSize: 1,
+                    controller: _controller.placeListDragController,
+                    builder: (BuildContext context, scrollController) {
+                      _controller.placeListScrollController = scrollController;
+                      _controller.addPlaceListScrollListener();
+                      return MyLazyLoadScrollView(
+                        isLoading: (_controller.status != PageStatus.success()),
+                        onEndOfPage: _controller.loadNextPage,
+                        child: SingleChildScrollView(
+                          // physics: ClampingScrollPhysics(),
+                          controller: _controller.placeListScrollController,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              MyLocationButton(
+                                onTap: _controller.onCurrentLocationButtonTap,
+                              ),
+                              Container(
+                                constraints: BoxConstraints(
+                                  minHeight: WcHeight,
+                                ),
+                                decoration: const BoxDecoration(
+                                    color: WcColors.white,
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: WcColors.grey120,
+                                          blurRadius: 10,
+                                          offset: Offset(0, 2),
+                                          spreadRadius: -5)
+                                    ]),
+                                child: Column(
+                                  children: [
+                                    const DraggableIndicator(),
+                                    SingleChildScrollView(
+                                      scrollDirection: Axis.horizontal,
+                                      child: Row(
+                                        children: [
+                                          Container(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 13),
+                                            child: Row(
+                                              children: [
+                                                Obx(
+                                                  () => CustomDropdownButton(
+                                                      minButtonWidth: 115,
+                                                      maxButtonWidth: 133,
+                                                      dropdownList: DiseaseType
+                                                          .values
+                                                          .where((e) =>
+                                                              e !=
+                                                              DiseaseType
+                                                                  .undefined)
+                                                          .map((diseaseType) {
+                                                        return DropdownDataUIModel(
+                                                            value: (diseaseType ==
+                                                                    DiseaseType
+                                                                        .all)
+                                                                ? null
+                                                                : diseaseType,
+                                                            text: diseaseType
+                                                                .displayName);
+                                                      }).toList(),
+                                                      hintText: '질환별 방문 많은',
+                                                      selectedValue:
+                                                          DropdownDataUIModel(
+                                                              text: '질환별 방문 많은',
+                                                              value: _controller
+                                                                  .selectedDiseaseType
+                                                                  .value),
+                                                      onValueChanged: _controller
+                                                          .onSelectedDiseaseTypeChanged),
+                                                ),
+                                                const SizedBox(
+                                                  width: 10,
+                                                ),
+                                                Obx(
+                                                  () => CustomDropdownButton(
+                                                    minButtonWidth: 115,
+                                                    maxButtonWidth: 133,
+                                                    dropdownList: Species.values
+                                                        .map((species) =>
+                                                            DropdownDataUIModel(
+                                                                value: (species ==
+                                                                        Species
+                                                                            .all)
+                                                                    ? null
+                                                                    : species,
+                                                                text: species
+                                                                    .displayName))
+                                                        .toList(),
+                                                    hintText: '품종별 많이 찾는',
+                                                    selectedValue:
+                                                        DropdownDataUIModel(
+                                                            text: '품종별 많이 찾는',
+                                                            value: _controller
+                                                                .selectedSpeciesType
+                                                                .value),
+                                                    onValueChanged: _controller
+                                                        .onSelectedSpeciesTypeChanged,
+                                                  ),
+                                                ),
+                                                const SizedBox(
+                                                  width: 10,
+                                                ),
+                                                Obx(
+                                                  () => OpeningStatusButton(
+                                                    openingStatus: _controller
+                                                        .selectedOpeningStatus
+                                                        .value,
+                                                    onTap: _controller
+                                                        .onOpeningStatusTypeChanged,
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 13,
+                                    ),
+                                    const Divider(
+                                        height: 1,
+                                        thickness: 1,
+                                        color: WcColors.grey60),
+                                    const SizedBox(
+                                      height: 4,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Obx(
+                                          () => Padding(
+                                            padding: const EdgeInsets.only(
+                                                right: 5.0),
+                                            child: CustomDropdownButton(
+                                              minButtonWidth: 90,
+                                              maxButtonWidth: 120,
+                                              selectedButtonColor:
+                                                  WcColors.white,
+                                              selectedTextColor: WcColors.black,
+                                              dropdownList: DistanceBaseType
+                                                  .values
+                                                  .map((distanceBaseType) =>
+                                                      DropdownDataUIModel(
+                                                          value:
+                                                              distanceBaseType,
+                                                          text: distanceBaseType
+                                                              .displayName))
+                                                  .toList(),
+                                              hintText: '',
+                                              selectedValue: DropdownDataUIModel(
+                                                  text: _controller
+                                                      .selectedDistanceBaseType
+                                                      .value
+                                                      .displayName,
+                                                  value: _controller
+                                                      .selectedDistanceBaseType
+                                                      .value),
+                                              onValueChanged: (item) {
+                                                _controller
+                                                    .onDistanceBaseTypeChanged(
+                                                        item
+                                                            as DistanceBaseType);
+                                              },
+                                            ),
+                                          ),
+                                        ),
+                                        Obx(
+                                          () => Padding(
+                                            padding: const EdgeInsets.only(
+                                                right: 8.0),
+                                            child: CustomDropdownButton(
+                                              minButtonWidth: 70,
+                                              maxButtonWidth: 93,
+                                              buttonPadding:
+                                                  const EdgeInsets.only(
+                                                      left: 3, right: 0),
+                                              selectedButtonColor:
+                                                  WcColors.white,
+                                              selectedTextColor: WcColors.black,
+                                              dropdownList: Sorting.values
+                                                  .map((sortType) =>
+                                                      DropdownDataUIModel(
+                                                          value: sortType,
+                                                          text: sortType
+                                                              .displayName))
+                                                  .toList(),
+                                              hintText: '',
+                                              selectedValue:
+                                                  DropdownDataUIModel(
+                                                      text: _controller
+                                                          .selectedSorting
+                                                          .value
+                                                          .displayName,
+                                                      value: _controller
+                                                          .selectedSorting
+                                                          .value),
+                                              onValueChanged: (item) {
+                                                _controller.onSortTypeChanged(
+                                                    item as Sorting);
+                                              },
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Obx(() => (state == null || state.isEmpty)
+                                        ? EmptyPlaceListWidget()
+                                        : Column(
+                                            children: [
+                                              ListView.builder(
+                                                  cacheExtent: 900,
+                                                  padding:
+                                                      const EdgeInsets.all(0),
+                                                  physics:
+                                                      const NeverScrollableScrollPhysics(),
+                                                  shrinkWrap: true,
+                                                  itemCount: _controller
+                                                      .placePreviewList.length,
+                                                  itemBuilder:
+                                                      (context, index) {
+                                                    return PlacePreviewListTile(
+                                                      distanceString: _controller
+                                                          .placePreviewList[
+                                                              index]
+                                                          .distanceString(
+                                                              _controller
+                                                                  .baseLocation
+                                                                  .value),
+                                                      isFirstList: (index == 0),
+                                                      place: _controller
+                                                              .placePreviewList[
+                                                          index],
+                                                      onTap:
+                                                          (PlacePreviewUIModel
+                                                              placePreview) {
+                                                        _controller
+                                                            .setSelectedPlacePreview(
+                                                                placePreview
+                                                                    .placeId);
+                                                      },
+                                                    );
+                                                  }),
+                                              (_controller.status ==
+                                                      const PageStatus
+                                                          .loadingMore())
+                                                  ? Container(
+                                                      color: WcColors.white,
+                                                      width: WcWidth,
+                                                      padding: const EdgeInsets
+                                                              .symmetric(
+                                                          vertical: 50),
+                                                      child: const Center(
+                                                        child: SizedBox(
+                                                          width: 20,
+                                                          height: 20,
+                                                          child:
+                                                              CircularProgressIndicator(
+                                                            strokeWidth: 3,
+                                                            color: WcColors
+                                                                .grey100,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    )
+                                                  : const SizedBox.shrink()
+                                            ],
+                                          )),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    }),
+              ),
+            ),
+            Obx(
+              () => Visibility(
+                visible: (_controller.selectedPlacePreview.value != null),
+                child: DraggableScrollableSheet(
+                    controller: _controller.selectedPlaceDragController,
+                    minChildSize: 250 / WcHeight,
+                    initialChildSize: 250 / WcHeight,
+                    maxChildSize: 0.85,
+                    // snap: true,
+                    // snapSizes: [250 / WcHeight, 0.8],
+                    builder: (BuildContext context, scrollController) {
+                      _controller.selectedPlaceScrollController =
+                          scrollController;
+
+                      return SingleChildScrollView(
+                        controller: _controller.selectedPlaceScrollController,
+                        child: SelectedPlacePreview(
+                          distanceString: _controller
+                              .selectedPlacePreview.value!
+                              .distanceString(_controller.baseLocation.value),
+                          onReviewTap: _controller.newPlaceReviewPage,
+                          onTap: _controller.goToSelectedPlaceDetail,
+                          place: _controller.selectedPlacePreview.value!,
+                        ),
+                      );
+                    }),
+              ),
+            ),
+            Obx(
+              () => Visibility(
+                  visible: _controller.showMapButton.value,
+                  child: Positioned(
+                    bottom: 25,
+                    child: MapShowButton(
+                      onTap: _controller.onShowMapButtonTap,
+                      // onTap: _controller.searchRefresh,
+                    ),
+                  )),
+            ),
+          ],
         ),
+      ),
+    ));
+  }
+}
+
+class MyNaverMapView extends StatelessWidget {
+  MyNaverMapView({
+    Key? key,
+    this.onCameraChange,
+    this.onMapTap,
+    this.placeMarkers,
+    required this.onMapCreated,
+    this.initialCameraPosition,
+    required this.baseSearchLocation,
+    this.searchAreaCircleRadius = 0,
+  }) : super(key: key);
+
+  final Function(LatLng?, CameraChangeReason, bool?)? onCameraChange;
+  final Function(LatLng?)? onMapTap;
+  final List<Marker>? placeMarkers;
+  final Function(NaverMapController) onMapCreated;
+  final CameraPosition? initialCameraPosition;
+  final LatLngUIModel baseSearchLocation;
+  final double searchAreaCircleRadius;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: WcWidth,
+      height: WcHeight,
+      child: NaverMap(
+        circles: [
+          CircleOverlay(
+              maxZoom: 14.8,
+              minZoom: 8,
+              onTap: (overlayId) {
+                onMapTap!(null);
+              },
+              color: Color.fromARGB(255, 16, 124, 255).withOpacity(0.1),
+              center: baseSearchLocation,
+              overlayId: 'overlay',
+              radius: searchAreaCircleRadius)
+        ],
+        initialCameraPosition: initialCameraPosition,
+        onMapCreated: onMapCreated,
+        mapType: MapType.Basic,
+        locationButtonEnable: false,
+        initLocationTrackingMode: LocationTrackingMode.Follow,
+        markers: placeMarkers ?? [],
+        onMapTap: onMapTap,
+        logoClickEnabled: true,
+        onCameraChange: onCameraChange,
+      ),
+    );
+  }
+}
+
+class EmptyPlaceListWidget extends StatelessWidget {
+  EmptyPlaceListWidget({
+    Key? key,
+    this.message,
+    this.title,
+  }) : super(key: key);
+
+  String? title;
+  String? message;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: WcWidth,
+      height: 210,
+      decoration: BoxDecoration(color: WcColors.white),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SvgPicture.asset(
+            'assets/icons/location_grey.svg',
+            color: WcColors.grey100,
+            height: 33,
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Text(
+            title ?? '필터에 맞는 장소가 없네요',
+            style: const TextStyle(
+                fontFamily: WcFontFamily.notoSans,
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
+                height: 1.5,
+                color: WcColors.grey120),
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          Text(
+            message ?? '다른 필터로 검색해주세요 :)',
+            style: const TextStyle(
+                fontFamily: WcFontFamily.notoSans,
+                fontSize: 15,
+                height: 1.4,
+                color: WcColors.grey120),
+            textAlign: TextAlign.center,
+          ),
+        ],
       ),
     );
   }
@@ -642,7 +633,7 @@ class LocationPermissionWidget extends StatelessWidget {
               const SizedBox(
                 height: 16,
               ),
-              Text('위치정보 권한이\n필요해요',
+              const Text('위치정보 권한이\n필요해요',
                   style: TextStyle(
                       fontFamily: WcFontFamily.notoSans,
                       fontSize: 25,
@@ -656,7 +647,7 @@ class LocationPermissionWidget extends StatelessWidget {
                       fontSize: 15,
                       color: WcColors.grey140,
                       fontWeight: FontWeight.w400)),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               const Text('설정 > 위치 > 앱을 사용하는 동안',
@@ -701,25 +692,25 @@ class MyLocationButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        margin: EdgeInsets.fromLTRB(0, 0, 15, 10),
-        width: 43,
-        height: 43,
-        padding: EdgeInsets.all(9),
-        decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: WcColors.white,
-            boxShadow: [
-              BoxShadow(
-                  color: WcColors.grey180,
-                  blurRadius: 7,
-                  offset: Offset(0, 2),
-                  spreadRadius: -3)
-            ]),
-        child: SvgPicture.asset(
-          'assets/icons/my_location.svg',
-          height: 25,
-        ),
-      ),
+          margin: const EdgeInsets.fromLTRB(0, 0, 15, 10),
+          padding: const EdgeInsets.all(9),
+
+          // padding: EdgeInsets.all(9),
+          decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              color: WcColors.white,
+              boxShadow: [
+                BoxShadow(
+                    color: WcColors.grey180,
+                    blurRadius: 7,
+                    offset: Offset(0, 2),
+                    spreadRadius: -3)
+              ]),
+          child: const Icon(
+            Icons.my_location_rounded,
+            size: 24,
+            color: WcColors.grey180,
+          )),
     );
   }
 }
@@ -781,7 +772,7 @@ class OpeningStatusButton extends StatelessWidget {
   }
 }
 
-class CustomDropdownButton extends StatelessWidget {
+class CustomDropdownButton<T> extends StatelessWidget {
   CustomDropdownButton(
       {Key? key,
       // required MapMainPageController controller,
@@ -789,6 +780,8 @@ class CustomDropdownButton extends StatelessWidget {
       required this.dropdownList,
       required this.selectedValue,
       required this.onValueChanged,
+      required this.minButtonWidth,
+      required this.maxButtonWidth,
       this.buttonWidth = 139,
       this.buttonHeight = 35,
       this.selectedButtonColor,
@@ -797,20 +790,36 @@ class CustomDropdownButton extends StatelessWidget {
       : super(key: key);
 
   String hintText;
-  List<DropdownDataUIModel> dropdownList = [];
-  dynamic selectedValue;
+  List<DropdownDataUIModel<T>> dropdownList = [];
+  DropdownDataUIModel<T> selectedValue;
+
   void Function(Object?)? onValueChanged;
   double buttonWidth;
   Color? selectedButtonColor;
   Color? selectedTextColor;
   double buttonHeight;
   EdgeInsetsGeometry? buttonPadding;
+  double minButtonWidth;
+  double maxButtonWidth;
 
   @override
   Widget build(BuildContext context) {
+    if (selectedValue.value == null) {
+      buttonWidth = hintText.length * 15;
+    } else {
+      buttonWidth = selectedValue.text.length * 18;
+    }
+    if (buttonWidth < minButtonWidth) {
+      buttonWidth = minButtonWidth;
+    } else if (buttonWidth > maxButtonWidth) {
+      buttonWidth = maxButtonWidth;
+    }
+
     return DropdownButtonHideUnderline(
-      child: DropdownButton2(
+      child: DropdownButton2<T>(
         // dropdownElevation: 2,
+        // scrollbarThickness: 2,
+
         scrollbarAlwaysShow: true,
         selectedItemBuilder: (context) => dropdownList
             .map(
@@ -818,10 +827,12 @@ class CustomDropdownButton extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 height: 35,
                 child: Text(
-                    (selectedValue == null) ? hintText : dropdownItem.text,
+                    (selectedValue.value == null)
+                        ? hintText
+                        : dropdownItem.text,
                     style: TextStyle(
                         fontFamily: WcFontFamily.notoSans,
-                        color: (selectedValue == null)
+                        color: (selectedValue.value == null)
                             ? WcColors.grey200
                             : selectedTextColor ?? WcColors.white,
                         fontWeight: FontWeight.w500,
@@ -831,7 +842,7 @@ class CustomDropdownButton extends StatelessWidget {
             .toList(),
         selectedItemHighlightColor: WcColors.grey40,
         buttonDecoration: BoxDecoration(
-            color: (selectedValue != null)
+            color: (selectedValue.value != null)
                 ? selectedButtonColor ?? WcColors.blue100
                 : WcColors.grey60,
             borderRadius: BorderRadius.circular(5)),
@@ -850,32 +861,38 @@ class CustomDropdownButton extends StatelessWidget {
         ]),
         icon: SvgPicture.asset(
           'assets/icons/arrow_down.svg',
-          color: (selectedValue != null)
+          color: (selectedValue.value != null)
               ? selectedTextColor ?? WcColors.white
               : WcColors.grey160,
         ),
         isExpanded: true,
         alignment: Alignment.centerLeft,
         items: dropdownList
-            .map((dropdownItem) => DropdownMenuItem(
+            .map((dropdownItem) => DropdownMenuItem<T>(
                   value: dropdownItem.value,
                   child: SizedBox(
-                    child: Text(
-                      (dropdownItem.value == null) ? '전체' : dropdownItem.text,
-                      style: GoogleFonts.notoSans(
-                          color: WcColors.black,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w100,
-                          height: 1.3),
-                    ),
-                  ),
+                      child: Row(
+                    children: [
+                      Text(
+                        (dropdownItem.value == null) ? '전체' : dropdownItem.text,
+                        style: TextStyle(
+                            fontFamily: WcFontFamily.notoSans,
+                            color: WcColors.black,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            height: 1.3),
+                      ),
+                    ],
+                  )),
                 ))
             .toList(),
-        value: selectedValue,
+        value: selectedValue.value,
         onChanged: onValueChanged,
         buttonHeight: buttonHeight,
-        buttonWidth: buttonWidth, dropdownMaxHeight: 200,
-        dropdownWidth: buttonWidth + 35,
+        buttonWidth: buttonWidth,
+
+        dropdownMaxHeight: 250,
+        dropdownWidth: buttonWidth + 36,
         itemHeight: 45,
       ),
     );
@@ -890,13 +907,13 @@ class DraggableIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 4,
-      width: 45,
+      height: 5,
+      width: 40,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: WcColors.grey80,
       ),
-      margin: EdgeInsets.only(top: 13, bottom: 15),
+      margin: EdgeInsets.only(top: 12, bottom: 13),
     );
   }
 }
@@ -904,22 +921,25 @@ class DraggableIndicator extends StatelessWidget {
 class PlacePreviewListTile extends StatelessWidget {
   PlacePreviewListTile({
     Key? key,
-    required PlacePreviewUiModel place,
+    required PlacePreviewUIModel place,
     bool? hasDivider,
     // required String distance,
-    required void Function(PlacePreviewUiModel) onTap,
+    required void Function(PlacePreviewUIModel) onTap,
+    required String distanceString,
     EdgeInsets? padding,
     required bool isFirstList,
   })  : _place = place,
         _hasDivider = hasDivider ?? true,
         _onTap = onTap,
         _isFirstList = isFirstList,
+        _distanceString = distanceString,
         super(key: key);
 
-  final PlacePreviewUiModel _place;
+  final PlacePreviewUIModel _place;
   bool _hasDivider;
-  void Function(PlacePreviewUiModel) _onTap;
+  void Function(PlacePreviewUIModel) _onTap;
   bool _isFirstList;
+  String _distanceString;
 
   @override
   Widget build(BuildContext context) {
@@ -928,7 +948,9 @@ class PlacePreviewListTile extends StatelessWidget {
         _onTap.call(_place);
       },
       child: Container(
-        padding: EdgeInsets.fromLTRB(15, 20, 15, 15),
+        padding: (_isFirstList)
+            ? EdgeInsets.fromLTRB(15, 10, 15, 15)
+            : EdgeInsets.fromLTRB(15, 20, 15, 15),
         decoration: BoxDecoration(
             color: WcColors.white,
             border: Border(
@@ -961,7 +983,7 @@ class PlacePreviewListTile extends StatelessWidget {
                             children: [
                               Container(
                                 constraints:
-                                    BoxConstraints(maxWidth: WcWidth - 220),
+                                    BoxConstraints(maxWidth: WcWidth - 215),
                                 child: Text(
                                   _place.name,
                                   style: TextStyle(
@@ -990,23 +1012,27 @@ class PlacePreviewListTile extends StatelessWidget {
                           width: 2,
                         ),
                         Container(
-                          height: 10,
-                          width: 10,
+                          height: 9,
+                          width: 9,
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(2.5),
-                              color: _place.highestDiseaseType.color),
+                              borderRadius: BorderRadius.circular(2),
+                              color: _place.mostVisitedDiseaseType.color),
                         ),
                         SizedBox(
-                          width: 5,
+                          width: 4,
                         ),
-                        Text(_place.highestDiseaseType.displayName,
+                        Text(_place.mostVisitedDiseaseType.displayName,
                             style: TextStyle(
                                 fontFamily: WcFontFamily.notoSans,
                                 fontSize: 14.5,
                                 height: 1.2,
                                 color: WcColors.grey200,
                                 fontWeight: FontWeight.w600)),
-                        Text(' 질환 방문많음',
+                        Text(
+                            (_place.mostVisitedDiseaseType ==
+                                    DiseaseType.undefined)
+                                ? ' 방문질환 없음'
+                                : ' 질환 방문많음',
                             style: TextStyle(
                                 fontFamily: WcFontFamily.notoSans,
                                 fontSize: 14.5,
@@ -1045,7 +1071,7 @@ class PlacePreviewListTile extends StatelessWidget {
                   Expanded(
                     child: Row(
                       children: [
-                        Text(_place.distanceString,
+                        Text(_distanceString,
                             style: GoogleFonts.workSans(
                                 fontSize: 15,
                                 color: WcColors.grey200,
@@ -1097,23 +1123,26 @@ class PlacePreviewListTile extends StatelessWidget {
 class SelectedPlacePreview extends StatelessWidget {
   SelectedPlacePreview({
     Key? key,
-    required PlacePreviewUiModel place,
-    required String distance,
+    required PlacePreviewUIModel place,
+    // required String distance,
     required void Function() onTap,
-    required void Function() onReviewTap,
-    required void Function() onCallTap,
+    required void Function(PlacePreviewUIModel) onReviewTap,
+    // required void Function() onCallTap,
+    required String distanceString,
   })  : _place = place,
-        _distance = distance,
+        // _distance = distance,
         _onTap = onTap,
         _onReviewTap = onReviewTap,
-        _onCallTap = onCallTap,
+        // _onCallTap = onCallTap,
+        _distanceString = distanceString,
         super(key: key);
 
-  final PlacePreviewUiModel _place;
-  String _distance;
+  final PlacePreviewUIModel _place;
+  // String _distance;
+  String _distanceString;
   void Function() _onTap;
-  void Function() _onReviewTap;
-  void Function() _onCallTap;
+  void Function(PlacePreviewUIModel) _onReviewTap;
+  // void Function() _onCallTap;
 
   @override
   Widget build(BuildContext context) {
@@ -1146,6 +1175,7 @@ class SelectedPlacePreview extends StatelessWidget {
               margin: EdgeInsets.only(top: 13, bottom: 2),
             ),
             PlacePreviewListTile(
+              distanceString: _distanceString,
               isFirstList: false,
               place: _place,
               hasDivider: false,
@@ -1158,13 +1188,17 @@ class SelectedPlacePreview extends StatelessWidget {
               height: 50,
               child: Row(
                 children: [
-                  PhoneCallButton(phoneNumber: _place.phone),
+                  PhoneCallButton(
+                    phoneNumber: _place.phone,
+                  ),
                   SizedBox(
                     width: 10,
                   ),
                   WcWideButtonWidget(
                       buttonText: '리뷰쓰기',
-                      onTap: _onReviewTap,
+                      onTap: () {
+                        _onReviewTap.call(_place);
+                      },
                       buttonWidth: WcWidth - 30 - 60,
                       activeButtonColor: WcColors.blue100,
                       active: true,
