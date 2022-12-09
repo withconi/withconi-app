@@ -1,6 +1,7 @@
 import 'package:withconi/import_basic.dart';
 import 'package:withconi/module/common/breed_search_page.dart';
-import 'package:withconi/module/common/controllers/edit_conimal_controller.dart';
+import 'package:withconi/module/common/change_password_page.dart';
+import 'package:withconi/module/map/map_edit_review_page.dart';
 import 'package:withconi/routes/bindings.dart';
 import 'package:withconi/module/common/add_conimal_page.dart';
 import 'package:withconi/module/common/conimal_setting_page.dart';
@@ -36,7 +37,9 @@ import 'package:withconi/module/signup/pages/signup_pw_page.dart';
 import 'package:withconi/module/splash/splash.dart';
 import 'package:withconi/module/start/start_page.dart';
 import 'package:withconi/routes/middlewares/auth_middleware.dart';
+import 'package:withconi/routes/middlewares/map_middleware.dart';
 import 'package:withconi/routes/middlewares/signup_middleware.dart';
+import '../module/common/change_password_page2.dart';
 import '../module/community/pages/community_new_post_page.dart';
 import '../module/community/pages/community_setting_page.dart';
 import '../module/diagnosis/pages/diagnosis_result_page.dart';
@@ -52,14 +55,45 @@ class WcPages {
     GetPage(
         name: Routes.NAVIGATION,
         page: () => const NavigationPage(),
-        binding: NavigationBinding(),
+        // binding: NavigationBinding(),
+        bindings: [
+          NavigationBinding(),
+          FcmBinding(),
+          HomeBinding(),
+          MapMainBinding(),
+          CommunityMainBinding(),
+          DictionaryMainBinding(),
+        ],
         middlewares: [AuthMiddleware()],
-        transition: Transition.noTransition),
-    GetPage(
-        name: Routes.HOME,
-        page: () => const HomePage(),
-        // binding: HomeBinding(),
-        transition: Transition.noTransition),
+        children: [
+          GetPage(
+              name: Routes.HOME,
+              page: () => const HomePage(),
+              binding: HomeBinding(),
+              transition: Transition.noTransition),
+          GetPage(
+            name: Routes.MAP_MAIN,
+            page: () => const MapMainPage(),
+            popGesture: false,
+            transition: Transition.noTransition,
+            // binding: MapMainBinding(),
+          ),
+          GetPage(
+            name: Routes.COMMUNITY_MAIN,
+            page: () => const CommunityMainPage(),
+            transition: Transition.noTransition,
+            popGesture: false,
+            // binding: CommunityMainBinding(),
+          ),
+          GetPage(
+            name: Routes.DICTIONARY_MAIN,
+            page: () => const DictionaryMainPage(),
+            binding: DictionaryMainBinding(),
+            popGesture: false,
+            transition: Transition.noTransition,
+          ),
+        ],
+        transition: Transition.cupertino),
     GetPage(
       name: Routes.SPLASH,
       page: () => const SplashPage(),
@@ -83,28 +117,30 @@ class WcPages {
     ),
     GetPage(
       name: Routes.SIGNIN_EMAIL,
-      page: () => SigninEmailPage(),
+      page: () => const SigninEmailPage(),
       binding: SignInEmailBinding(),
     ),
-    // GetPage(
-    //   name: Routes.SIGNUP_CONIMAL_STEP1,
-    //   page: () => SignupConimal1Page(),
-    // ),
+    GetPage(
+      name: Routes.PASSWORD_CHANGE_1,
+      page: () => const ChangePasswordPage1(),
+      binding: ChangePasswordBinding(),
+      middlewares: [ChangePasswordMiddleware()],
+    ),
+    GetPage(
+      name: Routes.PASSWORD_CHANGE_2,
+      popGesture: false,
+      page: () => const ChangePasswordPage2(),
+    ),
     GetPage(
         name: Routes.SIGNUP_CONIMAL_MANAGE,
         page: () => SignUpConimalManagePage(),
         binding: SignUpConimalManageBinding(),
         middlewares: [SignUpMiddleware()]),
-    // GetPage(
-    //   name: Routes.SIGNUP_CONIMAL_EDIT,
-    //   page: () => SignupConimalEditPage(),
-    // ),
     GetPage(
       name: Routes.DISEASE_SEARCH,
       page: () => const DiseaseSearchPage(),
       binding: DiseaseSearchBinding(),
     ),
-
     GetPage(
       name: Routes.BREED_SEARCH,
       page: () => const BreedSearchPage(),
@@ -124,12 +160,6 @@ class WcPages {
       name: Routes.CONIMAL_MANAGE,
       page: () => const ConimalManagePage(),
       binding: ConimalManageBinding(),
-    ),
-    GetPage(
-      name: Routes.COMMUNITY_MAIN,
-      page: () => CommunityMainPage(),
-      transition: Transition.noTransition,
-      // binding: CommunityMainBinding(),
     ),
     GetPage(
       name: Routes.COMMUNITY_POST_LIST,
@@ -180,21 +210,13 @@ class WcPages {
       transition: Transition.cupertino,
     ),
     GetPage(
-      name: Routes.MAP_MAIN,
-      page: () => const MapMainPage(),
-      transition: Transition.noTransition,
-      binding: MapMainBinding(),
-    ),
-    GetPage(
       name: Routes.MAP_DETAIL,
       page: () => MapDetailPage(),
-      popGesture: true,
       transition: Transition.fade,
+      fullscreenDialog: true,
       transitionDuration: const Duration(milliseconds: 200),
       binding: MapDetailPageBinding(),
-      //  gestureWidth: (context) => 200
     ),
-
     GetPage(
       name: Routes.MAP_IMAGE_VERIFICATION,
       page: () => const MapImageVerificationPage(),
@@ -204,24 +226,11 @@ class WcPages {
       //  gestureWidth: (context) => 200
     ),
     GetPage(
-      name: Routes.DICTIONARY_MAIN,
-      page: () => const DictionaryMainPage(),
-      binding: DictionaryMainBinding(),
-      transition: Transition.noTransition,
-    ),
-    GetPage(
       name: Routes.DICTIONARY_DETAIL,
       page: () => const DictionaryDetailPage(),
       transition: Transition.cupertino,
       binding: DictionaryDetailPageBinding(),
     ),
-
-    // GetPage(
-    //   name: Routes.DICTIONARY_SEARCH,
-    //   page: () => const DictionarySearchPage(),
-    //   binding: DictionarySearchBinding(),
-    // ),
-
     GetPage(
       name: Routes.COMMUNITY_SETTING,
       page: () => const CommunitySettingPage(),
@@ -249,6 +258,11 @@ class WcPages {
       binding: MapSearchPageBinding(),
     ),
     GetPage(
+      name: Routes.MAP_EDIT_MY_REVIEW,
+      page: () => const MapEditReviewPage(),
+      binding: MapEditReviewBinding(),
+    ),
+    GetPage(
       name: Routes.MAP_NEW_REVIEW,
       page: () => const MapNewReviewPage(),
       binding: MapNewReviewBinding(),
@@ -266,6 +280,7 @@ class WcPages {
     GetPage(
       name: Routes.MAP_LOCATION_PERMISSION,
       page: () => const MapLocationPermissionPage(),
+      popGesture: false,
       binding: MapLocationPermissionBinding(),
     ),
     GetPage(

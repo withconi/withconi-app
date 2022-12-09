@@ -14,6 +14,7 @@ import 'package:withconi/data/repository/community_repository.dart';
 import 'package:withconi/data/repository/conimal_repository.dart';
 import 'package:withconi/data/repository/disease_repository.dart';
 import 'package:withconi/data/repository/fcm_repository.dart';
+import 'package:withconi/data/repository/local_notification_repository.dart';
 import 'package:withconi/data/repository/signin_respository.dart';
 import 'package:withconi/data/repository/signup_repository.dart';
 import 'package:withconi/data/repository/signing_auth_repository.dart';
@@ -21,9 +22,11 @@ import 'package:withconi/data/repository/user_repository.dart';
 import 'package:withconi/module/auth/auth_controller.dart';
 import 'package:withconi/module/common/controllers/add_conimal_controller.dart';
 import 'package:withconi/module/common/controllers/breed_search_controller.dart';
+import 'package:withconi/module/common/controllers/change_password_controller.dart';
 import 'package:withconi/module/common/controllers/conimal_manage_controller.dart';
 import 'package:withconi/module/common/controllers/edit_conimal_controller.dart';
 import 'package:withconi/module/common/controllers/email_verification_controller.dart';
+import 'package:withconi/module/common/controllers/fcm_controller.dart';
 import 'package:withconi/module/common/controllers/life_cycle_controller.dart';
 import 'package:withconi/module/community/controllers/community_edit_my_post_controller.dart';
 import 'package:withconi/module/community/controllers/community_my_post_controller.dart';
@@ -36,8 +39,8 @@ import 'package:withconi/module/diagnosis/controllers/diagnosis_step1_controller
 import 'package:withconi/module/diagnosis/controllers/diagnosis_symptom_controller.dart';
 import 'package:withconi/module/dictionary/controllers/dictionary_detail_controller.dart';
 import 'package:withconi/module/dictionary/controllers/dictionary_main_controller.dart';
-import 'package:withconi/module/dictionary/controllers/dictionary_search_controller.dart';
 import 'package:withconi/module/map/controllers/map_detail_controller.dart';
+import 'package:withconi/module/map/controllers/map_edit_review_controller.dart';
 import 'package:withconi/module/map/controllers/map_image_verification_controller.dart';
 import 'package:withconi/module/map/controllers/map_my_bookmark_controller.dart';
 import 'package:withconi/module/map/controllers/map_new_review_controller.dart';
@@ -47,12 +50,12 @@ import 'package:withconi/module/setting/setting_controller.dart';
 import 'package:withconi/module/signin_email/signin_email_controller.dart';
 import 'package:withconi/module/signup/controllers/signup_profile_controller.dart';
 import 'package:withconi/module/signup/controllers/signup_pw_controller.dart';
-import 'package:withconi/module/signup/pages/signup_profile_page.dart';
 import 'package:withconi/module/signup/signup_data_storage.dart';
 import 'package:withconi/module/start/start_controller.dart';
 
 import '../data/repository/image_repository.dart';
 import '../data/repository/map_repository.dart';
+import '../module/common/controllers/change_password_page2_controller.dart';
 import '../module/common/controllers/disease_search_controller.dart';
 import '../module/common/controllers/edit_user_controller.dart';
 import '../module/community/controllers/community_liked_post_controller.dart';
@@ -89,13 +92,10 @@ class InitialBinding implements Bindings {
           Get.find<ImageAPI>(),
         ));
 
-    Get.lazyPut<FcmRepository>(() => FcmRepository());
-
     Get.put<AuthController>(
         AuthController(
           Get.find<AppSettingRepository>(),
           Get.find<UserRepository>(),
-          Get.find<FcmRepository>(),
         ),
         permanent: true);
     Get.put<LifeCycleController>(
@@ -108,24 +108,34 @@ class InitialBinding implements Bindings {
 class NavigationBinding implements Bindings {
   @override
   void dependencies() {
-    // Get.put<AuthController>(
-    //   AuthController(
-    //     Get.find<AppSettingRepository>(),
-    //     Get.find<UserRepository>(),
-    //   ),
-    // );
     Get.lazyPut(() => NavigationController());
-    HomeBinding().dependencies();
-    CommunityMainBinding().dependencies();
-    MapMainBinding().dependencies();
-    DictionaryMainBinding().dependencies();
+    FcmBinding().dependencies();
   }
 
-  closeBinding() {
+  Future<bool> closeBindings() async {
+    await FcmBinding().closeBinding();
     HomeBinding().closeBinding();
     CommunityMainBinding().closeBinding();
     MapMainBinding().closeBinding();
     DictionaryMainBinding().closeBinding();
+
+    return true;
+  }
+}
+
+class FcmBinding implements Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut(() => LocalNotificationService());
+    Get.lazyPut(() => FcmRepository(Get.find()));
+    Get.put(FcmController(Get.find()));
+  }
+
+  Future<void> closeBinding() async {
+    await FcmController.to.updateFcmTokenDB(null);
+    await Get.delete<FcmController>(force: true);
+    Get.delete<LocalNotificationService>(force: true);
+    Get.delete<FcmRepository>(force: true);
   }
 }
 
@@ -138,10 +148,10 @@ class HomeBinding implements Bindings {
         () => ConimalRepository(Get.find<ConimalAPI>()));
     Get.lazyPut<CommunityRepository>(
         () => CommunityRepository(Get.find<CommunityAPI>()));
-    Get.put<HomeController>(
-        HomeController(
+    Get.lazyPut<HomeController>(
+        () => HomeController(
             Get.find<ConimalRepository>(), Get.find<CommunityRepository>()),
-        permanent: true);
+        fenix: true);
   }
 
   closeBinding() {
@@ -177,11 +187,12 @@ class MapMainBinding implements Bindings {
   void dependencies() {
     Get.lazyPut<MapAPI>(() => MapAPI());
     Get.lazyPut<MapRepository>(() => MapRepository(Get.find<MapAPI>()));
-    Get.replace<MapMainPageController>(
-      MapMainPageController(
-        Get.find<MapRepository>(),
-      ),
-    );
+
+    Get.put<MapMainPageController>(
+        MapMainPageController(
+          Get.find<MapRepository>(),
+        ),
+        permanent: true);
   }
 
   closeBinding() {
@@ -225,7 +236,7 @@ class SignUpPwBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<SignupPwController>(
-      () => SignupPwController(),
+      () => SignupPwController(Get.arguments['email']),
     );
   }
 }
@@ -236,8 +247,19 @@ class SignInEmailBinding implements Bindings {
     Get.lazyPut<SignInAPI>(() => SignInAPI());
     Get.lazyPut<SignInRepository>(
         () => SignInRepository(Get.find<SignInAPI>()));
-    Get.lazyPut<SignInEmailController>(
-        () => SignInEmailController(Get.find<SignInRepository>()));
+    Get.lazyPut<SignInEmailController>(() => SignInEmailController(
+        Get.find<SignInRepository>(), Get.arguments['email']));
+  }
+}
+
+class ChangePasswordBinding implements Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut<ChangePasswordController>(
+        () => ChangePasswordController(Get.arguments['email']));
+    Get.lazyPut<ChangePasswordController2>(
+      () => ChangePasswordController2(Get.arguments['email']),
+    );
   }
 }
 
@@ -249,7 +271,8 @@ class SignUpProfileBinding implements Bindings {
     Get.lazyPut<SignUpRepository>(
         () => SignUpRepository(Get.find<SignupAPI>()));
     Get.lazyPut<SignupProfileController>(
-      () => SignupProfileController(Get.find<SignUpDataStorage>()),
+      () => SignupProfileController(
+          Get.find<SignUpDataStorage>(), Get.arguments['signingAuthInfo']),
     );
   }
 }
@@ -284,7 +307,11 @@ class CommunityReportBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<CommunityNewReportController>(
-      () => CommunityNewReportController(Get.find<CommunityRepository>()),
+      () => CommunityNewReportController(
+          Get.find<CommunityRepository>(),
+          Get.arguments['boardId'],
+          Get.arguments['postId'],
+          Get.arguments['authorId']),
     );
   }
 }
@@ -293,7 +320,8 @@ class CommunityPostSearchBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<CommunityPostSearchController>(
-      () => CommunityPostSearchController(Get.find<CommunityRepository>()),
+      () => CommunityPostSearchController(
+          Get.find<CommunityRepository>(), Get.arguments['boardId']),
     );
   }
 }
@@ -302,7 +330,8 @@ class CommunityPostListBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<CommunityPostListController>(
-      () => CommunityPostListController(Get.find<CommunityRepository>()),
+      () => CommunityPostListController(Get.find<CommunityRepository>(),
+          Get.arguments['boardId'], Get.arguments['boardName']),
     );
   }
 }
@@ -311,7 +340,8 @@ class CommunityPostDetailBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<CommunityPostDetailController>(
-      () => CommunityPostDetailController(Get.find<CommunityRepository>()),
+      () => CommunityPostDetailController(Get.find<CommunityRepository>(),
+          Get.arguments['boardId'], Get.arguments['postId']),
     );
   }
 }
@@ -320,9 +350,9 @@ class CommunityNewPostBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<CommunityNewPostController>(() => CommunityNewPostController(
-          Get.find<CommunityRepository>(),
-          Get.find<ImageRepository>(),
-        ));
+        Get.find<CommunityRepository>(),
+        Get.find<ImageRepository>(),
+        Get.arguments['boardId']));
   }
 }
 
@@ -351,6 +381,7 @@ class CommunityEditPostBinding implements Bindings {
       () => CommunityEditMyPostController(
         Get.find<CommunityRepository>(),
         Get.find<ImageRepository>(),
+        Get.arguments['post'],
       ),
     );
   }
@@ -369,7 +400,7 @@ class ConimalEditPageBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<EditConimalController>(
-      () => EditConimalController(),
+      () => EditConimalController(Get.arguments['editConimal']),
     );
   }
 }
@@ -413,7 +444,8 @@ class ConimalManageBinding implements Bindings {
     Get.lazyPut(() => ConimalAPI());
     Get.lazyPut(() => ConimalRepository(Get.find<ConimalAPI>()));
     Get.lazyPut<ConimalManageController>(
-      () => ConimalManageController(Get.find<ConimalRepository>()),
+      () => ConimalManageController(
+          Get.find<ConimalRepository>(), Get.arguments['conimals']),
     );
   }
 }
@@ -432,16 +464,21 @@ class ConimalManageBinding implements Bindings {
 class MapDetailPageBinding implements Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<MapDetailPageController>(
-        () => MapDetailPageController(Get.find<MapRepository>()));
+    Get.lazyPut<MapDetailPageController>(() => MapDetailPageController(
+          Get.find<MapRepository>(),
+          Get.arguments['placeId'],
+          Get.arguments['placeType'],
+          Get.arguments['lat'],
+          Get.arguments['lng'],
+        ));
   }
 }
 
 class MapImageVerificationBinding implements Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<MapImageVerificationController>(
-        () => MapImageVerificationController());
+    Get.lazyPut<MapImageVerificationController>(() =>
+        MapImageVerificationController(Get.arguments['selectedImageList']));
   }
 }
 
@@ -449,7 +486,8 @@ class DictionaryDetailPageBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<DictionaryDetailController>(
-      () => DictionaryDetailController(Get.find<ConimalRepository>()),
+      () => DictionaryDetailController(
+          Get.find(), Get.find(), Get.arguments['diseaseCode']),
     );
   }
 }
@@ -514,7 +552,11 @@ class MapSearchPageBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<MapSearchController>(
-      () => MapSearchController(Get.find<MapRepository>()),
+      () => MapSearchController(
+        Get.find<MapRepository>(),
+        Get.arguments?['lat'],
+        Get.arguments?['lng'],
+      ),
     );
   }
 }
@@ -523,7 +565,29 @@ class MapNewReviewBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<MapNewReviewController>(
-      () => MapNewReviewController(Get.find<MapRepository>()),
+      () => MapNewReviewController(
+        Get.find(),
+        Get.find(),
+        Get.arguments['placeSelected'],
+        Get.arguments['lat'],
+        Get.arguments['lng'],
+        Get.arguments?['placeId'],
+        Get.arguments?['placeName'],
+        Get.arguments?['placeAddress'],
+        Get.arguments?['placeThumbnail'],
+      ),
+    );
+  }
+}
+
+class MapEditReviewBinding implements Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut<MapEditReviewController>(
+      () => MapEditReviewController(
+        Get.find(),
+        Get.arguments['reviewId'],
+      ),
     );
   }
 }
@@ -541,7 +605,8 @@ class MapMyReviewBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<MapMyReviewController>(
-      () => MapMyReviewController(Get.find<MapRepository>()),
+      () => MapMyReviewController(Get.find<MapRepository>(),
+          Get.arguments['lat'], Get.arguments['lng']),
     );
   }
 }
@@ -577,7 +642,7 @@ class DiagnosisSymptomBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<DiagnosisSymptomController>(
-      () => DiagnosisSymptomController(),
+      () => DiagnosisSymptomController(Get.arguments['symptomGroup']),
     );
   }
 }

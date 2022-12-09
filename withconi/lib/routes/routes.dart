@@ -11,6 +11,12 @@ abstract class Routes {
   static const SIGNUP_CONIMAL_MANAGE = '/signup/conimal/2';
   static const SIGNUP_CONIMAL_EDIT = '/signup/conimal/edit';
   static const SIGNIN_EMAIL = '/signin/email';
+  static const REQUEST = '/request';
+  static const DEVELOPER_INFO = '/developerInfo';
+
+  static const PASSWORD_CHANGE_1 = '/change_password1';
+  static const PASSWORD_CHANGE_2 = '/change_password2';
+
   static const DISEASE_SEARCH = '/disease/add';
 
   static const BREED_SEARCH = '/breed/search';
@@ -44,9 +50,11 @@ abstract class Routes {
   static const MAP_MAIN = '/map';
   static const MAP_DETAIL = '/map/detail';
   static const MAP_SEARCH = '/map/search';
+  static const MAP_SET_SERCH_LOCATION = '/map/search/setLocation';
   static const MAP_NEW_REVIEW = '/map/reivew/new';
   static const MAP_BOOKMARK = '/map/boormark';
   static const MAP_MY_REVIEW = '/map/myreview';
+  static const MAP_EDIT_MY_REVIEW = '/map/myreview/edit';
   static const MAP_LOCATION_PERMISSION = '/map/permission';
   static const MAP_IMAGE_VERIFICATION = '/map/imageVerification';
   static const DICTIONARY_SEARCH = '/dictionary/search';
