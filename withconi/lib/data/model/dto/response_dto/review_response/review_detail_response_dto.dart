@@ -17,13 +17,26 @@ class ReviewDetailResponseDTO
   @JsonSerializable(explicitToJson: true)
   factory ReviewDetailResponseDTO({
     @DateTimeConverter() required DateTime createdAt,
-    required PlacePreviewResponseDTO placePreview,
     required List<ConimalResponseDTO> conimals,
-    required List<DiseaseType> diseaseTypeList,
-    required List<DiseaseResponseDTO> diseaseList,
-    required ReviewRate reviewRate,
+    @JsonKey(name: 'diseaseTypeList')
+    @Default([])
+        List<DiseaseType> diseaseTypeList,
+    @JsonKey(name: 'diseaseList')
+    @Default([])
+        List<DiseaseResponseDTO> diseaseList,
+    // required List<DiseaseResponseDTO> diseaseList,
+    @JsonKey(name: 'name') @Default('장소 이름 없음') String placeName,
+    @JsonKey(name: 'status') required ReviewRate reviewRate,
+    @JsonKey(name: '_id') required String reviewId,
+    @JsonKey(name: 'userId') required String userId,
+    @JsonKey(name: 'placeThumbnail') @Default('') String placeThumbnail,
+    @JsonKey(name: 'locId') required String placeId,
+    @JsonKey(name: 'locType') required PlaceType placeType,
+    @JsonKey(name: 'address') required String placeAddress,
+    @JsonKey(name: 'reviewImageList') @Default([]) List<String> reviewImageList,
     required List<ReviewItem> reviewItems,
-    required String reviewDesc,
+    @Default('') String reviewDesc,
+    // @Default(false) bool isPhotoReview,
   }) = _ReviewDetailResponseDTO;
 
   factory ReviewDetailResponseDTO.fromJson(Map<String, dynamic> json) =>
