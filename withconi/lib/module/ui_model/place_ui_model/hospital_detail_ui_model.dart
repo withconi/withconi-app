@@ -81,86 +81,88 @@ class HospitalDetailUIModel implements PlaceDetailUiModel {
     // int totalHistoryCount = placeDTO.diseaseHistoryGroup.totalHistory;
 
     return HospitalDetailUIModel(
-        // totalCats: placeDTO.totalVisitingCats,
-        // totalDogs: placeDTO.totalVisitingDogs,
-        totalCats: 10,
-        totalDogs: 3,
-        phone: placeDTO.phone,
-        address: placeDTO.address,
-        isBookmarked: placeDTO.isBookmarked,
-        name: placeDTO.name,
-        placeId: placeDTO.placeId,
-        placeLocation: LatLngUIModel.fromDto(
-            placeDTO.coordinate ?? LatLngResponseDTO(lat: 0.0, lng: 0.0)),
-        thumbnailImage: (placeDTO.thumbnail.isEmpty)
-            ? _detailDefaultThumbnailImage
-            : ImageItem(
-                id: placeDTO.placeId,
-                resource: placeDTO.thumbnail,
-                imageType: ImageType.network),
-        // diseaseHistoryList: placeDTO.diseaseHistory.diseaseHistoryList,
-        // reviewHistoryMap: placeDTO.reviewHistory.reviewHistoryMap,
-        // totalDiseaseCount: placeDTO.diseaseHistory.totalDiseaseHistoryCount,
-        // totalReviewCount: placeDTO.reviewHistory.totalReviewCount,
-        diseaseHistoryList: [
-          DiseaseHistoryResponseDTO(diseaseHistoryItems: [
-            DiseaseHistoryItemResponseDTO(
-                diseaseName: '갑상선 기능 항진증(Hyperthyroidism)', diseasePercent: 88),
-            DiseaseHistoryItemResponseDTO(
-                diseaseName: '갑상선 기능 저하증(Hypothyroidism)', diseasePercent: 12)
-          ], diseaseType: DiseaseType.endocrinology, totalDiseaseType: 4),
-          DiseaseHistoryResponseDTO(diseaseHistoryItems: [
-            DiseaseHistoryItemResponseDTO(
-                diseaseName: '만성설사, 고양이(Fline chronic diarrhear)',
-                diseasePercent: 34),
-            DiseaseHistoryItemResponseDTO(
-                diseaseName: '방광염(Cystitis in dogs and cats)',
-                diseasePercent: 23)
-          ], diseaseType: DiseaseType.urinary, totalDiseaseType: 2),
-          DiseaseHistoryResponseDTO(diseaseHistoryItems: [
-            DiseaseHistoryItemResponseDTO(
-                diseaseName: '편평세포암/ 편평상피암 - 귀', diseasePercent: 64),
-            DiseaseHistoryItemResponseDTO(
-                diseaseName: '간세포 암종(HCCA)', diseasePercent: 38)
-          ], diseaseType: DiseaseType.oncology, totalDiseaseType: 2)
-        ],
-        reviewHistoryMap: {
-          ReviewRate.low: ReviewItemResponseDTO(
-            reviewHistoryMap: {
-              ReviewItem.explanation: 1,
-              ReviewItem.kindness: 0,
-              ReviewItem.price: 1,
-              ReviewItem.adequateExamination: 1,
-              ReviewItem.effectiveness: 1,
-              ReviewItem.waitingExperience: 0,
-            },
-            totalReviewRateCount: 1,
-          ),
-          ReviewRate.middle: ReviewItemResponseDTO(
-            reviewHistoryMap: {
-              ReviewItem.explanation: 1,
-              ReviewItem.kindness: 0,
-              ReviewItem.price: 2,
-              ReviewItem.adequateExamination: 1,
-              ReviewItem.effectiveness: 3,
-              ReviewItem.waitingExperience: 1,
-            },
-            totalReviewRateCount: 2,
-          ),
-          ReviewRate.high: ReviewItemResponseDTO(
-            reviewHistoryMap: {
-              ReviewItem.explanation: 1,
-              ReviewItem.kindness: 2,
-              ReviewItem.adequateExamination: 1,
-              ReviewItem.effectiveness: 4,
-              ReviewItem.price: 5,
-              ReviewItem.waitingExperience: 5,
-            },
-            totalReviewRateCount: 5,
-          ),
-        },
-        totalDiseaseCount: 20,
-        totalReviewCount: 9);
+      totalCats: placeDTO.totalVisitingCats,
+      totalDogs: placeDTO.totalVisitingDogs,
+
+      phone: placeDTO.phone,
+      address: placeDTO.address,
+      isBookmarked: placeDTO.isBookmarked,
+      name: placeDTO.name,
+      placeId: placeDTO.placeId,
+      placeLocation: LatLngUIModel.fromDto(
+          placeDTO.coordinate ?? LatLngResponseDTO(lat: 0.0, lng: 0.0)),
+      thumbnailImage: (placeDTO.thumbnail.isEmpty)
+          ? _detailDefaultThumbnailImage
+          : ImageItem(
+              id: placeDTO.placeId,
+              imageUrl: placeDTO.thumbnail,
+              imageType: ImageType.network),
+      diseaseHistoryList: placeDTO.diseaseHistory.diseaseHistoryList,
+      reviewHistoryMap: placeDTO.reviewHistory.reviewHistoryMap,
+      totalDiseaseCount: placeDTO.diseaseHistory.totalDiseaseHistoryCount,
+      totalReviewCount: placeDTO.reviewHistory.totalReviewCount,
+      // totalCats: 10,
+      // totalDogs: 3,
+      // diseaseHistoryList: [
+      //   DiseaseHistoryResponseDTO(diseaseHistoryItems: [
+      //     DiseaseHistoryItemResponseDTO(
+      //         diseaseName: '갑상선 기능 항진증(Hyperthyroidism)', diseasePercent: 88),
+      //     DiseaseHistoryItemResponseDTO(
+      //         diseaseName: '갑상선 기능 저하증(Hypothyroidism)', diseasePercent: 12)
+      //   ], diseaseType: DiseaseType.endocrinology, totalDiseaseType: 4),
+      //   DiseaseHistoryResponseDTO(diseaseHistoryItems: [
+      //     DiseaseHistoryItemResponseDTO(
+      //         diseaseName: '만성설사, 고양이(Fline chronic diarrhear)',
+      //         diseasePercent: 34),
+      //     DiseaseHistoryItemResponseDTO(
+      //         diseaseName: '방광염(Cystitis in dogs and cats)',
+      //         diseasePercent: 23)
+      //   ], diseaseType: DiseaseType.urinary, totalDiseaseType: 2),
+      //   DiseaseHistoryResponseDTO(diseaseHistoryItems: [
+      //     DiseaseHistoryItemResponseDTO(
+      //         diseaseName: '편평세포암/ 편평상피암 - 귀', diseasePercent: 64),
+      //     DiseaseHistoryItemResponseDTO(
+      //         diseaseName: '간세포 암종(HCCA)', diseasePercent: 38)
+      //   ], diseaseType: DiseaseType.oncology, totalDiseaseType: 2)
+      // ],
+      // reviewHistoryMap: {
+      //   ReviewRate.low: ReviewItemResponseDTO(
+      //     reviewHistoryMap: {
+      //       ReviewItem.explanation: 1,
+      //       ReviewItem.kindness: 0,
+      //       ReviewItem.price: 1,
+      //       ReviewItem.adequateExamination: 1,
+      //       ReviewItem.effectiveness: 1,
+      //       ReviewItem.waitingExperience: 0,
+      //     },
+      //     totalReviewRateCount: 1,
+      //   ),
+      //   ReviewRate.middle: ReviewItemResponseDTO(
+      //     reviewHistoryMap: {
+      //       ReviewItem.explanation: 1,
+      //       ReviewItem.kindness: 0,
+      //       ReviewItem.price: 2,
+      //       ReviewItem.adequateExamination: 1,
+      //       ReviewItem.effectiveness: 3,
+      //       ReviewItem.waitingExperience: 1,
+      //     },
+      //     totalReviewRateCount: 2,
+      //   ),
+      //   ReviewRate.high: ReviewItemResponseDTO(
+      //     reviewHistoryMap: {
+      //       ReviewItem.explanation: 1,
+      //       ReviewItem.kindness: 2,
+      //       ReviewItem.adequateExamination: 1,
+      //       ReviewItem.effectiveness: 4,
+      //       ReviewItem.price: 5,
+      //       ReviewItem.waitingExperience: 5,
+      //     },
+      //   totalReviewRateCount: 5,
+      // ),
+      // },
+      // totalDiseaseCount: 20,
+      // totalReviewCount: 9,
+    );
   }
 
   List<ChartData> _makeSpeciesChartData() {
@@ -229,5 +231,5 @@ class HospitalDetailUIModel implements PlaceDetailUiModel {
 
 ImageItem get _detailDefaultThumbnailImage => ImageItem(
     id: DateTime.now().microsecondsSinceEpoch.toString(),
-    resource: 'assets/images/place_detail_default_thumbnail.png',
+    imageUrl: 'assets/images/place_detail_default_thumbnail.png',
     imageType: ImageType.asset);

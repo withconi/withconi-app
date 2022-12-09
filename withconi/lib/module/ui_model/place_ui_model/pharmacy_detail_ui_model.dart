@@ -91,7 +91,7 @@ class PharmacyDetailUIModel implements PlaceDetailUiModel {
           ? _detailDefaultThumbnailImage
           : ImageItem(
               id: placeDTO.placeId,
-              resource: placeDTO.thumbnail,
+              imageUrl: placeDTO.thumbnail,
               imageType: ImageType.network),
       diseaseHistoryList: placeDTO.diseaseHistory.diseaseHistoryList,
       reviewHistoryMap: placeDTO.reviewHistory.reviewHistoryMap,
@@ -166,5 +166,5 @@ class PharmacyDetailUIModel implements PlaceDetailUiModel {
 
 ImageItem get _detailDefaultThumbnailImage => ImageItem(
     id: DateTime.now().microsecondsSinceEpoch.toString(),
-    resource: 'assets/images/place_detail_default_thumbnail.png',
+    imageUrl: 'assets/images/place_detail_default_thumbnail.png',
     imageType: ImageType.asset);

@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:withconi/data/enums/enum.dart';
 import 'package:withconi/data/model/dto/response_dto/place_response/place_preview_response_dto.dart';
@@ -7,15 +8,15 @@ import 'package:withconi/module/ui_model/latlng_ui_model.dart';
 
 import '../../../core/tools/helpers/calculator.dart';
 
-class PharmacyPreviewUIModel implements PlacePreviewUiModel {
+class PharmacyPreviewUIModel extends Equatable implements PlacePreviewUIModel {
   @override
   String address;
 
-  @override
-  LatLngUIModel baseLocation;
+  // @override
+  // LatLngUIModel baseLocation;
 
   @override
-  DiseaseType highestDiseaseType;
+  DiseaseType mostVisitedDiseaseType;
 
   @override
   String name;
@@ -36,41 +37,36 @@ class PharmacyPreviewUIModel implements PlacePreviewUiModel {
   int totalReviews;
 
   @override
-  bool visitVerified;
+  bool isPhotoReview;
 
   @override
   PlaceType get placeType => PlaceType.pharmacy;
 
   @override
-  double get meterDistance {
-    double distanceMeters = GeolocatorPlatform.instance.distanceBetween(
-      baseLocation.latitude,
-      baseLocation.longitude,
-      placeLocation.latitude,
-      placeLocation.longitude,
-    );
+  double meterDistance(LatLngUIModel baseLocation) {
+    double distanceMeters = baseLocation.distanceTo(placeLocation);
     return distanceMeters;
   }
 
   @override
-  String get distanceString {
+  String distanceString(LatLngUIModel baseLocation) {
     String distanceResult = '';
 
-    distanceResult =
-        DistanceCalculator.getDistanceToString(distanceMeter: meterDistance);
+    distanceResult = DistanceCalculator.getDistanceToString(
+        distanceMeter: meterDistance(baseLocation));
     return distanceResult;
   }
 
   PharmacyPreviewUIModel({
     required this.address,
     required this.phone,
-    required this.baseLocation,
-    required this.highestDiseaseType,
+    // required this.baseLocation,
+    required this.mostVisitedDiseaseType,
     required this.name,
     required this.placeId,
     required this.placeLocation,
     required this.thumbnailImage,
-    required this.visitVerified,
+    required this.isPhotoReview,
     required this.totalReviews,
   });
 
@@ -79,10 +75,9 @@ class PharmacyPreviewUIModel implements PlacePreviewUiModel {
     return PharmacyPreviewUIModel(
       totalReviews: placeDTO.totalReviews,
       phone: placeDTO.phone,
-      visitVerified: placeDTO.visitVerified,
+      isPhotoReview: placeDTO.isPhotoReview,
       address: placeDTO.address,
-      baseLocation: baseLocation,
-      highestDiseaseType: DiseaseType.cardiovacular,
+      mostVisitedDiseaseType: placeDTO.mostVisitedDiseaseType,
       name: placeDTO.name,
       placeId: placeDTO.placeId,
       placeLocation: LatLngUIModel.fromDto(placeDTO.coordinate),
@@ -90,13 +85,16 @@ class PharmacyPreviewUIModel implements PlacePreviewUiModel {
           ? _defaultThumbnailImage
           : ImageItem(
               id: placeDTO.placeId,
-              resource: placeDTO.thumbnail,
+              imageUrl: placeDTO.thumbnail,
               imageType: ImageType.network),
     );
   }
+
+  @override
+  List<Object?> get props => [placeId, placeLocation, name];
 }
 
 ImageItem get _defaultThumbnailImage => ImageItem(
     id: DateTime.now().microsecondsSinceEpoch.toString(),
-    resource: 'assets/images/default_thumbnail.png',
+    imageUrl: 'assets/images/default_thumbnail.png',
     imageType: ImageType.asset);
