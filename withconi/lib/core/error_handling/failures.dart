@@ -42,4 +42,9 @@ class Failure with _$Failure {
   const factory Failure.permissionDeniedFailure() = PermissionDeniedFailure;
   const factory Failure.permissionPermanentlyDeniedFailure() =
       PermissionPermanentlyDeniedFailure;
+
+  const factory Failure.sendVerificationEmailFailure() =
+      SendVerificationEmailFailure;
+
+  const factory Failure.checkVerificationFailure() = CheckVerificationFailure;
 }

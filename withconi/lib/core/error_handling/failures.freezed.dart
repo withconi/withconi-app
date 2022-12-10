@@ -54,6 +54,8 @@ mixin _$Failure {
     required TResult Function() userInfoUpdateFailure,
     required TResult Function() permissionDeniedFailure,
     required TResult Function() permissionPermanentlyDeniedFailure,
+    required TResult Function() sendVerificationEmailFailure,
+    required TResult Function() checkVerificationFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -94,6 +96,8 @@ mixin _$Failure {
     TResult? Function()? userInfoUpdateFailure,
     TResult? Function()? permissionDeniedFailure,
     TResult? Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? sendVerificationEmailFailure,
+    TResult? Function()? checkVerificationFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -134,6 +138,8 @@ mixin _$Failure {
     TResult Function()? userInfoUpdateFailure,
     TResult Function()? permissionDeniedFailure,
     TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult Function()? sendVerificationEmailFailure,
+    TResult Function()? checkVerificationFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -185,6 +191,10 @@ mixin _$Failure {
         permissionDeniedFailure,
     required TResult Function(PermissionPermanentlyDeniedFailure value)
         permissionPermanentlyDeniedFailure,
+    required TResult Function(SendVerificationEmailFailure value)
+        sendVerificationEmailFailure,
+    required TResult Function(CheckVerificationFailure value)
+        checkVerificationFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -228,6 +238,9 @@ mixin _$Failure {
     TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult? Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -271,6 +284,9 @@ mixin _$Failure {
     TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -367,6 +383,8 @@ class _$VersionCheckFailure extends VersionCheckFailure {
     required TResult Function() userInfoUpdateFailure,
     required TResult Function() permissionDeniedFailure,
     required TResult Function() permissionPermanentlyDeniedFailure,
+    required TResult Function() sendVerificationEmailFailure,
+    required TResult Function() checkVerificationFailure,
   }) {
     return versionCheckFailure();
   }
@@ -410,6 +428,8 @@ class _$VersionCheckFailure extends VersionCheckFailure {
     TResult? Function()? userInfoUpdateFailure,
     TResult? Function()? permissionDeniedFailure,
     TResult? Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? sendVerificationEmailFailure,
+    TResult? Function()? checkVerificationFailure,
   }) {
     return versionCheckFailure?.call();
   }
@@ -453,6 +473,8 @@ class _$VersionCheckFailure extends VersionCheckFailure {
     TResult Function()? userInfoUpdateFailure,
     TResult Function()? permissionDeniedFailure,
     TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult Function()? sendVerificationEmailFailure,
+    TResult Function()? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (versionCheckFailure != null) {
@@ -510,6 +532,10 @@ class _$VersionCheckFailure extends VersionCheckFailure {
         permissionDeniedFailure,
     required TResult Function(PermissionPermanentlyDeniedFailure value)
         permissionPermanentlyDeniedFailure,
+    required TResult Function(SendVerificationEmailFailure value)
+        sendVerificationEmailFailure,
+    required TResult Function(CheckVerificationFailure value)
+        checkVerificationFailure,
   }) {
     return versionCheckFailure(this);
   }
@@ -556,6 +582,9 @@ class _$VersionCheckFailure extends VersionCheckFailure {
     TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult? Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
   }) {
     return versionCheckFailure?.call(this);
   }
@@ -602,6 +631,9 @@ class _$VersionCheckFailure extends VersionCheckFailure {
     TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (versionCheckFailure != null) {
@@ -690,6 +722,8 @@ class _$ServerFailure extends ServerFailure {
     required TResult Function() userInfoUpdateFailure,
     required TResult Function() permissionDeniedFailure,
     required TResult Function() permissionPermanentlyDeniedFailure,
+    required TResult Function() sendVerificationEmailFailure,
+    required TResult Function() checkVerificationFailure,
   }) {
     return serverFailure();
   }
@@ -733,6 +767,8 @@ class _$ServerFailure extends ServerFailure {
     TResult? Function()? userInfoUpdateFailure,
     TResult? Function()? permissionDeniedFailure,
     TResult? Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? sendVerificationEmailFailure,
+    TResult? Function()? checkVerificationFailure,
   }) {
     return serverFailure?.call();
   }
@@ -776,6 +812,8 @@ class _$ServerFailure extends ServerFailure {
     TResult Function()? userInfoUpdateFailure,
     TResult Function()? permissionDeniedFailure,
     TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult Function()? sendVerificationEmailFailure,
+    TResult Function()? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (serverFailure != null) {
@@ -833,6 +871,10 @@ class _$ServerFailure extends ServerFailure {
         permissionDeniedFailure,
     required TResult Function(PermissionPermanentlyDeniedFailure value)
         permissionPermanentlyDeniedFailure,
+    required TResult Function(SendVerificationEmailFailure value)
+        sendVerificationEmailFailure,
+    required TResult Function(CheckVerificationFailure value)
+        checkVerificationFailure,
   }) {
     return serverFailure(this);
   }
@@ -879,6 +921,9 @@ class _$ServerFailure extends ServerFailure {
     TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult? Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
   }) {
     return serverFailure?.call(this);
   }
@@ -925,6 +970,9 @@ class _$ServerFailure extends ServerFailure {
     TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (serverFailure != null) {
@@ -1013,6 +1061,8 @@ class _$DataParsingFailure extends DataParsingFailure {
     required TResult Function() userInfoUpdateFailure,
     required TResult Function() permissionDeniedFailure,
     required TResult Function() permissionPermanentlyDeniedFailure,
+    required TResult Function() sendVerificationEmailFailure,
+    required TResult Function() checkVerificationFailure,
   }) {
     return dataParsingFailure();
   }
@@ -1056,6 +1106,8 @@ class _$DataParsingFailure extends DataParsingFailure {
     TResult? Function()? userInfoUpdateFailure,
     TResult? Function()? permissionDeniedFailure,
     TResult? Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? sendVerificationEmailFailure,
+    TResult? Function()? checkVerificationFailure,
   }) {
     return dataParsingFailure?.call();
   }
@@ -1099,6 +1151,8 @@ class _$DataParsingFailure extends DataParsingFailure {
     TResult Function()? userInfoUpdateFailure,
     TResult Function()? permissionDeniedFailure,
     TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult Function()? sendVerificationEmailFailure,
+    TResult Function()? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (dataParsingFailure != null) {
@@ -1156,6 +1210,10 @@ class _$DataParsingFailure extends DataParsingFailure {
         permissionDeniedFailure,
     required TResult Function(PermissionPermanentlyDeniedFailure value)
         permissionPermanentlyDeniedFailure,
+    required TResult Function(SendVerificationEmailFailure value)
+        sendVerificationEmailFailure,
+    required TResult Function(CheckVerificationFailure value)
+        checkVerificationFailure,
   }) {
     return dataParsingFailure(this);
   }
@@ -1202,6 +1260,9 @@ class _$DataParsingFailure extends DataParsingFailure {
     TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult? Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
   }) {
     return dataParsingFailure?.call(this);
   }
@@ -1248,6 +1309,9 @@ class _$DataParsingFailure extends DataParsingFailure {
     TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (dataParsingFailure != null) {
@@ -1336,6 +1400,8 @@ class _$NoConnectionFailure extends NoConnectionFailure {
     required TResult Function() userInfoUpdateFailure,
     required TResult Function() permissionDeniedFailure,
     required TResult Function() permissionPermanentlyDeniedFailure,
+    required TResult Function() sendVerificationEmailFailure,
+    required TResult Function() checkVerificationFailure,
   }) {
     return noConnectionFailure();
   }
@@ -1379,6 +1445,8 @@ class _$NoConnectionFailure extends NoConnectionFailure {
     TResult? Function()? userInfoUpdateFailure,
     TResult? Function()? permissionDeniedFailure,
     TResult? Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? sendVerificationEmailFailure,
+    TResult? Function()? checkVerificationFailure,
   }) {
     return noConnectionFailure?.call();
   }
@@ -1422,6 +1490,8 @@ class _$NoConnectionFailure extends NoConnectionFailure {
     TResult Function()? userInfoUpdateFailure,
     TResult Function()? permissionDeniedFailure,
     TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult Function()? sendVerificationEmailFailure,
+    TResult Function()? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (noConnectionFailure != null) {
@@ -1479,6 +1549,10 @@ class _$NoConnectionFailure extends NoConnectionFailure {
         permissionDeniedFailure,
     required TResult Function(PermissionPermanentlyDeniedFailure value)
         permissionPermanentlyDeniedFailure,
+    required TResult Function(SendVerificationEmailFailure value)
+        sendVerificationEmailFailure,
+    required TResult Function(CheckVerificationFailure value)
+        checkVerificationFailure,
   }) {
     return noConnectionFailure(this);
   }
@@ -1525,6 +1599,9 @@ class _$NoConnectionFailure extends NoConnectionFailure {
     TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult? Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
   }) {
     return noConnectionFailure?.call(this);
   }
@@ -1571,6 +1648,9 @@ class _$NoConnectionFailure extends NoConnectionFailure {
     TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (noConnectionFailure != null) {
@@ -1659,6 +1739,8 @@ class _$NotFoundFailure extends NotFoundFailure {
     required TResult Function() userInfoUpdateFailure,
     required TResult Function() permissionDeniedFailure,
     required TResult Function() permissionPermanentlyDeniedFailure,
+    required TResult Function() sendVerificationEmailFailure,
+    required TResult Function() checkVerificationFailure,
   }) {
     return notFoundFailure();
   }
@@ -1702,6 +1784,8 @@ class _$NotFoundFailure extends NotFoundFailure {
     TResult? Function()? userInfoUpdateFailure,
     TResult? Function()? permissionDeniedFailure,
     TResult? Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? sendVerificationEmailFailure,
+    TResult? Function()? checkVerificationFailure,
   }) {
     return notFoundFailure?.call();
   }
@@ -1745,6 +1829,8 @@ class _$NotFoundFailure extends NotFoundFailure {
     TResult Function()? userInfoUpdateFailure,
     TResult Function()? permissionDeniedFailure,
     TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult Function()? sendVerificationEmailFailure,
+    TResult Function()? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (notFoundFailure != null) {
@@ -1802,6 +1888,10 @@ class _$NotFoundFailure extends NotFoundFailure {
         permissionDeniedFailure,
     required TResult Function(PermissionPermanentlyDeniedFailure value)
         permissionPermanentlyDeniedFailure,
+    required TResult Function(SendVerificationEmailFailure value)
+        sendVerificationEmailFailure,
+    required TResult Function(CheckVerificationFailure value)
+        checkVerificationFailure,
   }) {
     return notFoundFailure(this);
   }
@@ -1848,6 +1938,9 @@ class _$NotFoundFailure extends NotFoundFailure {
     TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult? Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
   }) {
     return notFoundFailure?.call(this);
   }
@@ -1894,6 +1987,9 @@ class _$NotFoundFailure extends NotFoundFailure {
     TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (notFoundFailure != null) {
@@ -1982,6 +2078,8 @@ class _$NoUserDataFailure extends NoUserDataFailure {
     required TResult Function() userInfoUpdateFailure,
     required TResult Function() permissionDeniedFailure,
     required TResult Function() permissionPermanentlyDeniedFailure,
+    required TResult Function() sendVerificationEmailFailure,
+    required TResult Function() checkVerificationFailure,
   }) {
     return noUserDataFailure();
   }
@@ -2025,6 +2123,8 @@ class _$NoUserDataFailure extends NoUserDataFailure {
     TResult? Function()? userInfoUpdateFailure,
     TResult? Function()? permissionDeniedFailure,
     TResult? Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? sendVerificationEmailFailure,
+    TResult? Function()? checkVerificationFailure,
   }) {
     return noUserDataFailure?.call();
   }
@@ -2068,6 +2168,8 @@ class _$NoUserDataFailure extends NoUserDataFailure {
     TResult Function()? userInfoUpdateFailure,
     TResult Function()? permissionDeniedFailure,
     TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult Function()? sendVerificationEmailFailure,
+    TResult Function()? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (noUserDataFailure != null) {
@@ -2125,6 +2227,10 @@ class _$NoUserDataFailure extends NoUserDataFailure {
         permissionDeniedFailure,
     required TResult Function(PermissionPermanentlyDeniedFailure value)
         permissionPermanentlyDeniedFailure,
+    required TResult Function(SendVerificationEmailFailure value)
+        sendVerificationEmailFailure,
+    required TResult Function(CheckVerificationFailure value)
+        checkVerificationFailure,
   }) {
     return noUserDataFailure(this);
   }
@@ -2171,6 +2277,9 @@ class _$NoUserDataFailure extends NoUserDataFailure {
     TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult? Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
   }) {
     return noUserDataFailure?.call(this);
   }
@@ -2217,6 +2326,9 @@ class _$NoUserDataFailure extends NoUserDataFailure {
     TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (noUserDataFailure != null) {
@@ -2305,6 +2417,8 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
     required TResult Function() userInfoUpdateFailure,
     required TResult Function() permissionDeniedFailure,
     required TResult Function() permissionPermanentlyDeniedFailure,
+    required TResult Function() sendVerificationEmailFailure,
+    required TResult Function() checkVerificationFailure,
   }) {
     return maxDiseaseFailure();
   }
@@ -2348,6 +2462,8 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
     TResult? Function()? userInfoUpdateFailure,
     TResult? Function()? permissionDeniedFailure,
     TResult? Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? sendVerificationEmailFailure,
+    TResult? Function()? checkVerificationFailure,
   }) {
     return maxDiseaseFailure?.call();
   }
@@ -2391,6 +2507,8 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
     TResult Function()? userInfoUpdateFailure,
     TResult Function()? permissionDeniedFailure,
     TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult Function()? sendVerificationEmailFailure,
+    TResult Function()? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (maxDiseaseFailure != null) {
@@ -2448,6 +2566,10 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
         permissionDeniedFailure,
     required TResult Function(PermissionPermanentlyDeniedFailure value)
         permissionPermanentlyDeniedFailure,
+    required TResult Function(SendVerificationEmailFailure value)
+        sendVerificationEmailFailure,
+    required TResult Function(CheckVerificationFailure value)
+        checkVerificationFailure,
   }) {
     return maxDiseaseFailure(this);
   }
@@ -2494,6 +2616,9 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
     TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult? Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
   }) {
     return maxDiseaseFailure?.call(this);
   }
@@ -2540,6 +2665,9 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
     TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (maxDiseaseFailure != null) {
@@ -2628,6 +2756,8 @@ class _$MaxConimalFailure extends MaxConimalFailure {
     required TResult Function() userInfoUpdateFailure,
     required TResult Function() permissionDeniedFailure,
     required TResult Function() permissionPermanentlyDeniedFailure,
+    required TResult Function() sendVerificationEmailFailure,
+    required TResult Function() checkVerificationFailure,
   }) {
     return maxConimalFailure();
   }
@@ -2671,6 +2801,8 @@ class _$MaxConimalFailure extends MaxConimalFailure {
     TResult? Function()? userInfoUpdateFailure,
     TResult? Function()? permissionDeniedFailure,
     TResult? Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? sendVerificationEmailFailure,
+    TResult? Function()? checkVerificationFailure,
   }) {
     return maxConimalFailure?.call();
   }
@@ -2714,6 +2846,8 @@ class _$MaxConimalFailure extends MaxConimalFailure {
     TResult Function()? userInfoUpdateFailure,
     TResult Function()? permissionDeniedFailure,
     TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult Function()? sendVerificationEmailFailure,
+    TResult Function()? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (maxConimalFailure != null) {
@@ -2771,6 +2905,10 @@ class _$MaxConimalFailure extends MaxConimalFailure {
         permissionDeniedFailure,
     required TResult Function(PermissionPermanentlyDeniedFailure value)
         permissionPermanentlyDeniedFailure,
+    required TResult Function(SendVerificationEmailFailure value)
+        sendVerificationEmailFailure,
+    required TResult Function(CheckVerificationFailure value)
+        checkVerificationFailure,
   }) {
     return maxConimalFailure(this);
   }
@@ -2817,6 +2955,9 @@ class _$MaxConimalFailure extends MaxConimalFailure {
     TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult? Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
   }) {
     return maxConimalFailure?.call(this);
   }
@@ -2863,6 +3004,9 @@ class _$MaxConimalFailure extends MaxConimalFailure {
     TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (maxConimalFailure != null) {
@@ -2951,6 +3095,8 @@ class _$EmptyListFailure extends EmptyListFailure {
     required TResult Function() userInfoUpdateFailure,
     required TResult Function() permissionDeniedFailure,
     required TResult Function() permissionPermanentlyDeniedFailure,
+    required TResult Function() sendVerificationEmailFailure,
+    required TResult Function() checkVerificationFailure,
   }) {
     return emptyListFailure();
   }
@@ -2994,6 +3140,8 @@ class _$EmptyListFailure extends EmptyListFailure {
     TResult? Function()? userInfoUpdateFailure,
     TResult? Function()? permissionDeniedFailure,
     TResult? Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? sendVerificationEmailFailure,
+    TResult? Function()? checkVerificationFailure,
   }) {
     return emptyListFailure?.call();
   }
@@ -3037,6 +3185,8 @@ class _$EmptyListFailure extends EmptyListFailure {
     TResult Function()? userInfoUpdateFailure,
     TResult Function()? permissionDeniedFailure,
     TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult Function()? sendVerificationEmailFailure,
+    TResult Function()? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (emptyListFailure != null) {
@@ -3094,6 +3244,10 @@ class _$EmptyListFailure extends EmptyListFailure {
         permissionDeniedFailure,
     required TResult Function(PermissionPermanentlyDeniedFailure value)
         permissionPermanentlyDeniedFailure,
+    required TResult Function(SendVerificationEmailFailure value)
+        sendVerificationEmailFailure,
+    required TResult Function(CheckVerificationFailure value)
+        checkVerificationFailure,
   }) {
     return emptyListFailure(this);
   }
@@ -3140,6 +3294,9 @@ class _$EmptyListFailure extends EmptyListFailure {
     TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult? Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
   }) {
     return emptyListFailure?.call(this);
   }
@@ -3186,6 +3343,9 @@ class _$EmptyListFailure extends EmptyListFailure {
     TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (emptyListFailure != null) {
@@ -3275,6 +3435,8 @@ class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
     required TResult Function() userInfoUpdateFailure,
     required TResult Function() permissionDeniedFailure,
     required TResult Function() permissionPermanentlyDeniedFailure,
+    required TResult Function() sendVerificationEmailFailure,
+    required TResult Function() checkVerificationFailure,
   }) {
     return noSuchDataInListFailure();
   }
@@ -3318,6 +3480,8 @@ class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
     TResult? Function()? userInfoUpdateFailure,
     TResult? Function()? permissionDeniedFailure,
     TResult? Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? sendVerificationEmailFailure,
+    TResult? Function()? checkVerificationFailure,
   }) {
     return noSuchDataInListFailure?.call();
   }
@@ -3361,6 +3525,8 @@ class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
     TResult Function()? userInfoUpdateFailure,
     TResult Function()? permissionDeniedFailure,
     TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult Function()? sendVerificationEmailFailure,
+    TResult Function()? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (noSuchDataInListFailure != null) {
@@ -3418,6 +3584,10 @@ class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
         permissionDeniedFailure,
     required TResult Function(PermissionPermanentlyDeniedFailure value)
         permissionPermanentlyDeniedFailure,
+    required TResult Function(SendVerificationEmailFailure value)
+        sendVerificationEmailFailure,
+    required TResult Function(CheckVerificationFailure value)
+        checkVerificationFailure,
   }) {
     return noSuchDataInListFailure(this);
   }
@@ -3464,6 +3634,9 @@ class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
     TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult? Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
   }) {
     return noSuchDataInListFailure?.call(this);
   }
@@ -3510,6 +3683,9 @@ class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
     TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (noSuchDataInListFailure != null) {
@@ -3598,6 +3774,8 @@ class _$RegisterConimalFailure extends RegisterConimalFailure {
     required TResult Function() userInfoUpdateFailure,
     required TResult Function() permissionDeniedFailure,
     required TResult Function() permissionPermanentlyDeniedFailure,
+    required TResult Function() sendVerificationEmailFailure,
+    required TResult Function() checkVerificationFailure,
   }) {
     return registerConimalFaiure();
   }
@@ -3641,6 +3819,8 @@ class _$RegisterConimalFailure extends RegisterConimalFailure {
     TResult? Function()? userInfoUpdateFailure,
     TResult? Function()? permissionDeniedFailure,
     TResult? Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? sendVerificationEmailFailure,
+    TResult? Function()? checkVerificationFailure,
   }) {
     return registerConimalFaiure?.call();
   }
@@ -3684,6 +3864,8 @@ class _$RegisterConimalFailure extends RegisterConimalFailure {
     TResult Function()? userInfoUpdateFailure,
     TResult Function()? permissionDeniedFailure,
     TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult Function()? sendVerificationEmailFailure,
+    TResult Function()? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (registerConimalFaiure != null) {
@@ -3741,6 +3923,10 @@ class _$RegisterConimalFailure extends RegisterConimalFailure {
         permissionDeniedFailure,
     required TResult Function(PermissionPermanentlyDeniedFailure value)
         permissionPermanentlyDeniedFailure,
+    required TResult Function(SendVerificationEmailFailure value)
+        sendVerificationEmailFailure,
+    required TResult Function(CheckVerificationFailure value)
+        checkVerificationFailure,
   }) {
     return registerConimalFaiure(this);
   }
@@ -3787,6 +3973,9 @@ class _$RegisterConimalFailure extends RegisterConimalFailure {
     TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult? Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
   }) {
     return registerConimalFaiure?.call(this);
   }
@@ -3833,6 +4022,9 @@ class _$RegisterConimalFailure extends RegisterConimalFailure {
     TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (registerConimalFaiure != null) {
@@ -3921,6 +4113,8 @@ class _$RemoveConimalFailure extends RemoveConimalFailure {
     required TResult Function() userInfoUpdateFailure,
     required TResult Function() permissionDeniedFailure,
     required TResult Function() permissionPermanentlyDeniedFailure,
+    required TResult Function() sendVerificationEmailFailure,
+    required TResult Function() checkVerificationFailure,
   }) {
     return removeConimalFailure();
   }
@@ -3964,6 +4158,8 @@ class _$RemoveConimalFailure extends RemoveConimalFailure {
     TResult? Function()? userInfoUpdateFailure,
     TResult? Function()? permissionDeniedFailure,
     TResult? Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? sendVerificationEmailFailure,
+    TResult? Function()? checkVerificationFailure,
   }) {
     return removeConimalFailure?.call();
   }
@@ -4007,6 +4203,8 @@ class _$RemoveConimalFailure extends RemoveConimalFailure {
     TResult Function()? userInfoUpdateFailure,
     TResult Function()? permissionDeniedFailure,
     TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult Function()? sendVerificationEmailFailure,
+    TResult Function()? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (removeConimalFailure != null) {
@@ -4064,6 +4262,10 @@ class _$RemoveConimalFailure extends RemoveConimalFailure {
         permissionDeniedFailure,
     required TResult Function(PermissionPermanentlyDeniedFailure value)
         permissionPermanentlyDeniedFailure,
+    required TResult Function(SendVerificationEmailFailure value)
+        sendVerificationEmailFailure,
+    required TResult Function(CheckVerificationFailure value)
+        checkVerificationFailure,
   }) {
     return removeConimalFailure(this);
   }
@@ -4110,6 +4312,9 @@ class _$RemoveConimalFailure extends RemoveConimalFailure {
     TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult? Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
   }) {
     return removeConimalFailure?.call(this);
   }
@@ -4156,6 +4361,9 @@ class _$RemoveConimalFailure extends RemoveConimalFailure {
     TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (removeConimalFailure != null) {
@@ -4244,6 +4452,8 @@ class _$GetConimalListFailure extends GetConimalListFailure {
     required TResult Function() userInfoUpdateFailure,
     required TResult Function() permissionDeniedFailure,
     required TResult Function() permissionPermanentlyDeniedFailure,
+    required TResult Function() sendVerificationEmailFailure,
+    required TResult Function() checkVerificationFailure,
   }) {
     return getConimalListFailure();
   }
@@ -4287,6 +4497,8 @@ class _$GetConimalListFailure extends GetConimalListFailure {
     TResult? Function()? userInfoUpdateFailure,
     TResult? Function()? permissionDeniedFailure,
     TResult? Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? sendVerificationEmailFailure,
+    TResult? Function()? checkVerificationFailure,
   }) {
     return getConimalListFailure?.call();
   }
@@ -4330,6 +4542,8 @@ class _$GetConimalListFailure extends GetConimalListFailure {
     TResult Function()? userInfoUpdateFailure,
     TResult Function()? permissionDeniedFailure,
     TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult Function()? sendVerificationEmailFailure,
+    TResult Function()? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (getConimalListFailure != null) {
@@ -4387,6 +4601,10 @@ class _$GetConimalListFailure extends GetConimalListFailure {
         permissionDeniedFailure,
     required TResult Function(PermissionPermanentlyDeniedFailure value)
         permissionPermanentlyDeniedFailure,
+    required TResult Function(SendVerificationEmailFailure value)
+        sendVerificationEmailFailure,
+    required TResult Function(CheckVerificationFailure value)
+        checkVerificationFailure,
   }) {
     return getConimalListFailure(this);
   }
@@ -4433,6 +4651,9 @@ class _$GetConimalListFailure extends GetConimalListFailure {
     TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult? Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
   }) {
     return getConimalListFailure?.call(this);
   }
@@ -4479,6 +4700,9 @@ class _$GetConimalListFailure extends GetConimalListFailure {
     TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (getConimalListFailure != null) {
@@ -4568,6 +4792,8 @@ class _$SignInCredentialFailure extends SignInCredentialFailure {
     required TResult Function() userInfoUpdateFailure,
     required TResult Function() permissionDeniedFailure,
     required TResult Function() permissionPermanentlyDeniedFailure,
+    required TResult Function() sendVerificationEmailFailure,
+    required TResult Function() checkVerificationFailure,
   }) {
     return signInCredentialFailure();
   }
@@ -4611,6 +4837,8 @@ class _$SignInCredentialFailure extends SignInCredentialFailure {
     TResult? Function()? userInfoUpdateFailure,
     TResult? Function()? permissionDeniedFailure,
     TResult? Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? sendVerificationEmailFailure,
+    TResult? Function()? checkVerificationFailure,
   }) {
     return signInCredentialFailure?.call();
   }
@@ -4654,6 +4882,8 @@ class _$SignInCredentialFailure extends SignInCredentialFailure {
     TResult Function()? userInfoUpdateFailure,
     TResult Function()? permissionDeniedFailure,
     TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult Function()? sendVerificationEmailFailure,
+    TResult Function()? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (signInCredentialFailure != null) {
@@ -4711,6 +4941,10 @@ class _$SignInCredentialFailure extends SignInCredentialFailure {
         permissionDeniedFailure,
     required TResult Function(PermissionPermanentlyDeniedFailure value)
         permissionPermanentlyDeniedFailure,
+    required TResult Function(SendVerificationEmailFailure value)
+        sendVerificationEmailFailure,
+    required TResult Function(CheckVerificationFailure value)
+        checkVerificationFailure,
   }) {
     return signInCredentialFailure(this);
   }
@@ -4757,6 +4991,9 @@ class _$SignInCredentialFailure extends SignInCredentialFailure {
     TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult? Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
   }) {
     return signInCredentialFailure?.call(this);
   }
@@ -4803,6 +5040,9 @@ class _$SignInCredentialFailure extends SignInCredentialFailure {
     TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (signInCredentialFailure != null) {
@@ -4891,6 +5131,8 @@ class _$SignInTokenFailure extends SignInTokenFailure {
     required TResult Function() userInfoUpdateFailure,
     required TResult Function() permissionDeniedFailure,
     required TResult Function() permissionPermanentlyDeniedFailure,
+    required TResult Function() sendVerificationEmailFailure,
+    required TResult Function() checkVerificationFailure,
   }) {
     return signInTokenFailure();
   }
@@ -4934,6 +5176,8 @@ class _$SignInTokenFailure extends SignInTokenFailure {
     TResult? Function()? userInfoUpdateFailure,
     TResult? Function()? permissionDeniedFailure,
     TResult? Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? sendVerificationEmailFailure,
+    TResult? Function()? checkVerificationFailure,
   }) {
     return signInTokenFailure?.call();
   }
@@ -4977,6 +5221,8 @@ class _$SignInTokenFailure extends SignInTokenFailure {
     TResult Function()? userInfoUpdateFailure,
     TResult Function()? permissionDeniedFailure,
     TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult Function()? sendVerificationEmailFailure,
+    TResult Function()? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (signInTokenFailure != null) {
@@ -5034,6 +5280,10 @@ class _$SignInTokenFailure extends SignInTokenFailure {
         permissionDeniedFailure,
     required TResult Function(PermissionPermanentlyDeniedFailure value)
         permissionPermanentlyDeniedFailure,
+    required TResult Function(SendVerificationEmailFailure value)
+        sendVerificationEmailFailure,
+    required TResult Function(CheckVerificationFailure value)
+        checkVerificationFailure,
   }) {
     return signInTokenFailure(this);
   }
@@ -5080,6 +5330,9 @@ class _$SignInTokenFailure extends SignInTokenFailure {
     TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult? Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
   }) {
     return signInTokenFailure?.call(this);
   }
@@ -5126,6 +5379,9 @@ class _$SignInTokenFailure extends SignInTokenFailure {
     TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (signInTokenFailure != null) {
@@ -5214,6 +5470,8 @@ class _$NaverSigninFailure extends NaverSigninFailure {
     required TResult Function() userInfoUpdateFailure,
     required TResult Function() permissionDeniedFailure,
     required TResult Function() permissionPermanentlyDeniedFailure,
+    required TResult Function() sendVerificationEmailFailure,
+    required TResult Function() checkVerificationFailure,
   }) {
     return naverSigninFailure();
   }
@@ -5257,6 +5515,8 @@ class _$NaverSigninFailure extends NaverSigninFailure {
     TResult? Function()? userInfoUpdateFailure,
     TResult? Function()? permissionDeniedFailure,
     TResult? Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? sendVerificationEmailFailure,
+    TResult? Function()? checkVerificationFailure,
   }) {
     return naverSigninFailure?.call();
   }
@@ -5300,6 +5560,8 @@ class _$NaverSigninFailure extends NaverSigninFailure {
     TResult Function()? userInfoUpdateFailure,
     TResult Function()? permissionDeniedFailure,
     TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult Function()? sendVerificationEmailFailure,
+    TResult Function()? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (naverSigninFailure != null) {
@@ -5357,6 +5619,10 @@ class _$NaverSigninFailure extends NaverSigninFailure {
         permissionDeniedFailure,
     required TResult Function(PermissionPermanentlyDeniedFailure value)
         permissionPermanentlyDeniedFailure,
+    required TResult Function(SendVerificationEmailFailure value)
+        sendVerificationEmailFailure,
+    required TResult Function(CheckVerificationFailure value)
+        checkVerificationFailure,
   }) {
     return naverSigninFailure(this);
   }
@@ -5403,6 +5669,9 @@ class _$NaverSigninFailure extends NaverSigninFailure {
     TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult? Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
   }) {
     return naverSigninFailure?.call(this);
   }
@@ -5449,6 +5718,9 @@ class _$NaverSigninFailure extends NaverSigninFailure {
     TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (naverSigninFailure != null) {
@@ -5537,6 +5809,8 @@ class _$KakaoSigninFailure extends KakaoSigninFailure {
     required TResult Function() userInfoUpdateFailure,
     required TResult Function() permissionDeniedFailure,
     required TResult Function() permissionPermanentlyDeniedFailure,
+    required TResult Function() sendVerificationEmailFailure,
+    required TResult Function() checkVerificationFailure,
   }) {
     return kakaoSigninFailure();
   }
@@ -5580,6 +5854,8 @@ class _$KakaoSigninFailure extends KakaoSigninFailure {
     TResult? Function()? userInfoUpdateFailure,
     TResult? Function()? permissionDeniedFailure,
     TResult? Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? sendVerificationEmailFailure,
+    TResult? Function()? checkVerificationFailure,
   }) {
     return kakaoSigninFailure?.call();
   }
@@ -5623,6 +5899,8 @@ class _$KakaoSigninFailure extends KakaoSigninFailure {
     TResult Function()? userInfoUpdateFailure,
     TResult Function()? permissionDeniedFailure,
     TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult Function()? sendVerificationEmailFailure,
+    TResult Function()? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (kakaoSigninFailure != null) {
@@ -5680,6 +5958,10 @@ class _$KakaoSigninFailure extends KakaoSigninFailure {
         permissionDeniedFailure,
     required TResult Function(PermissionPermanentlyDeniedFailure value)
         permissionPermanentlyDeniedFailure,
+    required TResult Function(SendVerificationEmailFailure value)
+        sendVerificationEmailFailure,
+    required TResult Function(CheckVerificationFailure value)
+        checkVerificationFailure,
   }) {
     return kakaoSigninFailure(this);
   }
@@ -5726,6 +6008,9 @@ class _$KakaoSigninFailure extends KakaoSigninFailure {
     TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult? Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
   }) {
     return kakaoSigninFailure?.call(this);
   }
@@ -5772,6 +6057,9 @@ class _$KakaoSigninFailure extends KakaoSigninFailure {
     TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (kakaoSigninFailure != null) {
@@ -5860,6 +6148,8 @@ class _$GoogleSigninFailure extends GoogleSigninFailure {
     required TResult Function() userInfoUpdateFailure,
     required TResult Function() permissionDeniedFailure,
     required TResult Function() permissionPermanentlyDeniedFailure,
+    required TResult Function() sendVerificationEmailFailure,
+    required TResult Function() checkVerificationFailure,
   }) {
     return googleSigninFailure();
   }
@@ -5903,6 +6193,8 @@ class _$GoogleSigninFailure extends GoogleSigninFailure {
     TResult? Function()? userInfoUpdateFailure,
     TResult? Function()? permissionDeniedFailure,
     TResult? Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? sendVerificationEmailFailure,
+    TResult? Function()? checkVerificationFailure,
   }) {
     return googleSigninFailure?.call();
   }
@@ -5946,6 +6238,8 @@ class _$GoogleSigninFailure extends GoogleSigninFailure {
     TResult Function()? userInfoUpdateFailure,
     TResult Function()? permissionDeniedFailure,
     TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult Function()? sendVerificationEmailFailure,
+    TResult Function()? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (googleSigninFailure != null) {
@@ -6003,6 +6297,10 @@ class _$GoogleSigninFailure extends GoogleSigninFailure {
         permissionDeniedFailure,
     required TResult Function(PermissionPermanentlyDeniedFailure value)
         permissionPermanentlyDeniedFailure,
+    required TResult Function(SendVerificationEmailFailure value)
+        sendVerificationEmailFailure,
+    required TResult Function(CheckVerificationFailure value)
+        checkVerificationFailure,
   }) {
     return googleSigninFailure(this);
   }
@@ -6049,6 +6347,9 @@ class _$GoogleSigninFailure extends GoogleSigninFailure {
     TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult? Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
   }) {
     return googleSigninFailure?.call(this);
   }
@@ -6095,6 +6396,9 @@ class _$GoogleSigninFailure extends GoogleSigninFailure {
     TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (googleSigninFailure != null) {
@@ -6183,6 +6487,8 @@ class _$AppleSigninFailure extends AppleSigninFailure {
     required TResult Function() userInfoUpdateFailure,
     required TResult Function() permissionDeniedFailure,
     required TResult Function() permissionPermanentlyDeniedFailure,
+    required TResult Function() sendVerificationEmailFailure,
+    required TResult Function() checkVerificationFailure,
   }) {
     return appleSigninFailure();
   }
@@ -6226,6 +6532,8 @@ class _$AppleSigninFailure extends AppleSigninFailure {
     TResult? Function()? userInfoUpdateFailure,
     TResult? Function()? permissionDeniedFailure,
     TResult? Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? sendVerificationEmailFailure,
+    TResult? Function()? checkVerificationFailure,
   }) {
     return appleSigninFailure?.call();
   }
@@ -6269,6 +6577,8 @@ class _$AppleSigninFailure extends AppleSigninFailure {
     TResult Function()? userInfoUpdateFailure,
     TResult Function()? permissionDeniedFailure,
     TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult Function()? sendVerificationEmailFailure,
+    TResult Function()? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (appleSigninFailure != null) {
@@ -6326,6 +6636,10 @@ class _$AppleSigninFailure extends AppleSigninFailure {
         permissionDeniedFailure,
     required TResult Function(PermissionPermanentlyDeniedFailure value)
         permissionPermanentlyDeniedFailure,
+    required TResult Function(SendVerificationEmailFailure value)
+        sendVerificationEmailFailure,
+    required TResult Function(CheckVerificationFailure value)
+        checkVerificationFailure,
   }) {
     return appleSigninFailure(this);
   }
@@ -6372,6 +6686,9 @@ class _$AppleSigninFailure extends AppleSigninFailure {
     TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult? Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
   }) {
     return appleSigninFailure?.call(this);
   }
@@ -6418,6 +6735,9 @@ class _$AppleSigninFailure extends AppleSigninFailure {
     TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (appleSigninFailure != null) {
@@ -6506,6 +6826,8 @@ class _$EmailSigninFailure extends EmailSigninFailure {
     required TResult Function() userInfoUpdateFailure,
     required TResult Function() permissionDeniedFailure,
     required TResult Function() permissionPermanentlyDeniedFailure,
+    required TResult Function() sendVerificationEmailFailure,
+    required TResult Function() checkVerificationFailure,
   }) {
     return emailSigninFailure();
   }
@@ -6549,6 +6871,8 @@ class _$EmailSigninFailure extends EmailSigninFailure {
     TResult? Function()? userInfoUpdateFailure,
     TResult? Function()? permissionDeniedFailure,
     TResult? Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? sendVerificationEmailFailure,
+    TResult? Function()? checkVerificationFailure,
   }) {
     return emailSigninFailure?.call();
   }
@@ -6592,6 +6916,8 @@ class _$EmailSigninFailure extends EmailSigninFailure {
     TResult Function()? userInfoUpdateFailure,
     TResult Function()? permissionDeniedFailure,
     TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult Function()? sendVerificationEmailFailure,
+    TResult Function()? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (emailSigninFailure != null) {
@@ -6649,6 +6975,10 @@ class _$EmailSigninFailure extends EmailSigninFailure {
         permissionDeniedFailure,
     required TResult Function(PermissionPermanentlyDeniedFailure value)
         permissionPermanentlyDeniedFailure,
+    required TResult Function(SendVerificationEmailFailure value)
+        sendVerificationEmailFailure,
+    required TResult Function(CheckVerificationFailure value)
+        checkVerificationFailure,
   }) {
     return emailSigninFailure(this);
   }
@@ -6695,6 +7025,9 @@ class _$EmailSigninFailure extends EmailSigninFailure {
     TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult? Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
   }) {
     return emailSigninFailure?.call(this);
   }
@@ -6741,6 +7074,9 @@ class _$EmailSigninFailure extends EmailSigninFailure {
     TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (emailSigninFailure != null) {
@@ -6829,6 +7165,8 @@ class _$GetUserInfoFailure extends GetUserInfoFailure {
     required TResult Function() userInfoUpdateFailure,
     required TResult Function() permissionDeniedFailure,
     required TResult Function() permissionPermanentlyDeniedFailure,
+    required TResult Function() sendVerificationEmailFailure,
+    required TResult Function() checkVerificationFailure,
   }) {
     return getUserFailure();
   }
@@ -6872,6 +7210,8 @@ class _$GetUserInfoFailure extends GetUserInfoFailure {
     TResult? Function()? userInfoUpdateFailure,
     TResult? Function()? permissionDeniedFailure,
     TResult? Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? sendVerificationEmailFailure,
+    TResult? Function()? checkVerificationFailure,
   }) {
     return getUserFailure?.call();
   }
@@ -6915,6 +7255,8 @@ class _$GetUserInfoFailure extends GetUserInfoFailure {
     TResult Function()? userInfoUpdateFailure,
     TResult Function()? permissionDeniedFailure,
     TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult Function()? sendVerificationEmailFailure,
+    TResult Function()? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (getUserFailure != null) {
@@ -6972,6 +7314,10 @@ class _$GetUserInfoFailure extends GetUserInfoFailure {
         permissionDeniedFailure,
     required TResult Function(PermissionPermanentlyDeniedFailure value)
         permissionPermanentlyDeniedFailure,
+    required TResult Function(SendVerificationEmailFailure value)
+        sendVerificationEmailFailure,
+    required TResult Function(CheckVerificationFailure value)
+        checkVerificationFailure,
   }) {
     return getUserFailure(this);
   }
@@ -7018,6 +7364,9 @@ class _$GetUserInfoFailure extends GetUserInfoFailure {
     TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult? Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
   }) {
     return getUserFailure?.call(this);
   }
@@ -7064,6 +7413,9 @@ class _$GetUserInfoFailure extends GetUserInfoFailure {
     TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (getUserFailure != null) {
@@ -7152,6 +7504,8 @@ class _$WrongPasswordFailure extends WrongPasswordFailure {
     required TResult Function() userInfoUpdateFailure,
     required TResult Function() permissionDeniedFailure,
     required TResult Function() permissionPermanentlyDeniedFailure,
+    required TResult Function() sendVerificationEmailFailure,
+    required TResult Function() checkVerificationFailure,
   }) {
     return wrongPasswordFailure();
   }
@@ -7195,6 +7549,8 @@ class _$WrongPasswordFailure extends WrongPasswordFailure {
     TResult? Function()? userInfoUpdateFailure,
     TResult? Function()? permissionDeniedFailure,
     TResult? Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? sendVerificationEmailFailure,
+    TResult? Function()? checkVerificationFailure,
   }) {
     return wrongPasswordFailure?.call();
   }
@@ -7238,6 +7594,8 @@ class _$WrongPasswordFailure extends WrongPasswordFailure {
     TResult Function()? userInfoUpdateFailure,
     TResult Function()? permissionDeniedFailure,
     TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult Function()? sendVerificationEmailFailure,
+    TResult Function()? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (wrongPasswordFailure != null) {
@@ -7295,6 +7653,10 @@ class _$WrongPasswordFailure extends WrongPasswordFailure {
         permissionDeniedFailure,
     required TResult Function(PermissionPermanentlyDeniedFailure value)
         permissionPermanentlyDeniedFailure,
+    required TResult Function(SendVerificationEmailFailure value)
+        sendVerificationEmailFailure,
+    required TResult Function(CheckVerificationFailure value)
+        checkVerificationFailure,
   }) {
     return wrongPasswordFailure(this);
   }
@@ -7341,6 +7703,9 @@ class _$WrongPasswordFailure extends WrongPasswordFailure {
     TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult? Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
   }) {
     return wrongPasswordFailure?.call(this);
   }
@@ -7387,6 +7752,9 @@ class _$WrongPasswordFailure extends WrongPasswordFailure {
     TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (wrongPasswordFailure != null) {
@@ -7475,6 +7843,8 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
     required TResult Function() userInfoUpdateFailure,
     required TResult Function() permissionDeniedFailure,
     required TResult Function() permissionPermanentlyDeniedFailure,
+    required TResult Function() sendVerificationEmailFailure,
+    required TResult Function() checkVerificationFailure,
   }) {
     return noEmailUserFailure();
   }
@@ -7518,6 +7888,8 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
     TResult? Function()? userInfoUpdateFailure,
     TResult? Function()? permissionDeniedFailure,
     TResult? Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? sendVerificationEmailFailure,
+    TResult? Function()? checkVerificationFailure,
   }) {
     return noEmailUserFailure?.call();
   }
@@ -7561,6 +7933,8 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
     TResult Function()? userInfoUpdateFailure,
     TResult Function()? permissionDeniedFailure,
     TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult Function()? sendVerificationEmailFailure,
+    TResult Function()? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (noEmailUserFailure != null) {
@@ -7618,6 +7992,10 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
         permissionDeniedFailure,
     required TResult Function(PermissionPermanentlyDeniedFailure value)
         permissionPermanentlyDeniedFailure,
+    required TResult Function(SendVerificationEmailFailure value)
+        sendVerificationEmailFailure,
+    required TResult Function(CheckVerificationFailure value)
+        checkVerificationFailure,
   }) {
     return noEmailUserFailure(this);
   }
@@ -7664,6 +8042,9 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
     TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult? Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
   }) {
     return noEmailUserFailure?.call(this);
   }
@@ -7710,6 +8091,9 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
     TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (noEmailUserFailure != null) {
@@ -7798,6 +8182,8 @@ class _$WrongTokenFailure extends WrongTokenFailure {
     required TResult Function() userInfoUpdateFailure,
     required TResult Function() permissionDeniedFailure,
     required TResult Function() permissionPermanentlyDeniedFailure,
+    required TResult Function() sendVerificationEmailFailure,
+    required TResult Function() checkVerificationFailure,
   }) {
     return wrongTokenFailure();
   }
@@ -7841,6 +8227,8 @@ class _$WrongTokenFailure extends WrongTokenFailure {
     TResult? Function()? userInfoUpdateFailure,
     TResult? Function()? permissionDeniedFailure,
     TResult? Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? sendVerificationEmailFailure,
+    TResult? Function()? checkVerificationFailure,
   }) {
     return wrongTokenFailure?.call();
   }
@@ -7884,6 +8272,8 @@ class _$WrongTokenFailure extends WrongTokenFailure {
     TResult Function()? userInfoUpdateFailure,
     TResult Function()? permissionDeniedFailure,
     TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult Function()? sendVerificationEmailFailure,
+    TResult Function()? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (wrongTokenFailure != null) {
@@ -7941,6 +8331,10 @@ class _$WrongTokenFailure extends WrongTokenFailure {
         permissionDeniedFailure,
     required TResult Function(PermissionPermanentlyDeniedFailure value)
         permissionPermanentlyDeniedFailure,
+    required TResult Function(SendVerificationEmailFailure value)
+        sendVerificationEmailFailure,
+    required TResult Function(CheckVerificationFailure value)
+        checkVerificationFailure,
   }) {
     return wrongTokenFailure(this);
   }
@@ -7987,6 +8381,9 @@ class _$WrongTokenFailure extends WrongTokenFailure {
     TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult? Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
   }) {
     return wrongTokenFailure?.call(this);
   }
@@ -8033,6 +8430,9 @@ class _$WrongTokenFailure extends WrongTokenFailure {
     TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (wrongTokenFailure != null) {
@@ -8121,6 +8521,8 @@ class _$ExistingEmailFailure extends ExistingEmailFailure {
     required TResult Function() userInfoUpdateFailure,
     required TResult Function() permissionDeniedFailure,
     required TResult Function() permissionPermanentlyDeniedFailure,
+    required TResult Function() sendVerificationEmailFailure,
+    required TResult Function() checkVerificationFailure,
   }) {
     return existingEmailFailure();
   }
@@ -8164,6 +8566,8 @@ class _$ExistingEmailFailure extends ExistingEmailFailure {
     TResult? Function()? userInfoUpdateFailure,
     TResult? Function()? permissionDeniedFailure,
     TResult? Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? sendVerificationEmailFailure,
+    TResult? Function()? checkVerificationFailure,
   }) {
     return existingEmailFailure?.call();
   }
@@ -8207,6 +8611,8 @@ class _$ExistingEmailFailure extends ExistingEmailFailure {
     TResult Function()? userInfoUpdateFailure,
     TResult Function()? permissionDeniedFailure,
     TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult Function()? sendVerificationEmailFailure,
+    TResult Function()? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (existingEmailFailure != null) {
@@ -8264,6 +8670,10 @@ class _$ExistingEmailFailure extends ExistingEmailFailure {
         permissionDeniedFailure,
     required TResult Function(PermissionPermanentlyDeniedFailure value)
         permissionPermanentlyDeniedFailure,
+    required TResult Function(SendVerificationEmailFailure value)
+        sendVerificationEmailFailure,
+    required TResult Function(CheckVerificationFailure value)
+        checkVerificationFailure,
   }) {
     return existingEmailFailure(this);
   }
@@ -8310,6 +8720,9 @@ class _$ExistingEmailFailure extends ExistingEmailFailure {
     TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult? Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
   }) {
     return existingEmailFailure?.call(this);
   }
@@ -8356,6 +8769,9 @@ class _$ExistingEmailFailure extends ExistingEmailFailure {
     TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (existingEmailFailure != null) {
@@ -8444,6 +8860,8 @@ class _$UserEnabledFailure extends UserEnabledFailure {
     required TResult Function() userInfoUpdateFailure,
     required TResult Function() permissionDeniedFailure,
     required TResult Function() permissionPermanentlyDeniedFailure,
+    required TResult Function() sendVerificationEmailFailure,
+    required TResult Function() checkVerificationFailure,
   }) {
     return userEnabledFailure();
   }
@@ -8487,6 +8905,8 @@ class _$UserEnabledFailure extends UserEnabledFailure {
     TResult? Function()? userInfoUpdateFailure,
     TResult? Function()? permissionDeniedFailure,
     TResult? Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? sendVerificationEmailFailure,
+    TResult? Function()? checkVerificationFailure,
   }) {
     return userEnabledFailure?.call();
   }
@@ -8530,6 +8950,8 @@ class _$UserEnabledFailure extends UserEnabledFailure {
     TResult Function()? userInfoUpdateFailure,
     TResult Function()? permissionDeniedFailure,
     TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult Function()? sendVerificationEmailFailure,
+    TResult Function()? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (userEnabledFailure != null) {
@@ -8587,6 +9009,10 @@ class _$UserEnabledFailure extends UserEnabledFailure {
         permissionDeniedFailure,
     required TResult Function(PermissionPermanentlyDeniedFailure value)
         permissionPermanentlyDeniedFailure,
+    required TResult Function(SendVerificationEmailFailure value)
+        sendVerificationEmailFailure,
+    required TResult Function(CheckVerificationFailure value)
+        checkVerificationFailure,
   }) {
     return userEnabledFailure(this);
   }
@@ -8633,6 +9059,9 @@ class _$UserEnabledFailure extends UserEnabledFailure {
     TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult? Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
   }) {
     return userEnabledFailure?.call(this);
   }
@@ -8679,6 +9108,9 @@ class _$UserEnabledFailure extends UserEnabledFailure {
     TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (userEnabledFailure != null) {
@@ -8767,6 +9199,8 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
     required TResult Function() userInfoUpdateFailure,
     required TResult Function() permissionDeniedFailure,
     required TResult Function() permissionPermanentlyDeniedFailure,
+    required TResult Function() sendVerificationEmailFailure,
+    required TResult Function() checkVerificationFailure,
   }) {
     return weakPasswordFailure();
   }
@@ -8810,6 +9244,8 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
     TResult? Function()? userInfoUpdateFailure,
     TResult? Function()? permissionDeniedFailure,
     TResult? Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? sendVerificationEmailFailure,
+    TResult? Function()? checkVerificationFailure,
   }) {
     return weakPasswordFailure?.call();
   }
@@ -8853,6 +9289,8 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
     TResult Function()? userInfoUpdateFailure,
     TResult Function()? permissionDeniedFailure,
     TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult Function()? sendVerificationEmailFailure,
+    TResult Function()? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (weakPasswordFailure != null) {
@@ -8910,6 +9348,10 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
         permissionDeniedFailure,
     required TResult Function(PermissionPermanentlyDeniedFailure value)
         permissionPermanentlyDeniedFailure,
+    required TResult Function(SendVerificationEmailFailure value)
+        sendVerificationEmailFailure,
+    required TResult Function(CheckVerificationFailure value)
+        checkVerificationFailure,
   }) {
     return weakPasswordFailure(this);
   }
@@ -8956,6 +9398,9 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
     TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult? Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
   }) {
     return weakPasswordFailure?.call(this);
   }
@@ -9002,6 +9447,9 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
     TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (weakPasswordFailure != null) {
@@ -9090,6 +9538,8 @@ class _$MaxImageSizeFailure extends MaxImageSizeFailure {
     required TResult Function() userInfoUpdateFailure,
     required TResult Function() permissionDeniedFailure,
     required TResult Function() permissionPermanentlyDeniedFailure,
+    required TResult Function() sendVerificationEmailFailure,
+    required TResult Function() checkVerificationFailure,
   }) {
     return maxImageSizeFailure();
   }
@@ -9133,6 +9583,8 @@ class _$MaxImageSizeFailure extends MaxImageSizeFailure {
     TResult? Function()? userInfoUpdateFailure,
     TResult? Function()? permissionDeniedFailure,
     TResult? Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? sendVerificationEmailFailure,
+    TResult? Function()? checkVerificationFailure,
   }) {
     return maxImageSizeFailure?.call();
   }
@@ -9176,6 +9628,8 @@ class _$MaxImageSizeFailure extends MaxImageSizeFailure {
     TResult Function()? userInfoUpdateFailure,
     TResult Function()? permissionDeniedFailure,
     TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult Function()? sendVerificationEmailFailure,
+    TResult Function()? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (maxImageSizeFailure != null) {
@@ -9233,6 +9687,10 @@ class _$MaxImageSizeFailure extends MaxImageSizeFailure {
         permissionDeniedFailure,
     required TResult Function(PermissionPermanentlyDeniedFailure value)
         permissionPermanentlyDeniedFailure,
+    required TResult Function(SendVerificationEmailFailure value)
+        sendVerificationEmailFailure,
+    required TResult Function(CheckVerificationFailure value)
+        checkVerificationFailure,
   }) {
     return maxImageSizeFailure(this);
   }
@@ -9279,6 +9737,9 @@ class _$MaxImageSizeFailure extends MaxImageSizeFailure {
     TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult? Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
   }) {
     return maxImageSizeFailure?.call(this);
   }
@@ -9325,6 +9786,9 @@ class _$MaxImageSizeFailure extends MaxImageSizeFailure {
     TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (maxImageSizeFailure != null) {
@@ -9413,6 +9877,8 @@ class _$MaxImageNumFailure extends MaxImageNumFailure {
     required TResult Function() userInfoUpdateFailure,
     required TResult Function() permissionDeniedFailure,
     required TResult Function() permissionPermanentlyDeniedFailure,
+    required TResult Function() sendVerificationEmailFailure,
+    required TResult Function() checkVerificationFailure,
   }) {
     return maxImageNumFailure();
   }
@@ -9456,6 +9922,8 @@ class _$MaxImageNumFailure extends MaxImageNumFailure {
     TResult? Function()? userInfoUpdateFailure,
     TResult? Function()? permissionDeniedFailure,
     TResult? Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? sendVerificationEmailFailure,
+    TResult? Function()? checkVerificationFailure,
   }) {
     return maxImageNumFailure?.call();
   }
@@ -9499,6 +9967,8 @@ class _$MaxImageNumFailure extends MaxImageNumFailure {
     TResult Function()? userInfoUpdateFailure,
     TResult Function()? permissionDeniedFailure,
     TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult Function()? sendVerificationEmailFailure,
+    TResult Function()? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (maxImageNumFailure != null) {
@@ -9556,6 +10026,10 @@ class _$MaxImageNumFailure extends MaxImageNumFailure {
         permissionDeniedFailure,
     required TResult Function(PermissionPermanentlyDeniedFailure value)
         permissionPermanentlyDeniedFailure,
+    required TResult Function(SendVerificationEmailFailure value)
+        sendVerificationEmailFailure,
+    required TResult Function(CheckVerificationFailure value)
+        checkVerificationFailure,
   }) {
     return maxImageNumFailure(this);
   }
@@ -9602,6 +10076,9 @@ class _$MaxImageNumFailure extends MaxImageNumFailure {
     TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult? Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
   }) {
     return maxImageNumFailure?.call(this);
   }
@@ -9648,6 +10125,9 @@ class _$MaxImageNumFailure extends MaxImageNumFailure {
     TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (maxImageNumFailure != null) {
@@ -9738,6 +10218,8 @@ class _$NoPostTypeSelectedFailure extends NoPostTypeSelectedFailure {
     required TResult Function() userInfoUpdateFailure,
     required TResult Function() permissionDeniedFailure,
     required TResult Function() permissionPermanentlyDeniedFailure,
+    required TResult Function() sendVerificationEmailFailure,
+    required TResult Function() checkVerificationFailure,
   }) {
     return noPostTypeSelectedFailure();
   }
@@ -9781,6 +10263,8 @@ class _$NoPostTypeSelectedFailure extends NoPostTypeSelectedFailure {
     TResult? Function()? userInfoUpdateFailure,
     TResult? Function()? permissionDeniedFailure,
     TResult? Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? sendVerificationEmailFailure,
+    TResult? Function()? checkVerificationFailure,
   }) {
     return noPostTypeSelectedFailure?.call();
   }
@@ -9824,6 +10308,8 @@ class _$NoPostTypeSelectedFailure extends NoPostTypeSelectedFailure {
     TResult Function()? userInfoUpdateFailure,
     TResult Function()? permissionDeniedFailure,
     TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult Function()? sendVerificationEmailFailure,
+    TResult Function()? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (noPostTypeSelectedFailure != null) {
@@ -9881,6 +10367,10 @@ class _$NoPostTypeSelectedFailure extends NoPostTypeSelectedFailure {
         permissionDeniedFailure,
     required TResult Function(PermissionPermanentlyDeniedFailure value)
         permissionPermanentlyDeniedFailure,
+    required TResult Function(SendVerificationEmailFailure value)
+        sendVerificationEmailFailure,
+    required TResult Function(CheckVerificationFailure value)
+        checkVerificationFailure,
   }) {
     return noPostTypeSelectedFailure(this);
   }
@@ -9927,6 +10417,9 @@ class _$NoPostTypeSelectedFailure extends NoPostTypeSelectedFailure {
     TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult? Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
   }) {
     return noPostTypeSelectedFailure?.call(this);
   }
@@ -9973,6 +10466,9 @@ class _$NoPostTypeSelectedFailure extends NoPostTypeSelectedFailure {
     TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (noPostTypeSelectedFailure != null) {
@@ -10061,6 +10557,8 @@ class _$NoPostContentsFailure extends NoPostContentsFailure {
     required TResult Function() userInfoUpdateFailure,
     required TResult Function() permissionDeniedFailure,
     required TResult Function() permissionPermanentlyDeniedFailure,
+    required TResult Function() sendVerificationEmailFailure,
+    required TResult Function() checkVerificationFailure,
   }) {
     return noPostContentsFailure();
   }
@@ -10104,6 +10602,8 @@ class _$NoPostContentsFailure extends NoPostContentsFailure {
     TResult? Function()? userInfoUpdateFailure,
     TResult? Function()? permissionDeniedFailure,
     TResult? Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? sendVerificationEmailFailure,
+    TResult? Function()? checkVerificationFailure,
   }) {
     return noPostContentsFailure?.call();
   }
@@ -10147,6 +10647,8 @@ class _$NoPostContentsFailure extends NoPostContentsFailure {
     TResult Function()? userInfoUpdateFailure,
     TResult Function()? permissionDeniedFailure,
     TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult Function()? sendVerificationEmailFailure,
+    TResult Function()? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (noPostContentsFailure != null) {
@@ -10204,6 +10706,10 @@ class _$NoPostContentsFailure extends NoPostContentsFailure {
         permissionDeniedFailure,
     required TResult Function(PermissionPermanentlyDeniedFailure value)
         permissionPermanentlyDeniedFailure,
+    required TResult Function(SendVerificationEmailFailure value)
+        sendVerificationEmailFailure,
+    required TResult Function(CheckVerificationFailure value)
+        checkVerificationFailure,
   }) {
     return noPostContentsFailure(this);
   }
@@ -10250,6 +10756,9 @@ class _$NoPostContentsFailure extends NoPostContentsFailure {
     TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult? Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
   }) {
     return noPostContentsFailure?.call(this);
   }
@@ -10296,6 +10805,9 @@ class _$NoPostContentsFailure extends NoPostContentsFailure {
     TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (noPostContentsFailure != null) {
@@ -10384,6 +10896,8 @@ class _$NotFoundPostFailure extends NotFoundPostFailure {
     required TResult Function() userInfoUpdateFailure,
     required TResult Function() permissionDeniedFailure,
     required TResult Function() permissionPermanentlyDeniedFailure,
+    required TResult Function() sendVerificationEmailFailure,
+    required TResult Function() checkVerificationFailure,
   }) {
     return notFoundPostFailure();
   }
@@ -10427,6 +10941,8 @@ class _$NotFoundPostFailure extends NotFoundPostFailure {
     TResult? Function()? userInfoUpdateFailure,
     TResult? Function()? permissionDeniedFailure,
     TResult? Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? sendVerificationEmailFailure,
+    TResult? Function()? checkVerificationFailure,
   }) {
     return notFoundPostFailure?.call();
   }
@@ -10470,6 +10986,8 @@ class _$NotFoundPostFailure extends NotFoundPostFailure {
     TResult Function()? userInfoUpdateFailure,
     TResult Function()? permissionDeniedFailure,
     TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult Function()? sendVerificationEmailFailure,
+    TResult Function()? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (notFoundPostFailure != null) {
@@ -10527,6 +11045,10 @@ class _$NotFoundPostFailure extends NotFoundPostFailure {
         permissionDeniedFailure,
     required TResult Function(PermissionPermanentlyDeniedFailure value)
         permissionPermanentlyDeniedFailure,
+    required TResult Function(SendVerificationEmailFailure value)
+        sendVerificationEmailFailure,
+    required TResult Function(CheckVerificationFailure value)
+        checkVerificationFailure,
   }) {
     return notFoundPostFailure(this);
   }
@@ -10573,6 +11095,9 @@ class _$NotFoundPostFailure extends NotFoundPostFailure {
     TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult? Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
   }) {
     return notFoundPostFailure?.call(this);
   }
@@ -10619,6 +11144,9 @@ class _$NotFoundPostFailure extends NotFoundPostFailure {
     TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (notFoundPostFailure != null) {
@@ -10710,6 +11238,8 @@ class _$NotEditablePasswordFailure extends NotEditablePasswordFailure {
     required TResult Function() userInfoUpdateFailure,
     required TResult Function() permissionDeniedFailure,
     required TResult Function() permissionPermanentlyDeniedFailure,
+    required TResult Function() sendVerificationEmailFailure,
+    required TResult Function() checkVerificationFailure,
   }) {
     return notEditablePasswordFailure();
   }
@@ -10753,6 +11283,8 @@ class _$NotEditablePasswordFailure extends NotEditablePasswordFailure {
     TResult? Function()? userInfoUpdateFailure,
     TResult? Function()? permissionDeniedFailure,
     TResult? Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? sendVerificationEmailFailure,
+    TResult? Function()? checkVerificationFailure,
   }) {
     return notEditablePasswordFailure?.call();
   }
@@ -10796,6 +11328,8 @@ class _$NotEditablePasswordFailure extends NotEditablePasswordFailure {
     TResult Function()? userInfoUpdateFailure,
     TResult Function()? permissionDeniedFailure,
     TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult Function()? sendVerificationEmailFailure,
+    TResult Function()? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (notEditablePasswordFailure != null) {
@@ -10853,6 +11387,10 @@ class _$NotEditablePasswordFailure extends NotEditablePasswordFailure {
         permissionDeniedFailure,
     required TResult Function(PermissionPermanentlyDeniedFailure value)
         permissionPermanentlyDeniedFailure,
+    required TResult Function(SendVerificationEmailFailure value)
+        sendVerificationEmailFailure,
+    required TResult Function(CheckVerificationFailure value)
+        checkVerificationFailure,
   }) {
     return notEditablePasswordFailure(this);
   }
@@ -10899,6 +11437,9 @@ class _$NotEditablePasswordFailure extends NotEditablePasswordFailure {
     TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult? Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
   }) {
     return notEditablePasswordFailure?.call(this);
   }
@@ -10945,6 +11486,9 @@ class _$NotEditablePasswordFailure extends NotEditablePasswordFailure {
     TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (notEditablePasswordFailure != null) {
@@ -11033,6 +11577,8 @@ class _$UserInfoUpdateFailure extends UserInfoUpdateFailure {
     required TResult Function() userInfoUpdateFailure,
     required TResult Function() permissionDeniedFailure,
     required TResult Function() permissionPermanentlyDeniedFailure,
+    required TResult Function() sendVerificationEmailFailure,
+    required TResult Function() checkVerificationFailure,
   }) {
     return userInfoUpdateFailure();
   }
@@ -11076,6 +11622,8 @@ class _$UserInfoUpdateFailure extends UserInfoUpdateFailure {
     TResult? Function()? userInfoUpdateFailure,
     TResult? Function()? permissionDeniedFailure,
     TResult? Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? sendVerificationEmailFailure,
+    TResult? Function()? checkVerificationFailure,
   }) {
     return userInfoUpdateFailure?.call();
   }
@@ -11119,6 +11667,8 @@ class _$UserInfoUpdateFailure extends UserInfoUpdateFailure {
     TResult Function()? userInfoUpdateFailure,
     TResult Function()? permissionDeniedFailure,
     TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult Function()? sendVerificationEmailFailure,
+    TResult Function()? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (userInfoUpdateFailure != null) {
@@ -11176,6 +11726,10 @@ class _$UserInfoUpdateFailure extends UserInfoUpdateFailure {
         permissionDeniedFailure,
     required TResult Function(PermissionPermanentlyDeniedFailure value)
         permissionPermanentlyDeniedFailure,
+    required TResult Function(SendVerificationEmailFailure value)
+        sendVerificationEmailFailure,
+    required TResult Function(CheckVerificationFailure value)
+        checkVerificationFailure,
   }) {
     return userInfoUpdateFailure(this);
   }
@@ -11222,6 +11776,9 @@ class _$UserInfoUpdateFailure extends UserInfoUpdateFailure {
     TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult? Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
   }) {
     return userInfoUpdateFailure?.call(this);
   }
@@ -11268,6 +11825,9 @@ class _$UserInfoUpdateFailure extends UserInfoUpdateFailure {
     TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (userInfoUpdateFailure != null) {
@@ -11357,6 +11917,8 @@ class _$PermissionDeniedFailure extends PermissionDeniedFailure {
     required TResult Function() userInfoUpdateFailure,
     required TResult Function() permissionDeniedFailure,
     required TResult Function() permissionPermanentlyDeniedFailure,
+    required TResult Function() sendVerificationEmailFailure,
+    required TResult Function() checkVerificationFailure,
   }) {
     return permissionDeniedFailure();
   }
@@ -11400,6 +11962,8 @@ class _$PermissionDeniedFailure extends PermissionDeniedFailure {
     TResult? Function()? userInfoUpdateFailure,
     TResult? Function()? permissionDeniedFailure,
     TResult? Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? sendVerificationEmailFailure,
+    TResult? Function()? checkVerificationFailure,
   }) {
     return permissionDeniedFailure?.call();
   }
@@ -11443,6 +12007,8 @@ class _$PermissionDeniedFailure extends PermissionDeniedFailure {
     TResult Function()? userInfoUpdateFailure,
     TResult Function()? permissionDeniedFailure,
     TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult Function()? sendVerificationEmailFailure,
+    TResult Function()? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (permissionDeniedFailure != null) {
@@ -11500,6 +12066,10 @@ class _$PermissionDeniedFailure extends PermissionDeniedFailure {
         permissionDeniedFailure,
     required TResult Function(PermissionPermanentlyDeniedFailure value)
         permissionPermanentlyDeniedFailure,
+    required TResult Function(SendVerificationEmailFailure value)
+        sendVerificationEmailFailure,
+    required TResult Function(CheckVerificationFailure value)
+        checkVerificationFailure,
   }) {
     return permissionDeniedFailure(this);
   }
@@ -11546,6 +12116,9 @@ class _$PermissionDeniedFailure extends PermissionDeniedFailure {
     TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult? Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
   }) {
     return permissionDeniedFailure?.call(this);
   }
@@ -11592,6 +12165,9 @@ class _$PermissionDeniedFailure extends PermissionDeniedFailure {
     TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (permissionDeniedFailure != null) {
@@ -11684,6 +12260,8 @@ class _$PermissionPermanentlyDeniedFailure
     required TResult Function() userInfoUpdateFailure,
     required TResult Function() permissionDeniedFailure,
     required TResult Function() permissionPermanentlyDeniedFailure,
+    required TResult Function() sendVerificationEmailFailure,
+    required TResult Function() checkVerificationFailure,
   }) {
     return permissionPermanentlyDeniedFailure();
   }
@@ -11727,6 +12305,8 @@ class _$PermissionPermanentlyDeniedFailure
     TResult? Function()? userInfoUpdateFailure,
     TResult? Function()? permissionDeniedFailure,
     TResult? Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? sendVerificationEmailFailure,
+    TResult? Function()? checkVerificationFailure,
   }) {
     return permissionPermanentlyDeniedFailure?.call();
   }
@@ -11770,6 +12350,8 @@ class _$PermissionPermanentlyDeniedFailure
     TResult Function()? userInfoUpdateFailure,
     TResult Function()? permissionDeniedFailure,
     TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult Function()? sendVerificationEmailFailure,
+    TResult Function()? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (permissionPermanentlyDeniedFailure != null) {
@@ -11827,6 +12409,10 @@ class _$PermissionPermanentlyDeniedFailure
         permissionDeniedFailure,
     required TResult Function(PermissionPermanentlyDeniedFailure value)
         permissionPermanentlyDeniedFailure,
+    required TResult Function(SendVerificationEmailFailure value)
+        sendVerificationEmailFailure,
+    required TResult Function(CheckVerificationFailure value)
+        checkVerificationFailure,
   }) {
     return permissionPermanentlyDeniedFailure(this);
   }
@@ -11873,6 +12459,9 @@ class _$PermissionPermanentlyDeniedFailure
     TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult? Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult? Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
   }) {
     return permissionPermanentlyDeniedFailure?.call(this);
   }
@@ -11919,6 +12508,9 @@ class _$PermissionPermanentlyDeniedFailure
     TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
     TResult Function(PermissionPermanentlyDeniedFailure value)?
         permissionPermanentlyDeniedFailure,
+    TResult Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
     required TResult orElse(),
   }) {
     if (permissionPermanentlyDeniedFailure != null) {
@@ -11932,4 +12524,686 @@ abstract class PermissionPermanentlyDeniedFailure extends Failure {
   const factory PermissionPermanentlyDeniedFailure() =
       _$PermissionPermanentlyDeniedFailure;
   const PermissionPermanentlyDeniedFailure._() : super._();
+}
+
+/// @nodoc
+abstract class _$$SendVerificationEmailFailureCopyWith<$Res> {
+  factory _$$SendVerificationEmailFailureCopyWith(
+          _$SendVerificationEmailFailure value,
+          $Res Function(_$SendVerificationEmailFailure) then) =
+      __$$SendVerificationEmailFailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$SendVerificationEmailFailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$SendVerificationEmailFailure>
+    implements _$$SendVerificationEmailFailureCopyWith<$Res> {
+  __$$SendVerificationEmailFailureCopyWithImpl(
+      _$SendVerificationEmailFailure _value,
+      $Res Function(_$SendVerificationEmailFailure) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$SendVerificationEmailFailure extends SendVerificationEmailFailure {
+  const _$SendVerificationEmailFailure() : super._();
+
+  @override
+  String toString() {
+    return 'Failure.sendVerificationEmailFailure()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SendVerificationEmailFailure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() versionCheckFailure,
+    required TResult Function() serverFailure,
+    required TResult Function() dataParsingFailure,
+    required TResult Function() noConnectionFailure,
+    required TResult Function() notFoundFailure,
+    required TResult Function() noUserDataFailure,
+    required TResult Function() maxDiseaseFailure,
+    required TResult Function() maxConimalFailure,
+    required TResult Function() emptyListFailure,
+    required TResult Function() noSuchDataInListFailure,
+    required TResult Function() registerConimalFaiure,
+    required TResult Function() removeConimalFailure,
+    required TResult Function() getConimalListFailure,
+    required TResult Function() signInCredentialFailure,
+    required TResult Function() signInTokenFailure,
+    required TResult Function() naverSigninFailure,
+    required TResult Function() kakaoSigninFailure,
+    required TResult Function() googleSigninFailure,
+    required TResult Function() appleSigninFailure,
+    required TResult Function() emailSigninFailure,
+    required TResult Function() getUserFailure,
+    required TResult Function() wrongPasswordFailure,
+    required TResult Function() noEmailUserFailure,
+    required TResult Function() wrongTokenFailure,
+    required TResult Function() existingEmailFailure,
+    required TResult Function() userEnabledFailure,
+    required TResult Function() weakPasswordFailure,
+    required TResult Function() maxImageSizeFailure,
+    required TResult Function() maxImageNumFailure,
+    required TResult Function() noPostTypeSelectedFailure,
+    required TResult Function() noPostContentsFailure,
+    required TResult Function() notFoundPostFailure,
+    required TResult Function() notEditablePasswordFailure,
+    required TResult Function() userInfoUpdateFailure,
+    required TResult Function() permissionDeniedFailure,
+    required TResult Function() permissionPermanentlyDeniedFailure,
+    required TResult Function() sendVerificationEmailFailure,
+    required TResult Function() checkVerificationFailure,
+  }) {
+    return sendVerificationEmailFailure();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? versionCheckFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function()? dataParsingFailure,
+    TResult? Function()? noConnectionFailure,
+    TResult? Function()? notFoundFailure,
+    TResult? Function()? noUserDataFailure,
+    TResult? Function()? maxDiseaseFailure,
+    TResult? Function()? maxConimalFailure,
+    TResult? Function()? emptyListFailure,
+    TResult? Function()? noSuchDataInListFailure,
+    TResult? Function()? registerConimalFaiure,
+    TResult? Function()? removeConimalFailure,
+    TResult? Function()? getConimalListFailure,
+    TResult? Function()? signInCredentialFailure,
+    TResult? Function()? signInTokenFailure,
+    TResult? Function()? naverSigninFailure,
+    TResult? Function()? kakaoSigninFailure,
+    TResult? Function()? googleSigninFailure,
+    TResult? Function()? appleSigninFailure,
+    TResult? Function()? emailSigninFailure,
+    TResult? Function()? getUserFailure,
+    TResult? Function()? wrongPasswordFailure,
+    TResult? Function()? noEmailUserFailure,
+    TResult? Function()? wrongTokenFailure,
+    TResult? Function()? existingEmailFailure,
+    TResult? Function()? userEnabledFailure,
+    TResult? Function()? weakPasswordFailure,
+    TResult? Function()? maxImageSizeFailure,
+    TResult? Function()? maxImageNumFailure,
+    TResult? Function()? noPostTypeSelectedFailure,
+    TResult? Function()? noPostContentsFailure,
+    TResult? Function()? notFoundPostFailure,
+    TResult? Function()? notEditablePasswordFailure,
+    TResult? Function()? userInfoUpdateFailure,
+    TResult? Function()? permissionDeniedFailure,
+    TResult? Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? sendVerificationEmailFailure,
+    TResult? Function()? checkVerificationFailure,
+  }) {
+    return sendVerificationEmailFailure?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
+    TResult Function()? serverFailure,
+    TResult Function()? dataParsingFailure,
+    TResult Function()? noConnectionFailure,
+    TResult Function()? notFoundFailure,
+    TResult Function()? noUserDataFailure,
+    TResult Function()? maxDiseaseFailure,
+    TResult Function()? maxConimalFailure,
+    TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
+    TResult Function()? signInCredentialFailure,
+    TResult Function()? signInTokenFailure,
+    TResult Function()? naverSigninFailure,
+    TResult Function()? kakaoSigninFailure,
+    TResult Function()? googleSigninFailure,
+    TResult Function()? appleSigninFailure,
+    TResult Function()? emailSigninFailure,
+    TResult Function()? getUserFailure,
+    TResult Function()? wrongPasswordFailure,
+    TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
+    TResult Function()? existingEmailFailure,
+    TResult Function()? userEnabledFailure,
+    TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
+    TResult Function()? maxImageNumFailure,
+    TResult Function()? noPostTypeSelectedFailure,
+    TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult Function()? sendVerificationEmailFailure,
+    TResult Function()? checkVerificationFailure,
+    required TResult orElse(),
+  }) {
+    if (sendVerificationEmailFailure != null) {
+      return sendVerificationEmailFailure();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(VersionCheckFailure value) versionCheckFailure,
+    required TResult Function(ServerFailure value) serverFailure,
+    required TResult Function(DataParsingFailure value) dataParsingFailure,
+    required TResult Function(NoConnectionFailure value) noConnectionFailure,
+    required TResult Function(NotFoundFailure value) notFoundFailure,
+    required TResult Function(NoUserDataFailure value) noUserDataFailure,
+    required TResult Function(MaxDiseaseFailure value) maxDiseaseFailure,
+    required TResult Function(MaxConimalFailure value) maxConimalFailure,
+    required TResult Function(EmptyListFailure value) emptyListFailure,
+    required TResult Function(NoSuchDataInListFailure value)
+        noSuchDataInListFailure,
+    required TResult Function(RegisterConimalFailure value)
+        registerConimalFaiure,
+    required TResult Function(RemoveConimalFailure value) removeConimalFailure,
+    required TResult Function(GetConimalListFailure value)
+        getConimalListFailure,
+    required TResult Function(SignInCredentialFailure value)
+        signInCredentialFailure,
+    required TResult Function(SignInTokenFailure value) signInTokenFailure,
+    required TResult Function(NaverSigninFailure value) naverSigninFailure,
+    required TResult Function(KakaoSigninFailure value) kakaoSigninFailure,
+    required TResult Function(GoogleSigninFailure value) googleSigninFailure,
+    required TResult Function(AppleSigninFailure value) appleSigninFailure,
+    required TResult Function(EmailSigninFailure value) emailSigninFailure,
+    required TResult Function(GetUserInfoFailure value) getUserFailure,
+    required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
+    required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(WrongTokenFailure value) wrongTokenFailure,
+    required TResult Function(ExistingEmailFailure value) existingEmailFailure,
+    required TResult Function(UserEnabledFailure value) userEnabledFailure,
+    required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
+    required TResult Function(MaxImageSizeFailure value) maxImageSizeFailure,
+    required TResult Function(MaxImageNumFailure value) maxImageNumFailure,
+    required TResult Function(NoPostTypeSelectedFailure value)
+        noPostTypeSelectedFailure,
+    required TResult Function(NoPostContentsFailure value)
+        noPostContentsFailure,
+    required TResult Function(NotFoundPostFailure value) notFoundPostFailure,
+    required TResult Function(NotEditablePasswordFailure value)
+        notEditablePasswordFailure,
+    required TResult Function(UserInfoUpdateFailure value)
+        userInfoUpdateFailure,
+    required TResult Function(PermissionDeniedFailure value)
+        permissionDeniedFailure,
+    required TResult Function(PermissionPermanentlyDeniedFailure value)
+        permissionPermanentlyDeniedFailure,
+    required TResult Function(SendVerificationEmailFailure value)
+        sendVerificationEmailFailure,
+    required TResult Function(CheckVerificationFailure value)
+        checkVerificationFailure,
+  }) {
+    return sendVerificationEmailFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult? Function(ServerFailure value)? serverFailure,
+    TResult? Function(DataParsingFailure value)? dataParsingFailure,
+    TResult? Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult? Function(NotFoundFailure value)? notFoundFailure,
+    TResult? Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult? Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult? Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult? Function(EmptyListFailure value)? emptyListFailure,
+    TResult? Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult? Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult? Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult? Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult? Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult? Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult? Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult? Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult? Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult? Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult? Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult? Function(GetUserInfoFailure value)? getUserFailure,
+    TResult? Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult? Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult? Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult? Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult? Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult? Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult? Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult? Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult? Function(NoPostTypeSelectedFailure value)?
+        noPostTypeSelectedFailure,
+    TResult? Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult? Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult? Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult? Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult? Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
+    TResult? Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
+  }) {
+    return sendVerificationEmailFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult Function(ServerFailure value)? serverFailure,
+    TResult Function(DataParsingFailure value)? dataParsingFailure,
+    TResult Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult Function(NotFoundFailure value)? notFoundFailure,
+    TResult Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult Function(GetUserInfoFailure value)? getUserFailure,
+    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult Function(NoPostTypeSelectedFailure value)?
+        noPostTypeSelectedFailure,
+    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
+    TResult Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
+    required TResult orElse(),
+  }) {
+    if (sendVerificationEmailFailure != null) {
+      return sendVerificationEmailFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SendVerificationEmailFailure extends Failure {
+  const factory SendVerificationEmailFailure() = _$SendVerificationEmailFailure;
+  const SendVerificationEmailFailure._() : super._();
+}
+
+/// @nodoc
+abstract class _$$CheckVerificationFailureCopyWith<$Res> {
+  factory _$$CheckVerificationFailureCopyWith(_$CheckVerificationFailure value,
+          $Res Function(_$CheckVerificationFailure) then) =
+      __$$CheckVerificationFailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$CheckVerificationFailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$CheckVerificationFailure>
+    implements _$$CheckVerificationFailureCopyWith<$Res> {
+  __$$CheckVerificationFailureCopyWithImpl(_$CheckVerificationFailure _value,
+      $Res Function(_$CheckVerificationFailure) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$CheckVerificationFailure extends CheckVerificationFailure {
+  const _$CheckVerificationFailure() : super._();
+
+  @override
+  String toString() {
+    return 'Failure.checkVerificationFailure()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CheckVerificationFailure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() versionCheckFailure,
+    required TResult Function() serverFailure,
+    required TResult Function() dataParsingFailure,
+    required TResult Function() noConnectionFailure,
+    required TResult Function() notFoundFailure,
+    required TResult Function() noUserDataFailure,
+    required TResult Function() maxDiseaseFailure,
+    required TResult Function() maxConimalFailure,
+    required TResult Function() emptyListFailure,
+    required TResult Function() noSuchDataInListFailure,
+    required TResult Function() registerConimalFaiure,
+    required TResult Function() removeConimalFailure,
+    required TResult Function() getConimalListFailure,
+    required TResult Function() signInCredentialFailure,
+    required TResult Function() signInTokenFailure,
+    required TResult Function() naverSigninFailure,
+    required TResult Function() kakaoSigninFailure,
+    required TResult Function() googleSigninFailure,
+    required TResult Function() appleSigninFailure,
+    required TResult Function() emailSigninFailure,
+    required TResult Function() getUserFailure,
+    required TResult Function() wrongPasswordFailure,
+    required TResult Function() noEmailUserFailure,
+    required TResult Function() wrongTokenFailure,
+    required TResult Function() existingEmailFailure,
+    required TResult Function() userEnabledFailure,
+    required TResult Function() weakPasswordFailure,
+    required TResult Function() maxImageSizeFailure,
+    required TResult Function() maxImageNumFailure,
+    required TResult Function() noPostTypeSelectedFailure,
+    required TResult Function() noPostContentsFailure,
+    required TResult Function() notFoundPostFailure,
+    required TResult Function() notEditablePasswordFailure,
+    required TResult Function() userInfoUpdateFailure,
+    required TResult Function() permissionDeniedFailure,
+    required TResult Function() permissionPermanentlyDeniedFailure,
+    required TResult Function() sendVerificationEmailFailure,
+    required TResult Function() checkVerificationFailure,
+  }) {
+    return checkVerificationFailure();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? versionCheckFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function()? dataParsingFailure,
+    TResult? Function()? noConnectionFailure,
+    TResult? Function()? notFoundFailure,
+    TResult? Function()? noUserDataFailure,
+    TResult? Function()? maxDiseaseFailure,
+    TResult? Function()? maxConimalFailure,
+    TResult? Function()? emptyListFailure,
+    TResult? Function()? noSuchDataInListFailure,
+    TResult? Function()? registerConimalFaiure,
+    TResult? Function()? removeConimalFailure,
+    TResult? Function()? getConimalListFailure,
+    TResult? Function()? signInCredentialFailure,
+    TResult? Function()? signInTokenFailure,
+    TResult? Function()? naverSigninFailure,
+    TResult? Function()? kakaoSigninFailure,
+    TResult? Function()? googleSigninFailure,
+    TResult? Function()? appleSigninFailure,
+    TResult? Function()? emailSigninFailure,
+    TResult? Function()? getUserFailure,
+    TResult? Function()? wrongPasswordFailure,
+    TResult? Function()? noEmailUserFailure,
+    TResult? Function()? wrongTokenFailure,
+    TResult? Function()? existingEmailFailure,
+    TResult? Function()? userEnabledFailure,
+    TResult? Function()? weakPasswordFailure,
+    TResult? Function()? maxImageSizeFailure,
+    TResult? Function()? maxImageNumFailure,
+    TResult? Function()? noPostTypeSelectedFailure,
+    TResult? Function()? noPostContentsFailure,
+    TResult? Function()? notFoundPostFailure,
+    TResult? Function()? notEditablePasswordFailure,
+    TResult? Function()? userInfoUpdateFailure,
+    TResult? Function()? permissionDeniedFailure,
+    TResult? Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? sendVerificationEmailFailure,
+    TResult? Function()? checkVerificationFailure,
+  }) {
+    return checkVerificationFailure?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
+    TResult Function()? serverFailure,
+    TResult Function()? dataParsingFailure,
+    TResult Function()? noConnectionFailure,
+    TResult Function()? notFoundFailure,
+    TResult Function()? noUserDataFailure,
+    TResult Function()? maxDiseaseFailure,
+    TResult Function()? maxConimalFailure,
+    TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
+    TResult Function()? signInCredentialFailure,
+    TResult Function()? signInTokenFailure,
+    TResult Function()? naverSigninFailure,
+    TResult Function()? kakaoSigninFailure,
+    TResult Function()? googleSigninFailure,
+    TResult Function()? appleSigninFailure,
+    TResult Function()? emailSigninFailure,
+    TResult Function()? getUserFailure,
+    TResult Function()? wrongPasswordFailure,
+    TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
+    TResult Function()? existingEmailFailure,
+    TResult Function()? userEnabledFailure,
+    TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
+    TResult Function()? maxImageNumFailure,
+    TResult Function()? noPostTypeSelectedFailure,
+    TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult Function()? sendVerificationEmailFailure,
+    TResult Function()? checkVerificationFailure,
+    required TResult orElse(),
+  }) {
+    if (checkVerificationFailure != null) {
+      return checkVerificationFailure();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(VersionCheckFailure value) versionCheckFailure,
+    required TResult Function(ServerFailure value) serverFailure,
+    required TResult Function(DataParsingFailure value) dataParsingFailure,
+    required TResult Function(NoConnectionFailure value) noConnectionFailure,
+    required TResult Function(NotFoundFailure value) notFoundFailure,
+    required TResult Function(NoUserDataFailure value) noUserDataFailure,
+    required TResult Function(MaxDiseaseFailure value) maxDiseaseFailure,
+    required TResult Function(MaxConimalFailure value) maxConimalFailure,
+    required TResult Function(EmptyListFailure value) emptyListFailure,
+    required TResult Function(NoSuchDataInListFailure value)
+        noSuchDataInListFailure,
+    required TResult Function(RegisterConimalFailure value)
+        registerConimalFaiure,
+    required TResult Function(RemoveConimalFailure value) removeConimalFailure,
+    required TResult Function(GetConimalListFailure value)
+        getConimalListFailure,
+    required TResult Function(SignInCredentialFailure value)
+        signInCredentialFailure,
+    required TResult Function(SignInTokenFailure value) signInTokenFailure,
+    required TResult Function(NaverSigninFailure value) naverSigninFailure,
+    required TResult Function(KakaoSigninFailure value) kakaoSigninFailure,
+    required TResult Function(GoogleSigninFailure value) googleSigninFailure,
+    required TResult Function(AppleSigninFailure value) appleSigninFailure,
+    required TResult Function(EmailSigninFailure value) emailSigninFailure,
+    required TResult Function(GetUserInfoFailure value) getUserFailure,
+    required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
+    required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(WrongTokenFailure value) wrongTokenFailure,
+    required TResult Function(ExistingEmailFailure value) existingEmailFailure,
+    required TResult Function(UserEnabledFailure value) userEnabledFailure,
+    required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
+    required TResult Function(MaxImageSizeFailure value) maxImageSizeFailure,
+    required TResult Function(MaxImageNumFailure value) maxImageNumFailure,
+    required TResult Function(NoPostTypeSelectedFailure value)
+        noPostTypeSelectedFailure,
+    required TResult Function(NoPostContentsFailure value)
+        noPostContentsFailure,
+    required TResult Function(NotFoundPostFailure value) notFoundPostFailure,
+    required TResult Function(NotEditablePasswordFailure value)
+        notEditablePasswordFailure,
+    required TResult Function(UserInfoUpdateFailure value)
+        userInfoUpdateFailure,
+    required TResult Function(PermissionDeniedFailure value)
+        permissionDeniedFailure,
+    required TResult Function(PermissionPermanentlyDeniedFailure value)
+        permissionPermanentlyDeniedFailure,
+    required TResult Function(SendVerificationEmailFailure value)
+        sendVerificationEmailFailure,
+    required TResult Function(CheckVerificationFailure value)
+        checkVerificationFailure,
+  }) {
+    return checkVerificationFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult? Function(ServerFailure value)? serverFailure,
+    TResult? Function(DataParsingFailure value)? dataParsingFailure,
+    TResult? Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult? Function(NotFoundFailure value)? notFoundFailure,
+    TResult? Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult? Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult? Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult? Function(EmptyListFailure value)? emptyListFailure,
+    TResult? Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult? Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult? Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult? Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult? Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult? Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult? Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult? Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult? Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult? Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult? Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult? Function(GetUserInfoFailure value)? getUserFailure,
+    TResult? Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult? Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult? Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult? Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult? Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult? Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult? Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult? Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult? Function(NoPostTypeSelectedFailure value)?
+        noPostTypeSelectedFailure,
+    TResult? Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult? Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult? Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult? Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult? Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
+    TResult? Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
+  }) {
+    return checkVerificationFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult Function(ServerFailure value)? serverFailure,
+    TResult Function(DataParsingFailure value)? dataParsingFailure,
+    TResult Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult Function(NotFoundFailure value)? notFoundFailure,
+    TResult Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult Function(GetUserInfoFailure value)? getUserFailure,
+    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult Function(NoPostTypeSelectedFailure value)?
+        noPostTypeSelectedFailure,
+    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
+    TResult Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
+    required TResult orElse(),
+  }) {
+    if (checkVerificationFailure != null) {
+      return checkVerificationFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class CheckVerificationFailure extends Failure {
+  const factory CheckVerificationFailure() = _$CheckVerificationFailure;
+  const CheckVerificationFailure._() : super._();
 }
