@@ -25,22 +25,22 @@ class QuickSort {
   // }
 
   sortByVisiting({
-    required List<PlacePreviewUiModel> placeList,
+    required List<PlacePreviewUIModel> placeList,
   }) {
     int high = placeList.length - 1;
     int low = 0;
-    List<PlacePreviewUiModel> result = _visitingQuickSort(placeList, low, high);
+    List<PlacePreviewUIModel> result = _visitingQuickSort(placeList, low, high);
 
     return result;
   }
 
   sortByNearestWithBaseLocation(
-      {required List<PlacePreviewUiModel> placeList,
+      {required List<PlacePreviewUIModel> placeList,
       required LatLngUIModel baseLocation}) {
     int high = placeList.length - 1;
     int low = 0;
 
-    List<PlacePreviewUiModel> result =
+    List<PlacePreviewUIModel> result =
         _distanceQuickSort(placeList, low, high, Sorting.nearest, baseLocation);
 
     return result;
@@ -62,7 +62,7 @@ class QuickSort {
   //   return list;
   // }
 
-  List<PlacePreviewUiModel> _distanceQuickSort(List<PlacePreviewUiModel> list,
+  List<PlacePreviewUIModel> _distanceQuickSort(List<PlacePreviewUIModel> list,
       int low, int high, Sorting sortType, LatLngUIModel baseLocation) {
     if (low < high) {
       late int pi;
@@ -75,8 +75,8 @@ class QuickSort {
     return list;
   }
 
-  List<PlacePreviewUiModel> _visitingQuickSort(
-      List<PlacePreviewUiModel> list, int low, int high) {
+  List<PlacePreviewUIModel> _visitingQuickSort(
+      List<PlacePreviewUIModel> list, int low, int high) {
     if (low < high) {
       late int pi;
 
@@ -89,7 +89,7 @@ class QuickSort {
   }
 
   int distancePartition(
-      List<PlacePreviewUiModel> list, low, high, LatLngUIModel baseLocation) {
+      List<PlacePreviewUIModel> list, low, high, LatLngUIModel baseLocation) {
     if (list.isEmpty) {
       return 0;
     }
@@ -105,7 +105,7 @@ class QuickSort {
     return i + 1;
   }
 
-  int visitingPartition(List<PlacePreviewUiModel> list, low, high) {
+  int visitingPartition(List<PlacePreviewUIModel> list, low, high) {
     if (list.isEmpty) {
       return 0;
     }
@@ -121,8 +121,8 @@ class QuickSort {
     return i + 1;
   }
 
-  void swap(List<PlacePreviewUiModel> list, int i, int j) {
-    PlacePreviewUiModel temp = list[i];
+  void swap(List<PlacePreviewUIModel> list, int i, int j) {
+    PlacePreviewUIModel temp = list[i];
     list[i] = list[j];
     list[j] = temp;
   }
