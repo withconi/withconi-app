@@ -32,9 +32,13 @@ Future<bool> showSelectionDialog(
                   title,
                   style: TextStyle(
                       fontFamily: WcFontFamily.notoSans,
-                      fontSize: 19,
-                      fontWeight: FontWeight.w500),
+                      fontSize: 20,
+                      height: 1.5,
+                      fontWeight: FontWeight.w600),
                 ),
+              ),
+              SizedBox(
+                height: 10,
               ),
               (subtitle == null)
                   ? SizedBox.shrink()
@@ -45,7 +49,8 @@ Future<bool> showSelectionDialog(
                         style: TextStyle(
                             fontFamily: WcFontFamily.notoSans,
                             color: WcColors.grey160,
-                            fontSize: 16,
+                            fontSize: 17,
+                            height: 1,
                             fontWeight: FontWeight.w400),
                       ),
                     ),
@@ -67,10 +72,12 @@ Future<bool> showSelectionDialog(
                         borderRadius: BorderRadius.circular(10)),
                     child: Text(
                       cancleText,
-                      style: GoogleFonts.notoSans(
+                      style: TextStyle(
+                          fontFamily: WcFontFamily.notoSans,
                           color: WcColors.grey180,
+                          height: 1,
                           fontSize: 16,
-                          fontWeight: FontWeight.bold),
+                          fontWeight: FontWeight.w500),
                     ),
                   ),
                 ),
@@ -92,10 +99,12 @@ Future<bool> showSelectionDialog(
                         borderRadius: BorderRadius.circular(10)),
                     child: Text(
                       confirmText,
-                      style: GoogleFonts.notoSans(
+                      style: TextStyle(
+                          fontFamily: WcFontFamily.notoSans,
                           color: WcColors.white,
+                          height: 1,
                           fontSize: 16,
-                          fontWeight: FontWeight.bold),
+                          fontWeight: FontWeight.w500),
                     ),
                   ),
                 ),
