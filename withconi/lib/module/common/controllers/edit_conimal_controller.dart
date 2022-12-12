@@ -2,15 +2,18 @@ import 'package:withconi/module/ui_model/disease_ui_model.dart';
 import '../../../data/enums/enum.dart';
 import '../../../core/values/constants/regex.dart';
 import '../../../core/values/constants/strings.dart';
+import '../../../global_widgets/snackbar.dart';
 import '../../../import_basic.dart';
 import '../../ui_model/breed_ui_model.dart';
 import '../../ui_model/conimal_ui_model.dart';
 
 class EditConimalController extends GetxController {
+  EditConimalController(this._editConimal);
   RxBool isConimalAdded = false.obs;
   final RxString _conimalNameText = ''.obs;
   final RxBool isButtonValid = false.obs;
   late Rx<ConimalUIModel> editConimal;
+  late final ConimalUIModel _editConimal;
   RxBool showAddConimalButton = false.obs;
   RxList<bool> genderSelectionList = [false, false].obs;
   RxnString conimalNameErrorText = RxnString();
@@ -22,8 +25,7 @@ class EditConimalController extends GetxController {
   void onInit() {
     super.onInit();
 
-    editConimal =
-        Rx<ConimalUIModel>((Get.arguments as ConimalUIModel).copyWith());
+    editConimal = Rx<ConimalUIModel>((_editConimal).copyWith());
     conimalNameTextController.text = editConimal.value.name;
     selectedDiseaseList.assignAll(editConimal.value.diseases.toList());
     dataInited.value = true;
@@ -64,7 +66,10 @@ class EditConimalController extends GetxController {
   }
 
   void onSpeicesChanged(Species species) {
-    editConimal.value = editConimal.value.copyWith(species: species);
+    if (editConimal.value.species != species) {
+      editConimal.value.breed = '';
+    }
+    editConimal.value.species = species;
     editConimal.refresh();
   }
 
@@ -160,11 +165,14 @@ class EditConimalController extends GetxController {
   goToSearchBreedPage() async {
     Get.focusScope!.unfocus();
 
-    BreedUIModel? selectedBreed = await Get.toNamed(
-      Routes.BREED_SEARCH,
-    ) as BreedUIModel?;
-    if (selectedBreed != null) {
-      onBreedChanged(selectedBreed.name);
+    if (editConimal.value.species == null) {
+      showCustomSnackbar(text: '고양이/강아지를 먼저 선택해주세요');
+    } else {
+      BreedUIModel? selectedBreed = await Get.toNamed(Routes.BREED_SEARCH,
+          arguments: {'species': editConimal.value.species}) as BreedUIModel?;
+      if (selectedBreed != null) {
+        onBreedChanged(selectedBreed.name);
+      }
     }
   }
 

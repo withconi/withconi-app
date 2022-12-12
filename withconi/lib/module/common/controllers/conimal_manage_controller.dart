@@ -11,18 +11,19 @@ import '../../../import_basic.dart';
 import '../../../global_widgets/dialog/selection_dialog.dart';
 
 class ConimalManageController extends GetxController {
-  ConimalManageController(this._conimalRepository);
+  ConimalManageController(this._conimalRepository, this._conimalList);
 
   final ConimalRepository _conimalRepository;
   final RxString _userName = ''.obs;
-  RxList<ConimalUIModel> conimalList = RxList<ConimalUIModel>();
+  final List<ConimalUIModel> _conimalList;
+  late RxList<ConimalUIModel> conimalList;
   String get userName => _userName.value;
   RxBool isButtonValid = false.obs;
 
   @override
   void onInit() {
     super.onInit();
-    conimalList.assignAll(Get.arguments as List<ConimalUIModel>);
+    conimalList = _conimalList.obs;
     // editedConimalIndex.fillRange(0, conimalList.length, false);
   }
 
@@ -47,18 +48,19 @@ class ConimalManageController extends GetxController {
           await Get.toNamed(Routes.CONIMAL_ADD) as ConimalUIModel?;
       if (addedConimal != null) {
         conimalList.add(addedConimal);
+        conimalList.refresh();
       }
     }
   }
 
   editConimalPage(int index) async {
-    ConimalUIModel? editedConimal =
-        await Get.toNamed(Routes.CONIMAL_EDIT, arguments: conimalList[index])
-            as ConimalUIModel?;
+    ConimalUIModel? editedConimal = await Get.toNamed(Routes.CONIMAL_EDIT,
+        arguments: {'editConimal': conimalList[index]}) as ConimalUIModel?;
 
     if (editedConimal != null) {
       conimalList.removeAt(index);
       conimalList.insert(index, editedConimal);
+      conimalList.refresh();
     }
   }
 
@@ -113,16 +115,23 @@ class ConimalManageController extends GetxController {
   }
 
   Future<void> editConimalDB() async {
-    Either<Failure, bool> addResultEither = await showLoading(
-        () => _conimalRepository.updateConimalList(conimals: conimalList));
+    await showLoading(() async {
+      Either<Failure, bool> addResultEither =
+          await _conimalRepository.updateConimalList(conimals: conimalList);
 
-    addResultEither.fold(
-        (fail) =>
-            FailureInterpreter().mapFailureToDialog(fail, 'updateConimalList'),
-        (success) async {
-      await AuthController.to.setUserInfo();
-      Get.back();
+      bool updateSucceed = await addResultEither.fold((fail) {
+        FailureInterpreter().mapFailureToDialog(fail, 'updateConimalList');
+        return false;
+      }, (success) {
+        return success;
+      });
+
+      if (updateSucceed) {
+        await AuthController.to.setUserAuthInfo();
+        Get.back();
+      } else {
+        return;
+      }
     });
-    // Get.back(result: editConimal.value);
   }
 }

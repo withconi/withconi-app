@@ -1,24 +1,22 @@
 import 'package:dartz/dartz.dart';
 import 'package:withconi/data/model/dto/response_dto/community_response/breed_response_dto.dart';
 import 'package:withconi/data/repository/conimal_repository.dart';
-import 'package:withconi/module/auth/auth_controller.dart';
 import 'package:withconi/core/error_handling/error_message_object.dart';
-import 'package:withconi/data/repository/community_repository.dart';
+import 'package:withconi/global_widgets/snackbar.dart';
 import 'package:withconi/module/ui_model/breed_ui_model.dart';
-import 'package:withconi/module/ui_model/post_list_filter_ui_model.dart';
-import '../../../core/error_handling/failure_ui_interpreter.dart';
 import '../../../data/enums/enum.dart';
 import '../../../core/error_handling/failures.dart';
-import '../../../data/model/dto/response_dto/community_response/post_response_dto.dart';
-import '../../../global_widgets/loading/loading_overlay.dart';
 import '../../../import_basic.dart';
-import '../../../core/tools/helpers/infinite_scroll.dart';
 import '../../page_status.dart';
-import '../../ui_model/post_ui_model.dart';
 
 class BreedSearchController extends GetxController {
-  BreedSearchController(this._conimalRepository);
+  BreedSearchController(
+    this._conimalRepository,
+    this._species,
+  );
   final ConimalRepository _conimalRepository;
+
+  late final Species? _species;
 
   TextEditingController searchKeywordTextController = TextEditingController();
   RxBool listLoaded = false.obs;
@@ -33,9 +31,7 @@ class BreedSearchController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-
-    // _debounceWorker = debounce(_keywordText, _searchBreedList,
-    //     time: const Duration(milliseconds: 200));
+    selectedSpecies.value = _species ?? Species.cat;
     ever(selectedSpecies, _getBreedList);
     _getBreedList(selectedSpecies.value);
   }
@@ -91,11 +87,17 @@ class BreedSearchController extends GetxController {
   }
 
   List<BreedUIModel> _parseBreedListDto(List<BreedResponseDTO> breedListDto) {
-    return breedListDto.map((e) => BreedUIModel.fromDto(e)).toList();
+    return breedListDto
+        .map((e) => BreedUIModel.fromDto(e, selectedSpecies.value))
+        .toList();
   }
 
   void onSpeciesChanged(Species speciesType) {
-    selectedSpecies.value = speciesType;
+    if (_species != null && speciesType != _species) {
+      showCustomSnackbar(text: '${_species!.displayName} 종류만 선택 가능합니다');
+    } else {
+      selectedSpecies.value = speciesType;
+    }
   }
 
   void onBreedSelected(BreedUIModel breed) {

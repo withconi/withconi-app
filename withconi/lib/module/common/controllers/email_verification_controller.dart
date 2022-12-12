@@ -1,3 +1,7 @@
+import 'dart:async';
+
+import 'package:withconi/global_widgets/snackbar.dart';
+
 import '../../../../import_basic.dart';
 import '../../../core/error_handling/failure_ui_interpreter.dart';
 import '../../../core/values/constants/auth_variables.dart';
@@ -7,100 +11,192 @@ import '../../../global_widgets/loading/loading_overlay.dart';
 import '../../auth/auth_controller.dart';
 
 class EmailVerificationController extends GetxController {
-  EmailVerificationController(this._userRepository);
+  EmailVerificationController(this._userRepository, this._nextRoute);
   final UserRepository _userRepository;
+  late final String? _nextRoute;
   late String _email;
-  late String _nextRoute;
+  // late String _nextRoute;
 
   String get email => _email;
 
+  String _pinCode = '';
+
+  bool isPinCodeSent = false;
+
+  late Timer _timer;
+  final int _timeout = 240;
+  final RxInt _timeCount = 240.obs;
+
+  RxString timeCountText = '4:00'.obs;
+  RxBool isResendButtonValid = false.obs;
+
   @override
-  Future<void> onInit() async {
+  onInit() {
     super.onInit();
-    _email = AuthController.to.userInfo!.email;
-    var arguments = Get.arguments as Map<String, dynamic>?;
-    if (arguments != null) {
-      _nextRoute = arguments['nextRoute'] as String;
-    } else {
-      _nextRoute = '';
-    }
-    await sendVerificationEmail(
-        email: email,
-        currentRoute: Routes.EMAIL_VERIFICATION,
-        nextRoute: _nextRoute);
+    _email = AuthController.to.userInfo.email;
   }
 
-  sendVerificationEmail(
-      {required String email,
-      required String currentRoute,
-      required String nextRoute}) async {
-    var result = await _userRepository.sendVerificationEmail(
-        email: email, currentRoute: currentRoute, nextRoute: nextRoute);
-    result!.fold((l) => null, (r) => null);
+  @override
+  onReady() async {
+    super.onReady();
+
+    await _sendVerificationEmail(_email);
+  }
+
+  _sendVerificationEmail(
+    String email,
+  ) async {
+    isResendButtonValid.value = false;
+    _startTimer();
+    var result = await _userRepository.sendVerificationEmail(email: email);
+
+    isPinCodeSent = result!.fold((l) {
+      FailureInterpreter().mapFailureToDialog(l, '_sendVerificationEmail');
+      return false;
+    }, (sentResult) => sentResult);
+
+    if (!isPinCodeSent) {
+      _stopTimer();
+    }
+  }
+
+  void _startTimer() {
+    _timer = Timer.periodic(const Duration(seconds: 1), (Timer timer) {
+      if (_timeCount.value <= 0) {
+        _stopTimer();
+      } else {
+        _timeCount.value -= 1;
+        timeCountText.value = _getTimeCountText(_timeCount.value);
+        isResendButtonValid.value = !_timer.isActive;
+      }
+    });
+  }
+
+  void _stopTimer() {
+    _timer.cancel();
+    _timeCount.value = _timeout;
+    timeCountText.value = _getTimeCountText(_timeCount.value);
+    isResendButtonValid.value = !_timer.isActive;
+  }
+
+  _getTimeCountText(int time) {
+    if (time <= 0) {
+      return '0:00';
+    }
+    int minutes = (_timeCount.value / 60).floor();
+    int seconds = (_timeCount.value % 60);
+    if (seconds < 10) {
+      return '$minutes:0$seconds';
+    } else {
+      return '$minutes:$seconds';
+    }
   }
 
   skipEmailVerification() async {
-    var userUpdateEither = await showLoading(() => _userRepository.updateUser(
-        user: AuthController.to.userInfo!.copyWith(verificationSkipped: true)));
+    late bool succeed;
+    if (AuthController.to.isVerifySkipped) {
+      succeed = true;
+    } else {
+      succeed = await showLoading(() => _updateUserEmailVerificationInfo(
+          isEmailVerified: false, isVerificaitonSkipped: true));
+    }
 
-    userUpdateEither.fold((failure) {
-      return;
-    }, (success) async {
-      await AuthController.to.setUserInfo();
-      Get.offAllNamed(Routes.NAVIGATION);
-      return;
+    if (succeed) {
+      if (Get.previousRoute == Routes.USER_EDIT) {
+        Get.back();
+      } else {
+        Get.offAllNamed(Routes.NAVIGATION);
+      }
+    }
+  }
+
+  onPinCodeCompleted(String code) async {
+    _pinCode = code;
+    if (isPinCodeSent) {
+      if (_timer.isActive) {
+        await showLoading(
+            () => checkVerificationCode(email: email, verifyCode: _pinCode));
+      } else {
+        showCustomSnackbar(text: '인증메일을 재전송 해주세요');
+      }
+    }
+  }
+
+  onPinCodeChanged(String code) {
+    _pinCode = code;
+  }
+
+  Future<bool> _updateUserEmailVerificationInfo(
+      {required bool isEmailVerified,
+      required bool isVerificaitonSkipped}) async {
+    var userUpdateEither = await _userRepository.updateUser(
+        user: AuthController.to.userInfo.copyWith(
+            verificationSkipped: isVerificaitonSkipped,
+            isEmailVerified: isEmailVerified));
+
+    bool updateSucceed = userUpdateEither.fold((failure) {
+      FailureInterpreter()
+          .mapFailureToDialog(failure, '_updateUserEmailVerificationInfo');
+      return false;
+    }, (success) {
+      return success;
     });
 
-    // if (success) {
-    //   if (getBack) {
-    //     await AuthController.to.setUserInfo(redirectPage: false);
-    //     Get.back();
-    //   } else {
-    //     await AuthController.to.setUserInfo(redirectPage: true);
-    //   }
-    // }
+    if (updateSucceed) {
+      await AuthController.to.setUserAuthInfo();
+    }
+
+    return updateSucceed;
   }
 
-  // Future<bool> checkEmailVerification({
-  //   required PendingDynamicLinkData verificationLink,
-  // }) async {
-  //   try {
-  //     if (firebaseAuth.currentUser!.emailVerified == false) {
-  //       AuthCredential authCredential = EmailAuthProvider.credentialWithLink(
-  //           email: AuthController.to.wcUser.value!.email,
-  //           emailLink: verificationLink.link.toString());
-
-  //       var userUpdateEither = await _userRepository
-  //           .updateUser(updateData: {"isEmailVerified": true});
-
-  //       bool result = userUpdateEither.fold((failure) {
-  //         FailureInterpreter()
-  //             .mapFailureToDialog(failure, 'checkEmailVerification');
-  //         return false;
-  //       }, (r) {
-  //         print('Successfully signed in with email link!');
-  //         return true;
-  //       });
-
-  //       return result;
-  //     } else {
-  //       return false;
-  //     }
-  //   } catch (error) {
-  //     print('Error signing in with email link.');
-  //     return false;
-  //   }
+  // prop() {
+  //   Get.offNamed(Routes.PASSWORD_CHANGE_1, arguments: {'email': email});
   // }
 
-  resendVerificationEmail() async {
-    var result = await showLoading(() => _userRepository.sendVerificationEmail(
-        email: email,
-        currentRoute: Routes.EMAIL_VERIFICATION,
-        nextRoute: _nextRoute));
-    result!.fold((l) => null, (r) => null);
+  checkVerificationCode(
+      {required String email, required String verifyCode}) async {
+    var emailVerificationEither = await _userRepository
+        .checkEmailVerificationCode(email: email, verificationCode: verifyCode);
+
+    bool isEmailVerified = emailVerificationEither.fold((failure) {
+      FailureInterpreter().mapFailureToDialog(failure, 'checkVerificationCode');
+      return false;
+    }, (isEmailVerified) {
+      return isEmailVerified;
+    });
+
+    if (isEmailVerified) {
+      _stopTimer();
+
+      bool updateSucceed = await _updateUserEmailVerificationInfo(
+          isEmailVerified: isEmailVerified, isVerificaitonSkipped: false);
+      if (updateSucceed) {
+        goToNextRoute();
+      } else {}
+
+      print(isEmailVerified);
+    } else {
+      showCustomSnackbar(text: '인증번호가 다릅니다');
+    }
   }
 
-  checkEmailVerified() async {
-    print(firebaseAuth.currentUser!.emailVerified);
+  goToNextRoute() {
+    switch (_nextRoute) {
+      case Routes.NAVIGATION:
+        Get.offAllNamed(Routes.NAVIGATION);
+        break;
+      case Routes.CHANGE_PASSWORD:
+        Get.offNamed(Routes.CHANGE_PASSWORD, arguments: {'email': email});
+        break;
+      default:
+        Get.back(result: true);
+    }
+  }
+
+  resendVerificationEmail() async {
+    if (!_timer.isActive) {
+      showCustomSnackbar(text: '인증코드가 전송되었습니다');
+      await _sendVerificationEmail(email);
+    }
   }
 }

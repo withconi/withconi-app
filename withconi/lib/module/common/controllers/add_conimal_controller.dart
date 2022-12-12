@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:withconi/data/model/dto/request_dto/conimal_request/create_conimal_request_dto.dart';
+import 'package:withconi/global_widgets/snackbar.dart';
 import 'package:withconi/module/auth/auth_controller.dart';
 import 'package:withconi/core/error_handling/failure_ui_interpreter.dart';
 import 'package:withconi/data/repository/conimal_repository.dart';
@@ -23,6 +24,7 @@ class AddConimalController extends GetxController {
     name: '',
   ).obs;
   RxBool showAddConimalButton = false.obs;
+
   // RxList<bool> genderSelectionList = [false, false].obs;
   RxnString conimalNameErrorText = RxnString();
   TextEditingController conimalNameTextController = TextEditingController();
@@ -46,7 +48,10 @@ class AddConimalController extends GetxController {
   }
 
   void onSpeicesChanged(Species species) {
-    newConimal.value = newConimal.value.copyWith(species: species);
+    if (newConimal.value.species != species) {
+      newConimal.value.breed = '';
+    }
+    newConimal.value.species = species;
     newConimal.refresh();
   }
 
@@ -70,8 +75,8 @@ class AddConimalController extends GetxController {
     newConimal.refresh();
   }
 
-  void onBreedChanged(String breed) {
-    newConimal.value.breed = breed;
+  void onBreedChanged(BreedUIModel breed) {
+    newConimal.value.breed = breed.name;
     newConimal.refresh();
   }
 
@@ -136,12 +141,14 @@ class AddConimalController extends GetxController {
 
   goToSearchBreedPage() async {
     Get.focusScope!.unfocus();
-
-    BreedUIModel? selectedBreed = await Get.toNamed(
-      Routes.BREED_SEARCH,
-    ) as BreedUIModel?;
-    if (selectedBreed != null) {
-      onBreedChanged(selectedBreed.name);
+    if (newConimal.value.species == null) {
+      showCustomSnackbar(text: '고양이/강아지를 먼저 선택해주세요');
+    } else {
+      BreedUIModel? selectedBreed = await Get.toNamed(Routes.BREED_SEARCH,
+          arguments: {'species': newConimal.value.species}) as BreedUIModel?;
+      if (selectedBreed != null) {
+        onBreedChanged(selectedBreed);
+      }
     }
   }
 
