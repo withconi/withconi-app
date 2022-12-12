@@ -3,32 +3,41 @@ import 'package:withconi/module/auth/auth_controller.dart';
 import 'package:withconi/module/ui_model/user_ui_model.dart';
 
 import '../../routes/routes.dart';
+import '../ui_model/conimal_ui_model.dart';
 
 class SettingPageController extends GetxController {
-  SettingPageController(this._wcUser);
-  UserUIModel _wcUser;
+  SettingPageController();
+  List<ConimalUIModel> _conimalList =
+      AuthController.to.userInfo.conimals.toList();
 
-  @override
-  onInit() {
-    super.onInit();
-    _wcUser = AuthController.to.userInfo!;
+  goToManageConimalPage() {
+    Get.toNamed(Routes.CONIMAL_MANAGE,
+        arguments: {'conimals': _conimalList.toList()});
   }
 
-  manageConimals() {
-    Get.toNamed(Routes.CONIMAL_MANAGE, arguments: _wcUser.conimals);
-  }
-
-  manageUserInfo() {
+  goToManageUserInfoPage() {
     Get.toNamed(
       Routes.USER_EDIT,
     );
   }
 
-  myLikedPosts() {
-    Get.toNamed(Routes.COMMUNITY_LIKE_POST);
+  goToMyLikedPostsPage() {
+    Get.toNamed(Routes.COMMUNITY_LIKE_POST,
+        arguments: {'postAbstractController': null});
   }
 
-  myPostPage() {
-    Get.toNamed(Routes.COMMUNITY_MY_POST);
+  goToMyPostPage() {
+    Get.toNamed(Routes.COMMUNITY_MY_POST,
+        arguments: {'postAbstractController': null});
+  }
+
+  goToRequestPage() {
+    return;
+    Get.toNamed(Routes.REQUEST);
+  }
+
+  goToDeveloperInfoPage() {
+    return;
+    Get.toNamed(Routes.DEVELOPER_INFO);
   }
 }

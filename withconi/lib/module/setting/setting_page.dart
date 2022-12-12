@@ -1,6 +1,7 @@
 import 'package:withconi/module/setting/setting_controller.dart';
 import 'package:withconi/import_basic.dart';
 import 'package:withconi/global_widgets/appbar/appbar.dart';
+import 'package:withconi/module/theme/text_theme.dart';
 import '../../global_widgets/button/tile_button.dart';
 
 class SettingPage extends StatelessWidget {
@@ -31,16 +32,18 @@ class SettingPage extends StatelessWidget {
                     height: 55,
                     width: WcWidth - 40,
                     child: Text('내 정보',
-                        style: GoogleFonts.notoSans(
-                            fontWeight: FontWeight.w600, fontSize: 22)),
+                        style: TextStyle(
+                            fontFamily: WcFontFamily.notoSans,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 22)),
                   ),
                   WcTileButton(
                     text: '내 정보 수정',
-                    onTap: _controller.manageUserInfo,
+                    onTap: _controller.goToManageUserInfoPage,
                   ),
                   WcTileButton(
                     text: '내 코니멀 관리',
-                    onTap: _controller.manageConimals,
+                    onTap: _controller.goToManageConimalPage,
                   ),
                   const SizedBox(
                     height: 10,
@@ -58,16 +61,18 @@ class SettingPage extends StatelessWidget {
                     height: 55,
                     width: WcWidth - 40,
                     child: Text('커뮤니티',
-                        style: GoogleFonts.notoSans(
-                            fontWeight: FontWeight.w600, fontSize: 22)),
+                        style: TextStyle(
+                            fontFamily: WcFontFamily.notoSans,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 22)),
                   ),
                   WcTileButton(
                     text: '내가 쓴 글',
-                    onTap: _controller.myPostPage,
+                    onTap: _controller.goToMyPostPage,
                   ),
                   WcTileButton(
                     text: '내가 좋아한 글',
-                    onTap: _controller.myLikedPosts,
+                    onTap: _controller.goToMyLikedPostsPage,
                   ),
                   const SizedBox(
                     height: 10,
@@ -85,13 +90,19 @@ class SettingPage extends StatelessWidget {
                     height: 55,
                     width: WcWidth - 40,
                     child: Text('앱',
-                        style: GoogleFonts.notoSans(
-                            fontWeight: FontWeight.w600, fontSize: 22)),
+                        style: TextStyle(
+                            fontFamily: WcFontFamily.notoSans,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 22)),
                   ),
                   WcTileButton(
-                    text: '문의하기',
+                    onTap: _controller.goToRequestPage,
+                    text: '건의하기',
                   ),
-                  WcTileButton(text: '개발자 정보  ⛅️')
+                  WcTileButton(
+                    text: '개발자 정보  ⛅️',
+                    onTap: _controller.goToDeveloperInfoPage,
+                  )
                 ],
               ),
             ),

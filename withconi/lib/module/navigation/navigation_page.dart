@@ -1,16 +1,69 @@
 import 'package:withconi/import_basic.dart';
-import 'package:withconi/module/community/pages/community_post_list_page.dart';
 import 'package:withconi/module/ui_model/nav_destination_ui_model.dart';
 import 'package:withconi/module/community/pages/community_main_page.dart';
-import 'package:withconi/module/diagnosis/pages/diagnosis_main_page.dart';
 import 'package:withconi/module/dictionary/pages/dictionary_main_page.dart';
 import 'package:withconi/module/home/home_page.dart';
-
-import '../../core/tools/helpers/utils.dart';
-import '../../routes/bindings.dart';
 import 'navigation_controller.dart';
 import '../../global_widgets/navbar/bottom_navbar.dart';
 import '../map/map_main_page.dart';
+
+class NavigationPage extends StatelessWidget {
+  const NavigationPage({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    NavigationController _controller = Get.find();
+    return Scaffold(
+      bottomNavigationBar: Obx(
+        () => WcBottomNavBar(
+          currentNavIndex: _controller.pageIndex,
+          onTap: _controller.goToPage,
+          navList: allDestinations,
+        ),
+      ),
+      body: Navigator(
+        initialRoute: Routes.HOME,
+        key: Get.nestedKey(NavigationController.NAVIGATOR_KEY),
+        onGenerateRoute: (settings) {
+          if (settings.name == Routes.HOME) {
+            return GetPageRoute(
+              settings: settings,
+              transition: Transition.noTransition,
+              page: () => const HomePage(),
+              routeName: Routes.HOME,
+            );
+          }
+          if (settings.name == Routes.MAP_MAIN) {
+            return GetPageRoute(
+              settings: settings,
+              transition: Transition.noTransition,
+              page: () => const MapMainPage(),
+              routeName: Routes.MAP_MAIN,
+            );
+          }
+          if (settings.name == Routes.COMMUNITY_MAIN) {
+            return GetPageRoute(
+              settings: settings,
+              transition: Transition.noTransition,
+              page: () => const CommunityMainPage(),
+              routeName: Routes.COMMUNITY_MAIN,
+            );
+          }
+
+          if (settings.name == Routes.DICTIONARY_MAIN) {
+            return GetPageRoute(
+              settings: settings,
+              transition: Transition.noTransition,
+              page: () => const DictionaryMainPage(),
+              routeName: Routes.DICTIONARY_MAIN,
+            );
+          }
+
+          return null;
+        },
+      ),
+    );
+  }
+}
 
 // class NavigationPage extends StatelessWidget {
 //   const NavigationPage({Key? key}) : super(key: key);
@@ -18,7 +71,71 @@ import '../map/map_main_page.dart';
 //   Widget build(BuildContext context) {
 //     NavigationController _controller = Get.find();
 //     return Scaffold(
-//       body: Obx(() => _controller.getPageByKey(_controller.navBarIndex.value)),
+//       body: Obx(
+//         () => IndexedStack(
+//           index: _controller.navBarIndex.value,
+//           children: [
+//             Navigator(
+//               // 네비게이터 추가.
+//               key: Get.nestedKey(1), // id 설정.
+//               initialRoute: Routes.HOME, // OutsidePage를 initialRoute로 설정.
+//               onGenerateRoute: (settings) {
+//                 if (settings.name == Routes.HOME) {
+//                   return GetPageRoute(
+//                     routeName: Routes.HOME,
+//                     page: () => const HomePage(),
+//                     binding: HomeBinding(),
+//                   );
+//                 }
+//               },
+//             ),
+//             Navigator(
+//               // 네비게이터 추가.
+//               key: Get.nestedKey(2), // id 설정.
+//               initialRoute: Routes.MAP_MAIN, // OutsidePage를 initialRoute로 설정.
+//               onGenerateRoute: (settings) {
+//                 if (settings.name == Routes.MAP_MAIN) {
+//                   return GetPageRoute(
+//                     page: () => MapMainPage(),
+//                     binding: MapMainBinding(),
+//                   );
+//                 }
+//               },
+//             ),
+//             Navigator(
+//               // 네비게이터 추가.
+//               key: Get.nestedKey(3), // id 설정.
+//               initialRoute:
+//                   Routes.COMMUNITY_MAIN, // OutsidePage를 initialRoute로 설정.
+//               onGenerateRoute: (settings) {
+//                 print(Get.currentRoute);
+//                 if (settings.name == Routes.COMMUNITY_MAIN) {
+//                   return GetPageRoute(
+//                     routeName: Routes.COMMUNITY_MAIN,
+//                     page: () => CommunityMainPage(),
+//                     binding: CommunityMainBinding(),
+//                   );
+//                 }
+//               },
+//             ),
+//             Navigator(
+//               // 네비게이터 추가.
+//               key: Get.nestedKey(4), // id 설정.
+//               initialRoute:
+//                   Routes.DICTIONARY_MAIN, // OutsidePage를 initialRoute로 설정.
+//               onGenerateRoute: (settings) {
+//                 if (settings.name == Routes.DICTIONARY_MAIN) {
+//                   return GetPageRoute(
+//                     routeName: Routes.DICTIONARY_MAIN,
+//                     page: () => const DictionaryMainPage(),
+//                     binding: DictionaryMainBinding(),
+//                   );
+//                 }
+//               },
+//             ),
+//           ],
+//         ),
+//       ),
 //       bottomNavigationBar: Obx(
 //         () => WcBottomNavBar(
 //           currentNavIndex: _controller.navBarIndex.value,
@@ -29,88 +146,6 @@ import '../map/map_main_page.dart';
 //     );
 //   }
 // }
-
-class NavigationPage extends StatelessWidget {
-  const NavigationPage({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    NavigationController _controller = Get.find();
-    return Scaffold(
-      body: Obx(
-        () => IndexedStack(
-          index: _controller.navBarIndex.value,
-          children: [
-            Navigator(
-              // 네비게이터 추가.
-              key: Get.nestedKey(1), // id 설정.
-              initialRoute: Routes.HOME, // OutsidePage를 initialRoute로 설정.
-              onGenerateRoute: (settings) {
-                if (settings.name == Routes.HOME) {
-                  return GetPageRoute(
-                    routeName: Routes.HOME,
-                    page: () => const HomePage(),
-                    binding: HomeBinding(),
-                  );
-                }
-              },
-            ),
-            Navigator(
-              // 네비게이터 추가.
-              key: Get.nestedKey(2), // id 설정.
-              initialRoute: Routes.MAP_MAIN, // OutsidePage를 initialRoute로 설정.
-              onGenerateRoute: (settings) {
-                if (settings.name == Routes.MAP_MAIN) {
-                  return GetPageRoute(
-                    page: () => MapMainPage(),
-                    binding: MapMainBinding(),
-                  );
-                }
-              },
-            ),
-            Navigator(
-              // 네비게이터 추가.
-              key: Get.nestedKey(3), // id 설정.
-              initialRoute:
-                  Routes.COMMUNITY_MAIN, // OutsidePage를 initialRoute로 설정.
-              onGenerateRoute: (settings) {
-                print(Get.currentRoute);
-                if (settings.name == Routes.COMMUNITY_MAIN) {
-                  return GetPageRoute(
-                    routeName: Routes.COMMUNITY_MAIN,
-                    page: () => CommunityMainPage(),
-                    binding: CommunityMainBinding(),
-                  );
-                }
-              },
-            ),
-            Navigator(
-              // 네비게이터 추가.
-              key: Get.nestedKey(4), // id 설정.
-              initialRoute:
-                  Routes.DICTIONARY_MAIN, // OutsidePage를 initialRoute로 설정.
-              onGenerateRoute: (settings) {
-                if (settings.name == Routes.DICTIONARY_MAIN) {
-                  return GetPageRoute(
-                    routeName: Routes.DICTIONARY_MAIN,
-                    page: () => const DictionaryMainPage(),
-                    binding: DictionaryMainBinding(),
-                  );
-                }
-              },
-            ),
-          ],
-        ),
-      ),
-      bottomNavigationBar: Obx(
-        () => WcBottomNavBar(
-          currentNavIndex: _controller.navBarIndex.value,
-          onTap: _controller.changePageIndex,
-          navList: allDestinations,
-        ),
-      ),
-    );
-  }
-}
 
 // class NavigationPage extends StatelessWidget {
 //   const NavigationPage({Key? key}) : super(key: key);
