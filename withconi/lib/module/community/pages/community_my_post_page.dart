@@ -77,8 +77,8 @@ class CommunityMyPostPage extends StatelessWidget {
                           itemBuilder: ((context, index) {
                             return PostListTile(
                               liked: _controller.myPostList[index].isLikeOn,
-                              onLikeTap: (p0) {
-                                _controller.onLikeTap();
+                              onLikeTap: (isLiked) {
+                                _controller.onLikeChanged(index, isLiked);
                               },
                               onPostTap: _controller.onPostTap,
                               onMoreTap: _controller.onPostMoreTap,

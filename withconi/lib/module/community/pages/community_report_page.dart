@@ -15,7 +15,7 @@ import 'package:withconi/global_widgets/button/wide_button.dart';
 
 import '../controllers/community_new_report_controller.dart';
 import '../../../global_widgets/button/check_selection_button.dart';
-import '../../../global_widgets/button/place_verification_button.dart';
+import '../../../global_widgets/button/photo_verification_button.dart';
 import '../../../global_widgets/checkbox/custom_checkbox.dart';
 import '../../../global_widgets/scaffold/loading_scaffold.dart';
 
@@ -64,8 +64,8 @@ class CommunityReportPage extends StatelessWidget {
                         .map((reportItem) => CustomCheckBox(
                             value: reportItem,
                             text: reportItem.displayName,
-                            isSelected: reportItem ==
-                                _controller.newReport.value.reportItem,
+                            isSelected:
+                                reportItem == _controller.reportItem.value,
                             onChanged: (item) {
                               _controller
                                   .onReportItemChanged(item as ReportItem);
@@ -93,6 +93,7 @@ class CommunityReportPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15),
                       color: WcColors.blue20),
                   child: TextField(
+                    onChanged: _controller.onReportTextChanged,
                     keyboardType: TextInputType.text,
                     controller: _controller.reportDetailTextController,
                     style: GoogleFonts.notoSans(

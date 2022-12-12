@@ -14,22 +14,27 @@ import 'package:withconi/module/ui_model/post_ui_model.dart';
 import 'package:withconi/module/ui_model/report_ui_model.dart';
 import '../../../data/enums/enum.dart';
 import '../../../core/error_handling/failures.dart';
+import '../../../global_widgets/dialog/selection_dialog.dart';
+import '../../../global_widgets/photo_gallary/image_item.dart';
 import '../../../import_basic.dart';
 import '../../../core/tools/helpers/infinite_scroll.dart';
+import '../abstract/post_model_abstract.dart';
 
 class CommunityPostListController extends GetxController
-    with WcStateMixin
-    implements InfiniteScroll {
-  CommunityPostListController(this._communityRepository);
+    with WcStateMixin<List<PostUIModel>>
+    implements AbstractPostUpdate {
+  static CommunityPostListController get to => Get.find();
+  CommunityPostListController(
+      this._communityRepository, this._boardId, this.boardName);
   final CommunityRepository _communityRepository;
 
   late Rx<PostListFilterUIModel> postListFilter;
   RxList<PostUIModel> postUIList = <PostUIModel>[].obs;
 
-  RxString boardName = ''.obs;
+  String boardName = '';
+  ImageItem get userProfileImage => AuthController.to.userInfo.profileImage;
   late final String _boardId;
 
-  @override
   final Rx<PaginationFilter> _paginationFilter = PaginationFilter(
     page: 1,
     listSize: 5,
@@ -38,30 +43,27 @@ class CommunityPostListController extends GetxController
   int get _page => _paginationFilter.value.page;
   int get _listSize => _paginationFilter.value.listSize;
 
-  @override
   void loadNextPage() => changePaginationFilter(_page + 1, _listSize);
 
-  @override
   void loadNewPage() => changePaginationFilter(1, _listSize);
 
   @override
-  ScrollController infiniteScrollController = ScrollController();
-
-  @override
-  double get nextPageTrigger =>
-      0.8 * infiniteScrollController.position.maxScrollExtent;
-
-  @override
-  void addInfiniteScrollListener() {
-    infiniteScrollController.addListener(() {
-      if ((status == PageStatus.success()) &&
-          infiniteScrollController.offset >= nextPageTrigger) {
-        loadNextPage();
-      }
-    });
+  onInit() {
+    super.onInit();
+    change([], status: PageStatus.init());
+    postListFilter = Rx<PostListFilterUIModel>(
+        PostListFilterUIModel(postType: PostType.all, keyword: ''));
   }
 
   @override
+  onReady() {
+    super.onReady();
+
+    ever(postListFilter, (_) => loadNewPage());
+    ever(_paginationFilter, getDataByPaginationFilter);
+    loadNewPage();
+  }
+
   Future<void> getDataByPaginationFilter(
       PaginationFilter _paginationFilter) async {
     if (_paginationFilter.page == 1) {
@@ -72,30 +74,8 @@ class CommunityPostListController extends GetxController
   }
 
   @override
-  onInit() {
-    super.onInit();
-    change(null, status: PageStatus.init());
-    var boardUIModel = (Get.arguments as BoardUIModel);
-    _boardId = boardUIModel.boardId;
-    boardName.value = boardUIModel.title;
-    postListFilter = Rx<PostListFilterUIModel>(
-        PostListFilterUIModel(postType: PostType.all, keyword: ''));
-  }
-
-  @override
-  Future<void> onReady() async {
-    super.onReady();
-
-    ever(_paginationFilter, getDataByPaginationFilter);
-    ever(postListFilter, (_) => loadNewPage());
-    loadNewPage();
-    addInfiniteScrollListener();
-  }
-
-  @override
   onClose() {
     super.onClose();
-    infiniteScrollController.dispose();
     _paginationFilter.close();
     postUIList.close();
     postListFilter.close();
@@ -124,25 +104,29 @@ class CommunityPostListController extends GetxController
   }
 
   Future<void> _getPostList(PaginationFilter paginationFilter) async {
-    change(null, status: PageStatus.loading());
-    final Either<Failure, List<PostResponseDTO>> postDataEither =
-        await _communityRepository.getPostList(
-            paginationFilter: paginationFilter,
-            postListFilterUiModel: postListFilter.value,
-            boardId: _boardId);
+    change([], status: PageStatus.loading());
+    await showLoading(() async {
+      final Either<Failure, List<PostResponseDTO>> postDataEither =
+          await _communityRepository.getPostList(
+              paginationFilter: paginationFilter,
+              postListFilterUiModel: postListFilter.value,
+              boardId: _boardId);
 
-    postDataEither.fold(
-        (fail) => FailureInterpreter().mapFailureToSnackbar(
-            fail, '_getPostListByPage'), (newPostListDto) {
-      if (newPostListDto.isEmpty) {
-        change(null, status: PageStatus.empty());
-      } else {
-        postUIList.assignAll(_parsePostListDto(newPostListDto));
-        change(null, status: PageStatus.success());
-        postUIList.refresh();
-      }
-
-      return;
+      postDataEither.fold(
+          (fail) => FailureInterpreter().mapFailureToSnackbar(
+              fail, '_getPostListByPage'), (newPostListDto) {
+        if (newPostListDto.isEmpty) {
+          postUIList.clear();
+          change([],
+              status: const PageStatus.empty(
+                '아직 작성된 글이 없어요.',
+                '첫번째 글을 작성해주시겠어요?',
+              ));
+        } else {
+          postUIList.assignAll(_parsePostListDto(newPostListDto));
+          change(postUIList, status: const PageStatus.success());
+        }
+      });
     });
   }
 
@@ -155,7 +139,7 @@ class CommunityPostListController extends GetxController
   }
 
   Future<void> _morePostList(PaginationFilter paginationFilter) async {
-    change(null, status: PageStatus.loadingMore());
+    change(postUIList, status: PageStatus.loadingMore());
 
     final Either<Failure, List<PostResponseDTO>> postDataEither =
         await _communityRepository.getPostList(
@@ -167,16 +151,14 @@ class CommunityPostListController extends GetxController
         (fail) => FailureInterpreter().mapFailureToSnackbar(
             fail, '_getPostListByPage'), (morePostListDto) {
       if (morePostListDto.isEmpty) {
-        change(null, status: PageStatus.emptyLastPage());
+        change(postUIList, status: PageStatus.emptyLastPage());
       } else {
         postUIList.addAll(_parsePostListDto(morePostListDto));
-        change(null, status: PageStatus.success());
-        postUIList.refresh();
+        change(postUIList, status: PageStatus.success());
       }
     });
   }
 
-  @override
   void changePaginationFilter(int page, int limit) {
     _paginationFilter.update((val) {
       val!.page = page;
@@ -185,55 +167,35 @@ class CommunityPostListController extends GetxController
   }
 
   onPostTap(int postIndex) async {
-    Map<CommunityPageResultKey, String>? pageResult = await Get.toNamed(
-            Routes.COMMUNITY_POST_DETAIL,
-            arguments: postUIList[postIndex])
-        as Map<CommunityPageResultKey, String>?;
-
-    if (pageResult != null) {
-      if (pageResult.containsKey(CommunityPageResultKey.blockAuthorId)) {
-        _blockThisUserPosts(pageResult[CommunityPageResultKey.blockAuthorId]!);
-      }
-    }
-  }
-
-  onSearchTap() {
-    Get.toNamed(Routes.COMMUNITY_POST_SEARCH, arguments: _boardId);
-  }
-
-  _deletePost(int postIndex) async {
-    Either<Failure, bool> deleteEither = await showLoading(() =>
-        _communityRepository.deletePost(
-            postId: postUIList[postIndex].postId,
-            boardId: postUIList[postIndex].postId));
-    deleteEither.fold((failure) {
-      FailureInterpreter().mapFailureToDialog(failure, 'getPost');
-    }, (success) {
-      postUIList.removeAt(postIndex);
-      postUIList.refresh();
+    Get.toNamed(Routes.COMMUNITY_POST_DETAIL, arguments: {
+      'boardId': _boardId,
+      'postId': postUIList[postIndex].postId,
+      'postAbstractController': CommunityPostListController.to,
     });
   }
 
-  onPostMoreTap(int postIndex, MoreOption? moreOption) async {
+  goToEditProfilePage() {
+    Get.toNamed(Routes.USER_EDIT);
+  }
+
+  onSearchTap() {
+    Get.toNamed(Routes.COMMUNITY_POST_SEARCH, arguments: {'boardId': _boardId});
+  }
+
+  onPostMoreTap(int postIndex, MoreBottomSheetOption? moreOption) async {
     if (moreOption != null) {
       switch (moreOption) {
-        case MoreOption.edit:
-          await Get.toNamed(Routes.COMMUNITY_POST_EDIT,
-              arguments: postUIList[postIndex]);
+        case MoreBottomSheetOption.edit:
+          _onPostEditTap(postIndex);
           break;
-        case MoreOption.delete:
-          await _deletePost(postIndex);
+        case MoreBottomSheetOption.delete:
+          _onDeletePostTap(postIndex);
           break;
-        case MoreOption.report:
-          Get.toNamed(Routes.COMMUNITY_REPORT,
-              arguments: ReportUIModel(
-                boardId: postUIList[postIndex].boardId,
-                postId: postUIList[postIndex].postId,
-                authorId: postUIList[postIndex].authorId,
-              ));
+        case MoreBottomSheetOption.report:
+          _onPostReportTap(postIndex);
           break;
-        case MoreOption.block:
-          _blockThisUserPosts(postUIList[postIndex].authorId);
+        case MoreBottomSheetOption.block:
+          _onBlockPostTap(postIndex);
           break;
         default:
           break;
@@ -241,10 +203,79 @@ class CommunityPostListController extends GetxController
     }
   }
 
-  _blockThisUserPosts(String blockUserId) async {
-    await showLoading(() => Future.delayed(const Duration(milliseconds: 500)));
-    postUIList.removeWhere((element) => element.authorId == blockUserId);
-    postUIList.refresh();
+  _onDeletePostTap(int postIndex) async {
+    bool isBlockConfirmed = await showSelectionDialog(
+        confirmText: '삭제',
+        cancleText: '취소',
+        title: '글을 삭제할까요?',
+        subtitle: '즉시 삭제됩니다');
+
+    if (isBlockConfirmed) {
+      _deletePost(postIndex);
+    }
+  }
+
+  _deletePost(int postIndex) async {
+    Either<Failure, bool> deleteEither = await showLoading(() =>
+        _communityRepository.deletePost(
+            postId: postUIList[postIndex].postId,
+            boardId: postUIList[postIndex].boardId));
+    deleteEither.fold((failure) {
+      FailureInterpreter().mapFailureToDialog(failure, 'getPost');
+    }, (success) {
+      // postUIList.removeAt(postIndex);
+      // change(postUIList, status: PageStatus.success());
+      updateDeletedPost(postUIList[postIndex].postId);
+    });
+  }
+
+  _onPostEditTap(int postIndex) async {
+    var editedPost = await Get.toNamed(
+      Routes.COMMUNITY_POST_EDIT,
+      arguments: {'post': postUIList[postIndex]},
+    ) as PostUIModel?;
+
+    if (editedPost != null) {
+      updateEditedPost(postUIList[postIndex]);
+    }
+  }
+
+  _onBlockPostTap(int postIndex) async {
+    bool isBlockConfirmed = await showSelectionDialog(
+        confirmText: '네',
+        cancleText: '아니오',
+        title: '이 유저의 글을 차단할까요?',
+        subtitle: '이 유저의 모든 글을 숨깁니다.');
+
+    if (isBlockConfirmed) {
+      _blockThisUserPost(postUIList[postIndex].authorId);
+    }
+  }
+
+  _onPostReportTap(int postIndex) async {
+    var report = await Get.toNamed(Routes.COMMUNITY_REPORT, arguments: {
+      'boardId': postUIList[postIndex].boardId,
+      'postId': postUIList[postIndex].postId,
+      'authorId': postUIList[postIndex].authorId,
+    }) as ReportUIModel?;
+
+    if (report != null) {
+      updateReportedPost(postUIList[postIndex].postId);
+    }
+  }
+
+  _blockThisUserPost(String blockAuthorId) async {
+    change(postUIList, status: const PageStatus.loading());
+    Either<Failure, bool> blockUserPostEither =
+        await _communityRepository.blockUserPost(authorId: blockAuthorId);
+
+    blockUserPostEither.fold((l) {
+      FailureInterpreter().mapFailureToDialog(l, 'blockUserPostEither');
+      change(postUIList, status: const PageStatus.success());
+    }, (r) {
+      updateBlockedPost(blockAuthorId);
+      change(postUIList, status: const PageStatus.success());
+    });
   }
 
   void onPostTypeChanged(PostType postType) {
@@ -253,12 +284,61 @@ class CommunityPostListController extends GetxController
   }
 
   Future<void> addNewPost() async {
-    var newPostResult =
-        await Get.toNamed(Routes.COMMUNITY_NEW_POST, arguments: _boardId)
-            as PostUIModel?;
+    var newPostResult = await Get.toNamed(Routes.COMMUNITY_NEW_POST,
+        arguments: {'boardId': _boardId}) as PostUIModel?;
 
     if (newPostResult != null) {
       postUIList.insert(0, newPostResult.copyWith());
+      change(postUIList, status: PageStatus.success());
     }
+  }
+
+  @override
+  void updateEditedPost(PostUIModel post) {
+    int editedIndex =
+        postUIList.indexWhere((element) => element.postId == post.postId);
+    if (editedIndex >= 0) {
+      postUIList[editedIndex] = post.copyWith();
+      postUIList.refresh();
+    }
+  }
+
+  @override
+  void updateCommentNum(String postId, int commentNum) {
+    int editedIndex =
+        postUIList.indexWhere((element) => element.postId == postId);
+    if (editedIndex >= 0) {
+      postUIList[editedIndex].commentNum = commentNum;
+      postUIList.refresh();
+    }
+  }
+
+  @override
+  void updateBlockedPost(String authorId) {
+    postUIList.removeWhere((element) => element.authorId == authorId);
+  }
+
+  @override
+  void updateDeletedPost(String postId) {
+    postUIList.removeWhere((element) => element.postId == postId);
+    postUIList.refresh();
+  }
+
+  @override
+  void updatePostLike(String postId, int likeNum, bool isLikeOn) {
+    int editedIndex =
+        postUIList.indexWhere((element) => element.postId == postId);
+    if (editedIndex >= 0) {
+      postUIList[editedIndex].likeNum = likeNum;
+      postUIList[editedIndex].isLikeOn = isLikeOn;
+
+      postUIList.refresh();
+    }
+  }
+
+  @override
+  void updateReportedPost(String postId) {
+    postUIList.removeWhere((element) => element.postId == postId);
+    postUIList.refresh();
   }
 }

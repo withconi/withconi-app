@@ -1,52 +1,29 @@
+import 'package:dartz/dartz.dart';
 import 'package:withconi/core/tools/helpers/calculator.dart';
 import 'package:withconi/module/auth/auth_controller.dart';
 import 'package:withconi/core/error_handling/failure_ui_interpreter.dart';
 import 'package:withconi/data/repository/community_repository.dart';
 import 'package:withconi/global_widgets/loading/loading_overlay.dart';
+import 'package:withconi/module/community/abstract/post_model_abstract.dart';
+import 'package:withconi/module/ui_model/comment_ui_model.dart';
 
+import '../../../core/error_handling/failures.dart';
 import '../../../data/enums/enum.dart';
+import '../../../global_widgets/dialog/selection_dialog.dart';
 import '../../../import_basic.dart';
 import '../../../global_widgets/photo_gallary/image_item.dart';
 
 import '../../ui_model/post_ui_model.dart';
+import '../../ui_model/report_ui_model.dart';
 
-class LikedPostController extends GetxController {
-  LikedPostController(this._communityRepository);
+class LikedPostController extends GetxController implements AbstractPostUpdate {
+  static LikedPostController get to => Get.find();
+  LikedPostController(this._communityRepository, this._abstractPostUpdate);
   final CommunityRepository _communityRepository;
+  final AbstractPostUpdate? _abstractPostUpdate;
+
   RxList<PostUIModel> likedPostList = <PostUIModel>[].obs;
   late String _uid;
-  // Rx<ScrollController> scrollController = ScrollController().obs;
-
-  // final Rx<PaginationFilter> _paginationFilter = PaginationFilter(
-  //   page: 1,
-  //   limit: 15,
-  // ).obs;
-
-  // final RxBool _lastPage = false.obs;
-
-  // final RxBool _isLoading = false.obs;
-
-  // int get limit => _paginationFilter.value.limit!;
-  // int get _page => _paginationFilter.value.page!;
-
-  // void loadNextPage() => _changePaginationFilter(_page + 1, limit);
-  // void loadNewPage() => _changePaginationFilter(1, limit);
-
-  List<ImageItem> images = [
-    ImageItem(
-        id: 'tag1',
-        resource: 'assets/images/image1.jpeg',
-        imageType: ImageType.asset),
-    ImageItem(
-        id: 'tag2',
-        resource: 'assets/images/image2.jpeg',
-        imageType: ImageType.asset),
-    ImageItem(
-        id: 'tag3',
-        resource:
-            'https://search.pstatic.net/common/?src=http%3A%2F%2Fshop1.phinf.naver.net%2F20210917_199%2F1631861436249TX26u_JPEG%2F32997264078967613_1334183573.jpg&type=sc960_832',
-        imageType: ImageType.network),
-  ];
 
   String uploadAtStr(DateTime createdAt) =>
       TimeCalculator().calculateUploadAt(createdAt);
@@ -138,14 +115,103 @@ class LikedPostController extends GetxController {
   // }
 
   onPostTap(int postIndex) {
-    Get.toNamed(Routes.COMMUNITY_POST_DETAIL,
-        arguments: likedPostList[postIndex]);
+    Get.toNamed(Routes.COMMUNITY_POST_DETAIL, arguments: {
+      'boardId': likedPostList[postIndex].boardId,
+      'postId': likedPostList[postIndex].postId,
+      'postAbstractController': LikedPostController.to
+    });
   }
 
-  // onLikeChanged(int postIndex, bool isLiked) async {
-  //   await _communityRepository.updateLikePost(
-  //       postId: likedPostList[postIndex].postId, isLiked: isLiked);
-  // }
+  onPostMoreTap(int postIndex, MoreBottomSheetOption? moreOption) {
+    if (moreOption != null) {
+      switch (moreOption) {
+        case MoreBottomSheetOption.edit:
+          _onPostEditTap(postIndex);
+          break;
+        case MoreBottomSheetOption.delete:
+          _onDeletePostTap(postIndex);
+          break;
+        case MoreBottomSheetOption.report:
+          _onPostReportTap(postIndex);
+          break;
+        case MoreBottomSheetOption.block:
+          _onBlockPostTap(postIndex);
+          break;
+        default:
+          break;
+      }
+    }
+  }
+
+  _onBlockPostTap(int postIndex) async {
+    bool isBlockConfirmed = await showSelectionDialog(
+        confirmText: '네',
+        cancleText: '아니오',
+        title: '이 유저의 글을 차단할까요?',
+        subtitle: '이 유저의 모든 글을 숨깁니다.');
+
+    if (isBlockConfirmed) {
+      _blockThisUserPost(likedPostList[postIndex].authorId);
+    }
+  }
+
+  _blockThisUserPost(String blockAuthorId) async {
+    Either<Failure, bool> blockUserPostEither =
+        await _communityRepository.blockUserPost(authorId: blockAuthorId);
+
+    blockUserPostEither.fold((l) {
+      FailureInterpreter().mapFailureToDialog(l, 'blockUserPostEither');
+    }, (r) {
+      updateBlockedPost(blockAuthorId);
+    });
+  }
+
+  _onPostReportTap(int postIndex) async {
+    var report = await Get.toNamed(Routes.COMMUNITY_REPORT, arguments: {
+      'boardId': likedPostList[postIndex].boardId,
+      'postId': likedPostList[postIndex].postId,
+      'authorId': likedPostList[postIndex].authorId,
+    }) as ReportUIModel?;
+
+    if (report != null) {
+      updateReportedPost(likedPostList[postIndex].postId);
+    }
+  }
+
+  _onDeletePostTap(int postIndex) async {
+    bool isBlockConfirmed = await showSelectionDialog(
+        confirmText: '삭제',
+        cancleText: '취소',
+        title: '글을 삭제할까요?',
+        subtitle: '즉시 삭제됩니다');
+
+    if (isBlockConfirmed) {
+      _deletePost(postIndex);
+    }
+  }
+
+  _deletePost(int postIndex) async {
+    Either<Failure, bool> deleteEither = await showLoading(() =>
+        _communityRepository.deletePost(
+            postId: likedPostList[postIndex].postId,
+            boardId: likedPostList[postIndex].boardId));
+    deleteEither.fold((failure) {
+      FailureInterpreter().mapFailureToDialog(failure, 'getPost');
+    }, (success) {
+      updateDeletedPost(likedPostList[postIndex].postId);
+    });
+  }
+
+  _onPostEditTap(int postIndex) async {
+    var editedPost = await Get.toNamed(
+      Routes.COMMUNITY_POST_EDIT,
+      arguments: {'post': likedPostList[postIndex]},
+    ) as PostUIModel?;
+
+    if (editedPost != null) {
+      updateEditedPost(editedPost);
+    }
+  }
 
   onLikeChanged(int postIndex, bool isLiked) async {
     _updateLikeUiChanges(postIndex, isLiked);
@@ -167,5 +233,75 @@ class LikedPostController extends GetxController {
       likedPostList[postIndex].likeNum -= 1;
     }
     likedPostList.refresh();
+    updatePostLike(likedPostList[postIndex].postId,
+        likedPostList[postIndex].likeNum, likedPostList[postIndex].isLikeOn);
+  }
+
+  @override
+  void updateEditedPost(PostUIModel post) {
+    int editedIndex =
+        likedPostList.indexWhere((element) => element.postId == post.postId);
+    if (editedIndex >= 0) {
+      likedPostList[editedIndex] = post.copyWith();
+      likedPostList.refresh();
+    }
+
+    if (_abstractPostUpdate != null) {
+      _abstractPostUpdate!.updateEditedPost(post);
+    }
+  }
+
+  @override
+  void updateCommentNum(String postId, int commentNum) {
+    int editedIndex =
+        likedPostList.indexWhere((element) => element.postId == postId);
+    if (editedIndex >= 0) {
+      likedPostList[editedIndex].commentNum = commentNum;
+      likedPostList.refresh();
+    }
+
+    if (_abstractPostUpdate != null) {
+      _abstractPostUpdate!.updateCommentNum(postId, commentNum);
+    }
+  }
+
+  @override
+  void updateBlockedPost(String authorId) {
+    likedPostList.removeWhere((element) => element.authorId == authorId);
+    if (_abstractPostUpdate != null) {
+      _abstractPostUpdate!.updateBlockedPost(authorId);
+    }
+  }
+
+  @override
+  void updateDeletedPost(String postId) {
+    likedPostList.removeWhere((element) => element.postId == postId);
+    likedPostList.refresh();
+    if (_abstractPostUpdate != null) {
+      _abstractPostUpdate!.updateDeletedPost(postId);
+    }
+  }
+
+  @override
+  void updatePostLike(String postId, int likeNum, bool isLikeOn) {
+    int editedIndex =
+        likedPostList.indexWhere((element) => element.postId == postId);
+    if (editedIndex >= 0) {
+      likedPostList[editedIndex].likeNum = likeNum;
+      likedPostList[editedIndex].isLikeOn = isLikeOn;
+      likedPostList.refresh();
+    }
+    if (_abstractPostUpdate != null) {
+      _abstractPostUpdate!.updatePostLike(postId, likeNum, isLikeOn);
+    }
+  }
+
+  @override
+  void updateReportedPost(String postId) {
+    likedPostList.removeWhere((element) => element.postId == postId);
+    likedPostList.refresh();
+    if (_abstractPostUpdate != null) {
+      _abstractPostUpdate!.updateReportedPost(postId);
+    }
   }
 }

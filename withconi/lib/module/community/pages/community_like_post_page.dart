@@ -81,7 +81,7 @@ class CommunityLikePostPage extends StatelessWidget {
                               },
                               onPostTap: _controller.onPostTap,
                               post: _controller.likedPostList[index],
-                              onMoreTap: (p0, p1) {},
+                              onMoreTap: _controller.onPostMoreTap,
                               postIndex: index,
                             );
                           })),

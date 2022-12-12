@@ -1,8 +1,13 @@
+import 'package:withconi/module/theme/text_theme.dart';
+
 import '../../../import_basic.dart';
 import '../../ui_model/comment_ui_model.dart';
 
-showCommentBottomSheet(String nickname) {
+showCommentBottomSheet(String nickname, [String? comment]) {
   TextEditingController textEditingController = TextEditingController();
+  if (comment != null && comment.isNotEmpty) {
+    textEditingController.text = comment;
+  }
   return Get.bottomSheet(
     Container(
       height: 280,
@@ -18,19 +23,25 @@ showCommentBottomSheet(String nickname) {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text('$nickname님의 댓글',
-                    style: GoogleFonts.notoSans(
+                    style: TextStyle(
+                        fontFamily: WcFontFamily.notoSans,
                         fontSize: 17,
+                        height: 1,
                         color: WcColors.black,
                         fontWeight: FontWeight.bold)),
                 GestureDetector(
                   onTap: () {
                     Get.back(result: textEditingController.text);
                   },
-                  child: Text('남기기',
-                      style: GoogleFonts.notoSans(
-                          fontSize: 16,
-                          color: WcColors.blue100,
-                          fontWeight: FontWeight.bold)),
+                  child: Container(
+                    color: Colors.transparent,
+                    padding: EdgeInsets.only(left: 20),
+                    child: Text('남기기',
+                        style: GoogleFonts.notoSans(
+                            fontSize: 16,
+                            color: WcColors.blue100,
+                            fontWeight: FontWeight.bold)),
+                  ),
                 )
               ],
             ),
@@ -41,7 +52,7 @@ showCommentBottomSheet(String nickname) {
           Container(
             height: 170,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25),
+                borderRadius: BorderRadius.circular(20),
                 color: WcColors.blue20),
             child: TextField(
               autofocus: false,
@@ -52,9 +63,10 @@ showCommentBottomSheet(String nickname) {
                   fontWeight: FontWeight.w500,
                   height: 1.5),
               maxLines: 20,
+              maxLength: 500,
               minLines: 5,
               decoration: InputDecoration(
-                  contentPadding: EdgeInsets.all(20),
+                  contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 10),
                   isDense: true,
                   border: InputBorder.none,
                   hintStyle: GoogleFonts.notoSans(

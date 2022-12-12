@@ -9,6 +9,8 @@ import 'package:withconi/global_widgets/loading/loading_page.dart';
 import 'package:withconi/module/page_status.dart';
 import 'package:withconi/module/theme/sizes.dart';
 
+import '../../theme/colors.dart';
+
 mixin WcStateMixin<T> on ListNotifierMixin {
   T? _value;
   PageStatus? _status;
@@ -139,48 +141,61 @@ abstract class GetNotifier<T> extends Value<T> with GetLifeCycleBase {
 extension StateExt<T> on WcStateMixin<T> {
   Widget obx({
     Widget? onError,
+    // Widget? onLoading,
     Widget? onLoading,
     Widget? onInit,
     Widget? onLoadingMore,
     Widget? onEmpty,
-    required Widget onSuccess,
+    // required Widget onSuccess,
+    required NotifierBuilder<T?> onSuccess,
   }) {
     return SimpleBuilder(builder: (_) {
       return status.maybeMap(
-        init: (value) => onInit ?? SizedBox.shrink(),
-        loading: (value) =>
-            onLoading ??
-            LoadingPage(
-              height: WcHeight - 300,
-            ),
+        init: (init) => (onInit == null)
+            ? (value != null)
+                ? onSuccess(value)
+                : SizedBox.shrink()
+            : onInit,
+        loading: (loading) => (onLoading == null)
+            ? (value != null)
+                ? onSuccess(value)
+                : LoadingPage(
+                    height: loading.loadingHeight ?? WcHeight - 270,
+                  )
+            : onLoading,
         // loadingMore: (value) => onMoreLoading ?? Size,
         // emptyLastPage: emptyLastPage,
-        empty: (value) =>
-            onEmpty ??
-            WcErrorWidget(
-              height: WcHeight - 300,
-              image: Image.asset(
-                'assets/icons/no_result.png',
-                height: 90,
-              ),
-              title: '검색 결과가 없습니다',
-              message: '다른 검색어로 시도해주세요 :)',
-            ),
+        empty: (empty) => (onEmpty == null)
+            ? (value != null)
+                ? onSuccess(value)
+                : WcErrorWidget(
+                    height: WcHeight - 270,
+                    image: Image.asset(
+                      'assets/icons/no_result.png',
+                      height: 80,
+                    ),
+                    title: empty.title ?? '검색 결과가 없습니다',
+                    message: empty.message ?? '다른 검색어로 시도해주세요 :)',
+                  )
+            : onEmpty,
+        // onSuccess(value),
         // success: ,
-        error: (value) =>
-            onError ??
-            WcErrorWidget(
-              height: WcHeight - 300,
-              image: Image.asset(
-                'assets/icons/no_result.png',
-                height: 90,
-              ),
-              title: value.message,
-              message: '',
-            ),
+        error: (error) => (onError == null)
+            ? (value != null)
+                ? onSuccess(value)
+                : WcErrorWidget(
+                    height: WcHeight - 300,
+                    image: Image.asset(
+                      'assets/icons/no_result.png',
+                      height: 80,
+                    ),
+                    title: error.message,
+                    message: '',
+                  )
+            : onError,
 
-        success: (value) => onSuccess,
-        orElse: () => onSuccess,
+        success: (success) => onSuccess(value),
+        orElse: () => onSuccess(value),
       );
     });
   }

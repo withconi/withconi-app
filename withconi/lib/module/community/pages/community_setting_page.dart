@@ -38,16 +38,16 @@ class CommunitySettingPage extends StatelessWidget {
                   // ),
                   WcTileButton(
                     text: '내 정보 수정',
-                    onTap: _controller.manageUserInfo,
+                    onTap: _controller.goToEditUserInfoPage,
                   ),
 
                   WcTileButton(
                     text: '내가 쓴 글',
-                    onTap: _controller.myPostPage,
+                    onTap: _controller.goToMyPostPage,
                   ),
                   WcTileButton(
                     text: '내가 좋아한 글',
-                    onTap: _controller.myLikedPosts,
+                    onTap: _controller.goToLikedPostPage,
                   ),
                   const SizedBox(
                     height: 10,

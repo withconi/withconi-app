@@ -3,24 +3,30 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:withconi/core/values/constants/auth_variables.dart';
 import 'package:withconi/data/enums/enum.dart';
+import 'package:withconi/data/model/dto/request_dto/community_request/get_post_detail_request_dto.dart';
 import 'package:withconi/data/model/dto/response_dto/community_response/comment_response_dto.dart';
+import 'package:withconi/global_widgets/snackbar.dart';
 import 'package:withconi/module/auth/auth_controller.dart';
 import 'package:withconi/global_widgets/dialog/selection_dialog.dart';
+import 'package:withconi/module/community/controllers/community_post_list_controller.dart';
 import 'package:withconi/module/ui_model/comment_ui_model.dart';
 import 'package:withconi/module/ui_model/post_ui_model.dart';
 import 'package:withconi/module/ui_model/report_ui_model.dart';
 import '../../../core/error_handling/failures.dart';
+import '../../../data/model/dto/response_dto/community_response/post_response_dto.dart';
 import '../../../data/repository/community_repository.dart';
+import '../../../global_widgets/photo_gallary/image_item.dart';
 import '../../../import_basic.dart';
 import '../../../global_widgets/loading/loading_overlay.dart';
 import '../../../core/tools/helpers/infinite_scroll.dart';
 import '../../../core/error_handling/failure_ui_interpreter.dart';
+import '../abstract/post_model_abstract.dart';
 import '../widgets/comment_bottom_sheet.dart';
 
-enum CommunityPageResultKey { blockAuthorId }
-
-class CommunityPostDetailController extends GetxController {
-  CommunityPostDetailController(this._communityRepository);
+class CommunityPostDetailController extends GetxController
+    implements AbstractPostUpdate {
+  CommunityPostDetailController(this._communityRepository, this._boardId,
+      this._postId, this._postAbstractController);
   final CommunityRepository _communityRepository;
 
   late Rx<PostUIModel> thisPost;
@@ -33,21 +39,43 @@ class CommunityPostDetailController extends GetxController {
   int get limit => _paginationFilter.value.listSize;
   int get page => _paginationFilter.value.page;
   bool get lastPage => _lastPage.value;
+  final String _postId;
+  final String _boardId;
+
+  final AbstractPostUpdate? _postAbstractController;
 
   GlobalKey commentWidgetKey = GlobalKey();
   ScrollController scrollController = ScrollController();
 
-  String get _nickname => AuthController.to.userInfo!.nickname;
-  String get _uid => firebaseAuth.currentUser!.uid;
+  String get _nickname => AuthController.to.userInfo.nickname;
+  String get _uid => AuthController.to.userInfo.uid;
+  ImageItem get userProfileImage => AuthController.to.userInfo.profileImage;
 
   @override
   onInit() async {
     super.onInit();
-    thisPost = Rx<PostUIModel>((Get.arguments as PostUIModel).copyWith());
+    await _initPost();
+    postLoading.value = false;
+  }
+
+  Future<void> refreshPage() async {
+    await _initPost();
+  }
+
+  _initPost() async {
+    await _getPost(postId: _postId, boardId: _boardId);
 
     await _getCommentList(
         postId: thisPost.value.postId, boardId: thisPost.value.boardId);
-    postLoading.value = false;
+  }
+
+  _getPost({required String postId, required String boardId}) async {
+    Either<Failure, PostResponseDTO> postDetailEither =
+        await _communityRepository.getPost(boardId: boardId, postId: postId);
+
+    postDetailEither.fold((failure) {}, (postDto) {
+      thisPost = Rx<PostUIModel>(PostUIModel.fromDTO(postDto));
+    });
   }
 
   _getCommentList({required String postId, required String boardId}) async {
@@ -57,7 +85,7 @@ class CommunityPostDetailController extends GetxController {
       boardId: boardId,
     );
     commentEither.fold((failure) {}, (commentDto) {
-      commentList.addAll(_parseCommentDto(commentDto).reversed);
+      commentList.assignAll(_parseCommentDto(commentDto).reversed);
     });
     commentList.refresh();
   }
@@ -66,18 +94,20 @@ class CommunityPostDetailController extends GetxController {
     return commentDto.map((e) => CommentUIModel.fromDTO(e)).toList();
   }
 
-  _deletePost() async {
-    Either<Failure, bool> deleteEither = await _communityRepository.deletePost(
-        postId: thisPost.value.postId!, boardId: thisPost.value.boardId);
+  _onDeletePostTap() async {
+    Either<Failure, bool> deleteEither = await showLoading(() =>
+        _communityRepository.deletePost(
+            postId: thisPost.value.postId, boardId: thisPost.value.boardId));
     deleteEither.fold((failure) {
       FailureInterpreter().mapFailureToDialog(failure, 'getPost');
     }, (success) {
-      log('게시물 삭제 완료');
+      updateDeletedPost(thisPost.value.postId);
+      showCustomSnackbar(text: '글 삭제 완료!');
       Get.back();
     });
   }
 
-  _deleteComment(CommentUIModel comment) async {
+  _onDeleteCommentTap(CommentUIModel comment) async {
     Either<Failure, bool> deleteEither =
         await _communityRepository.deleteComment(
             postId: comment.postId,
@@ -89,6 +119,7 @@ class CommunityPostDetailController extends GetxController {
       log('댓글 삭제 완료');
       commentList.remove(comment);
       commentList.refresh();
+      updateCommentNum(comment.postId, commentList.length);
     });
   }
 
@@ -99,8 +130,16 @@ class CommunityPostDetailController extends GetxController {
     }
   }
 
+  // Future<void> _editComment(String comment) async {
+  //   String? commentText = await showCommentBottomSheet(_nickname, comment);
+  //   if (commentText != null && commentText.isNotEmpty) {
+  //     await _updateCommentDB(_makeNewCommentModel(commentText));
+  //   }
+  // }
+
   CommentUIModel _makeNewCommentModel(String commentText) {
     return CommentUIModel(DateTime.now(),
+        profileImage: AuthController.to.userInfo.profileImage,
         nickname: _nickname,
         content: commentText,
         likeNum: 0,
@@ -118,7 +157,10 @@ class CommunityPostDetailController extends GetxController {
       FailureInterpreter().mapFailureToSnackbar(fail, 'createComment');
       return;
     }, (newCommentDto) {
-      commentList.add(CommentUIModel.fromDTO(newCommentDto));
+      commentList.add(CommentUIModel.fromDTO(newCommentDto.copyWith(
+          profileImageUrl: AuthController.to.userInfo.profileImage.imageUrl)));
+
+      updateCommentNum(_newComment.postId, commentList.length);
     });
     return;
   }
@@ -158,6 +200,8 @@ class CommunityPostDetailController extends GetxController {
       thisPost.value.likeNum -= 1;
     }
     thisPost.refresh();
+    updatePostLike(
+        thisPost.value.postId, thisPost.value.likeNum, thisPost.value.isLikeOn);
   }
 
   void _updateCommentLikeUiChanges(int commentIndex, bool isLiked) {
@@ -170,23 +214,20 @@ class CommunityPostDetailController extends GetxController {
     commentList.refresh();
   }
 
-  onPostMoreTap(PostUIModel post, MoreOption? moreOption) async {
+  onPostMoreTap(PostUIModel post, MoreBottomSheetOption? moreOption) async {
     if (moreOption != null) {
       switch (moreOption) {
-        case MoreOption.edit:
-          await Get.toNamed(Routes.COMMUNITY_POST_EDIT, arguments: post);
+        case MoreBottomSheetOption.edit:
+          _onPostEditTap(post);
           break;
-        case MoreOption.delete:
-          await _deletePost();
+        case MoreBottomSheetOption.delete:
+          await _onDeletePostTap();
           break;
-        case MoreOption.report:
-          Get.toNamed(Routes.COMMUNITY_REPORT,
-              //TODO: report생성할때 authorid는 누구를 의미?
-              arguments: ReportUIModel(
-                  boardId: post.boardId, postId: post.postId, authorId: _uid));
+        case MoreBottomSheetOption.report:
+          _onReportPostTap(post);
           break;
-        case MoreOption.block:
-          _blockUserPosts(postInfo: post);
+        case MoreBottomSheetOption.block:
+          _onBlockPostTap(postInfo: post);
           break;
         default:
           break;
@@ -194,25 +235,38 @@ class CommunityPostDetailController extends GetxController {
     }
   }
 
-  onCommentMoreTap(CommentUIModel comment, MoreOption? moreOption) async {
+  _onReportPostTap(PostUIModel post) async {
+    var newReport = await Get.toNamed(Routes.COMMUNITY_REPORT, arguments: {
+      'boardId': post.boardId,
+      'postId': post.postId,
+      'authorId': _uid,
+    }) as ReportUIModel?;
+
+    if (newReport != null) {
+      updateReportedPost(post.postId);
+    }
+  }
+
+  _onPostEditTap(PostUIModel post) async {
+    var editedPost = await Get.toNamed(Routes.COMMUNITY_POST_EDIT,
+        arguments: {'post': post});
+    if (editedPost != null) {
+      updateEditedPost(editedPost);
+    }
+  }
+
+  onCommentMoreTap(
+      CommentUIModel comment, MoreBottomSheetOption? moreOption) async {
     if (moreOption != null) {
       switch (moreOption) {
-        case MoreOption.edit:
-          // await Get.toNamed(Routes.COMMUNITY_POST_EDIT, arguments: comment);
+        case MoreBottomSheetOption.delete:
+          await _onDeleteCommentTap(comment);
           break;
-        case MoreOption.delete:
-          await _deleteComment(comment);
+        case MoreBottomSheetOption.report:
+          _onCommentReportTap(comment);
           break;
-        case MoreOption.report:
-          Get.toNamed(Routes.COMMUNITY_REPORT,
-              arguments: ReportUIModel(
-                boardId: comment.boardId,
-                postId: comment.postId,
-                authorId: _uid,
-              ));
-          break;
-        case MoreOption.block:
-          _blockUserComments(commentInfo: comment);
+        case MoreBottomSheetOption.block:
+          _onBlockCommentTap(comment.authorId);
           break;
         default:
           break;
@@ -220,7 +274,19 @@ class CommunityPostDetailController extends GetxController {
     }
   }
 
-  _blockUserComments({required CommentUIModel commentInfo}) async {
+  _onCommentReportTap(CommentUIModel comment) async {
+    var report = await Get.toNamed(Routes.COMMUNITY_REPORT, arguments: {
+      'boardId': comment.boardId,
+      'postId': comment.commentId,
+      'authorId': comment.authorId,
+    });
+
+    if (report != null) {
+      showCustomSnackbar(text: '댓글 신고 완료!');
+    }
+  }
+
+  _onBlockCommentTap(String authorId) async {
     bool blockConfirmed = await showSelectionDialog(
         confirmText: '네',
         cancleText: '아니오',
@@ -228,13 +294,26 @@ class CommunityPostDetailController extends GetxController {
         subtitle: '이 유저의 모든 댓글을 숨깁니다.');
 
     if (blockConfirmed) {
-      commentList
-          .removeWhere((element) => element.authorId == commentInfo.authorId);
-      commentList.refresh();
+      _blockUserComments(authorId: authorId);
     }
   }
 
-  _blockUserPosts({required PostUIModel postInfo}) async {
+  _blockUserComments({required String authorId}) async {
+    await showLoading(() async {
+      Either<Failure, bool> blockUserPostEither =
+          await _communityRepository.blockUserComment(authorId: authorId);
+
+      blockUserPostEither.fold(
+          (failure) => FailureInterpreter()
+              .mapFailureToDialog(failure, 'blockUserPostEither'), (r) {
+        commentList.removeWhere((element) => element.authorId == authorId);
+        commentList.refresh();
+        return;
+      });
+    });
+  }
+
+  _onBlockPostTap({required PostUIModel postInfo}) async {
     bool blockConfirmed = await showSelectionDialog(
         confirmText: '네',
         cancleText: '아니오',
@@ -242,9 +321,20 @@ class CommunityPostDetailController extends GetxController {
         subtitle: '이 유저의 모든 글을 숨깁니다.');
 
     if (blockConfirmed) {
-      Get.back(
-          result: {CommunityPageResultKey.blockAuthorId: postInfo.authorId});
+      await _blockThisUserPost(postInfo.authorId);
     }
+  }
+
+  _blockThisUserPost(String blockAuthorId) async {
+    Either<Failure, bool> blockUserPostEither =
+        await _communityRepository.blockUserPost(authorId: blockAuthorId);
+
+    blockUserPostEither.fold((l) {
+      FailureInterpreter().mapFailureToSnackbar(l, '_blockThisUserPost');
+    }, (r) {
+      updateBlockedPost(blockAuthorId);
+      Get.back();
+    });
   }
 
   animateToCommentSection() {
@@ -253,5 +343,48 @@ class CommunityPostDetailController extends GetxController {
       duration: Duration(milliseconds: 200),
       curve: Curves.easeInOut,
     );
+  }
+
+  @override
+  void updateEditedPost(PostUIModel newPost) {
+    thisPost.value = newPost.copyWith();
+    if (_postAbstractController != null) {
+      _postAbstractController!.updateEditedPost(newPost);
+    }
+  }
+
+  @override
+  void updatePostLike(String postId, int likeNum, bool isLikeOn) {
+    if (_postAbstractController != null) {
+      _postAbstractController!.updatePostLike(postId, likeNum, isLikeOn);
+    }
+  }
+
+  @override
+  void updateCommentNum(String postId, int commentNum) {
+    if (_postAbstractController != null) {
+      _postAbstractController!.updateCommentNum(postId, commentNum);
+    }
+  }
+
+  @override
+  void updateBlockedPost(String postId) {
+    if (_postAbstractController != null) {
+      _postAbstractController!.updateBlockedPost(postId);
+    }
+  }
+
+  @override
+  void updateDeletedPost(String postId) {
+    if (_postAbstractController != null) {
+      _postAbstractController!.updateDeletedPost(postId);
+    }
+  }
+
+  @override
+  void updateReportedPost(String postId) {
+    if (_postAbstractController != null) {
+      _postAbstractController!.updateReportedPost(postId);
+    }
   }
 }

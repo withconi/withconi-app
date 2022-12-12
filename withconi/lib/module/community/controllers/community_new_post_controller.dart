@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:dartz/dartz.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:withconi/data/enums/enum.dart';
 import 'package:withconi/data/model/dto/request_dto/community_request/create_post_request_dto.dart';
 import 'package:withconi/module/auth/auth_controller.dart';
@@ -17,9 +18,14 @@ import '../../../data/model/dto/response_dto/community_response/post_response_dt
 import '../../../import_basic.dart';
 import '../../../global_widgets/dialog/selection_dialog.dart';
 import '../../../core/error_handling/failure_ui_interpreter.dart';
+import '../widgets/pick_image_bottom_sheet.dart';
 
 class CommunityNewPostController extends GetxController {
-  CommunityNewPostController(this._communityRepository, this._imageRepository);
+  CommunityNewPostController(
+    this._communityRepository,
+    this._imageRepository,
+    this._boardId,
+  );
   final CommunityRepository _communityRepository;
   final ImageRepository _imageRepository;
   final int maxImageNum = 4;
@@ -28,15 +34,9 @@ class CommunityNewPostController extends GetxController {
     postType: null,
     images: [],
   ).obs;
-  late String _boardId;
+  late final String _boardId;
   final RxBool validatePostButton = false.obs;
   TextEditingController contentsTextController = TextEditingController();
-
-  @override
-  void onReady() {
-    super.onReady();
-    _boardId = Get.arguments as String;
-  }
 
   void onPostTypeChanged(PostType postType) {
     newPost.value.postType = postType;
@@ -52,7 +52,52 @@ class CommunityNewPostController extends GetxController {
     newPost.refresh();
   }
 
-  void pickMultipleImageFiles() async {
+  void onTapImageAddButton() async {
+    Get.focusScope!.unfocus();
+    await Future.delayed(
+      const Duration(milliseconds: 200),
+    );
+
+    ImagePickOption? imagePickOption = await showPickImageBottomSheet();
+
+    if (imagePickOption != null) {
+      switch (imagePickOption) {
+        case ImagePickOption.deleteAll:
+          newPost.value.images.clear();
+          newPost.refresh();
+          break;
+        case ImagePickOption.camera:
+          await showLoading(() => _pickCameraImage());
+          break;
+        case ImagePickOption.gallery:
+          await showLoading(() => _pickGalleryImages());
+          break;
+        default:
+      }
+    }
+  }
+
+  Future<void> _pickCameraImage() async {
+    final ImagePickHelper _picker = ImagePickHelper();
+    // Pick an image
+
+    final Either<Failure, ImageItem?> imageFileEither =
+        await _picker.pickImage(ImageSource.camera);
+
+    var imageItem = imageFileEither.fold((fail) {
+      FailureInterpreter().mapFailureToSnackbar(fail, 'pickImage');
+      return null;
+    }, (newImageItem) {
+      return newImageItem;
+    });
+
+    if (imageItem != null) {
+      newPost.value.images.add(imageItem);
+      newPost.refresh();
+    }
+  }
+
+  Future<void> _pickGalleryImages() async {
     final ImagePickHelper _picker = ImagePickHelper();
     final Either<Failure, List<ImageItem>>? imageFilesEither =
         await _picker.pickMultipleImages(
@@ -81,6 +126,7 @@ class CommunityNewPostController extends GetxController {
   }
 
   Future<void> onCreateButtonTap() async {
+    Get.focusScope!.unfocus();
     if (newPost.value.postType == null) {
       return FailureInterpreter().mapFailureToSnackbar(
           const NoPostTypeSelectedFailure(), 'addNewPost');

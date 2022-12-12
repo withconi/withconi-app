@@ -1,6 +1,8 @@
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
+import 'package:withconi/module/common/my_lazy_load_scroll_view.dart';
 import 'package:withconi/module/community/controllers/community_post_search_controller.dart';
 import 'package:withconi/import_basic.dart';
+import 'package:withconi/module/community/controllers/custom_state_mixin.dart';
 import '../../../data/enums/enum.dart';
 import '../../../global_widgets/appbar/search_appbar.dart';
 import '../../../global_widgets/button/text_radio_button.dart';
@@ -11,9 +13,10 @@ import '../../page_status.dart';
 
 class CommunityPostSearchPage extends StatelessWidget {
   CommunityPostSearchPage({Key? key}) : super(key: key);
-  CommunityPostSearchController _controller = Get.find();
+
   @override
   Widget build(BuildContext context) {
+    final CommunityPostSearchController _controller = Get.find();
     return Scaffold(
       appBar: WcSearchAppBar(
         hintText: '게시글 검색',
@@ -54,8 +57,7 @@ class CommunityPostSearchPage extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                Obx(() => _getWidgetByState(
-                    _controller.pageStatus.value, _controller)),
+                _getWidgetByState(_controller),
               ],
             ),
           ),
@@ -64,47 +66,28 @@ class CommunityPostSearchPage extends StatelessWidget {
     );
   }
 
-  Widget _getWidgetByState(
-      PageStatus status, CommunityPostSearchController _controller) {
-    return status.maybeWhen(
-      init: () => SizedBox.shrink(),
-      loading: () => LoadingPage(
-        height: WcHeight - 300,
-      ),
-      empty: () => WcErrorWidget(
-        image: Image.asset(
-          'assets/icons/no_result.png',
-          height: 90,
-        ),
-        title: '검색 결과가 없습니다',
-        message: '다른 검색어로 시도해주세요 :)',
-      ),
-      error: (message) => WcErrorWidget(
-        image: Image.asset(
-          'assets/icons/no_result.png',
-          height: 90,
-        ),
-        title: message,
-        message: '',
-      ),
-      orElse: () => LazyLoadScrollView(
-        isLoading: (status == const PageStatus.loadingMore() ||
-            status == const PageStatus.emptyLastPage()),
-        onEndOfPage: _controller.loadNextPage,
-        child: ListView.builder(
-            physics: const NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            itemCount: _controller.postListSearched.length,
-            itemBuilder: (context, index) {
-              return PostListTile(
-                post: _controller.postListSearched[index],
-                onPostTap: (post) {},
-                simple: true,
-                postIndex: index,
-                onLikeTap: (bool) {},
-              );
-            }),
-      ),
-    );
+  Widget _getWidgetByState(CommunityPostSearchController _controller) {
+    return _controller.obx(
+        onSuccess: (postListSearched) => Expanded(
+              child: MyLazyLoadScrollView(
+                isLoading:
+                    (_controller.status == const PageStatus.loadingMore() ||
+                        _controller.status == const PageStatus.emptyLastPage()),
+                onEndOfPage: _controller.loadNextPage,
+                child: ListView.builder(
+                    // physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: postListSearched.length,
+                    itemBuilder: (context, index) {
+                      return PostListTile(
+                        post: postListSearched[index],
+                        onPostTap: _controller.onPostTap,
+                        simple: true,
+                        postIndex: index,
+                        onLikeTap: (bool) {},
+                      );
+                    }),
+              ),
+            ));
   }
 }

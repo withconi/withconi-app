@@ -12,10 +12,10 @@ import '../../../import_basic.dart';
 import '../../../core/tools/helpers/infinite_scroll.dart';
 import '../../page_status.dart';
 import '../../ui_model/post_ui_model.dart';
+import 'custom_state_mixin.dart';
 
-class CommunityPostSearchController extends GetxController
-    implements InfiniteScroll {
-  CommunityPostSearchController(this._communityRepository);
+class CommunityPostSearchController extends GetxController with WcStateMixin {
+  CommunityPostSearchController(this._communityRepository, this._boardId);
   final CommunityRepository _communityRepository;
 
   TextEditingController searchKeywordTextController = TextEditingController();
@@ -34,19 +34,13 @@ class CommunityPostSearchController extends GetxController
 
   late Worker _debounceWorker;
 
-  @override
-  Rx<PageStatus> pageStatus = Rx<PageStatus>(const PageStatus.init());
-
   int get _page => _paginationFilter.value.page;
   int get _listSize => _paginationFilter.value.listSize;
 
-  @override
   void loadNextPage() => changePaginationFilter(_page + 1, _listSize);
 
-  @override
   void loadNewPage() => changePaginationFilter(1, _listSize);
 
-  @override
   void changePaginationFilter(int page, int limit) {
     _paginationFilter.update((val) {
       val!.page = page;
@@ -54,24 +48,6 @@ class CommunityPostSearchController extends GetxController
     });
   }
 
-  @override
-  ScrollController infiniteScrollController = ScrollController();
-
-  @override
-  double get nextPageTrigger =>
-      0.8 * infiniteScrollController.position.maxScrollExtent;
-
-  @override
-  void addInfiniteScrollListener() {
-    infiniteScrollController.addListener(() {
-      if ((pageStatus.value == const PageStatus.success()) &&
-          infiniteScrollController.offset >= nextPageTrigger) {
-        loadNextPage();
-      }
-    });
-  }
-
-  @override
   Future<void> getDataByPaginationFilter(
       PaginationFilter _paginationFilter) async {
     if (_paginationFilter.page == 1) {
@@ -84,7 +60,7 @@ class CommunityPostSearchController extends GetxController
   @override
   void onInit() {
     super.onInit();
-    _boardId = Get.arguments as String;
+    change(null, status: const PageStatus.init());
   }
 
   @override
@@ -99,13 +75,12 @@ class CommunityPostSearchController extends GetxController
         loadNewPage();
       }
     });
-    addInfiniteScrollListener();
   }
 
   @override
   void onClose() {
     super.onClose();
-    infiniteScrollController.dispose();
+
     _debounceWorker.dispose();
     postListSearched.close();
     postSearchFilter.close();
@@ -122,7 +97,7 @@ class CommunityPostSearchController extends GetxController
   }
 
   Future<void> _getPostList(PaginationFilter paginationFilter) async {
-    pageStatus.value = const PageStatus.loading();
+    change(null, status: const PageStatus.loading());
     final Either<Failure, List<PostResponseDTO>> postDataEither =
         await _communityRepository.getPostList(
             paginationFilter: paginationFilter,
@@ -132,14 +107,14 @@ class CommunityPostSearchController extends GetxController
     postDataEither.fold((fail) {
       ErrorObject errorObject =
           ErrorObject.mapFailureToErrorMessage(failure: fail);
-      pageStatus.value = PageStatus.error(errorObject.message);
+      change(null, status: PageStatus.error(errorObject.message));
     }, (newPostListDto) {
       if (newPostListDto.isEmpty) {
-        pageStatus.value = const PageStatus.empty();
+        change([], status: const PageStatus.empty());
         return;
       } else {
         postListSearched.assignAll(_parsePostListDto(newPostListDto));
-        pageStatus.value = const PageStatus.success();
+        change(postListSearched, status: const PageStatus.success());
       }
 
       // changeLoadingState(LoadingStatus.dataReady);
@@ -152,7 +127,7 @@ class CommunityPostSearchController extends GetxController
   }
 
   Future<void> _morePostList(PaginationFilter paginationFilter) async {
-    pageStatus.value = const PageStatus.loadingMore();
+    change(postListSearched, status: const PageStatus.loadingMore());
 
     final Either<Failure, List<PostResponseDTO>> postDataEither =
         await _communityRepository.getPostList(
@@ -163,14 +138,21 @@ class CommunityPostSearchController extends GetxController
     postDataEither.fold((failure) {
       ErrorObject errorMessage =
           ErrorObject.mapFailureToErrorMessage(failure: failure);
-      pageStatus.value = PageStatus.error(errorMessage.message);
+      change(null, status: PageStatus.error(errorMessage.message));
     }, (morePostListDto) {
       if (morePostListDto.isEmpty) {
-        pageStatus.value = const PageStatus.emptyLastPage();
+        change(postListSearched, status: const PageStatus.emptyLastPage());
       } else {
         postListSearched.addAll(_parsePostListDto(morePostListDto));
-        pageStatus.value = const PageStatus.success();
+        change(postListSearched, status: const PageStatus.success());
       }
+    });
+  }
+
+  onPostTap(int index) {
+    Get.toNamed(Routes.COMMUNITY_POST_DETAIL, arguments: {
+      'postId': postListSearched[index].postId,
+      'boardId': postListSearched[index].boardId
     });
   }
 

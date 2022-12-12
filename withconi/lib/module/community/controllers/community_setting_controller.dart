@@ -2,17 +2,17 @@ import 'package:get/get.dart';
 import '../../../routes/routes.dart';
 
 class CommunitySettingPageController extends GetxController {
-  manageUserInfo() {
-    Get.toNamed(
-      Routes.USER_EDIT,
-    );
+  goToEditUserInfoPage() {
+    Get.toNamed(Routes.USER_EDIT);
   }
 
-  myLikedPosts() {
-    Get.toNamed(Routes.COMMUNITY_LIKE_POST);
+  goToLikedPostPage() {
+    Get.toNamed(Routes.COMMUNITY_LIKE_POST,
+        arguments: {'postAbstractController': null});
   }
 
-  myPostPage() {
-    Get.toNamed(Routes.COMMUNITY_MY_POST);
+  goToMyPostPage() {
+    Get.toNamed(Routes.COMMUNITY_MY_POST,
+        arguments: {'postAbstractController': null});
   }
 }

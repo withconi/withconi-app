@@ -1,13 +1,15 @@
+import 'package:withconi/core/error_handling/error_message_object.dart';
 import 'package:withconi/core/error_handling/failure_ui_interpreter.dart';
 import 'package:withconi/data/repository/community_repository.dart';
+import 'package:withconi/module/page_status.dart';
 import 'package:withconi/module/ui_model/board_ui_model.dart';
-import 'package:withconi/module/ui_model/hot_post_ui_model.dart';
 import 'package:withconi/module/ui_model/post_ui_model.dart';
 import '../../../data/enums/enum.dart';
 import '../../../import_basic.dart';
 import '../pages/community_setting_page.dart';
+import 'custom_state_mixin.dart';
 
-class CommunityMainController extends GetxController {
+class CommunityMainController extends GetxController with WcStateMixin {
   CommunityMainController(this._repository);
   final CommunityRepository _repository;
   TextEditingController boardKeywordTextController = TextEditingController();
@@ -21,6 +23,8 @@ class CommunityMainController extends GetxController {
   @override
   onInit() async {
     super.onInit();
+    change(null, status: const PageStatus.init());
+
     await _getBoardList();
     await _getHotPostList();
   }
@@ -52,40 +56,55 @@ class CommunityMainController extends GetxController {
 
   Future<void> _getBoardList() async {
     final boardListEither = await _repository.getBoardList();
-
-    boardListEither.fold(
-        (fail) =>
-            FailureInterpreter().mapFailureToSnackbar(fail, '_getBoardList'),
-        (newBoardList) {
+    change(null, status: PageStatus.loading());
+    boardListEither.fold((fail) {
+      ErrorObject errorObject =
+          ErrorObject.mapFailureToErrorMessage(failure: fail);
+      change(null, status: PageStatus.error(errorObject.message));
+    }, (newBoardList) {
       boardList
           .assignAll(newBoardList.map((e) => BoardUIModel.fromDto(e)).toList());
-      searchedBoardList.assignAll(boardList.toList());
-      searchedBoardList.refresh();
+
+      if (newBoardList.isEmpty) {
+        change(null, status: PageStatus.empty());
+      } else {
+        searchedBoardList.assignAll(boardList.toList());
+        searchedBoardList.refresh();
+      }
     });
   }
 
   Future<void> _getHotPostList() async {
     final hotPostListEither = await _repository.getHotPostList(hotPostListSize);
 
-    hotPostListEither.fold(
-        (fail) =>
-            FailureInterpreter().mapFailureToSnackbar(fail, '_getBoardList'),
-        (newHotPostList) {
-      hotPostList
-          .addAll(newHotPostList.map((e) => PostUIModel.fromDTO(e)).toList());
-      hotPostList.refresh();
+    hotPostListEither.fold((fail) {
+      ErrorObject errorObject =
+          ErrorObject.mapFailureToErrorMessage(failure: fail);
+      change(null, status: PageStatus.error(errorObject.message));
+    }, (newHotPostList) {
+      if (newHotPostList.isEmpty) {
+        change([], status: PageStatus.success());
+      } else {
+        hotPostList
+            .addAll(newHotPostList.map((e) => PostUIModel.fromDTO(e)).toList());
+        hotPostList.refresh();
+        change(searchedBoardList, status: PageStatus.success());
+      }
     });
   }
 
   goToBoardDetailPage({required int boardIndex}) {
-    Get.toNamed(
-      Routes.COMMUNITY_POST_LIST,
-      arguments: boardList[boardIndex],
-    );
+    Get.toNamed(Routes.COMMUNITY_POST_LIST, arguments: {
+      'boardId': boardList[boardIndex].boardId,
+      'boardName': boardList[boardIndex].title,
+    });
   }
 
   goToPostDetailPage(PostUIModel selectedHotPost) {
-    Get.toNamed(Routes.COMMUNITY_POST_DETAIL, arguments: selectedHotPost);
+    Get.toNamed(Routes.COMMUNITY_POST_DETAIL, arguments: {
+      'boardId': selectedHotPost.boardId,
+      'postId': selectedHotPost.postId,
+    });
   }
 
   goToSettingPage() {

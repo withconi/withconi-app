@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:dartz/dartz.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:withconi/core/error_handling/error_message_object.dart';
 import 'package:withconi/data/enums/enum.dart';
 import 'package:withconi/data/repository/community_repository.dart';
@@ -14,22 +15,23 @@ import '../../../core/error_handling/failures.dart';
 import '../../../import_basic.dart';
 import '../../../global_widgets/dialog/selection_dialog.dart';
 import '../../../core/error_handling/failure_ui_interpreter.dart';
+import '../widgets/pick_image_bottom_sheet.dart';
 import 'custom_state_mixin.dart';
 
 class CommunityEditMyPostController extends GetxController with WcStateMixin {
   CommunityEditMyPostController(
-      this._communityRepository, this._imageRepository);
+      this._communityRepository, this._imageRepository, this._post);
   final CommunityRepository _communityRepository;
   final ImageRepository _imageRepository;
   final int maxImageNum = 4;
-  late PostUIModel post;
+  late final PostUIModel _post;
   final RxBool validatePostButton = false.obs;
   RxList<ImageItem> selectedImageItem = RxList<ImageItem>();
   late Rx<PostType> selectedPostType;
   String _contentsText = '';
   TextEditingController textController = TextEditingController();
 
-  PostUIModel get _editedPost => post.copyWith(
+  PostUIModel get _editedPost => _post.copyWith(
       content: _contentsText,
       postType: selectedPostType.value,
       images: selectedImageItem.toList());
@@ -37,7 +39,8 @@ class CommunityEditMyPostController extends GetxController with WcStateMixin {
 
   List<ImageItem> get _fileImageItems {
     List<ImageItem> imageFileItemList = selectedImageItem
-        .where((p0) => p0.imageType == ImageType.file)
+        .where(
+            (p0) => (p0.imageType == ImageType.file && p0.imageUrl.isNotEmpty))
         .toList();
 
     return imageFileItemList;
@@ -55,12 +58,10 @@ class CommunityEditMyPostController extends GetxController with WcStateMixin {
   void onInit() {
     super.onInit();
     change(null, status: const PageStatus.init());
-    post = Get.arguments as PostUIModel;
-    selectedPostType = Rx<PostType>(post.postType!);
-    selectedImageItem.assignAll(post.images.toList());
-    _contentsText = post.content;
+    selectedPostType = Rx<PostType>(_post.postType!);
+    selectedImageItem.assignAll(_post.images.toList());
+    _contentsText = _post.content;
     textController.text = _contentsText;
-    // pageStatus.value = const PageStatus.success();
     change(null, status: const PageStatus.success());
   }
 
@@ -72,12 +73,55 @@ class CommunityEditMyPostController extends GetxController with WcStateMixin {
     selectedPostType.value = postType;
   }
 
-  deleteImage(ImageItem imageItem) {
-    selectedImageItem.remove(imageItem);
+  deleteImage(int index) {
+    selectedImageItem.removeAt(index);
     selectedImageItem.refresh();
   }
 
-  void pickMultipleImageFiles() async {
+  void onTapImageAddButton() async {
+    Get.focusScope!.unfocus();
+    await Future.delayed(
+      const Duration(milliseconds: 200),
+    );
+
+    ImagePickOption? imagePickOption = await showPickImageBottomSheet();
+
+    if (imagePickOption != null) {
+      if (imagePickOption == ImagePickOption.deleteAll) {
+        selectedImageItem.clear();
+        selectedImageItem.refresh();
+        return;
+      } else {
+        await showLoading(() => _pickImage(imagePickOption.imageSource!));
+      }
+    }
+  }
+
+  _pickImage(ImageSource imageSource) async {
+    final ImagePickHelper _picker = ImagePickHelper();
+    // Pick an image
+
+    if (imageSource == ImageSource.gallery) {
+      _pickMultipleImageFiles();
+    } else if (imageSource == ImageSource.camera) {
+      final Either<Failure, ImageItem?> imageFileEither =
+          await _picker.pickImage(imageSource);
+
+      var imageItem = imageFileEither.fold((fail) {
+        FailureInterpreter().mapFailureToSnackbar(fail, 'pickImage');
+        return null;
+      }, (newImageItem) {
+        return newImageItem;
+      });
+
+      if (imageItem != null) {
+        selectedImageItem.add(imageItem);
+        selectedImageItem.refresh();
+      }
+    }
+  }
+
+  void _pickMultipleImageFiles() async {
     final ImagePickHelper _picker = ImagePickHelper();
     final Either<Failure, List<ImageItem>>? imageFilesEither =
         await _picker.pickMultipleImages(
@@ -104,13 +148,10 @@ class CommunityEditMyPostController extends GetxController with WcStateMixin {
   }
 
   Future<void> onCreateButtonTap() async {
+    Get.focusScope!.unfocus();
     if (_contentsText.isEmpty) {
       return FailureInterpreter().mapFailureToSnackbar(
           const NoPostTypeSelectedFailure(), 'onCreateButtonTap');
-      // } else if (textController.text.isEmpty) {
-      // ErrorObject errorObject = ErrorObject.mapFailureToErrorMessage(
-      //     failure: const NoPostContentsFailure());
-      // change(null, status: PageStatus.error(errorObject.message));
     } else {
       bool isConfirmed = await showSelectionDialog(
         cancleText: '아니요',
@@ -126,7 +167,7 @@ class CommunityEditMyPostController extends GetxController with WcStateMixin {
 
   void editPost() async {
     List<String> networkImageRefList =
-        _networkImageItems.map((e) => e.resource).toList();
+        _networkImageItems.map((e) => e.imageRef).toList();
     // List<String> newlyUploadImageRefList = await _uploadSingleImageFileDb();
     List<String> newlyUploadImageRefList = await _uploadImageFileListDb();
 
@@ -141,11 +182,7 @@ class CommunityEditMyPostController extends GetxController with WcStateMixin {
             FailureInterpreter().mapFailureToSnackbar(fail, 'createNewPostDB'),
         (addedPost) {
       Get.back(
-          result: _editedPost.copyWith(
-              images: editedImageRefList
-                  .map((image) => ImageItem(
-                      id: image, resource: image, imageType: ImageType.network))
-                  .toList()));
+          result: _editedPost.copyWith(images: selectedImageItem.toList()));
     });
   }
 
@@ -165,21 +202,4 @@ class CommunityEditMyPostController extends GetxController with WcStateMixin {
     }
     return uploadImageRefList;
   }
-
-  // _uploadSingleImageFileDb() async {
-  //   String uploadImageRef = '';
-  //   var onlyFileImage = _fileImageItems;
-  //   if (onlyFileImage.isNotEmpty) {
-  //     Either<Failure, String> imageUploadRefsEither = await showLoading(
-  //         () => _imageRepository.uploadImageFile(imageItem: onlyFileImage[0]));
-
-  //     uploadImageRef = imageUploadRefsEither.fold((fail) {
-  //       FailureInterpreter().mapFailureToSnackbar(fail, 'image upload error');
-  //       return '';
-  //     }, (imageRef) {
-  //       return imageRef;
-  //     });
-  //   }
-  //   return uploadImageRef;
-  // }
 }

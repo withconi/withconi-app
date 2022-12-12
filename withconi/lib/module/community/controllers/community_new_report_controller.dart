@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:withconi/data/enums/enum.dart';
 import 'package:withconi/data/repository/community_repository.dart';
+import 'package:withconi/global_widgets/dialog/selection_dialog.dart';
 
 import 'package:withconi/global_widgets/loading/loading_overlay.dart';
 
@@ -13,7 +14,8 @@ import '../../../import_basic.dart';
 import '../../../core/error_handling/failure_ui_interpreter.dart';
 
 class CommunityNewReportController extends GetxController {
-  CommunityNewReportController(this._communityRepository);
+  CommunityNewReportController(
+      this._communityRepository, this._boardId, this._postId, this._authorId);
   final CommunityRepository _communityRepository;
   // List<ReportItem> reportItemList = [
   //   ReportItem.animalCruelty,
@@ -25,22 +27,23 @@ class CommunityNewReportController extends GetxController {
   // ];
   // Rxn<ReportItem> selectedReportItem = Rxn<ReportItem>();
   TextEditingController reportDetailTextController = TextEditingController();
+  late final String _boardId;
+  late final String _postId;
+  late final String _authorId;
+  // late final ReportUIModel _newReport;
+  Rxn<ReportItem> reportItem = Rxn<ReportItem>();
+  String reportDesc = '';
 
-  late Rx<ReportUIModel> newReport;
-
-  @override
-  onInit() {
-    super.onInit();
-    newReport = Rx<ReportUIModel>(Get.arguments as ReportUIModel);
+  onReportItemChanged(ReportItem newReportItem) {
+    reportItem.value = newReportItem;
   }
 
-  onReportItemChanged(ReportItem reportItem) {
-    newReport.value.reportItem = reportItem;
-    newReport.refresh();
+  onReportTextChanged(String text) {
+    reportDesc = text;
   }
 
   validateButton() {
-    if (newReport.value.reportItem != null) {
+    if (reportItem.value != null) {
       return true;
     } else {
       return false;
@@ -48,16 +51,35 @@ class CommunityNewReportController extends GetxController {
   }
 
   onButtonTap() async {
-    await _createNewReport();
+    bool confirmed = await showSelectionDialog(
+        confirmText: '신고하기',
+        cancleText: '취소',
+        title: '신고할까요?',
+        subtitle: '신고한 글은 바로 숨겨집니다.');
+    if (confirmed) {
+      await _createNewReport();
+    }
   }
 
   _createNewReport() async {
+    ReportUIModel newReport = ReportUIModel(
+        authorId: _authorId,
+        boardId: _boardId,
+        postId: _postId,
+        reportItem: reportItem.value!,
+        reportDesc: reportDesc);
     Either<Failure, bool> createEither = await showLoading(() =>
-        _communityRepository.createReport(reportUiModel: newReport.value));
+        _communityRepository.createReport(
+            reportUiModel: ReportUIModel(
+                authorId: _authorId,
+                boardId: _boardId,
+                postId: _postId,
+                reportItem: reportItem.value!,
+                reportDesc: reportDesc)));
     createEither.fold((failure) {
       FailureInterpreter().mapFailureToDialog(failure, '_createNewReport');
     }, (success) {
-      Get.back();
+      Get.back(result: newReport);
     });
   }
 }

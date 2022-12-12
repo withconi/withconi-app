@@ -3,11 +3,13 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:withconi/core/tools/helpers/calculator.dart';
 import 'package:withconi/data/model/dto/response_dto/community_response/post_response_dto.dart';
+import 'package:withconi/global_widgets/dialog/selection_dialog.dart';
 import 'package:withconi/module/auth/auth_controller.dart';
 import 'package:withconi/core/error_handling/failure_ui_interpreter.dart';
 import 'package:withconi/data/repository/app_setting_repository.dart';
 import 'package:withconi/data/repository/community_repository.dart';
 import 'package:withconi/global_widgets/loading/loading_overlay.dart';
+import 'package:withconi/module/community/abstract/post_model_abstract.dart';
 import 'package:withconi/module/ui_model/post_ui_model.dart';
 
 import '../../../data/enums/enum.dart';
@@ -16,22 +18,25 @@ import '../../../import_basic.dart';
 import '../../../global_widgets/photo_gallary/image_item.dart';
 import '../../../core/tools/helpers/infinite_scroll.dart';
 
-class MyPostPageController extends GetxController {
-  MyPostPageController(this._communityRepository);
+class MyPostPageController extends GetxController with AbstractPostUpdate {
+  static MyPostPageController get to => Get.find();
+  MyPostPageController(this._communityRepository, this._abstractPostUpdate);
   final CommunityRepository _communityRepository;
+
+  final AbstractPostUpdate? _abstractPostUpdate;
 
   List<ImageItem> images = [
     ImageItem(
         id: 'tag1',
-        resource: 'assets/images/image1.jpeg',
+        imageUrl: 'assets/images/image1.jpeg',
         imageType: ImageType.asset),
     ImageItem(
         id: 'tag2',
-        resource: 'assets/images/image2.jpeg',
+        imageUrl: 'assets/images/image2.jpeg',
         imageType: ImageType.asset),
     ImageItem(
         id: 'tag3',
-        resource:
+        imageUrl:
             'https://search.pstatic.net/common/?src=http%3A%2F%2Fshop1.phinf.naver.net%2F20210917_199%2F1631861436249TX26u_JPEG%2F32997264078967613_1334183573.jpg&type=sc960_832',
         imageType: ImageType.network),
   ];
@@ -101,12 +106,34 @@ class MyPostPageController extends GetxController {
     scrollController.value.dispose();
   }
 
-  onLikeTap() {
-    // TODO - 내 글에도 좋아요 기능 할 수 있도록 하기
+  onLikeChanged(int postIndex, bool isLiked) async {
+    _updateLikeUiChanges(postIndex, isLiked);
+
+    var likePostsEither = await _communityRepository.updateLikePost(
+        postId: myPostList[postIndex].postId, isLiked: isLiked);
+
+    likePostsEither.fold((l) {
+      FailureInterpreter().mapFailureToSnackbar(l, 'updateLikePost');
+      _updateLikeUiChanges(postIndex, !isLiked);
+    }, (success) {});
+  }
+
+  void _updateLikeUiChanges(int postIndex, bool isLiked) {
+    myPostList[postIndex].isLikeOn = isLiked;
+    if (isLiked) {
+      myPostList[postIndex].likeNum += 1;
+    } else {
+      myPostList[postIndex].likeNum -= 1;
+    }
+    myPostList.refresh();
   }
 
   onPostTap(int postIndex) {
-    Get.toNamed(Routes.COMMUNITY_POST_DETAIL, arguments: myPostList[postIndex]);
+    Get.toNamed(Routes.COMMUNITY_POST_DETAIL, arguments: {
+      'postId': myPostList[postIndex].postId,
+      'boardId': myPostList[postIndex].boardId,
+      'postAbstractController': MyPostPageController.to
+    });
   }
 
   _addScrollListener(
@@ -150,26 +177,14 @@ class MyPostPageController extends GetxController {
     return dtoList.map((e) => PostUIModel.fromDTO(e)).toList();
   }
 
-  _deletePost(int postIndex) async {
-    Either<Failure, bool> deleteEither = await _communityRepository.deletePost(
-        postId: myPostList[postIndex].postId,
-        boardId: myPostList[postIndex].boardId);
-    deleteEither.fold((failure) {
-      FailureInterpreter().mapFailureToDialog(failure, 'getPost');
-    }, (success) {
-      log('게시물 삭제 완료');
-      Get.back();
-    });
-  }
-
-  onPostMoreTap(int postIndex, MoreOption? moreOption) async {
+  onPostMoreTap(int postIndex, MoreBottomSheetOption? moreOption) async {
     if (moreOption != null) {
       switch (moreOption) {
-        case MoreOption.edit:
-          _goToEditPostPage(postIndex);
+        case MoreBottomSheetOption.edit:
+          _onEditPostTap(postIndex);
           break;
-        case MoreOption.delete:
-          await _deletePost(postIndex);
+        case MoreBottomSheetOption.delete:
+          _onDeletePostTap(postIndex);
           break;
         default:
           break;
@@ -177,20 +192,39 @@ class MyPostPageController extends GetxController {
     }
   }
 
-  _goToEditPostPage(int postIndex) async {
-    PostUIModel? editedPost = await Get.toNamed(Routes.COMMUNITY_POST_EDIT,
-        arguments: myPostList[postIndex]) as PostUIModel?;
-    if (editedPost != null) {
-      _setEditedPost(editedPost, postIndex);
+  _onEditPostTap(int postIndex) {
+    _goToEditPostPage(postIndex);
+  }
+
+  _onDeletePostTap(int postIndex) async {
+    bool deletedConfirmed = await showSelectionDialog(
+        confirmText: '삭제', cancleText: '취소', title: '글을 삭제할까요?');
+
+    if (deletedConfirmed) {
+      await showLoading(() => _deletePost(postIndex));
     }
   }
 
-  _setEditedPost(PostUIModel editedPost, int postIndex) {
-    myPostList.replaceRange(postIndex, postIndex + 1, [editedPost.copyWith()]);
-    myPostList.refresh();
+  _goToEditPostPage(int postIndex) async {
+    PostUIModel? editedPost = await Get.toNamed(Routes.COMMUNITY_POST_EDIT,
+        arguments: {'post': myPostList[postIndex]}) as PostUIModel?;
+    if (editedPost != null) {
+      updateEditedPost(editedPost);
+    }
   }
 
-  Future<void> resetPage({SortType? sortType, PostType? postType}) async {
+  _deletePost(int postIndex) async {
+    Either<Failure, bool> deleteEither = await _communityRepository.deletePost(
+        postId: myPostList[postIndex].postId,
+        boardId: myPostList[postIndex].boardId);
+    deleteEither.fold((failure) {
+      FailureInterpreter().mapFailureToDialog(failure, 'getPost');
+    }, (success) {
+      updateDeletedPost(myPostList[postIndex].postId);
+    });
+  }
+
+  Future<void> resetPage({Sorting? sortType, PostType? postType}) async {
     _lastPage.value = false;
     _changePaginationFilter(1, 15);
   }
@@ -206,5 +240,67 @@ class MyPostPageController extends GetxController {
       val!.page = page;
       val.listSize = limit;
     });
+  }
+
+  @override
+  void updateEditedPost(PostUIModel post) {
+    int editedIndex =
+        myPostList.indexWhere((element) => element.postId == post.postId);
+    if (editedIndex >= 0) {
+      myPostList[editedIndex] = post.copyWith();
+      myPostList.refresh();
+    }
+
+    if (_abstractPostUpdate != null) {
+      _abstractPostUpdate!.updateEditedPost(post);
+    }
+  }
+
+  @override
+  void updateCommentNum(String postId, int commentNum) {
+    int editedIndex =
+        myPostList.indexWhere((element) => element.postId == postId);
+    if (editedIndex >= 0) {
+      myPostList[editedIndex].commentNum = commentNum;
+      myPostList.refresh();
+    }
+
+    if (_abstractPostUpdate != null) {
+      _abstractPostUpdate!.updateCommentNum(postId, commentNum);
+    }
+  }
+
+  @override
+  void updateBlockedPost(String authorId) {
+    return;
+  }
+
+  @override
+  void updateDeletedPost(String postId) {
+    myPostList.removeWhere((element) => element.postId == postId);
+    myPostList.refresh();
+    if (_abstractPostUpdate != null) {
+      _abstractPostUpdate!.updateDeletedPost(postId);
+    }
+  }
+
+  @override
+  void updatePostLike(String postId, int likeNum, bool isLikeOn) {
+    int editedIndex =
+        myPostList.indexWhere((element) => element.postId == postId);
+    if (editedIndex >= 0) {
+      myPostList[editedIndex].likeNum = likeNum;
+      myPostList[editedIndex].isLikeOn = isLikeOn;
+      myPostList.refresh();
+    }
+
+    if (_abstractPostUpdate != null) {
+      _abstractPostUpdate!.updatePostLike(postId, likeNum, isLikeOn);
+    }
+  }
+
+  @override
+  void updateReportedPost(String postId) {
+    return;
   }
 }
