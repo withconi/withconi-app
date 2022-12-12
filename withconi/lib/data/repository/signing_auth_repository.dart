@@ -32,12 +32,20 @@ class PlatformAuthRepository extends GetxService {
   }
 
   getAppleSignAuthInfo(String _email) async {
-    OAuthCredential oAuthCredential =
-        await _platformAuthApi.getAppleCredential();
-    return CredentialSigningAuthInfo(
-        oAuthCredential: oAuthCredential,
-        provider: Provider.apple,
-        email: _email);
+    try {
+      OAuthCredential oAuthCredential =
+          await _platformAuthApi.getAppleCredential();
+      return Right(CredentialSigningAuthInfo(
+          oAuthCredential: oAuthCredential,
+          provider: Provider.apple,
+          email: _email));
+    } on NoInternetConnectionException {
+      return Left(NoConnectionFailure());
+    } on PlatformException {
+      return Left(NoUserDataFailure());
+    } catch (e) {
+      return Left(NoUserDataFailure());
+    }
   }
 
   getEmailAuthInfo(String _email) {
@@ -64,16 +72,33 @@ class PlatformAuthRepository extends GetxService {
     }
   }
 
-  getKakaoSignAuthInfo(String _email) async {
-    String kakaoToken = await _platformAuthApi.getKakaoToken();
-    return TokenSigningAuthInfo(
-        platformToken: kakaoToken, provider: Provider.kakao, email: _email);
+  Future<Either<Failure, SigningAuthInfo>> getKakaoSignAuthInfo(
+      String _email) async {
+    try {
+      String kakaoToken = await _platformAuthApi.getKakaoToken();
+      return Right(TokenSigningAuthInfo(
+          platformToken: kakaoToken, provider: Provider.kakao, email: _email));
+    } on NoInternetConnectionException {
+      return Left(NoConnectionFailure());
+    } on PlatformException {
+      return Left(NoUserDataFailure());
+    } catch (e) {
+      return Left(NoUserDataFailure());
+    }
   }
 
   getNaverSignAuthInfo(String _email) async {
-    String naverToken = await _platformAuthApi.getNaverToken();
-    return TokenSigningAuthInfo(
-        platformToken: naverToken, provider: Provider.naver, email: _email);
+    try {
+      String naverToken = await _platformAuthApi.getNaverToken();
+      return Right(TokenSigningAuthInfo(
+          platformToken: naverToken, provider: Provider.naver, email: _email));
+    } on NoInternetConnectionException {
+      return Left(NoConnectionFailure());
+    } on PlatformException {
+      return Left(NoUserDataFailure());
+    } catch (e) {
+      return Left(NoUserDataFailure());
+    }
   }
 
   Future<Either<Failure, String>> getEmailFromProvider(

@@ -7,10 +7,14 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:withconi/core/error_handling/failures.dart';
 import 'package:withconi/core/values/constants/auth_variables.dart';
 import 'package:withconi/data/model/dto/request_dto/fcm_request/fcm_create_request.dart';
+import 'package:withconi/data/model/dto/request_dto/fcm_request/update_fcm_db_request.dart';
+import 'package:withconi/data/provider/remote_provider/user_api.dart';
+import 'package:withconi/data/repository/user_repository.dart';
 import 'package:withconi/import_basic.dart';
 import '../../core/error_handling/exceptions.dart';
 import '../../core/network_handling/network_service.dart';
 import '../model/dto/api_call_dto.dart';
+import '../model/dto/request_dto/user_request/update_user_info_request_dto.dart';
 import 'local_notification_repository.dart';
 
 @pragma('vm:entry-point')
@@ -47,10 +51,10 @@ class FcmRepository extends GetxService {
     }
   }
 
-  Future<Either<Failure, bool>> saveFcmTokenDB(String fcmToken) async {
+  Future<Either<Failure, bool>> saveFcmTokenDB(String? fcmToken) async {
     try {
-      CreateFcmTokenRequest requestDTO =
-          CreateFcmTokenRequest.fromData(fcmToken);
+      UpdateFcmTokenRequest requestDTO =
+          UpdateFcmTokenRequest.fromData(fcmToken);
       ApiCallDTO apiCallDTO = ApiCallDTO.fromDTO(requestDTO);
       var result = await _dio.apiCall(apiCallDTO);
 

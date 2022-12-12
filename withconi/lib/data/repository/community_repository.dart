@@ -5,6 +5,8 @@ import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
 import 'package:withconi/core/tools/helpers/infinite_scroll.dart';
 import 'package:withconi/core/error_handling/exceptions.dart';
+import 'package:withconi/data/model/dto/request_dto/community_request/block_comment_request_dto.dart';
+import 'package:withconi/data/model/dto/request_dto/community_request/block_post_request_dto.dart';
 import 'package:withconi/data/model/dto/request_dto/community_request/create_post_request_dto.dart';
 import 'package:withconi/data/model/dto/request_dto/community_request/create_comment_request_dto.dart';
 import 'package:withconi/data/model/dto/request_dto/community_request/create_report_request_dto.dart';
@@ -102,7 +104,7 @@ class CommunityRepository extends GetxService {
       GetPostDetailRequestDTO requestDTO =
           GetPostDetailRequestDTO.fromData(boardId: boardId, postId: postId);
       Map<String, dynamic> data = await _api.getPost(requestDTO);
-      PostResponseDTO post = PostResponseDTO.fromJson(data['boardItem']);
+      PostResponseDTO post = PostResponseDTO.fromJson(data);
       return Right(post);
     } on NoInternetConnectionException {
       return Left(NoConnectionFailure());
@@ -112,6 +114,36 @@ class CommunityRepository extends GetxService {
       return Left(NotFoundPostFailure());
     } catch (e) {
       return Left(Failure.userInfoUpdateFailure());
+    }
+  }
+
+  Future<Either<Failure, bool>> blockUserPost(
+      {required String authorId}) async {
+    try {
+      BlockPostRequestDTO requestDTO =
+          BlockPostRequestDTO.fromData(authorId: authorId);
+      Map<String, dynamic> data = await _api.blockPost(requestDTO);
+
+      return Right(true);
+    } on NoInternetConnectionException {
+      return Left(NoConnectionFailure());
+    } on DataParsingException {
+      return Left(DataParsingFailure());
+    }
+  }
+
+  Future<Either<Failure, bool>> blockUserComment(
+      {required String authorId}) async {
+    try {
+      BlockCommentRequestDTO requestDTO =
+          BlockCommentRequestDTO.fromData(authorId: authorId);
+      Map<String, dynamic> data = await _api.blockComment(requestDTO);
+
+      return Right(true);
+    } on NoInternetConnectionException {
+      return Left(NoConnectionFailure());
+    } on DataParsingException {
+      return Left(DataParsingFailure());
     }
   }
 

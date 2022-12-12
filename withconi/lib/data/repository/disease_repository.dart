@@ -5,6 +5,7 @@ import 'package:dartz/dartz.dart';
 import 'package:withconi/core/tools/helpers/infinite_scroll.dart';
 import 'package:withconi/core/error_handling/exceptions.dart';
 import 'package:withconi/data/model/dto/api_call_dto.dart';
+import 'package:withconi/data/model/dto/request_dto/disease_request/get_disease_detail_request_dto.dart';
 import 'package:withconi/data/model/dto/request_dto/disease_request/get_disease_request_dto.dart';
 import 'package:withconi/data/provider/remote_provider/disease_api.dart';
 import 'package:withconi/import_basic.dart';
@@ -27,6 +28,23 @@ class DiseaseRepository extends GetxService {
       var diseaseListResponseDTO = DiseaseListResponseDTO.fromJson(data);
 
       return Right(diseaseListResponseDTO.list);
+    } on NoInternetConnectionException {
+      return Left(NoConnectionFailure());
+    } on DataParsingException {
+      return Left(DataParsingFailure());
+    }
+  }
+
+  Future<Either<Failure, DiseaseResponseDTO>> getDiseaseDetail(
+      {required String diseaseCode}) async {
+    try {
+      GetDiseaseDetailRequestDTO requestDTO =
+          GetDiseaseDetailRequestDTO.fromData(diseaseCode: diseaseCode);
+      ApiCallDTO apiCallDTO = ApiCallDTO.fromDTO(requestDTO);
+      Map<String, dynamic> data = await _api.getDiseaseList(apiCallDTO);
+      var diseaseDetailResponseDTO = DiseaseResponseDTO.fromJson(data);
+
+      return Right(diseaseDetailResponseDTO);
     } on NoInternetConnectionException {
       return Left(NoConnectionFailure());
     } on DataParsingException {

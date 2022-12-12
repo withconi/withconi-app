@@ -69,6 +69,9 @@ class LocalNotificationService extends GetxService {
       int id, String? title, String? body, String? payload) async {
     Map<String, dynamic> payloadMap = await convert.jsonDecode(payload!);
     Get.find<CommunityMainController>();
-    Get.toNamed(Routes.COMMUNITY_POST_DETAIL, arguments: payloadMap);
+    Get.toNamed(Routes.COMMUNITY_POST_DETAIL, arguments: {
+      'boardId': payloadMap['boardId'],
+      'postId': payloadMap['postId'],
+    });
   }
 }

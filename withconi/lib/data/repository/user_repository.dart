@@ -4,6 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:withconi/core/values/constants/auth_variables.dart';
 import 'package:withconi/data/model/dto/api_call_dto.dart';
+import 'package:withconi/data/model/dto/request_dto/auth_request/check_email_verification_code_dto.dart';
+import 'package:withconi/data/model/dto/request_dto/auth_request/send_verification_email_request_dto.dart';
 import 'package:withconi/data/model/dto/request_dto/user_request/get_user_info_request_dto.dart';
 import 'package:withconi/data/model/dto/request_dto/user_request/update_user_info_request_dto.dart';
 import 'package:withconi/data/model/dto/response_dto/auth_response/user_response_dto.dart';
@@ -89,35 +91,65 @@ class UserRepository extends GetxService {
     }
   }
 
-  Future<Either<Failure, bool>?> sendVerificationEmail(
-      {required String email,
-      required String currentRoute,
-      required String nextRoute}) async {
+  // Future<Either<Failure, bool>?> sendVerificationEmail(
+  //     {required String email,
+  //     required String currentRoute,
+  //     required String nextRoute}) async {
+  //   try {
+  //     var acs = ActionCodeSettings(
+  //         url: await _dynamicLinkManager.getShortLink(
+  //             Routes.EMAIL_VERIFICATION, nextRoute),
+  //         // This must be true
+  //         handleCodeInApp: true,
+  //         iOSBundleId: 'co.yellowtoast.withconi',
+  //         androidPackageName: 'co.yellowtoast.withconi',
+  //         // installIfNotAvailable
+  //         androidInstallApp: true,
+
+  //         // minimumVersion
+  //         dynamicLinkDomain: 'withconimal.page.link',
+  //         androidMinimumVersion: '12');
+
+  //     var emailAuth = email;
+  //     await firebaseAuth.sendSignInLinkToEmail(
+  //         email: emailAuth, actionCodeSettings: acs);
+  //     return Right(true);
+  //   } catch (e) {
+  //     return Left(SignInCredentialFailure());
+  //   }
+  // }
+
+  Future<Either<Failure, bool>?> sendVerificationEmail({
+    required String email,
+  }) async {
     try {
-      var acs = ActionCodeSettings(
-          url: await _dynamicLinkManager.getShortLink(
-              Routes.EMAIL_VERIFICATION, nextRoute),
-          // This must be true
-          handleCodeInApp: true,
-          iOSBundleId: 'co.yellowtoast.withconi',
-          androidPackageName: 'co.yellowtoast.withconi',
-          // installIfNotAvailable
-          androidInstallApp: true,
-
-          // minimumVersion
-          dynamicLinkDomain: 'withconimal.page.link',
-          androidMinimumVersion: '12');
-
-      var emailAuth = email;
-      await firebaseAuth.sendSignInLinkToEmail(
-          email: emailAuth, actionCodeSettings: acs);
+      SendVerificationEmailRequestDTO requestDTO =
+          SendVerificationEmailRequestDTO.fromData(email);
+      ApiCallDTO apiCallDTO = ApiCallDTO.fromDTO(requestDTO);
+      var data = await _api.sendVerificationEmail(apiCallDTO);
       return Right(true);
     } catch (e) {
-      return Left(SignInCredentialFailure());
+      return Left(SendVerificationEmailFailure());
     }
   }
 
-  signOut() async {
-    await firebaseAuth.signOut();
+  Future<Either<Failure, bool>> checkEmailVerificationCode({
+    required String email,
+    required String verificationCode,
+  }) async {
+    try {
+      CheckEmailVerificationCodeRequestDTO requestDTO =
+          CheckEmailVerificationCodeRequestDTO.fromData(
+              email, verificationCode);
+      ApiCallDTO apiCallDTO = ApiCallDTO.fromDTO(requestDTO);
+      var data = await _api.checkEmailVerificationCode(apiCallDTO);
+      return Right(data['isEqual']);
+    } catch (e) {
+      return Left(CheckVerificationFailure());
+    }
   }
+
+  // signOut() async {
+  //   await firebaseAuth.signOut();
+  // }
 }

@@ -38,11 +38,13 @@ class MapRepository extends GetxService {
   Future<Either<Failure, List<PlacePreviewResponseDTO>>> getPlacePreviewList(
       {required MapFilterUIModel mapFilterUIModel,
       required PaginationFilter paginationFilter,
-      required LatLngUIModel baseLatLng}) async {
+      required LatLngUIModel baseLatLng,
+      String? keyword}) async {
     try {
       GetPlacePreviewListRequestDTO requestDTO =
           GetPlacePreviewListRequestDTO.fromData(
-              data: mapFilterUIModel,
+              keywords: keyword,
+              mapFilter: mapFilterUIModel,
               paginationFilter: paginationFilter,
               latlng: baseLatLng);
       ApiCallDTO apiCallDTO = ApiCallDTO.fromDTO(requestDTO);
@@ -74,11 +76,11 @@ class MapRepository extends GetxService {
   //   return Right(previewList);
   // }
 
-  Future<Either<Failure, List<PlacePreviewResponseDTO>>> getBookmarkedPlaceList(
-      {required PaginationFilter paginationFilter}) async {
+  Future<Either<Failure, List<PlacePreviewResponseDTO>>>
+      getBookmarkedPlaceList() async {
     try {
       GetBookmarkedPlaceListRequestDTO requestDTO =
-          GetBookmarkedPlaceListRequestDTO.fromData(paginationFilter);
+          GetBookmarkedPlaceListRequestDTO.fromData();
       ApiCallDTO apiCallDTO = ApiCallDTO.fromDTO(requestDTO);
       Map<String, dynamic> data =
           await _api.getPlacePreviewListByFilter(apiCallDTO);
@@ -111,8 +113,13 @@ class MapRepository extends GetxService {
       ApiCallDTO apiCallDTO = ApiCallDTO.fromDTO(requestDTO);
       Map<String, dynamic> data = await _api.getHospitalDetailById(apiCallDTO);
 
-      PlaceDetailResponseDTO responseDTO =
-          PlaceDetailResponseDTO.fromJson(data);
+      try {
+        PlaceDetailResponseDTO responseDTO =
+            PlaceDetailResponseDTO.fromJson(data);
+        return Right(responseDTO);
+      } catch (e) {
+        throw (DataParsingException());
+      }
       //  late PlaceDetailResponseDTO placeDetailUiModel;
       //   switch (placeType) {
       //     case PlaceType.hospital:
@@ -129,7 +136,6 @@ class MapRepository extends GetxService {
 
       //   }
 
-      return Right(responseDTO);
     } on NoInternetConnectionException {
       return Left(NoConnectionFailure());
     } on DataParsingException {
@@ -144,11 +150,11 @@ class MapRepository extends GetxService {
   //TODO : placeDetail에다가 reviewData 합쳐서 보내달라하기
   Future<Either<Failure, ReviewHistoryResponseDTO>> getReviewHistory({
     required String locId,
-    required bool onlyVerfied,
+    required bool onlyPhotoReview,
   }) async {
     try {
       var requestDTO = GetReviewHistoryRequestDTO.fromData(
-          placeId: locId, onlyVerified: onlyVerfied);
+          placeId: locId, onlyPhotoReview: onlyPhotoReview);
       var apiCallDto = ApiCallDTO.fromDTO(requestDTO);
       Map<String, dynamic> data = await _api.getReviewHistory(apiCallDto);
 
@@ -225,35 +231,37 @@ class MapRepository extends GetxService {
     }
   }
 
-  // Future<Either<Failure, ReviewDetailUIModel>> getMyReviewDetail(
-  //     {required String reviewId}) async {
-  //   try {
-  //    var requestDTO= GetMyReviewDetailRequestDTO.fromData(reviewId: reviewId);
-  //    var apiCallDTO = ApiCallDTO.fromDTO(requestDTO);
-  //     Map<String, dynamic> data = await _api.getMyReviewDetail(
-  //        apiCallDTO);
+  Future<Either<Failure, ReviewDetailResponseDTO>> getMyReviewDetail(
+      {required String reviewId}) async {
+    try {
+      var requestDTO = GetMyReviewDetailRequestDTO.fromData(reviewId: reviewId);
+      var apiCallDTO = ApiCallDTO.fromDTO(requestDTO);
+      Map<String, dynamic> data = await _api.getMyReviewDetail(apiCallDTO);
 
-  //     try {
-  //       ReviewDetailUIModel reviewDetail = ReviewDetailUIModel(conimals: conimals, diseaseTypes: diseaseTypes, reviewItems: reviewItems, reviewRate: reviewRate, diseaseList: diseaseList, placePreview: placePreview, reviewDesc: reviewDesc)
-  //       return Right(placeReview);
-  //     } catch (e) {
-  //       throw DataParsingException();
-  //     }
-  //   } on NoInternetConnectionException {
-  //     return Left(NoConnectionFailure());
-  //   } on DataParsingException {
-  //     return Left(DataParsingFailure());
-  //   } on NotFoundException {
-  //     return Left(NotFoundFailure());
-  //   } catch (e) {
-  //     return Left(NoUserDataFailure());
-  //   }
-  // }
+      try {
+        ReviewDetailResponseDTO reviewDetailResponseDTO =
+            ReviewDetailResponseDTO.fromJson(data);
+        return Right(reviewDetailResponseDTO);
+      } catch (e) {
+        throw DataParsingException();
+      }
+    } on NoInternetConnectionException {
+      return Left(NoConnectionFailure());
+    } on DataParsingException {
+      return Left(DataParsingFailure());
+    } on NotFoundException {
+      return Left(NotFoundFailure());
+    } catch (e) {
+      return Left(NoUserDataFailure());
+    }
+  }
 
   Future<Either<Failure, bool>> createPlaceReview(
-      {required ReviewDetailUIModel reviewUIModel}) async {
+      {required ReviewDetailUIModel reviewUIModel,
+      required List<String> uploadedImageRefs}) async {
     try {
-      var requestDTO = CreateReviewRequestDTO.fromData(data: reviewUIModel);
+      var requestDTO = CreateReviewRequestDTO.fromData(
+          data: reviewUIModel, imageRefs: uploadedImageRefs);
       var apiCallDTO = ApiCallDTO.fromDTO(requestDTO);
       try {
         await _api.createPlaceReview(apiCallDTO);

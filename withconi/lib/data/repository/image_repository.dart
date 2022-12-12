@@ -20,6 +20,9 @@ class ImageRepository extends GetxService {
   Future<Either<Failure, String>> uploadImageFile(
       {required ImageItem imageItem}) async {
     try {
+      if (imageItem.imageUrl.isEmpty) {
+        return Left(DataParsingFailure());
+      }
       CreateImageRequestDTO requestDTO =
           CreateImageRequestDTO.fromData(imageItem);
       dio.FormData formData = await requestDTO.formDataMap;
@@ -40,7 +43,9 @@ class ImageRepository extends GetxService {
     try {
       _imageFileRefList.clear();
       CreateMultipleImagesRequestDTO requestDTO =
-          CreateMultipleImagesRequestDTO.fromData(imageItems);
+          CreateMultipleImagesRequestDTO.fromData(imageItems
+              .where((element) => element.imageUrl.isNotEmpty)
+              .toList());
       List<dio.FormData> formData = await requestDTO.formDataMapList;
 
       List<ApiCallDTO> apiCallDTOList = formData

@@ -10,6 +10,7 @@ import '../../core/error_handling/failures.dart';
 import '../../core/signing_auth_info.dart';
 import '../../core/values/constants/auth_variables.dart';
 import '../../module/ui_model/user_ui_model.dart';
+import '../enums/enum.dart';
 import '../model/dto/api_call_dto.dart';
 import '../model/dto/request_dto/signup_request/create_user_db_request_dto.dart';
 import '../provider/remote_provider/signup_api.dart';
@@ -60,10 +61,10 @@ class SignUpRepository extends GetxService {
   }
 
   Future<Either<Failure, CustomTokenResponseDTO>> createFirebaseCustomToken(
-      {required String platformToken}) async {
-    var requestDTO =
-        CreateCustomTokenRequestDTO.fromData(platformToken: platformToken);
-    var apiDTO = ApiCallDTO.fromDTO(requestDTO);
+      {required String platformToken, required Provider provider}) async {
+    var requestDTO = CreateCustomTokenRequestDTO.fromData(
+        platformToken: platformToken, provider: provider);
+    var apiDTO = ApiCallDTO.fromDTOWithPlatformToken(requestDTO, platformToken);
     Map<String, dynamic> signUpResult =
         await _api.createFirebaseCustomToken(apiDTO);
 
