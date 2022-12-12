@@ -8,18 +8,18 @@ class MapFilterUIModel implements UIModel {
     // this.keyword,
     required this.placeType,
     required this.openingStatus,
-    this.diseaseType,
-    this.speciesType,
+    required this.diseaseType,
+    required this.speciesType,
     required this.sortType,
-    required this.locationType,
+    required this.distanceBaseType,
     required this.searchArea,
   });
   // String? keyword;
   PlaceType placeType;
   Species? speciesType;
-  SortType sortType;
+  Sorting sortType;
   OpeningStatus openingStatus;
   DiseaseType? diseaseType;
-  LocationSearchType locationType;
-  int searchArea;
+  DistanceBaseType distanceBaseType;
+  double searchArea;
 }

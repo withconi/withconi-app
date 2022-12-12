@@ -31,17 +31,19 @@ class PlaceMarkerUIModel extends Marker {
         );
 
   factory PlaceMarkerUIModel.fromMyPlace({
-    required PlacePreviewUiModel placePreview,
+    required PlacePreviewUIModel placePreview,
     required void Function(Marker? marker, Map<String, int?> iconSize)?
         onTapMarker,
   }) =>
       PlaceMarkerUIModel(
         placeId: placePreview.placeId,
         text: placePreview.name,
-        iconWidth: 30,
-        iconHeight: 30,
+        iconWidth: 28,
+        iconHeight: 28,
         onTapMarker: onTapMarker,
-        placeLocation: placePreview.placeLocation,
+        placeLocation: LatLngUIModel(
+            lat: placePreview.placeLocation.lat,
+            lng: placePreview.placeLocation.lng),
         placeType: placePreview.placeType,
       );
 
@@ -54,8 +56,8 @@ class PlaceMarkerUIModel extends Marker {
           : placeType.unselectedImagePng,
     );
 
-    width = (iconClicked) ? 32 : 29;
-    height = (iconClicked) ? 46 : 29;
+    width = (iconClicked) ? 32 : 28;
+    height = (iconClicked) ? 46 : 28;
   }
 
   // void setOnMarkerTab(

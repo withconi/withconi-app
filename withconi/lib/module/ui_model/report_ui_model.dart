@@ -8,11 +8,11 @@ class ReportUIModel implements UIModel {
     required this.boardId,
     required this.postId,
     this.reportDesc = '',
-    this.reportItem,
+    required this.reportItem,
   });
   String boardId;
   String postId;
   String authorId;
-  ReportItem? reportItem;
+  ReportItem reportItem;
   String reportDesc = '';
 }

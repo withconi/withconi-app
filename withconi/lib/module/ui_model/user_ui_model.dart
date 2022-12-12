@@ -13,13 +13,14 @@ class UserUIModel with _$UserUIModel {
   const UserUIModel._();
 
   factory UserUIModel({
+    required String uid,
     required String email,
     required String diaplayName,
     required String nickname,
     required Provider provider,
     required bool isEmailVerified,
     required bool verificationSkipped,
-    ImageItem? profileImage,
+    required ImageItem profileImage,
     required bool isWrittenReview,
     required List<ConimalUIModel> conimals,
     required bool passwordChangable,
@@ -30,23 +31,22 @@ class UserUIModel with _$UserUIModel {
         .map((conimal) => ConimalUIModel.fromDTO(conimal))
         .toList();
 
-    ImageItem? profileImageItem = (userResponseDTO.photoURL.isEmpty)
-        ? null
-        : ImageItem(
-            id: DateTime.now().toString(),
-            resource: userResponseDTO.photoURL,
-            imageType: ImageType.network);
-
     bool passwordChangable =
         (userResponseDTO.provider == Provider.email) ? true : false;
     return UserUIModel(
+        uid: userResponseDTO.uid,
         email: userResponseDTO.email,
         diaplayName: userResponseDTO.displayName,
-        nickname: userResponseDTO.nickname,
+        nickname: (userResponseDTO.nickname.isNotEmpty)
+            ? userResponseDTO.nickname
+            : '사용자 없음',
         provider: userResponseDTO.provider,
         isEmailVerified: userResponseDTO.isEmailVerified,
         verificationSkipped: userResponseDTO.verificationSkipped,
-        profileImage: profileImageItem,
+        profileImage: ImageItem(
+            id: DateTime.now().toString(),
+            imageUrl: userResponseDTO.photoURL,
+            imageType: ImageType.network),
         isWrittenReview: userResponseDTO.isWrittenReview,
         conimals: conimals,
         passwordChangable: passwordChangable);

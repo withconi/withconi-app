@@ -11,7 +11,8 @@ class DiseaseUIModel extends Equatable with _$DiseaseUIModel {
   const DiseaseUIModel._();
 
   factory DiseaseUIModel({
-    required String code,
+    required String diseaseCode,
+    required String diseaseId,
     required String name,
     required String definition,
     required String diagnosisTechnique,
@@ -19,12 +20,15 @@ class DiseaseUIModel extends Equatable with _$DiseaseUIModel {
     required String advice,
     required List<SymptomGroup> symptomGroup,
     required DiseaseType diseaseType,
+    required String boardId,
   }) = _DiseaseUIModel;
 
   factory DiseaseUIModel.fromDTO(DiseaseResponseDTO responseDTO) {
     return DiseaseUIModel(
+        diseaseId: responseDTO.diseaseId,
+        boardId: responseDTO.boardId.toString(),
         advice: responseDTO.advice,
-        code: responseDTO.code,
+        diseaseCode: responseDTO.code,
         definition: responseDTO.definition,
         diagnosisTechnique: responseDTO.diagnosisTechnique,
         diseaseType: responseDTO.diseaseType,
@@ -35,7 +39,7 @@ class DiseaseUIModel extends Equatable with _$DiseaseUIModel {
 
   @override
   // TODO: implement props
-  List<Object?> get props => [code];
+  List<Object?> get props => [diseaseId, diseaseCode];
 }
 
 // class DiseaseUIModel extends Equatable implements UIModel {

@@ -16,7 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$DiseaseUIModel {
-  String get code => throw _privateConstructorUsedError;
+  String get diseaseCode => throw _privateConstructorUsedError;
+  String get diseaseId => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get definition => throw _privateConstructorUsedError;
   String get diagnosisTechnique => throw _privateConstructorUsedError;
@@ -24,6 +25,7 @@ mixin _$DiseaseUIModel {
   String get advice => throw _privateConstructorUsedError;
   List<SymptomGroup> get symptomGroup => throw _privateConstructorUsedError;
   DiseaseType get diseaseType => throw _privateConstructorUsedError;
+  String get boardId => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $DiseaseUIModelCopyWith<DiseaseUIModel> get copyWith =>
@@ -37,14 +39,16 @@ abstract class $DiseaseUIModelCopyWith<$Res> {
       _$DiseaseUIModelCopyWithImpl<$Res, DiseaseUIModel>;
   @useResult
   $Res call(
-      {String code,
+      {String diseaseCode,
+      String diseaseId,
       String name,
       String definition,
       String diagnosisTechnique,
       String treatment,
       String advice,
       List<SymptomGroup> symptomGroup,
-      DiseaseType diseaseType});
+      DiseaseType diseaseType,
+      String boardId});
 }
 
 /// @nodoc
@@ -60,7 +64,8 @@ class _$DiseaseUIModelCopyWithImpl<$Res, $Val extends DiseaseUIModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? code = null,
+    Object? diseaseCode = null,
+    Object? diseaseId = null,
     Object? name = null,
     Object? definition = null,
     Object? diagnosisTechnique = null,
@@ -68,11 +73,16 @@ class _$DiseaseUIModelCopyWithImpl<$Res, $Val extends DiseaseUIModel>
     Object? advice = null,
     Object? symptomGroup = null,
     Object? diseaseType = null,
+    Object? boardId = null,
   }) {
     return _then(_value.copyWith(
-      code: null == code
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
+      diseaseCode: null == diseaseCode
+          ? _value.diseaseCode
+          : diseaseCode // ignore: cast_nullable_to_non_nullable
+              as String,
+      diseaseId: null == diseaseId
+          ? _value.diseaseId
+          : diseaseId // ignore: cast_nullable_to_non_nullable
               as String,
       name: null == name
           ? _value.name
@@ -102,6 +112,10 @@ class _$DiseaseUIModelCopyWithImpl<$Res, $Val extends DiseaseUIModel>
           ? _value.diseaseType
           : diseaseType // ignore: cast_nullable_to_non_nullable
               as DiseaseType,
+      boardId: null == boardId
+          ? _value.boardId
+          : boardId // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -115,14 +129,16 @@ abstract class _$$_DiseaseUIModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String code,
+      {String diseaseCode,
+      String diseaseId,
       String name,
       String definition,
       String diagnosisTechnique,
       String treatment,
       String advice,
       List<SymptomGroup> symptomGroup,
-      DiseaseType diseaseType});
+      DiseaseType diseaseType,
+      String boardId});
 }
 
 /// @nodoc
@@ -136,7 +152,8 @@ class __$$_DiseaseUIModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? code = null,
+    Object? diseaseCode = null,
+    Object? diseaseId = null,
     Object? name = null,
     Object? definition = null,
     Object? diagnosisTechnique = null,
@@ -144,11 +161,16 @@ class __$$_DiseaseUIModelCopyWithImpl<$Res>
     Object? advice = null,
     Object? symptomGroup = null,
     Object? diseaseType = null,
+    Object? boardId = null,
   }) {
     return _then(_$_DiseaseUIModel(
-      code: null == code
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
+      diseaseCode: null == diseaseCode
+          ? _value.diseaseCode
+          : diseaseCode // ignore: cast_nullable_to_non_nullable
+              as String,
+      diseaseId: null == diseaseId
+          ? _value.diseaseId
+          : diseaseId // ignore: cast_nullable_to_non_nullable
               as String,
       name: null == name
           ? _value.name
@@ -178,6 +200,10 @@ class __$$_DiseaseUIModelCopyWithImpl<$Res>
           ? _value.diseaseType
           : diseaseType // ignore: cast_nullable_to_non_nullable
               as DiseaseType,
+      boardId: null == boardId
+          ? _value.boardId
+          : boardId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -186,19 +212,23 @@ class __$$_DiseaseUIModelCopyWithImpl<$Res>
 
 class _$_DiseaseUIModel extends _DiseaseUIModel {
   _$_DiseaseUIModel(
-      {required this.code,
+      {required this.diseaseCode,
+      required this.diseaseId,
       required this.name,
       required this.definition,
       required this.diagnosisTechnique,
       required this.treatment,
       required this.advice,
       required final List<SymptomGroup> symptomGroup,
-      required this.diseaseType})
+      required this.diseaseType,
+      required this.boardId})
       : _symptomGroup = symptomGroup,
         super._();
 
   @override
-  final String code;
+  final String diseaseCode;
+  @override
+  final String diseaseId;
   @override
   final String name;
   @override
@@ -218,6 +248,8 @@ class _$_DiseaseUIModel extends _DiseaseUIModel {
 
   @override
   final DiseaseType diseaseType;
+  @override
+  final String boardId;
 
   @JsonKey(ignore: true)
   @override
@@ -228,18 +260,22 @@ class _$_DiseaseUIModel extends _DiseaseUIModel {
 
 abstract class _DiseaseUIModel extends DiseaseUIModel {
   factory _DiseaseUIModel(
-      {required final String code,
+      {required final String diseaseCode,
+      required final String diseaseId,
       required final String name,
       required final String definition,
       required final String diagnosisTechnique,
       required final String treatment,
       required final String advice,
       required final List<SymptomGroup> symptomGroup,
-      required final DiseaseType diseaseType}) = _$_DiseaseUIModel;
+      required final DiseaseType diseaseType,
+      required final String boardId}) = _$_DiseaseUIModel;
   _DiseaseUIModel._() : super._();
 
   @override
-  String get code;
+  String get diseaseCode;
+  @override
+  String get diseaseId;
   @override
   String get name;
   @override
@@ -254,6 +290,8 @@ abstract class _DiseaseUIModel extends DiseaseUIModel {
   List<SymptomGroup> get symptomGroup;
   @override
   DiseaseType get diseaseType;
+  @override
+  String get boardId;
   @override
   @JsonKey(ignore: true)
   _$$_DiseaseUIModelCopyWith<_$_DiseaseUIModel> get copyWith =>

@@ -105,7 +105,7 @@ class PharmacyDetailUIModel implements PlaceDetailUiModel {
         value: totalDogs,
         percent: _calculatePercent(
             totalNum: totalCats + totalDogs, valueNum: totalDogs),
-        color: Species.dog.mainColor,
+        color: Species.dog.graphColor,
         title: '강아지');
     ChartData catChartData = ChartData(
         value: totalCats,

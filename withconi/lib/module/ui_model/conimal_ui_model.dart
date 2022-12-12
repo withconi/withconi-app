@@ -6,6 +6,7 @@ import 'package:withconi/module/ui_model/ui_model_abstract/ui_model.dart';
 import '../../core/tools/helpers/calculator.dart';
 import '../../data/enums/enum.dart';
 import '../../data/model/dto/response_dto/conimal_response/conimal_response_dto.dart';
+import 'breed_ui_model.dart';
 part 'conimal_ui_model.freezed.dart';
 
 @unfreezed

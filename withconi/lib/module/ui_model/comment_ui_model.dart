@@ -3,6 +3,7 @@ import 'package:withconi/data/model/dto/response_dto/community_response/comment_
 import 'package:withconi/module/ui_model/ui_model_abstract/ui_model.dart';
 
 import '../../core/tools/helpers/calculator.dart';
+import '../../global_widgets/photo_gallary/image_item.dart';
 
 class CommentUIModel extends Equatable implements UIModel {
   final String nickname;
@@ -17,7 +18,7 @@ class CommentUIModel extends Equatable implements UIModel {
   final String commentId;
   final String boardId;
   final String postId;
-
+  final ImageItem profileImage;
   CommentUIModel(
     this._uploadAt, {
     required this.nickname,
@@ -28,11 +29,17 @@ class CommentUIModel extends Equatable implements UIModel {
     required this.boardId,
     required this.commentId,
     required this.postId,
+    required this.profileImage,
   });
 
   factory CommentUIModel.fromDTO(CommentResponseDTO responseDTO) {
     return CommentUIModel(responseDTO.createdAt,
-        nickname: responseDTO.nickname,
+        profileImage: ImageItem(
+            id: responseDTO.profileImageUrl,
+            imageUrl: responseDTO.profileImageUrl,
+            imageType: ImageType.network),
+        nickname:
+            (responseDTO.nickname.isNotEmpty) ? responseDTO.nickname : '사용자 없음',
         content: responseDTO.content,
         likeNum: responseDTO.likeNum,
         isLikeOn: responseDTO.isLike,

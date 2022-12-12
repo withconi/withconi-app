@@ -16,6 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$UserUIModel {
+  String get uid => throw _privateConstructorUsedError;
+  set uid(String value) => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   set email(String value) => throw _privateConstructorUsedError;
   String get diaplayName => throw _privateConstructorUsedError;
@@ -28,8 +30,8 @@ mixin _$UserUIModel {
   set isEmailVerified(bool value) => throw _privateConstructorUsedError;
   bool get verificationSkipped => throw _privateConstructorUsedError;
   set verificationSkipped(bool value) => throw _privateConstructorUsedError;
-  ImageItem? get profileImage => throw _privateConstructorUsedError;
-  set profileImage(ImageItem? value) => throw _privateConstructorUsedError;
+  ImageItem get profileImage => throw _privateConstructorUsedError;
+  set profileImage(ImageItem value) => throw _privateConstructorUsedError;
   bool get isWrittenReview => throw _privateConstructorUsedError;
   set isWrittenReview(bool value) => throw _privateConstructorUsedError;
   List<ConimalUIModel> get conimals => throw _privateConstructorUsedError;
@@ -50,13 +52,14 @@ abstract class $UserUIModelCopyWith<$Res> {
       _$UserUIModelCopyWithImpl<$Res, UserUIModel>;
   @useResult
   $Res call(
-      {String email,
+      {String uid,
+      String email,
       String diaplayName,
       String nickname,
       Provider provider,
       bool isEmailVerified,
       bool verificationSkipped,
-      ImageItem? profileImage,
+      ImageItem profileImage,
       bool isWrittenReview,
       List<ConimalUIModel> conimals,
       bool passwordChangable});
@@ -75,18 +78,23 @@ class _$UserUIModelCopyWithImpl<$Res, $Val extends UserUIModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? uid = null,
     Object? email = null,
     Object? diaplayName = null,
     Object? nickname = null,
     Object? provider = null,
     Object? isEmailVerified = null,
     Object? verificationSkipped = null,
-    Object? profileImage = freezed,
+    Object? profileImage = null,
     Object? isWrittenReview = null,
     Object? conimals = null,
     Object? passwordChangable = null,
   }) {
     return _then(_value.copyWith(
+      uid: null == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -111,10 +119,10 @@ class _$UserUIModelCopyWithImpl<$Res, $Val extends UserUIModel>
           ? _value.verificationSkipped
           : verificationSkipped // ignore: cast_nullable_to_non_nullable
               as bool,
-      profileImage: freezed == profileImage
+      profileImage: null == profileImage
           ? _value.profileImage
           : profileImage // ignore: cast_nullable_to_non_nullable
-              as ImageItem?,
+              as ImageItem,
       isWrittenReview: null == isWrittenReview
           ? _value.isWrittenReview
           : isWrittenReview // ignore: cast_nullable_to_non_nullable
@@ -140,13 +148,14 @@ abstract class _$$_UserUIModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String email,
+      {String uid,
+      String email,
       String diaplayName,
       String nickname,
       Provider provider,
       bool isEmailVerified,
       bool verificationSkipped,
-      ImageItem? profileImage,
+      ImageItem profileImage,
       bool isWrittenReview,
       List<ConimalUIModel> conimals,
       bool passwordChangable});
@@ -163,18 +172,23 @@ class __$$_UserUIModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? uid = null,
     Object? email = null,
     Object? diaplayName = null,
     Object? nickname = null,
     Object? provider = null,
     Object? isEmailVerified = null,
     Object? verificationSkipped = null,
-    Object? profileImage = freezed,
+    Object? profileImage = null,
     Object? isWrittenReview = null,
     Object? conimals = null,
     Object? passwordChangable = null,
   }) {
     return _then(_$_UserUIModel(
+      uid: null == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -199,10 +213,10 @@ class __$$_UserUIModelCopyWithImpl<$Res>
           ? _value.verificationSkipped
           : verificationSkipped // ignore: cast_nullable_to_non_nullable
               as bool,
-      profileImage: freezed == profileImage
+      profileImage: null == profileImage
           ? _value.profileImage
           : profileImage // ignore: cast_nullable_to_non_nullable
-              as ImageItem?,
+              as ImageItem,
       isWrittenReview: null == isWrittenReview
           ? _value.isWrittenReview
           : isWrittenReview // ignore: cast_nullable_to_non_nullable
@@ -223,18 +237,21 @@ class __$$_UserUIModelCopyWithImpl<$Res>
 
 class _$_UserUIModel extends _UserUIModel {
   _$_UserUIModel(
-      {required this.email,
+      {required this.uid,
+      required this.email,
       required this.diaplayName,
       required this.nickname,
       required this.provider,
       required this.isEmailVerified,
       required this.verificationSkipped,
-      this.profileImage,
+      required this.profileImage,
       required this.isWrittenReview,
       required this.conimals,
       required this.passwordChangable})
       : super._();
 
+  @override
+  String uid;
   @override
   String email;
   @override
@@ -248,7 +265,7 @@ class _$_UserUIModel extends _UserUIModel {
   @override
   bool verificationSkipped;
   @override
-  ImageItem? profileImage;
+  ImageItem profileImage;
   @override
   bool isWrittenReview;
   @override
@@ -258,7 +275,7 @@ class _$_UserUIModel extends _UserUIModel {
 
   @override
   String toString() {
-    return 'UserUIModel(email: $email, diaplayName: $diaplayName, nickname: $nickname, provider: $provider, isEmailVerified: $isEmailVerified, verificationSkipped: $verificationSkipped, profileImage: $profileImage, isWrittenReview: $isWrittenReview, conimals: $conimals, passwordChangable: $passwordChangable)';
+    return 'UserUIModel(uid: $uid, email: $email, diaplayName: $diaplayName, nickname: $nickname, provider: $provider, isEmailVerified: $isEmailVerified, verificationSkipped: $verificationSkipped, profileImage: $profileImage, isWrittenReview: $isWrittenReview, conimals: $conimals, passwordChangable: $passwordChangable)';
   }
 
   @JsonKey(ignore: true)
@@ -270,18 +287,22 @@ class _$_UserUIModel extends _UserUIModel {
 
 abstract class _UserUIModel extends UserUIModel {
   factory _UserUIModel(
-      {required String email,
+      {required String uid,
+      required String email,
       required String diaplayName,
       required String nickname,
       required Provider provider,
       required bool isEmailVerified,
       required bool verificationSkipped,
-      ImageItem? profileImage,
+      required ImageItem profileImage,
       required bool isWrittenReview,
       required List<ConimalUIModel> conimals,
       required bool passwordChangable}) = _$_UserUIModel;
   _UserUIModel._() : super._();
 
+  @override
+  String get uid;
+  set uid(String value);
   @override
   String get email;
   set email(String value);
@@ -301,8 +322,8 @@ abstract class _UserUIModel extends UserUIModel {
   bool get verificationSkipped;
   set verificationSkipped(bool value);
   @override
-  ImageItem? get profileImage;
-  set profileImage(ImageItem? value);
+  ImageItem get profileImage;
+  set profileImage(ImageItem value);
   @override
   bool get isWrittenReview;
   set isWrittenReview(bool value);

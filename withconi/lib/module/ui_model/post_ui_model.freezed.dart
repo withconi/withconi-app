@@ -36,6 +36,7 @@ mixin _$PostUIModel {
   String get boardId => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
   DiseaseType get diseaseType => throw _privateConstructorUsedError;
+  ImageItem get profileImage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PostUIModelCopyWith<PostUIModel> get copyWith =>
@@ -61,7 +62,8 @@ abstract class $PostUIModelCopyWith<$Res> {
       String authorId,
       String boardId,
       DateTime createdAt,
-      DiseaseType diseaseType});
+      DiseaseType diseaseType,
+      ImageItem profileImage});
 }
 
 /// @nodoc
@@ -90,6 +92,7 @@ class _$PostUIModelCopyWithImpl<$Res, $Val extends PostUIModel>
     Object? boardId = null,
     Object? createdAt = null,
     Object? diseaseType = null,
+    Object? profileImage = null,
   }) {
     return _then(_value.copyWith(
       postId: null == postId
@@ -144,6 +147,10 @@ class _$PostUIModelCopyWithImpl<$Res, $Val extends PostUIModel>
           ? _value.diseaseType
           : diseaseType // ignore: cast_nullable_to_non_nullable
               as DiseaseType,
+      profileImage: null == profileImage
+          ? _value.profileImage
+          : profileImage // ignore: cast_nullable_to_non_nullable
+              as ImageItem,
     ) as $Val);
   }
 }
@@ -169,7 +176,8 @@ abstract class _$$_PostUIModelCopyWith<$Res>
       String authorId,
       String boardId,
       DateTime createdAt,
-      DiseaseType diseaseType});
+      DiseaseType diseaseType,
+      ImageItem profileImage});
 }
 
 /// @nodoc
@@ -196,6 +204,7 @@ class __$$_PostUIModelCopyWithImpl<$Res>
     Object? boardId = null,
     Object? createdAt = null,
     Object? diseaseType = null,
+    Object? profileImage = null,
   }) {
     return _then(_$_PostUIModel(
       postId: null == postId
@@ -250,6 +259,10 @@ class __$$_PostUIModelCopyWithImpl<$Res>
           ? _value.diseaseType
           : diseaseType // ignore: cast_nullable_to_non_nullable
               as DiseaseType,
+      profileImage: null == profileImage
+          ? _value.profileImage
+          : profileImage // ignore: cast_nullable_to_non_nullable
+              as ImageItem,
     ));
   }
 }
@@ -270,7 +283,8 @@ class _$_PostUIModel extends _PostUIModel {
       required this.authorId,
       required this.boardId,
       required this.createdAt,
-      required this.diseaseType})
+      required this.diseaseType,
+      required this.profileImage})
       : super._();
 
   @override
@@ -299,10 +313,12 @@ class _$_PostUIModel extends _PostUIModel {
   final DateTime createdAt;
   @override
   final DiseaseType diseaseType;
+  @override
+  final ImageItem profileImage;
 
   @override
   String toString() {
-    return 'PostUIModel(postId: $postId, uploadAt: $uploadAt, nickname: $nickname, content: $content, postType: $postType, images: $images, likeNum: $likeNum, commentNum: $commentNum, isLikeOn: $isLikeOn, authorId: $authorId, boardId: $boardId, createdAt: $createdAt, diseaseType: $diseaseType)';
+    return 'PostUIModel(postId: $postId, uploadAt: $uploadAt, nickname: $nickname, content: $content, postType: $postType, images: $images, likeNum: $likeNum, commentNum: $commentNum, isLikeOn: $isLikeOn, authorId: $authorId, boardId: $boardId, createdAt: $createdAt, diseaseType: $diseaseType, profileImage: $profileImage)';
   }
 
   @JsonKey(ignore: true)
@@ -326,7 +342,8 @@ abstract class _PostUIModel extends PostUIModel {
       required final String authorId,
       required final String boardId,
       required final DateTime createdAt,
-      required final DiseaseType diseaseType}) = _$_PostUIModel;
+      required final DiseaseType diseaseType,
+      required final ImageItem profileImage}) = _$_PostUIModel;
   _PostUIModel._() : super._();
 
   @override
@@ -362,6 +379,8 @@ abstract class _PostUIModel extends PostUIModel {
   DateTime get createdAt;
   @override
   DiseaseType get diseaseType;
+  @override
+  ImageItem get profileImage;
   @override
   @JsonKey(ignore: true)
   _$$_PostUIModelCopyWith<_$_PostUIModel> get copyWith =>

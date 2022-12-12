@@ -24,14 +24,19 @@ class PostUIModel with _$PostUIModel {
     required final String boardId,
     required final DateTime createdAt,
     required final DiseaseType diseaseType,
+    required final ImageItem profileImage,
   }) = _PostUIModel;
   String get uploadAtStr => TimeCalculator().calculateUploadAt(uploadAt);
 
   factory PostUIModel.fromDTO(PostResponseDTO postDTO) {
     return PostUIModel(
+        profileImage: ImageItem(
+            id: postDTO.profileImageUrl,
+            imageUrl: postDTO.profileImageUrl,
+            imageType: ImageType.network),
         diseaseType: postDTO.diseaseType,
         uploadAt: postDTO.createdAt,
-        nickname: postDTO.nickname,
+        nickname: (postDTO.nickname.isNotEmpty) ? postDTO.nickname : '사용자 없음',
         content: postDTO.content,
         likeNum: postDTO.likeNum,
         commentNum: postDTO.commentNum,
