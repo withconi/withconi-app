@@ -8,6 +8,7 @@ import 'package:withconi/data/model/dto/request_dto/place_request/get_review_his
 import 'package:withconi/data/model/dto/response_dto/place_response/review_history_response_dto.dart';
 
 import 'package:withconi/data/repository/map_repository.dart';
+import 'package:withconi/module/map/abstract/map_update_abstract.dart';
 
 import 'package:withconi/module/ui_model/chart_data_ui_model.dart';
 import 'package:withconi/global_widgets/loading/loading_overlay.dart';
@@ -16,22 +17,29 @@ import 'package:withconi/module/ui_model/place_ui_model/abstract_class/place_pre
 import 'package:withconi/module/ui_model/place_ui_model/hospital_detail_ui_model.dart';
 import 'package:withconi/module/ui_model/place_ui_model/pharmacy_detail_ui_model.dart';
 import 'package:withconi/module/ui_model/place_ui_model/pharmacy_preview_ui_model.dart';
+import 'package:withconi/module/ui_model/review_detail_ui_model.dart';
 import 'package:withconi/module/ui_model/review_history_ui_model.dart';
 
 import '../../../core/error_handling/failures.dart';
 import '../../../data/enums/enum.dart';
 import '../../../data/model/dto/response_dto/place_response/place_detail_response_dto.dart';
+import '../../../global_widgets/photo_gallary/image_item.dart';
 import '../../../import_basic.dart';
 import '../../auth/auth_controller.dart';
 
 class MapDetailPageController extends GetxController
-    with GetSingleTickerProviderStateMixin {
-  MapDetailPageController(this._mapRepository);
+    with GetSingleTickerProviderStateMixin
+    implements AbstractMapReviewUpdate {
+  MapDetailPageController(this._mapRepository, this._placeId, this._placeType,
+      this._baseLat, this._baseLng, this._mapReviewUpdateAbstract);
   final MapRepository _mapRepository;
-  late final PlacePreviewUiModel _placePreview;
+  final AbstractMapReviewUpdate? _mapReviewUpdateAbstract;
   late Rx<PlaceDetailUiModel> placeDetail;
-  late String _placeId;
-  late PlaceType _placeType;
+
+  late final String _placeId;
+  late final PlaceType _placeType;
+  late final double _baseLat;
+  late final double _baseLng;
   RxBool isBookmarked = false.obs;
   RxInt picChartTouchedIndex = (-1).obs;
   RxBool dataInitialized = false.obs;
@@ -44,6 +52,14 @@ class MapDetailPageController extends GetxController
   late TabController tabController;
 
   RxBool isExpand = false.obs;
+
+  String get placeId => placeDetail.value.placeId;
+
+  String get placeName => placeDetail.value.name;
+
+  String get placeAddress => placeDetail.value.address;
+
+  ImageItem get placeThumbnail => placeDetail.value.thumbnailImage;
 
   @override
   Future<void> onInit() async {
@@ -74,9 +90,6 @@ class MapDetailPageController extends GetxController
 
   initData() async {
     dataInitialized.value = false;
-    _placePreview = Get.arguments as PlacePreviewUiModel;
-    _placeId = _placePreview.placeId;
-    _placeType = _placePreview.placeType;
 
     await getPlaceDetailById(placeId: _placeId);
     dataInitialized.value = true;
@@ -93,6 +106,7 @@ class MapDetailPageController extends GetxController
         (dto) {
       placeDetail = Rx<PlaceDetailUiModel>(_parsePlaceDetailDto(dto));
       isBookmarked.value = placeDetail.value.isBookmarked;
+      placeDetail.refresh();
     });
     return;
   }
@@ -187,7 +201,51 @@ class MapDetailPageController extends GetxController
         pieTouchResponse.touchedSection!.touchedSectionIndex;
   }
 
-  goToNewReviewPage() {
-    Get.toNamed(Routes.MAP_NEW_REVIEW, arguments: _placePreview);
+  goToNewReviewPage({required bool placeSelected}) async {
+    late Map<String, dynamic> arguments;
+    if (placeSelected) {
+      arguments = {
+        'placeSelected': true,
+        'lat': _baseLat,
+        'lng': _baseLng,
+        'placeId': placeId,
+        'placeName': placeName,
+        'placeAddress': placeAddress,
+        'placeThumbnail': placeThumbnail,
+      };
+    } else {
+      arguments = {
+        'placeSelected': false,
+        'lat': _baseLat,
+        'lng': _baseLng,
+      };
+    }
+    var newReview =
+        await Get.toNamed(Routes.MAP_NEW_REVIEW, arguments: arguments)
+            as ReviewDetailUIModel?;
+
+    if (newReview != null) {
+      addReview(newReview);
+    }
+  }
+
+  @override
+  Future<void> addReview(ReviewDetailUIModel newReview) async {
+    if (placeId == newReview.placeId) {
+      await getPlaceDetailById(placeId: _placeId);
+    }
+    if (_mapReviewUpdateAbstract != null) {
+      _mapReviewUpdateAbstract!.addReview(newReview);
+    }
+  }
+
+  @override
+  Future<void> deleteReview(ReviewDetailUIModel deletedReview) async {
+    if (placeId == deletedReview.placeId) {
+      await getPlaceDetailById(placeId: _placeId);
+    }
+    if (_mapReviewUpdateAbstract != null) {
+      _mapReviewUpdateAbstract!.deleteReview(deletedReview);
+    }
   }
 }

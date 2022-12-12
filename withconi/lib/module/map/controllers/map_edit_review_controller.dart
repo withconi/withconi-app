@@ -1,26 +1,29 @@
-import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:withconi/data/enums/enum.dart';
 import 'package:withconi/module/auth/auth_controller.dart';
 import 'package:withconi/data/repository/map_repository.dart';
-import 'package:withconi/global_widgets/dialog/place_verification_dialog.dart';
 import 'package:withconi/global_widgets/loading/loading_overlay.dart';
 import 'package:withconi/module/ui_model/conimal_ui_model.dart';
 import 'package:withconi/module/ui_model/disease_ui_model.dart';
 import 'package:withconi/module/ui_model/review_detail_ui_model.dart';
 import '../../../core/error_handling/failures.dart';
+import '../../../global_widgets/photo_gallary/image_item.dart';
 import '../../../import_basic.dart';
 import '../../../global_widgets/dialog/selection_dialog.dart';
 import '../../../global_widgets/snackbar.dart';
 import '../../../core/error_handling/failure_ui_interpreter.dart';
-import '../../ui_model/place_ui_model/abstract_class/place_preview_ui.dart';
 
 class MapEditReviewController extends GetxController {
-  MapEditReviewController(this._mapRepository);
+  MapEditReviewController(
+    this._mapRepository,
+    this._reviewId,
+  );
   final MapRepository _mapRepository;
-
-  late final ReviewDetailUIModel previousReview;
-  late Rx<PlacePreviewUiModel> placePreview;
+  late final String placeId;
+  late RxString placeName;
+  late RxString placeAddress;
+  // late RxBool isPhotoReview;
+  late Rx<ImageItem> placeThumbnail;
   RxBool isLoading = false.obs;
   final RxBool validatePostButton = false.obs;
   RxBool showDiseaseTypeSection = false.obs;
@@ -33,7 +36,9 @@ class MapEditReviewController extends GetxController {
   ScrollController scrollController = ScrollController();
   Rxn<ReviewRate> selectedReviewRate = Rxn<ReviewRate>();
   RxList<ReviewItem> selectedReviewItems = RxList<ReviewItem>();
-  late List<ConimalUIModel> conimalOptionList;
+  RxList<ImageItem> selectedReviewImageList = RxList<ImageItem>();
+  late final List<ConimalUIModel> previousConimalList;
+  late final String _reviewId;
 
   RxString diseaseText = ''.obs;
   RxString diseaseSuffixText = ''.obs;
@@ -42,8 +47,7 @@ class MapEditReviewController extends GetxController {
   @override
   onInit() {
     super.onInit();
-
-    _initReviewToEdit();
+    _getMyReviewDetail(_reviewId);
   }
 
   @override
@@ -59,17 +63,36 @@ class MapEditReviewController extends GetxController {
     scrollController.dispose();
   }
 
-  _initReviewToEdit() {
+  _initReviewToEdit(ReviewDetailUIModel _reviewDetail) {
     isLoading.value = true;
-    previousReview = Get.arguments as ReviewDetailUIModel;
-    placePreview = Rx<PlacePreviewUiModel>(previousReview.placePreview!);
-    conimalOptionList = previousReview.conimals;
-    selectedConimalList = previousReview.conimals.obs;
-    selectedDiseaseList = previousReview.diseaseList.obs;
-    selectedDiseaseTypeSet = previousReview.diseaseTypes.toSet().obs;
-    selectedReviewItems = previousReview.reviewItems.obs;
-    selectedReviewRate.value = previousReview.reviewRate;
+    placeAddress = _reviewDetail.placeAddress.obs;
+    placeId = _reviewDetail.placeId;
+    placeName = _reviewDetail.placeName.obs;
+    placeThumbnail = _reviewDetail.placeThumbnail.obs;
+    // isPhotoReview = _reviewDetail.isPhotoReview.obs;
+    previousConimalList = _reviewDetail.conimals;
+    selectedConimalList = _reviewDetail.conimals.obs;
+    selectedDiseaseList = _reviewDetail.diseaseList.obs;
+    selectedDiseaseTypeSet = _reviewDetail.diseaseTypes.toSet().obs;
+    selectedReviewItems = _reviewDetail.reviewItems.obs;
+    selectedReviewRate.value = _reviewDetail.reviewRate;
+    selectedReviewImageList = _reviewDetail.reviewImageList.toList().obs;
     isLoading.value = false;
+  }
+
+  Future<void> _getMyReviewDetail(String reviewId) async {
+    // _isLoading.value = true;
+    final myReviewResponseEither =
+        await _mapRepository.getMyReviewDetail(reviewId: reviewId);
+
+    var reviewDetailDTO = myReviewResponseEither.fold((fail) {
+      FailureInterpreter().mapFailureToSnackbar(fail, '_getPostList');
+      return null;
+    }, (reviewResponseDto) => reviewResponseDto);
+
+    if (reviewDetailDTO != null) {
+      _initReviewToEdit(ReviewDetailUIModel.fromDTO(reviewDetailDTO));
+    }
   }
 
   changeDiseaseTypeList(List<DiseaseUIModel> _changedDiseaseList) {
@@ -127,18 +150,8 @@ class MapEditReviewController extends GetxController {
   }
 
   searchDisease() async {
-    List<DiseaseUIModel>? result =
-        await Get.toNamed(Routes.DISEASE_SEARCH, arguments: [
-      DiseaseUIModel(
-          name: '질병입니다다다다다 다라다라 다',
-          diseaseType: DiseaseType.musculoskeletal,
-          advice: '',
-          code: '',
-          definition: '',
-          diagnosisTechnique: '',
-          symptomGroup: [],
-          treatment: '')
-    ]) as List<DiseaseUIModel>?;
+    List<DiseaseUIModel>? result = await Get.toNamed(Routes.DISEASE_SEARCH,
+        arguments: selectedDiseaseList.toList()) as List<DiseaseUIModel>?;
 
     if (result != null) {
       selectedDiseaseList.assignAll(result);
@@ -151,20 +164,6 @@ class MapEditReviewController extends GetxController {
     selectedDiseaseTypeSet.clear();
     setSelectedDiseaseText(newDiseaseList);
 
-    // if (selectedDiseaseTypeList.isEmpty) {
-    //   selectedDiseaseTypeList.assignAll(
-    //       newDiseaseList.map((element) => element.diseaseType!).toList());
-    //   scrollController.animateTo(400,
-    //       duration: const Duration(milliseconds: 200), curve: Curves.linear);
-    // } else {
-    //   newDiseaseList.forEach((newDisease) {
-    //     if (!selectedDiseaseTypeList
-    //         .any((selectedType) => selectedType == newDisease.diseaseType)) {
-    //       selectedDiseaseTypeList.add(newDisease.diseaseType!);
-    //     }
-    //   });
-    // }
-
     selectedDiseaseTypeSet.assignAll(
         newDiseaseList.map((element) => element.diseaseType).toList());
     scrollController.animateTo(400,
@@ -175,14 +174,6 @@ class MapEditReviewController extends GetxController {
       showReviewRateSection.value = false;
     }
   }
-
-  // setDiseaseTypeList(List<Disease> newDiseaseList) {
-  //   newDiseaseList.forEach((disease) {
-  //     onSelectedDiseaseTypeListChanged(disease.diseaseType!);
-  //   });
-
-  //   // selectedDiseaseTypeList.refresh();
-  // }
 
   setSelectedDiseaseText(List<DiseaseUIModel> diseaseInfo) {
     if (diseaseInfo.isNotEmpty) {
@@ -234,31 +225,21 @@ class MapEditReviewController extends GetxController {
     selectedReviewRate.value = reviewRate;
   }
 
-  // setPlaceVerification(PlacePreview placeToReview) async {
-  //   Either<Failure, VerificationGroup> placeVerificationResult =
-  //       await _mapRepository.getPlaceVerification(
-  //           locId: placeToReview.locId, placeType: placeToReview.placeType);
-
-  //   placeVerificationResult.fold(
-  //       (failure) => FailureInterpreter().mapFailureToSnackbar(
-  //           failure, 'getPlaceVerification'), (verification) {
-  //     placeVerification.value = verification;
-  //   });
-  // }
-
-  verifyPlaceVisit({required BuildContext context}) async {
-    placePreview.value.visitVerified = await showPlaceVerificationDialog(
-      title: '장소에 해당하는 사진을 골라주세요',
-      context: context,
-    );
-
-    placePreview.refresh();
+  goToPhotoVerificationPage() async {
+    List<ImageItem>? imageAdded = await Get.toNamed(
+        Routes.MAP_IMAGE_VERIFICATION,
+        arguments: {'selectedImageList': selectedReviewImageList.toList()});
+    if (imageAdded != null) {
+      selectedReviewImageList.assignAll(imageAdded.toList());
+      // isPhotoReview.value = selectedReviewImageList.isNotEmpty;
+    }
   }
 
   createNewReview() async {
     late bool createReviewSucceed;
     Either<Failure, String> newReviewEither = await showLoading(() =>
-        _mapRepository.createPlaceReview(reviewUIModel: _makeNewReviewModel()));
+        _mapRepository.createPlaceReview(
+            reviewUIModel: _makeNewReviewModel(), uploadedImageRefs: []));
 
     createReviewSucceed = newReviewEither.fold((fail) {
       FailureInterpreter().mapFailureToSnackbar(fail, 'createNewPostDB');
@@ -268,7 +249,7 @@ class MapEditReviewController extends GetxController {
     });
 
     if (createReviewSucceed) {
-      await AuthController.to.setUserInfo();
+      await AuthController.to.setUserAuthInfo();
       Get.back();
       return;
     }
@@ -276,12 +257,18 @@ class MapEditReviewController extends GetxController {
 
   ReviewDetailUIModel _makeNewReviewModel() {
     return ReviewDetailUIModel(
+        reviewId: _reviewId,
         conimals: selectedConimalList,
         diseaseTypes: selectedDiseaseTypeSet.toList(),
         reviewItems: selectedReviewItems,
         reviewRate: selectedReviewRate.value,
         diseaseList: selectedDiseaseList,
-        placePreview: placePreview.value,
+        placeAddress: placeAddress.value,
+        placeId: placeId,
+        placeName: placeName.value,
+        placeThumbnail: placeThumbnail.value,
+        isPhotoReview: false,
+        reviewImageList: selectedReviewImageList,
         reviewDesc: '');
   }
 }

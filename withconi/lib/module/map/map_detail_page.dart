@@ -33,6 +33,7 @@ class MapDetailPage extends StatelessWidget {
               backgroundColor: WcColors.white,
               body: SafeArea(
                 child: NestedScrollView(
+                  // controller: _controller.pageScrollController,
                   headerSliverBuilder: (context, isopen) => [
                     SliverToBoxAdapter(
                       child: _getPlaceDescription(_controller),
@@ -66,8 +67,8 @@ class MapDetailPage extends StatelessWidget {
             width: 10,
           ),
           WcWideButtonWidget(
-              buttonText: '리뷰쓰기',
-              onTap: _controller.goToNewReviewPage,
+              buttonText: '이 장소 리뷰쓰기',
+              onTap: () => _controller.goToNewReviewPage(placeSelected: true),
               buttonWidth: WcWidth - 30 - 60,
               activeButtonColor: WcColors.blue100,
               active: true,
@@ -166,37 +167,35 @@ class MapDetailPage extends StatelessWidget {
                       Obx(
                         () => Column(
                           children: [
-                            InkWell(
-                              onTap: () {
-                                _controller.isBusinessHourInfoOpen.value =
-                                    !_controller.isBusinessHourInfoOpen.value;
-                              },
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      SvgPicture.asset(
-                                          'assets/icons/clock.svg'),
-                                      SizedBox(
-                                        width: 8,
-                                      ),
-                                      OpeningStatusText(
-                                        isOpen: true,
-                                        fontSize: 15,
-                                        hasIndicator: false,
-                                      ),
-                                      WcCircleDivider(
-                                        color: WcColors.grey100,
-                                        radius: 2,
-                                        margin:
-                                            EdgeInsets.symmetric(horizontal: 6),
-                                      ),
-                                    ],
-                                  ),
-                                  Column(
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    SvgPicture.asset('assets/icons/clock.svg'),
+                                    SizedBox(
+                                      width: 8,
+                                    ),
+                                    OpeningStatusText(
+                                      isOpen: true,
+                                      fontSize: 15,
+                                      hasIndicator: false,
+                                    ),
+                                    WcCircleDivider(
+                                      color: WcColors.grey100,
+                                      radius: 2,
+                                      margin:
+                                          EdgeInsets.symmetric(horizontal: 6),
+                                    ),
+                                  ],
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    _controller.openHourInfo.value =
+                                        !_controller.openHourInfo.value;
+                                  },
+                                  child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
@@ -218,16 +217,22 @@ class MapDetailPage extends StatelessWidget {
                                             SizedBox(
                                               width: 8,
                                             ),
-                                            SvgPicture.asset(
-                                              'assets/icons/arrow_down.svg',
-                                              width: 13,
-                                            ),
+                                            RotatedBox(
+                                              quarterTurns: (_controller
+                                                      .openHourInfo.value)
+                                                  ? 2
+                                                  : 0,
+                                              child: SvgPicture.asset(
+                                                'assets/icons/arrow_down.svg',
+                                                width: 13,
+                                              ),
+                                            )
                                           ],
                                         ),
                                       ),
                                       Offstage(
-                                        offstage: !_controller
-                                            .isBusinessHourInfoOpen.value,
+                                        offstage:
+                                            !_controller.openHourInfo.value,
                                         child: Padding(
                                           padding: const EdgeInsets.symmetric(
                                               vertical: 5),
@@ -248,9 +253,10 @@ class MapDetailPage extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                ],
-                              ),
+                                )
+                              ],
                             ),
+
                             // AnimatedSize(
                             //   curve: Curves.fastOutSlowIn,
                             //   duration: const Duration(milliseconds: 500),
@@ -313,12 +319,18 @@ class MapDetailPage extends StatelessWidget {
                                           style: TextStyle(height: 1.2),
                                         )),
                                     Padding(
-                                      padding: const EdgeInsets.only(left: 8),
-                                      child: SvgPicture.asset(
-                                        'assets/icons/arrow_down.svg',
-                                        width: 13,
-                                      ),
-                                    ),
+                                        padding: const EdgeInsets.only(
+                                            left: 8, top: 2),
+                                        child: RotatedBox(
+                                          quarterTurns: (_controller
+                                                  .openDetailAddress.value)
+                                              ? 2
+                                              : 0,
+                                          child: SvgPicture.asset(
+                                            'assets/icons/arrow_down.svg',
+                                            width: 13,
+                                          ),
+                                        )),
                                   ],
                                 ),
                               ),
@@ -344,22 +356,32 @@ class MapDetailPage extends StatelessWidget {
                           ],
                         ),
                       ),
-                      SizedBox(
-                        height: 30,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            SvgPicture.asset('assets/icons/phone.svg'),
-                            SizedBox(
-                              width: 8,
-                            ),
-                            Text(
-                              (_controller.placeDetail.value.phone.isEmpty)
-                                  ? '정보없음'
-                                  : '${_controller.placeDetail.value.phone}',
-                              style: TextStyle(),
-                            ),
-                          ],
+                      InkWell(
+                        onTap: () {
+                          if (_controller.placeDetail.value.phone.isNotEmpty) {
+                            Clipboard.setData(ClipboardData(
+                                text: _controller.placeDetail.value.phone));
+
+                            showCustomSnackbar(text: '전화번호가 복사되었어요');
+                          }
+                        },
+                        child: SizedBox(
+                          height: 30,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              SvgPicture.asset('assets/icons/phone.svg'),
+                              SizedBox(
+                                width: 8,
+                              ),
+                              Text(
+                                (_controller.placeDetail.value.phone.isEmpty)
+                                    ? '정보없음'
+                                    : '${_controller.placeDetail.value.phone}',
+                                style: TextStyle(height: 1.3),
+                              ),
+                            ],
+                          ),
                         ),
                       )
                     ],
@@ -450,14 +472,16 @@ class MapDetailPage extends StatelessWidget {
                       width: WcWidth,
                       height: 55,
                     ),
-                    PercentageGraph(
-                      graphWidth: WcWidth - 70,
-                      graphDataList: _controller
-                          .placeDetail.value.speciesChartData
-                          .map((chartData) => PercentageGraphData(
-                              graphColor: chartData.color,
-                              percent: chartData.percent))
-                          .toList(),
+                    Obx(
+                      () => PercentageGraph(
+                        graphWidth: WcWidth - 70,
+                        graphDataList: _controller
+                            .placeDetail.value.speciesChartData
+                            .map((chartData) => PercentageGraphData(
+                                graphColor: chartData.color,
+                                percent: chartData.percent))
+                            .toList(),
+                      ),
                     ),
                     Positioned(
                       left: 15,
@@ -480,38 +504,40 @@ class MapDetailPage extends StatelessWidget {
                 SizedBox(
                   height: 5,
                 ),
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: _controller.placeDetail.value.speciesChartData
-                        .map(
-                          (conimalData) => Row(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Text(
-                                conimalData.title,
-                                style: TextStyle(
-                                    fontFamily: WcFontFamily.notoSans,
-                                    fontSize: 15,
-                                    height: 1,
-                                    fontWeight: FontWeight.w500),
-                              ),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Text(
-                                '${conimalData.percent.round()}%',
-                                style: GoogleFonts.workSans(
-                                    height: 1,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 18),
-                              ),
-                            ],
-                          ),
-                        )
-                        .toList(),
+                Obx(
+                  () => Container(
+                    margin: EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: _controller.placeDetail.value.speciesChartData
+                          .map(
+                            (conimalData) => Row(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Text(
+                                  conimalData.title,
+                                  style: TextStyle(
+                                      fontFamily: WcFontFamily.notoSans,
+                                      fontSize: 15,
+                                      height: 1,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  '${conimalData.percent.round()}%',
+                                  style: GoogleFonts.workSans(
+                                      height: 1,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 18),
+                                ),
+                              ],
+                            ),
+                          )
+                          .toList(),
+                    ),
                   ),
                 )
               ],
@@ -537,41 +563,43 @@ class MapDetailPage extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                Card(
-                  elevation: 0,
-                  child: AspectRatio(
-                    aspectRatio: 2,
+                Obx(
+                  () => Card(
+                    elevation: 0,
                     child: AspectRatio(
-                      aspectRatio: 1,
-                      child: PieChart(
-                        PieChartData(
-                          pieTouchData: PieTouchData(
-                              touchCallback: _controller.onPieGraphTouched),
-                          borderData: FlBorderData(
-                            show: false,
+                      aspectRatio: 2,
+                      child: AspectRatio(
+                        aspectRatio: 1,
+                        child: PieChart(
+                          PieChartData(
+                            pieTouchData: PieTouchData(
+                                touchCallback: _controller.onPieGraphTouched),
+                            borderData: FlBorderData(
+                              show: false,
+                            ),
+                            sectionsSpace: 3,
+                            centerSpaceRadius: 45,
+                            sections: (_controller
+                                    .placeDetail.value.diseaseChartData.isEmpty)
+                                ? [
+                                    PieChartSectionData(
+                                        color: WcColors.grey80,
+                                        value: 100,
+                                        title: '',
+                                        radius: 30,
+                                        showTitle: false)
+                                  ]
+                                : _controller.placeDetail.value.diseaseChartData
+                                    .map((diseaseChartData) {
+                                    return PieChartSectionData(
+                                        color: diseaseChartData.color,
+                                        value:
+                                            diseaseChartData.percent.toDouble(),
+                                        title: diseaseChartData.title,
+                                        radius: 30,
+                                        showTitle: false);
+                                  }).toList(),
                           ),
-                          sectionsSpace: 3,
-                          centerSpaceRadius: 45,
-                          sections: (_controller
-                                  .placeDetail.value.diseaseChartData.isEmpty)
-                              ? [
-                                  PieChartSectionData(
-                                      color: WcColors.grey80,
-                                      value: 100,
-                                      title: '',
-                                      radius: 30,
-                                      showTitle: false)
-                                ]
-                              : _controller.placeDetail.value.diseaseChartData
-                                  .map((diseaseChartData) {
-                                  return PieChartSectionData(
-                                      color: diseaseChartData.color,
-                                      value:
-                                          diseaseChartData.percent.toDouble(),
-                                      title: diseaseChartData.title,
-                                      radius: 30,
-                                      showTitle: false);
-                                }).toList(),
                         ),
                       ),
                     ),
@@ -580,132 +608,136 @@ class MapDetailPage extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                Visibility(
-                  visible: _controller
-                      .placeDetail.value.diseaseHistoryList.isNotEmpty,
-                  replacement: SizedBox(
-                    width: double.infinity,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          '아직 방문 데이터가 없네요.',
-                          style: TextStyle(
-                              fontFamily: WcFontFamily.notoSans,
-                              fontSize: 18,
-                              height: 1.5,
-                              color: WcColors.grey180,
-                              fontWeight: FontWeight.w500),
-                        ),
-                        Text(
-                          '리뷰를 통해 첫 방문자가 되어주시겠어요?',
-                          style: TextStyle(
-                              fontFamily: WcFontFamily.notoSans,
-                              fontSize: 15,
-                              height: 1.8,
-                              color: WcColors.grey140,
-                              fontWeight: FontWeight.w400),
-                        ),
-                      ],
+                Obx(
+                  () => Visibility(
+                    visible: _controller
+                        .placeDetail.value.diseaseHistoryList.isNotEmpty,
+                    replacement: SizedBox(
+                      width: double.infinity,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            '아직 방문 데이터가 없네요.',
+                            style: TextStyle(
+                                fontFamily: WcFontFamily.notoSans,
+                                fontSize: 18,
+                                height: 1.5,
+                                color: WcColors.grey180,
+                                fontWeight: FontWeight.w500),
+                          ),
+                          Text(
+                            '리뷰를 통해 첫 방문자가 되어주시겠어요?',
+                            style: TextStyle(
+                                fontFamily: WcFontFamily.notoSans,
+                                fontSize: 15,
+                                height: 1.8,
+                                color: WcColors.grey140,
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  child: Column(
-                    children: _controller.placeDetail.value.diseaseHistoryList
-                        .map(
-                          (diseaseHistory) => CustomExpansionTile(
-                              textColor: WcColors.black,
-                              collapsedIconColor: WcColors.grey160,
-                              iconColor: WcColors.grey160,
-                              collapsedTextColor: WcColors.black,
-                              tilePadding: EdgeInsets.all(0),
-                              title: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Container(
-                                        width: 15,
-                                        height: 15,
-                                        decoration: BoxDecoration(
-                                            color: diseaseHistory
-                                                .diseaseType.color,
-                                            borderRadius:
-                                                BorderRadius.circular(3)),
-                                      ),
-                                      SizedBox(
-                                        width: 13,
-                                      ),
-                                      Text(
-                                        diseaseHistory.diseaseType.displayName,
-                                        style: TextStyle(
-                                            fontFamily: WcFontFamily.notoSans,
-                                            fontSize: 16,
-                                            height: 1.2,
-                                            fontWeight: FontWeight.w500,
-                                            color: WcColors.grey200),
-                                      ),
-                                    ],
-                                  ),
-                                  Text.rich(
-                                    TextSpan(children: [
-                                      TextSpan(
-                                          text:
-                                              '${diseaseHistory.totalDiseaseType}',
-                                          style: GoogleFonts.workSans(
-                                            fontSize: 16,
-                                            height: 1.2,
-                                            fontWeight: FontWeight.w500,
-                                          )),
-                                      TextSpan(
-                                        text: '마리',
-                                      )
-                                    ]),
-                                    style: TextStyle(
-                                      fontFamily: WcFontFamily.notoSans,
-                                      fontSize: 16,
-                                      height: 1.2,
-                                      fontWeight: FontWeight.w400,
-                                      color: Color.fromARGB(255, 46, 47, 48),
+                    child: Column(
+                      children: _controller.placeDetail.value.diseaseHistoryList
+                          .map(
+                            (diseaseHistory) => CustomExpansionTile(
+                                textColor: WcColors.black,
+                                collapsedIconColor: WcColors.grey160,
+                                iconColor: WcColors.grey160,
+                                collapsedTextColor: WcColors.black,
+                                tilePadding: EdgeInsets.all(0),
+                                title: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Container(
+                                          width: 13,
+                                          height: 13,
+                                          decoration: BoxDecoration(
+                                              color: diseaseHistory
+                                                  .diseaseType.color,
+                                              borderRadius:
+                                                  BorderRadius.circular(3)),
+                                        ),
+                                        SizedBox(
+                                          width: 13,
+                                        ),
+                                        Text(
+                                          diseaseHistory
+                                              .diseaseType.displayName,
+                                          style: TextStyle(
+                                              fontFamily: WcFontFamily.notoSans,
+                                              fontSize: 16,
+                                              height: 1.2,
+                                              fontWeight: FontWeight.w500,
+                                              color: WcColors.grey200),
+                                        ),
+                                      ],
                                     ),
-                                  ),
-                                ],
-                              ),
-                              children: diseaseHistory.diseaseHistoryItems
-                                  .map(
-                                    (item) => Container(
-                                        margin: EdgeInsets.only(
-                                            top: 10,
-                                            bottom: 10,
-                                            right: 40,
-                                            left: 10),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Expanded(
-                                                child: Padding(
-                                              padding: const EdgeInsets.only(
-                                                  right: 20),
-                                              child: Text(
-                                                item.diseaseName,
-                                                softWrap: false,
-                                              ),
+                                    Text.rich(
+                                      TextSpan(children: [
+                                        TextSpan(
+                                            text:
+                                                '${diseaseHistory.totalDiseaseType} ',
+                                            style: GoogleFonts.workSans(
+                                              fontSize: 16,
+                                              height: 1,
+                                              fontWeight: FontWeight.w500,
                                             )),
-                                            Text(
-                                              item.diseasePercent.toString() +
-                                                  '%',
-                                              style: GoogleFonts.workSans(
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.w500),
-                                            ),
-                                          ],
-                                        )),
-                                  )
-                                  .toList()),
-                        )
-                        .toList(),
+                                        TextSpan(
+                                          text: '마리',
+                                        )
+                                      ]),
+                                      style: TextStyle(
+                                        fontFamily: WcFontFamily.notoSans,
+                                        fontSize: 15,
+                                        height: 1,
+                                        fontWeight: FontWeight.w400,
+                                        color: Color.fromARGB(255, 46, 47, 48),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                children: diseaseHistory.diseaseTypeItemList
+                                    .map(
+                                      (item) => Container(
+                                          margin: EdgeInsets.only(
+                                              top: 10,
+                                              bottom: 10,
+                                              right: 40,
+                                              left: 10),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Expanded(
+                                                  child: Padding(
+                                                padding: const EdgeInsets.only(
+                                                    right: 20),
+                                                child: Text(
+                                                  item.diseaseName,
+                                                  softWrap: false,
+                                                ),
+                                              )),
+                                              Text(
+                                                item.diseasePercent.toString() +
+                                                    '%',
+                                                style: GoogleFonts.workSans(
+                                                    fontSize: 15,
+                                                    fontWeight:
+                                                        FontWeight.w500),
+                                              ),
+                                            ],
+                                          )),
+                                    )
+                                    .toList()),
+                          )
+                          .toList(),
+                    ),
                   ),
                 )
               ],
@@ -741,31 +773,40 @@ class MapDetailPage extends StatelessWidget {
                         SizedBox(
                           width: 8,
                         ),
-                        Text(
-                          _controller.placeDetail.value.totalReviewCount
-                              .toString(),
-                          style: GoogleFonts.workSans(
-                              height: 1.5,
-                              fontWeight: FontWeight.w600,
-                              color: WcColors.grey180,
-                              fontSize: 18),
+                        Obx(
+                          () => Text(
+                            _controller.placeDetail.value.totalReviewCount
+                                .toString(),
+                            style: GoogleFonts.workSans(
+                                height: 1.5,
+                                fontWeight: FontWeight.w600,
+                                color: WcColors.grey180,
+                                fontSize: 18),
+                          ),
                         ),
                       ],
                     ),
-                    Container(
-                      alignment: Alignment.center,
-                      width: 80,
-                      height: 30,
-                      decoration: BoxDecoration(
-                          color: WcColors.blue40,
-                          borderRadius: BorderRadius.circular(5)),
-                      child: Text(
-                        '리뷰쓰기',
-                        style: TextStyle(
-                            fontFamily: WcFontFamily.notoSans,
-                            fontWeight: FontWeight.w500,
-                            color: WcColors.blue100,
-                            fontSize: 14),
+                    Offstage(
+                      offstage: !_controller.showReviewHistory.value,
+                      child: GestureDetector(
+                        onTap: () =>
+                            _controller.goToNewReviewPage(placeSelected: true),
+                        child: Container(
+                          alignment: Alignment.center,
+                          width: 80,
+                          height: 30,
+                          decoration: BoxDecoration(
+                              color: WcColors.blue40,
+                              borderRadius: BorderRadius.circular(5)),
+                          child: Text(
+                            '리뷰쓰기',
+                            style: TextStyle(
+                                fontFamily: WcFontFamily.notoSans,
+                                fontWeight: FontWeight.w500,
+                                color: WcColors.blue100,
+                                fontSize: 14),
+                          ),
+                        ),
                       ),
                     )
                   ],
@@ -795,12 +836,12 @@ class MapDetailPage extends StatelessWidget {
                               .toList(),
                         ),
                         CustomCheckBox(
-                          value: _controller.onlyVisitVerified.value,
-                          isSelected: _controller.onlyVisitVerified.value,
+                          value: _controller.onlyPhotoReview.value,
+                          isSelected: _controller.onlyPhotoReview.value,
                           onChanged: (selected) {
                             _controller.onOnlyVerifiedReviewChanged(!selected);
                           },
-                          text: '방문인증 리뷰만 보기',
+                          text: '사진인증된 리뷰만 보기',
                           mainAxisAlignment: MainAxisAlignment.end,
                           iconHeight: 18,
                           textSize: 15,
@@ -840,13 +881,15 @@ class MapDetailPage extends StatelessWidget {
                                     SizedBox(
                                       width: 8,
                                     ),
-                                    Text(
-                                      '${_controller.placeDetail.value.reviewHistoryMap[reviewRate]!.totalReviewRateCount}',
-                                      style: GoogleFonts.workSans(
-                                          fontSize: 16,
-                                          height: 1.2,
-                                          fontWeight: FontWeight.w400,
-                                          color: WcColors.grey180),
+                                    Obx(
+                                      () => Text(
+                                        '${_controller.placeDetail.value.reviewHistoryMap[reviewRate]!.totalReviewRateCount}',
+                                        style: GoogleFonts.workSans(
+                                            fontSize: 16,
+                                            height: 1.2,
+                                            fontWeight: FontWeight.w400,
+                                            color: WcColors.grey180),
+                                      ),
                                     ),
                                     Text(
                                       '명',
@@ -860,42 +903,45 @@ class MapDetailPage extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              body: Column(
-                                children:
-                                    reviewRate.reviewItems.map((reviewItem) {
-                                  return Container(
-                                      margin: EdgeInsets.only(
-                                          top: 10,
-                                          bottom: 10,
-                                          right: 30,
-                                          left: 10),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Text(reviewItem
-                                              .displayText(reviewRate)),
-                                          Container(
-                                            height: 22,
-                                            width: 45,
-                                            alignment: Alignment.center,
-                                            decoration: BoxDecoration(
-                                                color: WcColors.grey40,
-                                                borderRadius:
-                                                    BorderRadius.circular(15)),
-                                            child: Text(
-                                              '${_controller.placeDetail.value.reviewHistoryMap[reviewRate]!.reviewHistoryMap[reviewItem]}',
-                                              style: GoogleFonts.workSans(
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: WcColors.grey180),
+                              body: Obx(
+                                () => Column(
+                                  children:
+                                      reviewRate.reviewItems.map((reviewItem) {
+                                    return Container(
+                                        margin: EdgeInsets.only(
+                                            top: 10,
+                                            bottom: 10,
+                                            right: 30,
+                                            left: 10),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Text(reviewItem
+                                                .displayText(reviewRate)),
+                                            Container(
+                                              height: 22,
+                                              width: 45,
+                                              alignment: Alignment.center,
+                                              decoration: BoxDecoration(
+                                                  color: WcColors.grey40,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          15)),
+                                              child: Text(
+                                                '${_controller.placeDetail.value.reviewHistoryMap[reviewRate]!.reviewHistoryMap[reviewItem]}',
+                                                style: GoogleFonts.workSans(
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w500,
+                                                    color: WcColors.grey180),
+                                              ),
                                             ),
-                                          ),
-                                        ],
-                                      ));
-                                }).toList(),
+                                          ],
+                                        ));
+                                  }).toList(),
+                                ),
                               ),
                             );
                           }).toList(),
@@ -1134,138 +1180,146 @@ class MapDetailPage extends StatelessWidget {
                   // ),
                 ],
               ),
-              Visibility(
-                visible: AuthController.to.userInfo!.isWrittenReview,
-                child: Positioned(
-                  top: 0,
-                  child: Container(
-                    height: 380,
-                    width: WcWidth,
-                    color: Colors.transparent,
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 6, sigmaY: -6),
-                      child: Container(
-                        alignment: Alignment.center,
-                        color: WcColors.grey40.withOpacity(0.5),
+              Obx(
+                () => Visibility(
+                  visible: !_controller.showReviewHistory.value,
+                  child: Positioned(
+                    top: 0,
+                    child: Container(
+                      height: 380,
+                      width: WcWidth,
+                      color: Colors.transparent,
+                      child: BackdropFilter(
+                        filter: ImageFilter.blur(sigmaX: 10, sigmaY: -6),
+                        child: Container(
+                          alignment: Alignment.center,
+                          color: WcColors.white.withOpacity(0.7),
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
-              Visibility(
-                // visible: !AuthController.to.userInfo!.isWrittenReview,
-                visible: AuthController.to.userInfo!.isWrittenReview,
-                child: Positioned(
-                  top: 35,
-                  child: Container(
-                      width: WcWidth,
-                      color: Colors.transparent,
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SvgPicture.asset('assets/icons/paw.svg'),
-                              SizedBox(
-                                width: 5,
+              Obx(
+                () => Visibility(
+                  // visible: !AuthController.to.userInfo!.isWrittenReview,
+                  visible: !_controller.showReviewHistory.value,
+                  child: Positioned(
+                    top: 35,
+                    child: Container(
+                        width: WcWidth,
+                        color: Colors.transparent,
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SvgPicture.asset('assets/icons/paw.svg'),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  '소중한 리뷰를 남겨주시겠어요?',
+                                  style: TextStyle(
+                                      fontFamily: WcFontFamily.notoSans,
+                                      color: WcColors.black,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 5),
+                            Text.rich(
+                              TextSpan(children: [
+                                TextSpan(text: '리뷰 '),
+                                TextSpan(
+                                    text: '1',
+                                    style: GoogleFonts.workSans(
+                                        fontSize: 17,
+                                        color: WcColors.blue100,
+                                        fontWeight: FontWeight.w500)),
+                                TextSpan(text: '개만 남기면 모든 리뷰를 볼 수 있어요.'),
+                              ]),
+                              style: TextStyle(
+                                fontFamily: WcFontFamily.notoSans,
+                                color: WcColors.grey200,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w500,
                               ),
-                              Text(
-                                '소중한 리뷰를 남겨주시겠어요?',
-                                style: TextStyle(
-                                    fontFamily: WcFontFamily.notoSans,
-                                    color: WcColors.black,
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w600),
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            WcWideButtonWidget(
+                                buttonText: '내 리뷰 쓰러 가기',
+                                buttonHeight: 43,
+                                buttonWidth: 200,
+                                onTap: () => _controller.goToNewReviewPage(
+                                    placeSelected: false),
+                                activeButtonColor:
+                                    WcColors.purple100.withOpacity(0.7),
+                                active: true,
+                                activeTextColor: WcColors.white),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Text.rich(
+                              TextSpan(children: [
+                                TextSpan(text: '저희는 '),
+                                TextSpan(
+                                    text: '영리적 목적 없이',
+                                    style: TextStyle(
+                                      color: WcColors.black,
+                                      fontWeight: FontWeight.w500,
+                                    )),
+                                TextSpan(text: ' 코니멀들을 위해'),
+                              ]),
+                              style: TextStyle(
+                                fontFamily: WcFontFamily.notoSans,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w400,
                               ),
-                            ],
-                          ),
-                          SizedBox(height: 5),
-                          Text.rich(
-                            TextSpan(children: [
-                              TextSpan(text: '리뷰 '),
-                              TextSpan(
-                                  text: '1개',
-                                  style: TextStyle(
-                                    color: WcColors.blue100,
-                                  )),
-                              TextSpan(text: '를 남기면 모든 리뷰를 볼 수 있어요.'),
-                            ]),
-                            style: TextStyle(
-                              fontFamily: WcFontFamily.notoSans,
-                              color: WcColors.grey200,
-                              fontSize: 15,
-                              fontWeight: FontWeight.w500,
                             ),
-                          ),
-                          SizedBox(
-                            height: 15,
-                          ),
-                          WcWideButtonWidget(
-                              buttonText: '내 리뷰 쓰러 가기',
-                              buttonHeight: 43,
-                              buttonWidth: 200,
-                              onTap: () {},
-                              activeButtonColor:
-                                  WcColors.purple100.withOpacity(0.7),
-                              active: true,
-                              activeTextColor: WcColors.white),
-                          SizedBox(
-                            height: 15,
-                          ),
-                          Text.rich(
-                            TextSpan(children: [
-                              TextSpan(text: '저희는 '),
-                              TextSpan(
-                                  text: '영리적 목적 없이',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                  )),
-                              TextSpan(text: ' 코니멀들을 위해'),
-                            ]),
-                            style: TextStyle(
-                              fontFamily: WcFontFamily.notoSans,
-                              fontSize: 15,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                          Text.rich(
-                            TextSpan(children: [
-                              TextSpan(
-                                  text: '많은 정보가 공유',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                  )),
-                              TextSpan(text: '될 수 있도록 힘쓰고 있어요.'),
-                            ]),
-                            style: TextStyle(
-                              fontFamily: WcFontFamily.notoSans,
-                              color: WcColors.grey200,
-                              fontSize: 15,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                          Text.rich(
-                            TextSpan(children: [
-                              TextSpan(
-                                text: '리뷰 하나가 ',
+                            Text.rich(
+                              TextSpan(children: [
+                                TextSpan(
+                                    text: '많은 정보가 공유',
+                                    style: TextStyle(
+                                      color: WcColors.black,
+                                      fontWeight: FontWeight.w500,
+                                    )),
+                                TextSpan(text: '될 수 있도록 힘쓰고 있어요.'),
+                              ]),
+                              style: TextStyle(
+                                fontFamily: WcFontFamily.notoSans,
+                                color: WcColors.grey200,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w400,
                               ),
-                              TextSpan(
-                                  text: '코니멀들에게 큰 도움',
-                                  style: TextStyle(
-                                    // color: WcColors.black,
-                                    fontWeight: FontWeight.w600,
-                                  )),
-                              TextSpan(text: '이 됩니다.'),
-                            ]),
-                            style: TextStyle(
-                              fontFamily: WcFontFamily.notoSans,
-                              color: WcColors.grey200,
-                              fontSize: 15,
-                              fontWeight: FontWeight.w400,
                             ),
-                          ),
-                        ],
-                      )),
+                            Text.rich(
+                              TextSpan(children: [
+                                TextSpan(
+                                  text: '리뷰 하나가 ',
+                                ),
+                                TextSpan(
+                                    text: '코니멀들에게 큰 도움',
+                                    style: TextStyle(
+                                      color: WcColors.black,
+                                      fontWeight: FontWeight.w500,
+                                    )),
+                                TextSpan(text: '이 됩니다.'),
+                              ]),
+                              style: TextStyle(
+                                fontFamily: WcFontFamily.notoSans,
+                                color: WcColors.grey180,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ],
+                        )),
+                  ),
                 ),
               ),
             ],

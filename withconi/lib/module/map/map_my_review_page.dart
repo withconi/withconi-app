@@ -4,13 +4,11 @@ import 'package:withconi/data/enums/enum.dart';
 import 'package:withconi/module/community/controllers/community_my_post_controller.dart';
 import 'package:withconi/module/map/controllers/map_my_review_controller.dart';
 import 'package:withconi/import_basic.dart';
-import 'package:withconi/module/ui_model/review_detail_ui_model.dart';
+import 'package:withconi/module/ui_model/review_preview_ui_model.dart';
 import '../theme/text_theme.dart';
 import '../../global_widgets/appbar/appbar.dart';
 import '../../global_widgets/button/icon_button.dart';
-import '../../global_widgets/button/place_verification_button.dart';
-import '../../global_widgets/listtile/post_list_tile.dart';
-import 'map_search_page.dart';
+import '../../global_widgets/button/photo_verification_button.dart';
 
 class MapMyReviewPage extends StatelessWidget {
   const MapMyReviewPage({Key? key}) : super(key: key);
@@ -24,75 +22,99 @@ class MapMyReviewPage extends StatelessWidget {
         title: '',
       ),
       backgroundColor: WcColors.white,
-      body: Obx(
-        () => SingleChildScrollView(
-          physics: const AlwaysScrollableScrollPhysics(),
-          controller: _controller.scrollController.value,
-          child: SafeArea(
-            bottom: false,
-            child: ConstrainedBox(
-              constraints: BoxConstraints(minHeight: WcHeight),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
+      body: SingleChildScrollView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        child: SafeArea(
+          bottom: false,
+          child: ConstrainedBox(
+            constraints: BoxConstraints(minHeight: WcHeight),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
                     width: WcWidth,
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20, vertical: 15),
-                    child: const Text(
-                      '작성한 리뷰',
-                      style: TextStyle(
-                          fontFamily: WcFontFamily.notoSans,
-                          color: WcColors.black,
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          height: 1.4),
-                    ),
-                  ),
-                  Container(
-                    width: WcWidth,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 22, vertical: 15),
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Obx(
-                          () => Text(
-                            '${_controller.totalReviewNum}',
-                            style: GoogleFonts.workSans(
+                        const Text(
+                          '내 리뷰',
+                          style: TextStyle(
+                              fontFamily: WcFontFamily.notoSans,
                               color: WcColors.black,
                               fontSize: 24,
-                              height: 1,
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.bold,
+                              height: 1.4),
+                        ),
+                        SizedBox(
+                          width: 15,
+                        ),
+                        GestureDetector(
+                          onTap: _controller.goToNewReviewPage,
+                          child: Container(
+                            alignment: Alignment.center,
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 15, vertical: 6),
+                            decoration: BoxDecoration(
+                                color: WcColors.blue40,
+                                borderRadius: BorderRadius.circular(5)),
+                            child: Text(
+                              '리뷰쓰기',
+                              style: TextStyle(
+                                  fontFamily: WcFontFamily.notoSans,
+                                  fontWeight: FontWeight.w600,
+                                  letterSpacing: 0.1,
+                                  color: Color.fromARGB(255, 0, 89, 199),
+                                  fontSize: 15),
                             ),
                           ),
-                        ),
-                        Text(
-                          '개',
+                        )
+                      ],
+                    )),
+                Container(
+                  width: WcWidth,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 22, vertical: 15),
+                  child: Row(
+                    children: [
+                      Obx(
+                        () => Text(
+                          '${_controller.totalReviewNum}',
                           style: GoogleFonts.workSans(
                             color: WcColors.black,
-                            fontSize: 22,
-                            fontWeight: FontWeight.w600,
+                            fontSize: 24,
+                            height: 1,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                      Text(
+                        '개',
+                        style: GoogleFonts.workSans(
+                          color: WcColors.black,
+                          fontSize: 22,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
                   ),
-                  Obx(
-                    () => ListView.builder(
-                        cacheExtent: 1000,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: _controller.myReviewList.length,
-                        shrinkWrap: true,
-                        itemBuilder: ((context, index) {
-                          ReviewDetailUIModel review =
-                              _controller.myReviewList[index];
-                          return MyReviewListTile(
-                            review: review,
-                          );
-                        })),
-                  )
-                ],
-              ),
+                ),
+                Obx(
+                  () => ListView.builder(
+                      cacheExtent: 1000,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: _controller.myReviewList.length,
+                      shrinkWrap: true,
+                      itemBuilder: ((context, index) {
+                        return MyReviewListTile(
+                          onTapVerificationButton: () =>
+                              _controller.goToPhotoVerificationPage(index),
+                          review: _controller.myReviewList[index],
+                        );
+                      })),
+                )
+              ],
             ),
           ),
         ),
@@ -102,12 +124,12 @@ class MapMyReviewPage extends StatelessWidget {
 }
 
 class MyReviewListTile extends StatelessWidget {
-  MyReviewListTile({
-    Key? key,
-    required this.review,
-  }) : super(key: key);
+  MyReviewListTile(
+      {Key? key, required this.review, required this.onTapVerificationButton})
+      : super(key: key);
 
-  ReviewDetailUIModel review;
+  ReviewPreviewUIModel review;
+  void Function() onTapVerificationButton;
 
   @override
   Widget build(BuildContext context) {
@@ -117,7 +139,7 @@ class MyReviewListTile extends StatelessWidget {
       },
       child: Container(
         alignment: Alignment.center,
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 23),
         decoration: const BoxDecoration(
             color: WcColors.white,
             border: Border(bottom: BorderSide(color: WcColors.grey60))),
@@ -132,19 +154,21 @@ class MyReviewListTile extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(review.placePreview!.name,
+                      Text(review.placeName,
                           style: const TextStyle(
                               fontFamily: WcFontFamily.notoSans,
                               fontSize: 17,
+                              height: 1,
                               fontWeight: FontWeight.w500)),
                       const SizedBox(
-                        height: 3,
+                        height: 12,
                       ),
-                      Text(review.placePreview!.address,
+                      Text(review.placeAddress,
                           style: const TextStyle(
                               fontFamily: WcFontFamily.notoSans,
-                              color: WcColors.grey120,
+                              color: WcColors.grey140,
                               fontSize: 14,
+                              height: 1,
                               overflow: TextOverflow.ellipsis,
                               fontWeight: FontWeight.w400))
                     ],
@@ -153,14 +177,14 @@ class MyReviewListTile extends StatelessWidget {
                 const SizedBox(
                   width: 10,
                 ),
-                PlaceVerificationButton(
-                  visitVerified: review.placePreview!.visitVerified,
-                  onTap: () {},
+                PhotoVerificationButton(
+                  isPhotoReview: review.isPhotoReview,
+                  onTap: onTapVerificationButton,
                 ),
               ],
             ),
             const SizedBox(
-              height: 15,
+              height: 8,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -176,7 +200,7 @@ class MyReviewListTile extends StatelessWidget {
                           borderRadius: BorderRadius.circular(5)),
                       child: Row(children: [
                         Container(
-                          margin: const EdgeInsets.only(top: 0.5),
+                          margin: const EdgeInsets.only(bottom: 0.3),
                           child: SvgPicture.asset(
                             review.reviewRate!.activeIconSrc,
                             height: 18,
@@ -190,8 +214,9 @@ class MyReviewListTile extends StatelessWidget {
                                 .displayText(review.reviewRate!),
                             style: const TextStyle(
                                 fontFamily: WcFontFamily.notoSans,
-                                color: WcColors.grey160,
+                                color: WcColors.grey180,
                                 fontSize: 13.5,
+                                height: 1,
                                 overflow: TextOverflow.ellipsis,
                                 fontWeight: FontWeight.w500)),
                       ]),

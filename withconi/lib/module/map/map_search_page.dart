@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter_naver_map/flutter_naver_map.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 import 'package:lottie/lottie.dart';
 import 'package:withconi/core/tools/helpers/search_highlighter.dart';
@@ -31,6 +32,7 @@ class MapSearchPage extends StatelessWidget {
         textEditingController: _controller.placeNameTextController,
         onClearTap: _controller.clearResult,
         onTextChanged: _controller.onSearchChanged,
+        // onTextFieldTap: _controller.onSearchBarTap,
       ),
       resizeToAvoidBottomInset: false,
       backgroundColor: WcColors.white,
@@ -40,9 +42,20 @@ class MapSearchPage extends StatelessWidget {
           child: SizedBox(
             width: WcWidth,
             height: WcHeight,
-            child: Stack(
-                fit: StackFit.passthrough,
-                children: [_getWidgetByState(_controller)]),
+            child: Stack(fit: StackFit.loose, children: [
+              _getWidgetByState(_controller),
+              Positioned(
+                bottom: 25,
+                right: 20,
+                child: Obx(
+                  () => SetLocationButton(
+                    pageStatus: _controller.buttonStatus.value,
+                    // isLocationChanged: _controller.isLocationChanged.value,
+                    onTap: _controller.onTapSearchPinButton,
+                  ),
+                ),
+              ),
+            ]),
           ),
         ),
       ),
@@ -56,32 +69,21 @@ class MapSearchPage extends StatelessWidget {
           alignment: Alignment.center,
           children: [
             MyNaverMapView(
+              baseSearchLocation: _controller.baseLocation,
               onMapCreated: _controller.onMapCreated,
               onCameraChange: _controller.onCameraChange,
-            ),
-            Positioned(
-              bottom: 25,
-              left: 20,
-              child: Obx(
-                () => SetLocationButton(
-                  pageStatus: _controller.status,
-                  isLocationChanged: _controller.isLocationChanged.value,
-                  onTap: _controller.changePageStatus,
-                ),
-              ),
             ),
             Positioned(
               child: MyLocationButton(
                 onTap: _controller.onCurrentLocationButtonTap,
               ),
-              bottom: 90,
-              right: 0,
+              bottom: 85,
+              right: 3,
             ),
             Center(
-              child: Icon(
-                Icons.location_on,
-                size: 60,
-                color: Color.fromARGB(255, 0, 93, 206),
+              child: Image.asset(
+                'assets/icons/location_pin.png',
+                width: 33,
               ),
             ),
           ],
@@ -97,7 +99,7 @@ class MapSearchPage extends StatelessWidget {
                 itemCount: placeSearched.length,
                 shrinkWrap: false,
                 itemBuilder: (context, index) => PlaceSimpleListTile(
-                  baseLocation: _controller.baseLocation.value,
+                  baseLocation: _controller.baseLocation,
                   keywords: _controller.searchKeyword,
                   onTap: _controller.onPlaceSelected,
                   index: index,
@@ -123,17 +125,6 @@ class MapSearchPage extends StatelessWidget {
                         ),
                       ))
                   : SizedBox.shrink(),
-              Positioned(
-                bottom: 25,
-                right: 20,
-                child: Obx(
-                  () => SetLocationButton(
-                    pageStatus: _controller.status,
-                    isLocationChanged: _controller.isLocationChanged.value,
-                    onTap: _controller.changePageStatus,
-                  ),
-                ),
-              ),
             ],
           )),
     );
@@ -143,70 +134,72 @@ class MapSearchPage extends StatelessWidget {
 class SetLocationButton extends StatelessWidget {
   SetLocationButton({
     Key? key,
-    required this.isLocationChanged,
+    // required this.isLocationChanged,
     required this.onTap,
     required this.pageStatus,
+    // required this.pageStatus,
   }) : super(key: key);
-  void Function(PageStatus) onTap;
-  bool isLocationChanged;
+  void Function() onTap;
+  // bool isLocationChanged;
+
   PageStatus pageStatus;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (isLocationChanged)
-          ? () {
-              onTap.call(pageStatus);
-            }
-          : null,
+      onTap: () {
+        onTap.call();
+      },
       child: Container(
         alignment: Alignment.center,
-        width: (isLocationChanged)
-            ? (pageStatus != PageStatus.init())
-                ? 170
-                : WcWidth - 40
-            : WcWidth - 40,
-        height: 55,
+        width: (pageStatus == PageStatus.init()) ? WcWidth - 40 : 205,
+        height: 53,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Icon(
-              Icons.my_location_rounded,
-              size: 23,
-              color: (isLocationChanged) ? WcColors.white : WcColors.black,
+              (pageStatus == PageStatus.init())
+                  ? Icons.my_location_rounded
+                  : Icons.location_on,
+              size: 22,
+              color: WcColors.white,
             ),
             SizedBox(
-              width: 10,
+              width: 8,
             ),
             Text(
-              (isLocationChanged)
-                  ? (pageStatus != PageStatus.init())
-                      ? '다른 위치 설정'
-                      : '이 장소 기준으로 검색하기'
-                  : '검색할 위치로 핀을 옮겨주세요',
+              (pageStatus == PageStatus.init())
+                  ? '이 장소 기준으로 검색'
+                  : '새로운 장소 기준 설정',
               style: TextStyle(
                 fontFamily: WcFontFamily.notoSans,
                 fontSize: 16,
                 height: 1.3,
                 fontWeight: FontWeight.w500,
-                color: (isLocationChanged) ? WcColors.white : WcColors.black,
+                color: WcColors.white,
               ),
             ),
             SizedBox(
-              width: 12,
+              width: 8,
             ),
           ],
         ),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-          color: (isLocationChanged) ? WcColors.blue100 : WcColors.white,
+          borderRadius: BorderRadius.circular(13),
+          color: WcColors.blue100,
           boxShadow: const [
+            // BoxShadow(
+            //   color: Color.fromARGB(35, 0, 0, 0),
+            //   spreadRadius: -1,
+            //   blurRadius: 30,
+            //   offset: Offset(0, 0),
+            // ),
+
             BoxShadow(
-              color: Color.fromARGB(35, 0, 0, 0),
-              spreadRadius: -1,
-              blurRadius: 30,
-              offset: Offset(0, 0),
+              color: Color.fromARGB(40, 0, 0, 0),
+              spreadRadius: -3,
+              blurRadius: 20,
             ),
           ],
         ),
@@ -224,7 +217,7 @@ class PlaceSimpleListTile extends StatelessWidget {
       required this.keywords,
       required this.place})
       : super(key: key);
-  PlacePreviewUiModel place;
+  PlacePreviewUIModel place;
 
   int index;
   void Function(int) onTap;

@@ -2,23 +2,15 @@
 import 'dart:ui';
 
 import 'package:flutter_svg/svg.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:lottie/lottie.dart';
 import 'package:withconi/data/enums/enum.dart';
 import 'package:withconi/global_widgets/button/item_text_button.dart';
-import 'package:withconi/module/auth/auth_controller.dart';
-import 'package:withconi/module/community/controllers/community_new_post_controller.dart';
 import 'package:withconi/module/map/controllers/map_edit_review_controller.dart';
-import 'package:withconi/module/map/controllers/map_new_review_controller.dart';
 import 'package:withconi/import_basic.dart';
-import 'package:withconi/module/ui_model/ui_model_abstract/review_ui_class.dart';
 import 'package:withconi/module/theme/text_theme.dart';
 import 'package:withconi/global_widgets/appbar/appbar.dart';
-import 'package:withconi/global_widgets/button/text_radio_button.dart';
 import 'package:withconi/global_widgets/button/wide_button.dart';
 import '../../global_widgets/button/check_selection_button.dart';
-import '../../global_widgets/button/place_verification_button.dart';
-import '../../global_widgets/button/text_button.dart';
+import '../../global_widgets/button/photo_verification_button.dart';
 import '../../global_widgets/checkbox/custom_checkbox.dart';
 import '../../global_widgets/scaffold/loading_scaffold.dart';
 import 'widgets/review_rate_button.dart';
@@ -32,7 +24,7 @@ class MapEditReviewPage extends StatelessWidget {
     return Obx(() => LoadingScaffold(
           isLoading: _controller.isLoading.value,
           appBar: WcAppBar(
-            title: '리뷰 작성하기',
+            title: '리뷰 수정하기',
             leading: SvgPicture.asset(
               'assets/icons/arrow_back.svg',
               color: WcColors.grey200,
@@ -48,88 +40,65 @@ class MapEditReviewPage extends StatelessWidget {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Obx(
-                        () => Container(
-                          margin: EdgeInsets.only(bottom: 15),
-                          height: 60,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  Container(
-                                    width: 55,
-                                    height: 55,
-                                    decoration: BoxDecoration(
-                                        color: WcColors.grey40,
-                                        image: DecorationImage(
-                                          image: _controller.placePreview.value
-                                              .thumbnailImage.getImageByType,
-                                          fit: BoxFit.cover,
-                                        ),
-                                        borderRadius: BorderRadius.circular(5)),
-                                    child: (!_controller
-                                            .placePreview.value.visitVerified)
-                                        ? SizedBox.shrink()
-                                        : ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                            // make sure we apply clip it properly
-                                            child: BackdropFilter(
-                                              filter: ImageFilter.blur(
-                                                  sigmaX: 30, sigmaY: 10),
-                                              child: Container(
-                                                alignment: Alignment.center,
-                                                color: WcColors.grey40
-                                                    .withOpacity(0.3),
-                                              ),
-                                            ),
-                                          ),
-                                  ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        _controller.placePreview.value.name,
+                      Container(
+                        margin: EdgeInsets.only(bottom: 15),
+                        height: 60,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Container(
+                                  width: 55,
+                                  height: 55,
+                                  decoration: BoxDecoration(
+                                      color: WcColors.grey40,
+                                      image: DecorationImage(
+                                        image: _controller.placeThumbnail.value
+                                            .getImageByType,
+                                        fit: BoxFit.cover,
+                                      ),
+                                      borderRadius: BorderRadius.circular(5)),
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      _controller.placeName.value,
+                                      style: TextStyle(
+                                          fontFamily: WcFontFamily.notoSans,
+                                          fontSize: 16,
+                                          height: 1.8,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                    SizedBox(
+                                      width: 150,
+                                      height: 30,
+                                      child: Text(
+                                        _controller.placeAddress.value,
                                         style: TextStyle(
                                             fontFamily: WcFontFamily.notoSans,
-                                            fontSize: 16,
+                                            fontSize: 13.5,
                                             height: 1.8,
-                                            fontWeight: FontWeight.w500),
+                                            overflow: TextOverflow.fade,
+                                            fontWeight: FontWeight.w400),
                                       ),
-                                      SizedBox(
-                                        width: 150,
-                                        height: 30,
-                                        child: Text(
-                                          _controller
-                                              .placePreview.value.address,
-                                          style: TextStyle(
-                                              fontFamily: WcFontFamily.notoSans,
-                                              fontSize: 13.5,
-                                              height: 1.8,
-                                              overflow: TextOverflow.fade,
-                                              fontWeight: FontWeight.w400),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            Obx(
+                              () => PhotoVerificationButton(
+                                isPhotoReview: _controller
+                                    .selectedReviewImageList.isNotEmpty,
+                                onTap: _controller.goToPhotoVerificationPage,
                               ),
-                              PlaceVerificationButton(
-                                visitVerified: _controller
-                                    .placePreview.value.visitVerified,
-                                onTap: () {
-                                  _controller.verifyPlaceVisit(
-                                    context: context,
-                                  );
-                                },
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                       Divider(
@@ -168,8 +137,7 @@ class MapEditReviewPage extends StatelessWidget {
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 10.0),
                                   child: Row(
-                                    children: AuthController
-                                        .to.userInfo!.conimals
+                                    children: _controller.previousConimalList
                                         .map(
                                           (e) => VisitedConimalSelectionButton(
                                             selected: _controller
@@ -220,11 +188,6 @@ class MapEditReviewPage extends StatelessWidget {
                                           _controller.selectedDiseaseList
                                               .removeAt(deleteIndex);
                                         },
-
-                                        // _controller
-                                        //     .selectedDiseaseList
-                                        //     .map((e) => e.name)
-                                        //     .toList()
                                       )),
                                 ],
                               ),

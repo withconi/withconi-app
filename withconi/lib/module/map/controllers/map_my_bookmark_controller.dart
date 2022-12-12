@@ -13,7 +13,7 @@ import '../../ui_model/place_ui_model/abstract_class/place_preview_ui.dart';
 class MapMyBookmarkController extends GetxController {
   MapMyBookmarkController(this._mapRepository);
   final MapRepository _mapRepository;
-  RxList<PlacePreviewUiModel> bookmarkedPlaceList = <PlacePreviewUiModel>[].obs;
+  RxList<PlacePreviewUIModel> bookmarkedPlaceList = <PlacePreviewUIModel>[].obs;
   Rx<ScrollController> scrollController = ScrollController().obs;
 
   final Rx<PaginationFilter> _paginationFilter = PaginationFilter(
@@ -67,8 +67,7 @@ class MapMyBookmarkController extends GetxController {
   }
 
   Future<void> _getBookmarkedPlaceList() async {
-    final postDataEither = await _mapRepository.getBookmarkedPlaceList(
-        paginationFilter: _paginationFilter.value);
+    final postDataEither = await _mapRepository.getBookmarkedPlaceList();
 
     postDataEither.fold(
         (fail) =>
@@ -83,7 +82,7 @@ class MapMyBookmarkController extends GetxController {
     });
   }
 
-  List<PlacePreviewUiModel> _parseBookmarkedPlaceDto(
+  List<PlacePreviewUIModel> _parseBookmarkedPlaceDto(
       List<PlacePreviewResponseDTO> dto) {
     return dto
         .map((e) => e.map(
@@ -111,7 +110,7 @@ class MapMyBookmarkController extends GetxController {
     });
   }
 
-  onBookmarkTap(PlacePreviewUiModel place) async {
+  onBookmarkTap(PlacePreviewUIModel place) async {
     bool succeedUpdate =
         await updateBookmarkedPlace(postId: 'asdf', isBookmarked: true);
     if (succeedUpdate) {

@@ -26,8 +26,7 @@ class MapMainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final MapMainPageController _controller =
-        Get.put(MapMainPageController(Get.find()));
+    final MapMainPageController _controller = Get.find();
 
     return Scaffold(
         body: _controller.obx(
@@ -86,7 +85,7 @@ class MapMainPage extends StatelessWidget {
                   ),
                   child: Obx(
                     () => PlaceTypeToggleButton(
-                      onPressed: _controller.onSelectedPlaceTypeChanged,
+                      onPressed: _controller.onPlaceTypeChanged,
                       placeTypeList: PlaceType.values,
                       selectedPlaceType: _controller.selectedPlaceType.value,
                     ),
@@ -96,11 +95,7 @@ class MapMainPage extends StatelessWidget {
               right: 13,
               top: WcSafePaddingTop - 110,
               child: GestureDetector(
-                onTap: () {
-                  Get.toNamed(
-                    Routes.MAP_MY_REVIEW,
-                  );
-                },
+                onTap: _controller.goToMyReviewPage,
                 child: Container(
                     width: 48,
                     height: 48,
@@ -125,11 +120,7 @@ class MapMainPage extends StatelessWidget {
               right: 13,
               top: WcSafePaddingTop - 58,
               child: GestureDetector(
-                onTap: () {
-                  Get.toNamed(
-                    Routes.MAP_BOOKMARK,
-                  );
-                },
+                onTap: _controller.goToBookmarkPage,
                 child: Container(
                   width: 48,
                   height: 48,
@@ -157,7 +148,7 @@ class MapMainPage extends StatelessWidget {
                   visible: (_controller.showResearchButton.value ||
                       _controller.status == const PageStatus.init()),
                   child: Positioned(
-                    top: WcSafePaddingTop + 9,
+                    top: WcSafePaddingTop + 6,
                     child: SearchRefreshButton(
                       onTap: _controller.onSearchRefreshTap,
                     ),
@@ -167,7 +158,7 @@ class MapMainPage extends StatelessWidget {
               () => Visibility(
                 visible: (_controller.showPlaceListBottomSheet.value),
                 child: DraggableScrollableSheet(
-                    initialChildSize: 190 / WcHeight,
+                    initialChildSize: 225 / WcHeight,
                     minChildSize: 90 / WcHeight,
                     maxChildSize: 1,
                     controller: _controller.placeListDragController,
@@ -213,7 +204,7 @@ class MapMainPage extends StatelessWidget {
                                               children: [
                                                 Obx(
                                                   () => CustomDropdownButton(
-                                                      minButtonWidth: 115,
+                                                      minButtonWidth: 120,
                                                       maxButtonWidth: 133,
                                                       dropdownList: DiseaseType
                                                           .values
@@ -239,7 +230,7 @@ class MapMainPage extends StatelessWidget {
                                                                   .selectedDiseaseType
                                                                   .value),
                                                       onValueChanged: _controller
-                                                          .onSelectedDiseaseTypeChanged),
+                                                          .onDiseaseTypeChanged),
                                                 ),
                                                 const SizedBox(
                                                   width: 10,
@@ -267,7 +258,7 @@ class MapMainPage extends StatelessWidget {
                                                                 .selectedSpeciesType
                                                                 .value),
                                                     onValueChanged: _controller
-                                                        .onSelectedSpeciesTypeChanged,
+                                                        .onSpeciesTypeChanged,
                                                   ),
                                                 ),
                                                 const SizedBox(
@@ -306,8 +297,8 @@ class MapMainPage extends StatelessWidget {
                                             padding: const EdgeInsets.only(
                                                 right: 5.0),
                                             child: CustomDropdownButton(
-                                              minButtonWidth: 90,
-                                              maxButtonWidth: 120,
+                                              minButtonWidth: 130,
+                                              maxButtonWidth: 147,
                                               selectedButtonColor:
                                                   WcColors.white,
                                               selectedTextColor: WcColors.black,
@@ -343,8 +334,8 @@ class MapMainPage extends StatelessWidget {
                                             padding: const EdgeInsets.only(
                                                 right: 8.0),
                                             child: CustomDropdownButton(
-                                              minButtonWidth: 70,
-                                              maxButtonWidth: 93,
+                                              minButtonWidth: 75,
+                                              maxButtonWidth: 140,
                                               buttonPadding:
                                                   const EdgeInsets.only(
                                                       left: 3, right: 0),
@@ -524,7 +515,7 @@ class MyNaverMapView extends StatelessWidget {
         circles: [
           CircleOverlay(
               maxZoom: 14.8,
-              minZoom: 8,
+              minZoom: 13,
               onTap: (overlayId) {
                 onMapTap!(null);
               },
@@ -575,7 +566,7 @@ class EmptyPlaceListWidget extends StatelessWidget {
             height: 10,
           ),
           Text(
-            title ?? '필터에 맞는 장소가 없네요',
+            title ?? '해당하는 장소가 없어요',
             style: const TextStyle(
                 fontFamily: WcFontFamily.notoSans,
                 fontSize: 18,
@@ -701,8 +692,8 @@ class MyLocationButton extends StatelessWidget {
               color: WcColors.white,
               boxShadow: [
                 BoxShadow(
-                    color: WcColors.grey180,
-                    blurRadius: 7,
+                    color: Color.fromARGB(81, 22, 22, 22),
+                    blurRadius: 15,
                     offset: Offset(0, 2),
                     spreadRadius: -3)
               ]),
@@ -807,11 +798,11 @@ class CustomDropdownButton<T> extends StatelessWidget {
     if (selectedValue.value == null) {
       buttonWidth = hintText.length * 15;
     } else {
-      buttonWidth = selectedValue.text.length * 18;
+      buttonWidth = selectedValue.text.length * 15;
     }
     if (buttonWidth < minButtonWidth) {
       buttonWidth = minButtonWidth;
-    } else if (buttonWidth > maxButtonWidth) {
+    } else if (buttonWidth > maxButtonWidth && buttonWidth > minButtonWidth) {
       buttonWidth = maxButtonWidth;
     }
 
@@ -824,6 +815,7 @@ class CustomDropdownButton<T> extends StatelessWidget {
         selectedItemBuilder: (context) => dropdownList
             .map(
               (dropdownItem) => Container(
+                padding: EdgeInsets.only(right: 5),
                 alignment: Alignment.centerLeft,
                 height: 35,
                 child: Text(
@@ -892,7 +884,7 @@ class CustomDropdownButton<T> extends StatelessWidget {
         buttonWidth: buttonWidth,
 
         dropdownMaxHeight: 250,
-        dropdownWidth: buttonWidth + 36,
+        dropdownWidth: buttonWidth + 28,
         itemHeight: 45,
       ),
     );
@@ -949,15 +941,15 @@ class PlacePreviewListTile extends StatelessWidget {
       },
       child: Container(
         padding: (_isFirstList)
-            ? EdgeInsets.fromLTRB(15, 10, 15, 15)
-            : EdgeInsets.fromLTRB(15, 20, 15, 15),
+            ? EdgeInsets.fromLTRB(15, 19, 15, 16)
+            : EdgeInsets.fromLTRB(15, 19, 15, 16),
         decoration: BoxDecoration(
             color: WcColors.white,
             border: Border(
                 bottom: BorderSide(
               color: (_hasDivider) ? WcColors.grey60 : Colors.transparent,
             ))),
-        height: 125,
+        height: 120,
         width: WcWidth,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1103,8 +1095,8 @@ class PlacePreviewListTile extends StatelessWidget {
               ),
             ),
             Container(
-              height: 90,
-              width: 90,
+              height: 88,
+              width: 88,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
                 color: WcColors.grey60,

@@ -81,7 +81,7 @@ class MapBookmarkPage extends StatelessWidget {
                           itemCount: _controller.bookmarkedPlaceList.length,
                           shrinkWrap: true,
                           itemBuilder: ((context, index) {
-                            PlacePreviewUiModel thisPlace =
+                            PlacePreviewUIModel thisPlace =
                                 _controller.bookmarkedPlaceList[index];
                             return PlaceBookmarkListTile(
                               onBookmarkTap: _controller.onBookmarkTap,
@@ -111,9 +111,9 @@ class PlaceBookmarkListTile extends StatelessWidget {
     required this.isBookmarked,
   }) : super(key: key);
 
-  PlacePreviewUiModel place;
+  PlacePreviewUIModel place;
   void Function()? onTap;
-  void Function(PlacePreviewUiModel)? onBookmarkTap;
+  void Function(PlacePreviewUIModel)? onBookmarkTap;
   bool isBookmarked;
 
   @override

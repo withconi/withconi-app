@@ -14,7 +14,7 @@ import 'package:withconi/global_widgets/appbar/appbar.dart';
 import 'package:withconi/global_widgets/button/text_radio_button.dart';
 import 'package:withconi/global_widgets/button/wide_button.dart';
 import '../../global_widgets/button/check_selection_button.dart';
-import '../../global_widgets/button/place_verification_button.dart';
+import '../../global_widgets/button/photo_verification_button.dart';
 import '../../global_widgets/button/text_button.dart';
 import '../../global_widgets/checkbox/custom_checkbox.dart';
 import '../../global_widgets/scaffold/loading_scaffold.dart';
@@ -51,7 +51,7 @@ class MapNewReviewPage extends StatelessWidget {
                   child: Column(
                     children: [
                       GestureDetector(
-                        onTap: _controller.searchNewPlaceToReview,
+                        onTap: _controller.goToSearchNewPlaceToReview,
                         child: Container(
                           padding: EdgeInsets.symmetric(horizontal: 15),
                           margin: EdgeInsets.symmetric(vertical: 15),
@@ -66,103 +66,88 @@ class MapNewReviewPage extends StatelessWidget {
                             children: [
                               Text(
                                 '리뷰를 작성할 병원을 검색해주세요',
-                                style: GoogleFonts.notoSans(
-                                    color: WcColors.grey200,
+                                style: TextStyle(
+                                    fontFamily: WcFontFamily.notoSans,
+                                    color: WcColors.grey180,
                                     fontSize: 15,
-                                    fontWeight: FontWeight.w500),
+                                    fontWeight: FontWeight.w400),
                               ),
-                              SvgPicture.asset(
-                                'assets/icons/search.svg',
-                                color: WcColors.grey120,
+                              Icon(
+                                Icons.search_rounded,
+                                color: WcColors.grey140,
                               )
                             ],
                           ),
                         ),
                       ),
-                      Obx(
-                        () => Container(
-                          margin: EdgeInsets.only(bottom: 15),
-                          height: 60,
-                          width: WcWidth - 40,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                width: 55,
-                                height: 55,
-                                decoration: BoxDecoration(
-                                    color: WcColors.grey40,
-                                    image: DecorationImage(
-                                      image: _controller.selectedPlacePreview
-                                          .value.thumbnailImage.getImageByType,
-                                      fit: BoxFit.cover,
-                                    ),
-                                    borderRadius: BorderRadius.circular(5)),
-                                child: (_controller.selectedPlacePreview.value
-                                        .visitVerified)
-                                    ? SizedBox.shrink()
-                                    : ClipRRect(
-                                        borderRadius: BorderRadius.circular(5),
-                                        // make sure we apply clip it properly
-                                        child: BackdropFilter(
-                                          filter: ImageFilter.blur(
-                                              sigmaX: 30, sigmaY: 10),
-                                          child: Container(
-                                            alignment: Alignment.center,
-                                            color: WcColors.grey80
-                                                .withOpacity(0.3),
-                                          ),
+                      Obx(() => Offstage(
+                            offstage: !_controller.placeSelected.value,
+                            child: Container(
+                              margin: const EdgeInsets.only(bottom: 15),
+                              height: 60,
+                              width: WcWidth - 40,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                    width: 50,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                        color: WcColors.grey40,
+                                        image: DecorationImage(
+                                          image: _controller.placeThumbnail
+                                              .value.getImageByType,
+                                          fit: BoxFit.cover,
                                         ),
-                                      ),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      _controller
-                                          .selectedPlacePreview.value.name,
-                                      softWrap: false,
-                                      style: TextStyle(
-                                          fontFamily: WcFontFamily.notoSans,
-                                          fontSize: 16,
-                                          height: 1.8,
-                                          overflow: TextOverflow.fade,
-                                          fontWeight: FontWeight.w500),
+                                        borderRadius: BorderRadius.circular(5)),
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          _controller.placeName.value,
+                                          softWrap: false,
+                                          style: TextStyle(
+                                              fontFamily: WcFontFamily.notoSans,
+                                              fontSize: 16.5,
+                                              height: 1.8,
+                                              overflow: TextOverflow.fade,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                        Text(
+                                          _controller.placeAddress.value,
+                                          softWrap: false,
+                                          style: TextStyle(
+                                              fontFamily: WcFontFamily.notoSans,
+                                              fontSize: 13.5,
+                                              height: 1.8,
+                                              overflow: TextOverflow.fade,
+                                              fontWeight: FontWeight.w400),
+                                        ),
+                                      ],
                                     ),
-                                    Text(
-                                      _controller
-                                          .selectedPlacePreview.value.address,
-                                      softWrap: false,
-                                      style: TextStyle(
-                                          fontFamily: WcFontFamily.notoSans,
-                                          fontSize: 13.5,
-                                          height: 1.8,
-                                          overflow: TextOverflow.fade,
-                                          fontWeight: FontWeight.w400),
+                                  ),
+                                  SizedBox(
+                                    width: 13,
+                                  ),
+                                  Obx(
+                                    () => PhotoVerificationButton(
+                                      isPhotoReview: _controller
+                                          .selectedImageList.isNotEmpty,
+                                      onTap:
+                                          _controller.goToPhotoVerificationPage,
                                     ),
-                                  ],
-                                ),
+                                  )
+                                ],
                               ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              PlaceVerificationButton(
-                                visitVerified: _controller
-                                    .selectedPlacePreview.value.visitVerified,
-                                onTap: () {
-                                  _controller.verifyPlaceVisit(
-                                    context: context,
-                                  );
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-                      )
+                            ),
+                          ))
                     ],
                   ),
                 ),
@@ -178,45 +163,50 @@ class MapNewReviewPage extends StatelessWidget {
                     SizedBox(
                       height: 10,
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          margin: EdgeInsets.symmetric(
-                              vertical: 20, horizontal: 20),
+                    Obx(() => Visibility(
+                          visible: _controller.placeSelected.value,
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                '어떤 코니멀과 방문했나요? (중복선택 가능)',
-                                style: TextStyle(
-                                    fontFamily: WcFontFamily.notoSans,
-                                    color: WcColors.black,
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w500),
+                              Container(
+                                margin: EdgeInsets.symmetric(
+                                    vertical: 20, horizontal: 20),
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      '어떤 코니멀과 방문했나요? (중복선택 가능)',
+                                      style: TextStyle(
+                                          fontFamily: WcFontFamily.notoSans,
+                                          color: WcColors.black,
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                  ],
+                                ),
                               ),
+                              Obx(
+                                () => Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10.0),
+                                  child: Row(
+                                    children: _controller.conimalList
+                                        .map(
+                                          (e) => VisitedConimalSelectionButton(
+                                            selected: _controller
+                                                .selectedConimalList
+                                                .contains(e),
+                                            conimal: e,
+                                            onChanged:
+                                                _controller.onConimalSelected,
+                                          ),
+                                        )
+                                        .toList(),
+                                  ),
+                                ),
+                              )
                             ],
                           ),
-                        ),
-                        Obx(
-                          () => Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 10.0),
-                            child: Row(
-                              children: AuthController.to.userInfo!.conimals
-                                  .map(
-                                    (e) => VisitedConimalSelectionButton(
-                                      selected: _controller.selectedConimalList
-                                          .contains(e),
-                                      conimal: e,
-                                      onChanged: _controller.onConimalSelected,
-                                    ),
-                                  )
-                                  .toList(),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
+                        )),
                     SizedBox(
                       height: 25,
                     ),
@@ -276,7 +266,7 @@ class MapNewReviewPage extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    '어떤 문제로 방문하셨나요? (최대 3개)',
+                                    '어떤 문제로 방문하셨나요?',
                                     style: TextStyle(
                                         fontFamily: WcFontFamily.notoSans,
                                         color: WcColors.black,
@@ -299,8 +289,9 @@ class MapNewReviewPage extends StatelessWidget {
                             Wrap(
                                 direction: Axis.horizontal,
                                 children: DiseaseType.values
-                                    .where(
-                                        (element) => element != DiseaseType.all)
+                                    .where((element) =>
+                                        (element != DiseaseType.all &&
+                                            element != DiseaseType.undefined))
                                     .map(
                                       (disease) => Padding(
                                         padding: const EdgeInsets.symmetric(
@@ -437,17 +428,19 @@ class MapNewReviewPage extends StatelessWidget {
                     SizedBox(
                       height: 60,
                     ),
-                    Obx(
-                      () => Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                        child: WcWideButtonWidget(
-                            buttonText: '리뷰 등록하기',
-                            onTap: _controller.createNewReview,
-                            activeButtonColor: WcColors.blue100,
-                            active: _controller.validateButton(),
-                            activeTextColor: WcColors.white),
-                      ),
-                    ),
+                    Obx(() => Offstage(
+                          offstage: !_controller.placeSelected.value,
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 20.0),
+                            child: WcWideButtonWidget(
+                                buttonText: '리뷰 등록하기',
+                                onTap: _controller.createNewReview,
+                                activeButtonColor: WcColors.blue100,
+                                active: _controller.validateButton(),
+                                activeTextColor: WcColors.white),
+                          ),
+                        )),
                     SizedBox(
                       height: 40,
                     ),

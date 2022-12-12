@@ -23,15 +23,17 @@ import '../../page_status.dart';
 import '../../ui_model/place_ui_model/abstract_class/place_preview_ui.dart';
 
 class MapImageVerificationController extends GetxController with WcStateMixin {
+  MapImageVerificationController(this._selectedImageList);
   final int maxImageNum = 2;
 
   RxList<ImageItem> selectedPhotoList = RxList<ImageItem>();
+  late final List<ImageItem> _selectedImageList;
 
   @override
   onInit() {
     super.onInit();
     change(null, status: const PageStatus.init());
-    selectedPhotoList.assignAll(Get.arguments as List<ImageItem>);
+    selectedPhotoList.assignAll(_selectedImageList);
     change(null, status: const PageStatus.success());
   }
 
@@ -75,6 +77,10 @@ class MapImageVerificationController extends GetxController with WcStateMixin {
   }
 
   Future<void> getBack() async {
+    if (selectedPhotoList.isEmpty) {
+      Get.back();
+      return;
+    }
     bool isConfirmed = await showSelectionDialog(
       cancleText: '삭제하기',
       confirmText: '저장하기',
