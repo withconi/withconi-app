@@ -56,13 +56,15 @@ class DictionaryMainController extends GetxController with WcStateMixin {
   goToDiseaseDetailPage(Species species, int diseaseIndex) {
     switch (species) {
       case Species.cat:
-        Get.toNamed(Routes.DICTIONARY_DETAIL,
-            arguments: catDiseaseList[diseaseIndex]);
+        Get.toNamed(Routes.DICTIONARY_DETAIL, arguments: {
+          'diseaseCode': catDiseaseList[diseaseIndex].diseaseCode
+        });
         break;
 
       case Species.dog:
-        Get.toNamed(Routes.DICTIONARY_DETAIL,
-            arguments: dogDiseaseList[diseaseIndex]);
+        Get.toNamed(Routes.DICTIONARY_DETAIL, arguments: {
+          'diseaseCode': dogDiseaseList[diseaseIndex].diseaseCode
+        });
         break;
       default:
     }

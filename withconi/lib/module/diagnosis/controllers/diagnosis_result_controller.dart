@@ -9,7 +9,7 @@ class DiagnosisResultController extends GetxController {
     DiagnosisResultResponseDTO(
         diseaseId: '1',
         posibility: DiseasePosibility.high,
-        diseaseName: '갑상선 기능항진증'),
+        diseaseName: '갑상선 기능 항진증'),
     DiagnosisResultResponseDTO(
         diseaseId: '2',
         posibility: DiseasePosibility.middle,

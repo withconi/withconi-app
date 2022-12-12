@@ -50,8 +50,8 @@ class DiagnosisMainPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Container(
-                      margin: EdgeInsets.symmetric(vertical: 80),
-                      height: 200,
+                      margin: EdgeInsets.symmetric(vertical: 50),
+                      height: 240,
                       child: LottieBuilder.asset(
                         'assets/json/health_care.json',
                         fit: BoxFit.contain,

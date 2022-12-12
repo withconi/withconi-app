@@ -12,58 +12,38 @@ import '../../../import_basic.dart';
 import '../../ui_model/breed_ui_model.dart';
 
 class DiagnosisStep1Controller extends GetxController {
-  Rxn<Gender> conimalGender = Rxn<Gender>();
-  Rxn<Species> conimalSpecies = Rxn<Species>();
+  Rxn<Gender> selectedGender = Rxn<Gender>();
+  Rxn<Species> selectedSpecies = Rxn<Species>();
   RxBool isButtonValid = false.obs;
-  RxBool birthDateSelected = false.obs;
-  RxBool speciesSelected = false.obs;
-  RxBool genderSelected = false.obs;
-  RxBool adoptedDateSelected = false.obs;
-  RxBool diseaseSelected = false.obs;
-
   RxnString selectedBreed = RxnString();
-  final Rxn<DateTime> _birthDate = Rxn<DateTime>();
-  DateTime? get birthDate => _birthDate.value;
-
-  String get birthDateString => (_birthDate.value == null)
+  final Rxn<DateTime> _selectedBirthDate = Rxn<DateTime>();
+  DateTime? get birthDate => _selectedBirthDate.value;
+  String get birthDateString => (_selectedBirthDate.value == null)
       ? ''
-      : DateFormat('yyyy-MM-dd').format(_birthDate.value!);
+      : DateFormat('yyyy-MM-dd').format(_selectedBirthDate.value!);
 
   RxDouble progressPercent = (0.6 / 4).obs;
 
   RxBool isNeutered = false.obs;
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
   void onGenderChanged(Gender gender) {
-    conimalGender.value = gender;
-    if (genderSelected.value == false) {
-      genderSelected.value = true;
+    selectedGender.value = gender;
+    if (selectedGender.value != null) {
       progressPercent.value += (0.6 / 4);
     }
   }
 
   void onSpeicesChanged(Species species) {
-    conimalSpecies.value = species;
-    if (speciesSelected.value == false) {
-      speciesSelected.value = true;
+    selectedSpecies.value = species;
+    if (selectedSpecies.value != null) {
       progressPercent.value += (0.6 / 4);
     }
   }
 
   void onBirthDateChanged(DateTime birthDate) {
-    _birthDate.value = birthDate;
+    _selectedBirthDate.value = birthDate;
 
-    if (birthDateSelected.value == false) {
-      birthDateSelected.value = true;
+    if (_selectedBirthDate.value != null) {
       progressPercent.value += (0.6 / 4);
     }
   }
@@ -74,12 +54,16 @@ class DiagnosisStep1Controller extends GetxController {
 
   void onBreedChanged(String breed) {
     selectedBreed.value = breed;
+    if (selectedBreed.value != null) {
+      progressPercent.value += (0.6 / 4);
+    }
   }
 
   bool validateButton() {
-    if (birthDateSelected.value &&
-        speciesSelected.value &&
-        genderSelected.value) {
+    if (selectedBreed.value != null &&
+        selectedGender.value != null &&
+        selectedSpecies.value != null &&
+        _selectedBirthDate.value != null) {
       isButtonValid.value = true;
     } else {
       isButtonValid.value = false;
@@ -91,14 +75,13 @@ class DiagnosisStep1Controller extends GetxController {
     Get.focusScope!.unfocus();
     DateTime? pickedDate = await showDatePicker(
         context: Get.context!,
-        initialDate: _birthDate.value ?? DateTime.now(),
+        initialDate: _selectedBirthDate.value ?? DateTime.now(),
         firstDate: DateTime(1960),
         lastDate: DateTime.now());
 
     if (pickedDate != null) {
       onBirthDateChanged(pickedDate);
     } else {
-      birthDateSelected.value = false;
       progressPercent.value -= (0.6 / 4);
     }
     // onBirthDateChanged(pickedDate);
@@ -107,9 +90,8 @@ class DiagnosisStep1Controller extends GetxController {
   goToSearchBreedPage() async {
     Get.focusScope!.unfocus();
 
-    BreedUIModel? selectedBreed = await Get.toNamed(
-      Routes.BREED_SEARCH,
-    ) as BreedUIModel?;
+    BreedUIModel? selectedBreed = await Get.toNamed(Routes.BREED_SEARCH,
+        arguments: {'species': selectedSpecies.value}) as BreedUIModel?;
     if (selectedBreed != null) {
       onBreedChanged(selectedBreed.name);
     }

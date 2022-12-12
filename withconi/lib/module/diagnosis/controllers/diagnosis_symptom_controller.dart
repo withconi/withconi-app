@@ -2,6 +2,7 @@ import '../../../data/model/dto/joined_dto/symptom.dart';
 import '../../../import_basic.dart';
 
 class DiagnosisSymptomController extends GetxController {
+  DiagnosisSymptomController(this.symptomGroup);
   late SymptomGroup symptomGroup;
   List<String> symptomItemList = [
     '절뚝거림',
@@ -22,14 +23,8 @@ class DiagnosisSymptomController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    symptomGroup = Get.arguments as SymptomGroup;
     selectedSymptomItemList.assignAll(symptomGroup.symptomList);
     isLoading.value = false;
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
   }
 
   onSymptomItemTap(String symptomItem) {

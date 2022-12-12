@@ -67,14 +67,14 @@ class DiagnosisResultPage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 SizedBox(
-                                  height: 40,
+                                  height: 50,
                                 ),
                                 Text(
                                   '자가진단 결과',
                                   style: TextStyle(
                                       fontFamily: WcFontFamily.notoSans,
                                       fontSize: 24,
-                                      fontWeight: FontWeight.w500),
+                                      fontWeight: FontWeight.w600),
                                 ),
                                 SizedBox(
                                   height: 15,
@@ -87,7 +87,7 @@ class DiagnosisResultPage extends StatelessWidget {
                                       fontWeight: FontWeight.w400),
                                 ),
                                 SizedBox(
-                                  height: 50,
+                                  height: 40,
                                 ),
                                 // Column(
                                 //   children: _controller.diseaseResultList
@@ -154,9 +154,9 @@ class DiseaseResultListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.fromLTRB(15, 15, 15, 14),
+      padding: EdgeInsets.fromLTRB(15, 13, 15, 15),
       margin: EdgeInsets.only(bottom: 17),
-      height: 80,
+      height: 76,
       width: WcWidth - 40,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
@@ -188,24 +188,24 @@ class DiseaseResultListTile extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Container(
-                            height: 3,
-                            width: 40,
+                            height: 8,
+                            width: 8,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(2),
                               color: diseaseResultItem.posibility.mainColor,
                             ),
                           ),
                           SizedBox(
-                            height: 1,
+                            width: 5,
                           ),
                           Text(
                             diseaseResultItem.posibility.displayName,
                             style: TextStyle(
-                                fontSize: 12.7,
+                                fontSize: 14,
                                 fontFamily: WcFontFamily.notoSans,
                                 color: diseaseResultItem.posibility.mainColor,
                                 fontWeight: FontWeight.w500),

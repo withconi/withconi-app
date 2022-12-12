@@ -1,32 +1,48 @@
+import 'package:dartz/dartz.dart';
+import 'package:withconi/core/error_handling/error_message_object.dart';
 import 'package:withconi/core/error_handling/failure_ui_interpreter.dart';
 import 'package:withconi/data/enums/enum.dart';
 import 'package:withconi/data/model/dto/joined_dto/symptom.dart';
 import 'package:withconi/data/model/dto/response_dto/community_response/board_response_dto.dart';
+import 'package:withconi/data/model/dto/response_dto/disease_response/disease_response_dto.dart';
 import 'package:withconi/data/repository/community_repository.dart';
 import 'package:withconi/data/repository/conimal_repository.dart';
 import 'package:withconi/global_widgets/loading/loading_overlay.dart';
+import 'package:withconi/module/community/controllers/custom_state_mixin.dart';
+import 'package:withconi/module/page_status.dart';
 import 'package:withconi/module/ui_model/conimal_ui_model.dart';
 import 'package:withconi/module/ui_model/disease_ui_model.dart';
 
+import '../../../core/error_handling/failures.dart';
+import '../../../data/model/dto/response_dto/community_response/post_response_dto.dart';
+import '../../../data/repository/disease_repository.dart';
 import '../../../import_basic.dart';
 import '../../community/pages/community_setting_page.dart';
 import '../../../global_widgets/dialog/disease_editing_dialog.dart';
 import '../../auth/auth_controller.dart';
 
 class DictionaryDetailController extends GetxController {
-  DictionaryDetailController(this._conimalRepository);
+  DictionaryDetailController(
+    this._conimalRepository,
+    this._diseaseRepository,
+    this._diseaseCode,
+  );
   final ConimalRepository _conimalRepository;
+  final DiseaseRepository _diseaseRepository;
   // CommunityRepository _communityRepository = Get.find();
   RxList<BoardResponseDTO> _boardList = RxList<BoardResponseDTO>();
   List<BoardResponseDTO> get boardList => _boardList.toList();
   late DiseaseUIModel disease;
+  late final String _diseaseCode;
   RxBool isDiseaseManaged = false.obs;
   RxList<ConimalUIModel> _conimalList = RxList<ConimalUIModel>();
 
+  Rx<PageStatus> pageStatus = PageStatus.init().obs;
+
   @override
-  onInit() {
+  onInit() async {
     super.onInit();
-    disease = (Get.arguments as DiseaseUIModel).copyWith();
+
 //     disease = DiseaseUIModel(
 //         advice: '환축은 평생동안 치료받아야함을 이해시킴. 때때로 피부병변이 치료 시작하고 한달정도는 더 나빠질 수 있음을 경고',
 //         code: disease.code,
@@ -56,14 +72,32 @@ class DictionaryDetailController extends GetxController {
 // # glucocorticoids, phenytoin, salicylates, androgens, furosemide는 혈청 단백질의 결합을 방해해서 L-thyroxine 대사를 증가시킴
 // # sucralfate, aluminum hydroxide는 위장관에서 L-thyroxine의 흡수를 방해
 // # liothyronine(합성 T3): 적어도 2가지 이상의 L-thyroxine으로 치료해보고 정상 혈청 T4 농도에  도달하지 못했을 때만 사용, 거의 대부분이 위에서 흡수됨, 초기 용량은 4-6mg/kg으로 하루에 세번으로 나누어 경구투여, 환축의 치료에대한 반응과 혈청 T3 농도에 따라 치료용량 결정''');
+
+    pageStatus.value = PageStatus.loading();
+    await _getDiseaseDetail(diseaseCode: _diseaseCode);
+
     if (AuthController.to.isUserValid) {
       _conimalList.assignAll(AuthController.to.userInfo.conimals.toList());
       isDiseaseManaged.value = _checkDiseaseMangingStatus();
     }
   }
 
+  _getDiseaseDetail({required String diseaseCode}) async {
+    Either<Failure, DiseaseResponseDTO> diseaseDetailEither =
+        await _diseaseRepository.getDiseaseDetail(diseaseCode: diseaseCode);
+
+    diseaseDetailEither.fold((failure) {
+      ErrorObject errorObject =
+          ErrorObject.mapFailureToErrorMessage(failure: failure);
+      pageStatus.value = PageStatus.error(errorObject.message);
+    }, (diseaseDTO) {
+      disease = DiseaseUIModel.fromDTO(diseaseDTO);
+      pageStatus.value = PageStatus.success();
+    });
+  }
+
   onDiseaseManagementChanged() async {
-    await AuthController.to.setDbUserInfo();
+    await AuthController.to.setUserAuthInfo();
     isDiseaseManaged.value = _checkDiseaseMangingStatus();
     return;
   }
@@ -71,8 +105,8 @@ class DictionaryDetailController extends GetxController {
   bool _checkDiseaseMangingStatus() {
     _conimalList.assignAll(AuthController.to.userInfo.conimals.toList());
     return _conimalList.any((conimal) {
-      bool managingDisease =
-          conimal.diseases.any((element) => element.code == disease.code);
+      bool managingDisease = conimal.diseases
+          .any((element) => element.diseaseId == disease.diseaseId);
       return managingDisease;
     });
   }
@@ -99,6 +133,13 @@ class DictionaryDetailController extends GetxController {
     if (editedConimal != null) {
       await showLoading(() => _updateConimalDisease(editedConimal));
     }
+  }
+
+  goToRelatedCommunity() {
+    Get.toNamed(Routes.COMMUNITY_POST_LIST, arguments: {
+      'boardId': disease.boardId,
+      'boardName': disease.diseaseType.displayName
+    });
   }
 
   // toBoardDetailPage({required String boardId}) {

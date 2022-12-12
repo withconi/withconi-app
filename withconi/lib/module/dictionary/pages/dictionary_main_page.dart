@@ -3,7 +3,7 @@ import 'package:withconi/import_basic.dart';
 import 'package:withconi/module/community/controllers/custom_state_mixin.dart';
 import 'package:withconi/module/theme/text_theme.dart';
 import 'package:withconi/global_widgets/searchbar/search_bar.dart';
-import '../../common/lazy_load.dart';
+import '../../common/my_lazy_load_scroll_view.dart';
 import '../../page_status.dart';
 import '../controllers/dictionary_main_controller.dart';
 import '../widgets/common_disease_list_tile.dart';
@@ -16,65 +16,62 @@ class DictionaryMainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     DictionaryMainController _controller = Get.find();
 
-    return WillPopScope(
-      onWillPop: () async => false,
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        backgroundColor: WcColors.white,
-        body: Container(
-          constraints: BoxConstraints(
-            minHeight: WcHeight,
-            minWidth: WcWidth,
-          ),
-          child: SafeArea(
-            bottom: false,
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const SizedBox(
-                        height: 20,
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      backgroundColor: WcColors.white,
+      body: Container(
+        constraints: BoxConstraints(
+          minHeight: WcHeight,
+          minWidth: WcWidth,
+        ),
+        child: SafeArea(
+          bottom: false,
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    SizedBox(
+                      width: WcWidth - 40,
+                      height: 50,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text('질병백과',
+                              style: TextStyle(
+                                  fontFamily: WcFontFamily.notoSans,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 25)),
+                        ],
                       ),
-                      SizedBox(
-                        width: WcWidth - 40,
-                        height: 50,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text('질병백과',
-                                style: TextStyle(
-                                    fontFamily: WcFontFamily.notoSans,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 25)),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      SearchBarWidget(
-                        onTextChanged: _controller.onDiseaseChanged,
-                        onTapClear: _controller.clearResult,
-                        hintText: '질병을 검색해보세요',
-                        textController: _controller.diseaseTextController,
-                      ),
-                    ],
-                  ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    SearchBarWidget(
+                      onTextChanged: _controller.onDiseaseChanged,
+                      onTapClear: _controller.clearResult,
+                      hintText: '질병을 검색해보세요',
+                      textController: _controller.diseaseTextController,
+                    ),
+                  ],
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Expanded(child: _getWidgetByState(_controller)),
-              ],
-            ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Expanded(child: _getWidgetByState(_controller)),
+            ],
           ),
         ),
       ),
@@ -98,7 +95,7 @@ class DictionaryMainPage extends StatelessWidget {
                     width: WcWidth,
                     diseaseIndex: index,
                     onTap: (disease) => Get.toNamed(Routes.DICTIONARY_DETAIL,
-                        arguments: disease),
+                        arguments: {'diseaseCode': disease.diseaseCode}),
                   ),
                 ),
               ),

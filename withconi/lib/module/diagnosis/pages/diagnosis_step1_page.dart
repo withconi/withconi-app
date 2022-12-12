@@ -69,7 +69,7 @@ class DiagnosisStep1Page extends StatelessWidget {
                       () => Row(
                         children: [
                           CheckIconSelectionButton(
-                            selected: (_controller.conimalSpecies.value ==
+                            selected: (_controller.selectedSpecies.value ==
                                 Species.cat),
                             value: Species.cat,
                             selectedImageSrc: 'assets/icons/cat_black.png',
@@ -80,7 +80,7 @@ class DiagnosisStep1Page extends StatelessWidget {
                             },
                           ),
                           CheckIconSelectionButton(
-                            selected: (_controller.conimalSpecies.value ==
+                            selected: (_controller.selectedSpecies.value ==
                                 Species.dog),
                             value: Species.dog,
                             selectedImageSrc: 'assets/icons/dog.png',
@@ -123,7 +123,7 @@ class DiagnosisStep1Page extends StatelessWidget {
                                   Get.focusScope!.unfocus();
                                   _controller.onGenderChanged(gender);
                                 },
-                                selectedValue: _controller.conimalGender.value,
+                                selectedValue: _controller.selectedGender.value,
                                 backgroundColorList: Gender.values
                                     .map((e) => e.backgoundColor)
                                     .toList(),

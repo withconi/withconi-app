@@ -31,11 +31,12 @@ class DiagnosisStep2Controller extends GetxController {
     // selectedSymptomGroupList.insert(
     //     0, selectedSymptomGroupList[0].copyWith(symptomType: selectedSymptom));
 
-    List<String>? symptomResult = await Get.toNamed(Routes.DIAGNOSIS_SYMPTOM,
-            arguments: selectedSymptomGroupList.firstWhereOrNull(
-                    (element) => element.symptomType == selectedSymptom) ??
-                SymptomGroup(symptomType: selectedSymptom, symptomList: []))
-        as List<String>?;
+    List<String>? symptomResult =
+        await Get.toNamed(Routes.DIAGNOSIS_SYMPTOM, arguments: {
+      'symptomGroup': selectedSymptomGroupList.firstWhereOrNull(
+              (element) => element.symptomType == selectedSymptom) ??
+          SymptomGroup(symptomType: selectedSymptom, symptomList: [])
+    }) as List<String>?;
 
     if (symptomResult == null) {
       return;
@@ -60,6 +61,17 @@ class DiagnosisStep2Controller extends GetxController {
         selectedSymptomGroupList.add(SymptomGroup(
             symptomType: selectedSymptom, symptomList: symptomResult));
       }
+    }
+
+    if (selectedSymptomGroupList.isEmpty) {
+      progressPercents.value = 0.6;
+      return;
+    }
+
+    if (selectedSymptomGroupList.length <= 1) {
+      progressPercents.value = 0.8;
+    } else if (selectedSymptomGroupList.length > 1) {
+      progressPercents.value = 1;
     }
   }
 
