@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter_svg/svg.dart';
 import 'package:withconi/data/enums/enum.dart';
+import 'package:withconi/data/repository/local_notification_repository.dart';
 import 'package:withconi/module/home/home_controller.dart';
 import 'package:withconi/module/navigation/navigation_controller.dart';
 import 'package:withconi/import_basic.dart';
@@ -13,19 +14,18 @@ import 'package:withconi/global_widgets/button/icon_button.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage([Key? key]) : super(key: key);
+  static const double _maxSection1Height = 285;
 
   @override
   Widget build(BuildContext context) {
     final HomeController _controller = Get.find();
     final double _heightSection1 = (WcHeight / 7) * 2.67;
-    const double _maxSection1Height = 285;
 
     return Scaffold(
       body: SafeArea(
         top: true,
         child: RefreshIndicator(
           strokeWidth: 2.5,
-          backgroundColor: Color.fromARGB(255, 248, 249, 249),
           color: WcColors.blue100,
           onRefresh: _controller.refreshPage,
           child: Obx(
@@ -55,7 +55,7 @@ class HomePage extends StatelessWidget {
                                     BoxShadow(
                                       color: Color.fromARGB(15, 0, 0, 0),
                                       spreadRadius: 0,
-                                      blurRadius: 15,
+                                      blurRadius: 30,
                                       offset: Offset(0, 10),
                                     ),
                                   ],
@@ -66,14 +66,17 @@ class HomePage extends StatelessWidget {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Container(
-                                          margin: EdgeInsets.only(
-                                              left: 20, top: 10),
-                                          child: Image.asset(
-                                            'assets/icons/withconi.png',
-                                            width: 34,
-                                            isAntiAlias: true,
-                                            // color: WcColors.grey180.withOpacity(0.6),
+                                        GestureDetector(
+                                          onTap: () {},
+                                          child: Container(
+                                            margin: EdgeInsets.only(
+                                                left: 20, top: 10),
+                                            child: Image.asset(
+                                              'assets/icons/withconi.png',
+                                              width: 34,
+                                              isAntiAlias: true,
+                                              // color: WcColors.grey180.withOpacity(0.6),
+                                            ),
                                           ),
                                         ),
                                         Container(
@@ -170,9 +173,11 @@ class HomePage extends StatelessWidget {
                                                                               .value]
                                                                           .name,
                                                                   style: TextStyle(
+                                                                      fontSize:
+                                                                          23,
                                                                       fontWeight:
                                                                           FontWeight
-                                                                              .w700),
+                                                                              .w600),
                                                                 ),
                                                                 TextSpan(
                                                                     text:
@@ -194,8 +199,8 @@ class HomePage extends StatelessWidget {
                                                                 fontFamily:
                                                                     WcFontFamily
                                                                         .notoSans,
-                                                                fontSize: 21.5,
-                                                                height: 1.5,
+                                                                fontSize: 22,
+                                                                height: 1.7,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w500,
@@ -308,7 +313,6 @@ class HomePage extends StatelessWidget {
                             )
                           ]),
                         ),
-
                         Container(
                           width: WcWidth - 40,
                           margin: const EdgeInsets.fromLTRB(20, 7, 20, 3),
@@ -324,8 +328,8 @@ class HomePage extends StatelessWidget {
                               // ),
                               BoxShadow(
                                 color: Color.fromARGB(25, 0, 0, 0),
-                                spreadRadius: -2,
-                                blurRadius: 30,
+                                spreadRadius: 0,
+                                blurRadius: 40,
                                 offset: Offset(0, 0),
                               ),
                             ],
@@ -339,7 +343,7 @@ class HomePage extends StatelessWidget {
                                 child: Text('내 코니멀의 질병',
                                     style: TextStyle(
                                         fontFamily: WcFontFamily.notoSans,
-                                        fontSize: 16.5,
+                                        fontSize: 17,
                                         fontWeight: FontWeight.w600,
                                         color: WcColors.black)),
                               ),
@@ -476,27 +480,29 @@ class HomePage extends StatelessWidget {
                                                                               .centerLeft,
                                                                       height:
                                                                           40,
-                                                                      child:
-                                                                          Padding(
-                                                                        padding:
-                                                                            EdgeInsets.only(left: 8),
-                                                                        child:
-                                                                            Text(
-                                                                          disease
-                                                                              .name,
-                                                                          overflow:
-                                                                              TextOverflow.fade,
-                                                                          style:
-                                                                              GoogleFonts.notoSans(
-                                                                            fontSize:
-                                                                                14.5,
-                                                                          ),
-                                                                          maxLines:
-                                                                              1,
-                                                                          softWrap:
-                                                                              false,
-                                                                        ),
-                                                                      ),
+                                                                      child: Padding(
+                                                                          padding: EdgeInsets.only(left: 8),
+                                                                          child: Row(
+                                                                            children: [
+                                                                              Container(
+                                                                                height: 10,
+                                                                                width: 10,
+                                                                                margin: EdgeInsets.only(right: 8),
+                                                                                decoration: BoxDecoration(color: disease.diseaseType.color, borderRadius: BorderRadius.circular(2)),
+                                                                              ),
+                                                                              Expanded(
+                                                                                child: Text(
+                                                                                  disease.name,
+                                                                                  overflow: TextOverflow.fade,
+                                                                                  style: GoogleFonts.notoSans(
+                                                                                    fontSize: 14.5,
+                                                                                  ),
+                                                                                  maxLines: 1,
+                                                                                  softWrap: false,
+                                                                                ),
+                                                                              )
+                                                                            ],
+                                                                          )),
                                                                     ),
                                                                   ),
                                                                   trailing:
@@ -653,10 +659,11 @@ class HomePage extends StatelessWidget {
                                             title: RichText(
                                               text: TextSpan(
                                                   children: [
-                                                    TextSpan(text: '관련 질병 게시판'),
+                                                    TextSpan(
+                                                        text: '코니멀 관련 질병 게시판'),
                                                     TextSpan(
                                                         text:
-                                                            ' ${_controller.relatedBoardList.length}',
+                                                            ' ${_controller.relatedBoardSet.length}',
                                                         style: GoogleFonts
                                                             .workSans(
                                                                 height: 1,
@@ -685,15 +692,13 @@ class HomePage extends StatelessWidget {
                                                           : WcColors.grey200)),
                                             ),
                                             children:
-                                                _controller.relatedBoardList
+                                                _controller.relatedBoardSet
                                                     .map(
                                                       (board) => ListTile(
                                                         title: InkWell(
                                                           onTap: () {
-                                                            Get.toNamed(
-                                                                Routes
-                                                                    .COMMUNITY_POST_LIST,
-                                                                arguments:
+                                                            _controller
+                                                                .goToPostListPage(
                                                                     board);
                                                           },
                                                           child: Container(
@@ -775,11 +780,10 @@ class HomePage extends StatelessWidget {
                                                                       .center,
                                                               children: [
                                                                 InkWell(
-                                                                  onTap: () => Get.toNamed(
-                                                                      Routes
-                                                                          .COMMUNITY_POST_LIST,
-                                                                      arguments:
-                                                                          board),
+                                                                  onTap: () =>
+                                                                      _controller
+                                                                          .goToPostListPage(
+                                                                              board),
                                                                   child:
                                                                       Container(
                                                                     alignment:
@@ -827,11 +831,10 @@ class HomePage extends StatelessWidget {
                           ),
                         ),
                         SelfDiagnosisButton(),
-
                         Container(
                           alignment: Alignment.topLeft,
                           margin: const EdgeInsets.only(bottom: 20),
-                          padding: const EdgeInsets.symmetric(vertical: 18),
+                          padding: const EdgeInsets.fromLTRB(0, 18, 0, 10),
                           width: WcWidth - 40,
                           decoration: BoxDecoration(
                             color: WcColors.white,
@@ -839,8 +842,8 @@ class HomePage extends StatelessWidget {
                             boxShadow: const [
                               BoxShadow(
                                 color: Color.fromARGB(25, 0, 0, 0),
-                                spreadRadius: -1,
-                                blurRadius: 20,
+                                spreadRadius: 0,
+                                blurRadius: 40,
                                 offset: Offset(0, 0),
                               ),
                             ],
@@ -849,15 +852,41 @@ class HomePage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 15),
-                                child: Text('이번주 커뮤니티 인기글 🔥',
-                                    style: TextStyle(
-                                        fontFamily: WcFontFamily.notoSans,
-                                        fontSize: 16.5,
-                                        fontWeight: FontWeight.w600,
-                                        color: WcColors.black)),
-                              ),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 15),
+                                  child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Text('이번주 커뮤니티 인기글',
+                                            style: TextStyle(
+                                                fontFamily:
+                                                    WcFontFamily.notoSans,
+                                                fontSize: 17,
+                                                height: 1,
+                                                fontWeight: FontWeight.w600,
+                                                color: WcColors.black)),
+                                        Container(
+                                          margin: EdgeInsets.only(left: 8),
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 9, vertical: 4),
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                              color: WcColors.red20,
+                                              borderRadius:
+                                                  BorderRadius.circular(20)),
+                                          child: Text(
+                                            'HOT',
+                                            style: GoogleFonts.openSans(
+                                                height: 1.2,
+                                                fontSize: 12,
+                                                letterSpacing: 0.1,
+                                                color: const Color.fromARGB(
+                                                    255, 213, 25, 0),
+                                                fontWeight: FontWeight.w700),
+                                          ),
+                                        )
+                                      ])),
                               SizedBox(
                                 height: 10,
                               ),
@@ -874,87 +903,6 @@ class HomePage extends StatelessWidget {
                             ],
                           ),
                         ),
-                        // Container(
-                        //   width: WcWidth,
-                        //   height: heightSection3,
-                        //   // color: WcColors.blue100,
-                        //   padding: const EdgeInsets.fromLTRB(20, 25, 20, 20),
-                        //   child: Column(
-                        //     mainAxisAlignment: MainAxisAlignment.start,
-                        //     children: [
-                        //       Column(
-                        //         children: [
-                        //           SizedBox(
-                        //             child: Row(
-                        //               children: [
-                        //                 Expanded(
-                        //                   flex: 1,
-                        //                   child: IconBigButton(
-                        //                     imageSrc: 'assets/icons/diagnosis.png',
-                        //                     text: '자가진단',
-                        //                     onTap: () {
-                        //                       // NavigationController.to
-                        //                       //     .onNavChanged(currentNavIndex: 1);
-                        //                     },
-                        //                   ),
-                        //                 ),
-                        //                 const SizedBox(
-                        //                   width: 10,
-                        //                 ),
-                        //                 Expanded(
-                        //                   flex: 1,
-                        //                   child: IconBigButton(
-                        //                     imageSrc: 'assets/icons/location.png',
-                        //                     text: '병원/약국찾기',
-                        //                     onTap: () {
-                        //                       showSelectionDialog(
-                        //                           confirmText: '네',
-                        //                           title: '정보를 수정할까요?',
-                        //                           subtitle: '변경된 정보를 저장합니다.',
-                        //                           cancleText: '아니요');
-                        //                     },
-                        //                   ),
-                        //                 ),
-                        //               ],
-                        //             ),
-                        //           ),
-                        //           const SizedBox(
-                        //             height: 10,
-                        //           ),
-                        //           Row(
-                        //             children: [
-                        //               Expanded(
-                        //                 flex: 1,
-                        //                 child: IconBigButton(
-                        //                   imageSrc: 'assets/icons/community.png',
-                        //                   text: '커뮤니티',
-                        //                   onTap: () {
-                        //                     // NavigationController.to
-                        //                     //     .onNavChanged(currentNavIndex: 3);
-                        //                   },
-                        //                 ),
-                        //               ),
-                        //               const SizedBox(
-                        //                 width: 10,
-                        //               ),
-                        //               Expanded(
-                        //                 flex: 1,
-                        //                 child: IconBigButton(
-                        //                   imageSrc: 'assets/icons/dictionary.png',
-                        //                   text: '질병백과',
-                        //                   onTap: () {
-                        //                     // NavigationController.to
-                        //                     //     .onNavChanged(currentNavIndex: 4);
-                        //                   },
-                        //                 ),
-                        //               ),
-                        //             ],
-                        //           ),
-                        //         ],
-                        //       )
-                        //     ],
-                        //   ),
-                        // ),
                       ],
                     ),
                   ),
@@ -987,9 +935,9 @@ class SelfDiagnosisButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           boxShadow: const [
             BoxShadow(
-              color: Color.fromARGB(25, 0, 0, 0),
-              spreadRadius: -1,
-              blurRadius: 20,
+              color: Color.fromARGB(23, 0, 0, 0),
+              spreadRadius: 0,
+              blurRadius: 10,
               offset: Offset(0, 0),
             ),
           ],
@@ -1014,7 +962,8 @@ class SelfDiagnosisButton extends StatelessWidget {
                 Text('코니멀 자가진단하기',
                     style: TextStyle(
                         fontFamily: WcFontFamily.notoSans,
-                        fontSize: 16.5,
+                        fontSize: 17,
+                        height: 1.2,
                         fontWeight: FontWeight.w600,
                         color: Color.fromARGB(255, 0, 80, 177))),
               ],
