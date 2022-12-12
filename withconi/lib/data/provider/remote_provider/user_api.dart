@@ -24,4 +24,17 @@ class UserAPI {
 
     return data;
   }
+
+  Future<Map<String, dynamic>> sendVerificationEmail(
+      ApiCallDTO apiCallDTO) async {
+    Map<String, dynamic> data = await _dio.apiCall(apiCallDTO);
+    return data;
+  }
+
+  Future<Map<String, dynamic>> checkEmailVerificationCode(
+      ApiCallDTO apiCallDTO) async {
+    Map<String, dynamic> data = await _dio.apiCall(apiCallDTO);
+
+    return data;
+  }
 }

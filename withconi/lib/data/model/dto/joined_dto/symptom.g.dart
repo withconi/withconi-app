@@ -29,5 +29,6 @@ const _$SymptomEnumMap = {
   Symptom.mouth: 'mouth',
   Symptom.nerve: 'nerve',
   Symptom.stomach: 'stomach',
+  Symptom.skin: 'stomach',
   Symptom.urinary: 'urinary',
 };

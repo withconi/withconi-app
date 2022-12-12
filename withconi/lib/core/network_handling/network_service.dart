@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:withconi/core/tools/api_url.dart';
@@ -108,34 +109,28 @@ class AuthInterceptor extends Interceptor {
   @override
   void onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
-    if (options.headers.containsKey('requiresToken') &&
-        options.headers['requiresToken']) {
-      // String accessToken =
-      //     WcTokenManager().getToken(CacheControllerKey.accessToken);
-
-      // if (accessToken.isEmpty) {
-      // var expiration = await TokenRepository().getAccessTokenRemainingTime();
-
-      // if (expiration.inSeconds < 60) {
-      //   dio.interceptors.requestLock.lock();
-
-      //   // Call the refresh endpoint to get a new token
-      //   await UserService().refresh().then((response) async {
-      //     await TokenRepository().persistAccessToken(response.accessToken);
-      //     accessToken = response.accessToken;
-      //   }).catchError((error, stackTrace) {
-      //     handler.reject(error, true);
-      //   }).whenComplete(() => dio.interceptors.requestLock.unlock());
-      // }
-
-      // options.headers['Authorization'] = 'Bearer $accessToken';
-      // }
-
-      options.headers.remove('requiresToken');
-      if (firebaseAuth.currentUser != null) {
-        String firebaseToken = await firebaseAuth.currentUser!.getIdToken();
-        options.headers['Authorization'] = 'Bearer $firebaseToken';
+    if (options.headers.containsKey('requiresToken')) {
+      late String token;
+      if (options.headers['requiresToken']) {
+        if (firebaseAuth.currentUser != null) {
+          token = await firebaseAuth.currentUser!.getIdToken(true);
+        } else {
+          final jwt = JWT({'accessKey': "withconi2022"});
+          token = jwt.sign(SecretKey('withconi'));
+        }
+      } else {
+        final jwt = JWT({'accessKey': "withconi2022"});
+        token = jwt.sign(SecretKey('withconi'));
       }
+      options.headers.remove('requiresToken');
+      options.headers['Authorization'] = 'Bearer $token';
+    }
+
+    if (options.headers.containsKey('platformToken')) {
+      String platformToken = options.headers['platformToken'];
+      options.headers.remove('platformToken');
+      options.headers.remove('Authorization');
+      options.headers['Authorization'] = 'Bearer $platformToken';
     }
 
     return handler.next(options);

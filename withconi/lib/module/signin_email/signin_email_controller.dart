@@ -5,7 +5,6 @@ import 'package:withconi/core/signing_auth_info.dart';
 import 'package:withconi/data/enums/enum.dart';
 import 'package:withconi/data/repository/signin_respository.dart';
 import 'package:withconi/module/auth/auth_controller.dart';
-import 'package:withconi/data/repository/app_setting_repository.dart';
 import 'package:withconi/global_widgets/loading/loading_overlay.dart';
 import '../../core/error_handling/failures.dart';
 import '../../core/values/constants/regex.dart';
@@ -13,10 +12,10 @@ import '../../core/values/constants/strings.dart';
 import '../../import_basic.dart';
 
 class SignInEmailController extends GetxController {
-  SignInEmailController(this._signInRepository);
+  SignInEmailController(this._signInRepository, this._email);
   final SignInRepository _signInRepository;
 
-  final RxString _email = ''.obs;
+  late final String _email;
   final RxString _password = ''.obs;
 
   RxBool isButtonValid = false.obs;
@@ -25,14 +24,13 @@ class SignInEmailController extends GetxController {
   TextEditingController emailTextController = TextEditingController();
   TextEditingController passwordTextController = TextEditingController();
 
-  String get email => _email.value;
+  String get email => _email;
   String get password => _password.value;
 
   @override
   void onReady() {
     super.onReady();
-    _email.value = Get.arguments as String;
-    emailTextController.text = _email.value;
+    emailTextController.text = _email;
 
     debounce(_password, validatePassword,
         time: const Duration(milliseconds: 400));
@@ -81,7 +79,7 @@ class SignInEmailController extends GetxController {
     });
 
     if (signInUser != null) {
-      await AuthController.to.setUserInfo();
+      await AuthController.to.setUserAuthInfo();
       Get.offAllNamed(Routes.NAVIGATION);
     }
   }

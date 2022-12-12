@@ -28,7 +28,7 @@ class ImagePickHelper {
       } else {
         ImageItem imageItem = ImageItem(
             id: hashCode.toString(),
-            resource: image.path,
+            imageUrl: image.path,
             imageType: ImageType.file);
         return Right(imageItem);
       }
@@ -68,7 +68,7 @@ class ImagePickHelper {
         List<ImageItem> filteredImageItems = _filteredImages
             .map((e) => ImageItem(
                 id: hashCode.toString(),
-                resource: e.path,
+                imageUrl: e.path,
                 imageType: ImageType.file))
             .toList();
         return Right(filteredImageItems);

@@ -11,4 +11,10 @@ class DiseaseAPI {
 
     return diseaseListData;
   }
+
+  Future<Map<String, dynamic>> getDiseaseDetail(ApiCallDTO apiCallDTO) async {
+    Map<String, dynamic> diseaseDetailData = await _dio.apiCall(apiCallDTO);
+
+    return diseaseDetailData;
+  }
 }

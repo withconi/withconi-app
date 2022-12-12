@@ -1,5 +1,7 @@
+import 'dart:io';
 import 'dart:ui';
 
+import 'package:image_picker/image_picker.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '../../import_basic.dart';
@@ -52,7 +54,7 @@ enum PostType {
   }
 }
 
-enum SortType {
+enum Sorting {
   // @JsonValue("recent")
   // recent('recent', '최신순'),
   // @JsonValue("popular")
@@ -63,12 +65,12 @@ enum SortType {
   visiting('visiting', '많이 찾은순');
   // undefined('undefined', '');
 
-  const SortType(this.code, this.displayName);
+  const Sorting(this.code, this.displayName);
   final String code;
   final String displayName;
 
-  factory SortType.getByCode(String code) {
-    return SortType.values.firstWhere(
+  factory Sorting.getByCode(String code) {
+    return Sorting.values.firstWhere(
       (value) => value.code == code,
     );
   }
@@ -164,21 +166,41 @@ enum DiseasePosibility {
   }
 }
 
-enum MoreOption {
+enum MoreBottomSheetOption {
   edit('edit', '수정하기', 'assets/icons/circle_edit.svg'),
   delete('delete', '삭제하기', 'assets/icons/circle_delete.svg'),
   report('report', '신고하기', 'assets/icons/circle_report.svg'),
   block('block', '더이상 보지 않기', 'assets/icons/circle_block.svg'),
   undefined('undefined', '', '');
 
-  const MoreOption(this.code, this.displayName, this.svgSrc);
+  const MoreBottomSheetOption(this.code, this.displayName, this.svgSrc);
   final String code;
   final String displayName;
   final String svgSrc;
 
-  factory MoreOption.getByCode(String code) {
-    return MoreOption.values.firstWhere((value) => value.code == code,
-        orElse: () => MoreOption.undefined);
+  factory MoreBottomSheetOption.getByCode(String code) {
+    return MoreBottomSheetOption.values.firstWhere(
+        (value) => value.code == code,
+        orElse: () => MoreBottomSheetOption.undefined);
+  }
+}
+
+enum ImagePickOption {
+  camera(ImageSource.camera, 'camera', '카메라', 'assets/icons/camera.svg'),
+  gallery(ImageSource.gallery, 'gallery', '갤러리', 'assets/icons/gallery.svg'),
+  deleteAll(null, 'delete', '사진 삭제', 'assets/icons/remove_image.svg');
+
+  const ImagePickOption(
+      this.imageSource, this.code, this.displayName, this.svgSrc);
+  final ImageSource? imageSource;
+  final String code;
+  final String displayName;
+  final String svgSrc;
+
+  factory ImagePickOption.getByCode(String code) {
+    return ImagePickOption.values.firstWhere(
+      (value) => value.code == code,
+    );
   }
 }
 
@@ -196,7 +218,7 @@ enum ReviewRate {
   middle(
       'middle',
       '적당해요',
-      '어떤 점 때문에 아쉬우신가요?',
+      '어떤 점 때문에 적당하신가요?',
       WcColors.yellow20,
       'assets/icons/neutral_face.svg',
       'assets/icons/neutral_face_inactive.svg',
@@ -403,27 +425,36 @@ enum ReportItem {
 
 enum Provider {
   @JsonValue("kakao")
-  kakao("kakao", '카카오', SignMethod.sns),
+  kakao("kakao", '카카오', SignMethod.sns, 'assets/icons/kakao.png',
+      ['ios', 'android']),
   @JsonValue("naver")
-  naver("naver", '네이버', SignMethod.sns),
+  naver("naver", '네이버', SignMethod.sns, 'assets/icons/naver.png', []),
   @JsonValue("google")
-  google("google", '구글', SignMethod.sns),
+  google("google", '구글', SignMethod.sns, 'assets/icons/google.png',
+      ['ios', 'android']),
   @JsonValue("apple")
-  apple("apple", '애플', SignMethod.sns),
+  apple("apple", '애플', SignMethod.sns, 'assets/icons/apple.png', ['ios']),
   @JsonValue("email")
-  email("email", '이메일', SignMethod.email),
+  email("email", '이메일', SignMethod.email, 'assets/icons/email.png',
+      ['ios', 'android']),
+  // @JsonValue("password")
+  // password("email", '이메일', SignMethod.email, 'assets/icons/email.png'),
   @JsonValue('undefined')
-  undefined('undefined', '', SignMethod.undefined);
+  undefined('undefined', '', SignMethod.undefined,
+      'assets/icons/paw_icon_grey.png', []);
   // @JsonValue("none")
   // none("none", '');
 
-  const Provider(this.code, this.displayName, this.signMethod);
+  const Provider(this.code, this.displayName, this.signMethod, this.iconSrc,
+      this.platform);
   final String code;
   final String displayName;
   final SignMethod signMethod;
+  final String iconSrc;
+  final List<String> platform;
 
   factory Provider.getByCode(String code) {
-    if (code == 'password') {
+    if (code == 'password' || code == 'email') {
       return Provider.email;
     }
     return Provider.values.firstWhere((value) => value.code == code);
@@ -434,34 +465,35 @@ enum Provider {
 
 enum SignMethod { sns, email, undefined }
 
-enum LocationSearchType {
-  mapLocation('mapLocation', '현재 지도 기준'),
-  currentLocation('currentLocation', '내 위치 기준');
+enum DistanceBaseType {
+  mapLocation('mapLocation', '현재 지도 기준 거리'),
+  currentLocation('currentLocation', '내 위치 기준 거리');
 
-  const LocationSearchType(this.code, this.displayName);
+  const DistanceBaseType(this.code, this.displayName);
   final String code;
   final String displayName;
 
-  factory LocationSearchType.getByCode(String code) {
-    return LocationSearchType.values.firstWhere(
+  factory DistanceBaseType.getByCode(String code) {
+    return DistanceBaseType.values.firstWhere(
       (value) => value.code == code,
     );
   }
 }
 
 enum PlaceType {
-  all('all', '전체', '', ''),
+  all('all', '전체', '', '', WcColors.blue100),
   hospital('hospital', '병원', "assets/icons/hospital_clicked.png",
-      "assets/icons/hospital_unclicked.png"),
+      "assets/icons/hospital_unclicked.png", WcColors.blue100),
   pharmacy('pharmacy', '약국', "assets/icons/pharmacy_clicked.png",
-      "assets/icons/pharmacy_unclicked.png");
+      "assets/icons/pharmacy_unclicked.png", WcColors.orange100);
 
   const PlaceType(this.code, this.displayName, this.selectedImagePng,
-      this.unselectedImagePng);
+      this.unselectedImagePng, this.mainColor);
   final String code;
   final String displayName;
   final String unselectedImagePng;
   final String selectedImagePng;
+  final Color mainColor;
 
   factory PlaceType.getByCode(String code) {
     return PlaceType.values
@@ -470,26 +502,26 @@ enum PlaceType {
 }
 
 enum DiseaseType {
-  @JsonValue("")
   all('all', '', WcColors.grey20),
-  cardiovacular('cardiovacular', '심혈관', WcColors.pinkLight), //심혈관
-  musculoskeletal('musculoskeletal', '근골격', WcColors.grey160), // 근골격
-  digestive('digestive', '소화기/간담췌', WcColors.mintLight), //소화기,간담췌
-  ophthalmology('ophthalmology', '안과', WcColors.blue100), // 안과
+  oncology('oncology', '암/종양혈액', Color.fromARGB(255, 0, 87, 193)), //암,종양혈액질환
+  endocrinology('endocrinology', '대사/면역', WcColors.green100), //내분비,호르몬
   urinary('urinary', '비뇨/신장', WcColors.yellowLight), // 비뇨신장
-  respiratory('respiratory', '호흡기', WcColors.purpleLight), // 호흡기
-  //예전버전은 여기까지
+  cardiovacular(
+      'cardiovacular', '심혈관', Color.fromARGB(255, 255, 90, 173)), //심혈관
+  digestive('digestive', '소화기/간담췌', WcColors.mintLight), //소화기,간담췌
+  infectiousDisease('infectiousDisease', '감염성', WcColors.greenLight), //감염성
+  musculoskeletal('musculoskeletal', '근골격', WcColors.grey160), // 근골격
+  brainNeurology(
+      'brainNeurology', '뇌/신경정신', Color.fromARGB(255, 12, 190, 255)), // 뇌신경정신질환
+  dermatology('dermatology', '피부과', WcColors.beidgeLight), //피부과
   otorhinolaryngology(
       'otorhinolaryngology', '이비인후', WcColors.mustardLight), // 이비인후
-  infectiousDisease('infectiousDisease', '감염성', WcColors.greenLight), //감염성
-  brainNeurology('brainNeurology', '뇌/신경정신', WcColors.orange100), // 뇌신경정신질환
+  respiratory('respiratory', '호흡기', WcColors.purpleLight), // 호흡기
   dentistry('dentistry', '치과', WcColors.babyPinkLight), //치과
-  oncology('oncology', '암/종양혈액', Color.fromARGB(255, 0, 87, 193)), //암,종양혈액질환
-  dermatology('dermatology', '피부과', WcColors.beidgeLight), //피부과
-  endocrinology('endocrinology', '대사/면역', WcColors.green100), //내분비,호르몬
-  emergency('emergency', '응급', WcColors.red100),
-
-  undefined('undefined', '질병없음', WcColors.white); //응급
+  ophthalmology('ophthalmology', '안과', Color.fromARGB(255, 0, 119, 231)), // 안과
+  emergency('emergency', '응급', Color.fromARGB(255, 233, 27, 0)),
+  @JsonValue("")
+  undefined('undefined', '', WcColors.grey110); //응급
 
   const DiseaseType(this.code, this.displayName, this.color);
   final String code;
@@ -506,7 +538,7 @@ enum OpeningStatus {
   @JsonValue("open")
   open('open', '영업중'),
   @JsonValue(null)
-  all('all', '전체'),
+  all('', '전체'),
   @JsonValue("closed")
   closed('closed', '영업종료');
 

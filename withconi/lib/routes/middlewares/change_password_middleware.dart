@@ -29,7 +29,9 @@ class ChangePasswordMiddleware extends GetMiddleware {
   @override
   RouteSettings? redirect(String? route) {
     if (!AuthController.to.isEmailVerified) {
-      return const RouteSettings(name: Routes.EMAIL_VERIFICATION);
+      return const RouteSettings(
+          name: Routes.EMAIL_VERIFICATION,
+          arguments: {'nextRoute': Routes.CHANGE_PASSWORD});
     } else {
       return null;
     }

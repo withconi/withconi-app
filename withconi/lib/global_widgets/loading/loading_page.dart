@@ -18,8 +18,8 @@ class LoadingPage extends StatelessWidget {
       child: SizedBox(
         height: WcHeight - 100,
         child: OverflowBox(
-          minHeight: 130,
-          maxHeight: 130,
+          minHeight: 125,
+          maxHeight: 125,
           child: Lottie.asset('assets/json/loading.json'),
         ),
       ),

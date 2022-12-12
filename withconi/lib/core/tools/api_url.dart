@@ -5,12 +5,14 @@ class HttpUrl {
       'https://asia-northeast3-withconi.cloudfunctions.net/api';
   static const VERSION_CHECK = '/comm/getVersion';
   static const VERIFY_EMAIL = '/auth/verifyEmail';
+  static const FCM_REFRESH = '/auth/refreshFCM';
   static const SIGN_IN = '/auth/signIn';
   static const SIGN_UP = '/auth/signUp';
   static const USER_GET = '/auth/getUser';
   static const USER_UPDATE = '/auth/updateUser';
   static const CUSTOM_TOKEN_GET = '/auth/getCustomToken';
-  static const DISEASE_GET = '/disease/listDiseases';
+  static const DISEASE_LIST_GET = '/disease/listDiseases';
+  static const DISEASE_DETAIL_GET = '/disease/getDisease';
   static const CONIMAL_CREATE = '/auth/createConimal';
   static const CONIMAL_UPDATE = '/auth/updateConimal';
   static const CONIMAL_DELETE = '/auth/deleteConimal';
@@ -27,9 +29,9 @@ class HttpUrl {
   static const COMMUNITY_GET_POST = '/board/getPost';
   static const COMMUNITY_DELETE_POST = '/board/deletePost';
   static const COMMUNITY_BLOCK_POST = '/board/updateBlockPost';
-  static const COMMUNITY_BLOCK_COMMENT = '/board/deletePost';
+  static const COMMUNITY_BLOCK_COMMENT = '/board/updateBlockPostLineReply';
   static const COMMUNITY_DELETE_COMMENT = '/board/deletePostLineReply';
-  static const COMMUNITY_CREATE_REPORT = '/board/reportPost';
+  static const COMMUNITY_CREATE_REPORT = '/board/updateReportPost';
   static const POST_CREATE = '/board/createPost';
   static const POST_UPDATE_MY_POST = '/board/updatePost';
   static const COMMENT_CREATE = '/board/createPostLineReply';
@@ -37,6 +39,7 @@ class HttpUrl {
   static const POST_GET_LIKE_POST = '/board/listBoard';
   static const IMAGE_UPLOAD = '/comm/uploadFile';
   static const PLACE_PREVIEW_LIST = '/location/getLocationList';
+  static const PLACE_BOOKMARK_LIST = '/location/getLocationBookmarkList';
   static const MAP_GET_LOCATION_DETAIL = '/location/getLocation';
   static const MAP_GET_REVIEW_HISTORY = '/location/getLocationReviewList';
   static const MAP_GET_VERIFICATION = '/location/verifyLocationThumbnail';
@@ -44,4 +47,6 @@ class HttpUrl {
   static const MAP_GET_MY_REVIEW_LIST = '/location/getMyReviewList';
   static const MAP_GET_MY_REVIEW_DETAIL = '/location/getMyReview';
   static const MAP_UPDATE_BOOKMARK = '/location/updateLocationBookmark';
+  static const SEND_VERIFICATION_EMAIL = '/auth/sendAuthMail';
+  static const VERIFY_EMAIL_CODE = '/auth/verifyAuthMail';
 }
