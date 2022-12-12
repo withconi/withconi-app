@@ -20,7 +20,8 @@ PostResponseDTO _$PostResponseDTOFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PostResponseDTO {
-// @JsonKey(name: '_id') required String id,
+  @JsonKey(name: 'profileImageUrl')
+  String get profileImageUrl => throw _privateConstructorUsedError;
   String get boardId => throw _privateConstructorUsedError;
   @JsonKey(name: '_id')
   String get postId => throw _privateConstructorUsedError;
@@ -29,8 +30,6 @@ mixin _$PostResponseDTO {
   PostType get postType => throw _privateConstructorUsedError;
   DiseaseType get diseaseType => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
-  @ImageItemConverter()
-  List<ImageItem> get images => throw _privateConstructorUsedError;
   @DateTimeConverter()
   DateTime get createdAt => throw _privateConstructorUsedError;
   bool get isLike => throw _privateConstructorUsedError;
@@ -38,6 +37,9 @@ mixin _$PostResponseDTO {
   int get likeNum => throw _privateConstructorUsedError;
   @JsonKey(name: 'totalComment')
   int get commentNum => throw _privateConstructorUsedError;
+  @ImageItemConverter()
+  @JsonKey(name: 'postImageUrls')
+  List<ImageItem> get images => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -52,18 +54,26 @@ abstract class $PostResponseDTOCopyWith<$Res> {
       _$PostResponseDTOCopyWithImpl<$Res, PostResponseDTO>;
   @useResult
   $Res call(
-      {String boardId,
-      @JsonKey(name: '_id') String postId,
+      {@JsonKey(name: 'profileImageUrl')
+          String profileImageUrl,
+      String boardId,
+      @JsonKey(name: '_id')
+          String postId,
       String authorId,
       String nickname,
       PostType postType,
       DiseaseType diseaseType,
       String content,
-      @ImageItemConverter() List<ImageItem> images,
-      @DateTimeConverter() DateTime createdAt,
+      @DateTimeConverter()
+          DateTime createdAt,
       bool isLike,
-      @JsonKey(name: 'totalLike') int likeNum,
-      @JsonKey(name: 'totalComment') int commentNum});
+      @JsonKey(name: 'totalLike')
+          int likeNum,
+      @JsonKey(name: 'totalComment')
+          int commentNum,
+      @ImageItemConverter()
+      @JsonKey(name: 'postImageUrls')
+          List<ImageItem> images});
 }
 
 /// @nodoc
@@ -79,6 +89,7 @@ class _$PostResponseDTOCopyWithImpl<$Res, $Val extends PostResponseDTO>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? profileImageUrl = null,
     Object? boardId = null,
     Object? postId = null,
     Object? authorId = null,
@@ -86,13 +97,17 @@ class _$PostResponseDTOCopyWithImpl<$Res, $Val extends PostResponseDTO>
     Object? postType = null,
     Object? diseaseType = null,
     Object? content = null,
-    Object? images = null,
     Object? createdAt = null,
     Object? isLike = null,
     Object? likeNum = null,
     Object? commentNum = null,
+    Object? images = null,
   }) {
     return _then(_value.copyWith(
+      profileImageUrl: null == profileImageUrl
+          ? _value.profileImageUrl
+          : profileImageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
       boardId: null == boardId
           ? _value.boardId
           : boardId // ignore: cast_nullable_to_non_nullable
@@ -121,10 +136,6 @@ class _$PostResponseDTOCopyWithImpl<$Res, $Val extends PostResponseDTO>
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
               as String,
-      images: null == images
-          ? _value.images
-          : images // ignore: cast_nullable_to_non_nullable
-              as List<ImageItem>,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -141,6 +152,10 @@ class _$PostResponseDTOCopyWithImpl<$Res, $Val extends PostResponseDTO>
           ? _value.commentNum
           : commentNum // ignore: cast_nullable_to_non_nullable
               as int,
+      images: null == images
+          ? _value.images
+          : images // ignore: cast_nullable_to_non_nullable
+              as List<ImageItem>,
     ) as $Val);
   }
 }
@@ -154,18 +169,26 @@ abstract class _$$_PostResponseDTOCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String boardId,
-      @JsonKey(name: '_id') String postId,
+      {@JsonKey(name: 'profileImageUrl')
+          String profileImageUrl,
+      String boardId,
+      @JsonKey(name: '_id')
+          String postId,
       String authorId,
       String nickname,
       PostType postType,
       DiseaseType diseaseType,
       String content,
-      @ImageItemConverter() List<ImageItem> images,
-      @DateTimeConverter() DateTime createdAt,
+      @DateTimeConverter()
+          DateTime createdAt,
       bool isLike,
-      @JsonKey(name: 'totalLike') int likeNum,
-      @JsonKey(name: 'totalComment') int commentNum});
+      @JsonKey(name: 'totalLike')
+          int likeNum,
+      @JsonKey(name: 'totalComment')
+          int commentNum,
+      @ImageItemConverter()
+      @JsonKey(name: 'postImageUrls')
+          List<ImageItem> images});
 }
 
 /// @nodoc
@@ -179,6 +202,7 @@ class __$$_PostResponseDTOCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? profileImageUrl = null,
     Object? boardId = null,
     Object? postId = null,
     Object? authorId = null,
@@ -186,13 +210,17 @@ class __$$_PostResponseDTOCopyWithImpl<$Res>
     Object? postType = null,
     Object? diseaseType = null,
     Object? content = null,
-    Object? images = null,
     Object? createdAt = null,
     Object? isLike = null,
     Object? likeNum = null,
     Object? commentNum = null,
+    Object? images = null,
   }) {
     return _then(_$_PostResponseDTO(
+      profileImageUrl: null == profileImageUrl
+          ? _value.profileImageUrl
+          : profileImageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
       boardId: null == boardId
           ? _value.boardId
           : boardId // ignore: cast_nullable_to_non_nullable
@@ -221,10 +249,6 @@ class __$$_PostResponseDTOCopyWithImpl<$Res>
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
               as String,
-      images: null == images
-          ? _value._images
-          : images // ignore: cast_nullable_to_non_nullable
-              as List<ImageItem>,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -241,6 +265,10 @@ class __$$_PostResponseDTOCopyWithImpl<$Res>
           ? _value.commentNum
           : commentNum // ignore: cast_nullable_to_non_nullable
               as int,
+      images: null == images
+          ? _value._images
+          : images // ignore: cast_nullable_to_non_nullable
+              as List<ImageItem>,
     ));
   }
 }
@@ -250,24 +278,34 @@ class __$$_PostResponseDTOCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_PostResponseDTO implements _PostResponseDTO {
   _$_PostResponseDTO(
-      {required this.boardId,
-      @JsonKey(name: '_id') required this.postId,
+      {@JsonKey(name: 'profileImageUrl')
+          this.profileImageUrl = '',
+      required this.boardId,
+      @JsonKey(name: '_id')
+          required this.postId,
       required this.authorId,
-      this.nickname = '글 닉네임 없음',
+      this.nickname = '알수없음',
       this.postType = PostType.cat,
       this.diseaseType = DiseaseType.dentistry,
       required this.content,
-      @ImageItemConverter() required final List<ImageItem> images,
-      @DateTimeConverter() required this.createdAt,
+      @DateTimeConverter()
+          required this.createdAt,
       this.isLike = false,
-      @JsonKey(name: 'totalLike') this.likeNum = 0,
-      @JsonKey(name: 'totalComment') this.commentNum = 0})
+      @JsonKey(name: 'totalLike')
+          this.likeNum = 0,
+      @JsonKey(name: 'totalComment')
+          this.commentNum = 0,
+      @ImageItemConverter()
+      @JsonKey(name: 'postImageUrls')
+          final List<ImageItem> images = const []})
       : _images = images;
 
   factory _$_PostResponseDTO.fromJson(Map<String, dynamic> json) =>
       _$$_PostResponseDTOFromJson(json);
 
-// @JsonKey(name: '_id') required String id,
+  @override
+  @JsonKey(name: 'profileImageUrl')
+  final String profileImageUrl;
   @override
   final String boardId;
   @override
@@ -286,14 +324,6 @@ class _$_PostResponseDTO implements _PostResponseDTO {
   final DiseaseType diseaseType;
   @override
   final String content;
-  final List<ImageItem> _images;
-  @override
-  @ImageItemConverter()
-  List<ImageItem> get images {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_images);
-  }
-
   @override
   @DateTimeConverter()
   final DateTime createdAt;
@@ -306,10 +336,18 @@ class _$_PostResponseDTO implements _PostResponseDTO {
   @override
   @JsonKey(name: 'totalComment')
   final int commentNum;
+  final List<ImageItem> _images;
+  @override
+  @ImageItemConverter()
+  @JsonKey(name: 'postImageUrls')
+  List<ImageItem> get images {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_images);
+  }
 
   @override
   String toString() {
-    return 'PostResponseDTO(boardId: $boardId, postId: $postId, authorId: $authorId, nickname: $nickname, postType: $postType, diseaseType: $diseaseType, content: $content, images: $images, createdAt: $createdAt, isLike: $isLike, likeNum: $likeNum, commentNum: $commentNum)';
+    return 'PostResponseDTO(profileImageUrl: $profileImageUrl, boardId: $boardId, postId: $postId, authorId: $authorId, nickname: $nickname, postType: $postType, diseaseType: $diseaseType, content: $content, createdAt: $createdAt, isLike: $isLike, likeNum: $likeNum, commentNum: $commentNum, images: $images)';
   }
 
   @override
@@ -317,6 +355,8 @@ class _$_PostResponseDTO implements _PostResponseDTO {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_PostResponseDTO &&
+            (identical(other.profileImageUrl, profileImageUrl) ||
+                other.profileImageUrl == profileImageUrl) &&
             (identical(other.boardId, boardId) || other.boardId == boardId) &&
             (identical(other.postId, postId) || other.postId == postId) &&
             (identical(other.authorId, authorId) ||
@@ -328,19 +368,20 @@ class _$_PostResponseDTO implements _PostResponseDTO {
             (identical(other.diseaseType, diseaseType) ||
                 other.diseaseType == diseaseType) &&
             (identical(other.content, content) || other.content == content) &&
-            const DeepCollectionEquality().equals(other._images, _images) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.isLike, isLike) || other.isLike == isLike) &&
             (identical(other.likeNum, likeNum) || other.likeNum == likeNum) &&
             (identical(other.commentNum, commentNum) ||
-                other.commentNum == commentNum));
+                other.commentNum == commentNum) &&
+            const DeepCollectionEquality().equals(other._images, _images));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      profileImageUrl,
       boardId,
       postId,
       authorId,
@@ -348,11 +389,11 @@ class _$_PostResponseDTO implements _PostResponseDTO {
       postType,
       diseaseType,
       content,
-      const DeepCollectionEquality().hash(_images),
       createdAt,
       isLike,
       likeNum,
-      commentNum);
+      commentNum,
+      const DeepCollectionEquality().hash(_images));
 
   @JsonKey(ignore: true)
   @override
@@ -370,24 +411,34 @@ class _$_PostResponseDTO implements _PostResponseDTO {
 
 abstract class _PostResponseDTO implements PostResponseDTO {
   factory _PostResponseDTO(
-          {required final String boardId,
-          @JsonKey(name: '_id') required final String postId,
-          required final String authorId,
-          final String nickname,
-          final PostType postType,
-          final DiseaseType diseaseType,
-          required final String content,
-          @ImageItemConverter() required final List<ImageItem> images,
-          @DateTimeConverter() required final DateTime createdAt,
-          final bool isLike,
-          @JsonKey(name: 'totalLike') final int likeNum,
-          @JsonKey(name: 'totalComment') final int commentNum}) =
-      _$_PostResponseDTO;
+      {@JsonKey(name: 'profileImageUrl')
+          final String profileImageUrl,
+      required final String boardId,
+      @JsonKey(name: '_id')
+          required final String postId,
+      required final String authorId,
+      final String nickname,
+      final PostType postType,
+      final DiseaseType diseaseType,
+      required final String content,
+      @DateTimeConverter()
+          required final DateTime createdAt,
+      final bool isLike,
+      @JsonKey(name: 'totalLike')
+          final int likeNum,
+      @JsonKey(name: 'totalComment')
+          final int commentNum,
+      @ImageItemConverter()
+      @JsonKey(name: 'postImageUrls')
+          final List<ImageItem> images}) = _$_PostResponseDTO;
 
   factory _PostResponseDTO.fromJson(Map<String, dynamic> json) =
       _$_PostResponseDTO.fromJson;
 
-  @override // @JsonKey(name: '_id') required String id,
+  @override
+  @JsonKey(name: 'profileImageUrl')
+  String get profileImageUrl;
+  @override
   String get boardId;
   @override
   @JsonKey(name: '_id')
@@ -403,9 +454,6 @@ abstract class _PostResponseDTO implements PostResponseDTO {
   @override
   String get content;
   @override
-  @ImageItemConverter()
-  List<ImageItem> get images;
-  @override
   @DateTimeConverter()
   DateTime get createdAt;
   @override
@@ -416,6 +464,10 @@ abstract class _PostResponseDTO implements PostResponseDTO {
   @override
   @JsonKey(name: 'totalComment')
   int get commentNum;
+  @override
+  @ImageItemConverter()
+  @JsonKey(name: 'postImageUrls')
+  List<ImageItem> get images;
   @override
   @JsonKey(ignore: true)
   _$$_PostResponseDTOCopyWith<_$_PostResponseDTO> get copyWith =>
