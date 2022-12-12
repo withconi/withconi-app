@@ -45,7 +45,7 @@ class CreatePostRequestDTO
       // 'authorId': authorId,
       'postType': postType.code,
       'boardId': boardId,
-      // 'postImageRef': _imageRefList,
+      'postImageRefs': _imageRefList,
     };
   }
 }

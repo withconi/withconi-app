@@ -14,7 +14,7 @@ class GetMyReviewDetailRequestDTO
   RequestType get requestType => RequestType.GET;
 
   @override
-  String get url => HttpUrl.MAP_GET_MY_REVIEW_LIST;
+  String get url => HttpUrl.MAP_GET_MY_REVIEW_DETAIL;
 
   GetMyReviewDetailRequestDTO.fromData({required this.reviewId})
       : super.fromData(reviewId);

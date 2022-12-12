@@ -14,7 +14,7 @@ class GetUserInfoExistenceRequestDTO
     implements RequestDTO {
   final String email;
   @override
-  bool get requiresToken => true;
+  bool get requiresToken => false;
 
   // TODO: GetCustomTokenDTO Post 맞는지 확인하기
   @override

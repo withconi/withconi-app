@@ -33,7 +33,6 @@ class CreateReportRequestDTO
   @override
   Map<String, dynamic> get dataMap {
     return {
-      'boardId': boardId,
       'postId': postId,
       'reportDesc': reportDesc,
       'reportItem': reportItem.code,

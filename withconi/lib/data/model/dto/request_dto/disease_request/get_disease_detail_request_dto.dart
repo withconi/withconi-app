@@ -23,7 +23,7 @@ class GetDiseaseDetailRequestDTO
   RequestType get requestType => RequestType.GET;
 
   @override
-  bool get requiresToken => true;
+  bool get requiresToken => false;
 
   GetDiseaseDetailRequestDTO.fromData({required this.diseaseCode})
       : super.fromData(diseaseCode);

@@ -29,7 +29,7 @@ class UpdateConimalRequestDTO
       : adoptedDate = data.adoptedDate!,
         birthDate = data.birthDate!,
         breed = data.breed,
-        diseaseIdList = data.diseases.map((e) => e.code).toList(),
+        diseaseIdList = data.diseases.map((e) => e.diseaseId).toList(),
         gender = data.gender!,
         name = data.name,
         species = data.species!,

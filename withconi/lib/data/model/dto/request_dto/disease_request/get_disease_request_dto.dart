@@ -13,6 +13,9 @@ class GetDiseaseListRequestDTO extends RequestConverter<
   String? keyword;
 
   @override
+  String get url => HttpUrl.DISEASE_LIST_GET;
+
+  @override
   Map<String, dynamic> get dataMap => {
         "page": paginationFilter.page,
         "listSize": paginationFilter.listSize,
@@ -23,10 +26,7 @@ class GetDiseaseListRequestDTO extends RequestConverter<
   RequestType get requestType => RequestType.GET;
 
   @override
-  bool get requiresToken => true;
-
-  @override
-  String get url => HttpUrl.DISEASE_GET;
+  bool get requiresToken => false;
 
   GetDiseaseListRequestDTO.fromData(
       {required this.paginationFilter, required this.keyword})

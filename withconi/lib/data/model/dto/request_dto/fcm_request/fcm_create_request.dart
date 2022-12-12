@@ -9,10 +9,10 @@ import 'package:withconi/data/model/dto/request_dto/abstract_request/request_inf
 import '../../../../enums/enum.dart';
 import '../abstract_request/request_dto_abstract.dart';
 
-class CreateFcmTokenRequest
-    extends RequestConverter<CreateFcmTokenRequest, String>
+class UpdateFcmTokenRequest
+    extends RequestConverter<UpdateFcmTokenRequest, String?>
     implements RequestDTO {
-  final String fcmToken;
+  final String? fcmToken;
   @override
   bool get requiresToken => true;
 
@@ -23,7 +23,7 @@ class CreateFcmTokenRequest
   @override
   String get url => HttpUrl.FCM_REFRESH;
 
-  CreateFcmTokenRequest.fromData(this.fcmToken) : super.fromData(fcmToken);
+  UpdateFcmTokenRequest.fromData(this.fcmToken) : super.fromData(fcmToken);
 
   @override
   Map<String, dynamic> get dataMap => {'newToken': fcmToken};

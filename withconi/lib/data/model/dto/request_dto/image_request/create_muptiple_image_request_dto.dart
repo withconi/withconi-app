@@ -74,7 +74,7 @@ class CreateMultipleImagesRequestDTO
 
     _formDataList = imageItems.map((imageItem) {
       dio.MultipartFile _file = dio.MultipartFile.fromFileSync(
-        imageItem.resource,
+        imageItem.imageUrl,
       );
       return dio.FormData.fromMap({'file': _file});
     }).toList();

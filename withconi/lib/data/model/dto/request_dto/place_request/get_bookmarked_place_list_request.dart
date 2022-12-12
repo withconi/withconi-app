@@ -7,10 +7,8 @@ import '../../../../../core/tools/helpers/infinite_scroll.dart';
 import '../abstract_request/request_dto_abstract.dart';
 
 class GetBookmarkedPlaceListRequestDTO
-    extends RequestConverter<GetBookmarkedPlaceListRequestDTO, PaginationFilter>
+    extends RequestConverter<GetBookmarkedPlaceListRequestDTO, Null>
     implements RequestDTO {
-  final PaginationFilter _paginationFilter;
-
   @override
   bool get requiresToken => true;
 
@@ -18,12 +16,10 @@ class GetBookmarkedPlaceListRequestDTO
   RequestType get requestType => RequestType.GET;
 
   @override
-  String get url => HttpUrl.PLACE_PREVIEW_LIST;
+  String get url => HttpUrl.PLACE_BOOKMARK_LIST;
 
-  GetBookmarkedPlaceListRequestDTO.fromData(this._paginationFilter)
-      : super.fromData(_paginationFilter);
+  GetBookmarkedPlaceListRequestDTO.fromData() : super.fromData(null);
 
   @override
-  Map<String, dynamic> get dataMap =>
-      {'page': _paginationFilter.page, 'listSize': _paginationFilter.listSize};
+  Map<String, dynamic> get dataMap => {};
 }

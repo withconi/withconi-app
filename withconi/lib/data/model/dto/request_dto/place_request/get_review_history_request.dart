@@ -8,7 +8,7 @@ class GetReviewHistoryRequestDTO
     extends RequestConverter<GetReviewHistoryRequestDTO, String>
     implements RequestDTO {
   final String _placeId;
-  final bool _onlyVerified;
+  final bool _onlyPhotoReview;
 
   @override
   bool get requiresToken => true;
@@ -20,12 +20,12 @@ class GetReviewHistoryRequestDTO
   String get url => HttpUrl.MAP_GET_REVIEW_HISTORY;
 
   GetReviewHistoryRequestDTO.fromData(
-      {required String placeId, required bool onlyVerified})
+      {required String placeId, required bool onlyPhotoReview})
       : _placeId = placeId,
-        _onlyVerified = onlyVerified,
+        _onlyPhotoReview = onlyPhotoReview,
         super.fromData(placeId);
 
   @override
   Map<String, dynamic> get dataMap =>
-      {'locId': _placeId, 'onlyVerified': _onlyVerified};
+      {'locId': _placeId, 'onlyPhotoReview': _onlyPhotoReview};
 }

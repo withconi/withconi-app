@@ -52,7 +52,7 @@ class UpdateMyPostRequestDTO
       "postId": postId,
       "boardId": boardId,
       "content": content,
-      "postImageRef": _imageRefList,
+      "postImageRefs": _imageRefList,
       "postType": postType.code,
     };
   }

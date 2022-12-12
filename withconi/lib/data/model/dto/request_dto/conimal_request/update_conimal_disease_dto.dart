@@ -23,7 +23,7 @@ class UpdateConimalDiseaseRequestDTO extends RequestConverter<
   UpdateConimalDiseaseRequestDTO.fromData(
       {required String conimalId, required List<DiseaseUIModel> diseases})
       : _conimalId = conimalId,
-        _diseaseIdList = diseases.map((e) => (e.code)).toList(),
+        _diseaseIdList = diseases.map((e) => (e.diseaseId)).toList(),
         super.fromData(Tuple2(conimalId, diseases));
 
   // @override

@@ -11,14 +11,14 @@ import '../abstract_request/request_dto_abstract.dart';
 class GetPlacePreviewListRequestDTO extends RequestConverter<
     GetPlacePreviewListRequestDTO,
     Tuple2<MapFilterUIModel, PaginationFilter>> implements RequestDTO {
-  PaginationFilter paginationFilter;
-  String? keyword;
-  PlaceType? locType;
-  Species? speciesType;
-  OpeningStatus? openingStatus;
-  LatLngUIModel _baseLatLng;
-  DiseaseType? diseaseType;
-  int distance;
+  final PaginationFilter paginationFilter;
+  final String? keyword;
+  final PlaceType? locType;
+  final Species? speciesType;
+  final OpeningStatus? openingStatus;
+  final LatLngUIModel _baseLatLng;
+  final DiseaseType? diseaseType;
+  final double distance;
 
   @override
   bool get requiresToken => true;
@@ -30,17 +30,18 @@ class GetPlacePreviewListRequestDTO extends RequestConverter<
   String get url => HttpUrl.PLACE_PREVIEW_LIST;
 
   GetPlacePreviewListRequestDTO.fromData(
-      {required MapFilterUIModel data,
+      {required MapFilterUIModel mapFilter,
+      String? keywords,
       required this.paginationFilter,
       required LatLngUIModel latlng})
-      : distance = data.searchArea,
+      : distance = mapFilter.searchArea,
         _baseLatLng = latlng,
-        diseaseType = data.diseaseType,
-        speciesType = data.speciesType,
-        openingStatus = data.openingStatus,
-        locType = data.placeType,
-        keyword = data.keyword,
-        super.fromData(Tuple2(data, paginationFilter));
+        diseaseType = mapFilter.diseaseType,
+        speciesType = mapFilter.speciesType,
+        openingStatus = mapFilter.openingStatus,
+        locType = mapFilter.placeType,
+        keyword = keywords,
+        super.fromData(Tuple2(mapFilter, paginationFilter));
 
   @override
   Map<String, dynamic> get dataMap => {

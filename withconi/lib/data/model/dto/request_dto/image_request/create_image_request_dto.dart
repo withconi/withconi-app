@@ -43,7 +43,7 @@ class CreateImageRequestDTO
     //     imageItems.map((e) => io.File(e.resource)).toList();
 
     final dio.MultipartFile _file = dio.MultipartFile.fromFileSync(
-      imageItem.resource,
+      imageItem.imageUrl,
     );
 
     _formData = dio.FormData.fromMap({"file": _file});
