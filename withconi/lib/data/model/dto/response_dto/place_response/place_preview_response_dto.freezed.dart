@@ -36,8 +36,8 @@ mixin _$PlacePreviewResponseDTO {
   @JsonKey(name: '_id')
   String get placeId => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
-  @JsonKey(name: 'isVisitVerified')
-  bool get visitVerified => throw _privateConstructorUsedError;
+  @JsonKey(name: 'isPhotoReview')
+  bool get isPhotoReview => throw _privateConstructorUsedError;
   bool get isBookmarked => throw _privateConstructorUsedError;
   LatLngResponseDTO get coordinate => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
@@ -54,7 +54,7 @@ mixin _$PlacePreviewResponseDTO {
     required TResult Function(
             @JsonKey(name: '_id') String placeId,
             String address,
-            @JsonKey(name: 'isVisitVerified') bool visitVerified,
+            @JsonKey(name: 'isPhotoReview') bool isPhotoReview,
             bool isBookmarked,
             LatLngResponseDTO coordinate,
             String phone,
@@ -68,7 +68,7 @@ mixin _$PlacePreviewResponseDTO {
     required TResult Function(
             @JsonKey(name: '_id') String placeId,
             String address,
-            @JsonKey(name: 'isVisitVerified') bool visitVerified,
+            @JsonKey(name: 'isPhotoReview') bool isPhotoReview,
             bool isBookmarked,
             LatLngResponseDTO coordinate,
             String phone,
@@ -86,7 +86,7 @@ mixin _$PlacePreviewResponseDTO {
     TResult? Function(
             @JsonKey(name: '_id') String placeId,
             String address,
-            @JsonKey(name: 'isVisitVerified') bool visitVerified,
+            @JsonKey(name: 'isPhotoReview') bool isPhotoReview,
             bool isBookmarked,
             LatLngResponseDTO coordinate,
             String phone,
@@ -100,7 +100,7 @@ mixin _$PlacePreviewResponseDTO {
     TResult? Function(
             @JsonKey(name: '_id') String placeId,
             String address,
-            @JsonKey(name: 'isVisitVerified') bool visitVerified,
+            @JsonKey(name: 'isPhotoReview') bool isPhotoReview,
             bool isBookmarked,
             LatLngResponseDTO coordinate,
             String phone,
@@ -118,7 +118,7 @@ mixin _$PlacePreviewResponseDTO {
     TResult Function(
             @JsonKey(name: '_id') String placeId,
             String address,
-            @JsonKey(name: 'isVisitVerified') bool visitVerified,
+            @JsonKey(name: 'isPhotoReview') bool isPhotoReview,
             bool isBookmarked,
             LatLngResponseDTO coordinate,
             String phone,
@@ -132,7 +132,7 @@ mixin _$PlacePreviewResponseDTO {
     TResult Function(
             @JsonKey(name: '_id') String placeId,
             String address,
-            @JsonKey(name: 'isVisitVerified') bool visitVerified,
+            @JsonKey(name: 'isPhotoReview') bool isPhotoReview,
             bool isBookmarked,
             LatLngResponseDTO coordinate,
             String phone,
@@ -180,7 +180,7 @@ abstract class $PlacePreviewResponseDTOCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: '_id') String placeId,
       String address,
-      @JsonKey(name: 'isVisitVerified') bool visitVerified,
+      @JsonKey(name: 'isPhotoReview') bool isPhotoReview,
       bool isBookmarked,
       LatLngResponseDTO coordinate,
       String phone,
@@ -210,7 +210,7 @@ class _$PlacePreviewResponseDTOCopyWithImpl<$Res,
   $Res call({
     Object? placeId = null,
     Object? address = null,
-    Object? visitVerified = null,
+    Object? isPhotoReview = null,
     Object? isBookmarked = null,
     Object? coordinate = null,
     Object? phone = null,
@@ -230,9 +230,9 @@ class _$PlacePreviewResponseDTOCopyWithImpl<$Res,
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String,
-      visitVerified: null == visitVerified
-          ? _value.visitVerified
-          : visitVerified // ignore: cast_nullable_to_non_nullable
+      isPhotoReview: null == isPhotoReview
+          ? _value.isPhotoReview
+          : isPhotoReview // ignore: cast_nullable_to_non_nullable
               as bool,
       isBookmarked: null == isBookmarked
           ? _value.isBookmarked
@@ -294,7 +294,7 @@ abstract class _$$PharmacyPreviewResponseDTOCopyWith<$Res>
   $Res call(
       {@JsonKey(name: '_id') String placeId,
       String address,
-      @JsonKey(name: 'isVisitVerified') bool visitVerified,
+      @JsonKey(name: 'isPhotoReview') bool isPhotoReview,
       bool isBookmarked,
       LatLngResponseDTO coordinate,
       String phone,
@@ -324,7 +324,7 @@ class __$$PharmacyPreviewResponseDTOCopyWithImpl<$Res>
   $Res call({
     Object? placeId = null,
     Object? address = null,
-    Object? visitVerified = null,
+    Object? isPhotoReview = null,
     Object? isBookmarked = null,
     Object? coordinate = null,
     Object? phone = null,
@@ -344,9 +344,9 @@ class __$$PharmacyPreviewResponseDTOCopyWithImpl<$Res>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String,
-      visitVerified: null == visitVerified
-          ? _value.visitVerified
-          : visitVerified // ignore: cast_nullable_to_non_nullable
+      isPhotoReview: null == isPhotoReview
+          ? _value.isPhotoReview
+          : isPhotoReview // ignore: cast_nullable_to_non_nullable
               as bool,
       isBookmarked: null == isBookmarked
           ? _value.isBookmarked
@@ -395,7 +395,7 @@ class _$PharmacyPreviewResponseDTO implements PharmacyPreviewResponseDTO {
   const _$PharmacyPreviewResponseDTO(
       {@JsonKey(name: '_id') required this.placeId,
       required this.address,
-      @JsonKey(name: 'isVisitVerified') required this.visitVerified,
+      @JsonKey(name: 'isPhotoReview') this.isPhotoReview = false,
       required this.isBookmarked,
       required this.coordinate,
       required this.phone,
@@ -403,7 +403,7 @@ class _$PharmacyPreviewResponseDTO implements PharmacyPreviewResponseDTO {
       required this.openingStatus,
       this.thumbnail = '',
       @JsonKey(name: 'locType') required this.placeType,
-      this.mostVisitedDiseaseType = DiseaseType.brainNeurology,
+      this.mostVisitedDiseaseType = DiseaseType.undefined,
       required this.totalReviews,
       final String? $type})
       : $type = $type ?? 'pharmacy';
@@ -417,8 +417,8 @@ class _$PharmacyPreviewResponseDTO implements PharmacyPreviewResponseDTO {
   @override
   final String address;
   @override
-  @JsonKey(name: 'isVisitVerified')
-  final bool visitVerified;
+  @JsonKey(name: 'isPhotoReview')
+  final bool isPhotoReview;
   @override
   final bool isBookmarked;
   @override
@@ -447,7 +447,7 @@ class _$PharmacyPreviewResponseDTO implements PharmacyPreviewResponseDTO {
 
   @override
   String toString() {
-    return 'PlacePreviewResponseDTO.pharmacy(placeId: $placeId, address: $address, visitVerified: $visitVerified, isBookmarked: $isBookmarked, coordinate: $coordinate, phone: $phone, name: $name, openingStatus: $openingStatus, thumbnail: $thumbnail, placeType: $placeType, mostVisitedDiseaseType: $mostVisitedDiseaseType, totalReviews: $totalReviews)';
+    return 'PlacePreviewResponseDTO.pharmacy(placeId: $placeId, address: $address, isPhotoReview: $isPhotoReview, isBookmarked: $isBookmarked, coordinate: $coordinate, phone: $phone, name: $name, openingStatus: $openingStatus, thumbnail: $thumbnail, placeType: $placeType, mostVisitedDiseaseType: $mostVisitedDiseaseType, totalReviews: $totalReviews)';
   }
 
   @override
@@ -457,8 +457,8 @@ class _$PharmacyPreviewResponseDTO implements PharmacyPreviewResponseDTO {
             other is _$PharmacyPreviewResponseDTO &&
             (identical(other.placeId, placeId) || other.placeId == placeId) &&
             (identical(other.address, address) || other.address == address) &&
-            (identical(other.visitVerified, visitVerified) ||
-                other.visitVerified == visitVerified) &&
+            (identical(other.isPhotoReview, isPhotoReview) ||
+                other.isPhotoReview == isPhotoReview) &&
             (identical(other.isBookmarked, isBookmarked) ||
                 other.isBookmarked == isBookmarked) &&
             (identical(other.coordinate, coordinate) ||
@@ -483,7 +483,7 @@ class _$PharmacyPreviewResponseDTO implements PharmacyPreviewResponseDTO {
       runtimeType,
       placeId,
       address,
-      visitVerified,
+      isPhotoReview,
       isBookmarked,
       coordinate,
       phone,
@@ -507,7 +507,7 @@ class _$PharmacyPreviewResponseDTO implements PharmacyPreviewResponseDTO {
     required TResult Function(
             @JsonKey(name: '_id') String placeId,
             String address,
-            @JsonKey(name: 'isVisitVerified') bool visitVerified,
+            @JsonKey(name: 'isPhotoReview') bool isPhotoReview,
             bool isBookmarked,
             LatLngResponseDTO coordinate,
             String phone,
@@ -521,7 +521,7 @@ class _$PharmacyPreviewResponseDTO implements PharmacyPreviewResponseDTO {
     required TResult Function(
             @JsonKey(name: '_id') String placeId,
             String address,
-            @JsonKey(name: 'isVisitVerified') bool visitVerified,
+            @JsonKey(name: 'isPhotoReview') bool isPhotoReview,
             bool isBookmarked,
             LatLngResponseDTO coordinate,
             String phone,
@@ -536,7 +536,7 @@ class _$PharmacyPreviewResponseDTO implements PharmacyPreviewResponseDTO {
     return pharmacy(
         placeId,
         address,
-        visitVerified,
+        isPhotoReview,
         isBookmarked,
         coordinate,
         phone,
@@ -554,7 +554,7 @@ class _$PharmacyPreviewResponseDTO implements PharmacyPreviewResponseDTO {
     TResult? Function(
             @JsonKey(name: '_id') String placeId,
             String address,
-            @JsonKey(name: 'isVisitVerified') bool visitVerified,
+            @JsonKey(name: 'isPhotoReview') bool isPhotoReview,
             bool isBookmarked,
             LatLngResponseDTO coordinate,
             String phone,
@@ -568,7 +568,7 @@ class _$PharmacyPreviewResponseDTO implements PharmacyPreviewResponseDTO {
     TResult? Function(
             @JsonKey(name: '_id') String placeId,
             String address,
-            @JsonKey(name: 'isVisitVerified') bool visitVerified,
+            @JsonKey(name: 'isPhotoReview') bool isPhotoReview,
             bool isBookmarked,
             LatLngResponseDTO coordinate,
             String phone,
@@ -583,7 +583,7 @@ class _$PharmacyPreviewResponseDTO implements PharmacyPreviewResponseDTO {
     return pharmacy?.call(
         placeId,
         address,
-        visitVerified,
+        isPhotoReview,
         isBookmarked,
         coordinate,
         phone,
@@ -601,7 +601,7 @@ class _$PharmacyPreviewResponseDTO implements PharmacyPreviewResponseDTO {
     TResult Function(
             @JsonKey(name: '_id') String placeId,
             String address,
-            @JsonKey(name: 'isVisitVerified') bool visitVerified,
+            @JsonKey(name: 'isPhotoReview') bool isPhotoReview,
             bool isBookmarked,
             LatLngResponseDTO coordinate,
             String phone,
@@ -615,7 +615,7 @@ class _$PharmacyPreviewResponseDTO implements PharmacyPreviewResponseDTO {
     TResult Function(
             @JsonKey(name: '_id') String placeId,
             String address,
-            @JsonKey(name: 'isVisitVerified') bool visitVerified,
+            @JsonKey(name: 'isPhotoReview') bool isPhotoReview,
             bool isBookmarked,
             LatLngResponseDTO coordinate,
             String phone,
@@ -632,7 +632,7 @@ class _$PharmacyPreviewResponseDTO implements PharmacyPreviewResponseDTO {
       return pharmacy(
           placeId,
           address,
-          visitVerified,
+          isPhotoReview,
           isBookmarked,
           coordinate,
           phone,
@@ -689,7 +689,7 @@ abstract class PharmacyPreviewResponseDTO implements PlacePreviewResponseDTO {
   const factory PharmacyPreviewResponseDTO(
       {@JsonKey(name: '_id') required final String placeId,
       required final String address,
-      @JsonKey(name: 'isVisitVerified') required final bool visitVerified,
+      @JsonKey(name: 'isPhotoReview') final bool isPhotoReview,
       required final bool isBookmarked,
       required final LatLngResponseDTO coordinate,
       required final String phone,
@@ -709,8 +709,8 @@ abstract class PharmacyPreviewResponseDTO implements PlacePreviewResponseDTO {
   @override
   String get address;
   @override
-  @JsonKey(name: 'isVisitVerified')
-  bool get visitVerified;
+  @JsonKey(name: 'isPhotoReview')
+  bool get isPhotoReview;
   @override
   bool get isBookmarked;
   @override
@@ -748,7 +748,7 @@ abstract class _$$HospitalPreviewResponseDTOCopyWith<$Res>
   $Res call(
       {@JsonKey(name: '_id') String placeId,
       String address,
-      @JsonKey(name: 'isVisitVerified') bool visitVerified,
+      @JsonKey(name: 'isPhotoReview') bool isPhotoReview,
       bool isBookmarked,
       LatLngResponseDTO coordinate,
       String phone,
@@ -778,7 +778,7 @@ class __$$HospitalPreviewResponseDTOCopyWithImpl<$Res>
   $Res call({
     Object? placeId = null,
     Object? address = null,
-    Object? visitVerified = null,
+    Object? isPhotoReview = null,
     Object? isBookmarked = null,
     Object? coordinate = null,
     Object? phone = null,
@@ -798,9 +798,9 @@ class __$$HospitalPreviewResponseDTOCopyWithImpl<$Res>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String,
-      visitVerified: null == visitVerified
-          ? _value.visitVerified
-          : visitVerified // ignore: cast_nullable_to_non_nullable
+      isPhotoReview: null == isPhotoReview
+          ? _value.isPhotoReview
+          : isPhotoReview // ignore: cast_nullable_to_non_nullable
               as bool,
       isBookmarked: null == isBookmarked
           ? _value.isBookmarked
@@ -848,7 +848,7 @@ class _$HospitalPreviewResponseDTO implements HospitalPreviewResponseDTO {
   const _$HospitalPreviewResponseDTO(
       {@JsonKey(name: '_id') required this.placeId,
       required this.address,
-      @JsonKey(name: 'isVisitVerified') required this.visitVerified,
+      @JsonKey(name: 'isPhotoReview') this.isPhotoReview = false,
       required this.isBookmarked,
       required this.coordinate,
       required this.phone,
@@ -856,7 +856,7 @@ class _$HospitalPreviewResponseDTO implements HospitalPreviewResponseDTO {
       required this.openingStatus,
       this.thumbnail = '',
       @JsonKey(name: 'locType') required this.placeType,
-      this.mostVisitedDiseaseType = DiseaseType.brainNeurology,
+      this.mostVisitedDiseaseType = DiseaseType.undefined,
       required this.totalReviews,
       final String? $type})
       : $type = $type ?? 'hospital';
@@ -870,8 +870,8 @@ class _$HospitalPreviewResponseDTO implements HospitalPreviewResponseDTO {
   @override
   final String address;
   @override
-  @JsonKey(name: 'isVisitVerified')
-  final bool visitVerified;
+  @JsonKey(name: 'isPhotoReview')
+  final bool isPhotoReview;
   @override
   final bool isBookmarked;
   @override
@@ -900,7 +900,7 @@ class _$HospitalPreviewResponseDTO implements HospitalPreviewResponseDTO {
 
   @override
   String toString() {
-    return 'PlacePreviewResponseDTO.hospital(placeId: $placeId, address: $address, visitVerified: $visitVerified, isBookmarked: $isBookmarked, coordinate: $coordinate, phone: $phone, name: $name, openingStatus: $openingStatus, thumbnail: $thumbnail, placeType: $placeType, mostVisitedDiseaseType: $mostVisitedDiseaseType, totalReviews: $totalReviews)';
+    return 'PlacePreviewResponseDTO.hospital(placeId: $placeId, address: $address, isPhotoReview: $isPhotoReview, isBookmarked: $isBookmarked, coordinate: $coordinate, phone: $phone, name: $name, openingStatus: $openingStatus, thumbnail: $thumbnail, placeType: $placeType, mostVisitedDiseaseType: $mostVisitedDiseaseType, totalReviews: $totalReviews)';
   }
 
   @override
@@ -910,8 +910,8 @@ class _$HospitalPreviewResponseDTO implements HospitalPreviewResponseDTO {
             other is _$HospitalPreviewResponseDTO &&
             (identical(other.placeId, placeId) || other.placeId == placeId) &&
             (identical(other.address, address) || other.address == address) &&
-            (identical(other.visitVerified, visitVerified) ||
-                other.visitVerified == visitVerified) &&
+            (identical(other.isPhotoReview, isPhotoReview) ||
+                other.isPhotoReview == isPhotoReview) &&
             (identical(other.isBookmarked, isBookmarked) ||
                 other.isBookmarked == isBookmarked) &&
             (identical(other.coordinate, coordinate) ||
@@ -936,7 +936,7 @@ class _$HospitalPreviewResponseDTO implements HospitalPreviewResponseDTO {
       runtimeType,
       placeId,
       address,
-      visitVerified,
+      isPhotoReview,
       isBookmarked,
       coordinate,
       phone,
@@ -960,7 +960,7 @@ class _$HospitalPreviewResponseDTO implements HospitalPreviewResponseDTO {
     required TResult Function(
             @JsonKey(name: '_id') String placeId,
             String address,
-            @JsonKey(name: 'isVisitVerified') bool visitVerified,
+            @JsonKey(name: 'isPhotoReview') bool isPhotoReview,
             bool isBookmarked,
             LatLngResponseDTO coordinate,
             String phone,
@@ -974,7 +974,7 @@ class _$HospitalPreviewResponseDTO implements HospitalPreviewResponseDTO {
     required TResult Function(
             @JsonKey(name: '_id') String placeId,
             String address,
-            @JsonKey(name: 'isVisitVerified') bool visitVerified,
+            @JsonKey(name: 'isPhotoReview') bool isPhotoReview,
             bool isBookmarked,
             LatLngResponseDTO coordinate,
             String phone,
@@ -989,7 +989,7 @@ class _$HospitalPreviewResponseDTO implements HospitalPreviewResponseDTO {
     return hospital(
         placeId,
         address,
-        visitVerified,
+        isPhotoReview,
         isBookmarked,
         coordinate,
         phone,
@@ -1007,7 +1007,7 @@ class _$HospitalPreviewResponseDTO implements HospitalPreviewResponseDTO {
     TResult? Function(
             @JsonKey(name: '_id') String placeId,
             String address,
-            @JsonKey(name: 'isVisitVerified') bool visitVerified,
+            @JsonKey(name: 'isPhotoReview') bool isPhotoReview,
             bool isBookmarked,
             LatLngResponseDTO coordinate,
             String phone,
@@ -1021,7 +1021,7 @@ class _$HospitalPreviewResponseDTO implements HospitalPreviewResponseDTO {
     TResult? Function(
             @JsonKey(name: '_id') String placeId,
             String address,
-            @JsonKey(name: 'isVisitVerified') bool visitVerified,
+            @JsonKey(name: 'isPhotoReview') bool isPhotoReview,
             bool isBookmarked,
             LatLngResponseDTO coordinate,
             String phone,
@@ -1036,7 +1036,7 @@ class _$HospitalPreviewResponseDTO implements HospitalPreviewResponseDTO {
     return hospital?.call(
         placeId,
         address,
-        visitVerified,
+        isPhotoReview,
         isBookmarked,
         coordinate,
         phone,
@@ -1054,7 +1054,7 @@ class _$HospitalPreviewResponseDTO implements HospitalPreviewResponseDTO {
     TResult Function(
             @JsonKey(name: '_id') String placeId,
             String address,
-            @JsonKey(name: 'isVisitVerified') bool visitVerified,
+            @JsonKey(name: 'isPhotoReview') bool isPhotoReview,
             bool isBookmarked,
             LatLngResponseDTO coordinate,
             String phone,
@@ -1068,7 +1068,7 @@ class _$HospitalPreviewResponseDTO implements HospitalPreviewResponseDTO {
     TResult Function(
             @JsonKey(name: '_id') String placeId,
             String address,
-            @JsonKey(name: 'isVisitVerified') bool visitVerified,
+            @JsonKey(name: 'isPhotoReview') bool isPhotoReview,
             bool isBookmarked,
             LatLngResponseDTO coordinate,
             String phone,
@@ -1085,7 +1085,7 @@ class _$HospitalPreviewResponseDTO implements HospitalPreviewResponseDTO {
       return hospital(
           placeId,
           address,
-          visitVerified,
+          isPhotoReview,
           isBookmarked,
           coordinate,
           phone,
@@ -1142,7 +1142,7 @@ abstract class HospitalPreviewResponseDTO implements PlacePreviewResponseDTO {
   const factory HospitalPreviewResponseDTO(
       {@JsonKey(name: '_id') required final String placeId,
       required final String address,
-      @JsonKey(name: 'isVisitVerified') required final bool visitVerified,
+      @JsonKey(name: 'isPhotoReview') final bool isPhotoReview,
       required final bool isBookmarked,
       required final LatLngResponseDTO coordinate,
       required final String phone,
@@ -1162,8 +1162,8 @@ abstract class HospitalPreviewResponseDTO implements PlacePreviewResponseDTO {
   @override
   String get address;
   @override
-  @JsonKey(name: 'isVisitVerified')
-  bool get visitVerified;
+  @JsonKey(name: 'isPhotoReview')
+  bool get isPhotoReview;
   @override
   bool get isBookmarked;
   @override

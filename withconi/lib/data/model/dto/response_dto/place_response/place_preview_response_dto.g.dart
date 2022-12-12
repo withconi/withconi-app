@@ -11,7 +11,7 @@ _$PharmacyPreviewResponseDTO _$$PharmacyPreviewResponseDTOFromJson(
     _$PharmacyPreviewResponseDTO(
       placeId: json['_id'] as String,
       address: json['address'] as String,
-      visitVerified: json['isVisitVerified'] as bool,
+      isPhotoReview: json['isPhotoReview'] as bool? ?? false,
       isBookmarked: json['isBookmarked'] as bool,
       coordinate: LatLngResponseDTO.fromJson(
           json['coordinate'] as Map<String, dynamic>),
@@ -22,7 +22,7 @@ _$PharmacyPreviewResponseDTO _$$PharmacyPreviewResponseDTOFromJson(
       placeType: $enumDecode(_$PlaceTypeEnumMap, json['locType']),
       mostVisitedDiseaseType: $enumDecodeNullable(
               _$DiseaseTypeEnumMap, json['mostVisitedDiseaseType']) ??
-          DiseaseType.brainNeurology,
+          DiseaseType.undefined,
       totalReviews: json['totalReviews'] as int,
       $type: json['runtimeType'] as String?,
     );
@@ -32,7 +32,7 @@ Map<String, dynamic> _$$PharmacyPreviewResponseDTOToJson(
     <String, dynamic>{
       '_id': instance.placeId,
       'address': instance.address,
-      'isVisitVerified': instance.visitVerified,
+      'isPhotoReview': instance.isPhotoReview,
       'isBookmarked': instance.isBookmarked,
       'coordinate': instance.coordinate.toJson(),
       'phone': instance.phone,
@@ -59,22 +59,22 @@ const _$PlaceTypeEnumMap = {
 };
 
 const _$DiseaseTypeEnumMap = {
-  DiseaseType.all: '',
-  DiseaseType.cardiovacular: 'cardiovacular',
-  DiseaseType.musculoskeletal: 'musculoskeletal',
-  DiseaseType.digestive: 'digestive',
-  DiseaseType.ophthalmology: 'ophthalmology',
-  DiseaseType.urinary: 'urinary',
-  DiseaseType.respiratory: 'respiratory',
-  DiseaseType.otorhinolaryngology: 'otorhinolaryngology',
-  DiseaseType.infectiousDisease: 'infectiousDisease',
-  DiseaseType.brainNeurology: 'brainNeurology',
-  DiseaseType.dentistry: 'dentistry',
+  DiseaseType.all: 'all',
   DiseaseType.oncology: 'oncology',
-  DiseaseType.dermatology: 'dermatology',
   DiseaseType.endocrinology: 'endocrinology',
+  DiseaseType.urinary: 'urinary',
+  DiseaseType.cardiovacular: 'cardiovacular',
+  DiseaseType.digestive: 'digestive',
+  DiseaseType.infectiousDisease: 'infectiousDisease',
+  DiseaseType.musculoskeletal: 'musculoskeletal',
+  DiseaseType.brainNeurology: 'brainNeurology',
+  DiseaseType.dermatology: 'dermatology',
+  DiseaseType.otorhinolaryngology: 'otorhinolaryngology',
+  DiseaseType.respiratory: 'respiratory',
+  DiseaseType.dentistry: 'dentistry',
+  DiseaseType.ophthalmology: 'ophthalmology',
   DiseaseType.emergency: 'emergency',
-  DiseaseType.undefined: 'undefined',
+  DiseaseType.undefined: '',
 };
 
 _$HospitalPreviewResponseDTO _$$HospitalPreviewResponseDTOFromJson(
@@ -82,7 +82,7 @@ _$HospitalPreviewResponseDTO _$$HospitalPreviewResponseDTOFromJson(
     _$HospitalPreviewResponseDTO(
       placeId: json['_id'] as String,
       address: json['address'] as String,
-      visitVerified: json['isVisitVerified'] as bool,
+      isPhotoReview: json['isPhotoReview'] as bool? ?? false,
       isBookmarked: json['isBookmarked'] as bool,
       coordinate: LatLngResponseDTO.fromJson(
           json['coordinate'] as Map<String, dynamic>),
@@ -93,7 +93,7 @@ _$HospitalPreviewResponseDTO _$$HospitalPreviewResponseDTOFromJson(
       placeType: $enumDecode(_$PlaceTypeEnumMap, json['locType']),
       mostVisitedDiseaseType: $enumDecodeNullable(
               _$DiseaseTypeEnumMap, json['mostVisitedDiseaseType']) ??
-          DiseaseType.brainNeurology,
+          DiseaseType.undefined,
       totalReviews: json['totalReviews'] as int,
       $type: json['runtimeType'] as String?,
     );
@@ -103,7 +103,7 @@ Map<String, dynamic> _$$HospitalPreviewResponseDTOToJson(
     <String, dynamic>{
       '_id': instance.placeId,
       'address': instance.address,
-      'isVisitVerified': instance.visitVerified,
+      'isPhotoReview': instance.isPhotoReview,
       'isBookmarked': instance.isBookmarked,
       'coordinate': instance.coordinate,
       'phone': instance.phone,

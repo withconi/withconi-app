@@ -35,14 +35,14 @@ PlaceDetailResponseDTO _$PlaceDetailResponseDTOFromJson(
 mixin _$PlaceDetailResponseDTO {
   @JsonKey(name: '_id')
   String get placeId => throw _privateConstructorUsedError;
-  String get address =>
-      throw _privateConstructorUsedError; // @JsonKey(name: 'isVisitVerified') required bool visitVerified,
+  String get address => throw _privateConstructorUsedError;
   bool get isBookmarked => throw _privateConstructorUsedError;
+  @JsonKey(name: 'diseaseHistory')
   DiseaseHistoryListResponseDTO get diseaseHistory =>
       throw _privateConstructorUsedError;
   ReviewHistoryResponseDTO get reviewHistory =>
       throw _privateConstructorUsedError;
-  @JsonKey(name: '')
+  @JsonKey(name: 'coordinate')
   LatLngResponseDTO? get coordinate => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
@@ -55,32 +55,40 @@ mixin _$PlaceDetailResponseDTO {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            @JsonKey(name: '_id') String placeId,
+            @JsonKey(name: '_id')
+                String placeId,
             String address,
             bool isBookmarked,
-            DiseaseHistoryListResponseDTO diseaseHistory,
+            @JsonKey(name: 'diseaseHistory')
+                DiseaseHistoryListResponseDTO diseaseHistory,
             ReviewHistoryResponseDTO reviewHistory,
-            @JsonKey(name: '') LatLngResponseDTO? coordinate,
+            @JsonKey(name: 'coordinate')
+                LatLngResponseDTO? coordinate,
             String phone,
             String name,
             OpeningStatus openingStatus,
             String thumbnail,
-            @JsonKey(name: 'locType') PlaceType placeType,
+            @JsonKey(name: 'locType')
+                PlaceType placeType,
             int totalVisitingCats,
             int totalVisitingDogs)
         hospital,
     required TResult Function(
-            @JsonKey(name: '_id') String placeId,
+            @JsonKey(name: '_id')
+                String placeId,
             String address,
             bool isBookmarked,
-            DiseaseHistoryListResponseDTO diseaseHistory,
+            @JsonKey(name: 'diseaseHistory')
+                DiseaseHistoryListResponseDTO diseaseHistory,
             ReviewHistoryResponseDTO reviewHistory,
-            @JsonKey(name: '') LatLngResponseDTO? coordinate,
+            @JsonKey(name: 'coordinate')
+                LatLngResponseDTO? coordinate,
             String phone,
             String name,
             OpeningStatus openingStatus,
             String thumbnail,
-            @JsonKey(name: 'locType') PlaceType placeType,
+            @JsonKey(name: 'locType')
+                PlaceType placeType,
             int totalVisitingCats,
             int totalVisitingDogs)
         pharmacy,
@@ -89,32 +97,40 @@ mixin _$PlaceDetailResponseDTO {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(
-            @JsonKey(name: '_id') String placeId,
+            @JsonKey(name: '_id')
+                String placeId,
             String address,
             bool isBookmarked,
-            DiseaseHistoryListResponseDTO diseaseHistory,
+            @JsonKey(name: 'diseaseHistory')
+                DiseaseHistoryListResponseDTO diseaseHistory,
             ReviewHistoryResponseDTO reviewHistory,
-            @JsonKey(name: '') LatLngResponseDTO? coordinate,
+            @JsonKey(name: 'coordinate')
+                LatLngResponseDTO? coordinate,
             String phone,
             String name,
             OpeningStatus openingStatus,
             String thumbnail,
-            @JsonKey(name: 'locType') PlaceType placeType,
+            @JsonKey(name: 'locType')
+                PlaceType placeType,
             int totalVisitingCats,
             int totalVisitingDogs)?
         hospital,
     TResult? Function(
-            @JsonKey(name: '_id') String placeId,
+            @JsonKey(name: '_id')
+                String placeId,
             String address,
             bool isBookmarked,
-            DiseaseHistoryListResponseDTO diseaseHistory,
+            @JsonKey(name: 'diseaseHistory')
+                DiseaseHistoryListResponseDTO diseaseHistory,
             ReviewHistoryResponseDTO reviewHistory,
-            @JsonKey(name: '') LatLngResponseDTO? coordinate,
+            @JsonKey(name: 'coordinate')
+                LatLngResponseDTO? coordinate,
             String phone,
             String name,
             OpeningStatus openingStatus,
             String thumbnail,
-            @JsonKey(name: 'locType') PlaceType placeType,
+            @JsonKey(name: 'locType')
+                PlaceType placeType,
             int totalVisitingCats,
             int totalVisitingDogs)?
         pharmacy,
@@ -123,32 +139,40 @@ mixin _$PlaceDetailResponseDTO {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
-            @JsonKey(name: '_id') String placeId,
+            @JsonKey(name: '_id')
+                String placeId,
             String address,
             bool isBookmarked,
-            DiseaseHistoryListResponseDTO diseaseHistory,
+            @JsonKey(name: 'diseaseHistory')
+                DiseaseHistoryListResponseDTO diseaseHistory,
             ReviewHistoryResponseDTO reviewHistory,
-            @JsonKey(name: '') LatLngResponseDTO? coordinate,
+            @JsonKey(name: 'coordinate')
+                LatLngResponseDTO? coordinate,
             String phone,
             String name,
             OpeningStatus openingStatus,
             String thumbnail,
-            @JsonKey(name: 'locType') PlaceType placeType,
+            @JsonKey(name: 'locType')
+                PlaceType placeType,
             int totalVisitingCats,
             int totalVisitingDogs)?
         hospital,
     TResult Function(
-            @JsonKey(name: '_id') String placeId,
+            @JsonKey(name: '_id')
+                String placeId,
             String address,
             bool isBookmarked,
-            DiseaseHistoryListResponseDTO diseaseHistory,
+            @JsonKey(name: 'diseaseHistory')
+                DiseaseHistoryListResponseDTO diseaseHistory,
             ReviewHistoryResponseDTO reviewHistory,
-            @JsonKey(name: '') LatLngResponseDTO? coordinate,
+            @JsonKey(name: 'coordinate')
+                LatLngResponseDTO? coordinate,
             String phone,
             String name,
             OpeningStatus openingStatus,
             String thumbnail,
-            @JsonKey(name: 'locType') PlaceType placeType,
+            @JsonKey(name: 'locType')
+                PlaceType placeType,
             int totalVisitingCats,
             int totalVisitingDogs)?
         pharmacy,
@@ -187,17 +211,21 @@ abstract class $PlaceDetailResponseDTOCopyWith<$Res> {
       _$PlaceDetailResponseDTOCopyWithImpl<$Res, PlaceDetailResponseDTO>;
   @useResult
   $Res call(
-      {@JsonKey(name: '_id') String placeId,
+      {@JsonKey(name: '_id')
+          String placeId,
       String address,
       bool isBookmarked,
-      DiseaseHistoryListResponseDTO diseaseHistory,
+      @JsonKey(name: 'diseaseHistory')
+          DiseaseHistoryListResponseDTO diseaseHistory,
       ReviewHistoryResponseDTO reviewHistory,
-      @JsonKey(name: '') LatLngResponseDTO? coordinate,
+      @JsonKey(name: 'coordinate')
+          LatLngResponseDTO? coordinate,
       String phone,
       String name,
       OpeningStatus openingStatus,
       String thumbnail,
-      @JsonKey(name: 'locType') PlaceType placeType,
+      @JsonKey(name: 'locType')
+          PlaceType placeType,
       int totalVisitingCats,
       int totalVisitingDogs});
 
@@ -331,17 +359,21 @@ abstract class _$$HospitalPlaceDetailResponseDTOCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: '_id') String placeId,
+      {@JsonKey(name: '_id')
+          String placeId,
       String address,
       bool isBookmarked,
-      DiseaseHistoryListResponseDTO diseaseHistory,
+      @JsonKey(name: 'diseaseHistory')
+          DiseaseHistoryListResponseDTO diseaseHistory,
       ReviewHistoryResponseDTO reviewHistory,
-      @JsonKey(name: '') LatLngResponseDTO? coordinate,
+      @JsonKey(name: 'coordinate')
+          LatLngResponseDTO? coordinate,
       String phone,
       String name,
       OpeningStatus openingStatus,
       String thumbnail,
-      @JsonKey(name: 'locType') PlaceType placeType,
+      @JsonKey(name: 'locType')
+          PlaceType placeType,
       int totalVisitingCats,
       int totalVisitingDogs});
 
@@ -446,9 +478,9 @@ class _$HospitalPlaceDetailResponseDTO
       {@JsonKey(name: '_id') required this.placeId,
       required this.address,
       this.isBookmarked = false,
-      required this.diseaseHistory,
+      @JsonKey(name: 'diseaseHistory') required this.diseaseHistory,
       required this.reviewHistory,
-      @JsonKey(name: '') this.coordinate,
+      @JsonKey(name: 'coordinate') this.coordinate,
       required this.phone,
       required this.name,
       required this.openingStatus,
@@ -468,16 +500,16 @@ class _$HospitalPlaceDetailResponseDTO
   final String placeId;
   @override
   final String address;
-// @JsonKey(name: 'isVisitVerified') required bool visitVerified,
   @override
   @JsonKey()
   final bool isBookmarked;
   @override
+  @JsonKey(name: 'diseaseHistory')
   final DiseaseHistoryListResponseDTO diseaseHistory;
   @override
   final ReviewHistoryResponseDTO reviewHistory;
   @override
-  @JsonKey(name: '')
+  @JsonKey(name: 'coordinate')
   final LatLngResponseDTO? coordinate;
   @override
   final String phone;
@@ -562,32 +594,40 @@ class _$HospitalPlaceDetailResponseDTO
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            @JsonKey(name: '_id') String placeId,
+            @JsonKey(name: '_id')
+                String placeId,
             String address,
             bool isBookmarked,
-            DiseaseHistoryListResponseDTO diseaseHistory,
+            @JsonKey(name: 'diseaseHistory')
+                DiseaseHistoryListResponseDTO diseaseHistory,
             ReviewHistoryResponseDTO reviewHistory,
-            @JsonKey(name: '') LatLngResponseDTO? coordinate,
+            @JsonKey(name: 'coordinate')
+                LatLngResponseDTO? coordinate,
             String phone,
             String name,
             OpeningStatus openingStatus,
             String thumbnail,
-            @JsonKey(name: 'locType') PlaceType placeType,
+            @JsonKey(name: 'locType')
+                PlaceType placeType,
             int totalVisitingCats,
             int totalVisitingDogs)
         hospital,
     required TResult Function(
-            @JsonKey(name: '_id') String placeId,
+            @JsonKey(name: '_id')
+                String placeId,
             String address,
             bool isBookmarked,
-            DiseaseHistoryListResponseDTO diseaseHistory,
+            @JsonKey(name: 'diseaseHistory')
+                DiseaseHistoryListResponseDTO diseaseHistory,
             ReviewHistoryResponseDTO reviewHistory,
-            @JsonKey(name: '') LatLngResponseDTO? coordinate,
+            @JsonKey(name: 'coordinate')
+                LatLngResponseDTO? coordinate,
             String phone,
             String name,
             OpeningStatus openingStatus,
             String thumbnail,
-            @JsonKey(name: 'locType') PlaceType placeType,
+            @JsonKey(name: 'locType')
+                PlaceType placeType,
             int totalVisitingCats,
             int totalVisitingDogs)
         pharmacy,
@@ -612,32 +652,40 @@ class _$HospitalPlaceDetailResponseDTO
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(
-            @JsonKey(name: '_id') String placeId,
+            @JsonKey(name: '_id')
+                String placeId,
             String address,
             bool isBookmarked,
-            DiseaseHistoryListResponseDTO diseaseHistory,
+            @JsonKey(name: 'diseaseHistory')
+                DiseaseHistoryListResponseDTO diseaseHistory,
             ReviewHistoryResponseDTO reviewHistory,
-            @JsonKey(name: '') LatLngResponseDTO? coordinate,
+            @JsonKey(name: 'coordinate')
+                LatLngResponseDTO? coordinate,
             String phone,
             String name,
             OpeningStatus openingStatus,
             String thumbnail,
-            @JsonKey(name: 'locType') PlaceType placeType,
+            @JsonKey(name: 'locType')
+                PlaceType placeType,
             int totalVisitingCats,
             int totalVisitingDogs)?
         hospital,
     TResult? Function(
-            @JsonKey(name: '_id') String placeId,
+            @JsonKey(name: '_id')
+                String placeId,
             String address,
             bool isBookmarked,
-            DiseaseHistoryListResponseDTO diseaseHistory,
+            @JsonKey(name: 'diseaseHistory')
+                DiseaseHistoryListResponseDTO diseaseHistory,
             ReviewHistoryResponseDTO reviewHistory,
-            @JsonKey(name: '') LatLngResponseDTO? coordinate,
+            @JsonKey(name: 'coordinate')
+                LatLngResponseDTO? coordinate,
             String phone,
             String name,
             OpeningStatus openingStatus,
             String thumbnail,
-            @JsonKey(name: 'locType') PlaceType placeType,
+            @JsonKey(name: 'locType')
+                PlaceType placeType,
             int totalVisitingCats,
             int totalVisitingDogs)?
         pharmacy,
@@ -662,32 +710,40 @@ class _$HospitalPlaceDetailResponseDTO
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
-            @JsonKey(name: '_id') String placeId,
+            @JsonKey(name: '_id')
+                String placeId,
             String address,
             bool isBookmarked,
-            DiseaseHistoryListResponseDTO diseaseHistory,
+            @JsonKey(name: 'diseaseHistory')
+                DiseaseHistoryListResponseDTO diseaseHistory,
             ReviewHistoryResponseDTO reviewHistory,
-            @JsonKey(name: '') LatLngResponseDTO? coordinate,
+            @JsonKey(name: 'coordinate')
+                LatLngResponseDTO? coordinate,
             String phone,
             String name,
             OpeningStatus openingStatus,
             String thumbnail,
-            @JsonKey(name: 'locType') PlaceType placeType,
+            @JsonKey(name: 'locType')
+                PlaceType placeType,
             int totalVisitingCats,
             int totalVisitingDogs)?
         hospital,
     TResult Function(
-            @JsonKey(name: '_id') String placeId,
+            @JsonKey(name: '_id')
+                String placeId,
             String address,
             bool isBookmarked,
-            DiseaseHistoryListResponseDTO diseaseHistory,
+            @JsonKey(name: 'diseaseHistory')
+                DiseaseHistoryListResponseDTO diseaseHistory,
             ReviewHistoryResponseDTO reviewHistory,
-            @JsonKey(name: '') LatLngResponseDTO? coordinate,
+            @JsonKey(name: 'coordinate')
+                LatLngResponseDTO? coordinate,
             String phone,
             String name,
             OpeningStatus openingStatus,
             String thumbnail,
-            @JsonKey(name: 'locType') PlaceType placeType,
+            @JsonKey(name: 'locType')
+                PlaceType placeType,
             int totalVisitingCats,
             int totalVisitingDogs)?
         pharmacy,
@@ -754,17 +810,21 @@ class _$HospitalPlaceDetailResponseDTO
 abstract class HospitalPlaceDetailResponseDTO
     implements PlaceDetailResponseDTO {
   const factory HospitalPlaceDetailResponseDTO(
-      {@JsonKey(name: '_id') required final String placeId,
+      {@JsonKey(name: '_id')
+          required final String placeId,
       required final String address,
       final bool isBookmarked,
-      required final DiseaseHistoryListResponseDTO diseaseHistory,
+      @JsonKey(name: 'diseaseHistory')
+          required final DiseaseHistoryListResponseDTO diseaseHistory,
       required final ReviewHistoryResponseDTO reviewHistory,
-      @JsonKey(name: '') final LatLngResponseDTO? coordinate,
+      @JsonKey(name: 'coordinate')
+          final LatLngResponseDTO? coordinate,
       required final String phone,
       required final String name,
       required final OpeningStatus openingStatus,
       final String thumbnail,
-      @JsonKey(name: 'locType') required final PlaceType placeType,
+      @JsonKey(name: 'locType')
+          required final PlaceType placeType,
       required final int totalVisitingCats,
       required final int totalVisitingDogs}) = _$HospitalPlaceDetailResponseDTO;
 
@@ -776,14 +836,15 @@ abstract class HospitalPlaceDetailResponseDTO
   String get placeId;
   @override
   String get address;
-  @override // @JsonKey(name: 'isVisitVerified') required bool visitVerified,
+  @override
   bool get isBookmarked;
   @override
+  @JsonKey(name: 'diseaseHistory')
   DiseaseHistoryListResponseDTO get diseaseHistory;
   @override
   ReviewHistoryResponseDTO get reviewHistory;
   @override
-  @JsonKey(name: '')
+  @JsonKey(name: 'coordinate')
   LatLngResponseDTO? get coordinate;
   @override
   String get phone;
@@ -816,17 +877,21 @@ abstract class _$$PharmacyPlaceDetailResponseDTOCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: '_id') String placeId,
+      {@JsonKey(name: '_id')
+          String placeId,
       String address,
       bool isBookmarked,
-      DiseaseHistoryListResponseDTO diseaseHistory,
+      @JsonKey(name: 'diseaseHistory')
+          DiseaseHistoryListResponseDTO diseaseHistory,
       ReviewHistoryResponseDTO reviewHistory,
-      @JsonKey(name: '') LatLngResponseDTO? coordinate,
+      @JsonKey(name: 'coordinate')
+          LatLngResponseDTO? coordinate,
       String phone,
       String name,
       OpeningStatus openingStatus,
       String thumbnail,
-      @JsonKey(name: 'locType') PlaceType placeType,
+      @JsonKey(name: 'locType')
+          PlaceType placeType,
       int totalVisitingCats,
       int totalVisitingDogs});
 
@@ -930,9 +995,9 @@ class _$PharmacyPlaceDetailResponseDTO
       {@JsonKey(name: '_id') required this.placeId,
       required this.address,
       this.isBookmarked = false,
-      required this.diseaseHistory,
+      @JsonKey(name: 'diseaseHistory') required this.diseaseHistory,
       required this.reviewHistory,
-      @JsonKey(name: '') this.coordinate,
+      @JsonKey(name: 'coordinate') this.coordinate,
       required this.phone,
       required this.name,
       required this.openingStatus,
@@ -952,16 +1017,16 @@ class _$PharmacyPlaceDetailResponseDTO
   final String placeId;
   @override
   final String address;
-// @JsonKey(name: 'isVisitVerified') required bool visitVerified,
   @override
   @JsonKey()
   final bool isBookmarked;
   @override
+  @JsonKey(name: 'diseaseHistory')
   final DiseaseHistoryListResponseDTO diseaseHistory;
   @override
   final ReviewHistoryResponseDTO reviewHistory;
   @override
-  @JsonKey(name: '')
+  @JsonKey(name: 'coordinate')
   final LatLngResponseDTO? coordinate;
   @override
   final String phone;
@@ -1046,32 +1111,40 @@ class _$PharmacyPlaceDetailResponseDTO
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            @JsonKey(name: '_id') String placeId,
+            @JsonKey(name: '_id')
+                String placeId,
             String address,
             bool isBookmarked,
-            DiseaseHistoryListResponseDTO diseaseHistory,
+            @JsonKey(name: 'diseaseHistory')
+                DiseaseHistoryListResponseDTO diseaseHistory,
             ReviewHistoryResponseDTO reviewHistory,
-            @JsonKey(name: '') LatLngResponseDTO? coordinate,
+            @JsonKey(name: 'coordinate')
+                LatLngResponseDTO? coordinate,
             String phone,
             String name,
             OpeningStatus openingStatus,
             String thumbnail,
-            @JsonKey(name: 'locType') PlaceType placeType,
+            @JsonKey(name: 'locType')
+                PlaceType placeType,
             int totalVisitingCats,
             int totalVisitingDogs)
         hospital,
     required TResult Function(
-            @JsonKey(name: '_id') String placeId,
+            @JsonKey(name: '_id')
+                String placeId,
             String address,
             bool isBookmarked,
-            DiseaseHistoryListResponseDTO diseaseHistory,
+            @JsonKey(name: 'diseaseHistory')
+                DiseaseHistoryListResponseDTO diseaseHistory,
             ReviewHistoryResponseDTO reviewHistory,
-            @JsonKey(name: '') LatLngResponseDTO? coordinate,
+            @JsonKey(name: 'coordinate')
+                LatLngResponseDTO? coordinate,
             String phone,
             String name,
             OpeningStatus openingStatus,
             String thumbnail,
-            @JsonKey(name: 'locType') PlaceType placeType,
+            @JsonKey(name: 'locType')
+                PlaceType placeType,
             int totalVisitingCats,
             int totalVisitingDogs)
         pharmacy,
@@ -1096,32 +1169,40 @@ class _$PharmacyPlaceDetailResponseDTO
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(
-            @JsonKey(name: '_id') String placeId,
+            @JsonKey(name: '_id')
+                String placeId,
             String address,
             bool isBookmarked,
-            DiseaseHistoryListResponseDTO diseaseHistory,
+            @JsonKey(name: 'diseaseHistory')
+                DiseaseHistoryListResponseDTO diseaseHistory,
             ReviewHistoryResponseDTO reviewHistory,
-            @JsonKey(name: '') LatLngResponseDTO? coordinate,
+            @JsonKey(name: 'coordinate')
+                LatLngResponseDTO? coordinate,
             String phone,
             String name,
             OpeningStatus openingStatus,
             String thumbnail,
-            @JsonKey(name: 'locType') PlaceType placeType,
+            @JsonKey(name: 'locType')
+                PlaceType placeType,
             int totalVisitingCats,
             int totalVisitingDogs)?
         hospital,
     TResult? Function(
-            @JsonKey(name: '_id') String placeId,
+            @JsonKey(name: '_id')
+                String placeId,
             String address,
             bool isBookmarked,
-            DiseaseHistoryListResponseDTO diseaseHistory,
+            @JsonKey(name: 'diseaseHistory')
+                DiseaseHistoryListResponseDTO diseaseHistory,
             ReviewHistoryResponseDTO reviewHistory,
-            @JsonKey(name: '') LatLngResponseDTO? coordinate,
+            @JsonKey(name: 'coordinate')
+                LatLngResponseDTO? coordinate,
             String phone,
             String name,
             OpeningStatus openingStatus,
             String thumbnail,
-            @JsonKey(name: 'locType') PlaceType placeType,
+            @JsonKey(name: 'locType')
+                PlaceType placeType,
             int totalVisitingCats,
             int totalVisitingDogs)?
         pharmacy,
@@ -1146,32 +1227,40 @@ class _$PharmacyPlaceDetailResponseDTO
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
-            @JsonKey(name: '_id') String placeId,
+            @JsonKey(name: '_id')
+                String placeId,
             String address,
             bool isBookmarked,
-            DiseaseHistoryListResponseDTO diseaseHistory,
+            @JsonKey(name: 'diseaseHistory')
+                DiseaseHistoryListResponseDTO diseaseHistory,
             ReviewHistoryResponseDTO reviewHistory,
-            @JsonKey(name: '') LatLngResponseDTO? coordinate,
+            @JsonKey(name: 'coordinate')
+                LatLngResponseDTO? coordinate,
             String phone,
             String name,
             OpeningStatus openingStatus,
             String thumbnail,
-            @JsonKey(name: 'locType') PlaceType placeType,
+            @JsonKey(name: 'locType')
+                PlaceType placeType,
             int totalVisitingCats,
             int totalVisitingDogs)?
         hospital,
     TResult Function(
-            @JsonKey(name: '_id') String placeId,
+            @JsonKey(name: '_id')
+                String placeId,
             String address,
             bool isBookmarked,
-            DiseaseHistoryListResponseDTO diseaseHistory,
+            @JsonKey(name: 'diseaseHistory')
+                DiseaseHistoryListResponseDTO diseaseHistory,
             ReviewHistoryResponseDTO reviewHistory,
-            @JsonKey(name: '') LatLngResponseDTO? coordinate,
+            @JsonKey(name: 'coordinate')
+                LatLngResponseDTO? coordinate,
             String phone,
             String name,
             OpeningStatus openingStatus,
             String thumbnail,
-            @JsonKey(name: 'locType') PlaceType placeType,
+            @JsonKey(name: 'locType')
+                PlaceType placeType,
             int totalVisitingCats,
             int totalVisitingDogs)?
         pharmacy,
@@ -1238,17 +1327,21 @@ class _$PharmacyPlaceDetailResponseDTO
 abstract class PharmacyPlaceDetailResponseDTO
     implements PlaceDetailResponseDTO {
   const factory PharmacyPlaceDetailResponseDTO(
-      {@JsonKey(name: '_id') required final String placeId,
+      {@JsonKey(name: '_id')
+          required final String placeId,
       required final String address,
       final bool isBookmarked,
-      required final DiseaseHistoryListResponseDTO diseaseHistory,
+      @JsonKey(name: 'diseaseHistory')
+          required final DiseaseHistoryListResponseDTO diseaseHistory,
       required final ReviewHistoryResponseDTO reviewHistory,
-      @JsonKey(name: '') final LatLngResponseDTO? coordinate,
+      @JsonKey(name: 'coordinate')
+          final LatLngResponseDTO? coordinate,
       required final String phone,
       required final String name,
       required final OpeningStatus openingStatus,
       final String thumbnail,
-      @JsonKey(name: 'locType') required final PlaceType placeType,
+      @JsonKey(name: 'locType')
+          required final PlaceType placeType,
       required final int totalVisitingCats,
       required final int totalVisitingDogs}) = _$PharmacyPlaceDetailResponseDTO;
 
@@ -1260,14 +1353,15 @@ abstract class PharmacyPlaceDetailResponseDTO
   String get placeId;
   @override
   String get address;
-  @override // @JsonKey(name: 'isVisitVerified') required bool visitVerified,
+  @override
   bool get isBookmarked;
   @override
+  @JsonKey(name: 'diseaseHistory')
   DiseaseHistoryListResponseDTO get diseaseHistory;
   @override
   ReviewHistoryResponseDTO get reviewHistory;
   @override
-  @JsonKey(name: '')
+  @JsonKey(name: 'coordinate')
   LatLngResponseDTO? get coordinate;
   @override
   String get phone;

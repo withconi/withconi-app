@@ -16,9 +16,10 @@ _$HospitalPlaceDetailResponseDTO _$$HospitalPlaceDetailResponseDTOFromJson(
           json['diseaseHistory'] as Map<String, dynamic>),
       reviewHistory: ReviewHistoryResponseDTO.fromJson(
           json['reviewHistory'] as Map<String, dynamic>),
-      coordinate: json[''] == null
+      coordinate: json['coordinate'] == null
           ? null
-          : LatLngResponseDTO.fromJson(json[''] as Map<String, dynamic>),
+          : LatLngResponseDTO.fromJson(
+              json['coordinate'] as Map<String, dynamic>),
       phone: json['phone'] as String,
       name: json['name'] as String,
       openingStatus: $enumDecode(_$OpeningStatusEnumMap, json['openingStatus']),
@@ -37,7 +38,7 @@ Map<String, dynamic> _$$HospitalPlaceDetailResponseDTOToJson(
       'isBookmarked': instance.isBookmarked,
       'diseaseHistory': instance.diseaseHistory.toJson(),
       'reviewHistory': instance.reviewHistory.toJson(),
-      '': instance.coordinate?.toJson(),
+      'coordinate': instance.coordinate?.toJson(),
       'phone': instance.phone,
       'name': instance.name,
       'openingStatus': _$OpeningStatusEnumMap[instance.openingStatus]!,
@@ -70,9 +71,10 @@ _$PharmacyPlaceDetailResponseDTO _$$PharmacyPlaceDetailResponseDTOFromJson(
           json['diseaseHistory'] as Map<String, dynamic>),
       reviewHistory: ReviewHistoryResponseDTO.fromJson(
           json['reviewHistory'] as Map<String, dynamic>),
-      coordinate: json[''] == null
+      coordinate: json['coordinate'] == null
           ? null
-          : LatLngResponseDTO.fromJson(json[''] as Map<String, dynamic>),
+          : LatLngResponseDTO.fromJson(
+              json['coordinate'] as Map<String, dynamic>),
       phone: json['phone'] as String,
       name: json['name'] as String,
       openingStatus: $enumDecode(_$OpeningStatusEnumMap, json['openingStatus']),
@@ -91,7 +93,7 @@ Map<String, dynamic> _$$PharmacyPlaceDetailResponseDTOToJson(
       'isBookmarked': instance.isBookmarked,
       'diseaseHistory': instance.diseaseHistory,
       'reviewHistory': instance.reviewHistory,
-      '': instance.coordinate,
+      'coordinate': instance.coordinate,
       'phone': instance.phone,
       'name': instance.name,
       'openingStatus': _$OpeningStatusEnumMap[instance.openingStatus]!,

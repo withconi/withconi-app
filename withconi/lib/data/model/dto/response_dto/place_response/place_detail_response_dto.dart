@@ -13,48 +13,35 @@ class PlaceDetailResponseDTO
     implements ResponseDTO {
   @JsonSerializable(explicitToJson: true)
   const factory PlaceDetailResponseDTO.hospital({
-    @JsonKey(name: '_id')
-        required String placeId,
+    @JsonKey(name: '_id') required String placeId,
     required String address,
-    // @JsonKey(name: 'isVisitVerified') required bool visitVerified,
-    @Default(false)
-        bool isBookmarked,
-    required DiseaseHistoryListResponseDTO diseaseHistory,
+    @Default(false) bool isBookmarked,
+    @JsonKey(name: 'diseaseHistory')
+        required DiseaseHistoryListResponseDTO diseaseHistory,
     required ReviewHistoryResponseDTO reviewHistory,
-    @JsonKey(name: '')
-        // @Default({'lat': 34.342432, 'lng': 104.12312})
-        // @Default
-        LatLngResponseDTO? coordinate,
+    @JsonKey(name: 'coordinate') LatLngResponseDTO? coordinate,
     required String phone,
     required String name,
     required OpeningStatus openingStatus,
-    @Default('')
-        String thumbnail,
-    @JsonKey(name: 'locType')
-        required PlaceType placeType,
+    @Default('') String thumbnail,
+    @JsonKey(name: 'locType') required PlaceType placeType,
     required int totalVisitingCats,
     required int totalVisitingDogs,
   }) = HospitalPlaceDetailResponseDTO;
 
   const factory PlaceDetailResponseDTO.pharmacy({
-    @JsonKey(name: '_id')
-        required String placeId,
+    @JsonKey(name: '_id') required String placeId,
     required String address,
-    // @JsonKey(name: 'isVisitVerified') required bool visitVerified,
-    @Default(false)
-        bool isBookmarked,
-    required DiseaseHistoryListResponseDTO diseaseHistory,
+    @Default(false) bool isBookmarked,
+    @JsonKey(name: 'diseaseHistory')
+        required DiseaseHistoryListResponseDTO diseaseHistory,
     required ReviewHistoryResponseDTO reviewHistory,
-    @JsonKey(name: '')
-        // @Default({'lat': 34.342432, 'lng': 104.12312})
-        LatLngResponseDTO? coordinate,
+    @JsonKey(name: 'coordinate') LatLngResponseDTO? coordinate,
     required String phone,
     required String name,
     required OpeningStatus openingStatus,
-    @Default('')
-        String thumbnail,
-    @JsonKey(name: 'locType')
-        required PlaceType placeType,
+    @Default('') String thumbnail,
+    @JsonKey(name: 'locType') required PlaceType placeType,
     required int totalVisitingCats,
     required int totalVisitingDogs,
   }) = PharmacyPlaceDetailResponseDTO;
@@ -63,71 +50,71 @@ class PlaceDetailResponseDTO
       _$PlaceDetailResponseDTOFromJson(json);
 }
 
-Map<String, dynamic> data = {
-  "success": true,
-  "data": {
-    "_id": "637061e2e650188462062ed2",
-    "locType": "hospital",
-    "name": "일곡동물병원",
-    "address": "광주광역시 북구 일곡동 843-5번지",
-    "newAddress": "광주광역시 북구 양일로305번길 8 (일곡동)",
-    "zipCode": "61040",
-    "coordinate": [126.88283470039661, 35.211179303312065],
-    "phone": "571-9114",
-    "totalReviews": 0,
-    "totalVisitingDogs": 0,
-    "totalVisitingCats": 0,
-    "createdAt": 1668309474768,
-    "thumbnail": "",
-    "images": [],
-    "runtimeType": "hospital",
-    "openingStatus": "open",
-    "diseaseHistory": {
-      "_id": "637061e2e650188462062ed4",
-      "locId": "637061e2e650188462062ed2",
-      "locType": "hospital",
-      "totalDiseases": 0,
-      "diseaseHistoryList": [],
-      "createdAt": 1668309474768
-    },
-    "reviewHistory": {
-      "_id": "637061e2e650188462062ed3",
-      "locId": "637061e2e650188462062ed2",
-      "locType": "hospital",
-      "totalReviews": 0,
-      "reviewHistoryMap": {
-        "high": {
-          "totalReviews": 0,
-          "reviewHistoryMap": {
-            "explanation": 0,
-            "kindness": 0,
-            "adequateExamination": 0,
-            "effectiveness": 0,
-            "waitingExperience": 0
-          }
-        },
-        "middle": {
-          "totalReviews": 0,
-          "reviewHistoryMap": {
-            "explanation": 0,
-            "kindness": 0,
-            "adequateExamination": 0,
-            "effectiveness": 0,
-            "waitingExperience": 0
-          }
-        },
-        "low": {
-          "totalReviews": 0,
-          "reviewHistoryMap": {
-            "explanation": 0,
-            "kindness": 0,
-            "adequateExamination": 0,
-            "effectiveness": 0,
-            "waitingExperience": 0
-          }
-        }
-      },
-      "createdAt": 1668309474768
-    }
-  },
-};
+// Map<String, dynamic> data = {
+//   "success": true,
+//   "data": {
+//     "_id": "637061e2e650188462062ed2",
+//     "locType": "hospital",
+//     "name": "일곡동물병원",
+//     "address": "광주광역시 북구 일곡동 843-5번지",
+//     "newAddress": "광주광역시 북구 양일로305번길 8 (일곡동)",
+//     "zipCode": "61040",
+//     "coordinate": [126.88283470039661, 35.211179303312065],
+//     "phone": "571-9114",
+//     "totalReviews": 0,
+//     "totalVisitingDogs": 0,
+//     "totalVisitingCats": 0,
+//     "createdAt": 1668309474768,
+//     "thumbnail": "",
+//     "images": [],
+//     "runtimeType": "hospital",
+//     "openingStatus": "open",
+//     "diseaseHistory": {
+//       "_id": "637061e2e650188462062ed4",
+//       "locId": "637061e2e650188462062ed2",
+//       "locType": "hospital",
+//       "totalDiseases": 0,
+//       "diseaseHistoryList": [],
+//       "createdAt": 1668309474768
+//     },
+//     "reviewHistory": {
+//       "_id": "637061e2e650188462062ed3",
+//       "locId": "637061e2e650188462062ed2",
+//       "locType": "hospital",
+//       "totalReviews": 0,
+//       "reviewHistoryMap": {
+//         "high": {
+//           "totalReviews": 0,
+//           "reviewHistoryMap": {
+//             "explanation": 0,
+//             "kindness": 0,
+//             "adequateExamination": 0,
+//             "effectiveness": 0,
+//             "waitingExperience": 0
+//           }
+//         },
+//         "middle": {
+//           "totalReviews": 0,
+//           "reviewHistoryMap": {
+//             "explanation": 0,
+//             "kindness": 0,
+//             "adequateExamination": 0,
+//             "effectiveness": 0,
+//             "waitingExperience": 0
+//           }
+//         },
+//         "low": {
+//           "totalReviews": 0,
+//           "reviewHistoryMap": {
+//             "explanation": 0,
+//             "kindness": 0,
+//             "adequateExamination": 0,
+//             "effectiveness": 0,
+//             "waitingExperience": 0
+//           }
+//         }
+//       },
+//       "createdAt": 1668309474768
+//     }
+//   },
+// };

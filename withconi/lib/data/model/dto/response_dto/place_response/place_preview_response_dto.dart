@@ -14,7 +14,7 @@ class PlacePreviewResponseDTO
   const factory PlacePreviewResponseDTO.pharmacy({
     @JsonKey(name: '_id') required String placeId,
     required String address,
-    @JsonKey(name: 'isVisitVerified') required bool visitVerified,
+    @JsonKey(name: 'isPhotoReview') @Default(false) bool isPhotoReview,
     required bool isBookmarked,
     required LatLngResponseDTO coordinate,
     required String phone,
@@ -23,14 +23,14 @@ class PlacePreviewResponseDTO
     @Default('') String thumbnail,
     @JsonKey(name: 'locType') required PlaceType placeType,
     // @JsonKey(name: 'nono')
-    @Default(DiseaseType.brainNeurology) DiseaseType mostVisitedDiseaseType,
+    @Default(DiseaseType.undefined) DiseaseType mostVisitedDiseaseType,
     required int totalReviews,
   }) = PharmacyPreviewResponseDTO;
 
   const factory PlacePreviewResponseDTO.hospital({
     @JsonKey(name: '_id') required String placeId,
     required String address,
-    @JsonKey(name: 'isVisitVerified') required bool visitVerified,
+    @JsonKey(name: 'isPhotoReview') @Default(false) bool isPhotoReview,
     required bool isBookmarked,
     required LatLngResponseDTO coordinate,
     required String phone,
@@ -39,7 +39,7 @@ class PlacePreviewResponseDTO
     @Default('') String thumbnail,
     @JsonKey(name: 'locType') required PlaceType placeType,
     // @JsonKey(name: 'nono')
-    @Default(DiseaseType.brainNeurology) DiseaseType mostVisitedDiseaseType,
+    @Default(DiseaseType.undefined) DiseaseType mostVisitedDiseaseType,
     required int totalReviews,
   }) = HospitalPreviewResponseDTO;
 
