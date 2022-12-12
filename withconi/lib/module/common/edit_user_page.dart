@@ -6,6 +6,7 @@ import 'package:withconi/global_widgets/appbar/appbar.dart';
 import 'package:withconi/global_widgets/button/profile_picker_button.dart';
 import 'package:withconi/global_widgets/button/wide_button.dart';
 import 'package:withconi/global_widgets/text_field/suffix_button_textfield.dart';
+import 'package:withconi/module/theme/text_theme.dart';
 import '../../global_widgets/text_field/textfield.dart';
 
 class EditUserPage extends StatelessWidget {
@@ -31,12 +32,13 @@ class EditUserPage extends StatelessWidget {
             action: Obx(
               () => Text(
                 '완료',
-                style: GoogleFonts.notoSans(
-                    fontSize: 17,
+                style: TextStyle(
+                    fontFamily: WcFontFamily.notoSans,
+                    fontSize: 16,
                     color: (_controller.validateButton())
                         ? WcColors.blue100
                         : WcColors.grey120,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w600,
                     letterSpacing: 0.6),
               ),
             )),
@@ -51,7 +53,7 @@ class EditUserPage extends StatelessWidget {
                   children: [
                     Column(
                       mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: <Widget>[
                         const SizedBox(
                           height: 25,
@@ -59,14 +61,13 @@ class EditUserPage extends StatelessWidget {
                         Obx(
                           () => Center(
                             child: ProfileImagePickerButton(
-                              onTap: _controller.pickImage,
-                              imageItem:
-                                  _controller.editUser.value.profileImage,
+                              onTap: _controller.onTapProfileButton,
+                              imageItem: _controller.profileImage.value,
                             ),
                           ),
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 15,
                         ),
                         Obx(() {
                           return WcTextField(
@@ -81,16 +82,14 @@ class EditUserPage extends StatelessWidget {
                         const SizedBox(
                           height: 24,
                         ),
-                        Obx(() {
-                          return WcTextField(
-                            errorText: _controller.nameErrorText.value,
-                            labelText: '이름',
-                            hintText: '이름',
-                            onChanged: _controller.onNameChanged,
-                            textController: _controller.nameTextController,
-                            keyboardType: TextInputType.name,
-                          );
-                        }),
+                        WcTextField(
+                          fontColor: WcColors.grey140,
+                          readOnly: true,
+                          labelText: '이름',
+                          hintText: '이름',
+                          textController: _controller.nameTextController,
+                          keyboardType: TextInputType.name,
+                        ),
                         const SizedBox(
                           height: 24,
                         ),
@@ -100,14 +99,16 @@ class EditUserPage extends StatelessWidget {
                           hintText: '비밀번호',
                           keyboardType: TextInputType.name,
                           textObscure: true,
+                          fontColor: (!_controller.passwordChangable)
+                              ? WcColors.grey140.withOpacity(0.9)
+                              : null,
                           textController:
                               TextEditingController(text: '********'),
                           suffixIcon: WcTextButton(
-                            onTap: _controller.changePassword,
+                            onTap: _controller.onChangePasswordTap,
                             activeButtonColor: WcColors.blue100,
                             inactiveButtonColor: WcColors.grey80,
-                            active:
-                                _controller.editUser.value.passwordChangable,
+                            active: _controller.passwordChangable,
                             width: 72,
                             height: 33,
                             text: '변경하기',
@@ -117,39 +118,34 @@ class EditUserPage extends StatelessWidget {
                         const SizedBox(
                           height: 24,
                         ),
-                        Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              WcSuffixIconTextField(
-                                width: WcWidth - 40,
-                                errorText: _controller.nickNameErrorText.value,
-                                labelText: '아이디 (이메일)',
-                                hintText: '아이디',
-                                readOnly: true,
-                                textController: _controller.emailTextController,
-                                keyboardType: TextInputType.emailAddress,
-                                suffixIcon: _controller.providerIcon,
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Obx(
-                                () => Visibility(
-                                  visible: _controller
-                                      .editUser.value.passwordChangable,
-                                  child: EmailVerificationButton(
-                                    isEmailVerified: _controller
-                                        .editUser.value.isEmailVerified,
-                                    onTap: _controller
-                                        .onEmailVerificationButtonTap,
-                                  ),
-                                ),
-                              )
-                            ]),
+                        WcSuffixIconTextField(
+                          width: WcWidth - 40,
+                          errorText: _controller.nickNameErrorText.value,
+                          labelText: '아이디 (이메일)',
+                          hintText: '아이디',
+                          readOnly: true,
+                          textController: _controller.emailTextController,
+                          keyboardType: TextInputType.emailAddress,
+                          suffixIcon: _controller.providerIcon,
+                          fontColor: WcColors.grey140,
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Obx(
+                          () => Visibility(
+                            visible: _controller.passwordChangable,
+                            child: EmailVerificationButton(
+                              isEmailVerified:
+                                  _controller.isEmailVerified.value,
+                              onTap: _controller.onEmailVerificationTap,
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                     const SizedBox(
-                      height: 80,
+                      height: 100,
                     ),
                     Column(
                       children: [
@@ -157,18 +153,22 @@ class EditUserPage extends StatelessWidget {
                           child: GestureDetector(
                             onTap: _controller.signOut,
                             child: Container(
-                              width: 70,
-                              height: 35,
+                              width: 55,
+                              height: 30,
                               color: WcColors.white,
                               child: Column(
                                 children: [
                                   const Text(
                                     '로그아웃',
-                                    style: TextStyle(color: WcColors.grey120),
+                                    style: TextStyle(
+                                        fontFamily: WcFontFamily.notoSans,
+                                        fontSize: 14,
+                                        height: 1,
+                                        color: WcColors.grey120),
                                   ),
-                                  Container(
-                                    width: 55,
-                                    height: 1,
+                                  Divider(
+                                    thickness: 1,
+                                    height: 5,
                                     color: WcColors.grey120,
                                   )
                                 ],
@@ -183,18 +183,22 @@ class EditUserPage extends StatelessWidget {
                           child: GestureDetector(
                             onTap: _controller.unregister,
                             child: Container(
-                              width: 70,
-                              height: 35,
+                              width: 55,
+                              height: 30,
                               color: WcColors.white,
                               child: Column(
                                 children: [
                                   const Text(
                                     '탈퇴하기',
-                                    style: TextStyle(color: WcColors.grey120),
+                                    style: TextStyle(
+                                        fontFamily: WcFontFamily.notoSans,
+                                        fontSize: 14,
+                                        height: 1,
+                                        color: WcColors.grey120),
                                   ),
-                                  Container(
-                                    width: 55,
-                                    height: 1,
+                                  Divider(
+                                    thickness: 1,
+                                    height: 5,
                                     color: WcColors.grey120,
                                   )
                                 ],
@@ -231,7 +235,7 @@ class EmailVerificationButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (!isEmailVerified) ? () {} : onTap,
+      onTap: (!isEmailVerified) ? onTap : null,
       child: Container(
         height: 38,
         width: 145,
@@ -254,9 +258,11 @@ class EmailVerificationButton extends StatelessWidget {
             ),
             Text(
               (isEmailVerified) ? '이메일 인증 완료' : '이메일 인증하기',
-              style: GoogleFonts.notoSans(
+              style: TextStyle(
+                  fontFamily: WcFontFamily.notoSans,
                   fontWeight: FontWeight.w600,
-                  fontSize: 14.5,
+                  fontSize: 14,
+                  height: 1.2,
                   color:
                       (isEmailVerified) ? WcColors.blue100 : WcColors.red100),
             ),

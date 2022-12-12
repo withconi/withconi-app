@@ -71,7 +71,7 @@ class ConimalManagePage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Obx((() => ListView.builder(
+                    Obx(() => ListView.builder(
                         shrinkWrap: true,
                         itemCount: _controller.conimalList.length,
                         itemBuilder: (context, index) {
@@ -105,7 +105,7 @@ class ConimalManagePage extends StatelessWidget {
                               conimal: thisConimal,
                             ),
                           );
-                        }))),
+                        }))
                   ],
                 ),
                 const SizedBox(

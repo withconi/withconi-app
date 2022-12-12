@@ -73,18 +73,18 @@ class BreedSearchPage extends StatelessWidget {
   Widget _getWidgetByState(
       PageStatus status, BreedSearchController _controller) {
     return status.maybeWhen(
-      init: () => SizedBox.shrink(),
-      loading: () => LoadingPage(
+      // init: () => SizedBox.shrink(),
+      loading: (value) => LoadingPage(
         height: WcHeight - 300,
       ),
-      empty: () => WcErrorWidget(
-        image: Image.asset(
-          'assets/icons/no_result.png',
-          height: 90,
-        ),
-        title: '검색 결과가 없습니다',
-        message: '다른 검색어로 시도해주세요 :)',
-      ),
+      // empty: () => WcErrorWidget(
+      //   image: Image.asset(
+      //     'assets/icons/no_result.png',
+      //     height: 90,
+      //   ),
+      //   title: '검색 결과가 없습니다',
+      //   message: '다른 검색어로 시도해주세요 :)',
+      // ),
       error: (message) => WcErrorWidget(
         image: Image.asset(
           'assets/icons/no_result.png',

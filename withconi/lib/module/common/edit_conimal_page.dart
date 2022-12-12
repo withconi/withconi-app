@@ -162,19 +162,24 @@ class ConimalEditPage extends StatelessWidget {
                                     SizedBox(
                                       height: 5,
                                     ),
-                                    CustomCheckBox(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        value: _controller
-                                            .editConimal.value.isNeutralized,
-                                        text: '중성화 완료함',
-                                        iconHeight: 18,
-                                        isSelected: _controller
-                                            .editConimal.value.isNeutralized,
-                                        onChanged: (p0) {
-                                          _controller
-                                              .onNeutralizedChanged(p0 as bool);
-                                        }),
+                                    Padding(
+                                      padding: EdgeInsets.only(left: 5),
+                                      child: Obx(
+                                        () => CustomCheckBox(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            value: _controller.editConimal.value
+                                                .isNeutralized,
+                                            text: '중성화 완료함',
+                                            iconHeight: 18,
+                                            isSelected: _controller.editConimal
+                                                .value.isNeutralized,
+                                            onChanged: (p0) {
+                                              _controller.onNeutralizedChanged(
+                                                  p0 as bool);
+                                            }),
+                                      ),
+                                    )
                                   ],
                                 ),
                               ],

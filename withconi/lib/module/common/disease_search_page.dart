@@ -2,7 +2,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 import 'package:withconi/module/common/controllers/disease_search_controller.dart';
 import 'package:withconi/import_basic.dart';
-import 'package:withconi/module/common/lazy_load.dart';
+import 'package:withconi/module/common/my_lazy_load_scroll_view.dart';
 import 'package:withconi/module/community/controllers/custom_state_mixin.dart';
 import 'package:withconi/module/signup/widgets/disease_selection_list_button.dart';
 import 'package:withconi/global_widgets/searchbar/search_bar.dart';
@@ -32,7 +32,7 @@ class DiseaseSearchPage extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: SafeArea(
         bottom: false,
-        child: SizedBox(
+        child: Container(
           width: WcWidth,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -71,30 +71,8 @@ class DiseaseSearchPage extends StatelessWidget {
               ),
               _getWidgetByState(_controller),
               const SizedBox(
-                height: 65,
+                height: 70,
               ),
-              // Obx(
-              //   () => Expanded(
-              //     child: ListView.builder(
-              //       controller: _controller.infiniteScrollController,
-              //       // physics: const NeverScrollableScrollPhysics(),
-              //       physics: const AlwaysScrollableScrollPhysics(),
-              //       // scrollDirection: Axis.vertical,
-              //       shrinkWrap: true,
-              //       itemCount: _controller.diseaseListSearched.length,
-              //       itemBuilder: (context, index) => DiseaseListTileButton(
-              //         disease: _controller.diseaseListSearched[index],
-              //         onTap: _controller.onDiseaseClicked,
-              //         searchKeyword: _controller.diseaseKeywords,
-              //         selected: _controller.diseaseListSelected.any((element) =>
-              //             element.code ==
-              //             _controller.diseaseListSearched[index].code),
-              //         width: WcWidth,
-              //         diseaseIndex: index,
-              //       ),
-              //     ),
-              //   ),
-              // ),
             ],
           ),
         ),
@@ -104,30 +82,49 @@ class DiseaseSearchPage extends StatelessWidget {
 
   Widget _getWidgetByState(DiseaseSearchController _controller) {
     return _controller.obx(
-      onSuccess: Expanded(
+      onSuccess: (diseaseList) => Expanded(
         child: MyLazyLoadScrollView(
           isLoading: (_controller.status == const PageStatus.loadingMore() ||
               _controller.status == const PageStatus.emptyLastPage()),
           onEndOfPage: () => _controller.loadNextPage(),
-          child: Obx(
-            () => ListView.builder(
-              shrinkWrap: true,
-              itemCount: _controller.diseaseListSearched.length,
+          child: Stack(children: [
+            ListView.builder(
+              shrinkWrap: false,
+              itemCount: diseaseList.length,
               itemBuilder: (context, index) => DiseaseSeletionButton(
-                disease: _controller.diseaseListSearched[index],
+                disease: diseaseList[index],
                 onTap: _controller.onDiseaseClicked,
                 searchKeyword: _controller.diseaseKeywords,
                 selected: _controller.diseaseListSelected.any((element) =>
-                    element.code ==
-                    _controller.diseaseListSearched[index].code),
+                    element.diseaseId == diseaseList[index].diseaseId),
                 width: WcWidth,
                 diseaseIndex: index,
                 onDiseaseInfoTap: (disease) {
-                  Get.toNamed(Routes.DICTIONARY_DETAIL, arguments: disease);
+                  Get.toNamed(Routes.DICTIONARY_DETAIL,
+                      arguments: {'diseaseCode': disease.diseaseCode});
                 },
               ),
             ),
-          ),
+            (_controller.status == PageStatus.loadingMore())
+                ? Positioned(
+                    bottom: 0,
+                    child: Center(
+                      child: Container(
+                        width: WcWidth,
+                        padding: EdgeInsets.symmetric(vertical: 20),
+                        margin: EdgeInsets.symmetric(vertical: 20),
+                        child: Center(
+                            child: SizedBox(
+                          height: 20,
+                          width: 20,
+                          child: CircularProgressIndicator(
+                            color: WcColors.grey100,
+                          ),
+                        )),
+                      ),
+                    ))
+                : SizedBox.shrink()
+          ]),
         ),
       ),
     );
