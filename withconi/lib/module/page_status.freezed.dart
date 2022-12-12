@@ -18,33 +18,33 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$PageStatus {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function() loading,
+    required TResult Function(String? title, String? message) init,
+    required TResult Function(double? loadingHeight) loading,
     required TResult Function() loadingMore,
     required TResult Function() emptyLastPage,
-    required TResult Function() empty,
+    required TResult Function(String? title, String? message) empty,
     required TResult Function() success,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function()? loading,
+    TResult? Function(String? title, String? message)? init,
+    TResult? Function(double? loadingHeight)? loading,
     TResult? Function()? loadingMore,
     TResult? Function()? emptyLastPage,
-    TResult? Function()? empty,
+    TResult? Function(String? title, String? message)? empty,
     TResult? Function()? success,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function()? loading,
+    TResult Function(String? title, String? message)? init,
+    TResult Function(double? loadingHeight)? loading,
     TResult Function()? loadingMore,
     TResult Function()? emptyLastPage,
-    TResult Function()? empty,
+    TResult Function(String? title, String? message)? empty,
     TResult Function()? success,
     TResult Function(String message)? error,
     required TResult orElse(),
@@ -109,6 +109,8 @@ abstract class _$$InitPageStatusCopyWith<$Res> {
   factory _$$InitPageStatusCopyWith(
           _$InitPageStatus value, $Res Function(_$InitPageStatus) then) =
       __$$InitPageStatusCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String? title, String? message});
 }
 
 /// @nodoc
@@ -118,69 +120,101 @@ class __$$InitPageStatusCopyWithImpl<$Res>
   __$$InitPageStatusCopyWithImpl(
       _$InitPageStatus _value, $Res Function(_$InitPageStatus) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? title = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(_$InitPageStatus(
+      freezed == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$InitPageStatus extends InitPageStatus {
-  const _$InitPageStatus() : super._();
+  const _$InitPageStatus([this.title, this.message]) : super._();
+
+  @override
+  final String? title;
+  @override
+  final String? message;
 
   @override
   String toString() {
-    return 'PageStatus.init()';
+    return 'PageStatus.init(title: $title, message: $message)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitPageStatus);
+        (other.runtimeType == runtimeType &&
+            other is _$InitPageStatus &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, title, message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InitPageStatusCopyWith<_$InitPageStatus> get copyWith =>
+      __$$InitPageStatusCopyWithImpl<_$InitPageStatus>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function() loading,
+    required TResult Function(String? title, String? message) init,
+    required TResult Function(double? loadingHeight) loading,
     required TResult Function() loadingMore,
     required TResult Function() emptyLastPage,
-    required TResult Function() empty,
+    required TResult Function(String? title, String? message) empty,
     required TResult Function() success,
     required TResult Function(String message) error,
   }) {
-    return init();
+    return init(title, message);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function()? loading,
+    TResult? Function(String? title, String? message)? init,
+    TResult? Function(double? loadingHeight)? loading,
     TResult? Function()? loadingMore,
     TResult? Function()? emptyLastPage,
-    TResult? Function()? empty,
+    TResult? Function(String? title, String? message)? empty,
     TResult? Function()? success,
     TResult? Function(String message)? error,
   }) {
-    return init?.call();
+    return init?.call(title, message);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function()? loading,
+    TResult Function(String? title, String? message)? init,
+    TResult Function(double? loadingHeight)? loading,
     TResult Function()? loadingMore,
     TResult Function()? emptyLastPage,
-    TResult Function()? empty,
+    TResult Function(String? title, String? message)? empty,
     TResult Function()? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (init != null) {
-      return init();
+      return init(title, message);
     }
     return orElse();
   }
@@ -233,8 +267,15 @@ class _$InitPageStatus extends InitPageStatus {
 }
 
 abstract class InitPageStatus extends PageStatus {
-  const factory InitPageStatus() = _$InitPageStatus;
+  const factory InitPageStatus([final String? title, final String? message]) =
+      _$InitPageStatus;
   const InitPageStatus._() : super._();
+
+  String? get title;
+  String? get message;
+  @JsonKey(ignore: true)
+  _$$InitPageStatusCopyWith<_$InitPageStatus> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -242,6 +283,8 @@ abstract class _$$LoadingPageStatusCopyWith<$Res> {
   factory _$$LoadingPageStatusCopyWith(
           _$LoadingPageStatus value, $Res Function(_$LoadingPageStatus) then) =
       __$$LoadingPageStatusCopyWithImpl<$Res>;
+  @useResult
+  $Res call({double? loadingHeight});
 }
 
 /// @nodoc
@@ -251,69 +294,94 @@ class __$$LoadingPageStatusCopyWithImpl<$Res>
   __$$LoadingPageStatusCopyWithImpl(
       _$LoadingPageStatus _value, $Res Function(_$LoadingPageStatus) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? loadingHeight = freezed,
+  }) {
+    return _then(_$LoadingPageStatus(
+      freezed == loadingHeight
+          ? _value.loadingHeight
+          : loadingHeight // ignore: cast_nullable_to_non_nullable
+              as double?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$LoadingPageStatus extends LoadingPageStatus {
-  const _$LoadingPageStatus() : super._();
+  const _$LoadingPageStatus([this.loadingHeight]) : super._();
+
+  @override
+  final double? loadingHeight;
 
   @override
   String toString() {
-    return 'PageStatus.loading()';
+    return 'PageStatus.loading(loadingHeight: $loadingHeight)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadingPageStatus);
+        (other.runtimeType == runtimeType &&
+            other is _$LoadingPageStatus &&
+            (identical(other.loadingHeight, loadingHeight) ||
+                other.loadingHeight == loadingHeight));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, loadingHeight);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadingPageStatusCopyWith<_$LoadingPageStatus> get copyWith =>
+      __$$LoadingPageStatusCopyWithImpl<_$LoadingPageStatus>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function() loading,
+    required TResult Function(String? title, String? message) init,
+    required TResult Function(double? loadingHeight) loading,
     required TResult Function() loadingMore,
     required TResult Function() emptyLastPage,
-    required TResult Function() empty,
+    required TResult Function(String? title, String? message) empty,
     required TResult Function() success,
     required TResult Function(String message) error,
   }) {
-    return loading();
+    return loading(loadingHeight);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function()? loading,
+    TResult? Function(String? title, String? message)? init,
+    TResult? Function(double? loadingHeight)? loading,
     TResult? Function()? loadingMore,
     TResult? Function()? emptyLastPage,
-    TResult? Function()? empty,
+    TResult? Function(String? title, String? message)? empty,
     TResult? Function()? success,
     TResult? Function(String message)? error,
   }) {
-    return loading?.call();
+    return loading?.call(loadingHeight);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function()? loading,
+    TResult Function(String? title, String? message)? init,
+    TResult Function(double? loadingHeight)? loading,
     TResult Function()? loadingMore,
     TResult Function()? emptyLastPage,
-    TResult Function()? empty,
+    TResult Function(String? title, String? message)? empty,
     TResult Function()? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
-      return loading();
+      return loading(loadingHeight);
     }
     return orElse();
   }
@@ -366,8 +434,14 @@ class _$LoadingPageStatus extends LoadingPageStatus {
 }
 
 abstract class LoadingPageStatus extends PageStatus {
-  const factory LoadingPageStatus() = _$LoadingPageStatus;
+  const factory LoadingPageStatus([final double? loadingHeight]) =
+      _$LoadingPageStatus;
   const LoadingPageStatus._() : super._();
+
+  double? get loadingHeight;
+  @JsonKey(ignore: true)
+  _$$LoadingPageStatusCopyWith<_$LoadingPageStatus> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -408,11 +482,11 @@ class _$LoadingMorePageStatus extends LoadingMorePageStatus {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function() loading,
+    required TResult Function(String? title, String? message) init,
+    required TResult Function(double? loadingHeight) loading,
     required TResult Function() loadingMore,
     required TResult Function() emptyLastPage,
-    required TResult Function() empty,
+    required TResult Function(String? title, String? message) empty,
     required TResult Function() success,
     required TResult Function(String message) error,
   }) {
@@ -422,11 +496,11 @@ class _$LoadingMorePageStatus extends LoadingMorePageStatus {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function()? loading,
+    TResult? Function(String? title, String? message)? init,
+    TResult? Function(double? loadingHeight)? loading,
     TResult? Function()? loadingMore,
     TResult? Function()? emptyLastPage,
-    TResult? Function()? empty,
+    TResult? Function(String? title, String? message)? empty,
     TResult? Function()? success,
     TResult? Function(String message)? error,
   }) {
@@ -436,11 +510,11 @@ class _$LoadingMorePageStatus extends LoadingMorePageStatus {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function()? loading,
+    TResult Function(String? title, String? message)? init,
+    TResult Function(double? loadingHeight)? loading,
     TResult Function()? loadingMore,
     TResult Function()? emptyLastPage,
-    TResult Function()? empty,
+    TResult Function(String? title, String? message)? empty,
     TResult Function()? success,
     TResult Function(String message)? error,
     required TResult orElse(),
@@ -541,11 +615,11 @@ class _$EmptyLastPageStatus extends EmptyLastPageStatus {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function() loading,
+    required TResult Function(String? title, String? message) init,
+    required TResult Function(double? loadingHeight) loading,
     required TResult Function() loadingMore,
     required TResult Function() emptyLastPage,
-    required TResult Function() empty,
+    required TResult Function(String? title, String? message) empty,
     required TResult Function() success,
     required TResult Function(String message) error,
   }) {
@@ -555,11 +629,11 @@ class _$EmptyLastPageStatus extends EmptyLastPageStatus {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function()? loading,
+    TResult? Function(String? title, String? message)? init,
+    TResult? Function(double? loadingHeight)? loading,
     TResult? Function()? loadingMore,
     TResult? Function()? emptyLastPage,
-    TResult? Function()? empty,
+    TResult? Function(String? title, String? message)? empty,
     TResult? Function()? success,
     TResult? Function(String message)? error,
   }) {
@@ -569,11 +643,11 @@ class _$EmptyLastPageStatus extends EmptyLastPageStatus {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function()? loading,
+    TResult Function(String? title, String? message)? init,
+    TResult Function(double? loadingHeight)? loading,
     TResult Function()? loadingMore,
     TResult Function()? emptyLastPage,
-    TResult Function()? empty,
+    TResult Function(String? title, String? message)? empty,
     TResult Function()? success,
     TResult Function(String message)? error,
     required TResult orElse(),
@@ -641,6 +715,8 @@ abstract class _$$EmptyPageStatusCopyWith<$Res> {
   factory _$$EmptyPageStatusCopyWith(
           _$EmptyPageStatus value, $Res Function(_$EmptyPageStatus) then) =
       __$$EmptyPageStatusCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String? title, String? message});
 }
 
 /// @nodoc
@@ -650,69 +726,101 @@ class __$$EmptyPageStatusCopyWithImpl<$Res>
   __$$EmptyPageStatusCopyWithImpl(
       _$EmptyPageStatus _value, $Res Function(_$EmptyPageStatus) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? title = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(_$EmptyPageStatus(
+      freezed == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$EmptyPageStatus extends EmptyPageStatus {
-  const _$EmptyPageStatus() : super._();
+  const _$EmptyPageStatus([this.title, this.message]) : super._();
+
+  @override
+  final String? title;
+  @override
+  final String? message;
 
   @override
   String toString() {
-    return 'PageStatus.empty()';
+    return 'PageStatus.empty(title: $title, message: $message)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$EmptyPageStatus);
+        (other.runtimeType == runtimeType &&
+            other is _$EmptyPageStatus &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, title, message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EmptyPageStatusCopyWith<_$EmptyPageStatus> get copyWith =>
+      __$$EmptyPageStatusCopyWithImpl<_$EmptyPageStatus>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function() loading,
+    required TResult Function(String? title, String? message) init,
+    required TResult Function(double? loadingHeight) loading,
     required TResult Function() loadingMore,
     required TResult Function() emptyLastPage,
-    required TResult Function() empty,
+    required TResult Function(String? title, String? message) empty,
     required TResult Function() success,
     required TResult Function(String message) error,
   }) {
-    return empty();
+    return empty(title, message);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function()? loading,
+    TResult? Function(String? title, String? message)? init,
+    TResult? Function(double? loadingHeight)? loading,
     TResult? Function()? loadingMore,
     TResult? Function()? emptyLastPage,
-    TResult? Function()? empty,
+    TResult? Function(String? title, String? message)? empty,
     TResult? Function()? success,
     TResult? Function(String message)? error,
   }) {
-    return empty?.call();
+    return empty?.call(title, message);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function()? loading,
+    TResult Function(String? title, String? message)? init,
+    TResult Function(double? loadingHeight)? loading,
     TResult Function()? loadingMore,
     TResult Function()? emptyLastPage,
-    TResult Function()? empty,
+    TResult Function(String? title, String? message)? empty,
     TResult Function()? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (empty != null) {
-      return empty();
+      return empty(title, message);
     }
     return orElse();
   }
@@ -765,8 +873,15 @@ class _$EmptyPageStatus extends EmptyPageStatus {
 }
 
 abstract class EmptyPageStatus extends PageStatus {
-  const factory EmptyPageStatus() = _$EmptyPageStatus;
+  const factory EmptyPageStatus([final String? title, final String? message]) =
+      _$EmptyPageStatus;
   const EmptyPageStatus._() : super._();
+
+  String? get title;
+  String? get message;
+  @JsonKey(ignore: true)
+  _$$EmptyPageStatusCopyWith<_$EmptyPageStatus> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -807,11 +922,11 @@ class _$SuccessPageStatus extends SuccessPageStatus {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function() loading,
+    required TResult Function(String? title, String? message) init,
+    required TResult Function(double? loadingHeight) loading,
     required TResult Function() loadingMore,
     required TResult Function() emptyLastPage,
-    required TResult Function() empty,
+    required TResult Function(String? title, String? message) empty,
     required TResult Function() success,
     required TResult Function(String message) error,
   }) {
@@ -821,11 +936,11 @@ class _$SuccessPageStatus extends SuccessPageStatus {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function()? loading,
+    TResult? Function(String? title, String? message)? init,
+    TResult? Function(double? loadingHeight)? loading,
     TResult? Function()? loadingMore,
     TResult? Function()? emptyLastPage,
-    TResult? Function()? empty,
+    TResult? Function(String? title, String? message)? empty,
     TResult? Function()? success,
     TResult? Function(String message)? error,
   }) {
@@ -835,11 +950,11 @@ class _$SuccessPageStatus extends SuccessPageStatus {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function()? loading,
+    TResult Function(String? title, String? message)? init,
+    TResult Function(double? loadingHeight)? loading,
     TResult Function()? loadingMore,
     TResult Function()? emptyLastPage,
-    TResult Function()? empty,
+    TResult Function(String? title, String? message)? empty,
     TResult Function()? success,
     TResult Function(String message)? error,
     required TResult orElse(),
@@ -966,11 +1081,11 @@ class _$ErrorPageStatus extends ErrorPageStatus {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function() loading,
+    required TResult Function(String? title, String? message) init,
+    required TResult Function(double? loadingHeight) loading,
     required TResult Function() loadingMore,
     required TResult Function() emptyLastPage,
-    required TResult Function() empty,
+    required TResult Function(String? title, String? message) empty,
     required TResult Function() success,
     required TResult Function(String message) error,
   }) {
@@ -980,11 +1095,11 @@ class _$ErrorPageStatus extends ErrorPageStatus {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function()? loading,
+    TResult? Function(String? title, String? message)? init,
+    TResult? Function(double? loadingHeight)? loading,
     TResult? Function()? loadingMore,
     TResult? Function()? emptyLastPage,
-    TResult? Function()? empty,
+    TResult? Function(String? title, String? message)? empty,
     TResult? Function()? success,
     TResult? Function(String message)? error,
   }) {
@@ -994,11 +1109,11 @@ class _$ErrorPageStatus extends ErrorPageStatus {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function()? loading,
+    TResult Function(String? title, String? message)? init,
+    TResult Function(double? loadingHeight)? loading,
     TResult Function()? loadingMore,
     TResult Function()? emptyLastPage,
-    TResult Function()? empty,
+    TResult Function(String? title, String? message)? empty,
     TResult Function()? success,
     TResult Function(String message)? error,
     required TResult orElse(),
