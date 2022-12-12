@@ -6,14 +6,15 @@ showIconDialog(
     {required String buttonText,
     required String title,
     Widget? icon,
-    required void Function() onButtonTap,
+    bool? dismissible,
+    void Function()? onButtonTap,
     required String subtitle}) async {
   return await Get.dialog(
       Dialog(
         insetPadding: EdgeInsets.symmetric(horizontal: 30),
         backgroundColor: Colors.transparent,
         child: Container(
-          height: 260,
+          height: 275,
           padding: EdgeInsets.all(24),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
@@ -26,10 +27,11 @@ showIconDialog(
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Image.asset(
-                    'assets/icons/withconi.png',
-                    height: 40,
-                  ),
+                  icon ??
+                      Image.asset(
+                        'assets/icons/withconi.png',
+                        height: 40,
+                      ),
                   SizedBox(
                     height: 10,
                   ),
@@ -45,16 +47,18 @@ showIconDialog(
                   ),
                   Text(
                     subtitle,
-                    style: TextStyle(
-                        fontFamily: WcFontFamily.notoSans,
+                    style: GoogleFonts.workSans(
+                        // fontFamily: WcFontFamily.notoSans,
                         color: WcColors.grey140,
                         fontSize: 16,
+                        height: 1.3,
                         fontWeight: FontWeight.w400),
+                    textAlign: TextAlign.center,
                   ),
                 ],
               ),
               InkWell(
-                onTap: onButtonTap,
+                onTap: onButtonTap ?? () => Get.back(result: true),
                 child: Container(
                   height: 50,
                   alignment: Alignment.center,
@@ -74,5 +78,5 @@ showIconDialog(
           ),
         ),
       ),
-      barrierDismissible: false);
+      barrierDismissible: dismissible ?? false);
 }

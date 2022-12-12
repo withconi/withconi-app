@@ -23,24 +23,30 @@ class ProfileImagePickerButton extends StatelessWidget {
             width: 100,
             height: 100,
           ),
-          SizedBox(
-              width: 90,
-              height: 90,
-              child: CircleAvatar(
-                backgroundColor: WcColors.grey60,
-                backgroundImage: (_imageItem != null)
-                    ? _imageItem!.getImageByType
-                    : const AssetImage('assets/icons/withconi_grey.png'),
-              )),
+          Container(
+            decoration: BoxDecoration(shape: BoxShape.circle, boxShadow: [
+              BoxShadow(
+                  color: WcColors.black.withOpacity(0.2),
+                  blurRadius: 4,
+                  spreadRadius: -2)
+            ]),
+            child: CircleAvatar(
+              radius: 50,
+              backgroundColor: WcColors.grey60,
+              backgroundImage: (_imageItem != null)
+                  ? _imageItem!.getImageByType
+                  : const AssetImage('assets/icons/withconi_grey.png'),
+            ),
+          ),
           Positioned(
             right: 0,
-            bottom: 7,
+            bottom: 0,
             child: Container(
               decoration: BoxDecoration(boxShadow: [
                 BoxShadow(
                   color: WcColors.grey100.withOpacity(0.5),
                   spreadRadius: -2,
-                  blurRadius: 10,
+                  blurRadius: 8,
                   offset: const Offset(2, 4), // changes position of shadow
                 ),
               ]),

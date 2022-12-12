@@ -9,29 +9,38 @@ enum ImageType { network, file, asset }
 class ImageItem extends Equatable {
   ImageItem({
     required this.id,
-    required this.resource,
+    required this.imageUrl,
     this.isSvg = false,
     required this.imageType,
   });
 
   final String id;
-  final String resource;
+  String imageUrl;
+  String get imageRef =>
+      imageUrl.substring(imageUrl.lastIndexOf('/') + 1, imageUrl.indexOf('?'));
   final bool isSvg;
   ImageType imageType;
 
   ImageProvider get getImageByType {
-    String imageResource = resource;
+    String imageResource = imageUrl;
+    if (imageResource.isEmpty) {
+      return const AssetImage('assets/icons/paw_icon_grey.png');
+    }
     switch (imageType) {
       case ImageType.asset:
         return AssetImage(imageResource);
       case ImageType.file:
         return FileImage(File(imageResource));
       case ImageType.network:
-        return NetworkImage(Constants.WITHCONI_IMAGE_BASE_URL + imageResource);
+        return NetworkImage(imageResource);
     }
   }
 
+  deleteImage() {
+    imageUrl = '';
+    imageType = ImageType.asset;
+  }
+
   @override
-  // TODO: implement props
-  List<Object?> get props => [resource, id];
+  List<Object?> get props => [imageUrl, id];
 }

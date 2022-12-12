@@ -62,7 +62,7 @@ class TextValueButton extends StatelessWidget {
                                 color: WcColors.grey100,
                                 fontFamily: WcFontFamily.notoSans,
                                 fontWeight: FontWeight.w400,
-                                fontSize: 16),
+                                fontSize: 17),
                           ),
                         ),
                   SizedBox(

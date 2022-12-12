@@ -15,6 +15,8 @@ class WcSearchAppBar extends StatelessWidget with PreferredSizeWidget {
     required this.onTextChanged,
     required this.textEditingController,
     required this.hintText,
+    this.onTextFieldTap,
+    this.readOnly = false,
   }) : super(key: key);
 
   Widget? leading;
@@ -25,6 +27,8 @@ class WcSearchAppBar extends StatelessWidget with PreferredSizeWidget {
   void Function()? onClearTap;
   TextEditingController textEditingController;
   String hintText;
+  bool readOnly;
+  void Function()? onTextFieldTap;
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -62,6 +66,8 @@ class WcSearchAppBar extends StatelessWidget with PreferredSizeWidget {
                   ),
                   Expanded(
                       child: TextField(
+                    onTap: onTextFieldTap,
+                    readOnly: readOnly,
                     // onTap: _onTextFieldTapped,
                     enabled: true,
                     controller: textEditingController,

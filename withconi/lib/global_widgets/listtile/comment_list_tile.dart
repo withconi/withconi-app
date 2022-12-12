@@ -35,7 +35,7 @@ class WcCommentListTile extends StatelessWidget {
   void Function(bool) onLikeTap;
   void Function()? onCommentTap;
   void Function()? onPostTap;
-  void Function(CommentUIModel, MoreOption?)? onMoreTap;
+  void Function(CommentUIModel, MoreBottomSheetOption?)? onMoreTap;
   File? userProfile;
   bool activeComment;
   bool activeLike;
@@ -63,7 +63,8 @@ class WcCommentListTile extends StatelessWidget {
                   children: [
                     CircleAvatar(
                       radius: 15,
-                      backgroundColor: WcColors.grey110,
+                      backgroundColor: WcColors.grey110.withOpacity(0.6),
+                      backgroundImage: comment.profileImage.getImageByType,
                     ),
                     SizedBox(
                       width: 10,
@@ -105,25 +106,20 @@ class WcCommentListTile extends StatelessWidget {
                                     ],
                                   ),
                                 ),
-                                SizedBox(
+                                Container(
+                                  // color: WcColors.babyPinkLight,
+                                  padding: EdgeInsets.only(top: 10),
                                   width: WcWidth - 40 - 46,
-                                  child: IgnorePointer(
-                                    ignoring: true,
-                                    child: TextField(
-                                      decoration: const InputDecoration(
-                                          border: InputBorder.none,
-                                          isDense: true),
-                                      controller: TextEditingController(
-                                          text: comment.content),
-                                      readOnly: true,
-                                      maxLines: 3,
-                                      minLines: 1,
-                                      style: TextStyle(
-                                          fontFamily: WcFontFamily.notoSans,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w400,
-                                          height: 1.5),
-                                    ),
+                                  child: Text(
+                                    comment.content,
+                                    maxLines: 20,
+                                    overflow: TextOverflow.ellipsis,
+                                    softWrap: true,
+                                    style: TextStyle(
+                                        fontFamily: WcFontFamily.notoSans,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w400,
+                                        height: 1.5),
                                   ),
                                 ),
                               ],
@@ -159,11 +155,11 @@ class WcCommentListTile extends StatelessWidget {
                       WcIconButton(
                           active: true,
                           onTap: () async {
-                            MoreOption? selectedOption =
+                            MoreBottomSheetOption? selectedOption =
                                 await showMoreBottomSheet(
-                              authorId: comment.authorId,
-                              authorName: comment.nickname,
-                            );
+                                    authorId: comment.authorId,
+                                    authorName: comment.nickname,
+                                    bottomSheetFor: BottomSheetFor.comment);
                             onMoreTap!.call(comment, selectedOption);
                           },
                           iconHeight: 22,

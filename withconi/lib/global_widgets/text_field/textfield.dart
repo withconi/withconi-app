@@ -16,6 +16,8 @@ class WcTextField extends StatelessWidget {
     this.labelText,
     this.width = double.infinity,
     this.readOnly = false,
+    this.fontColor,
+    this.isEng = false,
   }) : super(key: key);
 
   String hintText;
@@ -28,6 +30,8 @@ class WcTextField extends StatelessWidget {
   String? errorText;
   double? width;
   bool readOnly;
+  Color? fontColor;
+  bool isEng;
 
   @override
   Widget build(BuildContext context) {
@@ -41,11 +45,16 @@ class WcTextField extends StatelessWidget {
         obscureText: textObscure,
         controller: textController,
         keyboardType: keyboardType,
-        style: TextStyle(
-            fontFamily: WcFontFamily.notoSans,
-            color: WcColors.black,
-            fontSize: 18,
-            fontWeight: FontWeight.w500),
+        style: (isEng)
+            ? GoogleFonts.workSans(
+                color: fontColor ?? WcColors.black,
+                fontSize: 20,
+                fontWeight: FontWeight.w500)
+            : TextStyle(
+                fontFamily: WcFontFamily.notoSans,
+                color: fontColor ?? WcColors.black,
+                fontSize: 18,
+                fontWeight: FontWeight.w500),
         onChanged: onChanged,
         cursorColor: WcColors.blue100,
         decoration: InputDecoration(
@@ -57,12 +66,12 @@ class WcTextField extends StatelessWidget {
               fontFamily: WcFontFamily.notoSans,
               color: WcColors.grey100,
               fontSize: 17,
-              fontWeight: FontWeight.w300),
+              fontWeight: FontWeight.w400),
           floatingLabelStyle: TextStyle(
               fontFamily: WcFontFamily.notoSans,
-              color: WcColors.black,
+              color: fontColor ?? WcColors.black,
               fontSize: 17,
-              height: 0.55,
+              height: 0.5,
               fontWeight: FontWeight.w400),
           alignLabelWithHint: true,
           enabledBorder: const UnderlineInputBorder(
@@ -78,7 +87,7 @@ class WcTextField extends StatelessWidget {
           hintStyle: TextStyle(
               fontFamily: WcFontFamily.notoSans,
               color: WcColors.grey100,
-              fontSize: 17,
+              fontSize: 16,
               fontWeight: FontWeight.w400),
         ),
       ),

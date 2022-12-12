@@ -57,7 +57,7 @@ class ItemListValueButton extends StatelessWidget {
                           color: WcColors.grey100,
                           fontFamily: WcFontFamily.notoSans,
                           fontWeight: FontWeight.w400,
-                          fontSize: 16),
+                          fontSize: 17),
                     ),
                     child: GestureDetector(
                       onTap: () {},
@@ -130,16 +130,16 @@ class ItemListValueButton extends StatelessWidget {
                   GestureDetector(
                     onTap: onTapButton,
                     child: Container(
-                      width: 30,
+                      width: 33,
                       height: 30,
                       color: Colors.transparent,
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 5),
-                        child: suffixIcon ??
-                            SvgPicture.asset(
-                              'assets/icons/search.svg',
-                            ),
-                      ),
+                          padding: const EdgeInsets.symmetric(horizontal: 5),
+                          child: Icon(
+                            Icons.search_rounded,
+                            size: 25,
+                            color: WcColors.grey100,
+                          )),
                     ),
                   ),
                 ],

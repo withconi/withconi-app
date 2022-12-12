@@ -1,10 +1,14 @@
+import 'package:withconi/module/theme/text_theme.dart';
+
 import '../import_basic.dart';
 
 showCustomSnackbar(
         {required String text,
         Duration? animationDuration,
-        Duration? totalDuration}) =>
+        Duration? totalDuration,
+        SnackPosition? snackPosition}) =>
     Get.showSnackbar(GetSnackBar(
+      // snackStyle: SnackStyle.FLOATING,
       backgroundColor: const Color.fromARGB(227, 41, 41, 41),
       barBlur: 10,
       forwardAnimationCurve: Curves.decelerate,
@@ -14,12 +18,16 @@ showCustomSnackbar(
       borderRadius: 10,
       titleText: Text(
         text,
-        style: GoogleFonts.notoSans(
-            fontSize: 16, fontWeight: FontWeight.normal, color: WcColors.white),
+        style: TextStyle(
+            fontFamily: WcFontFamily.notoSans,
+            height: 1.5,
+            fontSize: 16,
+            fontWeight: FontWeight.normal,
+            color: WcColors.white),
         textAlign: TextAlign.center,
       ),
       messageText: const SizedBox.shrink(),
       animationDuration: animationDuration ?? const Duration(milliseconds: 300),
       duration: totalDuration ?? const Duration(milliseconds: 1500),
-      snackPosition: SnackPosition.BOTTOM,
+      snackPosition: snackPosition ?? SnackPosition.BOTTOM,
     ));

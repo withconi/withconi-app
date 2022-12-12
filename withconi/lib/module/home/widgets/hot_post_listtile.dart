@@ -1,4 +1,3 @@
-import 'package:withconi/module/ui_model/hot_post_ui_model.dart';
 import 'package:withconi/module/ui_model/post_ui_model.dart';
 
 import '../../../import_basic.dart';
@@ -34,8 +33,9 @@ class HotPostListTile extends StatelessWidget {
               style: TextStyle(
                   fontFamily: WcFontFamily.notoSans,
                   fontSize: 14.5,
-                  fontWeight: FontWeight.w600,
-                  color: WcColors.grey200),
+                  height: 1,
+                  fontWeight: FontWeight.w500,
+                  color: WcColors.black),
             ),
             SizedBox(
               width: 10,
@@ -47,8 +47,9 @@ class HotPostListTile extends StatelessWidget {
                 style: TextStyle(
                     fontFamily: WcFontFamily.notoSans,
                     fontSize: 15,
+                    height: 1,
                     fontWeight: FontWeight.w400,
-                    color: WcColors.black),
+                    color: WcColors.grey200),
               ),
             ),
           ],

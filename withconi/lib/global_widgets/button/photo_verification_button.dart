@@ -28,7 +28,7 @@ class PhotoVerificationButton extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SvgPicture.asset('assets/icons/photo_verification.svg',
-                height: 20,
+                height: 19,
                 color: (isPhotoReview) ? WcColors.blue100 : WcColors.red100),
 
             // : Padding(

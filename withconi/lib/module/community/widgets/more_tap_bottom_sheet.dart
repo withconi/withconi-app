@@ -1,34 +1,47 @@
 import 'package:flutter_svg/svg.dart';
 import 'package:withconi/core/values/constants/auth_variables.dart';
 import 'package:withconi/data/enums/enum.dart';
+import 'package:withconi/module/theme/text_theme.dart';
 
 import '../../../import_basic.dart';
 
-showMoreBottomSheet({required String authorId, required String authorName}) {
-  List<MoreOption> optionList = [];
+enum BottomSheetFor { post, comment }
+
+showMoreBottomSheet(
+    {required String authorId,
+    required String authorName,
+    required BottomSheetFor bottomSheetFor}) {
+  List<MoreBottomSheetOption> optionList = [];
   if (firebaseAuth.currentUser?.uid == authorId) {
-    optionList = [MoreOption.edit, MoreOption.delete];
+    if (bottomSheetFor == BottomSheetFor.comment) {
+      optionList = [MoreBottomSheetOption.delete];
+    } else {
+      optionList = [MoreBottomSheetOption.edit, MoreBottomSheetOption.delete];
+    }
   } else {
     optionList = [
-      MoreOption.report,
-      MoreOption.block,
+      MoreBottomSheetOption.report,
+      MoreBottomSheetOption.block,
     ];
   }
   return Get.bottomSheet(
     Container(
-      height: 200,
+      height: optionList.length * 85,
       padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
       child: Column(
         children: [
           const SizedBox(
-            height: 25,
+            height: 20,
           ),
           Column(
             children: optionList
                 .map((e) =>
                     _moreSheetListTile(moreOption: e, authorName: authorName))
                 .toList(),
-          )
+          ),
+          const SizedBox(
+            height: 10,
+          ),
         ],
       ),
     ),
@@ -46,7 +59,7 @@ showMoreBottomSheet({required String authorId, required String authorName}) {
 }
 
 GestureDetector _moreSheetListTile(
-    {required MoreOption moreOption, required String authorName}) {
+    {required MoreBottomSheetOption moreOption, required String authorName}) {
   return GestureDetector(
     onTap: () {
       Get.back(result: moreOption);
@@ -66,13 +79,14 @@ GestureDetector _moreSheetListTile(
               width: 12,
             ),
             Text(
-                (moreOption == MoreOption.block)
+                (moreOption == MoreBottomSheetOption.block)
                     ? '$authorName의 글 ${moreOption.displayName}'
                     : moreOption.displayName,
-                style: GoogleFonts.notoSans(
-                    fontSize: 17,
+                style: TextStyle(
+                    fontFamily: WcFontFamily.notoSans,
+                    fontSize: 16.5,
                     color: WcColors.black,
-                    fontWeight: FontWeight.w500)),
+                    fontWeight: FontWeight.w400)),
           ],
         ),
       ),

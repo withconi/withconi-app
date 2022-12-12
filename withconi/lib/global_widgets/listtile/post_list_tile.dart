@@ -35,7 +35,7 @@ class PostListTile extends StatelessWidget {
   // void Function(int, bool)? onLikeChanged;
   int postIndex;
   void Function(int postIndex) onPostTap;
-  void Function(int, MoreOption?)? onMoreTap;
+  void Function(int, MoreBottomSheetOption?)? onMoreTap;
   void Function(bool) onLikeTap;
   File? userProfile;
   bool activeBadge;
@@ -59,9 +59,9 @@ class PostListTile extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CircleAvatar(
-              radius: 17,
-              backgroundColor: WcColors.grey110,
-            ),
+                radius: 17,
+                backgroundColor: WcColors.grey110.withOpacity(0.6),
+                backgroundImage: post.profileImage.getImageByType),
             SizedBox(
               width: 10,
             ),
@@ -79,7 +79,7 @@ class PostListTile extends StatelessWidget {
                             Container(
                               alignment: Alignment.topLeft,
                               child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Text(post.nickname,
                                       style: TextStyle(
@@ -87,14 +87,22 @@ class PostListTile extends StatelessWidget {
                                           color: WcColors.black,
                                           fontSize: 14,
                                           fontWeight: FontWeight.w500,
-                                          height: 1.5)),
-                                  Text(' • ${post.uploadAtStr}',
+                                          height: 1)),
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 4),
+                                    child: CircleAvatar(
+                                      radius: 2,
+                                      backgroundColor: WcColors.grey100,
+                                    ),
+                                  ),
+                                  Text(post.uploadAtStr,
                                       style: TextStyle(
                                           fontFamily: WcFontFamily.notoSans,
                                           color: WcColors.grey140,
                                           fontSize: 13,
                                           fontWeight: FontWeight.w400,
-                                          height: 1.5)),
+                                          height: 1)),
                                   (activeBadge)
                                       ? WcBadge(
                                           text: post.postType!.displayName,
@@ -109,7 +117,7 @@ class PostListTile extends StatelessWidget {
                             Offstage(
                               offstage: post.images.isEmpty,
                               child: Container(
-                                height: 170,
+                                height: 150,
                                 margin: EdgeInsets.only(top: 15),
                                 child: Material(
                                   clipBehavior: Clip.antiAlias,
@@ -137,18 +145,13 @@ class PostListTile extends StatelessWidget {
                                                     end: Alignment.bottomCenter,
                                                     colors: [
                                                       Color.fromARGB(
-                                                          14, 0, 0, 0),
-                                                      Colors.transparent,
-                                                      Colors.transparent,
+                                                          40, 0, 0, 0),
                                                       Color.fromARGB(
-                                                          14, 0, 0, 0),
+                                                          15, 0, 0, 0),
                                                     ],
                                                     stops: [
-                                                      0.0,
-                                                      0.2,
-                                                      0.8,
-                                                      1
-                                                      // 1
+                                                      0.3,
+                                                      1,
                                                     ]),
                                               ),
                                               decoration: BoxDecoration(
@@ -164,13 +167,20 @@ class PostListTile extends StatelessWidget {
                                       Visibility(
                                         visible: post.images.length > 1,
                                         child: Positioned(
-                                            top: 7,
-                                            right: 7,
-                                            child: Image.asset(
-                                              'assets/icons/image_multiple.png',
-                                              width: 20,
-                                              colorBlendMode:
-                                                  BlendMode.luminosity,
+                                            top: 10,
+                                            right: 10,
+                                            child: Icon(
+                                              size: 22,
+                                              Icons.photo_library_rounded,
+                                              color: WcColors.white,
+                                              shadows: [
+                                                BoxShadow(
+                                                    offset: const Offset(0, 0),
+                                                    color: WcColors.black
+                                                        .withOpacity(0.4),
+                                                    blurRadius: 6,
+                                                    spreadRadius: -1)
+                                              ],
                                             )),
                                       ),
                                     ],
@@ -204,7 +214,9 @@ class PostListTile extends StatelessWidget {
                     ),
                   ),
                   (simple)
-                      ? SizedBox()
+                      ? SizedBox(
+                          height: 15,
+                        )
                       : Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -242,11 +254,12 @@ class PostListTile extends StatelessWidget {
                                 child: WcIconButton(
                                     active: true,
                                     onTap: () async {
-                                      MoreOption? selectedOption =
+                                      MoreBottomSheetOption? selectedOption =
                                           await showMoreBottomSheet(
-                                        authorId: post.authorId,
-                                        authorName: post.nickname,
-                                      );
+                                              authorId: post.authorId,
+                                              authorName: post.nickname,
+                                              bottomSheetFor:
+                                                  BottomSheetFor.post);
                                       onMoreTap!
                                           .call(postIndex, selectedOption);
                                     },

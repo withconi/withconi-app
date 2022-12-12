@@ -4,7 +4,7 @@ import '../../../data/enums/enum.dart';
 import '../../../import_basic.dart';
 
 class PlaceTypeToggleButton extends StatelessWidget {
-  PlaceTypeToggleButton({
+  const PlaceTypeToggleButton({
     Key? key,
     // required List<bool> isSelectedList,
     required List<PlaceType> placeTypeList,
@@ -15,55 +15,69 @@ class PlaceTypeToggleButton extends StatelessWidget {
         _placeTypeList = placeTypeList,
         super(key: key);
 
-  void Function(PlaceType)? _onPressed;
-  PlaceType _selectedPlaceType;
-  List<PlaceType> _placeTypeList;
+  final void Function(PlaceType)? _onPressed;
+  final PlaceType _selectedPlaceType;
+  final List<PlaceType> _placeTypeList;
 
   @override
   Widget build(BuildContext context) {
-    List<bool> _selectionList = [
-      (_selectedPlaceType == PlaceType.all),
-      (_selectedPlaceType == PlaceType.hospital),
-      (_selectedPlaceType == PlaceType.pharmacy)
-    ];
+    List<bool> _selectionList =
+        PlaceType.values.map((e) => _selectedPlaceType == e).toList();
     return ToggleButtons(
-      constraints: BoxConstraints.tight(Size(54, 45)),
+      constraints: BoxConstraints.tight(const Size(54, 45)),
       borderRadius: BorderRadius.circular(30),
       // color: WcColors.white,
-      fillColor: WcColors.blue100,
+      fillColor: (_selectedPlaceType.mainColor),
       selectedColor: WcColors.white,
-      selectedBorderColor: WcColors.blue100,
-      disabledBorderColor: WcColors.green100,
+      selectedBorderColor: (_selectedPlaceType.mainColor),
+      // disabledBorderColor: WcColors.green100,
       renderBorder: false,
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.only(left: 3),
+      children: _placeTypeList.map((placeType) {
+        return Container(
+          padding: (_placeTypeList.first == placeType)
+              ? EdgeInsets.only(left: 6)
+              : (_placeTypeList.last == placeType)
+                  ? EdgeInsets.only(right: 5)
+                  : null,
           child: Text(
-            '전체',
+            placeType.displayName,
             style: TextStyle(
                 fontFamily: WcFontFamily.notoSans,
                 fontSize: 15,
                 fontWeight: FontWeight.w400),
           ),
-        ),
-        Text(
-          '병원',
-          style: TextStyle(
-              fontFamily: WcFontFamily.notoSans,
-              fontSize: 15,
-              fontWeight: FontWeight.w400),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(right: 3),
-          child: Text(
-            '약국',
-            style: TextStyle(
-                fontFamily: WcFontFamily.notoSans,
-                fontSize: 15,
-                fontWeight: FontWeight.w400),
-          ),
-        ),
-      ],
+        );
+      }).toList(),
+
+      // const <Widget>[
+      //   Padding(
+      //     padding: EdgeInsets.only(left: 6),
+      //     child: Text(
+      //       '전체',
+      //       style: TextStyle(
+      //           fontFamily: WcFontFamily.notoSans,
+      //           fontSize: 15,
+      //           fontWeight: FontWeight.w400),
+      //     ),
+      //   ),
+      //   Text(
+      //     '병원',
+      //     style: TextStyle(
+      //         fontFamily: WcFontFamily.notoSans,
+      //         fontSize: 15,
+      //         fontWeight: FontWeight.w400),
+      //   ),
+      //   Padding(
+      //     padding: EdgeInsets.only(right: 5),
+      //     child: Text(
+      //       '약국',
+      //       style: TextStyle(
+      //           fontFamily: WcFontFamily.notoSans,
+      //           fontSize: 15,
+      //           fontWeight: FontWeight.w400),
+      //     ),
+      //   ),
+      // ],
       onPressed: (index) {
         _onPressed!.call(_placeTypeList[index]);
       },

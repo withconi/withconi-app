@@ -24,7 +24,7 @@ class CommonDiseaseListTile extends StatelessWidget {
       },
       child: Container(
           alignment: Alignment.centerLeft,
-          height: 40,
+          height: 35,
           width: WcWidth,
           padding: EdgeInsets.symmetric(horizontal: 30),
           child: Row(
@@ -35,7 +35,7 @@ class CommonDiseaseListTile extends StatelessWidget {
                   '${index + 1}',
                   softWrap: false,
                   style: GoogleFonts.workSans(
-                      fontWeight: FontWeight.w700, fontSize: 16),
+                      fontWeight: FontWeight.w600, fontSize: 16),
                 ),
               ),
               SizedBox(
@@ -46,7 +46,7 @@ class CommonDiseaseListTile extends StatelessWidget {
                   commonDisease.name,
                   softWrap: false,
                   overflow: TextOverflow.fade,
-                  style: GoogleFonts.notoSans(fontSize: 16),
+                  style: GoogleFonts.notoSans(fontSize: 15),
                 ),
               ),
             ],

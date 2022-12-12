@@ -31,14 +31,14 @@ showDiseaseEditDialog(
   // Map<ConimalUIModel, List<DiseaseUIModel>> diseaseConimalMap = {};
 
   print(_editConimalList);
+  double maxVeticalPadding = (WcHeight - 245) / 2;
   return await showDialog(
       context: context,
       builder: (context) {
         return StatefulBuilder(builder: (context, setState) {
           return AlertDialog(
             insetPadding: EdgeInsets.symmetric(
-                vertical:
-                    (WcHeight - (280 + (45 * (originalList.length)))) / 2),
+                vertical: maxVeticalPadding - (_editConimalList.length * 15)),
             backgroundColor: Colors.transparent,
             content: ClipRRect(
               borderRadius: BorderRadius.circular(15),
@@ -59,7 +59,7 @@ showDiseaseEditDialog(
                               style: TextStyle(
                                   fontFamily: WcFontFamily.notoSans,
                                   fontSize: 18,
-                                  fontWeight: FontWeight.w500)),
+                                  fontWeight: FontWeight.w600)),
                         ),
                         SizedBox(
                           height: 15,

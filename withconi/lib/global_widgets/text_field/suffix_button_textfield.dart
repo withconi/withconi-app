@@ -14,6 +14,7 @@ class WcSuffixIconTextField extends StatelessWidget {
       this.labelText,
       this.width = double.infinity,
       this.readOnly = false,
+      this.fontColor,
       this.suffixIcon})
       : super(key: key);
 
@@ -27,6 +28,7 @@ class WcSuffixIconTextField extends StatelessWidget {
   double? width;
   bool readOnly;
   Widget? suffixIcon;
+  Color? fontColor;
 
   @override
   Widget build(BuildContext context) {
@@ -43,10 +45,11 @@ class WcSuffixIconTextField extends StatelessWidget {
             obscureText: textObscure,
             controller: textController,
             keyboardType: keyboardType,
-            style: GoogleFonts.notoSans(
-                color: WcColors.black,
-                fontSize: 18,
-                fontWeight: FontWeight.w600),
+            style: GoogleFonts.workSans(
+                color: fontColor ?? WcColors.black,
+                fontSize: 19,
+                height: 1,
+                fontWeight: FontWeight.w500),
             onChanged: onChanged,
             cursorColor: WcColors.blue100,
             decoration: InputDecoration(
@@ -61,7 +64,7 @@ class WcSuffixIconTextField extends StatelessWidget {
                   fontSize: 17,
                   fontWeight: FontWeight.w300),
               floatingLabelStyle: GoogleFonts.notoSans(
-                  color: WcColors.black,
+                  color: fontColor ?? WcColors.black,
                   fontSize: 17,
                   height: 0.55,
                   fontWeight: FontWeight.w500),

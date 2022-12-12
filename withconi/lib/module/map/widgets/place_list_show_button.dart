@@ -1,10 +1,8 @@
-import 'package:flutter_svg/svg.dart';
-
 import '../../../import_basic.dart';
 import '../../theme/text_theme.dart';
 
-class SearchRefreshButton extends StatelessWidget {
-  SearchRefreshButton({
+class MapShowButton extends StatelessWidget {
+  MapShowButton({
     Key? key,
     void Function()? onTap,
   })  : _onTap = onTap,
@@ -17,7 +15,7 @@ class SearchRefreshButton extends StatelessWidget {
       child: Container(
         // width: 150,
         // height: 35,
-        padding: EdgeInsets.fromLTRB(11, 8, 15, 8),
+        padding: EdgeInsets.fromLTRB(12, 8, 15, 8),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -25,19 +23,18 @@ class SearchRefreshButton extends StatelessWidget {
             //   'assets/icons/arrow_refresh.png',
             //   height: 12,
             // ),
-
-            SvgPicture.asset(
-              'assets/icons/refresh.svg',
-              width: 14,
-              color: WcColors.blue100,
+            Icon(
+              Icons.map_rounded,
+              size: 20,
+              color: WcColors.white,
             ),
             SizedBox(
-              width: 7,
+              width: 5,
             ),
-            Text('현 지도에서 검색',
+            Text('지도보기',
                 style: TextStyle(
                     fontFamily: WcFontFamily.notoSans,
-                    color: WcColors.grey200,
+                    color: WcColors.white,
                     fontWeight: FontWeight.w500,
                     fontSize: 14,
                     height: 1.3))
@@ -45,12 +42,12 @@ class SearchRefreshButton extends StatelessWidget {
         ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(50),
-          color: WcColors.white,
+          color: WcColors.blue100,
           boxShadow: const [
             BoxShadow(
-              color: Color.fromARGB(40, 0, 0, 0),
-              spreadRadius: -3,
-              blurRadius: 20,
+              color: Color.fromARGB(60, 0, 0, 0),
+              spreadRadius: -1,
+              blurRadius: 5,
               offset: Offset(0, 0),
             ),
           ],
