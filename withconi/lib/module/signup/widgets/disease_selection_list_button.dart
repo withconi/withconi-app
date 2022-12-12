@@ -13,7 +13,7 @@ class DiseaseSeletionButton extends StatelessWidget {
     required this.selected,
     required this.onTap,
     this.enableSelect = true,
-    this.height = 50,
+    this.height = 53,
     this.padding = const EdgeInsets.only(left: 18, right: 15),
     this.searchKeyword,
     required this.diseaseIndex,

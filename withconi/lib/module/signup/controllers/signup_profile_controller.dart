@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:dartz/dartz.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:withconi/core/signing_auth_info.dart';
+import 'package:withconi/data/enums/enum.dart';
+import 'package:withconi/module/community/widgets/pick_image_bottom_sheet.dart';
 import 'package:withconi/module/signup/signup_data_storage.dart';
 import 'package:withconi/core/error_handling/failure_ui_interpreter.dart';
 import 'package:withconi/core/error_handling/failures.dart';
@@ -18,7 +20,7 @@ class SignupProfileController extends GetxController {
   // final ConimalRepository _signUpRepository = ConimalRepository.to;
   // final SignupRepository _signUpRepository = Get.find();
 
-  SignupProfileController(this._signUpDataManager);
+  SignupProfileController(this._signUpDataManager, this._signingAuthInfo);
   // final SignupRepository _repository;
   final SignUpDataStorage _signUpDataManager;
 
@@ -33,6 +35,8 @@ class SignupProfileController extends GetxController {
   RxnString nameErrorText = RxnString();
   RxnString nickNameErrorText = RxnString();
 
+  late final SigningAuthInfo _signingAuthInfo;
+
   TextEditingController nameTextController = TextEditingController();
   TextEditingController nickNameTextController = TextEditingController();
   String get name => _name.value;
@@ -42,9 +46,7 @@ class SignupProfileController extends GetxController {
   void onReady() {
     super.onReady();
 
-    _signUpDataManager.storeAuthInfo(Get.arguments as SigningAuthInfo);
-
-    (_signUpDataManager.email);
+    _signUpDataManager.storeAuthInfo(_signingAuthInfo);
 
     debounce(_name, validateName, time: const Duration(milliseconds: 200));
     debounce(_nickName, validateNickname,
@@ -96,21 +98,34 @@ class SignupProfileController extends GetxController {
     }
   }
 
-  void pickImage() async {
+  void onImageTap() async {
+    ImagePickOption? imagePickOption = await showPickImageBottomSheet();
+
+    if (imagePickOption != null) {
+      if (imagePickOption == ImagePickOption.deleteAll) {
+        profileImg.value = null;
+        return;
+      } else {
+        _pickImage(imagePickOption.imageSource!);
+      }
+    }
+  }
+
+  _pickImage(ImageSource imageSource) async {
     final ImagePickHelper _picker = ImagePickHelper();
     // Pick an image
-    final Either<Failure, ImageItem?>? imageFileEither =
-        await _picker.pickSingleImage();
+    final Either<Failure, ImageItem?> imageFileEither =
+        await _picker.pickImage(imageSource);
 
-    if (imageFileEither != null) {
-      imageFileEither.fold(
-          (fail) =>
-              FailureInterpreter().mapFailureToSnackbar(fail, 'pickImage'),
-          (file) {
-        if (file != null) {
-          onImageChanged(file);
-        }
-      });
+    var imageItem = imageFileEither.fold((fail) {
+      FailureInterpreter().mapFailureToSnackbar(fail, 'pickImage');
+      return null;
+    }, (newImageItem) {
+      return newImageItem;
+    });
+
+    if (imageItem != null) {
+      onImageChanged(imageItem);
     }
   }
 
@@ -126,6 +141,6 @@ class SignupProfileController extends GetxController {
     //   Get.toNamed(Routes.CONIMAL_ADD);
     // }
     Get.toNamed(Routes.SIGNUP_CONIMAL_MANAGE,
-        arguments: _signUpDataManager.conimalList);
+        arguments: {'conimals': _signUpDataManager.conimalList.toList()});
   }
 }

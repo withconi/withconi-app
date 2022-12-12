@@ -1,8 +1,11 @@
 // ignore_for_file: prefer_const_constructors_in_immutables
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:withconi/data/enums/enum.dart';
+import 'package:withconi/import_basic.dart';
 import 'package:withconi/module/start/start_controller.dart';
 import 'package:withconi/module/start/start_widgets/sns_button.dart';
 import 'package:withconi/module/theme/colors.dart';
@@ -61,6 +64,7 @@ class StartPage extends StatelessWidget {
                           height: 60,
                         ),
                         Obx(() => WcTextField(
+                              isEng: true,
                               hintText: '이메일을 입력하여 진행해보세요',
                               onChanged: _controller.onEmailTextFieldChanged,
                               textController: _controller.emailTextController,
@@ -83,17 +87,17 @@ class StartPage extends StatelessWidget {
                         ),
                         Expanded(
                           child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: Provider.values
-                                  .where((element) =>
-                                      element.signMethod == SignMethod.sns)
+                                  .where((element) => (element.signMethod ==
+                                          SignMethod.sns &&
+                                      element.platform
+                                          .contains(Platform.operatingSystem)))
                                   .map(
                                     (provider) => SnsButtonWidget(
                                       provider: provider,
-                                      onTap: (provider) {
-                                        _controller.onTapSnsButton(provider);
-                                      },
+                                      onTap: _controller.onSnsButtonTap,
                                     ),
                                   )
                                   .toList()),

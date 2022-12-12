@@ -51,6 +51,7 @@ class SignupPwPage extends StatelessWidget {
                       labelText: '',
                       hintText: '이메일',
                       onChanged: (String) {},
+                      isEng: true,
                       textController: _controller.emailTextController,
                       keyboardType: TextInputType.emailAddress,
                     ),

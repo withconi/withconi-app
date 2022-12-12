@@ -4,7 +4,7 @@ import 'package:withconi/module/common/change_password_page.dart';
 import 'package:withconi/module/map/map_edit_review_page.dart';
 import 'package:withconi/routes/bindings.dart';
 import 'package:withconi/module/common/add_conimal_page.dart';
-import 'package:withconi/module/common/conimal_setting_page.dart';
+import 'package:withconi/module/common/conimal_manage_page.dart';
 import 'package:withconi/module/common/email_verification_page.dart';
 import 'package:withconi/module/community/pages/community_my_post_page.dart';
 import 'package:withconi/module/community/pages/community_edit_my_post_page.dart';
@@ -39,7 +39,6 @@ import 'package:withconi/module/start/start_page.dart';
 import 'package:withconi/routes/middlewares/auth_middleware.dart';
 import 'package:withconi/routes/middlewares/map_middleware.dart';
 import 'package:withconi/routes/middlewares/signup_middleware.dart';
-import '../module/common/change_password_page2.dart';
 import '../module/community/pages/community_new_post_page.dart';
 import '../module/community/pages/community_setting_page.dart';
 import '../module/diagnosis/pages/diagnosis_result_page.dart';
@@ -121,15 +120,10 @@ class WcPages {
       binding: SignInEmailBinding(),
     ),
     GetPage(
-      name: Routes.PASSWORD_CHANGE_1,
-      page: () => const ChangePasswordPage1(),
+      name: Routes.CHANGE_PASSWORD,
+      page: () => const ChangePasswordPage(),
       binding: ChangePasswordBinding(),
       middlewares: [ChangePasswordMiddleware()],
-    ),
-    GetPage(
-      name: Routes.PASSWORD_CHANGE_2,
-      popGesture: false,
-      page: () => const ChangePasswordPage2(),
     ),
     GetPage(
         name: Routes.SIGNUP_CONIMAL_MANAGE,

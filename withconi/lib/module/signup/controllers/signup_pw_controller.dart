@@ -8,7 +8,8 @@ import '../../../import_basic.dart';
 import '../signup_data_storage.dart';
 
 class SignupPwController extends GetxController {
-  late RxString _email;
+  SignupPwController(this._email);
+  late final String _email;
   late RxString _password;
   late RxString _confirmPassword;
   late RxString _name;
@@ -23,7 +24,7 @@ class SignupPwController extends GetxController {
   TextEditingController passwordTextController = TextEditingController();
   TextEditingController confirmPasswordTextController = TextEditingController();
 
-  String get email => _email.value;
+  String get email => _email;
   String get password => _password.value;
   String get confirmPassword => _confirmPassword.value;
   String get name => _name.value;
@@ -32,7 +33,6 @@ class SignupPwController extends GetxController {
   void onInit() {
     super.onInit();
 
-    _email = ''.obs;
     _password = ''.obs;
     _confirmPassword = ''.obs;
     _name = ''.obs;
@@ -43,8 +43,7 @@ class SignupPwController extends GetxController {
   void onReady() {
     super.onReady();
 
-    _email.value = Get.arguments as String;
-    emailTextController.text = _email.value;
+    emailTextController.text = _email;
 
     debounce(_password, validatePassword,
         time: const Duration(milliseconds: 400));
@@ -73,9 +72,13 @@ class SignupPwController extends GetxController {
   }
 
   nextStep() {
-    Get.toNamed(Routes.SIGNUP_PROFILE,
-        arguments: EmailPwdSigningAuthInfo(
-            email: email, password: password, provider: Provider.email));
+    Get.toNamed(
+      Routes.SIGNUP_PROFILE,
+      arguments: {
+        'signingAuthInfo': EmailPwdSigningAuthInfo(
+            email: email, password: password, provider: Provider.email)
+      },
+    );
   }
 
   validateName(String value) {

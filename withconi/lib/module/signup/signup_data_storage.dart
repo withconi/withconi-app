@@ -9,64 +9,67 @@ import '../../data/enums/enum.dart';
 import '../../global_widgets/photo_gallary/image_item.dart';
 
 class SignUpDataStorage extends GetxService {
-  final Rx<SignUpDataModel> _signupModel =
-      SignUpDataModel('', '', '', null, false, false, null, false, []).obs;
+  // final Rx<SignUpDataModel> _signupModel =
+  //     SignUpDataModel('', '', '', null, false, false, null, false, []).obs;
 
-  String get email => _signupModel.value.signingAuthInfo!.map(
-        tokenAuthInfo: (value) => value.email,
-        credentialAuthInfo: (value) => value.email,
-        emailPwdAuthInfo: (value) => value.email,
-      );
-  Provider get provider => _signupModel.value.signingAuthInfo!.map(
-        tokenAuthInfo: (value) => value.provider,
-        credentialAuthInfo: (value) => value.provider,
-        emailPwdAuthInfo: (value) => value.provider,
-      );
-  String get name => _signupModel.value.name;
-  String get nickname => _signupModel.value.nickname;
-  List<ConimalUIModel> get conimalList => _signupModel.value.conimals;
+  late String _email;
+  late Provider _provider;
+  late String _name;
+  late String _nickname;
+  List<ConimalUIModel> _conimalList = [];
+  late SigningAuthInfo _signingAuthInfo;
+  late ImageItem? _profileImg;
+
+  String get email => _email;
+  Provider get provider => _provider;
+  String get name => _name;
+  String get nickname => _nickname;
+  List<ConimalUIModel> get conimalList => _conimalList.toList();
   // int get checkConimalNum => _signupModel.value.conimals.length;
-  SigningAuthInfo get signingAuthInfo => _signupModel.value.signingAuthInfo!;
-  ImageItem? get profileImg => _signupModel.value.profileImage;
-  SignUpDataModel get signUpDataModel => SignUpDataModel(email, name, nickname,
-      signingAuthInfo, false, false, profileImg, false, conimalList);
-  // SigningAuthInfo get authInfo => signupModel;
-
-  // storeConimalList(List<ConimalUIModel> conimalList) {
-  //   // _conimalList.assignAll(conimalList);
-  //   _signupModel.value.conimals.assignAll(conimalList);
-  // }
-
-  // storeEmail(String email) {
-  //   // _email.value = email;
-  //   _signupModel.value.email = email;
-  // }
+  SigningAuthInfo get signingAuthInfo => _signingAuthInfo;
+  ImageItem? get profileImg => _profileImg;
+  SignUpDataModel get signUpDataModel => SignUpDataModel(
+      email,
+      name,
+      nickname,
+      signingAuthInfo,
+      signingAuthInfo.provider.signMethod == SignMethod.sns,
+      signingAuthInfo.provider.signMethod == SignMethod.sns,
+      profileImg,
+      false,
+      conimalList);
 
   storeUserName(String name) {
-    _signupModel.value.name = name;
+    _name = name;
   }
 
   storeAuthInfo(SigningAuthInfo signingAuthInfo) {
-    // _password.value = password;
-    //password가 지정되었다면 Email & Password 로그인이기 때문에
-    // cuatomAuthInfo 클래스 내에 있는 인증객체에 password를 할당한다.
-    // _customAuthInfo.authObject = password;
-    _signupModel.value.signingAuthInfo = signingAuthInfo;
+    _signingAuthInfo = signingAuthInfo;
+    signingAuthInfo.map(
+        tokenAuthInfo: ((value) => _email = value.email),
+        credentialAuthInfo: ((value) => _email = value.email),
+        emailPwdAuthInfo: ((value) => _email = value.email));
   }
 
   storeUserNickname(String nickName) {
     // _nickName.value = nickName;
-    _signupModel.value.nickname = nickName;
+    _nickname = nickName;
   }
 
   storeUserProfile(ImageItem? imageItem) {
     // _profileImg.value = imageItem;
-    _signupModel.value.profileImage = imageItem;
+    _profileImg = (imageItem != null)
+        ? ImageItem(
+            id: imageItem.id,
+            imageUrl: imageItem.imageUrl,
+            imageType: imageItem.imageType,
+          )
+        : null;
   }
 
   storeConimals(List<ConimalUIModel> conimals) {
     // _profileImg.value = imageItem;
-    _signupModel.value.conimals.assignAll(conimals);
+    _conimalList.assignAll(conimals);
   }
 
   // storeAuthInfo(CustomAuthInfo authInfo) {

@@ -33,34 +33,32 @@ class SignUpConimalManagePage extends StatelessWidget {
                 const SizedBox(
                   height: 45,
                 ),
-                Obx(() {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          '${_controller.userName}님과 함께하는\n코니멀이에요',
-                          style: TextStyle(
-                              fontFamily: WcFontFamily.notoSans,
-                              fontSize: 25,
-                              fontWeight: FontWeight.w600),
-                        ),
-                        Text(
-                          '코니멀 추가 후 회원가입이 가능합니다.',
-                          style: TextStyle(
-                              fontFamily: WcFontFamily.notoSans,
-                              fontSize: 17,
-                              height: 1.7,
-                              color: WcColors.grey180,
-                              fontWeight: FontWeight.w400),
-                        ),
-                      ],
-                    ),
-                  );
-                }),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '${_controller.userName}님과 함께하는\n코니멀이에요',
+                        style: TextStyle(
+                            fontFamily: WcFontFamily.notoSans,
+                            fontSize: 25,
+                            fontWeight: FontWeight.w600),
+                      ),
+                      Text(
+                        '코니멀 추가 후 회원가입이 가능합니다.',
+                        style: TextStyle(
+                            fontFamily: WcFontFamily.notoSans,
+                            fontSize: 17,
+                            height: 1.7,
+                            color: WcColors.grey180,
+                            fontWeight: FontWeight.w400),
+                      ),
+                    ],
+                  ),
+                ),
                 const SizedBox(
                   height: 40,
                 ),

@@ -30,7 +30,7 @@ class SnsButtonWidget extends StatelessWidget {
               onTap.call(provider);
             },
             child: Image.asset(
-              'assets/icons/${provider.code}.png',
+              provider.iconSrc,
               height: iconHeight,
             ),
           ),

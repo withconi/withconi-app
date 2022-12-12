@@ -52,7 +52,7 @@ class SignupProfilePage extends StatelessWidget {
                   Center(
                       child: Obx(() => ProfileImagePickerButton(
                             imageItem: _controller.profileImg.value,
-                            onTap: _controller.pickImage,
+                            onTap: _controller.onImageTap,
                           ))),
                   Obx(() {
                     return WcTextField(

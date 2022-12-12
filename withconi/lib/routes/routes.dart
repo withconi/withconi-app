@@ -14,8 +14,8 @@ abstract class Routes {
   static const REQUEST = '/request';
   static const DEVELOPER_INFO = '/developerInfo';
 
-  static const PASSWORD_CHANGE_1 = '/change_password1';
-  static const PASSWORD_CHANGE_2 = '/change_password2';
+  static const CHANGE_PASSWORD = '/change_password1';
+  // static const PASSWORD_CHANGE_2 = '/change_password2';
 
   static const DISEASE_SEARCH = '/disease/add';
 

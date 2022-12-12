@@ -55,7 +55,6 @@ import 'package:withconi/module/start/start_controller.dart';
 
 import '../data/repository/image_repository.dart';
 import '../data/repository/map_repository.dart';
-import '../module/common/controllers/change_password_page2_controller.dart';
 import '../module/common/controllers/disease_search_controller.dart';
 import '../module/common/controllers/edit_user_controller.dart';
 import '../module/community/controllers/community_liked_post_controller.dart';
@@ -148,10 +147,10 @@ class HomeBinding implements Bindings {
         () => ConimalRepository(Get.find<ConimalAPI>()));
     Get.lazyPut<CommunityRepository>(
         () => CommunityRepository(Get.find<CommunityAPI>()));
-    Get.lazyPut<HomeController>(
-        () => HomeController(
+    Get.put<HomeController>(
+        HomeController(
             Get.find<ConimalRepository>(), Get.find<CommunityRepository>()),
-        fenix: true);
+        permanent: true);
   }
 
   closeBinding() {
@@ -257,9 +256,6 @@ class ChangePasswordBinding implements Bindings {
   void dependencies() {
     Get.lazyPut<ChangePasswordController>(
         () => ChangePasswordController(Get.arguments['email']));
-    Get.lazyPut<ChangePasswordController2>(
-      () => ChangePasswordController2(Get.arguments['email']),
-    );
   }
 }
 
@@ -340,8 +336,11 @@ class CommunityPostDetailBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<CommunityPostDetailController>(
-      () => CommunityPostDetailController(Get.find<CommunityRepository>(),
-          Get.arguments['boardId'], Get.arguments['postId']),
+      () => CommunityPostDetailController(
+          Get.find<CommunityRepository>(),
+          Get.arguments['boardId'],
+          Get.arguments['postId'],
+          Get.arguments['postAbstractController']),
     );
   }
 }
@@ -360,7 +359,8 @@ class CommunityMyPostBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<MyPostPageController>(
-      () => MyPostPageController(Get.find()),
+      () => MyPostPageController(
+          Get.find(), Get.arguments['postAbstractController']),
     );
   }
 }
@@ -369,7 +369,8 @@ class CommunityLikePostBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<LikedPostController>(
-      () => LikedPostController(Get.find()),
+      () => LikedPostController(
+          Get.find(), Get.arguments['postAbstractController']),
     );
   }
 }
@@ -411,7 +412,8 @@ class DiseaseSearchBinding implements Bindings {
     Get.lazyPut(() => DiseaseAPI());
     Get.lazyPut(() => DiseaseRepository(Get.find<DiseaseAPI>()));
     Get.lazyPut<DiseaseSearchController>(
-      () => DiseaseSearchController(Get.find<DiseaseRepository>()),
+      () => DiseaseSearchController(Get.find<DiseaseRepository>(),
+          Get.arguments['selectedDiseaseList'], Get.arguments['maxDisease']),
     );
   }
 }
@@ -433,7 +435,8 @@ class BreedSearchBinding implements Bindings {
     Get.lazyPut(() => ConimalAPI());
     Get.lazyPut(() => ConimalRepository(Get.find<ConimalAPI>()));
     Get.lazyPut<BreedSearchController>(
-      () => BreedSearchController(Get.find<ConimalRepository>()),
+      () => BreedSearchController(
+          Get.find<ConimalRepository>(), Get.arguments['species']),
     );
   }
 }
@@ -465,12 +468,12 @@ class MapDetailPageBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<MapDetailPageController>(() => MapDetailPageController(
-          Get.find<MapRepository>(),
-          Get.arguments['placeId'],
-          Get.arguments['placeType'],
-          Get.arguments['lat'],
-          Get.arguments['lng'],
-        ));
+        Get.find<MapRepository>(),
+        Get.arguments['placeId'],
+        Get.arguments['placeType'],
+        Get.arguments['lat'],
+        Get.arguments['lng'],
+        Get.arguments['mapReviewAbstract']));
   }
 }
 
@@ -543,7 +546,8 @@ class EmailVerificationBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<EmailVerificationController>(
-      () => EmailVerificationController(Get.find<UserRepository>()),
+      () => EmailVerificationController(
+          Get.find<UserRepository>(), Get.arguments['nextRoute']),
     );
   }
 }
@@ -605,8 +609,11 @@ class MapMyReviewBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<MapMyReviewController>(
-      () => MapMyReviewController(Get.find<MapRepository>(),
-          Get.arguments['lat'], Get.arguments['lng']),
+      () => MapMyReviewController(
+          Get.find<MapRepository>(),
+          Get.arguments['lat'],
+          Get.arguments['lng'],
+          Get.arguments['mapReviewAbstract']),
     );
   }
 }

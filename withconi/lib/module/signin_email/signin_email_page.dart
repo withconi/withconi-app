@@ -6,6 +6,7 @@ import 'package:withconi/module/signup/controllers/signup_pw_controller.dart';
 import 'package:withconi/module/theme/colors.dart';
 import 'package:withconi/module/theme/sizes.dart';
 import 'package:withconi/global_widgets/button/wide_button.dart';
+import 'package:withconi/module/theme/text_theme.dart';
 import '../../global_widgets/text_field/textfield.dart';
 
 class SigninEmailPage extends StatelessWidget {
@@ -30,13 +31,16 @@ class SigninEmailPage extends StatelessWidget {
                   ),
                   Text(
                     '로그인을 위해\n비밀번호를 입력해주세요',
-                    style: GoogleFonts.notoSans(
-                        fontSize: 25, fontWeight: FontWeight.w600),
+                    style: TextStyle(
+                        fontFamily: WcFontFamily.notoSans,
+                        fontSize: 24,
+                        fontWeight: FontWeight.w600),
                   ),
                   const SizedBox(
                     height: 45,
                   ),
                   WcTextField(
+                    isEng: true,
                     enabled: false,
                     labelText: '',
                     hintText: '이메일',
@@ -49,6 +53,7 @@ class SigninEmailPage extends StatelessWidget {
                   ),
                   Obx(() {
                     return WcTextField(
+                      isEng: true,
                       errorText: _controller.passwordErrorText.value,
                       hintText: '비밀번호',
                       labelText: '비밀번호',

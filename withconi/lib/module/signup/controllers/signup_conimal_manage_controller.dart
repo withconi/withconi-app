@@ -61,9 +61,8 @@ class SignupConimalManageController extends GetxController {
   }
 
   editConimal(int index) async {
-    ConimalUIModel? editedConimal =
-        await Get.toNamed(Routes.CONIMAL_EDIT, arguments: conimalList[index])
-            as ConimalUIModel?;
+    ConimalUIModel? editedConimal = await Get.toNamed(Routes.CONIMAL_EDIT,
+        arguments: {'editConimal': conimalList[index]}) as ConimalUIModel?;
 
     if (editedConimal != null) {
       conimalList.removeAt(index);
@@ -93,19 +92,19 @@ class SignupConimalManageController extends GetxController {
   Future<void> signUp() async {
     _signUpDataManager.storeConimals(conimalList.toList());
 
-    User? newUser = await showLoading(() =>
-        _signUpDataManager.signUpDataModel.signingAuthInfo!.map(
-            tokenAuthInfo: (value) async => await signUpTokenAuthInfo(value),
-            credentialAuthInfo: (value) async =>
-                await signUpCredentialAuthInfo(value),
-            emailPwdAuthInfo: (value) async =>
-                await signUpEmailPwdAuthInfo(value)));
+    await showLoading(() async {
+      User? newUser = await _signUpDataManager.signUpDataModel.signingAuthInfo!
+          .map(
+              tokenAuthInfo: (value) => signUpTokenAuthInfo(value),
+              credentialAuthInfo: (value) => signUpCredentialAuthInfo(value),
+              emailPwdAuthInfo: (value) => signUpEmailPwdAuthInfo(value));
 
-    if (newUser != null) {
-      await signUpDB(newUser);
-    } else {
-      return;
-    }
+      if (newUser != null) {
+        await signUpDB(newUser);
+      } else {
+        return;
+      }
+    });
   }
 
   Future<User?> signUpCredentialAuthInfo(
@@ -113,19 +112,28 @@ class SignupConimalManageController extends GetxController {
     var signUpResult = await _signupRepository.signUpWithCredential(
         oAuthCredential: authInfo.oAuthCredential);
 
-    return signUpResult.fold((l) => null, (r) => r);
+    if (signUpResult.isRight()) {
+      return signUpResult.fold((l) => null, (user) => user);
+    } else {
+      return null;
+    }
   }
 
   Future<User?> signUpEmailPwdAuthInfo(EmailPwdSigningAuthInfo authInfo) async {
     var signUpResult = await _signupRepository.signUpWithEmailPwd(
         email: authInfo.email, password: authInfo.password);
 
-    return signUpResult.fold((l) => null, (r) => r);
+    if (signUpResult.isRight()) {
+      return signUpResult.fold((l) => null, (user) => user);
+    } else {
+      return null;
+    }
   }
 
   Future<User?> signUpTokenAuthInfo(TokenSigningAuthInfo tokenAuthInfo) async {
     var customTokenResult = await _signupRepository.createFirebaseCustomToken(
-        platformToken: tokenAuthInfo.platformToken);
+        platformToken: tokenAuthInfo.platformToken,
+        provider: tokenAuthInfo.provider);
 
     if (customTokenResult.isRight()) {
       return customTokenResult.fold((l) => null, (r) async {
@@ -166,7 +174,7 @@ class SignupConimalManageController extends GetxController {
     });
 
     if (finished) {
-      await AuthController.to.setUserInfo();
+      await AuthController.to.setUserAuthInfo();
       Get.offAllNamed(Routes.NAVIGATION);
     }
     return;
