@@ -23,8 +23,11 @@ mixin _$DiseaseResponseDTO {
   @DateTimeConverter()
   DateTime get createdAt => throw _privateConstructorUsedError;
   @JsonKey(name: '_id')
-  String get code =>
-      throw _privateConstructorUsedError; // @JsonKey(name: '_id') required String diseaseId,
+  String get diseaseId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'code')
+  String get code => throw _privateConstructorUsedError;
+  @JsonKey(name: 'boardId')
+  int get boardId => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get definition => throw _privateConstructorUsedError;
   String get diagnosisTechnique => throw _privateConstructorUsedError;
@@ -48,7 +51,9 @@ abstract class $DiseaseResponseDTOCopyWith<$Res> {
   @useResult
   $Res call(
       {@DateTimeConverter() DateTime createdAt,
-      @JsonKey(name: '_id') String code,
+      @JsonKey(name: '_id') String diseaseId,
+      @JsonKey(name: 'code') String code,
+      @JsonKey(name: 'boardId') int boardId,
       String name,
       String definition,
       String diagnosisTechnique,
@@ -72,7 +77,9 @@ class _$DiseaseResponseDTOCopyWithImpl<$Res, $Val extends DiseaseResponseDTO>
   @override
   $Res call({
     Object? createdAt = null,
+    Object? diseaseId = null,
     Object? code = null,
+    Object? boardId = null,
     Object? name = null,
     Object? definition = null,
     Object? diagnosisTechnique = null,
@@ -86,10 +93,18 @@ class _$DiseaseResponseDTOCopyWithImpl<$Res, $Val extends DiseaseResponseDTO>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      diseaseId: null == diseaseId
+          ? _value.diseaseId
+          : diseaseId // ignore: cast_nullable_to_non_nullable
+              as String,
       code: null == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as String,
+      boardId: null == boardId
+          ? _value.boardId
+          : boardId // ignore: cast_nullable_to_non_nullable
+              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -132,7 +147,9 @@ abstract class _$$_DiseaseResponseDTOCopyWith<$Res>
   @useResult
   $Res call(
       {@DateTimeConverter() DateTime createdAt,
-      @JsonKey(name: '_id') String code,
+      @JsonKey(name: '_id') String diseaseId,
+      @JsonKey(name: 'code') String code,
+      @JsonKey(name: 'boardId') int boardId,
       String name,
       String definition,
       String diagnosisTechnique,
@@ -154,7 +171,9 @@ class __$$_DiseaseResponseDTOCopyWithImpl<$Res>
   @override
   $Res call({
     Object? createdAt = null,
+    Object? diseaseId = null,
     Object? code = null,
+    Object? boardId = null,
     Object? name = null,
     Object? definition = null,
     Object? diagnosisTechnique = null,
@@ -168,10 +187,18 @@ class __$$_DiseaseResponseDTOCopyWithImpl<$Res>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      diseaseId: null == diseaseId
+          ? _value.diseaseId
+          : diseaseId // ignore: cast_nullable_to_non_nullable
+              as String,
       code: null == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as String,
+      boardId: null == boardId
+          ? _value.boardId
+          : boardId // ignore: cast_nullable_to_non_nullable
+              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -210,7 +237,9 @@ class __$$_DiseaseResponseDTOCopyWithImpl<$Res>
 class _$_DiseaseResponseDTO implements _DiseaseResponseDTO {
   _$_DiseaseResponseDTO(
       {@DateTimeConverter() required this.createdAt,
-      @JsonKey(name: '_id') required this.code,
+      @JsonKey(name: '_id') required this.diseaseId,
+      @JsonKey(name: 'code') required this.code,
+      @JsonKey(name: 'boardId') this.boardId = 1,
       required this.name,
       this.definition = '',
       this.diagnosisTechnique = '',
@@ -228,8 +257,13 @@ class _$_DiseaseResponseDTO implements _DiseaseResponseDTO {
   final DateTime createdAt;
   @override
   @JsonKey(name: '_id')
+  final String diseaseId;
+  @override
+  @JsonKey(name: 'code')
   final String code;
-// @JsonKey(name: '_id') required String diseaseId,
+  @override
+  @JsonKey(name: 'boardId')
+  final int boardId;
   @override
   final String name;
   @override
@@ -258,7 +292,7 @@ class _$_DiseaseResponseDTO implements _DiseaseResponseDTO {
 
   @override
   String toString() {
-    return 'DiseaseResponseDTO(createdAt: $createdAt, code: $code, name: $name, definition: $definition, diagnosisTechnique: $diagnosisTechnique, treatment: $treatment, advice: $advice, symptomGroupList: $symptomGroupList, diseaseType: $diseaseType)';
+    return 'DiseaseResponseDTO(createdAt: $createdAt, diseaseId: $diseaseId, code: $code, boardId: $boardId, name: $name, definition: $definition, diagnosisTechnique: $diagnosisTechnique, treatment: $treatment, advice: $advice, symptomGroupList: $symptomGroupList, diseaseType: $diseaseType)';
   }
 
   @override
@@ -268,7 +302,10 @@ class _$_DiseaseResponseDTO implements _DiseaseResponseDTO {
             other is _$_DiseaseResponseDTO &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
+            (identical(other.diseaseId, diseaseId) ||
+                other.diseaseId == diseaseId) &&
             (identical(other.code, code) || other.code == code) &&
+            (identical(other.boardId, boardId) || other.boardId == boardId) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.definition, definition) ||
                 other.definition == definition) &&
@@ -288,7 +325,9 @@ class _$_DiseaseResponseDTO implements _DiseaseResponseDTO {
   int get hashCode => Object.hash(
       runtimeType,
       createdAt,
+      diseaseId,
       code,
+      boardId,
       name,
       definition,
       diagnosisTechnique,
@@ -315,7 +354,9 @@ class _$_DiseaseResponseDTO implements _DiseaseResponseDTO {
 abstract class _DiseaseResponseDTO implements DiseaseResponseDTO {
   factory _DiseaseResponseDTO(
       {@DateTimeConverter() required final DateTime createdAt,
-      @JsonKey(name: '_id') required final String code,
+      @JsonKey(name: '_id') required final String diseaseId,
+      @JsonKey(name: 'code') required final String code,
+      @JsonKey(name: 'boardId') final int boardId,
       required final String name,
       final String definition,
       final String diagnosisTechnique,
@@ -332,8 +373,14 @@ abstract class _DiseaseResponseDTO implements DiseaseResponseDTO {
   DateTime get createdAt;
   @override
   @JsonKey(name: '_id')
+  String get diseaseId;
+  @override
+  @JsonKey(name: 'code')
   String get code;
-  @override // @JsonKey(name: '_id') required String diseaseId,
+  @override
+  @JsonKey(name: 'boardId')
+  int get boardId;
+  @override
   String get name;
   @override
   String get definition;

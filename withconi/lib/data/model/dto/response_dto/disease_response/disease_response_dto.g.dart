@@ -10,7 +10,9 @@ _$_DiseaseResponseDTO _$$_DiseaseResponseDTOFromJson(
         Map<String, dynamic> json) =>
     _$_DiseaseResponseDTO(
       createdAt: const DateTimeConverter().fromJson(json['createdAt'] as int),
-      code: json['_id'] as String,
+      diseaseId: json['_id'] as String,
+      code: json['code'] as String,
+      boardId: json['boardId'] as int? ?? 1,
       name: json['name'] as String,
       definition: json['definition'] as String? ?? '',
       diagnosisTechnique: json['diagnosisTechnique'] as String? ?? '',
@@ -29,7 +31,9 @@ Map<String, dynamic> _$$_DiseaseResponseDTOToJson(
         _$_DiseaseResponseDTO instance) =>
     <String, dynamic>{
       'createdAt': const DateTimeConverter().toJson(instance.createdAt),
-      '_id': instance.code,
+      '_id': instance.diseaseId,
+      'code': instance.code,
+      'boardId': instance.boardId,
       'name': instance.name,
       'definition': instance.definition,
       'diagnosisTechnique': instance.diagnosisTechnique,
@@ -41,20 +45,20 @@ Map<String, dynamic> _$$_DiseaseResponseDTOToJson(
     };
 
 const _$DiseaseTypeEnumMap = {
-  DiseaseType.all: '',
-  DiseaseType.cardiovacular: 'cardiovacular',
-  DiseaseType.musculoskeletal: 'musculoskeletal',
-  DiseaseType.digestive: 'digestive',
-  DiseaseType.ophthalmology: 'ophthalmology',
-  DiseaseType.urinary: 'urinary',
-  DiseaseType.respiratory: 'respiratory',
-  DiseaseType.otorhinolaryngology: 'otorhinolaryngology',
-  DiseaseType.infectiousDisease: 'infectiousDisease',
-  DiseaseType.brainNeurology: 'brainNeurology',
-  DiseaseType.dentistry: 'dentistry',
+  DiseaseType.all: 'all',
   DiseaseType.oncology: 'oncology',
-  DiseaseType.dermatology: 'dermatology',
   DiseaseType.endocrinology: 'endocrinology',
+  DiseaseType.urinary: 'urinary',
+  DiseaseType.cardiovacular: 'cardiovacular',
+  DiseaseType.digestive: 'digestive',
+  DiseaseType.infectiousDisease: 'infectiousDisease',
+  DiseaseType.musculoskeletal: 'musculoskeletal',
+  DiseaseType.brainNeurology: 'brainNeurology',
+  DiseaseType.dermatology: 'dermatology',
+  DiseaseType.otorhinolaryngology: 'otorhinolaryngology',
+  DiseaseType.respiratory: 'respiratory',
+  DiseaseType.dentistry: 'dentistry',
+  DiseaseType.ophthalmology: 'ophthalmology',
   DiseaseType.emergency: 'emergency',
-  DiseaseType.undefined: 'undefined',
+  DiseaseType.undefined: '',
 };

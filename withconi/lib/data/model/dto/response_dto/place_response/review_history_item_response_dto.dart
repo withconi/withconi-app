@@ -11,7 +11,7 @@ class ReviewItemResponseDTO
     implements ResponseDTO {
   @JsonSerializable(explicitToJson: true)
   factory ReviewItemResponseDTO({
-    @JsonKey(name: 'totalReviews') required int totalReviewRateCount,
+    @JsonKey(name: 'totalReviews') @Default(0) int totalReviewRateCount,
     required Map<ReviewItem, int> reviewHistoryMap,
   }) = _ReviewItemResponseDTO;
   factory ReviewItemResponseDTO.fromJson(Map<String, dynamic> json) =>

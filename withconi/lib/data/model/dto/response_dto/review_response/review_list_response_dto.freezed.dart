@@ -21,7 +21,7 @@ ReviewListResponseDTO _$ReviewListResponseDTOFromJson(
 
 /// @nodoc
 mixin _$ReviewListResponseDTO {
-  List<ReviewDetailResponseDTO> get list => throw _privateConstructorUsedError;
+  List<ReviewPreviewResponseDTO> get list => throw _privateConstructorUsedError;
   int get totalDocuments => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ abstract class $ReviewListResponseDTOCopyWith<$Res> {
           $Res Function(ReviewListResponseDTO) then) =
       _$ReviewListResponseDTOCopyWithImpl<$Res, ReviewListResponseDTO>;
   @useResult
-  $Res call({List<ReviewDetailResponseDTO> list, int totalDocuments});
+  $Res call({List<ReviewPreviewResponseDTO> list, int totalDocuments});
 }
 
 /// @nodoc
@@ -60,7 +60,7 @@ class _$ReviewListResponseDTOCopyWithImpl<$Res,
       list: null == list
           ? _value.list
           : list // ignore: cast_nullable_to_non_nullable
-              as List<ReviewDetailResponseDTO>,
+              as List<ReviewPreviewResponseDTO>,
       totalDocuments: null == totalDocuments
           ? _value.totalDocuments
           : totalDocuments // ignore: cast_nullable_to_non_nullable
@@ -77,7 +77,7 @@ abstract class _$$_ReviewListResponseDTOCopyWith<$Res>
       __$$_ReviewListResponseDTOCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<ReviewDetailResponseDTO> list, int totalDocuments});
+  $Res call({List<ReviewPreviewResponseDTO> list, int totalDocuments});
 }
 
 /// @nodoc
@@ -98,7 +98,7 @@ class __$$_ReviewListResponseDTOCopyWithImpl<$Res>
       list: null == list
           ? _value._list
           : list // ignore: cast_nullable_to_non_nullable
-              as List<ReviewDetailResponseDTO>,
+              as List<ReviewPreviewResponseDTO>,
       totalDocuments: null == totalDocuments
           ? _value.totalDocuments
           : totalDocuments // ignore: cast_nullable_to_non_nullable
@@ -112,16 +112,16 @@ class __$$_ReviewListResponseDTOCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_ReviewListResponseDTO implements _ReviewListResponseDTO {
   _$_ReviewListResponseDTO(
-      {required final List<ReviewDetailResponseDTO> list,
+      {required final List<ReviewPreviewResponseDTO> list,
       required this.totalDocuments})
       : _list = list;
 
   factory _$_ReviewListResponseDTO.fromJson(Map<String, dynamic> json) =>
       _$$_ReviewListResponseDTOFromJson(json);
 
-  final List<ReviewDetailResponseDTO> _list;
+  final List<ReviewPreviewResponseDTO> _list;
   @override
-  List<ReviewDetailResponseDTO> get list {
+  List<ReviewPreviewResponseDTO> get list {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_list);
   }
@@ -166,14 +166,14 @@ class _$_ReviewListResponseDTO implements _ReviewListResponseDTO {
 
 abstract class _ReviewListResponseDTO implements ReviewListResponseDTO {
   factory _ReviewListResponseDTO(
-      {required final List<ReviewDetailResponseDTO> list,
+      {required final List<ReviewPreviewResponseDTO> list,
       required final int totalDocuments}) = _$_ReviewListResponseDTO;
 
   factory _ReviewListResponseDTO.fromJson(Map<String, dynamic> json) =
       _$_ReviewListResponseDTO.fromJson;
 
   @override
-  List<ReviewDetailResponseDTO> get list;
+  List<ReviewPreviewResponseDTO> get list;
   @override
   int get totalDocuments;
   @override

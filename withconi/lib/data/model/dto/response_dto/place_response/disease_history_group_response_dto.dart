@@ -13,7 +13,7 @@ class DiseaseHistoryListResponseDTO
   @JsonSerializable(explicitToJson: true)
   factory DiseaseHistoryListResponseDTO({
     required List<DiseaseHistoryResponseDTO> diseaseHistoryList,
-    @JsonKey(name: 'totalDiseases') required int totalDiseaseHistoryCount,
+    @JsonKey(name: 'totalDiseases') @Default(0) int totalDiseaseHistoryCount,
   }) = _DiseaseHistoryListResponseDTO;
 
   factory DiseaseHistoryListResponseDTO.fromJson(Map<String, dynamic> json) =>

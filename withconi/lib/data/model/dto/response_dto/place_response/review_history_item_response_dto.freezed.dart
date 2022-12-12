@@ -118,7 +118,7 @@ class __$$_ReviewItemResponseDTOCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_ReviewItemResponseDTO implements _ReviewItemResponseDTO {
   _$_ReviewItemResponseDTO(
-      {@JsonKey(name: 'totalReviews') required this.totalReviewRateCount,
+      {@JsonKey(name: 'totalReviews') this.totalReviewRateCount = 0,
       required final Map<ReviewItem, int> reviewHistoryMap})
       : _reviewHistoryMap = reviewHistoryMap;
 
@@ -173,9 +173,9 @@ class _$_ReviewItemResponseDTO implements _ReviewItemResponseDTO {
 
 abstract class _ReviewItemResponseDTO implements ReviewItemResponseDTO {
   factory _ReviewItemResponseDTO(
-      {@JsonKey(name: 'totalReviews') required final int totalReviewRateCount,
-      required final Map<ReviewItem, int>
-          reviewHistoryMap}) = _$_ReviewItemResponseDTO;
+          {@JsonKey(name: 'totalReviews') final int totalReviewRateCount,
+          required final Map<ReviewItem, int> reviewHistoryMap}) =
+      _$_ReviewItemResponseDTO;
 
   factory _ReviewItemResponseDTO.fromJson(Map<String, dynamic> json) =
       _$_ReviewItemResponseDTO.fromJson;

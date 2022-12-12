@@ -12,7 +12,7 @@ class ReviewHistoryResponseDTO
     with _$ReviewHistoryResponseDTO
     implements ResponseDTO {
   factory ReviewHistoryResponseDTO({
-    @JsonKey(name: 'totalReviews') required int totalReviewCount,
+    @JsonKey(name: 'totalReviews') @Default(0) int totalReviewCount,
     required Map<ReviewRate, ReviewItemResponseDTO> reviewHistoryMap,
   }) = _ReviewHistoryGroupResponseDTO;
 

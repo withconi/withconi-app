@@ -117,14 +117,16 @@ class __$$_DiseaseHistoryResponseDTOCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_DiseaseHistoryResponseDTO implements _DiseaseHistoryResponseDTO {
   _$_DiseaseHistoryResponseDTO(
-      {required this.diseaseName, required this.diseasePercent});
+      {this.diseaseName = '구체적인 질병 없음', this.diseasePercent = 0});
 
   factory _$_DiseaseHistoryResponseDTO.fromJson(Map<String, dynamic> json) =>
       _$$_DiseaseHistoryResponseDTOFromJson(json);
 
   @override
+  @JsonKey()
   final String diseaseName;
   @override
+  @JsonKey()
   final int diseasePercent;
 
   @override
@@ -165,8 +167,8 @@ class _$_DiseaseHistoryResponseDTO implements _DiseaseHistoryResponseDTO {
 abstract class _DiseaseHistoryResponseDTO
     implements DiseaseHistoryItemResponseDTO {
   factory _DiseaseHistoryResponseDTO(
-      {required final String diseaseName,
-      required final int diseasePercent}) = _$_DiseaseHistoryResponseDTO;
+      {final String diseaseName,
+      final int diseasePercent}) = _$_DiseaseHistoryResponseDTO;
 
   factory _DiseaseHistoryResponseDTO.fromJson(Map<String, dynamic> json) =
       _$_DiseaseHistoryResponseDTO.fromJson;

@@ -23,7 +23,7 @@ DiseaseHistoryResponseDTO _$DiseaseHistoryResponseDTOFromJson(
 mixin _$DiseaseHistoryResponseDTO {
   DiseaseType get diseaseType => throw _privateConstructorUsedError;
   int get totalDiseaseType => throw _privateConstructorUsedError;
-  List<DiseaseHistoryItemResponseDTO> get diseaseHistoryItems =>
+  List<DiseaseHistoryItemResponseDTO> get diseaseTypeItemList =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,7 +41,7 @@ abstract class $DiseaseHistoryResponseDTOCopyWith<$Res> {
   $Res call(
       {DiseaseType diseaseType,
       int totalDiseaseType,
-      List<DiseaseHistoryItemResponseDTO> diseaseHistoryItems});
+      List<DiseaseHistoryItemResponseDTO> diseaseTypeItemList});
 }
 
 /// @nodoc
@@ -60,7 +60,7 @@ class _$DiseaseHistoryResponseDTOCopyWithImpl<$Res,
   $Res call({
     Object? diseaseType = null,
     Object? totalDiseaseType = null,
-    Object? diseaseHistoryItems = null,
+    Object? diseaseTypeItemList = null,
   }) {
     return _then(_value.copyWith(
       diseaseType: null == diseaseType
@@ -71,9 +71,9 @@ class _$DiseaseHistoryResponseDTOCopyWithImpl<$Res,
           ? _value.totalDiseaseType
           : totalDiseaseType // ignore: cast_nullable_to_non_nullable
               as int,
-      diseaseHistoryItems: null == diseaseHistoryItems
-          ? _value.diseaseHistoryItems
-          : diseaseHistoryItems // ignore: cast_nullable_to_non_nullable
+      diseaseTypeItemList: null == diseaseTypeItemList
+          ? _value.diseaseTypeItemList
+          : diseaseTypeItemList // ignore: cast_nullable_to_non_nullable
               as List<DiseaseHistoryItemResponseDTO>,
     ) as $Val);
   }
@@ -91,7 +91,7 @@ abstract class _$$_DiseaseHistoryResponseDTOCopyWith<$Res>
   $Res call(
       {DiseaseType diseaseType,
       int totalDiseaseType,
-      List<DiseaseHistoryItemResponseDTO> diseaseHistoryItems});
+      List<DiseaseHistoryItemResponseDTO> diseaseTypeItemList});
 }
 
 /// @nodoc
@@ -109,7 +109,7 @@ class __$$_DiseaseHistoryResponseDTOCopyWithImpl<$Res>
   $Res call({
     Object? diseaseType = null,
     Object? totalDiseaseType = null,
-    Object? diseaseHistoryItems = null,
+    Object? diseaseTypeItemList = null,
   }) {
     return _then(_$_DiseaseHistoryResponseDTO(
       diseaseType: null == diseaseType
@@ -120,9 +120,9 @@ class __$$_DiseaseHistoryResponseDTOCopyWithImpl<$Res>
           ? _value.totalDiseaseType
           : totalDiseaseType // ignore: cast_nullable_to_non_nullable
               as int,
-      diseaseHistoryItems: null == diseaseHistoryItems
-          ? _value._diseaseHistoryItems
-          : diseaseHistoryItems // ignore: cast_nullable_to_non_nullable
+      diseaseTypeItemList: null == diseaseTypeItemList
+          ? _value._diseaseTypeItemList
+          : diseaseTypeItemList // ignore: cast_nullable_to_non_nullable
               as List<DiseaseHistoryItemResponseDTO>,
     ));
   }
@@ -133,28 +133,31 @@ class __$$_DiseaseHistoryResponseDTOCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_DiseaseHistoryResponseDTO implements _DiseaseHistoryResponseDTO {
   _$_DiseaseHistoryResponseDTO(
-      {required this.diseaseType,
-      required this.totalDiseaseType,
-      required final List<DiseaseHistoryItemResponseDTO> diseaseHistoryItems})
-      : _diseaseHistoryItems = diseaseHistoryItems;
+      {this.diseaseType = DiseaseType.undefined,
+      this.totalDiseaseType = 0,
+      final List<DiseaseHistoryItemResponseDTO> diseaseTypeItemList = const []})
+      : _diseaseTypeItemList = diseaseTypeItemList;
 
   factory _$_DiseaseHistoryResponseDTO.fromJson(Map<String, dynamic> json) =>
       _$$_DiseaseHistoryResponseDTOFromJson(json);
 
   @override
+  @JsonKey()
   final DiseaseType diseaseType;
   @override
+  @JsonKey()
   final int totalDiseaseType;
-  final List<DiseaseHistoryItemResponseDTO> _diseaseHistoryItems;
+  final List<DiseaseHistoryItemResponseDTO> _diseaseTypeItemList;
   @override
-  List<DiseaseHistoryItemResponseDTO> get diseaseHistoryItems {
+  @JsonKey()
+  List<DiseaseHistoryItemResponseDTO> get diseaseTypeItemList {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_diseaseHistoryItems);
+    return EqualUnmodifiableListView(_diseaseTypeItemList);
   }
 
   @override
   String toString() {
-    return 'DiseaseHistoryResponseDTO(diseaseType: $diseaseType, totalDiseaseType: $totalDiseaseType, diseaseHistoryItems: $diseaseHistoryItems)';
+    return 'DiseaseHistoryResponseDTO(diseaseType: $diseaseType, totalDiseaseType: $totalDiseaseType, diseaseTypeItemList: $diseaseTypeItemList)';
   }
 
   @override
@@ -167,13 +170,13 @@ class _$_DiseaseHistoryResponseDTO implements _DiseaseHistoryResponseDTO {
             (identical(other.totalDiseaseType, totalDiseaseType) ||
                 other.totalDiseaseType == totalDiseaseType) &&
             const DeepCollectionEquality()
-                .equals(other._diseaseHistoryItems, _diseaseHistoryItems));
+                .equals(other._diseaseTypeItemList, _diseaseTypeItemList));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, diseaseType, totalDiseaseType,
-      const DeepCollectionEquality().hash(_diseaseHistoryItems));
+      const DeepCollectionEquality().hash(_diseaseTypeItemList));
 
   @JsonKey(ignore: true)
   @override
@@ -192,10 +195,10 @@ class _$_DiseaseHistoryResponseDTO implements _DiseaseHistoryResponseDTO {
 
 abstract class _DiseaseHistoryResponseDTO implements DiseaseHistoryResponseDTO {
   factory _DiseaseHistoryResponseDTO(
-      {required final DiseaseType diseaseType,
-      required final int totalDiseaseType,
-      required final List<DiseaseHistoryItemResponseDTO>
-          diseaseHistoryItems}) = _$_DiseaseHistoryResponseDTO;
+          {final DiseaseType diseaseType,
+          final int totalDiseaseType,
+          final List<DiseaseHistoryItemResponseDTO> diseaseTypeItemList}) =
+      _$_DiseaseHistoryResponseDTO;
 
   factory _DiseaseHistoryResponseDTO.fromJson(Map<String, dynamic> json) =
       _$_DiseaseHistoryResponseDTO.fromJson;
@@ -205,7 +208,7 @@ abstract class _DiseaseHistoryResponseDTO implements DiseaseHistoryResponseDTO {
   @override
   int get totalDiseaseType;
   @override
-  List<DiseaseHistoryItemResponseDTO> get diseaseHistoryItems;
+  List<DiseaseHistoryItemResponseDTO> get diseaseTypeItemList;
   @override
   @JsonKey(ignore: true)
   _$$_DiseaseHistoryResponseDTOCopyWith<_$_DiseaseHistoryResponseDTO>

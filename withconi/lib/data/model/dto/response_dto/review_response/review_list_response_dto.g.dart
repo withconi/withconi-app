@@ -11,7 +11,7 @@ _$_ReviewListResponseDTO _$$_ReviewListResponseDTOFromJson(
     _$_ReviewListResponseDTO(
       list: (json['list'] as List<dynamic>)
           .map((e) =>
-              ReviewDetailResponseDTO.fromJson(e as Map<String, dynamic>))
+              ReviewPreviewResponseDTO.fromJson(e as Map<String, dynamic>))
           .toList(),
       totalDocuments: json['totalDocuments'] as int,
     );

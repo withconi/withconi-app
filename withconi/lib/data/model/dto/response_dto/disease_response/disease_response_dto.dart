@@ -12,8 +12,9 @@ class DiseaseResponseDTO with _$DiseaseResponseDTO implements ResponseDTO {
   @JsonSerializable(explicitToJson: true)
   factory DiseaseResponseDTO({
     @DateTimeConverter() required DateTime createdAt,
-    @JsonKey(name: '_id') required String code,
-    // @JsonKey(name: '_id') required String diseaseId,
+    @JsonKey(name: '_id') required String diseaseId,
+    @JsonKey(name: 'code') required String code,
+    @JsonKey(name: 'boardId') @Default(1) int boardId,
     required String name,
     @Default('') String definition,
     @Default('') String diagnosisTechnique,

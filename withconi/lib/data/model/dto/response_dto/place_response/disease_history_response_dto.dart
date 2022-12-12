@@ -12,9 +12,9 @@ class DiseaseHistoryResponseDTO
     implements ResponseDTO {
   @JsonSerializable(explicitToJson: true)
   factory DiseaseHistoryResponseDTO({
-    required DiseaseType diseaseType,
-    required int totalDiseaseType,
-    required List<DiseaseHistoryItemResponseDTO> diseaseHistoryItems,
+    @Default(DiseaseType.undefined) DiseaseType diseaseType,
+    @Default(0) int totalDiseaseType,
+    @Default([]) List<DiseaseHistoryItemResponseDTO> diseaseTypeItemList,
   }) = _DiseaseHistoryResponseDTO;
 
   factory DiseaseHistoryResponseDTO.fromJson(Map<String, dynamic> json) =>

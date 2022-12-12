@@ -122,7 +122,7 @@ class _$_ReviewHistoryGroupResponseDTO
     with DiagnosticableTreeMixin
     implements _ReviewHistoryGroupResponseDTO {
   _$_ReviewHistoryGroupResponseDTO(
-      {@JsonKey(name: 'totalReviews') required this.totalReviewCount,
+      {@JsonKey(name: 'totalReviews') this.totalReviewCount = 0,
       required final Map<ReviewRate, ReviewItemResponseDTO> reviewHistoryMap})
       : _reviewHistoryMap = reviewHistoryMap;
 
@@ -188,7 +188,7 @@ class _$_ReviewHistoryGroupResponseDTO
 abstract class _ReviewHistoryGroupResponseDTO
     implements ReviewHistoryResponseDTO {
   factory _ReviewHistoryGroupResponseDTO(
-      {@JsonKey(name: 'totalReviews') required final int totalReviewCount,
+      {@JsonKey(name: 'totalReviews') final int totalReviewCount,
       required final Map<ReviewRate, ReviewItemResponseDTO>
           reviewHistoryMap}) = _$_ReviewHistoryGroupResponseDTO;
 

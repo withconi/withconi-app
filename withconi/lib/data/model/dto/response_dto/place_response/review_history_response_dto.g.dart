@@ -9,7 +9,7 @@ part of 'review_history_response_dto.dart';
 _$_ReviewHistoryGroupResponseDTO _$$_ReviewHistoryGroupResponseDTOFromJson(
         Map<String, dynamic> json) =>
     _$_ReviewHistoryGroupResponseDTO(
-      totalReviewCount: json['totalReviews'] as int,
+      totalReviewCount: json['totalReviews'] as int? ?? 0,
       reviewHistoryMap: (json['reviewHistoryMap'] as Map<String, dynamic>).map(
         (k, e) => MapEntry($enumDecode(_$ReviewRateEnumMap, k),
             ReviewItemResponseDTO.fromJson(e as Map<String, dynamic>)),

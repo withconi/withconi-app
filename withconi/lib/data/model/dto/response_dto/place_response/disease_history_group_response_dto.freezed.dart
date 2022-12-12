@@ -125,7 +125,7 @@ class _$_DiseaseHistoryListResponseDTO
     implements _DiseaseHistoryListResponseDTO {
   _$_DiseaseHistoryListResponseDTO(
       {required final List<DiseaseHistoryResponseDTO> diseaseHistoryList,
-      @JsonKey(name: 'totalDiseases') required this.totalDiseaseHistoryCount})
+      @JsonKey(name: 'totalDiseases') this.totalDiseaseHistoryCount = 0})
       : _diseaseHistoryList = diseaseHistoryList;
 
   factory _$_DiseaseHistoryListResponseDTO.fromJson(
@@ -186,8 +186,7 @@ abstract class _DiseaseHistoryListResponseDTO
     implements DiseaseHistoryListResponseDTO {
   factory _DiseaseHistoryListResponseDTO(
           {required final List<DiseaseHistoryResponseDTO> diseaseHistoryList,
-          @JsonKey(name: 'totalDiseases')
-              required final int totalDiseaseHistoryCount}) =
+          @JsonKey(name: 'totalDiseases') final int totalDiseaseHistoryCount}) =
       _$_DiseaseHistoryListResponseDTO;
 
   factory _DiseaseHistoryListResponseDTO.fromJson(Map<String, dynamic> json) =
