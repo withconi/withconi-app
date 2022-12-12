@@ -114,6 +114,8 @@ PODS:
     - FirebaseCore (~> 9.0)
     - GTMSessionFetcher/Core (< 2.1, >= 1.7)
   - Flutter (1.0.0)
+  - flutter_local_notifications (0.0.1):
+    - Flutter
   - flutter_naver_login (0.0.1):
     - Flutter
     - naveridlogin-sdk-ios (~> 4.1.0)
@@ -208,6 +210,7 @@ DEPENDENCIES:
   - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
   - firebase_storage (from `.symlinks/plugins/firebase_storage/ios`)
   - Flutter (from `Flutter`)
+  - flutter_local_notifications (from `.symlinks/plugins/flutter_local_notifications/ios`)
   - flutter_naver_login (from `.symlinks/plugins/flutter_naver_login/ios`)
   - flutter_naver_map (from `.symlinks/plugins/flutter_naver_map/ios`)
   - geolocator_apple (from `.symlinks/plugins/geolocator_apple/ios`)
@@ -265,6 +268,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_storage/ios"
   Flutter:
     :path: Flutter
+  flutter_local_notifications:
+    :path: ".symlinks/plugins/flutter_local_notifications/ios"
   flutter_naver_login:
     :path: ".symlinks/plugins/flutter_naver_login/ios"
   flutter_naver_map:
@@ -312,6 +317,7 @@ SPEC CHECKSUMS:
   FirebaseStorage: 160ba975dd3452d9c59a3bf5ea9bf70ff96bd3c2
   FirebaseStorageInternal: 4f8a9e27391a99ac0692adbbd072fe0e5c4125fe
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  flutter_local_notifications: 0c0b1ae97e741e1521e4c1629a459d04b9aec743
   flutter_naver_login: 1dbf6d21aae5235cdf76a28ac79cf6871899282f
   flutter_naver_map: 6c7f2f09a8f05722ac344149bbf9cf52a3d9eeaf
   geolocator_apple: cc556e6844d508c95df1e87e3ea6fa4e58c50401
@@ -334,6 +340,6 @@ SPEC CHECKSUMS:
   sign_in_with_apple: f3bf75217ea4c2c8b91823f225d70230119b8440
   url_launcher_ios: 839c58cdb4279282219f5e248c3321761ff3c4de
 
-PODFILE CHECKSUM: a1ddd2a4e0d130d72fe0fc2ec470c5921e68f05e
+PODFILE CHECKSUM: ef19549a9bc3046e7bb7d2fab4d021637c0c58a3
 
 COCOAPODS: 1.11.2
