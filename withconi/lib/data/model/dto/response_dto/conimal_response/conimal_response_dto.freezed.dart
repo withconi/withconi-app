@@ -20,6 +20,7 @@ ConimalResponseDTO _$ConimalResponseDTOFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ConimalResponseDTO {
+  @JsonKey(name: '_id')
   String get conimalId => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   Species get species => throw _privateConstructorUsedError;
@@ -47,7 +48,7 @@ abstract class $ConimalResponseDTOCopyWith<$Res> {
       _$ConimalResponseDTOCopyWithImpl<$Res, ConimalResponseDTO>;
   @useResult
   $Res call(
-      {String conimalId,
+      {@JsonKey(name: '_id') String conimalId,
       String name,
       Species species,
       Gender gender,
@@ -137,7 +138,7 @@ abstract class _$$_ConimalResponseDTOCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String conimalId,
+      {@JsonKey(name: '_id') String conimalId,
       String name,
       Species species,
       Gender gender,
@@ -221,7 +222,7 @@ class __$$_ConimalResponseDTOCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_ConimalResponseDTO implements _ConimalResponseDTO {
   _$_ConimalResponseDTO(
-      {this.conimalId = 'wow',
+      {@JsonKey(name: '_id') required this.conimalId,
       required this.name,
       required this.species,
       required this.gender,
@@ -237,7 +238,7 @@ class _$_ConimalResponseDTO implements _ConimalResponseDTO {
       _$$_ConimalResponseDTOFromJson(json);
 
   @override
-  @JsonKey()
+  @JsonKey(name: '_id')
   final String conimalId;
   @override
   final String name;
@@ -326,7 +327,7 @@ class _$_ConimalResponseDTO implements _ConimalResponseDTO {
 
 abstract class _ConimalResponseDTO implements ConimalResponseDTO {
   factory _ConimalResponseDTO(
-      {final String conimalId,
+      {@JsonKey(name: '_id') required final String conimalId,
       required final String name,
       required final Species species,
       required final Gender gender,
@@ -341,6 +342,7 @@ abstract class _ConimalResponseDTO implements ConimalResponseDTO {
       _$_ConimalResponseDTO.fromJson;
 
   @override
+  @JsonKey(name: '_id')
   String get conimalId;
   @override
   String get name;

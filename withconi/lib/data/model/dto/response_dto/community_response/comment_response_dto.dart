@@ -9,12 +9,13 @@ part 'comment_response_dto.g.dart';
 class CommentResponseDTO with _$CommentResponseDTO implements ResponseDTO {
   @JsonSerializable(explicitToJson: true)
   factory CommentResponseDTO({
+    @JsonKey(name: 'profileImageUrl') @Default('') String profileImageUrl,
     required String postId,
     required String boardId,
     @JsonKey(name: '_id') required String commentId,
     @Default('') String authorId,
     @Default('') String userId,
-    @Default('닉네임 없음') String nickname,
+    @Default('사용자 없음') String nickname,
     required String content,
     @DateTimeConverter() required DateTime createdAt,
     @Default(false) bool isLike,
@@ -25,4 +26,4 @@ class CommentResponseDTO with _$CommentResponseDTO implements ResponseDTO {
       _$CommentResponseDTOFromJson(json);
 }
 
-//TODO 테스트를 위해 isLiked, likeNum,  default 값 넣어놓음
+//TODO profileImageUrl 은 null이면 Empty 임

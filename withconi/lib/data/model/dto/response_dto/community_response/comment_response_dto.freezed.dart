@@ -20,6 +20,8 @@ CommentResponseDTO _$CommentResponseDTOFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CommentResponseDTO {
+  @JsonKey(name: 'profileImageUrl')
+  String get profileImageUrl => throw _privateConstructorUsedError;
   String get postId => throw _privateConstructorUsedError;
   String get boardId => throw _privateConstructorUsedError;
   @JsonKey(name: '_id')
@@ -47,7 +49,8 @@ abstract class $CommentResponseDTOCopyWith<$Res> {
       _$CommentResponseDTOCopyWithImpl<$Res, CommentResponseDTO>;
   @useResult
   $Res call(
-      {String postId,
+      {@JsonKey(name: 'profileImageUrl') String profileImageUrl,
+      String postId,
       String boardId,
       @JsonKey(name: '_id') String commentId,
       String authorId,
@@ -72,6 +75,7 @@ class _$CommentResponseDTOCopyWithImpl<$Res, $Val extends CommentResponseDTO>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? profileImageUrl = null,
     Object? postId = null,
     Object? boardId = null,
     Object? commentId = null,
@@ -84,6 +88,10 @@ class _$CommentResponseDTOCopyWithImpl<$Res, $Val extends CommentResponseDTO>
     Object? likeNum = null,
   }) {
     return _then(_value.copyWith(
+      profileImageUrl: null == profileImageUrl
+          ? _value.profileImageUrl
+          : profileImageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
       postId: null == postId
           ? _value.postId
           : postId // ignore: cast_nullable_to_non_nullable
@@ -137,7 +145,8 @@ abstract class _$$_CommentResponseDTOCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String postId,
+      {@JsonKey(name: 'profileImageUrl') String profileImageUrl,
+      String postId,
       String boardId,
       @JsonKey(name: '_id') String commentId,
       String authorId,
@@ -160,6 +169,7 @@ class __$$_CommentResponseDTOCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? profileImageUrl = null,
     Object? postId = null,
     Object? boardId = null,
     Object? commentId = null,
@@ -172,6 +182,10 @@ class __$$_CommentResponseDTOCopyWithImpl<$Res>
     Object? likeNum = null,
   }) {
     return _then(_$_CommentResponseDTO(
+      profileImageUrl: null == profileImageUrl
+          ? _value.profileImageUrl
+          : profileImageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
       postId: null == postId
           ? _value.postId
           : postId // ignore: cast_nullable_to_non_nullable
@@ -221,12 +235,13 @@ class __$$_CommentResponseDTOCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_CommentResponseDTO implements _CommentResponseDTO {
   _$_CommentResponseDTO(
-      {required this.postId,
+      {@JsonKey(name: 'profileImageUrl') this.profileImageUrl = '',
+      required this.postId,
       required this.boardId,
       @JsonKey(name: '_id') required this.commentId,
       this.authorId = '',
       this.userId = '',
-      this.nickname = '닉네임 없음',
+      this.nickname = '사용자 없음',
       required this.content,
       @DateTimeConverter() required this.createdAt,
       this.isLike = false,
@@ -235,6 +250,9 @@ class _$_CommentResponseDTO implements _CommentResponseDTO {
   factory _$_CommentResponseDTO.fromJson(Map<String, dynamic> json) =>
       _$$_CommentResponseDTOFromJson(json);
 
+  @override
+  @JsonKey(name: 'profileImageUrl')
+  final String profileImageUrl;
   @override
   final String postId;
   @override
@@ -265,7 +283,7 @@ class _$_CommentResponseDTO implements _CommentResponseDTO {
 
   @override
   String toString() {
-    return 'CommentResponseDTO(postId: $postId, boardId: $boardId, commentId: $commentId, authorId: $authorId, userId: $userId, nickname: $nickname, content: $content, createdAt: $createdAt, isLike: $isLike, likeNum: $likeNum)';
+    return 'CommentResponseDTO(profileImageUrl: $profileImageUrl, postId: $postId, boardId: $boardId, commentId: $commentId, authorId: $authorId, userId: $userId, nickname: $nickname, content: $content, createdAt: $createdAt, isLike: $isLike, likeNum: $likeNum)';
   }
 
   @override
@@ -273,6 +291,8 @@ class _$_CommentResponseDTO implements _CommentResponseDTO {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_CommentResponseDTO &&
+            (identical(other.profileImageUrl, profileImageUrl) ||
+                other.profileImageUrl == profileImageUrl) &&
             (identical(other.postId, postId) || other.postId == postId) &&
             (identical(other.boardId, boardId) || other.boardId == boardId) &&
             (identical(other.commentId, commentId) ||
@@ -291,8 +311,19 @@ class _$_CommentResponseDTO implements _CommentResponseDTO {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, postId, boardId, commentId,
-      authorId, userId, nickname, content, createdAt, isLike, likeNum);
+  int get hashCode => Object.hash(
+      runtimeType,
+      profileImageUrl,
+      postId,
+      boardId,
+      commentId,
+      authorId,
+      userId,
+      nickname,
+      content,
+      createdAt,
+      isLike,
+      likeNum);
 
   @JsonKey(ignore: true)
   @override
@@ -311,7 +342,8 @@ class _$_CommentResponseDTO implements _CommentResponseDTO {
 
 abstract class _CommentResponseDTO implements CommentResponseDTO {
   factory _CommentResponseDTO(
-      {required final String postId,
+      {@JsonKey(name: 'profileImageUrl') final String profileImageUrl,
+      required final String postId,
       required final String boardId,
       @JsonKey(name: '_id') required final String commentId,
       final String authorId,
@@ -325,6 +357,9 @@ abstract class _CommentResponseDTO implements CommentResponseDTO {
   factory _CommentResponseDTO.fromJson(Map<String, dynamic> json) =
       _$_CommentResponseDTO.fromJson;
 
+  @override
+  @JsonKey(name: 'profileImageUrl')
+  String get profileImageUrl;
   @override
   String get postId;
   @override

@@ -9,7 +9,7 @@ part of 'conimal_response_dto.dart';
 _$_ConimalResponseDTO _$$_ConimalResponseDTOFromJson(
         Map<String, dynamic> json) =>
     _$_ConimalResponseDTO(
-      conimalId: json['conimalId'] as String? ?? 'wow',
+      conimalId: json['_id'] as String,
       name: json['name'] as String,
       species: $enumDecode(_$SpeciesEnumMap, json['species']),
       gender: $enumDecode(_$GenderEnumMap, json['gender']),
@@ -29,7 +29,7 @@ _$_ConimalResponseDTO _$$_ConimalResponseDTOFromJson(
 Map<String, dynamic> _$$_ConimalResponseDTOToJson(
         _$_ConimalResponseDTO instance) =>
     <String, dynamic>{
-      'conimalId': instance.conimalId,
+      '_id': instance.conimalId,
       'name': instance.name,
       'species': _$SpeciesEnumMap[instance.species]!,
       'gender': _$GenderEnumMap[instance.gender]!,
