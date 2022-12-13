@@ -166,6 +166,8 @@ class DiseaseSearchController extends GetxController with WcStateMixin {
       }
     }
     diseaseListSearched.refresh();
+    diseaseListSelected.refresh();
+    change(diseaseListSearched, status: const PageStatus.success());
   }
 
   saveDiseases() {
