@@ -1,22 +1,38 @@
 import 'package:withconi/data/model/dto/joined_dto/symptom.dart';
+import 'package:withconi/module/community/controllers/custom_state_mixin.dart';
 
+import '../../../core/error_handling/failure_ui_interpreter.dart';
 import '../../../data/enums/enum.dart';
 
+import '../../../data/repository/diagnosis_repository.dart';
 import '../../../import_basic.dart';
 
 class DiagnosisStep2Controller extends GetxController {
+  DiagnosisStep2Controller(this._diagnosisRepository);
+  final DiagnosisRepository _diagnosisRepository;
   RxDouble progressPercents = 0.6.obs;
   RxList<SymptomGroup> selectedSymptomGroupList = <SymptomGroup>[].obs;
   RxBool isButtonValid = false.obs;
 
-  RxList<SymptomGroup> symptomGroups = Symptom.values
-      .map((e) => SymptomGroup(symptomType: e, symptomList: []))
-      .toList()
-      .obs;
+  RxList<SymptomGroup> symptomGroupList = RxList<SymptomGroup>();
 
   @override
-  void onInit() {
+  Future<void> onInit() async {
     super.onInit();
+    await _getSymptomList();
+  }
+
+  _getSymptomList() async {
+    var symptomEither = await _diagnosisRepository.getSymptomList();
+    var symptomGroupResult = symptomEither.fold(
+        (failure) =>
+            FailureInterpreter().mapFailureToDialog(failure, 'getSymptomList'),
+        (result) => result.symptomGroupList);
+
+    if (symptomGroupResult != null) {
+      symptomGroupList.assignAll(symptomGroupResult);
+      symptomGroupList.refresh();
+    }
   }
 
   @override
@@ -27,40 +43,37 @@ class DiagnosisStep2Controller extends GetxController {
   }
 
   goToSymptomSelectionPage(Symptom selectedSymptom) async {
-    // selectedSymptomGroupList.removeAt(0);
-    // selectedSymptomGroupList.insert(
-    //     0, selectedSymptomGroupList[0].copyWith(symptomType: selectedSymptom));
-
-    List<String>? symptomResult =
+    SymptomGroup? symptomResult =
         await Get.toNamed(Routes.DIAGNOSIS_SYMPTOM, arguments: {
-      'symptomGroup': selectedSymptomGroupList.firstWhereOrNull(
-              (element) => element.symptomType == selectedSymptom) ??
-          SymptomGroup(symptomType: selectedSymptom, symptomList: [])
-    }) as List<String>?;
+      'symptom': selectedSymptom,
+      'symptomList': symptomGroupList
+          .firstWhere((element) => element.symptomType == selectedSymptom)
+          .symptomList
+          .toList(),
+      'selectedSymptomList': selectedSymptomGroupList
+              .firstWhereOrNull(
+                  (element) => element.symptomType == selectedSymptom)
+              ?.symptomList
+              .toList() ??
+          []
+    }) as SymptomGroup?;
 
     if (symptomResult == null) {
       return;
     }
 
-    if (symptomResult.isEmpty) {
+    if (symptomResult.symptomList.isEmpty) {
       selectedSymptomGroupList
           .removeWhere((element) => element.symptomType == selectedSymptom);
     } else {
-      if (selectedSymptomGroupList
-          .any((element) => element.symptomType == selectedSymptom)) {
-        for (SymptomGroup element in selectedSymptomGroupList) {
-          if (element.symptomType == selectedSymptom) {
-            int index = selectedSymptomGroupList.indexOf(element);
-            SymptomGroup newGroup =
-                element.copyWith(symptomList: symptomResult);
-            selectedSymptomGroupList.replaceRange(index, index + 1, [newGroup]);
-            break;
-          }
-        }
-      } else {
-        selectedSymptomGroupList.add(SymptomGroup(
-            symptomType: selectedSymptom, symptomList: symptomResult));
-      }
+      // if (selectedSymptomGroupList
+      //     .any((element) => element.symptomType == selectedSymptom)) {
+      selectedSymptomGroupList.removeWhere(
+          (element) => element.symptomType == symptomResult.symptomType);
+      selectedSymptomGroupList.add(symptomResult);
+      // } else {
+      //   selectedSymptomGroupList.add(symptomResult);
+      // }
     }
 
     if (selectedSymptomGroupList.isEmpty) {
@@ -81,5 +94,11 @@ class DiagnosisStep2Controller extends GetxController {
     } else {
       isButtonValid.value = false;
     }
+  }
+
+  goToDiagnosisResultPage() {
+    _diagnosisRepository.storeSymptomList(selectedSymptomGroupList.toList());
+    Get.offNamedUntil(
+        Routes.DIAGNOSIS_RESULT, ModalRoute.withName(Routes.DIAGNOSIS_MAIN));
   }
 }

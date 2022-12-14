@@ -43,7 +43,7 @@ class DiagnosisSymptomPage extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 10),
                         child: Image.asset(
-                          'assets/icons/diagnosis/symptoms_${_controller.symptomGroup.symptomType.code}.png',
+                          'assets/icons/diagnosis/symptoms_${_controller.symptom.codeENG}.png',
                           height: 80,
                         ),
                       ),
@@ -53,7 +53,7 @@ class DiagnosisSymptomPage extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              '${_controller.symptomGroup.symptomType.displayName}이상',
+                              '${_controller.symptom.displayName}이상',
                               style: TextStyle(
                                   fontFamily: WcFontFamily.notoSans,
                                   fontSize: 24,
@@ -73,7 +73,7 @@ class DiagnosisSymptomPage extends StatelessWidget {
                             Wrap(
                               spacing: 10,
                               runSpacing: 10,
-                              children: _controller.symptomItemList
+                              children: _controller.symptomList
                                   .map(
                                     (symptom) => Obx(
                                       () => SymptomItemButton(

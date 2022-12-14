@@ -1,29 +1,24 @@
+import '../../../data/enums/enum.dart';
 import '../../../data/model/dto/joined_dto/symptom.dart';
+import '../../../data/repository/diagnosis_repository.dart';
 import '../../../import_basic.dart';
 
 class DiagnosisSymptomController extends GetxController {
-  DiagnosisSymptomController(this.symptomGroup);
-  late SymptomGroup symptomGroup;
-  List<String> symptomItemList = [
-    '절뚝거림',
-    '힘없음',
-    '피부종창',
-    '머리/얼굴/귀/턱/코 종창',
-    '결막부음',
-    '무감각증',
-    '혀 돌출',
-    '토끼뜀',
-    '뒷다리 만곡증',
-    '앞다리 만곡증',
-    '귀 분비물 및 악취'
-  ];
+  DiagnosisSymptomController(this._diagnosisRepository, this.symptom,
+      this.symptomList, this.selectedSymptomList);
+  // late SymptomGroup symptomGroup;
+  final DiagnosisRepository _diagnosisRepository;
+  late Symptom symptom;
+  late List<String> symptomList;
+  late List<String> selectedSymptomList;
+
   RxList<String> selectedSymptomItemList = <String>[].obs;
   RxBool isLoading = true.obs;
 
   @override
   void onInit() {
     super.onInit();
-    selectedSymptomItemList.assignAll(symptomGroup.symptomList);
+    selectedSymptomItemList.assignAll(selectedSymptomList);
     isLoading.value = false;
   }
 
@@ -36,6 +31,9 @@ class DiagnosisSymptomController extends GetxController {
   }
 
   getBack() {
-    Get.back(result: selectedSymptomItemList.toList());
+    Get.back(
+        result: SymptomGroup(
+            symptomType: symptom,
+            symptomList: selectedSymptomItemList.toList()));
   }
 }

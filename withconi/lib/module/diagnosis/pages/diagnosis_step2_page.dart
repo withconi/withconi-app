@@ -68,7 +68,7 @@ class DiagnosisStep2Page extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Wrap(
                           direction: Axis.horizontal,
-                          spacing: 10,
+                          spacing: 15,
                           runSpacing: 20,
                           children: Symptom.values
                               .map(
@@ -101,9 +101,7 @@ class DiagnosisStep2Page extends StatelessWidget {
                         activeTextColor: WcColors.white,
                         buttonText: '분석하기',
                         buttonWidth: WcWidth - 40,
-                        onTap: () {
-                          Get.toNamed(Routes.DIAGNOSIS_RESULT);
-                        },
+                        onTap: _controller.goToDiagnosisResultPage,
                       ),
                     ),
                   ),
@@ -166,7 +164,7 @@ class SymptomButton extends StatelessWidget {
                       0,
                     ]),
               child: Image.asset(
-                'assets/icons/diagnosis/symptoms_${symptom.code}.png',
+                'assets/icons/diagnosis/symptoms_${symptom.codeENG}.png',
                 height: 100,
               ),
             ),

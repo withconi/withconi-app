@@ -73,7 +73,7 @@ class DiagnosisResultPage extends StatelessWidget {
                                   '자가진단 결과',
                                   style: TextStyle(
                                       fontFamily: WcFontFamily.notoSans,
-                                      fontSize: 24,
+                                      fontSize: 25,
                                       fontWeight: FontWeight.w600),
                                 ),
                                 SizedBox(
@@ -84,6 +84,7 @@ class DiagnosisResultPage extends StatelessWidget {
                                   style: TextStyle(
                                       fontFamily: WcFontFamily.notoSans,
                                       fontSize: 15,
+                                      height: 1.5,
                                       fontWeight: FontWeight.w400),
                                 ),
                                 SizedBox(
@@ -109,6 +110,8 @@ class DiagnosisResultPage extends StatelessWidget {
                                         _controller.diseaseResultList.length,
                                     itemBuilder: (context, index) {
                                       return DiseaseResultListTile(
+                                        onTap: _controller
+                                            .onDiagnosisResultItemTap,
                                         diseaseResultItem: _controller
                                             .diseaseResultList[index],
                                         index: index,
@@ -145,92 +148,99 @@ class DiagnosisResultPage extends StatelessWidget {
 
 class DiseaseResultListTile extends StatelessWidget {
   DiseaseResultListTile(
-      {Key? key, required this.diseaseResultItem, required this.index})
+      {Key? key,
+      required this.diseaseResultItem,
+      required this.index,
+      required this.onTap})
       : super(key: key);
 
   int index;
   DiagnosisResultResponseDTO diseaseResultItem;
+  void Function(DiagnosisResultResponseDTO diseaseResultItem) onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.fromLTRB(15, 13, 15, 15),
-      margin: EdgeInsets.only(bottom: 17),
-      height: 76,
-      width: WcWidth - 40,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: WcColors.white,
-          boxShadow: [
-            BoxShadow(
-                color: WcColors.black.withOpacity(0.17),
-                offset: Offset(0, 1.5),
-                blurRadius: 10,
-                spreadRadius: -3)
-          ]),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                SizedBox(
-                  width: 25,
-                  child: Text(
-                    (index + 1).toString(),
-                    style: GoogleFonts.workSans(
-                        fontSize: 16, fontWeight: FontWeight.w600),
+    return GestureDetector(
+      onTap: () => onTap.call(diseaseResultItem),
+      child: Container(
+        padding: EdgeInsets.fromLTRB(15, 13, 15, 15),
+        margin: EdgeInsets.only(bottom: 17),
+        height: 76,
+        width: WcWidth - 40,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: WcColors.white,
+            boxShadow: [
+              BoxShadow(
+                  color: WcColors.black.withOpacity(0.17),
+                  offset: Offset(0, 1.5),
+                  blurRadius: 10,
+                  spreadRadius: -3)
+            ]),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  SizedBox(
+                    width: 25,
+                    child: Text(
+                      (index + 1).toString(),
+                      style: GoogleFonts.workSans(
+                          fontSize: 16, fontWeight: FontWeight.w600),
+                    ),
                   ),
-                ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            height: 8,
-                            width: 8,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(2),
-                              color: diseaseResultItem.posibility.mainColor,
-                            ),
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Text(
-                            diseaseResultItem.posibility.displayName,
-                            style: TextStyle(
-                                fontSize: 14,
-                                fontFamily: WcFontFamily.notoSans,
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                              height: 8,
+                              width: 8,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(2),
                                 color: diseaseResultItem.posibility.mainColor,
-                                fontWeight: FontWeight.w500),
-                          )
-                        ],
-                      ),
-                      Text(
-                        diseaseResultItem.diseaseName,
-                        style: TextStyle(
-                            fontSize: 17,
-                            fontFamily: WcFontFamily.notoSans,
-                            overflow: TextOverflow.ellipsis,
-                            fontWeight: FontWeight.w500),
-                      )
-                    ],
+                              ),
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              diseaseResultItem.posibility.displayName,
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontFamily: WcFontFamily.notoSans,
+                                  color: diseaseResultItem.posibility.mainColor,
+                                  fontWeight: FontWeight.w500),
+                            )
+                          ],
+                        ),
+                        Text(
+                          diseaseResultItem.diseaseName,
+                          style: TextStyle(
+                              fontSize: 17,
+                              fontFamily: WcFontFamily.notoSans,
+                              overflow: TextOverflow.ellipsis,
+                              fontWeight: FontWeight.w500),
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Container(
-            margin: EdgeInsets.only(left: 10),
-            child: SvgPicture.asset('assets/icons/arrow_right.svg'),
-          )
-        ],
+            Container(
+              margin: EdgeInsets.only(left: 10),
+              child: SvgPicture.asset('assets/icons/arrow_right.svg'),
+            )
+          ],
+        ),
       ),
     );
   }

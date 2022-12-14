@@ -8,10 +8,13 @@ import 'package:withconi/global_widgets/loading/loading_overlay.dart';
 import '../../../core/values/constants/auth_variables.dart';
 import '../../../data/enums/enum.dart';
 
+import '../../../data/repository/diagnosis_repository.dart';
 import '../../../import_basic.dart';
 import '../../ui_model/breed_ui_model.dart';
 
 class DiagnosisStep1Controller extends GetxController {
+  DiagnosisStep1Controller(this._diagnosisRepository);
+  final DiagnosisRepository _diagnosisRepository;
   Rxn<Gender> selectedGender = Rxn<Gender>();
   Rxn<Species> selectedSpecies = Rxn<Species>();
   RxBool isButtonValid = false.obs;
@@ -25,6 +28,11 @@ class DiagnosisStep1Controller extends GetxController {
   RxDouble progressPercent = (0.6 / 4).obs;
 
   RxBool isNeutered = false.obs;
+
+  // @override
+  // onInit() async {
+  //   super.onInit();
+  // }
 
   void onGenderChanged(Gender gender) {
     selectedGender.value = gender;
@@ -95,5 +103,15 @@ class DiagnosisStep1Controller extends GetxController {
     if (selectedBreed != null) {
       onBreedChanged(selectedBreed.name);
     }
+  }
+
+  goToNextStep() {
+    _diagnosisRepository.storeConimalInfo(
+        selectedSpecies.value!,
+        selectedGender.value!,
+        isNeutered.value,
+        selectedBreed.value!,
+        birthDate!);
+    Get.toNamed(Routes.DIAGNOSIS_STEP2);
   }
 }

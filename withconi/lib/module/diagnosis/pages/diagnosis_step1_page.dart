@@ -229,9 +229,7 @@ class DiagnosisStep1Page extends StatelessWidget {
                         activeTextColor: WcColors.white,
                         buttonText: '다음',
                         buttonWidth: WcWidth - 40,
-                        onTap: () {
-                          Get.toNamed(Routes.DIAGNOSIS_STEP2);
-                        },
+                        onTap: _controller.goToNextStep,
                       ),
                     ),
                   ),
