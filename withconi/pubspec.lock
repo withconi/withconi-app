@@ -148,6 +148,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
+  cli_util:
+    dependency: transitive
+    description:
+      name: cli_util
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.5"
   clock:
     dependency: transitive
     description:
@@ -425,7 +432,7 @@ packages:
       name: flutter_launcher_icons
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.9.3"
+    version: "0.11.0"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -470,9 +477,9 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: HEAD
-      resolved-ref: "5e1d6aabb3ebb09d5dc852097cf793d6b99d097e"
-      url: "https://github.com/wnsgh78b/flutter_naver_map.git"
+      ref: "26b16112214b4994637fd467b892646b469a8a85"
+      resolved-ref: "26b16112214b4994637fd467b892646b469a8a85"
+      url: "https://github.com/note11g/flutter_naver_map.git"
     source: git
     version: "0.10.5"
   flutter_plugin_android_lifecycle:
@@ -540,14 +547,14 @@ packages:
       name: geolocator
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "9.0.1"
+    version: "8.2.1"
   geolocator_android:
     dependency: transitive
     description:
       name: geolocator_android
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.1.0"
+    version: "3.2.1"
   geolocator_apple:
     dependency: transitive
     description:
@@ -744,69 +751,27 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "6.3.2"
-  kakao_flutter_sdk:
-    dependency: "direct main"
-    description:
-      name: kakao_flutter_sdk
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.2.1"
   kakao_flutter_sdk_auth:
     dependency: transitive
     description:
       name: kakao_flutter_sdk_auth
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.2.1"
+    version: "1.3.0"
   kakao_flutter_sdk_common:
     dependency: transitive
     description:
       name: kakao_flutter_sdk_common
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.2.1"
-  kakao_flutter_sdk_navi:
-    dependency: transitive
-    description:
-      name: kakao_flutter_sdk_navi
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.2.1"
-  kakao_flutter_sdk_share:
-    dependency: transitive
-    description:
-      name: kakao_flutter_sdk_share
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.2.1"
-  kakao_flutter_sdk_story:
-    dependency: transitive
-    description:
-      name: kakao_flutter_sdk_story
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.2.1"
-  kakao_flutter_sdk_talk:
-    dependency: transitive
-    description:
-      name: kakao_flutter_sdk_talk
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.2.1"
-  kakao_flutter_sdk_template:
-    dependency: transitive
-    description:
-      name: kakao_flutter_sdk_template
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.2.1"
+    version: "1.3.0"
   kakao_flutter_sdk_user:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: kakao_flutter_sdk_user
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.2.1"
+    version: "1.3.0"
   lazy_load_scrollview:
     dependency: "direct main"
     description:
@@ -870,48 +835,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
-  package_info_plus:
-    dependency: transitive
-    description:
-      name: package_info_plus
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.4.3+1"
-  package_info_plus_linux:
-    dependency: transitive
-    description:
-      name: package_info_plus_linux
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.5"
-  package_info_plus_macos:
-    dependency: transitive
-    description:
-      name: package_info_plus_macos
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.3.0"
-  package_info_plus_platform_interface:
-    dependency: transitive
-    description:
-      name: package_info_plus_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.2"
-  package_info_plus_web:
-    dependency: transitive
-    description:
-      name: package_info_plus_web
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.5"
-  package_info_plus_windows:
-    dependency: transitive
-    description:
-      name: package_info_plus_windows
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.0"
   path:
     dependency: transitive
     description:

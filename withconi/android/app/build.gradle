@@ -45,9 +45,9 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "co.yellowtoast.withconi"
-        minSdkVersion 21
-        targetSdkVersion flutter.targetSdkVersion
+        applicationId "co.yellowtoast.withconi" 
+        minSdkVersion 21             // Update from 16 to 20
+        targetSdkVersion 32
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true

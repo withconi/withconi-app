@@ -39,7 +39,7 @@ dependencies:
   google_fonts: ^2.3.1
   firebase_messaging: ^11.2.13
   flutter_svg: ^1.0.3
-  kakao_flutter_sdk: ^1.2.1
+  kakao_flutter_sdk_user: ^1.3.0
   firebase_auth: ^3.3.14
   google_sign_in: ^5.3.0
   firebase_analytics: ^9.1.5
@@ -64,10 +64,12 @@ dependencies:
   carousel_indicator: ^1.0.6
   photo_view: ^0.14.0
   http_parser: ^4.0.1
-  geolocator: ^9.0.1
+  geolocator: ^8.2.1
   firebase_dynamic_links: ^4.3.4
   flutter_naver_map: 
-    git: https://github.com/wnsgh78b/flutter_naver_map.git
+    git: 
+      url: https://github.com/note11g/flutter_naver_map.git
+      ref: 26b16112214b4994637fd467b892646b469a8a85
   fl_chart: ^0.55.1
   url_launcher: ^6.1.5
   percent_indicator: ^4.2.2
@@ -92,7 +94,7 @@ dev_dependencies:
   build_runner: ^2.1.11
   freezed: ^2.2.1
   json_serializable: ^6.2.0
-  flutter_launcher_icons: ^0.9.3
+  flutter_launcher_icons: "^0.11.0"
   app_settings: 4.1.8
 
 # For information on the generic Dart part of this file, see the

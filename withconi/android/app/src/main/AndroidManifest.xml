@@ -23,6 +23,19 @@
         android:icon="@mipmap/launcher_icon"
         android:usesCleartextTraffic="true">
 
+        
+
+<!-- 
+<meta-data
+        android:name="com.google.firebase.messaging.default_notification_icon"
+android:resource="@drawable/withconi_icon.png" /> -->
+<!-- <meta-data
+    android:name="com.google.firebase.messaging.default_notification_color"
+    android:resource="@color/colorPrimary" /> -->
+
+    <meta-data
+  android:name="com.google.firebase.messaging.default_notification_channel_id"
+  android:value="high_importance_channel" />
 
         <meta-data
             android:name="com.naver.sdk.clientId"
@@ -33,6 +46,7 @@
         <meta-data
             android:name="com.naver.sdk.clientName"
             android:value="@string/client_name" />
+            
         <activity android:name="com.kakao.sdk.flutter.AuthCodeCustomTabsActivity">
             <intent-filter android:label="flutter_web_auth">
                 <action android:name="android.intent.action.VIEW" />
