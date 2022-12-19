@@ -18,7 +18,7 @@ class PlaceDetailResponseDTO
     @Default(false) bool isBookmarked,
     @JsonKey(name: 'diseaseHistory')
         required DiseaseHistoryListResponseDTO diseaseHistory,
-    required ReviewHistoryResponseDTO reviewHistory,
+    @ReviewHistoryConverter() required ReviewHistoryResponseDTO reviewHistory,
     @JsonKey(name: 'coordinate') LatLngResponseDTO? coordinate,
     required String phone,
     required String name,
@@ -35,7 +35,7 @@ class PlaceDetailResponseDTO
     @Default(false) bool isBookmarked,
     @JsonKey(name: 'diseaseHistory')
         required DiseaseHistoryListResponseDTO diseaseHistory,
-    required ReviewHistoryResponseDTO reviewHistory,
+    @ReviewHistoryConverter() required ReviewHistoryResponseDTO reviewHistory,
     @JsonKey(name: 'coordinate') LatLngResponseDTO? coordinate,
     required String phone,
     required String name,
@@ -49,6 +49,77 @@ class PlaceDetailResponseDTO
   factory PlaceDetailResponseDTO.fromJson(Map<String, dynamic> json) =>
       _$PlaceDetailResponseDTOFromJson(json);
 }
+
+class ReviewHistoryConverter
+    implements JsonConverter<ReviewHistoryResponseDTO, Map<String, dynamic>> {
+  const ReviewHistoryConverter();
+
+  @override
+  ReviewHistoryResponseDTO fromJson(Map<String, dynamic> data) {
+    Map<String, dynamic> reviewHistoryMap = data['reviewHistoryMap'];
+    Map<String, dynamic> editedReviewHistoryMap = Map();
+
+    Map<String, dynamic> history = Map();
+    for (ReviewRate reviewRate in ReviewRate.values) {
+      Map<String, int> reviewItemMap = Map();
+
+      for (var reviewItem in ReviewItem.values) {
+        reviewItemMap[reviewItem.itemCode] =
+            reviewHistoryMap[reviewRate.code][reviewItem.itemCode];
+      }
+      history[reviewRate.code] = {
+        'reviewHistoryMap': reviewItemMap,
+        'totalReviews': reviewHistoryMap[reviewRate.code]['totalReviews']
+      };
+    }
+    editedReviewHistoryMap['reviewHistoryMap'] = history;
+    editedReviewHistoryMap['totalReviews'] = data['totalReviews'];
+
+    return ReviewHistoryResponseDTO.fromJson(editedReviewHistoryMap);
+  }
+
+  @override
+  Map<String, dynamic> toJson(ReviewHistoryResponseDTO date) {
+    return {'place': true};
+  }
+}
+
+
+
+
+
+
+//  "reviewHistory": {
+//             "_id": "63966667bf4a877cc501a943",
+//             "locId": "63966667bf4a877cc501a941",
+//             "locType": "pharmacy",
+//             "totalReviews": 1,
+//             "reviewHistoryMap": {
+//               "high": {
+//                 "totalReviews": 0,
+//                 "explanation": 0,
+//                 "kindness": 0,
+//                 "adequateExamination": 0,
+//                 "effectiveness": 0,
+//                 "waitingExperience": 0,
+//                 "price": 0
+//               },
+
+// "reviewHistoryMap": {
+//               "high": {
+//                      "totalReviews" : 0,
+//                      "reviewHistoryMap" :                 
+//                             { 
+//                                "explanation": 0,
+//                               "kindness": 0,
+//                               "adequateExamination": 0,
+//                               "effectiveness": 0,
+//                               "waitingExperience": 0,
+//                               "price": 0
+//                      }
+//                },
+
+
 
 // Map<String, dynamic> data = {
 //   "success": true,

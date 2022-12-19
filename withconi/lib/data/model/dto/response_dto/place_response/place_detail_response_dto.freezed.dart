@@ -40,6 +40,7 @@ mixin _$PlaceDetailResponseDTO {
   @JsonKey(name: 'diseaseHistory')
   DiseaseHistoryListResponseDTO get diseaseHistory =>
       throw _privateConstructorUsedError;
+  @ReviewHistoryConverter()
   ReviewHistoryResponseDTO get reviewHistory =>
       throw _privateConstructorUsedError;
   @JsonKey(name: 'coordinate')
@@ -61,7 +62,8 @@ mixin _$PlaceDetailResponseDTO {
             bool isBookmarked,
             @JsonKey(name: 'diseaseHistory')
                 DiseaseHistoryListResponseDTO diseaseHistory,
-            ReviewHistoryResponseDTO reviewHistory,
+            @ReviewHistoryConverter()
+                ReviewHistoryResponseDTO reviewHistory,
             @JsonKey(name: 'coordinate')
                 LatLngResponseDTO? coordinate,
             String phone,
@@ -80,7 +82,8 @@ mixin _$PlaceDetailResponseDTO {
             bool isBookmarked,
             @JsonKey(name: 'diseaseHistory')
                 DiseaseHistoryListResponseDTO diseaseHistory,
-            ReviewHistoryResponseDTO reviewHistory,
+            @ReviewHistoryConverter()
+                ReviewHistoryResponseDTO reviewHistory,
             @JsonKey(name: 'coordinate')
                 LatLngResponseDTO? coordinate,
             String phone,
@@ -103,7 +106,8 @@ mixin _$PlaceDetailResponseDTO {
             bool isBookmarked,
             @JsonKey(name: 'diseaseHistory')
                 DiseaseHistoryListResponseDTO diseaseHistory,
-            ReviewHistoryResponseDTO reviewHistory,
+            @ReviewHistoryConverter()
+                ReviewHistoryResponseDTO reviewHistory,
             @JsonKey(name: 'coordinate')
                 LatLngResponseDTO? coordinate,
             String phone,
@@ -122,7 +126,8 @@ mixin _$PlaceDetailResponseDTO {
             bool isBookmarked,
             @JsonKey(name: 'diseaseHistory')
                 DiseaseHistoryListResponseDTO diseaseHistory,
-            ReviewHistoryResponseDTO reviewHistory,
+            @ReviewHistoryConverter()
+                ReviewHistoryResponseDTO reviewHistory,
             @JsonKey(name: 'coordinate')
                 LatLngResponseDTO? coordinate,
             String phone,
@@ -145,7 +150,8 @@ mixin _$PlaceDetailResponseDTO {
             bool isBookmarked,
             @JsonKey(name: 'diseaseHistory')
                 DiseaseHistoryListResponseDTO diseaseHistory,
-            ReviewHistoryResponseDTO reviewHistory,
+            @ReviewHistoryConverter()
+                ReviewHistoryResponseDTO reviewHistory,
             @JsonKey(name: 'coordinate')
                 LatLngResponseDTO? coordinate,
             String phone,
@@ -164,7 +170,8 @@ mixin _$PlaceDetailResponseDTO {
             bool isBookmarked,
             @JsonKey(name: 'diseaseHistory')
                 DiseaseHistoryListResponseDTO diseaseHistory,
-            ReviewHistoryResponseDTO reviewHistory,
+            @ReviewHistoryConverter()
+                ReviewHistoryResponseDTO reviewHistory,
             @JsonKey(name: 'coordinate')
                 LatLngResponseDTO? coordinate,
             String phone,
@@ -217,7 +224,8 @@ abstract class $PlaceDetailResponseDTOCopyWith<$Res> {
       bool isBookmarked,
       @JsonKey(name: 'diseaseHistory')
           DiseaseHistoryListResponseDTO diseaseHistory,
-      ReviewHistoryResponseDTO reviewHistory,
+      @ReviewHistoryConverter()
+          ReviewHistoryResponseDTO reviewHistory,
       @JsonKey(name: 'coordinate')
           LatLngResponseDTO? coordinate,
       String phone,
@@ -365,7 +373,8 @@ abstract class _$$HospitalPlaceDetailResponseDTOCopyWith<$Res>
       bool isBookmarked,
       @JsonKey(name: 'diseaseHistory')
           DiseaseHistoryListResponseDTO diseaseHistory,
-      ReviewHistoryResponseDTO reviewHistory,
+      @ReviewHistoryConverter()
+          ReviewHistoryResponseDTO reviewHistory,
       @JsonKey(name: 'coordinate')
           LatLngResponseDTO? coordinate,
       String phone,
@@ -479,7 +488,7 @@ class _$HospitalPlaceDetailResponseDTO
       required this.address,
       this.isBookmarked = false,
       @JsonKey(name: 'diseaseHistory') required this.diseaseHistory,
-      required this.reviewHistory,
+      @ReviewHistoryConverter() required this.reviewHistory,
       @JsonKey(name: 'coordinate') this.coordinate,
       required this.phone,
       required this.name,
@@ -507,6 +516,7 @@ class _$HospitalPlaceDetailResponseDTO
   @JsonKey(name: 'diseaseHistory')
   final DiseaseHistoryListResponseDTO diseaseHistory;
   @override
+  @ReviewHistoryConverter()
   final ReviewHistoryResponseDTO reviewHistory;
   @override
   @JsonKey(name: 'coordinate')
@@ -600,7 +610,8 @@ class _$HospitalPlaceDetailResponseDTO
             bool isBookmarked,
             @JsonKey(name: 'diseaseHistory')
                 DiseaseHistoryListResponseDTO diseaseHistory,
-            ReviewHistoryResponseDTO reviewHistory,
+            @ReviewHistoryConverter()
+                ReviewHistoryResponseDTO reviewHistory,
             @JsonKey(name: 'coordinate')
                 LatLngResponseDTO? coordinate,
             String phone,
@@ -619,7 +630,8 @@ class _$HospitalPlaceDetailResponseDTO
             bool isBookmarked,
             @JsonKey(name: 'diseaseHistory')
                 DiseaseHistoryListResponseDTO diseaseHistory,
-            ReviewHistoryResponseDTO reviewHistory,
+            @ReviewHistoryConverter()
+                ReviewHistoryResponseDTO reviewHistory,
             @JsonKey(name: 'coordinate')
                 LatLngResponseDTO? coordinate,
             String phone,
@@ -658,7 +670,8 @@ class _$HospitalPlaceDetailResponseDTO
             bool isBookmarked,
             @JsonKey(name: 'diseaseHistory')
                 DiseaseHistoryListResponseDTO diseaseHistory,
-            ReviewHistoryResponseDTO reviewHistory,
+            @ReviewHistoryConverter()
+                ReviewHistoryResponseDTO reviewHistory,
             @JsonKey(name: 'coordinate')
                 LatLngResponseDTO? coordinate,
             String phone,
@@ -677,7 +690,8 @@ class _$HospitalPlaceDetailResponseDTO
             bool isBookmarked,
             @JsonKey(name: 'diseaseHistory')
                 DiseaseHistoryListResponseDTO diseaseHistory,
-            ReviewHistoryResponseDTO reviewHistory,
+            @ReviewHistoryConverter()
+                ReviewHistoryResponseDTO reviewHistory,
             @JsonKey(name: 'coordinate')
                 LatLngResponseDTO? coordinate,
             String phone,
@@ -716,7 +730,8 @@ class _$HospitalPlaceDetailResponseDTO
             bool isBookmarked,
             @JsonKey(name: 'diseaseHistory')
                 DiseaseHistoryListResponseDTO diseaseHistory,
-            ReviewHistoryResponseDTO reviewHistory,
+            @ReviewHistoryConverter()
+                ReviewHistoryResponseDTO reviewHistory,
             @JsonKey(name: 'coordinate')
                 LatLngResponseDTO? coordinate,
             String phone,
@@ -735,7 +750,8 @@ class _$HospitalPlaceDetailResponseDTO
             bool isBookmarked,
             @JsonKey(name: 'diseaseHistory')
                 DiseaseHistoryListResponseDTO diseaseHistory,
-            ReviewHistoryResponseDTO reviewHistory,
+            @ReviewHistoryConverter()
+                ReviewHistoryResponseDTO reviewHistory,
             @JsonKey(name: 'coordinate')
                 LatLngResponseDTO? coordinate,
             String phone,
@@ -816,7 +832,8 @@ abstract class HospitalPlaceDetailResponseDTO
       final bool isBookmarked,
       @JsonKey(name: 'diseaseHistory')
           required final DiseaseHistoryListResponseDTO diseaseHistory,
-      required final ReviewHistoryResponseDTO reviewHistory,
+      @ReviewHistoryConverter()
+          required final ReviewHistoryResponseDTO reviewHistory,
       @JsonKey(name: 'coordinate')
           final LatLngResponseDTO? coordinate,
       required final String phone,
@@ -842,6 +859,7 @@ abstract class HospitalPlaceDetailResponseDTO
   @JsonKey(name: 'diseaseHistory')
   DiseaseHistoryListResponseDTO get diseaseHistory;
   @override
+  @ReviewHistoryConverter()
   ReviewHistoryResponseDTO get reviewHistory;
   @override
   @JsonKey(name: 'coordinate')
@@ -883,7 +901,8 @@ abstract class _$$PharmacyPlaceDetailResponseDTOCopyWith<$Res>
       bool isBookmarked,
       @JsonKey(name: 'diseaseHistory')
           DiseaseHistoryListResponseDTO diseaseHistory,
-      ReviewHistoryResponseDTO reviewHistory,
+      @ReviewHistoryConverter()
+          ReviewHistoryResponseDTO reviewHistory,
       @JsonKey(name: 'coordinate')
           LatLngResponseDTO? coordinate,
       String phone,
@@ -996,7 +1015,7 @@ class _$PharmacyPlaceDetailResponseDTO
       required this.address,
       this.isBookmarked = false,
       @JsonKey(name: 'diseaseHistory') required this.diseaseHistory,
-      required this.reviewHistory,
+      @ReviewHistoryConverter() required this.reviewHistory,
       @JsonKey(name: 'coordinate') this.coordinate,
       required this.phone,
       required this.name,
@@ -1024,6 +1043,7 @@ class _$PharmacyPlaceDetailResponseDTO
   @JsonKey(name: 'diseaseHistory')
   final DiseaseHistoryListResponseDTO diseaseHistory;
   @override
+  @ReviewHistoryConverter()
   final ReviewHistoryResponseDTO reviewHistory;
   @override
   @JsonKey(name: 'coordinate')
@@ -1117,7 +1137,8 @@ class _$PharmacyPlaceDetailResponseDTO
             bool isBookmarked,
             @JsonKey(name: 'diseaseHistory')
                 DiseaseHistoryListResponseDTO diseaseHistory,
-            ReviewHistoryResponseDTO reviewHistory,
+            @ReviewHistoryConverter()
+                ReviewHistoryResponseDTO reviewHistory,
             @JsonKey(name: 'coordinate')
                 LatLngResponseDTO? coordinate,
             String phone,
@@ -1136,7 +1157,8 @@ class _$PharmacyPlaceDetailResponseDTO
             bool isBookmarked,
             @JsonKey(name: 'diseaseHistory')
                 DiseaseHistoryListResponseDTO diseaseHistory,
-            ReviewHistoryResponseDTO reviewHistory,
+            @ReviewHistoryConverter()
+                ReviewHistoryResponseDTO reviewHistory,
             @JsonKey(name: 'coordinate')
                 LatLngResponseDTO? coordinate,
             String phone,
@@ -1175,7 +1197,8 @@ class _$PharmacyPlaceDetailResponseDTO
             bool isBookmarked,
             @JsonKey(name: 'diseaseHistory')
                 DiseaseHistoryListResponseDTO diseaseHistory,
-            ReviewHistoryResponseDTO reviewHistory,
+            @ReviewHistoryConverter()
+                ReviewHistoryResponseDTO reviewHistory,
             @JsonKey(name: 'coordinate')
                 LatLngResponseDTO? coordinate,
             String phone,
@@ -1194,7 +1217,8 @@ class _$PharmacyPlaceDetailResponseDTO
             bool isBookmarked,
             @JsonKey(name: 'diseaseHistory')
                 DiseaseHistoryListResponseDTO diseaseHistory,
-            ReviewHistoryResponseDTO reviewHistory,
+            @ReviewHistoryConverter()
+                ReviewHistoryResponseDTO reviewHistory,
             @JsonKey(name: 'coordinate')
                 LatLngResponseDTO? coordinate,
             String phone,
@@ -1233,7 +1257,8 @@ class _$PharmacyPlaceDetailResponseDTO
             bool isBookmarked,
             @JsonKey(name: 'diseaseHistory')
                 DiseaseHistoryListResponseDTO diseaseHistory,
-            ReviewHistoryResponseDTO reviewHistory,
+            @ReviewHistoryConverter()
+                ReviewHistoryResponseDTO reviewHistory,
             @JsonKey(name: 'coordinate')
                 LatLngResponseDTO? coordinate,
             String phone,
@@ -1252,7 +1277,8 @@ class _$PharmacyPlaceDetailResponseDTO
             bool isBookmarked,
             @JsonKey(name: 'diseaseHistory')
                 DiseaseHistoryListResponseDTO diseaseHistory,
-            ReviewHistoryResponseDTO reviewHistory,
+            @ReviewHistoryConverter()
+                ReviewHistoryResponseDTO reviewHistory,
             @JsonKey(name: 'coordinate')
                 LatLngResponseDTO? coordinate,
             String phone,
@@ -1333,7 +1359,8 @@ abstract class PharmacyPlaceDetailResponseDTO
       final bool isBookmarked,
       @JsonKey(name: 'diseaseHistory')
           required final DiseaseHistoryListResponseDTO diseaseHistory,
-      required final ReviewHistoryResponseDTO reviewHistory,
+      @ReviewHistoryConverter()
+          required final ReviewHistoryResponseDTO reviewHistory,
       @JsonKey(name: 'coordinate')
           final LatLngResponseDTO? coordinate,
       required final String phone,
@@ -1359,6 +1386,7 @@ abstract class PharmacyPlaceDetailResponseDTO
   @JsonKey(name: 'diseaseHistory')
   DiseaseHistoryListResponseDTO get diseaseHistory;
   @override
+  @ReviewHistoryConverter()
   ReviewHistoryResponseDTO get reviewHistory;
   @override
   @JsonKey(name: 'coordinate')

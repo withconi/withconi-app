@@ -14,8 +14,8 @@ _$HospitalPlaceDetailResponseDTO _$$HospitalPlaceDetailResponseDTOFromJson(
       isBookmarked: json['isBookmarked'] as bool? ?? false,
       diseaseHistory: DiseaseHistoryListResponseDTO.fromJson(
           json['diseaseHistory'] as Map<String, dynamic>),
-      reviewHistory: ReviewHistoryResponseDTO.fromJson(
-          json['reviewHistory'] as Map<String, dynamic>),
+      reviewHistory: const ReviewHistoryConverter()
+          .fromJson(json['reviewHistory'] as Map<String, dynamic>),
       coordinate: json['coordinate'] == null
           ? null
           : LatLngResponseDTO.fromJson(
@@ -37,7 +37,8 @@ Map<String, dynamic> _$$HospitalPlaceDetailResponseDTOToJson(
       'address': instance.address,
       'isBookmarked': instance.isBookmarked,
       'diseaseHistory': instance.diseaseHistory.toJson(),
-      'reviewHistory': instance.reviewHistory.toJson(),
+      'reviewHistory':
+          const ReviewHistoryConverter().toJson(instance.reviewHistory),
       'coordinate': instance.coordinate?.toJson(),
       'phone': instance.phone,
       'name': instance.name,
@@ -69,8 +70,8 @@ _$PharmacyPlaceDetailResponseDTO _$$PharmacyPlaceDetailResponseDTOFromJson(
       isBookmarked: json['isBookmarked'] as bool? ?? false,
       diseaseHistory: DiseaseHistoryListResponseDTO.fromJson(
           json['diseaseHistory'] as Map<String, dynamic>),
-      reviewHistory: ReviewHistoryResponseDTO.fromJson(
-          json['reviewHistory'] as Map<String, dynamic>),
+      reviewHistory: const ReviewHistoryConverter()
+          .fromJson(json['reviewHistory'] as Map<String, dynamic>),
       coordinate: json['coordinate'] == null
           ? null
           : LatLngResponseDTO.fromJson(
@@ -92,7 +93,8 @@ Map<String, dynamic> _$$PharmacyPlaceDetailResponseDTOToJson(
       'address': instance.address,
       'isBookmarked': instance.isBookmarked,
       'diseaseHistory': instance.diseaseHistory,
-      'reviewHistory': instance.reviewHistory,
+      'reviewHistory':
+          const ReviewHistoryConverter().toJson(instance.reviewHistory),
       'coordinate': instance.coordinate,
       'phone': instance.phone,
       'name': instance.name,

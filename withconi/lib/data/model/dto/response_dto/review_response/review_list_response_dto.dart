@@ -11,7 +11,7 @@ class ReviewListResponseDTO
     implements ResponseDTO {
   @JsonSerializable(explicitToJson: true)
   factory ReviewListResponseDTO({
-    required List<ReviewPreviewResponseDTO> list,
+    required List<ReviewDetailResponseDTO> list,
     required int totalDocuments,
   }) = _ReviewListResponseDTO;
 
