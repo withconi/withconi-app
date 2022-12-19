@@ -52,7 +52,7 @@ class MapMainPageController extends GetxController
   RxBool showSelectedPlaceBottomSheet = false.obs;
   RxBool showPlaceListBottomSheet = true.obs;
   RxBool showMapButton = false.obs;
-  RxBool showResearchButton = false.obs;
+  RxBool showRefreshButton = false.obs;
   Rx<LatLngUIModel> baseLocation = LatLngUIModel(lat: 0.0, lng: 0.0).obs;
   LatLngUIModel? _currentLocation;
   RxDouble searchAreaCircleRadius = 0.0.obs;
@@ -110,6 +110,16 @@ class MapMainPageController extends GetxController
         selectedPlaceScrollController.jumpTo(0.0);
       }
     });
+
+    placeListDragController.addListener(() {
+      if (placeListDragController.size >= 1 &&
+          placePreviewList.isNotEmpty &&
+          showPlaceListBottomSheet.value) {
+        showMapButton.value = true;
+      } else {
+        showMapButton.value = false;
+      }
+    });
   }
 
   @override
@@ -144,17 +154,17 @@ class MapMainPageController extends GetxController
   double get nextPageTrigger =>
       0.8 * placeListScrollController.position.maxScrollExtent;
 
-  void addPlaceListScrollListener() {
-    placeListScrollController.addListener(() {
-      if (placeListScrollController.offset >= 0.1 &&
-          placePreviewList.isNotEmpty &&
-          showPlaceListBottomSheet.value) {
-        showMapButton.value = true;
-      } else {
-        showMapButton.value = false;
-      }
-    });
-  }
+  // void addPlaceListScrollListener() {
+  //   placeListDragController.addListener(() {
+  //     if (placeListDragController.size >= 1 &&
+  //         placePreviewList.isNotEmpty &&
+  //         showPlaceListBottomSheet.value) {
+  //       showMapButton.value = true;
+  //     } else {
+  //       showMapButton.value = false;
+  //     }
+  //   });
+  // }
 
   Future<void> onMapCreated(NaverMapController controller) async {
     // mapController = controller;
@@ -277,9 +287,8 @@ class MapMainPageController extends GetxController
   void onCameraChange(
       LatLng? latLng, CameraChangeReason changeReason, bool? isChanged) {
     if (changeReason == CameraChangeReason.gesture) {
-      showResearchButton.value = true;
+      showRefreshButton.value = true;
       showPlaceListBottomSheet.value = true;
-      // setSelectedPlacePreview(null);
     }
   }
 
@@ -336,7 +345,7 @@ class MapMainPageController extends GetxController
     if (newSelectedPlace == null) {
       showSelectedPlaceBottomSheet.value = false;
       showPlaceListBottomSheet.value = true;
-      showResearchButton.value = true;
+      showRefreshButton.value = true;
       showMapButton.value = false;
     } else {
       if (!placeMarkers
@@ -346,7 +355,7 @@ class MapMainPageController extends GetxController
 
       showSelectedPlaceBottomSheet.value = true;
       showPlaceListBottomSheet.value = false;
-      showResearchButton.value = false;
+      showRefreshButton.value = false;
       showMapButton.value = false;
 
       if (moveCamera) {
@@ -385,7 +394,7 @@ class MapMainPageController extends GetxController
     // Map<String, int?> mapSize = await _mapController.getSize();
 
     double searchDistanceMeter =
-        (WcWidth - 200) * await _mapController.getMeterPerPx();
+        (WcWidth) * await _mapController.getMeterPerPx();
     print(searchDistanceMeter);
     double searchDistanceKilometer = (searchDistanceMeter / 1000);
     if (searchDistanceKilometer >= _maxSearchDistanceKilometer) {
@@ -425,7 +434,7 @@ class MapMainPageController extends GetxController
       change(placePreviewList, status: const PageStatus.success());
       final _mapController = await mapController.future;
       _mapController
-          .moveCamera(CameraUpdate.fitBounds(latLngBounds!, padding: 85));
+          .moveCamera(CameraUpdate.fitBounds(latLngBounds!, padding: 90));
     }
   }
 
@@ -693,15 +702,17 @@ class MapMainPageController extends GetxController
   }
 
   @override
-  void deleteReview(ReviewDetailUIModel deletedReview) {
-    int index = placePreviewList
-        .indexWhere((element) => element.placeId == deletedReview.placeId);
+  void deleteReview(String reviewId, String placeId) {
+    int index =
+        placePreviewList.indexWhere((element) => element.placeId == placeId);
 
-    if (placePreviewList[index].totalReviews == 1) {
-      placePreviewList[index].mostVisitedDiseaseType = DiseaseType.undefined;
+    if (index > 0) {
+      if (placePreviewList[index].totalReviews == 1) {
+        placePreviewList[index].mostVisitedDiseaseType = DiseaseType.undefined;
+      }
+      placePreviewList[index].totalReviews -= 0;
+      placePreviewList.refresh();
+      change(placePreviewList, status: PageStatus.success());
     }
-    placePreviewList[index].totalReviews -= 0;
-    placePreviewList.refresh();
-    change(placePreviewList, status: PageStatus.success());
   }
 }

@@ -88,7 +88,7 @@ class MapDetailPage extends StatelessWidget {
             children: [
               Container(
                 width: WcWidth,
-                height: 220,
+                height: 190,
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         image: _controller
@@ -163,6 +163,8 @@ class MapDetailPage extends StatelessWidget {
                 SizedBox(
                   // width: 300,
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Obx(
                         () => Column(
@@ -287,7 +289,7 @@ class MapDetailPage extends StatelessWidget {
                       ),
                       Container(
                         width: WcWidth - 40,
-                        padding: EdgeInsets.only(top: 4),
+                        padding: EdgeInsets.only(top: 7),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -315,8 +317,11 @@ class MapDetailPage extends StatelessWidget {
                                                   .openDetailAddress.value)
                                               ? true
                                               : false,
-                                          overflow: TextOverflow.clip,
-                                          style: TextStyle(height: 1.2),
+                                          overflow: TextOverflow.fade,
+                                          style: TextStyle(
+                                              height: 1.2,
+                                              fontFamily:
+                                                  WcFontFamily.notoSans),
                                         )),
                                     Padding(
                                         padding: const EdgeInsets.only(
@@ -366,7 +371,8 @@ class MapDetailPage extends StatelessWidget {
                           }
                         },
                         child: SizedBox(
-                          height: 30,
+                          height: 35,
+                          width: 200,
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
@@ -378,7 +384,9 @@ class MapDetailPage extends StatelessWidget {
                                 (_controller.placeDetail.value.phone.isEmpty)
                                     ? '정보없음'
                                     : '${_controller.placeDetail.value.phone}',
-                                style: TextStyle(height: 1.3),
+                                style: TextStyle(
+                                    height: 1.3,
+                                    fontFamily: WcFontFamily.notoSans),
                               ),
                             ],
                           ),
@@ -717,17 +725,27 @@ class MapDetailPage extends StatelessWidget {
                                               Expanded(
                                                   child: Padding(
                                                 padding: const EdgeInsets.only(
-                                                    right: 20),
+                                                    right: 30),
                                                 child: Text(
                                                   item.diseaseName,
                                                   softWrap: false,
+                                                  overflow: TextOverflow.fade,
+                                                  style: TextStyle(
+                                                      fontFamily:
+                                                          WcFontFamily.notoSans,
+                                                      fontSize: 14.5,
+                                                      height: 1),
                                                 ),
                                               )),
                                               Text(
-                                                item.diseasePercent.toString() +
+                                                item.diseasePercent
+                                                        .roundToDouble()
+                                                        .toString() +
                                                     '%',
                                                 style: GoogleFonts.workSans(
                                                     fontSize: 15,
+                                                    height: 1,
+                                                    color: WcColors.grey160,
                                                     fontWeight:
                                                         FontWeight.w500),
                                               ),
@@ -919,8 +937,14 @@ class MapDetailPage extends StatelessWidget {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.center,
                                           children: [
-                                            Text(reviewItem
-                                                .displayText(reviewRate)),
+                                            Text(
+                                              reviewItem
+                                                  .displayText(reviewRate),
+                                              style: TextStyle(
+                                                  fontFamily:
+                                                      WcFontFamily.notoSans,
+                                                  fontSize: 14.6),
+                                            ),
                                             Container(
                                               height: 22,
                                               width: 45,

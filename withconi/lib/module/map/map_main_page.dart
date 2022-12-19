@@ -1,4 +1,5 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_naver_map/flutter_naver_map.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:withconi/data/enums/enum.dart';
@@ -145,12 +146,14 @@ class MapMainPage extends StatelessWidget {
             ),
             Obx(
               () => Visibility(
-                  visible: (_controller.showResearchButton.value ||
+                  visible: (_controller.showRefreshButton.value ||
                       _controller.status == const PageStatus.init()),
                   child: Positioned(
                     top: WcSafePaddingTop + 6,
                     child: SearchRefreshButton(
-                      onTap: _controller.onSearchRefreshTap,
+                      onTap: () async {
+                        await _controller.onSearchRefreshTap();
+                      },
                     ),
                   )),
             ),
@@ -159,17 +162,17 @@ class MapMainPage extends StatelessWidget {
                 visible: (_controller.showPlaceListBottomSheet.value),
                 child: DraggableScrollableSheet(
                     initialChildSize: 225 / WcHeight,
-                    minChildSize: 90 / WcHeight,
+                    minChildSize: 88 / WcHeight,
                     maxChildSize: 1,
                     controller: _controller.placeListDragController,
                     builder: (BuildContext context, scrollController) {
                       _controller.placeListScrollController = scrollController;
-                      _controller.addPlaceListScrollListener();
+
                       return MyLazyLoadScrollView(
                         isLoading: (_controller.status != PageStatus.success()),
                         onEndOfPage: _controller.loadNextPage,
                         child: SingleChildScrollView(
-                          // physics: ClampingScrollPhysics(),
+                          // physics: NeverScrollableScrollPhysics(),
                           controller: _controller.placeListScrollController,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
@@ -205,7 +208,7 @@ class MapMainPage extends StatelessWidget {
                                                 Obx(
                                                   () => CustomDropdownButton(
                                                       minButtonWidth: 120,
-                                                      maxButtonWidth: 133,
+                                                      maxButtonWidth: 140,
                                                       dropdownList: DiseaseType
                                                           .values
                                                           .where((e) =>
@@ -238,7 +241,7 @@ class MapMainPage extends StatelessWidget {
                                                 Obx(
                                                   () => CustomDropdownButton(
                                                     minButtonWidth: 115,
-                                                    maxButtonWidth: 133,
+                                                    maxButtonWidth: 140,
                                                     dropdownList: Species.values
                                                         .map((species) =>
                                                             DropdownDataUIModel(
@@ -298,7 +301,7 @@ class MapMainPage extends StatelessWidget {
                                                 right: 5.0),
                                             child: CustomDropdownButton(
                                               minButtonWidth: 130,
-                                              maxButtonWidth: 147,
+                                              maxButtonWidth: 160,
                                               selectedButtonColor:
                                                   WcColors.white,
                                               selectedTextColor: WcColors.black,
@@ -334,7 +337,7 @@ class MapMainPage extends StatelessWidget {
                                             padding: const EdgeInsets.only(
                                                 right: 8.0),
                                             child: CustomDropdownButton(
-                                              minButtonWidth: 75,
+                                              minButtonWidth: 80,
                                               maxButtonWidth: 140,
                                               buttonPadding:
                                                   const EdgeInsets.only(
@@ -512,18 +515,7 @@ class MyNaverMapView extends StatelessWidget {
       width: WcWidth,
       height: WcHeight,
       child: NaverMap(
-        circles: [
-          CircleOverlay(
-              maxZoom: 14.8,
-              minZoom: 13,
-              onTap: (overlayId) {
-                onMapTap!(null);
-              },
-              color: Color.fromARGB(255, 16, 124, 255).withOpacity(0.1),
-              center: baseSearchLocation,
-              overlayId: 'overlay',
-              radius: searchAreaCircleRadius)
-        ],
+        useSurface: kReleaseMode,
         initialCameraPosition: initialCameraPosition,
         onMapCreated: onMapCreated,
         mapType: MapType.Basic,
@@ -531,7 +523,7 @@ class MyNaverMapView extends StatelessWidget {
         initLocationTrackingMode: LocationTrackingMode.Follow,
         markers: placeMarkers ?? [],
         onMapTap: onMapTap,
-        logoClickEnabled: true,
+        logoClickEnabled: false,
         onCameraChange: onCameraChange,
       ),
     );
@@ -727,7 +719,7 @@ class OpeningStatusButton extends StatelessWidget {
       },
       child: Container(
         height: 35,
-        width: 75,
+        width: 78,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
             color: (openingStatus == OpeningStatus.open)
@@ -796,9 +788,9 @@ class CustomDropdownButton<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (selectedValue.value == null) {
-      buttonWidth = hintText.length * 15;
+      buttonWidth = hintText.length * 16;
     } else {
-      buttonWidth = selectedValue.text.length * 15;
+      buttonWidth = selectedValue.text.length * 16.5;
     }
     if (buttonWidth < minButtonWidth) {
       buttonWidth = minButtonWidth;
@@ -941,15 +933,15 @@ class PlacePreviewListTile extends StatelessWidget {
       },
       child: Container(
         padding: (_isFirstList)
-            ? EdgeInsets.fromLTRB(15, 19, 15, 16)
-            : EdgeInsets.fromLTRB(15, 19, 15, 16),
+            ? EdgeInsets.fromLTRB(15, 20, 15, 18)
+            : EdgeInsets.fromLTRB(15, 20, 15, 18),
         decoration: BoxDecoration(
             color: WcColors.white,
             border: Border(
                 bottom: BorderSide(
               color: (_hasDivider) ? WcColors.grey60 : Colors.transparent,
             ))),
-        height: 120,
+        height: 122,
         width: WcWidth,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -996,6 +988,9 @@ class PlacePreviewListTile extends StatelessWidget {
                       ],
                     ),
                   ),
+                  SizedBox(
+                    height: 4,
+                  ),
                   Expanded(
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -1016,7 +1011,7 @@ class PlacePreviewListTile extends StatelessWidget {
                         Text(_place.mostVisitedDiseaseType.displayName,
                             style: TextStyle(
                                 fontFamily: WcFontFamily.notoSans,
-                                fontSize: 14.5,
+                                fontSize: 14.3,
                                 height: 1.2,
                                 color: WcColors.grey200,
                                 fontWeight: FontWeight.w600)),
@@ -1027,9 +1022,9 @@ class PlacePreviewListTile extends StatelessWidget {
                                 : ' 질환 방문많음',
                             style: TextStyle(
                                 fontFamily: WcFontFamily.notoSans,
-                                fontSize: 14.5,
+                                fontSize: 14.3,
                                 height: 1.2,
-                                color: WcColors.grey180,
+                                color: WcColors.grey160,
                                 fontWeight: FontWeight.w500)),
                         SizedBox(
                           width: 2,
@@ -1044,7 +1039,7 @@ class PlacePreviewListTile extends StatelessWidget {
                         Text('리뷰',
                             style: TextStyle(
                                 fontFamily: WcFontFamily.notoSans,
-                                fontSize: 14.5,
+                                fontSize: 14.3,
                                 height: 1.2,
                                 color: WcColors.grey160,
                                 fontWeight: FontWeight.w500)),
@@ -1053,7 +1048,7 @@ class PlacePreviewListTile extends StatelessWidget {
                         ),
                         Text(_place.totalReviews.toString(),
                             style: GoogleFonts.openSans(
-                                fontSize: 14.5,
+                                fontSize: 14.3,
                                 height: 1.2,
                                 color: WcColors.grey180,
                                 fontWeight: FontWeight.w700)),

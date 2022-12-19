@@ -305,6 +305,7 @@ class MapNewReviewController extends GetxController {
     List<ImageItem>? imageAdded =
         await Get.toNamed(Routes.MAP_IMAGE_VERIFICATION, arguments: {
       'selectedImageList': selectedImageList.toList(),
+      'editable': true,
     }) as List<ImageItem>?;
     if (imageAdded != null) {
       selectedImageList.assignAll(imageAdded.toList());

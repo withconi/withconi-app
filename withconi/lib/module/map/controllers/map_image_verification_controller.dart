@@ -23,11 +23,14 @@ import '../../page_status.dart';
 import '../../ui_model/place_ui_model/abstract_class/place_preview_ui.dart';
 
 class MapImageVerificationController extends GetxController with WcStateMixin {
-  MapImageVerificationController(this._selectedImageList);
+  MapImageVerificationController(this._selectedImageList,
+      [this.editable = true]);
   final int maxImageNum = 2;
 
   RxList<ImageItem> selectedPhotoList = RxList<ImageItem>();
   late final List<ImageItem> _selectedImageList;
+
+  late final bool editable;
 
   @override
   onInit() {
@@ -94,6 +97,8 @@ class MapImageVerificationController extends GetxController with WcStateMixin {
   }
 
   onFinishButtonTap() {
-    Get.back(result: selectedPhotoList.toList());
+    if (editable) {
+      Get.back(result: selectedPhotoList.toList());
+    }
   }
 }

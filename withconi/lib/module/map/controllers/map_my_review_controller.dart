@@ -1,13 +1,9 @@
 import 'package:withconi/data/enums/enum.dart';
-import 'package:withconi/module/auth/auth_controller.dart';
-
+import 'package:withconi/global_widgets/dialog/selection_dialog.dart';
 import 'package:withconi/data/repository/map_repository.dart';
-import 'package:withconi/module/ui_model/latlng_ui_model.dart';
 import 'package:withconi/module/ui_model/review_detail_ui_model.dart';
 import 'package:withconi/module/ui_model/review_preview_ui_model.dart';
-import 'package:withconi/module/ui_model/ui_model_abstract/review_ui_class.dart';
 import 'package:withconi/global_widgets/loading/loading_overlay.dart';
-import '../../../data/model/dto/response_dto/review_response/review_detail_response_dto.dart';
 import '../../../data/model/dto/response_dto/review_response/review_list_response_dto.dart';
 import '../../../global_widgets/photo_gallary/image_item.dart';
 import '../../../import_basic.dart';
@@ -22,7 +18,7 @@ class MapMyReviewController extends GetxController
   final MapRepository _mapRepository;
   final AbstractMapReviewUpdate? _mapUpdateAbstract;
 
-  RxList<ReviewPreviewUIModel> myReviewList = <ReviewPreviewUIModel>[].obs;
+  RxList<ReviewDetailUIModel> myReviewList = <ReviewDetailUIModel>[].obs;
   RxInt totalReviewNum = 0.obs;
 
   final Rx<PaginationFilter> _paginationFilter = PaginationFilter(
@@ -62,16 +58,22 @@ class MapMyReviewController extends GetxController
   }
 
   goToPhotoVerificationPage(int index) async {
-    var imageAdded = await Get.toNamed(
-      Routes.MAP_IMAGE_VERIFICATION,
-      arguments: {'selectedImageList': myReviewList[index].reviewImageList},
-    ) as List<ImageItem>?;
-    if (imageAdded != null) {
-      myReviewList[index].reviewImageList.assignAll(imageAdded.toList());
-      myReviewList[index].isPhotoReview =
-          myReviewList[index].reviewImageList.isNotEmpty;
-      myReviewList.refresh();
+    if (myReviewList[index].isPhotoReview) {
+      Get.toNamed(
+        Routes.MAP_IMAGE_VERIFICATION,
+        arguments: {
+          'selectedImageList': myReviewList[index].reviewImageList,
+          'editable': false
+        },
+      );
     }
+
+    // if (imageAdded != null) {
+    //   myReviewList[index].reviewImageList.assignAll(imageAdded.toList());
+    //   myReviewList[index].isPhotoReview =
+    //       myReviewList[index].reviewImageList.isNotEmpty;
+    //   myReviewList.refresh();
+    // }
   }
 
   Future<void> _getMyReviewList() async {
@@ -90,8 +92,8 @@ class MapMyReviewController extends GetxController
     });
   }
 
-  List<ReviewPreviewUIModel> _parseReviewListDto(ReviewListResponseDTO dto) {
-    return dto.list.map((e) => ReviewPreviewUIModel.fromDTO(e)).toList();
+  List<ReviewDetailUIModel> _parseReviewListDto(ReviewListResponseDTO dto) {
+    return dto.list.map((e) => ReviewDetailUIModel.fromDTO(e)).toList();
   }
 
   resetPage() {
@@ -114,16 +116,50 @@ class MapMyReviewController extends GetxController
     }
   }
 
-  _onDeleteReviewTap(String reviewId) {}
-
-  goToEditReviewPage(int reviewIndex) {
-    Get.toNamed(Routes.MAP_EDIT_MY_REVIEW,
-        arguments: {'reviewId': myReviewList[reviewIndex].reviewId});
+  onMoreTap(ReviewDetailUIModel review, MoreBottomSheetOption? option) async {
+    if (option == MoreBottomSheetOption.delete) {
+      var confirm = await showSelectionDialog(
+          confirmText: '삭제',
+          cancleText: '취소',
+          title: '리뷰를 삭제할까요?',
+          subtitle: '삭제된 리뷰는 복구할 수 없어요');
+      if (confirm == true) {
+        _onDeleteReviewTap(review);
+      }
+    }
   }
+
+  onReviewTap(int reviewIndex) {
+    Get.toNamed(Routes.MAP_REVIEW_DETAIL,
+        arguments: {'reviewDetail': myReviewList[reviewIndex]});
+  }
+
+  _onDeleteReviewTap(ReviewDetailUIModel review) async {
+    showLoading(() async {
+      var deleteEither = await _mapRepository.deleteMyReview(
+          reviewId: review.reviewId, placeId: review.placeId);
+
+      bool result = deleteEither.fold((fail) {
+        FailureInterpreter().mapFailureToSnackbar(fail, '_onDeleteReviewTap');
+        return false;
+      }, (succeed) {
+        return succeed;
+      });
+
+      if (result) {
+        deleteReview(review.reviewId, review.placeId);
+      }
+    });
+  }
+
+  // goToEditReviewPage(int reviewIndex) {
+  //   Get.toNamed(Routes.MAP_REVIEW_DETAIL,
+  //       arguments: {'reviewDetail': myReviewList[reviewIndex]});
+  // }
 
   @override
   void addReview(ReviewDetailUIModel newReview) {
-    var newReviewPreview = ReviewPreviewUIModel(
+    var newReviewPreview = ReviewDetailUIModel(
         diseaseTypes: newReview.diseaseTypes,
         reviewItems: newReview.reviewItems,
         reviewRate: newReview.reviewRate,
@@ -132,7 +168,11 @@ class MapMyReviewController extends GetxController
         reviewImageList: newReview.reviewImageList,
         isPhotoReview: newReview.reviewImageList.isNotEmpty,
         placeName: newReview.placeName,
-        placeAddress: newReview.placeAddress);
+        placeAddress: newReview.placeAddress,
+        conimals: newReview.conimals,
+        diseaseList: newReview.diseaseList,
+        placeThumbnail: newReview.placeThumbnail,
+        reviewDesc: '');
 
     myReviewList.insert(0, newReviewPreview);
     totalReviewNum.value += 1;
@@ -144,15 +184,15 @@ class MapMyReviewController extends GetxController
   }
 
   @override
-  void deleteReview(ReviewDetailUIModel deletedReview) {
-    int index = myReviewList
-        .indexWhere((element) => element.reviewId == deletedReview.reviewId);
+  void deleteReview(String reviewId, String placeId) {
+    int index =
+        myReviewList.indexWhere((element) => element.reviewId == reviewId);
     myReviewList.removeAt(index);
     totalReviewNum.value -= 1;
     myReviewList.refresh();
 
     if (_mapUpdateAbstract != null) {
-      _mapUpdateAbstract!.deleteReview(deletedReview);
+      _mapUpdateAbstract!.deleteReview(reviewId, placeId);
     }
   }
 }

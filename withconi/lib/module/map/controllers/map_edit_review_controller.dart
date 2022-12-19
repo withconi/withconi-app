@@ -150,8 +150,13 @@ class MapEditReviewController extends GetxController {
   }
 
   searchDisease() async {
-    List<DiseaseUIModel>? result = await Get.toNamed(Routes.DISEASE_SEARCH,
-        arguments: selectedDiseaseList.toList()) as List<DiseaseUIModel>?;
+    List<DiseaseUIModel>? result = await Get.toNamed(
+      Routes.DISEASE_SEARCH,
+      arguments: {
+        'selectedDiseaseList': selectedDiseaseList.toList(),
+        'maxDisease': 3
+      },
+    ) as List<DiseaseUIModel>?;
 
     if (result != null) {
       selectedDiseaseList.assignAll(result);

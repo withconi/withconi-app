@@ -42,7 +42,8 @@ class MapBookmarkPage extends StatelessWidget {
                           EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                       child: Text(
                         '즐겨찾기 한 장소',
-                        style: GoogleFonts.notoSans(
+                        style: TextStyle(
+                            fontFamily: WcFontFamily.notoSans,
                             color: WcColors.black,
                             fontSize: 24,
                             fontWeight: FontWeight.bold,

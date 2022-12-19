@@ -152,7 +152,7 @@ class SetLocationButton extends StatelessWidget {
       },
       child: Container(
         alignment: Alignment.center,
-        width: (pageStatus == PageStatus.init()) ? WcWidth - 40 : 205,
+        width: (pageStatus == PageStatus.init()) ? WcWidth - 40 : 210,
         height: 53,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

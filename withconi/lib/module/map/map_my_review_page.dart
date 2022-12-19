@@ -4,7 +4,9 @@ import 'package:withconi/data/enums/enum.dart';
 import 'package:withconi/module/community/controllers/community_my_post_controller.dart';
 import 'package:withconi/module/map/controllers/map_my_review_controller.dart';
 import 'package:withconi/import_basic.dart';
+import 'package:withconi/module/ui_model/review_detail_ui_model.dart';
 import 'package:withconi/module/ui_model/review_preview_ui_model.dart';
+import '../community/widgets/more_tap_bottom_sheet.dart';
 import '../theme/text_theme.dart';
 import '../../global_widgets/appbar/appbar.dart';
 import '../../global_widgets/button/icon_button.dart';
@@ -108,9 +110,12 @@ class MapMyReviewPage extends StatelessWidget {
                       shrinkWrap: true,
                       itemBuilder: ((context, index) {
                         return MyReviewListTile(
+                          index: index,
+                          onMoreTap: _controller.onMoreTap,
                           onTapVerificationButton: () =>
                               _controller.goToPhotoVerificationPage(index),
                           review: _controller.myReviewList[index],
+                          onTapReview: _controller.onReviewTap,
                         );
                       })),
                 )
@@ -125,17 +130,25 @@ class MapMyReviewPage extends StatelessWidget {
 
 class MyReviewListTile extends StatelessWidget {
   MyReviewListTile(
-      {Key? key, required this.review, required this.onTapVerificationButton})
+      {Key? key,
+      this.onMoreTap,
+      required this.index,
+      required this.onTapReview,
+      required this.review,
+      required this.onTapVerificationButton})
       : super(key: key);
 
-  ReviewPreviewUIModel review;
+  ReviewDetailUIModel review;
   void Function() onTapVerificationButton;
+  void Function(ReviewDetailUIModel, MoreBottomSheetOption?)? onMoreTap;
+  void Function(int) onTapReview;
+  int index;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        print('print');
+        onTapReview.call(index);
       },
       child: Container(
         alignment: Alignment.center,
@@ -254,8 +267,13 @@ class MyReviewListTile extends StatelessWidget {
                   iconSrc: 'assets/icons/dots.svg',
                   iconHeight: 23,
                   inactiveIconColor: WcColors.grey100,
-                  onTap: () {
-                    print('dots');
+                  onTap: () async {
+                    MoreBottomSheetOption? selectedOption =
+                        await showMoreBottomSheet(
+                            authorId: '',
+                            authorName: '',
+                            bottomSheetFor: BottomSheetFor.mapReview);
+                    onMoreTap!.call(review, selectedOption);
                   },
                   touchWidth: 50,
                   touchHeight: 30,

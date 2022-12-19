@@ -4,7 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:fl_chart/fl_chart.dart';
 
 import 'package:withconi/core/error_handling/failure_ui_interpreter.dart';
-import 'package:withconi/data/model/dto/request_dto/place_request/get_review_history_request.dart';
+import 'package:withconi/data/model/dto/request_dto/map_request/get_review_history_request.dart';
 import 'package:withconi/data/model/dto/response_dto/place_response/review_history_response_dto.dart';
 
 import 'package:withconi/data/repository/map_repository.dart';
@@ -13,13 +13,9 @@ import 'package:withconi/module/map/abstract/map_update_abstract.dart';
 import 'package:withconi/module/ui_model/chart_data_ui_model.dart';
 import 'package:withconi/global_widgets/loading/loading_overlay.dart';
 import 'package:withconi/module/ui_model/place_ui_model/abstract_class/place_detail_ui.dart';
-import 'package:withconi/module/ui_model/place_ui_model/abstract_class/place_preview_ui.dart';
 import 'package:withconi/module/ui_model/place_ui_model/hospital_detail_ui_model.dart';
 import 'package:withconi/module/ui_model/place_ui_model/pharmacy_detail_ui_model.dart';
-import 'package:withconi/module/ui_model/place_ui_model/pharmacy_preview_ui_model.dart';
 import 'package:withconi/module/ui_model/review_detail_ui_model.dart';
-import 'package:withconi/module/ui_model/review_history_ui_model.dart';
-
 import '../../../core/error_handling/failures.dart';
 import '../../../data/enums/enum.dart';
 import '../../../data/model/dto/response_dto/place_response/place_detail_response_dto.dart';
@@ -178,7 +174,7 @@ class MapDetailPageController extends GetxController
   onOnlyVerifiedReviewChanged(bool _onlyPhotoReview) async {
     onlyPhotoReview.value = _onlyPhotoReview;
     await showLoading(() => getPlaceReview(
-        locId: placeDetail.value.address,
+        locId: placeDetail.value.placeId,
         onlyPhotoReview: onlyPhotoReview.value));
   }
 
@@ -240,12 +236,12 @@ class MapDetailPageController extends GetxController
   }
 
   @override
-  Future<void> deleteReview(ReviewDetailUIModel deletedReview) async {
-    if (placeId == deletedReview.placeId) {
+  Future<void> deleteReview(String reviewId, String placeId) async {
+    if (_placeId == placeId) {
       await getPlaceDetailById(placeId: _placeId);
     }
     if (_mapReviewUpdateAbstract != null) {
-      _mapReviewUpdateAbstract!.deleteReview(deletedReview);
+      _mapReviewUpdateAbstract!.deleteReview(reviewId, placeId);
     }
   }
 }
