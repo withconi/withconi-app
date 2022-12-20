@@ -58,7 +58,7 @@ class DiseaseSeletionButton extends StatelessWidget {
               width: 6,
             ),
             Container(
-              constraints: BoxConstraints(maxWidth: 65, minWidth: 65),
+              constraints: BoxConstraints(maxWidth: 70, minWidth: 70),
               // width: 77,
               child: Text(
                 disease.diseaseType.displayName,

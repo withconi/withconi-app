@@ -2,6 +2,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../data/enums/enum.dart';
 import '../../../import_basic.dart';
+import '../../theme/text_theme.dart';
 
 class DiseaseItemBox extends StatelessWidget {
   DiseaseItemBox({
@@ -20,7 +21,7 @@ class DiseaseItemBox extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
         color: WcColors.blue100,
       ),
-      height: 34,
+      height: 36,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -31,11 +32,14 @@ class DiseaseItemBox extends StatelessWidget {
             child: ConstrainedBox(
               constraints:
                   // BoxConstraints(maxWidth: (WcWidth - 40 - (8 * 3)) / 3),
-                  BoxConstraints(maxWidth: WcWidth / 3),
+                  BoxConstraints(maxWidth: WcWidth / 3.1),
               child: Text(
                 diseaseName,
-                style:
-                    GoogleFonts.notoSans(fontSize: 13, color: WcColors.white),
+                style: TextStyle(
+                    height: 1.2,
+                    fontFamily: WcFontFamily.notoSans,
+                    fontSize: 13,
+                    color: WcColors.white),
                 overflow: TextOverflow.fade,
                 softWrap: false,
               ),
@@ -43,12 +47,14 @@ class DiseaseItemBox extends StatelessWidget {
           ),
           GestureDetector(
             onTap: onTap,
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(6, 8, 8, 8),
+            child: Container(
+              color: Colors.transparent,
+              padding: const EdgeInsets.only(
+                  left: 0, right: 3, top: 11.5, bottom: 11.5),
               child: SvgPicture.asset(
                 'assets/icons/cancle.svg',
-                width: 12,
-                height: 12,
+                // width: 12,
+                // height: 12,
                 color: WcColors.white,
               ),
             ),
