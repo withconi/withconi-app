@@ -1,7 +1,10 @@
 import 'package:withconi/import_basic.dart';
 import 'package:withconi/module/common/breed_search_page.dart';
 import 'package:withconi/module/common/change_password_page.dart';
+import 'package:withconi/module/setting/app_setting/developer_info_page.dart';
+import 'package:withconi/module/setting/app_setting/inquiry_page.dart';
 import 'package:withconi/module/map/map_edit_review_page.dart';
+import 'package:withconi/module/map/map_review_detail_page.dart';
 import 'package:withconi/routes/bindings.dart';
 import 'package:withconi/module/common/add_conimal_page.dart';
 import 'package:withconi/module/common/conimal_manage_page.dart';
@@ -52,6 +55,7 @@ import 'middlewares/change_password_middleware.dart';
 class WcPages {
   static final pages = [
     GetPage(
+        popGesture: false,
         name: Routes.NAVIGATION,
         page: () => const NavigationPage(),
         // binding: NavigationBinding(),
@@ -69,6 +73,7 @@ class WcPages {
               name: Routes.HOME,
               page: () => const HomePage(),
               binding: HomeBinding(),
+              popGesture: false,
               transition: Transition.noTransition),
           GetPage(
             name: Routes.MAP_MAIN,
@@ -257,6 +262,11 @@ class WcPages {
       binding: MapEditReviewBinding(),
     ),
     GetPage(
+      name: Routes.MAP_REVIEW_DETAIL,
+      page: () => const MapReviewDetailPage(),
+      binding: MapReviewDetailBinding(),
+    ),
+    GetPage(
       name: Routes.MAP_NEW_REVIEW,
       page: () => const MapNewReviewPage(),
       binding: MapNewReviewBinding(),
@@ -296,6 +306,14 @@ class WcPages {
       name: Routes.DIAGNOSIS_RESULT,
       page: () => const DiagnosisResultPage(),
       binding: DiagnosisResultBinding(),
+    ),
+    GetPage(
+      name: Routes.REQUEST,
+      page: () => const InquiryPage(),
+    ),
+    GetPage(
+      name: Routes.DEVELOPER_INFO,
+      page: () => const DeveloperInfoPage(),
     ),
   ];
 }

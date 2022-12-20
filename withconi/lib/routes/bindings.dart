@@ -3,6 +3,7 @@ import 'package:withconi/data/provider/platform_provider/platform_auth_api.dart'
 import 'package:withconi/data/provider/remote_provider/app_config_api.dart';
 import 'package:withconi/data/provider/remote_provider/community_api.dart';
 import 'package:withconi/data/provider/remote_provider/conimal_api.dart';
+import 'package:withconi/data/provider/remote_provider/diagnosis_api.dart';
 import 'package:withconi/data/provider/remote_provider/disease_api.dart';
 import 'package:withconi/data/provider/remote_provider/image_api.dart';
 import 'package:withconi/data/provider/remote_provider/map_api.dart';
@@ -12,6 +13,7 @@ import 'package:withconi/data/provider/remote_provider/user_api.dart';
 import 'package:withconi/data/repository/app_setting_repository.dart';
 import 'package:withconi/data/repository/community_repository.dart';
 import 'package:withconi/data/repository/conimal_repository.dart';
+import 'package:withconi/data/repository/diagnosis_repository.dart';
 import 'package:withconi/data/repository/disease_repository.dart';
 import 'package:withconi/data/repository/fcm_repository.dart';
 import 'package:withconi/data/repository/local_notification_repository.dart';
@@ -66,6 +68,7 @@ import '../module/home/home_controller.dart';
 import '../module/map/controllers/map_location_permission_controller.dart';
 import '../module/map/controllers/map_main_page_controller.dart';
 import '../module/map/controllers/map_my_review_controller.dart';
+import '../module/map/controllers/map_review_detail_controller.dart';
 import '../module/signup/controllers/signup_conimal_manage_controller.dart';
 
 class InitialBinding implements Bindings {
@@ -131,7 +134,7 @@ class FcmBinding implements Bindings {
   }
 
   Future<void> closeBinding() async {
-    await FcmController.to.updateFcmTokenDB(null);
+    await FcmController.to.deleteFcmToken();
     await Get.delete<FcmController>(force: true);
     Get.delete<LocalNotificationService>(force: true);
     Get.delete<FcmRepository>(force: true);
@@ -481,7 +484,8 @@ class MapImageVerificationBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<MapImageVerificationController>(() =>
-        MapImageVerificationController(Get.arguments['selectedImageList']));
+        MapImageVerificationController(
+            Get.arguments['selectedImageList'], Get.arguments['editable']));
   }
 }
 
@@ -490,7 +494,7 @@ class DictionaryDetailPageBinding implements Bindings {
   void dependencies() {
     Get.lazyPut<DictionaryDetailController>(
       () => DictionaryDetailController(
-          Get.find(), Get.find(), Get.arguments['diseaseCode']),
+          Get.find(), Get.find(), Get.arguments['diseaseId']),
     );
   }
 }
@@ -596,6 +600,17 @@ class MapEditReviewBinding implements Bindings {
   }
 }
 
+class MapReviewDetailBinding implements Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut<MapReviewDetailController>(
+      () => MapReviewDetailController(
+        Get.arguments['reviewDetail'],
+      ),
+    );
+  }
+}
+
 class MapBookmarkBinding implements Bindings {
   @override
   void dependencies() {
@@ -630,9 +645,9 @@ class MapLocationPermissionBinding implements Bindings {
 class DiagnosisStep1Binding implements Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<DiagnosisStep1Controller>(
-      () => DiagnosisStep1Controller(),
-    );
+    Get.lazyPut(() => DiagnosisAPI());
+    Get.lazyPut(() => DiagnosisRepository(Get.find()));
+    Get.lazyPut(() => DiagnosisStep1Controller(Get.find()));
   }
 }
 
@@ -640,7 +655,7 @@ class DiagnosisStep2Binding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<DiagnosisStep2Controller>(
-      () => DiagnosisStep2Controller(),
+      () => DiagnosisStep2Controller(Get.find()),
     );
   }
 }
@@ -649,7 +664,8 @@ class DiagnosisSymptomBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<DiagnosisSymptomController>(
-      () => DiagnosisSymptomController(Get.arguments['symptomGroup']),
+      () => DiagnosisSymptomController(Get.find(), Get.arguments['symptom'],
+          Get.arguments['symptomList'], Get.arguments['selectedSymptomList']),
     );
   }
 }
@@ -658,7 +674,7 @@ class DiagnosisResultBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<DiagnosisResultController>(
-      () => DiagnosisResultController(),
+      () => DiagnosisResultController(Get.find()),
     );
   }
 }
