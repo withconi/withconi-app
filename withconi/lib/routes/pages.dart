@@ -42,6 +42,7 @@ import 'package:withconi/module/start/start_page.dart';
 import 'package:withconi/routes/middlewares/auth_middleware.dart';
 import 'package:withconi/routes/middlewares/map_middleware.dart';
 import 'package:withconi/routes/middlewares/signup_middleware.dart';
+import '../module/common/terms_and_condition_page.dart';
 import '../module/community/pages/community_new_post_page.dart';
 import '../module/community/pages/community_setting_page.dart';
 import '../module/diagnosis/pages/diagnosis_result_page.dart';
@@ -314,6 +315,11 @@ class WcPages {
     GetPage(
       name: Routes.DEVELOPER_INFO,
       page: () => const DeveloperInfoPage(),
+    ),
+    GetPage(
+      name: Routes.TERMS_AND_CONDITION,
+      page: () => const TermsAndConditionPage(),
+      binding: TermsAndConditionBinding(),
     ),
   ];
 }

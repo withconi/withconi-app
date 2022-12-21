@@ -59,5 +59,6 @@ abstract class Routes {
   static const MAP_IMAGE_VERIFICATION = '/map/imageVerification';
   static const MAP_REVIEW_DETAIL = '/map/myreview/detail';
   static const DICTIONARY_SEARCH = '/dictionary/search';
+  static const TERMS_AND_CONDITION = '/termsAndCondition';
   // static const EMAIL_VERIFI_COMPLETE = '/authentication/email_verify_complete';
 }

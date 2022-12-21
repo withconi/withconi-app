@@ -30,6 +30,7 @@ import 'package:withconi/module/common/controllers/edit_conimal_controller.dart'
 import 'package:withconi/module/common/controllers/email_verification_controller.dart';
 import 'package:withconi/module/common/controllers/fcm_controller.dart';
 import 'package:withconi/module/common/controllers/life_cycle_controller.dart';
+import 'package:withconi/module/common/controllers/terms_and_condition_controller.dart';
 import 'package:withconi/module/community/controllers/community_edit_my_post_controller.dart';
 import 'package:withconi/module/community/controllers/community_my_post_controller.dart';
 import 'package:withconi/module/community/controllers/community_new_post_controller.dart';
@@ -287,8 +288,9 @@ class SignUpConimalManageBinding implements Bindings {
     Get.lazyPut<SignUpRepository>(
         () => SignUpRepository(Get.find<SignupAPI>()));
     Get.lazyPut<SignupConimalManageController>(
-      () => SignupConimalManageController(Get.find<SignUpDataStorage>(),
-          Get.find<SignUpRepository>(), Get.find<ImageRepository>()),
+      () => SignupConimalManageController(
+        Get.find<SignUpDataStorage>(),
+      ),
     );
   }
 }
@@ -676,5 +678,13 @@ class DiagnosisResultBinding implements Bindings {
     Get.lazyPut<DiagnosisResultController>(
       () => DiagnosisResultController(Get.find()),
     );
+  }
+}
+
+class TermsAndConditionBinding implements Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut(() => TermsAndConditionController(Get.find<SignUpDataStorage>(),
+        Get.find<SignUpRepository>(), Get.find<ImageRepository>()));
   }
 }
