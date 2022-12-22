@@ -18,7 +18,7 @@
         </intent>
         </queries>
    <application
-        android:label="withconi"
+        android:label="위드코니"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon"
         android:usesCleartextTraffic="true">
