@@ -116,35 +116,91 @@ enum Species {
 }
 
 enum Symptom {
-  @JsonValue("action")
-  action('action', '행동'),
-  @JsonValue("bone")
-  bone('bone', '근골격'),
-  @JsonValue("eat")
-  eat('eat', '섭취'),
-  @JsonValue("eye")
-  eye('eye', '안구'),
-  @JsonValue("lung")
-  lung('lung', '호흡기'),
-  @JsonValue("mouth")
-  mouth('mouth', '구강'),
-  @JsonValue("nerve")
-  nerve('nerve', '신경'),
-  @JsonValue("stomach")
-  stomach('stomach', '복부'),
-  @JsonValue("stomach")
-  skin('skin', '피부'),
-  @JsonValue("urinary")
-  urinary('urinary', '생식비뇨');
+  //   @JsonValue("행동변화")
+//   action('행동변화', '행동'),
+//   @JsonValue("근골격")
+//   bone('근골격', '근골격'),
+//   @JsonValue("섭취이상")
+//   eat('섭취이상', '섭취'),
+//   @JsonValue("눈")
+//   eye('눈', '안구'),
+//   @JsonValue("호흡기")
+//   lung('호흡기', '호흡기'),
+//   @JsonValue("구강")
+//   mouth('구강', '구강'),
+//   @JsonValue("신경이상")
+//   nerve('신경이상', '신경'),
+//   @JsonValue("복부")
+//   stomach('복부', '복부'),
+//   @JsonValue("피부")
+//   skin('피부', '피부'),
+//   @JsonValue("생식비뇨")
+//   urinary('생식비뇨', '생식비뇨');
+  @JsonValue("행동변화")
+  action('행동변화', 'action', '행동'),
+  @JsonValue("근골격")
+  bone('근골격', 'bone', '근골격'),
+  @JsonValue("섭취이상")
+  eat('섭취이상', 'eat', '섭취'),
+  @JsonValue("눈")
+  eye('눈', 'eye', '안구'),
+  @JsonValue("호흡기")
+  lung('호흡기', 'lung', '호흡기'),
+  @JsonValue("구강")
+  mouth("구강", 'mouth', '구강'),
+  @JsonValue("신경이상")
+  nerve("신경이상", 'nerve', '신경'),
+  @JsonValue("복부")
+  stomach("복부", 'stomach', '복부'),
+  @JsonValue("피부")
+  skin("피부", 'skin', '피부'),
+  @JsonValue("생식비뇨")
+  urinary("생식비뇨", 'urinary', '생식비뇨'),
+  @JsonValue("기타")
+  ect("기타", 'ect', '기타');
 
-  const Symptom(this.code, this.displayName);
-  final String code;
+  const Symptom(this.codeKR, this.codeENG, this.displayName);
+  final String codeKR;
+  final String codeENG;
   final String displayName;
 
   factory Symptom.getByCode(String code) {
-    return Symptom.values.firstWhere((value) => value.code == code);
+    return Symptom.values
+        .firstWhere((value) => (value.codeKR == code || value.codeENG == code));
   }
 }
+
+// enum Symptom {
+//   @JsonValue("행동변화")
+//   action('행동변화', '행동'),
+//   @JsonValue("근골격")
+//   bone('근골격', '근골격'),
+//   @JsonValue("섭취이상")
+//   eat('섭취이상', '섭취'),
+//   @JsonValue("눈")
+//   eye('눈', '안구'),
+//   @JsonValue("호흡기")
+//   lung('호흡기', '호흡기'),
+//   @JsonValue("구강")
+//   mouth('구강', '구강'),
+//   @JsonValue("신경이상")
+//   nerve('신경이상', '신경'),
+//   @JsonValue("복부")
+//   stomach('복부', '복부'),
+//   @JsonValue("피부")
+//   skin('피부', '피부'),
+//   @JsonValue("생식비뇨")
+//   urinary('생식비뇨', '생식비뇨');
+
+//   const Symptom(this.codeKR, this.codeENG, this.displayName);
+//   final String codeKR;
+//   final String codeENG;
+//   final String displayName;
+
+//   factory Symptom.getByCode(String code) {
+//     return Symptom.values.firstWhere((value) => value.codeKR == code);
+//   }
+// }
 
 enum DiseasePosibility {
   @JsonValue("high")
@@ -423,6 +479,24 @@ enum ReportItem {
   }
 }
 
+enum InquiryItem {
+  functions('기능 추가 제안', "기능 추가 제안"),
+  wrongInfo('잘못된 정보', '잘못된 정보'),
+  error('서비스 오류', '서비스 오류'),
+  inquiry('문의사항', '문의사항'),
+  ect('기타', '기타');
+
+  const InquiryItem(this.code, this.displayName);
+  final String code;
+  final String displayName;
+
+  factory InquiryItem.getByCode(String code) {
+    return InquiryItem.values.firstWhere(
+      (value) => value.code == code,
+    );
+  }
+}
+
 enum Provider {
   @JsonValue("kakao")
   kakao("kakao", '카카오', SignMethod.sns, 'assets/icons/kakao.png',
@@ -512,7 +586,7 @@ enum DiseaseType {
   infectiousDisease('infectiousDisease', '감염성', WcColors.greenLight), //감염성
   musculoskeletal('musculoskeletal', '근골격', WcColors.grey160), // 근골격
   brainNeurology(
-      'brainNeurology', '뇌/신경정신', Color.fromARGB(255, 12, 190, 255)), // 뇌신경정신질환
+      'brainNeurology', '뇌/신경정신', Color.fromARGB(255, 22, 166, 255)), // 뇌신경정신질환
   dermatology('dermatology', '피부과', WcColors.beidgeLight), //피부과
   otorhinolaryngology(
       'otorhinolaryngology', '이비인후', WcColors.mustardLight), // 이비인후
