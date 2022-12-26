@@ -6,26 +6,20 @@ import '../../../../../core/tools/helpers/infinite_scroll.dart';
 import '../abstract_request/request_dto_abstract.dart';
 import '../abstract_request/request_info_abstract.dart';
 
-class GetDiseaseDetailRequestDTO
-    extends RequestConverter<GetDiseaseDetailRequestDTO, String>
+class GetCommonDiseaseRequestDTO
+    extends RequestConverter<GetCommonDiseaseRequestDTO, Null>
     implements RequestDTO {
-  // String diseaseCode;
-  String diseaseId;
+  @override
+  String get url => HttpUrl.DISEASE_COMMON_LIST;
 
   @override
-  String get url => HttpUrl.DISEASE_DETAIL_GET;
-
-  @override
-  Map<String, dynamic> get dataMap => {
-        "diseaseId": diseaseId,
-      };
+  Map<String, dynamic> get dataMap => {};
 
   @override
   RequestType get requestType => RequestType.GET;
 
   @override
-  bool get requiresToken => false;
+  bool get requiresToken => true;
 
-  GetDiseaseDetailRequestDTO.fromData({required this.diseaseId})
-      : super.fromData(diseaseId);
+  GetCommonDiseaseRequestDTO.fromData() : super.fromData(null);
 }
