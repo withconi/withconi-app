@@ -56,6 +56,9 @@ mixin _$Failure {
     required TResult Function() permissionPermanentlyDeniedFailure,
     required TResult Function() sendVerificationEmailFailure,
     required TResult Function() checkVerificationFailure,
+    required TResult Function() locationDisabledFailure,
+    required TResult Function() galleryAccessDeniedFailure,
+    required TResult Function() cameraAccessDeniedFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -98,6 +101,9 @@ mixin _$Failure {
     TResult? Function()? permissionPermanentlyDeniedFailure,
     TResult? Function()? sendVerificationEmailFailure,
     TResult? Function()? checkVerificationFailure,
+    TResult? Function()? locationDisabledFailure,
+    TResult? Function()? galleryAccessDeniedFailure,
+    TResult? Function()? cameraAccessDeniedFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -140,6 +146,9 @@ mixin _$Failure {
     TResult Function()? permissionPermanentlyDeniedFailure,
     TResult Function()? sendVerificationEmailFailure,
     TResult Function()? checkVerificationFailure,
+    TResult Function()? locationDisabledFailure,
+    TResult Function()? galleryAccessDeniedFailure,
+    TResult Function()? cameraAccessDeniedFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -195,6 +204,12 @@ mixin _$Failure {
         sendVerificationEmailFailure,
     required TResult Function(CheckVerificationFailure value)
         checkVerificationFailure,
+    required TResult Function(LocationDisabledFailure value)
+        locationDisabledFailure,
+    required TResult Function(GalleryAccessDeniedFailure value)
+        galleryAccessDeniedFailure,
+    required TResult Function(CameraAccessDeniedFailure value)
+        cameraAccessDeniedFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -241,6 +256,11 @@ mixin _$Failure {
     TResult? Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult? Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult? Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult? Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -287,6 +307,11 @@ mixin _$Failure {
     TResult Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -385,6 +410,9 @@ class _$VersionCheckFailure extends VersionCheckFailure {
     required TResult Function() permissionPermanentlyDeniedFailure,
     required TResult Function() sendVerificationEmailFailure,
     required TResult Function() checkVerificationFailure,
+    required TResult Function() locationDisabledFailure,
+    required TResult Function() galleryAccessDeniedFailure,
+    required TResult Function() cameraAccessDeniedFailure,
   }) {
     return versionCheckFailure();
   }
@@ -430,6 +458,9 @@ class _$VersionCheckFailure extends VersionCheckFailure {
     TResult? Function()? permissionPermanentlyDeniedFailure,
     TResult? Function()? sendVerificationEmailFailure,
     TResult? Function()? checkVerificationFailure,
+    TResult? Function()? locationDisabledFailure,
+    TResult? Function()? galleryAccessDeniedFailure,
+    TResult? Function()? cameraAccessDeniedFailure,
   }) {
     return versionCheckFailure?.call();
   }
@@ -475,6 +506,9 @@ class _$VersionCheckFailure extends VersionCheckFailure {
     TResult Function()? permissionPermanentlyDeniedFailure,
     TResult Function()? sendVerificationEmailFailure,
     TResult Function()? checkVerificationFailure,
+    TResult Function()? locationDisabledFailure,
+    TResult Function()? galleryAccessDeniedFailure,
+    TResult Function()? cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (versionCheckFailure != null) {
@@ -536,6 +570,12 @@ class _$VersionCheckFailure extends VersionCheckFailure {
         sendVerificationEmailFailure,
     required TResult Function(CheckVerificationFailure value)
         checkVerificationFailure,
+    required TResult Function(LocationDisabledFailure value)
+        locationDisabledFailure,
+    required TResult Function(GalleryAccessDeniedFailure value)
+        galleryAccessDeniedFailure,
+    required TResult Function(CameraAccessDeniedFailure value)
+        cameraAccessDeniedFailure,
   }) {
     return versionCheckFailure(this);
   }
@@ -585,6 +625,11 @@ class _$VersionCheckFailure extends VersionCheckFailure {
     TResult? Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult? Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult? Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult? Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
   }) {
     return versionCheckFailure?.call(this);
   }
@@ -634,6 +679,11 @@ class _$VersionCheckFailure extends VersionCheckFailure {
     TResult Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (versionCheckFailure != null) {
@@ -724,6 +774,9 @@ class _$ServerFailure extends ServerFailure {
     required TResult Function() permissionPermanentlyDeniedFailure,
     required TResult Function() sendVerificationEmailFailure,
     required TResult Function() checkVerificationFailure,
+    required TResult Function() locationDisabledFailure,
+    required TResult Function() galleryAccessDeniedFailure,
+    required TResult Function() cameraAccessDeniedFailure,
   }) {
     return serverFailure();
   }
@@ -769,6 +822,9 @@ class _$ServerFailure extends ServerFailure {
     TResult? Function()? permissionPermanentlyDeniedFailure,
     TResult? Function()? sendVerificationEmailFailure,
     TResult? Function()? checkVerificationFailure,
+    TResult? Function()? locationDisabledFailure,
+    TResult? Function()? galleryAccessDeniedFailure,
+    TResult? Function()? cameraAccessDeniedFailure,
   }) {
     return serverFailure?.call();
   }
@@ -814,6 +870,9 @@ class _$ServerFailure extends ServerFailure {
     TResult Function()? permissionPermanentlyDeniedFailure,
     TResult Function()? sendVerificationEmailFailure,
     TResult Function()? checkVerificationFailure,
+    TResult Function()? locationDisabledFailure,
+    TResult Function()? galleryAccessDeniedFailure,
+    TResult Function()? cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (serverFailure != null) {
@@ -875,6 +934,12 @@ class _$ServerFailure extends ServerFailure {
         sendVerificationEmailFailure,
     required TResult Function(CheckVerificationFailure value)
         checkVerificationFailure,
+    required TResult Function(LocationDisabledFailure value)
+        locationDisabledFailure,
+    required TResult Function(GalleryAccessDeniedFailure value)
+        galleryAccessDeniedFailure,
+    required TResult Function(CameraAccessDeniedFailure value)
+        cameraAccessDeniedFailure,
   }) {
     return serverFailure(this);
   }
@@ -924,6 +989,11 @@ class _$ServerFailure extends ServerFailure {
     TResult? Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult? Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult? Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult? Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
   }) {
     return serverFailure?.call(this);
   }
@@ -973,6 +1043,11 @@ class _$ServerFailure extends ServerFailure {
     TResult Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (serverFailure != null) {
@@ -1063,6 +1138,9 @@ class _$DataParsingFailure extends DataParsingFailure {
     required TResult Function() permissionPermanentlyDeniedFailure,
     required TResult Function() sendVerificationEmailFailure,
     required TResult Function() checkVerificationFailure,
+    required TResult Function() locationDisabledFailure,
+    required TResult Function() galleryAccessDeniedFailure,
+    required TResult Function() cameraAccessDeniedFailure,
   }) {
     return dataParsingFailure();
   }
@@ -1108,6 +1186,9 @@ class _$DataParsingFailure extends DataParsingFailure {
     TResult? Function()? permissionPermanentlyDeniedFailure,
     TResult? Function()? sendVerificationEmailFailure,
     TResult? Function()? checkVerificationFailure,
+    TResult? Function()? locationDisabledFailure,
+    TResult? Function()? galleryAccessDeniedFailure,
+    TResult? Function()? cameraAccessDeniedFailure,
   }) {
     return dataParsingFailure?.call();
   }
@@ -1153,6 +1234,9 @@ class _$DataParsingFailure extends DataParsingFailure {
     TResult Function()? permissionPermanentlyDeniedFailure,
     TResult Function()? sendVerificationEmailFailure,
     TResult Function()? checkVerificationFailure,
+    TResult Function()? locationDisabledFailure,
+    TResult Function()? galleryAccessDeniedFailure,
+    TResult Function()? cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (dataParsingFailure != null) {
@@ -1214,6 +1298,12 @@ class _$DataParsingFailure extends DataParsingFailure {
         sendVerificationEmailFailure,
     required TResult Function(CheckVerificationFailure value)
         checkVerificationFailure,
+    required TResult Function(LocationDisabledFailure value)
+        locationDisabledFailure,
+    required TResult Function(GalleryAccessDeniedFailure value)
+        galleryAccessDeniedFailure,
+    required TResult Function(CameraAccessDeniedFailure value)
+        cameraAccessDeniedFailure,
   }) {
     return dataParsingFailure(this);
   }
@@ -1263,6 +1353,11 @@ class _$DataParsingFailure extends DataParsingFailure {
     TResult? Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult? Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult? Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult? Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
   }) {
     return dataParsingFailure?.call(this);
   }
@@ -1312,6 +1407,11 @@ class _$DataParsingFailure extends DataParsingFailure {
     TResult Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (dataParsingFailure != null) {
@@ -1402,6 +1502,9 @@ class _$NoConnectionFailure extends NoConnectionFailure {
     required TResult Function() permissionPermanentlyDeniedFailure,
     required TResult Function() sendVerificationEmailFailure,
     required TResult Function() checkVerificationFailure,
+    required TResult Function() locationDisabledFailure,
+    required TResult Function() galleryAccessDeniedFailure,
+    required TResult Function() cameraAccessDeniedFailure,
   }) {
     return noConnectionFailure();
   }
@@ -1447,6 +1550,9 @@ class _$NoConnectionFailure extends NoConnectionFailure {
     TResult? Function()? permissionPermanentlyDeniedFailure,
     TResult? Function()? sendVerificationEmailFailure,
     TResult? Function()? checkVerificationFailure,
+    TResult? Function()? locationDisabledFailure,
+    TResult? Function()? galleryAccessDeniedFailure,
+    TResult? Function()? cameraAccessDeniedFailure,
   }) {
     return noConnectionFailure?.call();
   }
@@ -1492,6 +1598,9 @@ class _$NoConnectionFailure extends NoConnectionFailure {
     TResult Function()? permissionPermanentlyDeniedFailure,
     TResult Function()? sendVerificationEmailFailure,
     TResult Function()? checkVerificationFailure,
+    TResult Function()? locationDisabledFailure,
+    TResult Function()? galleryAccessDeniedFailure,
+    TResult Function()? cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (noConnectionFailure != null) {
@@ -1553,6 +1662,12 @@ class _$NoConnectionFailure extends NoConnectionFailure {
         sendVerificationEmailFailure,
     required TResult Function(CheckVerificationFailure value)
         checkVerificationFailure,
+    required TResult Function(LocationDisabledFailure value)
+        locationDisabledFailure,
+    required TResult Function(GalleryAccessDeniedFailure value)
+        galleryAccessDeniedFailure,
+    required TResult Function(CameraAccessDeniedFailure value)
+        cameraAccessDeniedFailure,
   }) {
     return noConnectionFailure(this);
   }
@@ -1602,6 +1717,11 @@ class _$NoConnectionFailure extends NoConnectionFailure {
     TResult? Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult? Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult? Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult? Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
   }) {
     return noConnectionFailure?.call(this);
   }
@@ -1651,6 +1771,11 @@ class _$NoConnectionFailure extends NoConnectionFailure {
     TResult Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (noConnectionFailure != null) {
@@ -1741,6 +1866,9 @@ class _$NotFoundFailure extends NotFoundFailure {
     required TResult Function() permissionPermanentlyDeniedFailure,
     required TResult Function() sendVerificationEmailFailure,
     required TResult Function() checkVerificationFailure,
+    required TResult Function() locationDisabledFailure,
+    required TResult Function() galleryAccessDeniedFailure,
+    required TResult Function() cameraAccessDeniedFailure,
   }) {
     return notFoundFailure();
   }
@@ -1786,6 +1914,9 @@ class _$NotFoundFailure extends NotFoundFailure {
     TResult? Function()? permissionPermanentlyDeniedFailure,
     TResult? Function()? sendVerificationEmailFailure,
     TResult? Function()? checkVerificationFailure,
+    TResult? Function()? locationDisabledFailure,
+    TResult? Function()? galleryAccessDeniedFailure,
+    TResult? Function()? cameraAccessDeniedFailure,
   }) {
     return notFoundFailure?.call();
   }
@@ -1831,6 +1962,9 @@ class _$NotFoundFailure extends NotFoundFailure {
     TResult Function()? permissionPermanentlyDeniedFailure,
     TResult Function()? sendVerificationEmailFailure,
     TResult Function()? checkVerificationFailure,
+    TResult Function()? locationDisabledFailure,
+    TResult Function()? galleryAccessDeniedFailure,
+    TResult Function()? cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (notFoundFailure != null) {
@@ -1892,6 +2026,12 @@ class _$NotFoundFailure extends NotFoundFailure {
         sendVerificationEmailFailure,
     required TResult Function(CheckVerificationFailure value)
         checkVerificationFailure,
+    required TResult Function(LocationDisabledFailure value)
+        locationDisabledFailure,
+    required TResult Function(GalleryAccessDeniedFailure value)
+        galleryAccessDeniedFailure,
+    required TResult Function(CameraAccessDeniedFailure value)
+        cameraAccessDeniedFailure,
   }) {
     return notFoundFailure(this);
   }
@@ -1941,6 +2081,11 @@ class _$NotFoundFailure extends NotFoundFailure {
     TResult? Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult? Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult? Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult? Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
   }) {
     return notFoundFailure?.call(this);
   }
@@ -1990,6 +2135,11 @@ class _$NotFoundFailure extends NotFoundFailure {
     TResult Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (notFoundFailure != null) {
@@ -2080,6 +2230,9 @@ class _$NoUserDataFailure extends NoUserDataFailure {
     required TResult Function() permissionPermanentlyDeniedFailure,
     required TResult Function() sendVerificationEmailFailure,
     required TResult Function() checkVerificationFailure,
+    required TResult Function() locationDisabledFailure,
+    required TResult Function() galleryAccessDeniedFailure,
+    required TResult Function() cameraAccessDeniedFailure,
   }) {
     return noUserDataFailure();
   }
@@ -2125,6 +2278,9 @@ class _$NoUserDataFailure extends NoUserDataFailure {
     TResult? Function()? permissionPermanentlyDeniedFailure,
     TResult? Function()? sendVerificationEmailFailure,
     TResult? Function()? checkVerificationFailure,
+    TResult? Function()? locationDisabledFailure,
+    TResult? Function()? galleryAccessDeniedFailure,
+    TResult? Function()? cameraAccessDeniedFailure,
   }) {
     return noUserDataFailure?.call();
   }
@@ -2170,6 +2326,9 @@ class _$NoUserDataFailure extends NoUserDataFailure {
     TResult Function()? permissionPermanentlyDeniedFailure,
     TResult Function()? sendVerificationEmailFailure,
     TResult Function()? checkVerificationFailure,
+    TResult Function()? locationDisabledFailure,
+    TResult Function()? galleryAccessDeniedFailure,
+    TResult Function()? cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (noUserDataFailure != null) {
@@ -2231,6 +2390,12 @@ class _$NoUserDataFailure extends NoUserDataFailure {
         sendVerificationEmailFailure,
     required TResult Function(CheckVerificationFailure value)
         checkVerificationFailure,
+    required TResult Function(LocationDisabledFailure value)
+        locationDisabledFailure,
+    required TResult Function(GalleryAccessDeniedFailure value)
+        galleryAccessDeniedFailure,
+    required TResult Function(CameraAccessDeniedFailure value)
+        cameraAccessDeniedFailure,
   }) {
     return noUserDataFailure(this);
   }
@@ -2280,6 +2445,11 @@ class _$NoUserDataFailure extends NoUserDataFailure {
     TResult? Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult? Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult? Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult? Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
   }) {
     return noUserDataFailure?.call(this);
   }
@@ -2329,6 +2499,11 @@ class _$NoUserDataFailure extends NoUserDataFailure {
     TResult Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (noUserDataFailure != null) {
@@ -2419,6 +2594,9 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
     required TResult Function() permissionPermanentlyDeniedFailure,
     required TResult Function() sendVerificationEmailFailure,
     required TResult Function() checkVerificationFailure,
+    required TResult Function() locationDisabledFailure,
+    required TResult Function() galleryAccessDeniedFailure,
+    required TResult Function() cameraAccessDeniedFailure,
   }) {
     return maxDiseaseFailure();
   }
@@ -2464,6 +2642,9 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
     TResult? Function()? permissionPermanentlyDeniedFailure,
     TResult? Function()? sendVerificationEmailFailure,
     TResult? Function()? checkVerificationFailure,
+    TResult? Function()? locationDisabledFailure,
+    TResult? Function()? galleryAccessDeniedFailure,
+    TResult? Function()? cameraAccessDeniedFailure,
   }) {
     return maxDiseaseFailure?.call();
   }
@@ -2509,6 +2690,9 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
     TResult Function()? permissionPermanentlyDeniedFailure,
     TResult Function()? sendVerificationEmailFailure,
     TResult Function()? checkVerificationFailure,
+    TResult Function()? locationDisabledFailure,
+    TResult Function()? galleryAccessDeniedFailure,
+    TResult Function()? cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (maxDiseaseFailure != null) {
@@ -2570,6 +2754,12 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
         sendVerificationEmailFailure,
     required TResult Function(CheckVerificationFailure value)
         checkVerificationFailure,
+    required TResult Function(LocationDisabledFailure value)
+        locationDisabledFailure,
+    required TResult Function(GalleryAccessDeniedFailure value)
+        galleryAccessDeniedFailure,
+    required TResult Function(CameraAccessDeniedFailure value)
+        cameraAccessDeniedFailure,
   }) {
     return maxDiseaseFailure(this);
   }
@@ -2619,6 +2809,11 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
     TResult? Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult? Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult? Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult? Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
   }) {
     return maxDiseaseFailure?.call(this);
   }
@@ -2668,6 +2863,11 @@ class _$MaxDiseaseFailure extends MaxDiseaseFailure {
     TResult Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (maxDiseaseFailure != null) {
@@ -2758,6 +2958,9 @@ class _$MaxConimalFailure extends MaxConimalFailure {
     required TResult Function() permissionPermanentlyDeniedFailure,
     required TResult Function() sendVerificationEmailFailure,
     required TResult Function() checkVerificationFailure,
+    required TResult Function() locationDisabledFailure,
+    required TResult Function() galleryAccessDeniedFailure,
+    required TResult Function() cameraAccessDeniedFailure,
   }) {
     return maxConimalFailure();
   }
@@ -2803,6 +3006,9 @@ class _$MaxConimalFailure extends MaxConimalFailure {
     TResult? Function()? permissionPermanentlyDeniedFailure,
     TResult? Function()? sendVerificationEmailFailure,
     TResult? Function()? checkVerificationFailure,
+    TResult? Function()? locationDisabledFailure,
+    TResult? Function()? galleryAccessDeniedFailure,
+    TResult? Function()? cameraAccessDeniedFailure,
   }) {
     return maxConimalFailure?.call();
   }
@@ -2848,6 +3054,9 @@ class _$MaxConimalFailure extends MaxConimalFailure {
     TResult Function()? permissionPermanentlyDeniedFailure,
     TResult Function()? sendVerificationEmailFailure,
     TResult Function()? checkVerificationFailure,
+    TResult Function()? locationDisabledFailure,
+    TResult Function()? galleryAccessDeniedFailure,
+    TResult Function()? cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (maxConimalFailure != null) {
@@ -2909,6 +3118,12 @@ class _$MaxConimalFailure extends MaxConimalFailure {
         sendVerificationEmailFailure,
     required TResult Function(CheckVerificationFailure value)
         checkVerificationFailure,
+    required TResult Function(LocationDisabledFailure value)
+        locationDisabledFailure,
+    required TResult Function(GalleryAccessDeniedFailure value)
+        galleryAccessDeniedFailure,
+    required TResult Function(CameraAccessDeniedFailure value)
+        cameraAccessDeniedFailure,
   }) {
     return maxConimalFailure(this);
   }
@@ -2958,6 +3173,11 @@ class _$MaxConimalFailure extends MaxConimalFailure {
     TResult? Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult? Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult? Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult? Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
   }) {
     return maxConimalFailure?.call(this);
   }
@@ -3007,6 +3227,11 @@ class _$MaxConimalFailure extends MaxConimalFailure {
     TResult Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (maxConimalFailure != null) {
@@ -3097,6 +3322,9 @@ class _$EmptyListFailure extends EmptyListFailure {
     required TResult Function() permissionPermanentlyDeniedFailure,
     required TResult Function() sendVerificationEmailFailure,
     required TResult Function() checkVerificationFailure,
+    required TResult Function() locationDisabledFailure,
+    required TResult Function() galleryAccessDeniedFailure,
+    required TResult Function() cameraAccessDeniedFailure,
   }) {
     return emptyListFailure();
   }
@@ -3142,6 +3370,9 @@ class _$EmptyListFailure extends EmptyListFailure {
     TResult? Function()? permissionPermanentlyDeniedFailure,
     TResult? Function()? sendVerificationEmailFailure,
     TResult? Function()? checkVerificationFailure,
+    TResult? Function()? locationDisabledFailure,
+    TResult? Function()? galleryAccessDeniedFailure,
+    TResult? Function()? cameraAccessDeniedFailure,
   }) {
     return emptyListFailure?.call();
   }
@@ -3187,6 +3418,9 @@ class _$EmptyListFailure extends EmptyListFailure {
     TResult Function()? permissionPermanentlyDeniedFailure,
     TResult Function()? sendVerificationEmailFailure,
     TResult Function()? checkVerificationFailure,
+    TResult Function()? locationDisabledFailure,
+    TResult Function()? galleryAccessDeniedFailure,
+    TResult Function()? cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (emptyListFailure != null) {
@@ -3248,6 +3482,12 @@ class _$EmptyListFailure extends EmptyListFailure {
         sendVerificationEmailFailure,
     required TResult Function(CheckVerificationFailure value)
         checkVerificationFailure,
+    required TResult Function(LocationDisabledFailure value)
+        locationDisabledFailure,
+    required TResult Function(GalleryAccessDeniedFailure value)
+        galleryAccessDeniedFailure,
+    required TResult Function(CameraAccessDeniedFailure value)
+        cameraAccessDeniedFailure,
   }) {
     return emptyListFailure(this);
   }
@@ -3297,6 +3537,11 @@ class _$EmptyListFailure extends EmptyListFailure {
     TResult? Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult? Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult? Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult? Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
   }) {
     return emptyListFailure?.call(this);
   }
@@ -3346,6 +3591,11 @@ class _$EmptyListFailure extends EmptyListFailure {
     TResult Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (emptyListFailure != null) {
@@ -3437,6 +3687,9 @@ class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
     required TResult Function() permissionPermanentlyDeniedFailure,
     required TResult Function() sendVerificationEmailFailure,
     required TResult Function() checkVerificationFailure,
+    required TResult Function() locationDisabledFailure,
+    required TResult Function() galleryAccessDeniedFailure,
+    required TResult Function() cameraAccessDeniedFailure,
   }) {
     return noSuchDataInListFailure();
   }
@@ -3482,6 +3735,9 @@ class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
     TResult? Function()? permissionPermanentlyDeniedFailure,
     TResult? Function()? sendVerificationEmailFailure,
     TResult? Function()? checkVerificationFailure,
+    TResult? Function()? locationDisabledFailure,
+    TResult? Function()? galleryAccessDeniedFailure,
+    TResult? Function()? cameraAccessDeniedFailure,
   }) {
     return noSuchDataInListFailure?.call();
   }
@@ -3527,6 +3783,9 @@ class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
     TResult Function()? permissionPermanentlyDeniedFailure,
     TResult Function()? sendVerificationEmailFailure,
     TResult Function()? checkVerificationFailure,
+    TResult Function()? locationDisabledFailure,
+    TResult Function()? galleryAccessDeniedFailure,
+    TResult Function()? cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (noSuchDataInListFailure != null) {
@@ -3588,6 +3847,12 @@ class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
         sendVerificationEmailFailure,
     required TResult Function(CheckVerificationFailure value)
         checkVerificationFailure,
+    required TResult Function(LocationDisabledFailure value)
+        locationDisabledFailure,
+    required TResult Function(GalleryAccessDeniedFailure value)
+        galleryAccessDeniedFailure,
+    required TResult Function(CameraAccessDeniedFailure value)
+        cameraAccessDeniedFailure,
   }) {
     return noSuchDataInListFailure(this);
   }
@@ -3637,6 +3902,11 @@ class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
     TResult? Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult? Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult? Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult? Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
   }) {
     return noSuchDataInListFailure?.call(this);
   }
@@ -3686,6 +3956,11 @@ class _$NoSuchDataInListFailure extends NoSuchDataInListFailure {
     TResult Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (noSuchDataInListFailure != null) {
@@ -3776,6 +4051,9 @@ class _$RegisterConimalFailure extends RegisterConimalFailure {
     required TResult Function() permissionPermanentlyDeniedFailure,
     required TResult Function() sendVerificationEmailFailure,
     required TResult Function() checkVerificationFailure,
+    required TResult Function() locationDisabledFailure,
+    required TResult Function() galleryAccessDeniedFailure,
+    required TResult Function() cameraAccessDeniedFailure,
   }) {
     return registerConimalFaiure();
   }
@@ -3821,6 +4099,9 @@ class _$RegisterConimalFailure extends RegisterConimalFailure {
     TResult? Function()? permissionPermanentlyDeniedFailure,
     TResult? Function()? sendVerificationEmailFailure,
     TResult? Function()? checkVerificationFailure,
+    TResult? Function()? locationDisabledFailure,
+    TResult? Function()? galleryAccessDeniedFailure,
+    TResult? Function()? cameraAccessDeniedFailure,
   }) {
     return registerConimalFaiure?.call();
   }
@@ -3866,6 +4147,9 @@ class _$RegisterConimalFailure extends RegisterConimalFailure {
     TResult Function()? permissionPermanentlyDeniedFailure,
     TResult Function()? sendVerificationEmailFailure,
     TResult Function()? checkVerificationFailure,
+    TResult Function()? locationDisabledFailure,
+    TResult Function()? galleryAccessDeniedFailure,
+    TResult Function()? cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (registerConimalFaiure != null) {
@@ -3927,6 +4211,12 @@ class _$RegisterConimalFailure extends RegisterConimalFailure {
         sendVerificationEmailFailure,
     required TResult Function(CheckVerificationFailure value)
         checkVerificationFailure,
+    required TResult Function(LocationDisabledFailure value)
+        locationDisabledFailure,
+    required TResult Function(GalleryAccessDeniedFailure value)
+        galleryAccessDeniedFailure,
+    required TResult Function(CameraAccessDeniedFailure value)
+        cameraAccessDeniedFailure,
   }) {
     return registerConimalFaiure(this);
   }
@@ -3976,6 +4266,11 @@ class _$RegisterConimalFailure extends RegisterConimalFailure {
     TResult? Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult? Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult? Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult? Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
   }) {
     return registerConimalFaiure?.call(this);
   }
@@ -4025,6 +4320,11 @@ class _$RegisterConimalFailure extends RegisterConimalFailure {
     TResult Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (registerConimalFaiure != null) {
@@ -4115,6 +4415,9 @@ class _$RemoveConimalFailure extends RemoveConimalFailure {
     required TResult Function() permissionPermanentlyDeniedFailure,
     required TResult Function() sendVerificationEmailFailure,
     required TResult Function() checkVerificationFailure,
+    required TResult Function() locationDisabledFailure,
+    required TResult Function() galleryAccessDeniedFailure,
+    required TResult Function() cameraAccessDeniedFailure,
   }) {
     return removeConimalFailure();
   }
@@ -4160,6 +4463,9 @@ class _$RemoveConimalFailure extends RemoveConimalFailure {
     TResult? Function()? permissionPermanentlyDeniedFailure,
     TResult? Function()? sendVerificationEmailFailure,
     TResult? Function()? checkVerificationFailure,
+    TResult? Function()? locationDisabledFailure,
+    TResult? Function()? galleryAccessDeniedFailure,
+    TResult? Function()? cameraAccessDeniedFailure,
   }) {
     return removeConimalFailure?.call();
   }
@@ -4205,6 +4511,9 @@ class _$RemoveConimalFailure extends RemoveConimalFailure {
     TResult Function()? permissionPermanentlyDeniedFailure,
     TResult Function()? sendVerificationEmailFailure,
     TResult Function()? checkVerificationFailure,
+    TResult Function()? locationDisabledFailure,
+    TResult Function()? galleryAccessDeniedFailure,
+    TResult Function()? cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (removeConimalFailure != null) {
@@ -4266,6 +4575,12 @@ class _$RemoveConimalFailure extends RemoveConimalFailure {
         sendVerificationEmailFailure,
     required TResult Function(CheckVerificationFailure value)
         checkVerificationFailure,
+    required TResult Function(LocationDisabledFailure value)
+        locationDisabledFailure,
+    required TResult Function(GalleryAccessDeniedFailure value)
+        galleryAccessDeniedFailure,
+    required TResult Function(CameraAccessDeniedFailure value)
+        cameraAccessDeniedFailure,
   }) {
     return removeConimalFailure(this);
   }
@@ -4315,6 +4630,11 @@ class _$RemoveConimalFailure extends RemoveConimalFailure {
     TResult? Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult? Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult? Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult? Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
   }) {
     return removeConimalFailure?.call(this);
   }
@@ -4364,6 +4684,11 @@ class _$RemoveConimalFailure extends RemoveConimalFailure {
     TResult Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (removeConimalFailure != null) {
@@ -4454,6 +4779,9 @@ class _$GetConimalListFailure extends GetConimalListFailure {
     required TResult Function() permissionPermanentlyDeniedFailure,
     required TResult Function() sendVerificationEmailFailure,
     required TResult Function() checkVerificationFailure,
+    required TResult Function() locationDisabledFailure,
+    required TResult Function() galleryAccessDeniedFailure,
+    required TResult Function() cameraAccessDeniedFailure,
   }) {
     return getConimalListFailure();
   }
@@ -4499,6 +4827,9 @@ class _$GetConimalListFailure extends GetConimalListFailure {
     TResult? Function()? permissionPermanentlyDeniedFailure,
     TResult? Function()? sendVerificationEmailFailure,
     TResult? Function()? checkVerificationFailure,
+    TResult? Function()? locationDisabledFailure,
+    TResult? Function()? galleryAccessDeniedFailure,
+    TResult? Function()? cameraAccessDeniedFailure,
   }) {
     return getConimalListFailure?.call();
   }
@@ -4544,6 +4875,9 @@ class _$GetConimalListFailure extends GetConimalListFailure {
     TResult Function()? permissionPermanentlyDeniedFailure,
     TResult Function()? sendVerificationEmailFailure,
     TResult Function()? checkVerificationFailure,
+    TResult Function()? locationDisabledFailure,
+    TResult Function()? galleryAccessDeniedFailure,
+    TResult Function()? cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (getConimalListFailure != null) {
@@ -4605,6 +4939,12 @@ class _$GetConimalListFailure extends GetConimalListFailure {
         sendVerificationEmailFailure,
     required TResult Function(CheckVerificationFailure value)
         checkVerificationFailure,
+    required TResult Function(LocationDisabledFailure value)
+        locationDisabledFailure,
+    required TResult Function(GalleryAccessDeniedFailure value)
+        galleryAccessDeniedFailure,
+    required TResult Function(CameraAccessDeniedFailure value)
+        cameraAccessDeniedFailure,
   }) {
     return getConimalListFailure(this);
   }
@@ -4654,6 +4994,11 @@ class _$GetConimalListFailure extends GetConimalListFailure {
     TResult? Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult? Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult? Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult? Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
   }) {
     return getConimalListFailure?.call(this);
   }
@@ -4703,6 +5048,11 @@ class _$GetConimalListFailure extends GetConimalListFailure {
     TResult Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (getConimalListFailure != null) {
@@ -4794,6 +5144,9 @@ class _$SignInCredentialFailure extends SignInCredentialFailure {
     required TResult Function() permissionPermanentlyDeniedFailure,
     required TResult Function() sendVerificationEmailFailure,
     required TResult Function() checkVerificationFailure,
+    required TResult Function() locationDisabledFailure,
+    required TResult Function() galleryAccessDeniedFailure,
+    required TResult Function() cameraAccessDeniedFailure,
   }) {
     return signInCredentialFailure();
   }
@@ -4839,6 +5192,9 @@ class _$SignInCredentialFailure extends SignInCredentialFailure {
     TResult? Function()? permissionPermanentlyDeniedFailure,
     TResult? Function()? sendVerificationEmailFailure,
     TResult? Function()? checkVerificationFailure,
+    TResult? Function()? locationDisabledFailure,
+    TResult? Function()? galleryAccessDeniedFailure,
+    TResult? Function()? cameraAccessDeniedFailure,
   }) {
     return signInCredentialFailure?.call();
   }
@@ -4884,6 +5240,9 @@ class _$SignInCredentialFailure extends SignInCredentialFailure {
     TResult Function()? permissionPermanentlyDeniedFailure,
     TResult Function()? sendVerificationEmailFailure,
     TResult Function()? checkVerificationFailure,
+    TResult Function()? locationDisabledFailure,
+    TResult Function()? galleryAccessDeniedFailure,
+    TResult Function()? cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (signInCredentialFailure != null) {
@@ -4945,6 +5304,12 @@ class _$SignInCredentialFailure extends SignInCredentialFailure {
         sendVerificationEmailFailure,
     required TResult Function(CheckVerificationFailure value)
         checkVerificationFailure,
+    required TResult Function(LocationDisabledFailure value)
+        locationDisabledFailure,
+    required TResult Function(GalleryAccessDeniedFailure value)
+        galleryAccessDeniedFailure,
+    required TResult Function(CameraAccessDeniedFailure value)
+        cameraAccessDeniedFailure,
   }) {
     return signInCredentialFailure(this);
   }
@@ -4994,6 +5359,11 @@ class _$SignInCredentialFailure extends SignInCredentialFailure {
     TResult? Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult? Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult? Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult? Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
   }) {
     return signInCredentialFailure?.call(this);
   }
@@ -5043,6 +5413,11 @@ class _$SignInCredentialFailure extends SignInCredentialFailure {
     TResult Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (signInCredentialFailure != null) {
@@ -5133,6 +5508,9 @@ class _$SignInTokenFailure extends SignInTokenFailure {
     required TResult Function() permissionPermanentlyDeniedFailure,
     required TResult Function() sendVerificationEmailFailure,
     required TResult Function() checkVerificationFailure,
+    required TResult Function() locationDisabledFailure,
+    required TResult Function() galleryAccessDeniedFailure,
+    required TResult Function() cameraAccessDeniedFailure,
   }) {
     return signInTokenFailure();
   }
@@ -5178,6 +5556,9 @@ class _$SignInTokenFailure extends SignInTokenFailure {
     TResult? Function()? permissionPermanentlyDeniedFailure,
     TResult? Function()? sendVerificationEmailFailure,
     TResult? Function()? checkVerificationFailure,
+    TResult? Function()? locationDisabledFailure,
+    TResult? Function()? galleryAccessDeniedFailure,
+    TResult? Function()? cameraAccessDeniedFailure,
   }) {
     return signInTokenFailure?.call();
   }
@@ -5223,6 +5604,9 @@ class _$SignInTokenFailure extends SignInTokenFailure {
     TResult Function()? permissionPermanentlyDeniedFailure,
     TResult Function()? sendVerificationEmailFailure,
     TResult Function()? checkVerificationFailure,
+    TResult Function()? locationDisabledFailure,
+    TResult Function()? galleryAccessDeniedFailure,
+    TResult Function()? cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (signInTokenFailure != null) {
@@ -5284,6 +5668,12 @@ class _$SignInTokenFailure extends SignInTokenFailure {
         sendVerificationEmailFailure,
     required TResult Function(CheckVerificationFailure value)
         checkVerificationFailure,
+    required TResult Function(LocationDisabledFailure value)
+        locationDisabledFailure,
+    required TResult Function(GalleryAccessDeniedFailure value)
+        galleryAccessDeniedFailure,
+    required TResult Function(CameraAccessDeniedFailure value)
+        cameraAccessDeniedFailure,
   }) {
     return signInTokenFailure(this);
   }
@@ -5333,6 +5723,11 @@ class _$SignInTokenFailure extends SignInTokenFailure {
     TResult? Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult? Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult? Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult? Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
   }) {
     return signInTokenFailure?.call(this);
   }
@@ -5382,6 +5777,11 @@ class _$SignInTokenFailure extends SignInTokenFailure {
     TResult Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (signInTokenFailure != null) {
@@ -5472,6 +5872,9 @@ class _$NaverSigninFailure extends NaverSigninFailure {
     required TResult Function() permissionPermanentlyDeniedFailure,
     required TResult Function() sendVerificationEmailFailure,
     required TResult Function() checkVerificationFailure,
+    required TResult Function() locationDisabledFailure,
+    required TResult Function() galleryAccessDeniedFailure,
+    required TResult Function() cameraAccessDeniedFailure,
   }) {
     return naverSigninFailure();
   }
@@ -5517,6 +5920,9 @@ class _$NaverSigninFailure extends NaverSigninFailure {
     TResult? Function()? permissionPermanentlyDeniedFailure,
     TResult? Function()? sendVerificationEmailFailure,
     TResult? Function()? checkVerificationFailure,
+    TResult? Function()? locationDisabledFailure,
+    TResult? Function()? galleryAccessDeniedFailure,
+    TResult? Function()? cameraAccessDeniedFailure,
   }) {
     return naverSigninFailure?.call();
   }
@@ -5562,6 +5968,9 @@ class _$NaverSigninFailure extends NaverSigninFailure {
     TResult Function()? permissionPermanentlyDeniedFailure,
     TResult Function()? sendVerificationEmailFailure,
     TResult Function()? checkVerificationFailure,
+    TResult Function()? locationDisabledFailure,
+    TResult Function()? galleryAccessDeniedFailure,
+    TResult Function()? cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (naverSigninFailure != null) {
@@ -5623,6 +6032,12 @@ class _$NaverSigninFailure extends NaverSigninFailure {
         sendVerificationEmailFailure,
     required TResult Function(CheckVerificationFailure value)
         checkVerificationFailure,
+    required TResult Function(LocationDisabledFailure value)
+        locationDisabledFailure,
+    required TResult Function(GalleryAccessDeniedFailure value)
+        galleryAccessDeniedFailure,
+    required TResult Function(CameraAccessDeniedFailure value)
+        cameraAccessDeniedFailure,
   }) {
     return naverSigninFailure(this);
   }
@@ -5672,6 +6087,11 @@ class _$NaverSigninFailure extends NaverSigninFailure {
     TResult? Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult? Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult? Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult? Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
   }) {
     return naverSigninFailure?.call(this);
   }
@@ -5721,6 +6141,11 @@ class _$NaverSigninFailure extends NaverSigninFailure {
     TResult Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (naverSigninFailure != null) {
@@ -5811,6 +6236,9 @@ class _$KakaoSigninFailure extends KakaoSigninFailure {
     required TResult Function() permissionPermanentlyDeniedFailure,
     required TResult Function() sendVerificationEmailFailure,
     required TResult Function() checkVerificationFailure,
+    required TResult Function() locationDisabledFailure,
+    required TResult Function() galleryAccessDeniedFailure,
+    required TResult Function() cameraAccessDeniedFailure,
   }) {
     return kakaoSigninFailure();
   }
@@ -5856,6 +6284,9 @@ class _$KakaoSigninFailure extends KakaoSigninFailure {
     TResult? Function()? permissionPermanentlyDeniedFailure,
     TResult? Function()? sendVerificationEmailFailure,
     TResult? Function()? checkVerificationFailure,
+    TResult? Function()? locationDisabledFailure,
+    TResult? Function()? galleryAccessDeniedFailure,
+    TResult? Function()? cameraAccessDeniedFailure,
   }) {
     return kakaoSigninFailure?.call();
   }
@@ -5901,6 +6332,9 @@ class _$KakaoSigninFailure extends KakaoSigninFailure {
     TResult Function()? permissionPermanentlyDeniedFailure,
     TResult Function()? sendVerificationEmailFailure,
     TResult Function()? checkVerificationFailure,
+    TResult Function()? locationDisabledFailure,
+    TResult Function()? galleryAccessDeniedFailure,
+    TResult Function()? cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (kakaoSigninFailure != null) {
@@ -5962,6 +6396,12 @@ class _$KakaoSigninFailure extends KakaoSigninFailure {
         sendVerificationEmailFailure,
     required TResult Function(CheckVerificationFailure value)
         checkVerificationFailure,
+    required TResult Function(LocationDisabledFailure value)
+        locationDisabledFailure,
+    required TResult Function(GalleryAccessDeniedFailure value)
+        galleryAccessDeniedFailure,
+    required TResult Function(CameraAccessDeniedFailure value)
+        cameraAccessDeniedFailure,
   }) {
     return kakaoSigninFailure(this);
   }
@@ -6011,6 +6451,11 @@ class _$KakaoSigninFailure extends KakaoSigninFailure {
     TResult? Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult? Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult? Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult? Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
   }) {
     return kakaoSigninFailure?.call(this);
   }
@@ -6060,6 +6505,11 @@ class _$KakaoSigninFailure extends KakaoSigninFailure {
     TResult Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (kakaoSigninFailure != null) {
@@ -6150,6 +6600,9 @@ class _$GoogleSigninFailure extends GoogleSigninFailure {
     required TResult Function() permissionPermanentlyDeniedFailure,
     required TResult Function() sendVerificationEmailFailure,
     required TResult Function() checkVerificationFailure,
+    required TResult Function() locationDisabledFailure,
+    required TResult Function() galleryAccessDeniedFailure,
+    required TResult Function() cameraAccessDeniedFailure,
   }) {
     return googleSigninFailure();
   }
@@ -6195,6 +6648,9 @@ class _$GoogleSigninFailure extends GoogleSigninFailure {
     TResult? Function()? permissionPermanentlyDeniedFailure,
     TResult? Function()? sendVerificationEmailFailure,
     TResult? Function()? checkVerificationFailure,
+    TResult? Function()? locationDisabledFailure,
+    TResult? Function()? galleryAccessDeniedFailure,
+    TResult? Function()? cameraAccessDeniedFailure,
   }) {
     return googleSigninFailure?.call();
   }
@@ -6240,6 +6696,9 @@ class _$GoogleSigninFailure extends GoogleSigninFailure {
     TResult Function()? permissionPermanentlyDeniedFailure,
     TResult Function()? sendVerificationEmailFailure,
     TResult Function()? checkVerificationFailure,
+    TResult Function()? locationDisabledFailure,
+    TResult Function()? galleryAccessDeniedFailure,
+    TResult Function()? cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (googleSigninFailure != null) {
@@ -6301,6 +6760,12 @@ class _$GoogleSigninFailure extends GoogleSigninFailure {
         sendVerificationEmailFailure,
     required TResult Function(CheckVerificationFailure value)
         checkVerificationFailure,
+    required TResult Function(LocationDisabledFailure value)
+        locationDisabledFailure,
+    required TResult Function(GalleryAccessDeniedFailure value)
+        galleryAccessDeniedFailure,
+    required TResult Function(CameraAccessDeniedFailure value)
+        cameraAccessDeniedFailure,
   }) {
     return googleSigninFailure(this);
   }
@@ -6350,6 +6815,11 @@ class _$GoogleSigninFailure extends GoogleSigninFailure {
     TResult? Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult? Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult? Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult? Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
   }) {
     return googleSigninFailure?.call(this);
   }
@@ -6399,6 +6869,11 @@ class _$GoogleSigninFailure extends GoogleSigninFailure {
     TResult Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (googleSigninFailure != null) {
@@ -6489,6 +6964,9 @@ class _$AppleSigninFailure extends AppleSigninFailure {
     required TResult Function() permissionPermanentlyDeniedFailure,
     required TResult Function() sendVerificationEmailFailure,
     required TResult Function() checkVerificationFailure,
+    required TResult Function() locationDisabledFailure,
+    required TResult Function() galleryAccessDeniedFailure,
+    required TResult Function() cameraAccessDeniedFailure,
   }) {
     return appleSigninFailure();
   }
@@ -6534,6 +7012,9 @@ class _$AppleSigninFailure extends AppleSigninFailure {
     TResult? Function()? permissionPermanentlyDeniedFailure,
     TResult? Function()? sendVerificationEmailFailure,
     TResult? Function()? checkVerificationFailure,
+    TResult? Function()? locationDisabledFailure,
+    TResult? Function()? galleryAccessDeniedFailure,
+    TResult? Function()? cameraAccessDeniedFailure,
   }) {
     return appleSigninFailure?.call();
   }
@@ -6579,6 +7060,9 @@ class _$AppleSigninFailure extends AppleSigninFailure {
     TResult Function()? permissionPermanentlyDeniedFailure,
     TResult Function()? sendVerificationEmailFailure,
     TResult Function()? checkVerificationFailure,
+    TResult Function()? locationDisabledFailure,
+    TResult Function()? galleryAccessDeniedFailure,
+    TResult Function()? cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (appleSigninFailure != null) {
@@ -6640,6 +7124,12 @@ class _$AppleSigninFailure extends AppleSigninFailure {
         sendVerificationEmailFailure,
     required TResult Function(CheckVerificationFailure value)
         checkVerificationFailure,
+    required TResult Function(LocationDisabledFailure value)
+        locationDisabledFailure,
+    required TResult Function(GalleryAccessDeniedFailure value)
+        galleryAccessDeniedFailure,
+    required TResult Function(CameraAccessDeniedFailure value)
+        cameraAccessDeniedFailure,
   }) {
     return appleSigninFailure(this);
   }
@@ -6689,6 +7179,11 @@ class _$AppleSigninFailure extends AppleSigninFailure {
     TResult? Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult? Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult? Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult? Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
   }) {
     return appleSigninFailure?.call(this);
   }
@@ -6738,6 +7233,11 @@ class _$AppleSigninFailure extends AppleSigninFailure {
     TResult Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (appleSigninFailure != null) {
@@ -6828,6 +7328,9 @@ class _$EmailSigninFailure extends EmailSigninFailure {
     required TResult Function() permissionPermanentlyDeniedFailure,
     required TResult Function() sendVerificationEmailFailure,
     required TResult Function() checkVerificationFailure,
+    required TResult Function() locationDisabledFailure,
+    required TResult Function() galleryAccessDeniedFailure,
+    required TResult Function() cameraAccessDeniedFailure,
   }) {
     return emailSigninFailure();
   }
@@ -6873,6 +7376,9 @@ class _$EmailSigninFailure extends EmailSigninFailure {
     TResult? Function()? permissionPermanentlyDeniedFailure,
     TResult? Function()? sendVerificationEmailFailure,
     TResult? Function()? checkVerificationFailure,
+    TResult? Function()? locationDisabledFailure,
+    TResult? Function()? galleryAccessDeniedFailure,
+    TResult? Function()? cameraAccessDeniedFailure,
   }) {
     return emailSigninFailure?.call();
   }
@@ -6918,6 +7424,9 @@ class _$EmailSigninFailure extends EmailSigninFailure {
     TResult Function()? permissionPermanentlyDeniedFailure,
     TResult Function()? sendVerificationEmailFailure,
     TResult Function()? checkVerificationFailure,
+    TResult Function()? locationDisabledFailure,
+    TResult Function()? galleryAccessDeniedFailure,
+    TResult Function()? cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (emailSigninFailure != null) {
@@ -6979,6 +7488,12 @@ class _$EmailSigninFailure extends EmailSigninFailure {
         sendVerificationEmailFailure,
     required TResult Function(CheckVerificationFailure value)
         checkVerificationFailure,
+    required TResult Function(LocationDisabledFailure value)
+        locationDisabledFailure,
+    required TResult Function(GalleryAccessDeniedFailure value)
+        galleryAccessDeniedFailure,
+    required TResult Function(CameraAccessDeniedFailure value)
+        cameraAccessDeniedFailure,
   }) {
     return emailSigninFailure(this);
   }
@@ -7028,6 +7543,11 @@ class _$EmailSigninFailure extends EmailSigninFailure {
     TResult? Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult? Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult? Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult? Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
   }) {
     return emailSigninFailure?.call(this);
   }
@@ -7077,6 +7597,11 @@ class _$EmailSigninFailure extends EmailSigninFailure {
     TResult Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (emailSigninFailure != null) {
@@ -7167,6 +7692,9 @@ class _$GetUserInfoFailure extends GetUserInfoFailure {
     required TResult Function() permissionPermanentlyDeniedFailure,
     required TResult Function() sendVerificationEmailFailure,
     required TResult Function() checkVerificationFailure,
+    required TResult Function() locationDisabledFailure,
+    required TResult Function() galleryAccessDeniedFailure,
+    required TResult Function() cameraAccessDeniedFailure,
   }) {
     return getUserFailure();
   }
@@ -7212,6 +7740,9 @@ class _$GetUserInfoFailure extends GetUserInfoFailure {
     TResult? Function()? permissionPermanentlyDeniedFailure,
     TResult? Function()? sendVerificationEmailFailure,
     TResult? Function()? checkVerificationFailure,
+    TResult? Function()? locationDisabledFailure,
+    TResult? Function()? galleryAccessDeniedFailure,
+    TResult? Function()? cameraAccessDeniedFailure,
   }) {
     return getUserFailure?.call();
   }
@@ -7257,6 +7788,9 @@ class _$GetUserInfoFailure extends GetUserInfoFailure {
     TResult Function()? permissionPermanentlyDeniedFailure,
     TResult Function()? sendVerificationEmailFailure,
     TResult Function()? checkVerificationFailure,
+    TResult Function()? locationDisabledFailure,
+    TResult Function()? galleryAccessDeniedFailure,
+    TResult Function()? cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (getUserFailure != null) {
@@ -7318,6 +7852,12 @@ class _$GetUserInfoFailure extends GetUserInfoFailure {
         sendVerificationEmailFailure,
     required TResult Function(CheckVerificationFailure value)
         checkVerificationFailure,
+    required TResult Function(LocationDisabledFailure value)
+        locationDisabledFailure,
+    required TResult Function(GalleryAccessDeniedFailure value)
+        galleryAccessDeniedFailure,
+    required TResult Function(CameraAccessDeniedFailure value)
+        cameraAccessDeniedFailure,
   }) {
     return getUserFailure(this);
   }
@@ -7367,6 +7907,11 @@ class _$GetUserInfoFailure extends GetUserInfoFailure {
     TResult? Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult? Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult? Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult? Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
   }) {
     return getUserFailure?.call(this);
   }
@@ -7416,6 +7961,11 @@ class _$GetUserInfoFailure extends GetUserInfoFailure {
     TResult Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (getUserFailure != null) {
@@ -7506,6 +8056,9 @@ class _$WrongPasswordFailure extends WrongPasswordFailure {
     required TResult Function() permissionPermanentlyDeniedFailure,
     required TResult Function() sendVerificationEmailFailure,
     required TResult Function() checkVerificationFailure,
+    required TResult Function() locationDisabledFailure,
+    required TResult Function() galleryAccessDeniedFailure,
+    required TResult Function() cameraAccessDeniedFailure,
   }) {
     return wrongPasswordFailure();
   }
@@ -7551,6 +8104,9 @@ class _$WrongPasswordFailure extends WrongPasswordFailure {
     TResult? Function()? permissionPermanentlyDeniedFailure,
     TResult? Function()? sendVerificationEmailFailure,
     TResult? Function()? checkVerificationFailure,
+    TResult? Function()? locationDisabledFailure,
+    TResult? Function()? galleryAccessDeniedFailure,
+    TResult? Function()? cameraAccessDeniedFailure,
   }) {
     return wrongPasswordFailure?.call();
   }
@@ -7596,6 +8152,9 @@ class _$WrongPasswordFailure extends WrongPasswordFailure {
     TResult Function()? permissionPermanentlyDeniedFailure,
     TResult Function()? sendVerificationEmailFailure,
     TResult Function()? checkVerificationFailure,
+    TResult Function()? locationDisabledFailure,
+    TResult Function()? galleryAccessDeniedFailure,
+    TResult Function()? cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (wrongPasswordFailure != null) {
@@ -7657,6 +8216,12 @@ class _$WrongPasswordFailure extends WrongPasswordFailure {
         sendVerificationEmailFailure,
     required TResult Function(CheckVerificationFailure value)
         checkVerificationFailure,
+    required TResult Function(LocationDisabledFailure value)
+        locationDisabledFailure,
+    required TResult Function(GalleryAccessDeniedFailure value)
+        galleryAccessDeniedFailure,
+    required TResult Function(CameraAccessDeniedFailure value)
+        cameraAccessDeniedFailure,
   }) {
     return wrongPasswordFailure(this);
   }
@@ -7706,6 +8271,11 @@ class _$WrongPasswordFailure extends WrongPasswordFailure {
     TResult? Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult? Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult? Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult? Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
   }) {
     return wrongPasswordFailure?.call(this);
   }
@@ -7755,6 +8325,11 @@ class _$WrongPasswordFailure extends WrongPasswordFailure {
     TResult Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (wrongPasswordFailure != null) {
@@ -7845,6 +8420,9 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
     required TResult Function() permissionPermanentlyDeniedFailure,
     required TResult Function() sendVerificationEmailFailure,
     required TResult Function() checkVerificationFailure,
+    required TResult Function() locationDisabledFailure,
+    required TResult Function() galleryAccessDeniedFailure,
+    required TResult Function() cameraAccessDeniedFailure,
   }) {
     return noEmailUserFailure();
   }
@@ -7890,6 +8468,9 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
     TResult? Function()? permissionPermanentlyDeniedFailure,
     TResult? Function()? sendVerificationEmailFailure,
     TResult? Function()? checkVerificationFailure,
+    TResult? Function()? locationDisabledFailure,
+    TResult? Function()? galleryAccessDeniedFailure,
+    TResult? Function()? cameraAccessDeniedFailure,
   }) {
     return noEmailUserFailure?.call();
   }
@@ -7935,6 +8516,9 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
     TResult Function()? permissionPermanentlyDeniedFailure,
     TResult Function()? sendVerificationEmailFailure,
     TResult Function()? checkVerificationFailure,
+    TResult Function()? locationDisabledFailure,
+    TResult Function()? galleryAccessDeniedFailure,
+    TResult Function()? cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (noEmailUserFailure != null) {
@@ -7996,6 +8580,12 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
         sendVerificationEmailFailure,
     required TResult Function(CheckVerificationFailure value)
         checkVerificationFailure,
+    required TResult Function(LocationDisabledFailure value)
+        locationDisabledFailure,
+    required TResult Function(GalleryAccessDeniedFailure value)
+        galleryAccessDeniedFailure,
+    required TResult Function(CameraAccessDeniedFailure value)
+        cameraAccessDeniedFailure,
   }) {
     return noEmailUserFailure(this);
   }
@@ -8045,6 +8635,11 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
     TResult? Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult? Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult? Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult? Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
   }) {
     return noEmailUserFailure?.call(this);
   }
@@ -8094,6 +8689,11 @@ class _$NoEmailUserFailure extends NoEmailUserFailure {
     TResult Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (noEmailUserFailure != null) {
@@ -8184,6 +8784,9 @@ class _$WrongTokenFailure extends WrongTokenFailure {
     required TResult Function() permissionPermanentlyDeniedFailure,
     required TResult Function() sendVerificationEmailFailure,
     required TResult Function() checkVerificationFailure,
+    required TResult Function() locationDisabledFailure,
+    required TResult Function() galleryAccessDeniedFailure,
+    required TResult Function() cameraAccessDeniedFailure,
   }) {
     return wrongTokenFailure();
   }
@@ -8229,6 +8832,9 @@ class _$WrongTokenFailure extends WrongTokenFailure {
     TResult? Function()? permissionPermanentlyDeniedFailure,
     TResult? Function()? sendVerificationEmailFailure,
     TResult? Function()? checkVerificationFailure,
+    TResult? Function()? locationDisabledFailure,
+    TResult? Function()? galleryAccessDeniedFailure,
+    TResult? Function()? cameraAccessDeniedFailure,
   }) {
     return wrongTokenFailure?.call();
   }
@@ -8274,6 +8880,9 @@ class _$WrongTokenFailure extends WrongTokenFailure {
     TResult Function()? permissionPermanentlyDeniedFailure,
     TResult Function()? sendVerificationEmailFailure,
     TResult Function()? checkVerificationFailure,
+    TResult Function()? locationDisabledFailure,
+    TResult Function()? galleryAccessDeniedFailure,
+    TResult Function()? cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (wrongTokenFailure != null) {
@@ -8335,6 +8944,12 @@ class _$WrongTokenFailure extends WrongTokenFailure {
         sendVerificationEmailFailure,
     required TResult Function(CheckVerificationFailure value)
         checkVerificationFailure,
+    required TResult Function(LocationDisabledFailure value)
+        locationDisabledFailure,
+    required TResult Function(GalleryAccessDeniedFailure value)
+        galleryAccessDeniedFailure,
+    required TResult Function(CameraAccessDeniedFailure value)
+        cameraAccessDeniedFailure,
   }) {
     return wrongTokenFailure(this);
   }
@@ -8384,6 +8999,11 @@ class _$WrongTokenFailure extends WrongTokenFailure {
     TResult? Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult? Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult? Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult? Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
   }) {
     return wrongTokenFailure?.call(this);
   }
@@ -8433,6 +9053,11 @@ class _$WrongTokenFailure extends WrongTokenFailure {
     TResult Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (wrongTokenFailure != null) {
@@ -8523,6 +9148,9 @@ class _$ExistingEmailFailure extends ExistingEmailFailure {
     required TResult Function() permissionPermanentlyDeniedFailure,
     required TResult Function() sendVerificationEmailFailure,
     required TResult Function() checkVerificationFailure,
+    required TResult Function() locationDisabledFailure,
+    required TResult Function() galleryAccessDeniedFailure,
+    required TResult Function() cameraAccessDeniedFailure,
   }) {
     return existingEmailFailure();
   }
@@ -8568,6 +9196,9 @@ class _$ExistingEmailFailure extends ExistingEmailFailure {
     TResult? Function()? permissionPermanentlyDeniedFailure,
     TResult? Function()? sendVerificationEmailFailure,
     TResult? Function()? checkVerificationFailure,
+    TResult? Function()? locationDisabledFailure,
+    TResult? Function()? galleryAccessDeniedFailure,
+    TResult? Function()? cameraAccessDeniedFailure,
   }) {
     return existingEmailFailure?.call();
   }
@@ -8613,6 +9244,9 @@ class _$ExistingEmailFailure extends ExistingEmailFailure {
     TResult Function()? permissionPermanentlyDeniedFailure,
     TResult Function()? sendVerificationEmailFailure,
     TResult Function()? checkVerificationFailure,
+    TResult Function()? locationDisabledFailure,
+    TResult Function()? galleryAccessDeniedFailure,
+    TResult Function()? cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (existingEmailFailure != null) {
@@ -8674,6 +9308,12 @@ class _$ExistingEmailFailure extends ExistingEmailFailure {
         sendVerificationEmailFailure,
     required TResult Function(CheckVerificationFailure value)
         checkVerificationFailure,
+    required TResult Function(LocationDisabledFailure value)
+        locationDisabledFailure,
+    required TResult Function(GalleryAccessDeniedFailure value)
+        galleryAccessDeniedFailure,
+    required TResult Function(CameraAccessDeniedFailure value)
+        cameraAccessDeniedFailure,
   }) {
     return existingEmailFailure(this);
   }
@@ -8723,6 +9363,11 @@ class _$ExistingEmailFailure extends ExistingEmailFailure {
     TResult? Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult? Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult? Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult? Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
   }) {
     return existingEmailFailure?.call(this);
   }
@@ -8772,6 +9417,11 @@ class _$ExistingEmailFailure extends ExistingEmailFailure {
     TResult Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (existingEmailFailure != null) {
@@ -8862,6 +9512,9 @@ class _$UserEnabledFailure extends UserEnabledFailure {
     required TResult Function() permissionPermanentlyDeniedFailure,
     required TResult Function() sendVerificationEmailFailure,
     required TResult Function() checkVerificationFailure,
+    required TResult Function() locationDisabledFailure,
+    required TResult Function() galleryAccessDeniedFailure,
+    required TResult Function() cameraAccessDeniedFailure,
   }) {
     return userEnabledFailure();
   }
@@ -8907,6 +9560,9 @@ class _$UserEnabledFailure extends UserEnabledFailure {
     TResult? Function()? permissionPermanentlyDeniedFailure,
     TResult? Function()? sendVerificationEmailFailure,
     TResult? Function()? checkVerificationFailure,
+    TResult? Function()? locationDisabledFailure,
+    TResult? Function()? galleryAccessDeniedFailure,
+    TResult? Function()? cameraAccessDeniedFailure,
   }) {
     return userEnabledFailure?.call();
   }
@@ -8952,6 +9608,9 @@ class _$UserEnabledFailure extends UserEnabledFailure {
     TResult Function()? permissionPermanentlyDeniedFailure,
     TResult Function()? sendVerificationEmailFailure,
     TResult Function()? checkVerificationFailure,
+    TResult Function()? locationDisabledFailure,
+    TResult Function()? galleryAccessDeniedFailure,
+    TResult Function()? cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (userEnabledFailure != null) {
@@ -9013,6 +9672,12 @@ class _$UserEnabledFailure extends UserEnabledFailure {
         sendVerificationEmailFailure,
     required TResult Function(CheckVerificationFailure value)
         checkVerificationFailure,
+    required TResult Function(LocationDisabledFailure value)
+        locationDisabledFailure,
+    required TResult Function(GalleryAccessDeniedFailure value)
+        galleryAccessDeniedFailure,
+    required TResult Function(CameraAccessDeniedFailure value)
+        cameraAccessDeniedFailure,
   }) {
     return userEnabledFailure(this);
   }
@@ -9062,6 +9727,11 @@ class _$UserEnabledFailure extends UserEnabledFailure {
     TResult? Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult? Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult? Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult? Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
   }) {
     return userEnabledFailure?.call(this);
   }
@@ -9111,6 +9781,11 @@ class _$UserEnabledFailure extends UserEnabledFailure {
     TResult Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (userEnabledFailure != null) {
@@ -9201,6 +9876,9 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
     required TResult Function() permissionPermanentlyDeniedFailure,
     required TResult Function() sendVerificationEmailFailure,
     required TResult Function() checkVerificationFailure,
+    required TResult Function() locationDisabledFailure,
+    required TResult Function() galleryAccessDeniedFailure,
+    required TResult Function() cameraAccessDeniedFailure,
   }) {
     return weakPasswordFailure();
   }
@@ -9246,6 +9924,9 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
     TResult? Function()? permissionPermanentlyDeniedFailure,
     TResult? Function()? sendVerificationEmailFailure,
     TResult? Function()? checkVerificationFailure,
+    TResult? Function()? locationDisabledFailure,
+    TResult? Function()? galleryAccessDeniedFailure,
+    TResult? Function()? cameraAccessDeniedFailure,
   }) {
     return weakPasswordFailure?.call();
   }
@@ -9291,6 +9972,9 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
     TResult Function()? permissionPermanentlyDeniedFailure,
     TResult Function()? sendVerificationEmailFailure,
     TResult Function()? checkVerificationFailure,
+    TResult Function()? locationDisabledFailure,
+    TResult Function()? galleryAccessDeniedFailure,
+    TResult Function()? cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (weakPasswordFailure != null) {
@@ -9352,6 +10036,12 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
         sendVerificationEmailFailure,
     required TResult Function(CheckVerificationFailure value)
         checkVerificationFailure,
+    required TResult Function(LocationDisabledFailure value)
+        locationDisabledFailure,
+    required TResult Function(GalleryAccessDeniedFailure value)
+        galleryAccessDeniedFailure,
+    required TResult Function(CameraAccessDeniedFailure value)
+        cameraAccessDeniedFailure,
   }) {
     return weakPasswordFailure(this);
   }
@@ -9401,6 +10091,11 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
     TResult? Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult? Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult? Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult? Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
   }) {
     return weakPasswordFailure?.call(this);
   }
@@ -9450,6 +10145,11 @@ class _$WeakPasswordFailure extends WeakPasswordFailure {
     TResult Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (weakPasswordFailure != null) {
@@ -9540,6 +10240,9 @@ class _$MaxImageSizeFailure extends MaxImageSizeFailure {
     required TResult Function() permissionPermanentlyDeniedFailure,
     required TResult Function() sendVerificationEmailFailure,
     required TResult Function() checkVerificationFailure,
+    required TResult Function() locationDisabledFailure,
+    required TResult Function() galleryAccessDeniedFailure,
+    required TResult Function() cameraAccessDeniedFailure,
   }) {
     return maxImageSizeFailure();
   }
@@ -9585,6 +10288,9 @@ class _$MaxImageSizeFailure extends MaxImageSizeFailure {
     TResult? Function()? permissionPermanentlyDeniedFailure,
     TResult? Function()? sendVerificationEmailFailure,
     TResult? Function()? checkVerificationFailure,
+    TResult? Function()? locationDisabledFailure,
+    TResult? Function()? galleryAccessDeniedFailure,
+    TResult? Function()? cameraAccessDeniedFailure,
   }) {
     return maxImageSizeFailure?.call();
   }
@@ -9630,6 +10336,9 @@ class _$MaxImageSizeFailure extends MaxImageSizeFailure {
     TResult Function()? permissionPermanentlyDeniedFailure,
     TResult Function()? sendVerificationEmailFailure,
     TResult Function()? checkVerificationFailure,
+    TResult Function()? locationDisabledFailure,
+    TResult Function()? galleryAccessDeniedFailure,
+    TResult Function()? cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (maxImageSizeFailure != null) {
@@ -9691,6 +10400,12 @@ class _$MaxImageSizeFailure extends MaxImageSizeFailure {
         sendVerificationEmailFailure,
     required TResult Function(CheckVerificationFailure value)
         checkVerificationFailure,
+    required TResult Function(LocationDisabledFailure value)
+        locationDisabledFailure,
+    required TResult Function(GalleryAccessDeniedFailure value)
+        galleryAccessDeniedFailure,
+    required TResult Function(CameraAccessDeniedFailure value)
+        cameraAccessDeniedFailure,
   }) {
     return maxImageSizeFailure(this);
   }
@@ -9740,6 +10455,11 @@ class _$MaxImageSizeFailure extends MaxImageSizeFailure {
     TResult? Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult? Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult? Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult? Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
   }) {
     return maxImageSizeFailure?.call(this);
   }
@@ -9789,6 +10509,11 @@ class _$MaxImageSizeFailure extends MaxImageSizeFailure {
     TResult Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (maxImageSizeFailure != null) {
@@ -9879,6 +10604,9 @@ class _$MaxImageNumFailure extends MaxImageNumFailure {
     required TResult Function() permissionPermanentlyDeniedFailure,
     required TResult Function() sendVerificationEmailFailure,
     required TResult Function() checkVerificationFailure,
+    required TResult Function() locationDisabledFailure,
+    required TResult Function() galleryAccessDeniedFailure,
+    required TResult Function() cameraAccessDeniedFailure,
   }) {
     return maxImageNumFailure();
   }
@@ -9924,6 +10652,9 @@ class _$MaxImageNumFailure extends MaxImageNumFailure {
     TResult? Function()? permissionPermanentlyDeniedFailure,
     TResult? Function()? sendVerificationEmailFailure,
     TResult? Function()? checkVerificationFailure,
+    TResult? Function()? locationDisabledFailure,
+    TResult? Function()? galleryAccessDeniedFailure,
+    TResult? Function()? cameraAccessDeniedFailure,
   }) {
     return maxImageNumFailure?.call();
   }
@@ -9969,6 +10700,9 @@ class _$MaxImageNumFailure extends MaxImageNumFailure {
     TResult Function()? permissionPermanentlyDeniedFailure,
     TResult Function()? sendVerificationEmailFailure,
     TResult Function()? checkVerificationFailure,
+    TResult Function()? locationDisabledFailure,
+    TResult Function()? galleryAccessDeniedFailure,
+    TResult Function()? cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (maxImageNumFailure != null) {
@@ -10030,6 +10764,12 @@ class _$MaxImageNumFailure extends MaxImageNumFailure {
         sendVerificationEmailFailure,
     required TResult Function(CheckVerificationFailure value)
         checkVerificationFailure,
+    required TResult Function(LocationDisabledFailure value)
+        locationDisabledFailure,
+    required TResult Function(GalleryAccessDeniedFailure value)
+        galleryAccessDeniedFailure,
+    required TResult Function(CameraAccessDeniedFailure value)
+        cameraAccessDeniedFailure,
   }) {
     return maxImageNumFailure(this);
   }
@@ -10079,6 +10819,11 @@ class _$MaxImageNumFailure extends MaxImageNumFailure {
     TResult? Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult? Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult? Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult? Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
   }) {
     return maxImageNumFailure?.call(this);
   }
@@ -10128,6 +10873,11 @@ class _$MaxImageNumFailure extends MaxImageNumFailure {
     TResult Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (maxImageNumFailure != null) {
@@ -10220,6 +10970,9 @@ class _$NoPostTypeSelectedFailure extends NoPostTypeSelectedFailure {
     required TResult Function() permissionPermanentlyDeniedFailure,
     required TResult Function() sendVerificationEmailFailure,
     required TResult Function() checkVerificationFailure,
+    required TResult Function() locationDisabledFailure,
+    required TResult Function() galleryAccessDeniedFailure,
+    required TResult Function() cameraAccessDeniedFailure,
   }) {
     return noPostTypeSelectedFailure();
   }
@@ -10265,6 +11018,9 @@ class _$NoPostTypeSelectedFailure extends NoPostTypeSelectedFailure {
     TResult? Function()? permissionPermanentlyDeniedFailure,
     TResult? Function()? sendVerificationEmailFailure,
     TResult? Function()? checkVerificationFailure,
+    TResult? Function()? locationDisabledFailure,
+    TResult? Function()? galleryAccessDeniedFailure,
+    TResult? Function()? cameraAccessDeniedFailure,
   }) {
     return noPostTypeSelectedFailure?.call();
   }
@@ -10310,6 +11066,9 @@ class _$NoPostTypeSelectedFailure extends NoPostTypeSelectedFailure {
     TResult Function()? permissionPermanentlyDeniedFailure,
     TResult Function()? sendVerificationEmailFailure,
     TResult Function()? checkVerificationFailure,
+    TResult Function()? locationDisabledFailure,
+    TResult Function()? galleryAccessDeniedFailure,
+    TResult Function()? cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (noPostTypeSelectedFailure != null) {
@@ -10371,6 +11130,12 @@ class _$NoPostTypeSelectedFailure extends NoPostTypeSelectedFailure {
         sendVerificationEmailFailure,
     required TResult Function(CheckVerificationFailure value)
         checkVerificationFailure,
+    required TResult Function(LocationDisabledFailure value)
+        locationDisabledFailure,
+    required TResult Function(GalleryAccessDeniedFailure value)
+        galleryAccessDeniedFailure,
+    required TResult Function(CameraAccessDeniedFailure value)
+        cameraAccessDeniedFailure,
   }) {
     return noPostTypeSelectedFailure(this);
   }
@@ -10420,6 +11185,11 @@ class _$NoPostTypeSelectedFailure extends NoPostTypeSelectedFailure {
     TResult? Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult? Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult? Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult? Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
   }) {
     return noPostTypeSelectedFailure?.call(this);
   }
@@ -10469,6 +11239,11 @@ class _$NoPostTypeSelectedFailure extends NoPostTypeSelectedFailure {
     TResult Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (noPostTypeSelectedFailure != null) {
@@ -10559,6 +11334,9 @@ class _$NoPostContentsFailure extends NoPostContentsFailure {
     required TResult Function() permissionPermanentlyDeniedFailure,
     required TResult Function() sendVerificationEmailFailure,
     required TResult Function() checkVerificationFailure,
+    required TResult Function() locationDisabledFailure,
+    required TResult Function() galleryAccessDeniedFailure,
+    required TResult Function() cameraAccessDeniedFailure,
   }) {
     return noPostContentsFailure();
   }
@@ -10604,6 +11382,9 @@ class _$NoPostContentsFailure extends NoPostContentsFailure {
     TResult? Function()? permissionPermanentlyDeniedFailure,
     TResult? Function()? sendVerificationEmailFailure,
     TResult? Function()? checkVerificationFailure,
+    TResult? Function()? locationDisabledFailure,
+    TResult? Function()? galleryAccessDeniedFailure,
+    TResult? Function()? cameraAccessDeniedFailure,
   }) {
     return noPostContentsFailure?.call();
   }
@@ -10649,6 +11430,9 @@ class _$NoPostContentsFailure extends NoPostContentsFailure {
     TResult Function()? permissionPermanentlyDeniedFailure,
     TResult Function()? sendVerificationEmailFailure,
     TResult Function()? checkVerificationFailure,
+    TResult Function()? locationDisabledFailure,
+    TResult Function()? galleryAccessDeniedFailure,
+    TResult Function()? cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (noPostContentsFailure != null) {
@@ -10710,6 +11494,12 @@ class _$NoPostContentsFailure extends NoPostContentsFailure {
         sendVerificationEmailFailure,
     required TResult Function(CheckVerificationFailure value)
         checkVerificationFailure,
+    required TResult Function(LocationDisabledFailure value)
+        locationDisabledFailure,
+    required TResult Function(GalleryAccessDeniedFailure value)
+        galleryAccessDeniedFailure,
+    required TResult Function(CameraAccessDeniedFailure value)
+        cameraAccessDeniedFailure,
   }) {
     return noPostContentsFailure(this);
   }
@@ -10759,6 +11549,11 @@ class _$NoPostContentsFailure extends NoPostContentsFailure {
     TResult? Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult? Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult? Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult? Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
   }) {
     return noPostContentsFailure?.call(this);
   }
@@ -10808,6 +11603,11 @@ class _$NoPostContentsFailure extends NoPostContentsFailure {
     TResult Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (noPostContentsFailure != null) {
@@ -10898,6 +11698,9 @@ class _$NotFoundPostFailure extends NotFoundPostFailure {
     required TResult Function() permissionPermanentlyDeniedFailure,
     required TResult Function() sendVerificationEmailFailure,
     required TResult Function() checkVerificationFailure,
+    required TResult Function() locationDisabledFailure,
+    required TResult Function() galleryAccessDeniedFailure,
+    required TResult Function() cameraAccessDeniedFailure,
   }) {
     return notFoundPostFailure();
   }
@@ -10943,6 +11746,9 @@ class _$NotFoundPostFailure extends NotFoundPostFailure {
     TResult? Function()? permissionPermanentlyDeniedFailure,
     TResult? Function()? sendVerificationEmailFailure,
     TResult? Function()? checkVerificationFailure,
+    TResult? Function()? locationDisabledFailure,
+    TResult? Function()? galleryAccessDeniedFailure,
+    TResult? Function()? cameraAccessDeniedFailure,
   }) {
     return notFoundPostFailure?.call();
   }
@@ -10988,6 +11794,9 @@ class _$NotFoundPostFailure extends NotFoundPostFailure {
     TResult Function()? permissionPermanentlyDeniedFailure,
     TResult Function()? sendVerificationEmailFailure,
     TResult Function()? checkVerificationFailure,
+    TResult Function()? locationDisabledFailure,
+    TResult Function()? galleryAccessDeniedFailure,
+    TResult Function()? cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (notFoundPostFailure != null) {
@@ -11049,6 +11858,12 @@ class _$NotFoundPostFailure extends NotFoundPostFailure {
         sendVerificationEmailFailure,
     required TResult Function(CheckVerificationFailure value)
         checkVerificationFailure,
+    required TResult Function(LocationDisabledFailure value)
+        locationDisabledFailure,
+    required TResult Function(GalleryAccessDeniedFailure value)
+        galleryAccessDeniedFailure,
+    required TResult Function(CameraAccessDeniedFailure value)
+        cameraAccessDeniedFailure,
   }) {
     return notFoundPostFailure(this);
   }
@@ -11098,6 +11913,11 @@ class _$NotFoundPostFailure extends NotFoundPostFailure {
     TResult? Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult? Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult? Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult? Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
   }) {
     return notFoundPostFailure?.call(this);
   }
@@ -11147,6 +11967,11 @@ class _$NotFoundPostFailure extends NotFoundPostFailure {
     TResult Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (notFoundPostFailure != null) {
@@ -11240,6 +12065,9 @@ class _$NotEditablePasswordFailure extends NotEditablePasswordFailure {
     required TResult Function() permissionPermanentlyDeniedFailure,
     required TResult Function() sendVerificationEmailFailure,
     required TResult Function() checkVerificationFailure,
+    required TResult Function() locationDisabledFailure,
+    required TResult Function() galleryAccessDeniedFailure,
+    required TResult Function() cameraAccessDeniedFailure,
   }) {
     return notEditablePasswordFailure();
   }
@@ -11285,6 +12113,9 @@ class _$NotEditablePasswordFailure extends NotEditablePasswordFailure {
     TResult? Function()? permissionPermanentlyDeniedFailure,
     TResult? Function()? sendVerificationEmailFailure,
     TResult? Function()? checkVerificationFailure,
+    TResult? Function()? locationDisabledFailure,
+    TResult? Function()? galleryAccessDeniedFailure,
+    TResult? Function()? cameraAccessDeniedFailure,
   }) {
     return notEditablePasswordFailure?.call();
   }
@@ -11330,6 +12161,9 @@ class _$NotEditablePasswordFailure extends NotEditablePasswordFailure {
     TResult Function()? permissionPermanentlyDeniedFailure,
     TResult Function()? sendVerificationEmailFailure,
     TResult Function()? checkVerificationFailure,
+    TResult Function()? locationDisabledFailure,
+    TResult Function()? galleryAccessDeniedFailure,
+    TResult Function()? cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (notEditablePasswordFailure != null) {
@@ -11391,6 +12225,12 @@ class _$NotEditablePasswordFailure extends NotEditablePasswordFailure {
         sendVerificationEmailFailure,
     required TResult Function(CheckVerificationFailure value)
         checkVerificationFailure,
+    required TResult Function(LocationDisabledFailure value)
+        locationDisabledFailure,
+    required TResult Function(GalleryAccessDeniedFailure value)
+        galleryAccessDeniedFailure,
+    required TResult Function(CameraAccessDeniedFailure value)
+        cameraAccessDeniedFailure,
   }) {
     return notEditablePasswordFailure(this);
   }
@@ -11440,6 +12280,11 @@ class _$NotEditablePasswordFailure extends NotEditablePasswordFailure {
     TResult? Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult? Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult? Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult? Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
   }) {
     return notEditablePasswordFailure?.call(this);
   }
@@ -11489,6 +12334,11 @@ class _$NotEditablePasswordFailure extends NotEditablePasswordFailure {
     TResult Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (notEditablePasswordFailure != null) {
@@ -11579,6 +12429,9 @@ class _$UserInfoUpdateFailure extends UserInfoUpdateFailure {
     required TResult Function() permissionPermanentlyDeniedFailure,
     required TResult Function() sendVerificationEmailFailure,
     required TResult Function() checkVerificationFailure,
+    required TResult Function() locationDisabledFailure,
+    required TResult Function() galleryAccessDeniedFailure,
+    required TResult Function() cameraAccessDeniedFailure,
   }) {
     return userInfoUpdateFailure();
   }
@@ -11624,6 +12477,9 @@ class _$UserInfoUpdateFailure extends UserInfoUpdateFailure {
     TResult? Function()? permissionPermanentlyDeniedFailure,
     TResult? Function()? sendVerificationEmailFailure,
     TResult? Function()? checkVerificationFailure,
+    TResult? Function()? locationDisabledFailure,
+    TResult? Function()? galleryAccessDeniedFailure,
+    TResult? Function()? cameraAccessDeniedFailure,
   }) {
     return userInfoUpdateFailure?.call();
   }
@@ -11669,6 +12525,9 @@ class _$UserInfoUpdateFailure extends UserInfoUpdateFailure {
     TResult Function()? permissionPermanentlyDeniedFailure,
     TResult Function()? sendVerificationEmailFailure,
     TResult Function()? checkVerificationFailure,
+    TResult Function()? locationDisabledFailure,
+    TResult Function()? galleryAccessDeniedFailure,
+    TResult Function()? cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (userInfoUpdateFailure != null) {
@@ -11730,6 +12589,12 @@ class _$UserInfoUpdateFailure extends UserInfoUpdateFailure {
         sendVerificationEmailFailure,
     required TResult Function(CheckVerificationFailure value)
         checkVerificationFailure,
+    required TResult Function(LocationDisabledFailure value)
+        locationDisabledFailure,
+    required TResult Function(GalleryAccessDeniedFailure value)
+        galleryAccessDeniedFailure,
+    required TResult Function(CameraAccessDeniedFailure value)
+        cameraAccessDeniedFailure,
   }) {
     return userInfoUpdateFailure(this);
   }
@@ -11779,6 +12644,11 @@ class _$UserInfoUpdateFailure extends UserInfoUpdateFailure {
     TResult? Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult? Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult? Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult? Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
   }) {
     return userInfoUpdateFailure?.call(this);
   }
@@ -11828,6 +12698,11 @@ class _$UserInfoUpdateFailure extends UserInfoUpdateFailure {
     TResult Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (userInfoUpdateFailure != null) {
@@ -11919,6 +12794,9 @@ class _$PermissionDeniedFailure extends PermissionDeniedFailure {
     required TResult Function() permissionPermanentlyDeniedFailure,
     required TResult Function() sendVerificationEmailFailure,
     required TResult Function() checkVerificationFailure,
+    required TResult Function() locationDisabledFailure,
+    required TResult Function() galleryAccessDeniedFailure,
+    required TResult Function() cameraAccessDeniedFailure,
   }) {
     return permissionDeniedFailure();
   }
@@ -11964,6 +12842,9 @@ class _$PermissionDeniedFailure extends PermissionDeniedFailure {
     TResult? Function()? permissionPermanentlyDeniedFailure,
     TResult? Function()? sendVerificationEmailFailure,
     TResult? Function()? checkVerificationFailure,
+    TResult? Function()? locationDisabledFailure,
+    TResult? Function()? galleryAccessDeniedFailure,
+    TResult? Function()? cameraAccessDeniedFailure,
   }) {
     return permissionDeniedFailure?.call();
   }
@@ -12009,6 +12890,9 @@ class _$PermissionDeniedFailure extends PermissionDeniedFailure {
     TResult Function()? permissionPermanentlyDeniedFailure,
     TResult Function()? sendVerificationEmailFailure,
     TResult Function()? checkVerificationFailure,
+    TResult Function()? locationDisabledFailure,
+    TResult Function()? galleryAccessDeniedFailure,
+    TResult Function()? cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (permissionDeniedFailure != null) {
@@ -12070,6 +12954,12 @@ class _$PermissionDeniedFailure extends PermissionDeniedFailure {
         sendVerificationEmailFailure,
     required TResult Function(CheckVerificationFailure value)
         checkVerificationFailure,
+    required TResult Function(LocationDisabledFailure value)
+        locationDisabledFailure,
+    required TResult Function(GalleryAccessDeniedFailure value)
+        galleryAccessDeniedFailure,
+    required TResult Function(CameraAccessDeniedFailure value)
+        cameraAccessDeniedFailure,
   }) {
     return permissionDeniedFailure(this);
   }
@@ -12119,6 +13009,11 @@ class _$PermissionDeniedFailure extends PermissionDeniedFailure {
     TResult? Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult? Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult? Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult? Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
   }) {
     return permissionDeniedFailure?.call(this);
   }
@@ -12168,6 +13063,11 @@ class _$PermissionDeniedFailure extends PermissionDeniedFailure {
     TResult Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (permissionDeniedFailure != null) {
@@ -12262,6 +13162,9 @@ class _$PermissionPermanentlyDeniedFailure
     required TResult Function() permissionPermanentlyDeniedFailure,
     required TResult Function() sendVerificationEmailFailure,
     required TResult Function() checkVerificationFailure,
+    required TResult Function() locationDisabledFailure,
+    required TResult Function() galleryAccessDeniedFailure,
+    required TResult Function() cameraAccessDeniedFailure,
   }) {
     return permissionPermanentlyDeniedFailure();
   }
@@ -12307,6 +13210,9 @@ class _$PermissionPermanentlyDeniedFailure
     TResult? Function()? permissionPermanentlyDeniedFailure,
     TResult? Function()? sendVerificationEmailFailure,
     TResult? Function()? checkVerificationFailure,
+    TResult? Function()? locationDisabledFailure,
+    TResult? Function()? galleryAccessDeniedFailure,
+    TResult? Function()? cameraAccessDeniedFailure,
   }) {
     return permissionPermanentlyDeniedFailure?.call();
   }
@@ -12352,6 +13258,9 @@ class _$PermissionPermanentlyDeniedFailure
     TResult Function()? permissionPermanentlyDeniedFailure,
     TResult Function()? sendVerificationEmailFailure,
     TResult Function()? checkVerificationFailure,
+    TResult Function()? locationDisabledFailure,
+    TResult Function()? galleryAccessDeniedFailure,
+    TResult Function()? cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (permissionPermanentlyDeniedFailure != null) {
@@ -12413,6 +13322,12 @@ class _$PermissionPermanentlyDeniedFailure
         sendVerificationEmailFailure,
     required TResult Function(CheckVerificationFailure value)
         checkVerificationFailure,
+    required TResult Function(LocationDisabledFailure value)
+        locationDisabledFailure,
+    required TResult Function(GalleryAccessDeniedFailure value)
+        galleryAccessDeniedFailure,
+    required TResult Function(CameraAccessDeniedFailure value)
+        cameraAccessDeniedFailure,
   }) {
     return permissionPermanentlyDeniedFailure(this);
   }
@@ -12462,6 +13377,11 @@ class _$PermissionPermanentlyDeniedFailure
     TResult? Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult? Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult? Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult? Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
   }) {
     return permissionPermanentlyDeniedFailure?.call(this);
   }
@@ -12511,6 +13431,11 @@ class _$PermissionPermanentlyDeniedFailure
     TResult Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (permissionPermanentlyDeniedFailure != null) {
@@ -12605,6 +13530,9 @@ class _$SendVerificationEmailFailure extends SendVerificationEmailFailure {
     required TResult Function() permissionPermanentlyDeniedFailure,
     required TResult Function() sendVerificationEmailFailure,
     required TResult Function() checkVerificationFailure,
+    required TResult Function() locationDisabledFailure,
+    required TResult Function() galleryAccessDeniedFailure,
+    required TResult Function() cameraAccessDeniedFailure,
   }) {
     return sendVerificationEmailFailure();
   }
@@ -12650,6 +13578,9 @@ class _$SendVerificationEmailFailure extends SendVerificationEmailFailure {
     TResult? Function()? permissionPermanentlyDeniedFailure,
     TResult? Function()? sendVerificationEmailFailure,
     TResult? Function()? checkVerificationFailure,
+    TResult? Function()? locationDisabledFailure,
+    TResult? Function()? galleryAccessDeniedFailure,
+    TResult? Function()? cameraAccessDeniedFailure,
   }) {
     return sendVerificationEmailFailure?.call();
   }
@@ -12695,6 +13626,9 @@ class _$SendVerificationEmailFailure extends SendVerificationEmailFailure {
     TResult Function()? permissionPermanentlyDeniedFailure,
     TResult Function()? sendVerificationEmailFailure,
     TResult Function()? checkVerificationFailure,
+    TResult Function()? locationDisabledFailure,
+    TResult Function()? galleryAccessDeniedFailure,
+    TResult Function()? cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (sendVerificationEmailFailure != null) {
@@ -12756,6 +13690,12 @@ class _$SendVerificationEmailFailure extends SendVerificationEmailFailure {
         sendVerificationEmailFailure,
     required TResult Function(CheckVerificationFailure value)
         checkVerificationFailure,
+    required TResult Function(LocationDisabledFailure value)
+        locationDisabledFailure,
+    required TResult Function(GalleryAccessDeniedFailure value)
+        galleryAccessDeniedFailure,
+    required TResult Function(CameraAccessDeniedFailure value)
+        cameraAccessDeniedFailure,
   }) {
     return sendVerificationEmailFailure(this);
   }
@@ -12805,6 +13745,11 @@ class _$SendVerificationEmailFailure extends SendVerificationEmailFailure {
     TResult? Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult? Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult? Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult? Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
   }) {
     return sendVerificationEmailFailure?.call(this);
   }
@@ -12854,6 +13799,11 @@ class _$SendVerificationEmailFailure extends SendVerificationEmailFailure {
     TResult Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (sendVerificationEmailFailure != null) {
@@ -12945,6 +13895,9 @@ class _$CheckVerificationFailure extends CheckVerificationFailure {
     required TResult Function() permissionPermanentlyDeniedFailure,
     required TResult Function() sendVerificationEmailFailure,
     required TResult Function() checkVerificationFailure,
+    required TResult Function() locationDisabledFailure,
+    required TResult Function() galleryAccessDeniedFailure,
+    required TResult Function() cameraAccessDeniedFailure,
   }) {
     return checkVerificationFailure();
   }
@@ -12990,6 +13943,9 @@ class _$CheckVerificationFailure extends CheckVerificationFailure {
     TResult? Function()? permissionPermanentlyDeniedFailure,
     TResult? Function()? sendVerificationEmailFailure,
     TResult? Function()? checkVerificationFailure,
+    TResult? Function()? locationDisabledFailure,
+    TResult? Function()? galleryAccessDeniedFailure,
+    TResult? Function()? cameraAccessDeniedFailure,
   }) {
     return checkVerificationFailure?.call();
   }
@@ -13035,6 +13991,9 @@ class _$CheckVerificationFailure extends CheckVerificationFailure {
     TResult Function()? permissionPermanentlyDeniedFailure,
     TResult Function()? sendVerificationEmailFailure,
     TResult Function()? checkVerificationFailure,
+    TResult Function()? locationDisabledFailure,
+    TResult Function()? galleryAccessDeniedFailure,
+    TResult Function()? cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (checkVerificationFailure != null) {
@@ -13096,6 +14055,12 @@ class _$CheckVerificationFailure extends CheckVerificationFailure {
         sendVerificationEmailFailure,
     required TResult Function(CheckVerificationFailure value)
         checkVerificationFailure,
+    required TResult Function(LocationDisabledFailure value)
+        locationDisabledFailure,
+    required TResult Function(GalleryAccessDeniedFailure value)
+        galleryAccessDeniedFailure,
+    required TResult Function(CameraAccessDeniedFailure value)
+        cameraAccessDeniedFailure,
   }) {
     return checkVerificationFailure(this);
   }
@@ -13145,6 +14110,11 @@ class _$CheckVerificationFailure extends CheckVerificationFailure {
     TResult? Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult? Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult? Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult? Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
   }) {
     return checkVerificationFailure?.call(this);
   }
@@ -13194,6 +14164,11 @@ class _$CheckVerificationFailure extends CheckVerificationFailure {
     TResult Function(SendVerificationEmailFailure value)?
         sendVerificationEmailFailure,
     TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
     required TResult orElse(),
   }) {
     if (checkVerificationFailure != null) {
@@ -13206,4 +14181,1102 @@ class _$CheckVerificationFailure extends CheckVerificationFailure {
 abstract class CheckVerificationFailure extends Failure {
   const factory CheckVerificationFailure() = _$CheckVerificationFailure;
   const CheckVerificationFailure._() : super._();
+}
+
+/// @nodoc
+abstract class _$$LocationDisabledFailureCopyWith<$Res> {
+  factory _$$LocationDisabledFailureCopyWith(_$LocationDisabledFailure value,
+          $Res Function(_$LocationDisabledFailure) then) =
+      __$$LocationDisabledFailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LocationDisabledFailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$LocationDisabledFailure>
+    implements _$$LocationDisabledFailureCopyWith<$Res> {
+  __$$LocationDisabledFailureCopyWithImpl(_$LocationDisabledFailure _value,
+      $Res Function(_$LocationDisabledFailure) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$LocationDisabledFailure extends LocationDisabledFailure {
+  const _$LocationDisabledFailure() : super._();
+
+  @override
+  String toString() {
+    return 'Failure.locationDisabledFailure()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LocationDisabledFailure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() versionCheckFailure,
+    required TResult Function() serverFailure,
+    required TResult Function() dataParsingFailure,
+    required TResult Function() noConnectionFailure,
+    required TResult Function() notFoundFailure,
+    required TResult Function() noUserDataFailure,
+    required TResult Function() maxDiseaseFailure,
+    required TResult Function() maxConimalFailure,
+    required TResult Function() emptyListFailure,
+    required TResult Function() noSuchDataInListFailure,
+    required TResult Function() registerConimalFaiure,
+    required TResult Function() removeConimalFailure,
+    required TResult Function() getConimalListFailure,
+    required TResult Function() signInCredentialFailure,
+    required TResult Function() signInTokenFailure,
+    required TResult Function() naverSigninFailure,
+    required TResult Function() kakaoSigninFailure,
+    required TResult Function() googleSigninFailure,
+    required TResult Function() appleSigninFailure,
+    required TResult Function() emailSigninFailure,
+    required TResult Function() getUserFailure,
+    required TResult Function() wrongPasswordFailure,
+    required TResult Function() noEmailUserFailure,
+    required TResult Function() wrongTokenFailure,
+    required TResult Function() existingEmailFailure,
+    required TResult Function() userEnabledFailure,
+    required TResult Function() weakPasswordFailure,
+    required TResult Function() maxImageSizeFailure,
+    required TResult Function() maxImageNumFailure,
+    required TResult Function() noPostTypeSelectedFailure,
+    required TResult Function() noPostContentsFailure,
+    required TResult Function() notFoundPostFailure,
+    required TResult Function() notEditablePasswordFailure,
+    required TResult Function() userInfoUpdateFailure,
+    required TResult Function() permissionDeniedFailure,
+    required TResult Function() permissionPermanentlyDeniedFailure,
+    required TResult Function() sendVerificationEmailFailure,
+    required TResult Function() checkVerificationFailure,
+    required TResult Function() locationDisabledFailure,
+    required TResult Function() galleryAccessDeniedFailure,
+    required TResult Function() cameraAccessDeniedFailure,
+  }) {
+    return locationDisabledFailure();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? versionCheckFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function()? dataParsingFailure,
+    TResult? Function()? noConnectionFailure,
+    TResult? Function()? notFoundFailure,
+    TResult? Function()? noUserDataFailure,
+    TResult? Function()? maxDiseaseFailure,
+    TResult? Function()? maxConimalFailure,
+    TResult? Function()? emptyListFailure,
+    TResult? Function()? noSuchDataInListFailure,
+    TResult? Function()? registerConimalFaiure,
+    TResult? Function()? removeConimalFailure,
+    TResult? Function()? getConimalListFailure,
+    TResult? Function()? signInCredentialFailure,
+    TResult? Function()? signInTokenFailure,
+    TResult? Function()? naverSigninFailure,
+    TResult? Function()? kakaoSigninFailure,
+    TResult? Function()? googleSigninFailure,
+    TResult? Function()? appleSigninFailure,
+    TResult? Function()? emailSigninFailure,
+    TResult? Function()? getUserFailure,
+    TResult? Function()? wrongPasswordFailure,
+    TResult? Function()? noEmailUserFailure,
+    TResult? Function()? wrongTokenFailure,
+    TResult? Function()? existingEmailFailure,
+    TResult? Function()? userEnabledFailure,
+    TResult? Function()? weakPasswordFailure,
+    TResult? Function()? maxImageSizeFailure,
+    TResult? Function()? maxImageNumFailure,
+    TResult? Function()? noPostTypeSelectedFailure,
+    TResult? Function()? noPostContentsFailure,
+    TResult? Function()? notFoundPostFailure,
+    TResult? Function()? notEditablePasswordFailure,
+    TResult? Function()? userInfoUpdateFailure,
+    TResult? Function()? permissionDeniedFailure,
+    TResult? Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? sendVerificationEmailFailure,
+    TResult? Function()? checkVerificationFailure,
+    TResult? Function()? locationDisabledFailure,
+    TResult? Function()? galleryAccessDeniedFailure,
+    TResult? Function()? cameraAccessDeniedFailure,
+  }) {
+    return locationDisabledFailure?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
+    TResult Function()? serverFailure,
+    TResult Function()? dataParsingFailure,
+    TResult Function()? noConnectionFailure,
+    TResult Function()? notFoundFailure,
+    TResult Function()? noUserDataFailure,
+    TResult Function()? maxDiseaseFailure,
+    TResult Function()? maxConimalFailure,
+    TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
+    TResult Function()? signInCredentialFailure,
+    TResult Function()? signInTokenFailure,
+    TResult Function()? naverSigninFailure,
+    TResult Function()? kakaoSigninFailure,
+    TResult Function()? googleSigninFailure,
+    TResult Function()? appleSigninFailure,
+    TResult Function()? emailSigninFailure,
+    TResult Function()? getUserFailure,
+    TResult Function()? wrongPasswordFailure,
+    TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
+    TResult Function()? existingEmailFailure,
+    TResult Function()? userEnabledFailure,
+    TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
+    TResult Function()? maxImageNumFailure,
+    TResult Function()? noPostTypeSelectedFailure,
+    TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult Function()? sendVerificationEmailFailure,
+    TResult Function()? checkVerificationFailure,
+    TResult Function()? locationDisabledFailure,
+    TResult Function()? galleryAccessDeniedFailure,
+    TResult Function()? cameraAccessDeniedFailure,
+    required TResult orElse(),
+  }) {
+    if (locationDisabledFailure != null) {
+      return locationDisabledFailure();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(VersionCheckFailure value) versionCheckFailure,
+    required TResult Function(ServerFailure value) serverFailure,
+    required TResult Function(DataParsingFailure value) dataParsingFailure,
+    required TResult Function(NoConnectionFailure value) noConnectionFailure,
+    required TResult Function(NotFoundFailure value) notFoundFailure,
+    required TResult Function(NoUserDataFailure value) noUserDataFailure,
+    required TResult Function(MaxDiseaseFailure value) maxDiseaseFailure,
+    required TResult Function(MaxConimalFailure value) maxConimalFailure,
+    required TResult Function(EmptyListFailure value) emptyListFailure,
+    required TResult Function(NoSuchDataInListFailure value)
+        noSuchDataInListFailure,
+    required TResult Function(RegisterConimalFailure value)
+        registerConimalFaiure,
+    required TResult Function(RemoveConimalFailure value) removeConimalFailure,
+    required TResult Function(GetConimalListFailure value)
+        getConimalListFailure,
+    required TResult Function(SignInCredentialFailure value)
+        signInCredentialFailure,
+    required TResult Function(SignInTokenFailure value) signInTokenFailure,
+    required TResult Function(NaverSigninFailure value) naverSigninFailure,
+    required TResult Function(KakaoSigninFailure value) kakaoSigninFailure,
+    required TResult Function(GoogleSigninFailure value) googleSigninFailure,
+    required TResult Function(AppleSigninFailure value) appleSigninFailure,
+    required TResult Function(EmailSigninFailure value) emailSigninFailure,
+    required TResult Function(GetUserInfoFailure value) getUserFailure,
+    required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
+    required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(WrongTokenFailure value) wrongTokenFailure,
+    required TResult Function(ExistingEmailFailure value) existingEmailFailure,
+    required TResult Function(UserEnabledFailure value) userEnabledFailure,
+    required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
+    required TResult Function(MaxImageSizeFailure value) maxImageSizeFailure,
+    required TResult Function(MaxImageNumFailure value) maxImageNumFailure,
+    required TResult Function(NoPostTypeSelectedFailure value)
+        noPostTypeSelectedFailure,
+    required TResult Function(NoPostContentsFailure value)
+        noPostContentsFailure,
+    required TResult Function(NotFoundPostFailure value) notFoundPostFailure,
+    required TResult Function(NotEditablePasswordFailure value)
+        notEditablePasswordFailure,
+    required TResult Function(UserInfoUpdateFailure value)
+        userInfoUpdateFailure,
+    required TResult Function(PermissionDeniedFailure value)
+        permissionDeniedFailure,
+    required TResult Function(PermissionPermanentlyDeniedFailure value)
+        permissionPermanentlyDeniedFailure,
+    required TResult Function(SendVerificationEmailFailure value)
+        sendVerificationEmailFailure,
+    required TResult Function(CheckVerificationFailure value)
+        checkVerificationFailure,
+    required TResult Function(LocationDisabledFailure value)
+        locationDisabledFailure,
+    required TResult Function(GalleryAccessDeniedFailure value)
+        galleryAccessDeniedFailure,
+    required TResult Function(CameraAccessDeniedFailure value)
+        cameraAccessDeniedFailure,
+  }) {
+    return locationDisabledFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult? Function(ServerFailure value)? serverFailure,
+    TResult? Function(DataParsingFailure value)? dataParsingFailure,
+    TResult? Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult? Function(NotFoundFailure value)? notFoundFailure,
+    TResult? Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult? Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult? Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult? Function(EmptyListFailure value)? emptyListFailure,
+    TResult? Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult? Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult? Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult? Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult? Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult? Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult? Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult? Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult? Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult? Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult? Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult? Function(GetUserInfoFailure value)? getUserFailure,
+    TResult? Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult? Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult? Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult? Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult? Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult? Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult? Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult? Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult? Function(NoPostTypeSelectedFailure value)?
+        noPostTypeSelectedFailure,
+    TResult? Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult? Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult? Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult? Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult? Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
+    TResult? Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult? Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult? Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult? Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
+  }) {
+    return locationDisabledFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult Function(ServerFailure value)? serverFailure,
+    TResult Function(DataParsingFailure value)? dataParsingFailure,
+    TResult Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult Function(NotFoundFailure value)? notFoundFailure,
+    TResult Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult Function(GetUserInfoFailure value)? getUserFailure,
+    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult Function(NoPostTypeSelectedFailure value)?
+        noPostTypeSelectedFailure,
+    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
+    TResult Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
+    required TResult orElse(),
+  }) {
+    if (locationDisabledFailure != null) {
+      return locationDisabledFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LocationDisabledFailure extends Failure {
+  const factory LocationDisabledFailure() = _$LocationDisabledFailure;
+  const LocationDisabledFailure._() : super._();
+}
+
+/// @nodoc
+abstract class _$$GalleryAccessDeniedFailureCopyWith<$Res> {
+  factory _$$GalleryAccessDeniedFailureCopyWith(
+          _$GalleryAccessDeniedFailure value,
+          $Res Function(_$GalleryAccessDeniedFailure) then) =
+      __$$GalleryAccessDeniedFailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GalleryAccessDeniedFailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$GalleryAccessDeniedFailure>
+    implements _$$GalleryAccessDeniedFailureCopyWith<$Res> {
+  __$$GalleryAccessDeniedFailureCopyWithImpl(
+      _$GalleryAccessDeniedFailure _value,
+      $Res Function(_$GalleryAccessDeniedFailure) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$GalleryAccessDeniedFailure extends GalleryAccessDeniedFailure {
+  const _$GalleryAccessDeniedFailure() : super._();
+
+  @override
+  String toString() {
+    return 'Failure.galleryAccessDeniedFailure()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GalleryAccessDeniedFailure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() versionCheckFailure,
+    required TResult Function() serverFailure,
+    required TResult Function() dataParsingFailure,
+    required TResult Function() noConnectionFailure,
+    required TResult Function() notFoundFailure,
+    required TResult Function() noUserDataFailure,
+    required TResult Function() maxDiseaseFailure,
+    required TResult Function() maxConimalFailure,
+    required TResult Function() emptyListFailure,
+    required TResult Function() noSuchDataInListFailure,
+    required TResult Function() registerConimalFaiure,
+    required TResult Function() removeConimalFailure,
+    required TResult Function() getConimalListFailure,
+    required TResult Function() signInCredentialFailure,
+    required TResult Function() signInTokenFailure,
+    required TResult Function() naverSigninFailure,
+    required TResult Function() kakaoSigninFailure,
+    required TResult Function() googleSigninFailure,
+    required TResult Function() appleSigninFailure,
+    required TResult Function() emailSigninFailure,
+    required TResult Function() getUserFailure,
+    required TResult Function() wrongPasswordFailure,
+    required TResult Function() noEmailUserFailure,
+    required TResult Function() wrongTokenFailure,
+    required TResult Function() existingEmailFailure,
+    required TResult Function() userEnabledFailure,
+    required TResult Function() weakPasswordFailure,
+    required TResult Function() maxImageSizeFailure,
+    required TResult Function() maxImageNumFailure,
+    required TResult Function() noPostTypeSelectedFailure,
+    required TResult Function() noPostContentsFailure,
+    required TResult Function() notFoundPostFailure,
+    required TResult Function() notEditablePasswordFailure,
+    required TResult Function() userInfoUpdateFailure,
+    required TResult Function() permissionDeniedFailure,
+    required TResult Function() permissionPermanentlyDeniedFailure,
+    required TResult Function() sendVerificationEmailFailure,
+    required TResult Function() checkVerificationFailure,
+    required TResult Function() locationDisabledFailure,
+    required TResult Function() galleryAccessDeniedFailure,
+    required TResult Function() cameraAccessDeniedFailure,
+  }) {
+    return galleryAccessDeniedFailure();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? versionCheckFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function()? dataParsingFailure,
+    TResult? Function()? noConnectionFailure,
+    TResult? Function()? notFoundFailure,
+    TResult? Function()? noUserDataFailure,
+    TResult? Function()? maxDiseaseFailure,
+    TResult? Function()? maxConimalFailure,
+    TResult? Function()? emptyListFailure,
+    TResult? Function()? noSuchDataInListFailure,
+    TResult? Function()? registerConimalFaiure,
+    TResult? Function()? removeConimalFailure,
+    TResult? Function()? getConimalListFailure,
+    TResult? Function()? signInCredentialFailure,
+    TResult? Function()? signInTokenFailure,
+    TResult? Function()? naverSigninFailure,
+    TResult? Function()? kakaoSigninFailure,
+    TResult? Function()? googleSigninFailure,
+    TResult? Function()? appleSigninFailure,
+    TResult? Function()? emailSigninFailure,
+    TResult? Function()? getUserFailure,
+    TResult? Function()? wrongPasswordFailure,
+    TResult? Function()? noEmailUserFailure,
+    TResult? Function()? wrongTokenFailure,
+    TResult? Function()? existingEmailFailure,
+    TResult? Function()? userEnabledFailure,
+    TResult? Function()? weakPasswordFailure,
+    TResult? Function()? maxImageSizeFailure,
+    TResult? Function()? maxImageNumFailure,
+    TResult? Function()? noPostTypeSelectedFailure,
+    TResult? Function()? noPostContentsFailure,
+    TResult? Function()? notFoundPostFailure,
+    TResult? Function()? notEditablePasswordFailure,
+    TResult? Function()? userInfoUpdateFailure,
+    TResult? Function()? permissionDeniedFailure,
+    TResult? Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? sendVerificationEmailFailure,
+    TResult? Function()? checkVerificationFailure,
+    TResult? Function()? locationDisabledFailure,
+    TResult? Function()? galleryAccessDeniedFailure,
+    TResult? Function()? cameraAccessDeniedFailure,
+  }) {
+    return galleryAccessDeniedFailure?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
+    TResult Function()? serverFailure,
+    TResult Function()? dataParsingFailure,
+    TResult Function()? noConnectionFailure,
+    TResult Function()? notFoundFailure,
+    TResult Function()? noUserDataFailure,
+    TResult Function()? maxDiseaseFailure,
+    TResult Function()? maxConimalFailure,
+    TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
+    TResult Function()? signInCredentialFailure,
+    TResult Function()? signInTokenFailure,
+    TResult Function()? naverSigninFailure,
+    TResult Function()? kakaoSigninFailure,
+    TResult Function()? googleSigninFailure,
+    TResult Function()? appleSigninFailure,
+    TResult Function()? emailSigninFailure,
+    TResult Function()? getUserFailure,
+    TResult Function()? wrongPasswordFailure,
+    TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
+    TResult Function()? existingEmailFailure,
+    TResult Function()? userEnabledFailure,
+    TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
+    TResult Function()? maxImageNumFailure,
+    TResult Function()? noPostTypeSelectedFailure,
+    TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult Function()? sendVerificationEmailFailure,
+    TResult Function()? checkVerificationFailure,
+    TResult Function()? locationDisabledFailure,
+    TResult Function()? galleryAccessDeniedFailure,
+    TResult Function()? cameraAccessDeniedFailure,
+    required TResult orElse(),
+  }) {
+    if (galleryAccessDeniedFailure != null) {
+      return galleryAccessDeniedFailure();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(VersionCheckFailure value) versionCheckFailure,
+    required TResult Function(ServerFailure value) serverFailure,
+    required TResult Function(DataParsingFailure value) dataParsingFailure,
+    required TResult Function(NoConnectionFailure value) noConnectionFailure,
+    required TResult Function(NotFoundFailure value) notFoundFailure,
+    required TResult Function(NoUserDataFailure value) noUserDataFailure,
+    required TResult Function(MaxDiseaseFailure value) maxDiseaseFailure,
+    required TResult Function(MaxConimalFailure value) maxConimalFailure,
+    required TResult Function(EmptyListFailure value) emptyListFailure,
+    required TResult Function(NoSuchDataInListFailure value)
+        noSuchDataInListFailure,
+    required TResult Function(RegisterConimalFailure value)
+        registerConimalFaiure,
+    required TResult Function(RemoveConimalFailure value) removeConimalFailure,
+    required TResult Function(GetConimalListFailure value)
+        getConimalListFailure,
+    required TResult Function(SignInCredentialFailure value)
+        signInCredentialFailure,
+    required TResult Function(SignInTokenFailure value) signInTokenFailure,
+    required TResult Function(NaverSigninFailure value) naverSigninFailure,
+    required TResult Function(KakaoSigninFailure value) kakaoSigninFailure,
+    required TResult Function(GoogleSigninFailure value) googleSigninFailure,
+    required TResult Function(AppleSigninFailure value) appleSigninFailure,
+    required TResult Function(EmailSigninFailure value) emailSigninFailure,
+    required TResult Function(GetUserInfoFailure value) getUserFailure,
+    required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
+    required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(WrongTokenFailure value) wrongTokenFailure,
+    required TResult Function(ExistingEmailFailure value) existingEmailFailure,
+    required TResult Function(UserEnabledFailure value) userEnabledFailure,
+    required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
+    required TResult Function(MaxImageSizeFailure value) maxImageSizeFailure,
+    required TResult Function(MaxImageNumFailure value) maxImageNumFailure,
+    required TResult Function(NoPostTypeSelectedFailure value)
+        noPostTypeSelectedFailure,
+    required TResult Function(NoPostContentsFailure value)
+        noPostContentsFailure,
+    required TResult Function(NotFoundPostFailure value) notFoundPostFailure,
+    required TResult Function(NotEditablePasswordFailure value)
+        notEditablePasswordFailure,
+    required TResult Function(UserInfoUpdateFailure value)
+        userInfoUpdateFailure,
+    required TResult Function(PermissionDeniedFailure value)
+        permissionDeniedFailure,
+    required TResult Function(PermissionPermanentlyDeniedFailure value)
+        permissionPermanentlyDeniedFailure,
+    required TResult Function(SendVerificationEmailFailure value)
+        sendVerificationEmailFailure,
+    required TResult Function(CheckVerificationFailure value)
+        checkVerificationFailure,
+    required TResult Function(LocationDisabledFailure value)
+        locationDisabledFailure,
+    required TResult Function(GalleryAccessDeniedFailure value)
+        galleryAccessDeniedFailure,
+    required TResult Function(CameraAccessDeniedFailure value)
+        cameraAccessDeniedFailure,
+  }) {
+    return galleryAccessDeniedFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult? Function(ServerFailure value)? serverFailure,
+    TResult? Function(DataParsingFailure value)? dataParsingFailure,
+    TResult? Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult? Function(NotFoundFailure value)? notFoundFailure,
+    TResult? Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult? Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult? Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult? Function(EmptyListFailure value)? emptyListFailure,
+    TResult? Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult? Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult? Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult? Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult? Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult? Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult? Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult? Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult? Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult? Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult? Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult? Function(GetUserInfoFailure value)? getUserFailure,
+    TResult? Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult? Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult? Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult? Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult? Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult? Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult? Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult? Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult? Function(NoPostTypeSelectedFailure value)?
+        noPostTypeSelectedFailure,
+    TResult? Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult? Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult? Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult? Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult? Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
+    TResult? Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult? Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult? Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult? Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
+  }) {
+    return galleryAccessDeniedFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult Function(ServerFailure value)? serverFailure,
+    TResult Function(DataParsingFailure value)? dataParsingFailure,
+    TResult Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult Function(NotFoundFailure value)? notFoundFailure,
+    TResult Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult Function(GetUserInfoFailure value)? getUserFailure,
+    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult Function(NoPostTypeSelectedFailure value)?
+        noPostTypeSelectedFailure,
+    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
+    TResult Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
+    required TResult orElse(),
+  }) {
+    if (galleryAccessDeniedFailure != null) {
+      return galleryAccessDeniedFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GalleryAccessDeniedFailure extends Failure {
+  const factory GalleryAccessDeniedFailure() = _$GalleryAccessDeniedFailure;
+  const GalleryAccessDeniedFailure._() : super._();
+}
+
+/// @nodoc
+abstract class _$$CameraAccessDeniedFailureCopyWith<$Res> {
+  factory _$$CameraAccessDeniedFailureCopyWith(
+          _$CameraAccessDeniedFailure value,
+          $Res Function(_$CameraAccessDeniedFailure) then) =
+      __$$CameraAccessDeniedFailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$CameraAccessDeniedFailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$CameraAccessDeniedFailure>
+    implements _$$CameraAccessDeniedFailureCopyWith<$Res> {
+  __$$CameraAccessDeniedFailureCopyWithImpl(_$CameraAccessDeniedFailure _value,
+      $Res Function(_$CameraAccessDeniedFailure) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$CameraAccessDeniedFailure extends CameraAccessDeniedFailure {
+  const _$CameraAccessDeniedFailure() : super._();
+
+  @override
+  String toString() {
+    return 'Failure.cameraAccessDeniedFailure()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CameraAccessDeniedFailure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() versionCheckFailure,
+    required TResult Function() serverFailure,
+    required TResult Function() dataParsingFailure,
+    required TResult Function() noConnectionFailure,
+    required TResult Function() notFoundFailure,
+    required TResult Function() noUserDataFailure,
+    required TResult Function() maxDiseaseFailure,
+    required TResult Function() maxConimalFailure,
+    required TResult Function() emptyListFailure,
+    required TResult Function() noSuchDataInListFailure,
+    required TResult Function() registerConimalFaiure,
+    required TResult Function() removeConimalFailure,
+    required TResult Function() getConimalListFailure,
+    required TResult Function() signInCredentialFailure,
+    required TResult Function() signInTokenFailure,
+    required TResult Function() naverSigninFailure,
+    required TResult Function() kakaoSigninFailure,
+    required TResult Function() googleSigninFailure,
+    required TResult Function() appleSigninFailure,
+    required TResult Function() emailSigninFailure,
+    required TResult Function() getUserFailure,
+    required TResult Function() wrongPasswordFailure,
+    required TResult Function() noEmailUserFailure,
+    required TResult Function() wrongTokenFailure,
+    required TResult Function() existingEmailFailure,
+    required TResult Function() userEnabledFailure,
+    required TResult Function() weakPasswordFailure,
+    required TResult Function() maxImageSizeFailure,
+    required TResult Function() maxImageNumFailure,
+    required TResult Function() noPostTypeSelectedFailure,
+    required TResult Function() noPostContentsFailure,
+    required TResult Function() notFoundPostFailure,
+    required TResult Function() notEditablePasswordFailure,
+    required TResult Function() userInfoUpdateFailure,
+    required TResult Function() permissionDeniedFailure,
+    required TResult Function() permissionPermanentlyDeniedFailure,
+    required TResult Function() sendVerificationEmailFailure,
+    required TResult Function() checkVerificationFailure,
+    required TResult Function() locationDisabledFailure,
+    required TResult Function() galleryAccessDeniedFailure,
+    required TResult Function() cameraAccessDeniedFailure,
+  }) {
+    return cameraAccessDeniedFailure();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? versionCheckFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function()? dataParsingFailure,
+    TResult? Function()? noConnectionFailure,
+    TResult? Function()? notFoundFailure,
+    TResult? Function()? noUserDataFailure,
+    TResult? Function()? maxDiseaseFailure,
+    TResult? Function()? maxConimalFailure,
+    TResult? Function()? emptyListFailure,
+    TResult? Function()? noSuchDataInListFailure,
+    TResult? Function()? registerConimalFaiure,
+    TResult? Function()? removeConimalFailure,
+    TResult? Function()? getConimalListFailure,
+    TResult? Function()? signInCredentialFailure,
+    TResult? Function()? signInTokenFailure,
+    TResult? Function()? naverSigninFailure,
+    TResult? Function()? kakaoSigninFailure,
+    TResult? Function()? googleSigninFailure,
+    TResult? Function()? appleSigninFailure,
+    TResult? Function()? emailSigninFailure,
+    TResult? Function()? getUserFailure,
+    TResult? Function()? wrongPasswordFailure,
+    TResult? Function()? noEmailUserFailure,
+    TResult? Function()? wrongTokenFailure,
+    TResult? Function()? existingEmailFailure,
+    TResult? Function()? userEnabledFailure,
+    TResult? Function()? weakPasswordFailure,
+    TResult? Function()? maxImageSizeFailure,
+    TResult? Function()? maxImageNumFailure,
+    TResult? Function()? noPostTypeSelectedFailure,
+    TResult? Function()? noPostContentsFailure,
+    TResult? Function()? notFoundPostFailure,
+    TResult? Function()? notEditablePasswordFailure,
+    TResult? Function()? userInfoUpdateFailure,
+    TResult? Function()? permissionDeniedFailure,
+    TResult? Function()? permissionPermanentlyDeniedFailure,
+    TResult? Function()? sendVerificationEmailFailure,
+    TResult? Function()? checkVerificationFailure,
+    TResult? Function()? locationDisabledFailure,
+    TResult? Function()? galleryAccessDeniedFailure,
+    TResult? Function()? cameraAccessDeniedFailure,
+  }) {
+    return cameraAccessDeniedFailure?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? versionCheckFailure,
+    TResult Function()? serverFailure,
+    TResult Function()? dataParsingFailure,
+    TResult Function()? noConnectionFailure,
+    TResult Function()? notFoundFailure,
+    TResult Function()? noUserDataFailure,
+    TResult Function()? maxDiseaseFailure,
+    TResult Function()? maxConimalFailure,
+    TResult Function()? emptyListFailure,
+    TResult Function()? noSuchDataInListFailure,
+    TResult Function()? registerConimalFaiure,
+    TResult Function()? removeConimalFailure,
+    TResult Function()? getConimalListFailure,
+    TResult Function()? signInCredentialFailure,
+    TResult Function()? signInTokenFailure,
+    TResult Function()? naverSigninFailure,
+    TResult Function()? kakaoSigninFailure,
+    TResult Function()? googleSigninFailure,
+    TResult Function()? appleSigninFailure,
+    TResult Function()? emailSigninFailure,
+    TResult Function()? getUserFailure,
+    TResult Function()? wrongPasswordFailure,
+    TResult Function()? noEmailUserFailure,
+    TResult Function()? wrongTokenFailure,
+    TResult Function()? existingEmailFailure,
+    TResult Function()? userEnabledFailure,
+    TResult Function()? weakPasswordFailure,
+    TResult Function()? maxImageSizeFailure,
+    TResult Function()? maxImageNumFailure,
+    TResult Function()? noPostTypeSelectedFailure,
+    TResult Function()? noPostContentsFailure,
+    TResult Function()? notFoundPostFailure,
+    TResult Function()? notEditablePasswordFailure,
+    TResult Function()? userInfoUpdateFailure,
+    TResult Function()? permissionDeniedFailure,
+    TResult Function()? permissionPermanentlyDeniedFailure,
+    TResult Function()? sendVerificationEmailFailure,
+    TResult Function()? checkVerificationFailure,
+    TResult Function()? locationDisabledFailure,
+    TResult Function()? galleryAccessDeniedFailure,
+    TResult Function()? cameraAccessDeniedFailure,
+    required TResult orElse(),
+  }) {
+    if (cameraAccessDeniedFailure != null) {
+      return cameraAccessDeniedFailure();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(VersionCheckFailure value) versionCheckFailure,
+    required TResult Function(ServerFailure value) serverFailure,
+    required TResult Function(DataParsingFailure value) dataParsingFailure,
+    required TResult Function(NoConnectionFailure value) noConnectionFailure,
+    required TResult Function(NotFoundFailure value) notFoundFailure,
+    required TResult Function(NoUserDataFailure value) noUserDataFailure,
+    required TResult Function(MaxDiseaseFailure value) maxDiseaseFailure,
+    required TResult Function(MaxConimalFailure value) maxConimalFailure,
+    required TResult Function(EmptyListFailure value) emptyListFailure,
+    required TResult Function(NoSuchDataInListFailure value)
+        noSuchDataInListFailure,
+    required TResult Function(RegisterConimalFailure value)
+        registerConimalFaiure,
+    required TResult Function(RemoveConimalFailure value) removeConimalFailure,
+    required TResult Function(GetConimalListFailure value)
+        getConimalListFailure,
+    required TResult Function(SignInCredentialFailure value)
+        signInCredentialFailure,
+    required TResult Function(SignInTokenFailure value) signInTokenFailure,
+    required TResult Function(NaverSigninFailure value) naverSigninFailure,
+    required TResult Function(KakaoSigninFailure value) kakaoSigninFailure,
+    required TResult Function(GoogleSigninFailure value) googleSigninFailure,
+    required TResult Function(AppleSigninFailure value) appleSigninFailure,
+    required TResult Function(EmailSigninFailure value) emailSigninFailure,
+    required TResult Function(GetUserInfoFailure value) getUserFailure,
+    required TResult Function(WrongPasswordFailure value) wrongPasswordFailure,
+    required TResult Function(NoEmailUserFailure value) noEmailUserFailure,
+    required TResult Function(WrongTokenFailure value) wrongTokenFailure,
+    required TResult Function(ExistingEmailFailure value) existingEmailFailure,
+    required TResult Function(UserEnabledFailure value) userEnabledFailure,
+    required TResult Function(WeakPasswordFailure value) weakPasswordFailure,
+    required TResult Function(MaxImageSizeFailure value) maxImageSizeFailure,
+    required TResult Function(MaxImageNumFailure value) maxImageNumFailure,
+    required TResult Function(NoPostTypeSelectedFailure value)
+        noPostTypeSelectedFailure,
+    required TResult Function(NoPostContentsFailure value)
+        noPostContentsFailure,
+    required TResult Function(NotFoundPostFailure value) notFoundPostFailure,
+    required TResult Function(NotEditablePasswordFailure value)
+        notEditablePasswordFailure,
+    required TResult Function(UserInfoUpdateFailure value)
+        userInfoUpdateFailure,
+    required TResult Function(PermissionDeniedFailure value)
+        permissionDeniedFailure,
+    required TResult Function(PermissionPermanentlyDeniedFailure value)
+        permissionPermanentlyDeniedFailure,
+    required TResult Function(SendVerificationEmailFailure value)
+        sendVerificationEmailFailure,
+    required TResult Function(CheckVerificationFailure value)
+        checkVerificationFailure,
+    required TResult Function(LocationDisabledFailure value)
+        locationDisabledFailure,
+    required TResult Function(GalleryAccessDeniedFailure value)
+        galleryAccessDeniedFailure,
+    required TResult Function(CameraAccessDeniedFailure value)
+        cameraAccessDeniedFailure,
+  }) {
+    return cameraAccessDeniedFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult? Function(ServerFailure value)? serverFailure,
+    TResult? Function(DataParsingFailure value)? dataParsingFailure,
+    TResult? Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult? Function(NotFoundFailure value)? notFoundFailure,
+    TResult? Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult? Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult? Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult? Function(EmptyListFailure value)? emptyListFailure,
+    TResult? Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult? Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult? Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult? Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult? Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult? Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult? Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult? Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult? Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult? Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult? Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult? Function(GetUserInfoFailure value)? getUserFailure,
+    TResult? Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult? Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult? Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult? Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult? Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult? Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult? Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult? Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult? Function(NoPostTypeSelectedFailure value)?
+        noPostTypeSelectedFailure,
+    TResult? Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult? Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult? Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult? Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult? Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult? Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
+    TResult? Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult? Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult? Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult? Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult? Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
+  }) {
+    return cameraAccessDeniedFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(VersionCheckFailure value)? versionCheckFailure,
+    TResult Function(ServerFailure value)? serverFailure,
+    TResult Function(DataParsingFailure value)? dataParsingFailure,
+    TResult Function(NoConnectionFailure value)? noConnectionFailure,
+    TResult Function(NotFoundFailure value)? notFoundFailure,
+    TResult Function(NoUserDataFailure value)? noUserDataFailure,
+    TResult Function(MaxDiseaseFailure value)? maxDiseaseFailure,
+    TResult Function(MaxConimalFailure value)? maxConimalFailure,
+    TResult Function(EmptyListFailure value)? emptyListFailure,
+    TResult Function(NoSuchDataInListFailure value)? noSuchDataInListFailure,
+    TResult Function(RegisterConimalFailure value)? registerConimalFaiure,
+    TResult Function(RemoveConimalFailure value)? removeConimalFailure,
+    TResult Function(GetConimalListFailure value)? getConimalListFailure,
+    TResult Function(SignInCredentialFailure value)? signInCredentialFailure,
+    TResult Function(SignInTokenFailure value)? signInTokenFailure,
+    TResult Function(NaverSigninFailure value)? naverSigninFailure,
+    TResult Function(KakaoSigninFailure value)? kakaoSigninFailure,
+    TResult Function(GoogleSigninFailure value)? googleSigninFailure,
+    TResult Function(AppleSigninFailure value)? appleSigninFailure,
+    TResult Function(EmailSigninFailure value)? emailSigninFailure,
+    TResult Function(GetUserInfoFailure value)? getUserFailure,
+    TResult Function(WrongPasswordFailure value)? wrongPasswordFailure,
+    TResult Function(NoEmailUserFailure value)? noEmailUserFailure,
+    TResult Function(WrongTokenFailure value)? wrongTokenFailure,
+    TResult Function(ExistingEmailFailure value)? existingEmailFailure,
+    TResult Function(UserEnabledFailure value)? userEnabledFailure,
+    TResult Function(WeakPasswordFailure value)? weakPasswordFailure,
+    TResult Function(MaxImageSizeFailure value)? maxImageSizeFailure,
+    TResult Function(MaxImageNumFailure value)? maxImageNumFailure,
+    TResult Function(NoPostTypeSelectedFailure value)?
+        noPostTypeSelectedFailure,
+    TResult Function(NoPostContentsFailure value)? noPostContentsFailure,
+    TResult Function(NotFoundPostFailure value)? notFoundPostFailure,
+    TResult Function(NotEditablePasswordFailure value)?
+        notEditablePasswordFailure,
+    TResult Function(UserInfoUpdateFailure value)? userInfoUpdateFailure,
+    TResult Function(PermissionDeniedFailure value)? permissionDeniedFailure,
+    TResult Function(PermissionPermanentlyDeniedFailure value)?
+        permissionPermanentlyDeniedFailure,
+    TResult Function(SendVerificationEmailFailure value)?
+        sendVerificationEmailFailure,
+    TResult Function(CheckVerificationFailure value)? checkVerificationFailure,
+    TResult Function(LocationDisabledFailure value)? locationDisabledFailure,
+    TResult Function(GalleryAccessDeniedFailure value)?
+        galleryAccessDeniedFailure,
+    TResult Function(CameraAccessDeniedFailure value)?
+        cameraAccessDeniedFailure,
+    required TResult orElse(),
+  }) {
+    if (cameraAccessDeniedFailure != null) {
+      return cameraAccessDeniedFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class CameraAccessDeniedFailure extends Failure {
+  const factory CameraAccessDeniedFailure() = _$CameraAccessDeniedFailure;
+  const CameraAccessDeniedFailure._() : super._();
 }

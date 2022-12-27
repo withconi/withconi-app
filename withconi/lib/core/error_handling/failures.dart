@@ -40,6 +40,7 @@ class Failure with _$Failure {
       NotEditablePasswordFailure;
   const factory Failure.userInfoUpdateFailure() = UserInfoUpdateFailure;
   const factory Failure.permissionDeniedFailure() = PermissionDeniedFailure;
+
   const factory Failure.permissionPermanentlyDeniedFailure() =
       PermissionPermanentlyDeniedFailure;
 
@@ -47,4 +48,11 @@ class Failure with _$Failure {
       SendVerificationEmailFailure;
 
   const factory Failure.checkVerificationFailure() = CheckVerificationFailure;
+
+  const factory Failure.locationDisabledFailure() = LocationDisabledFailure;
+
+  const factory Failure.galleryAccessDeniedFailure() =
+      GalleryAccessDeniedFailure;
+
+  const factory Failure.cameraAccessDeniedFailure() = CameraAccessDeniedFailure;
 }
