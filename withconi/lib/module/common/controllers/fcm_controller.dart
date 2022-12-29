@@ -38,6 +38,12 @@ class FcmController extends GetxController {
     await _fcmRepository.requestPermisstion();
   }
 
+  // @override
+  // onClose() async {
+  //   super.onClose();
+  //   await updateFcmTokenDB(null);
+  // }
+
   updateFcmTokenDB(String? fcmToken) async {
     Either<Failure, bool> saveFcmTokenResult =
         await _fcmRepository.saveFcmTokenDB(fcmToken);
@@ -48,5 +54,11 @@ class FcmController extends GetxController {
     }, (r) => true);
 
     return updateTokenResult;
+  }
+
+  deleteFcmToken() async {
+    bool succeed = await _fcmRepository.deleteToken();
+
+    await updateFcmTokenDB(null);
   }
 }

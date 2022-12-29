@@ -13,7 +13,7 @@ _$_ReviewDetailResponseDTO _$$_ReviewDetailResponseDTOFromJson(
       conimals: (json['conimals'] as List<dynamic>)
           .map((e) => ConimalResponseDTO.fromJson(e as Map<String, dynamic>))
           .toList(),
-      diseaseTypeList: (json['diseaseTypeList'] as List<dynamic>?)
+      diseaseTypeList: (json['diseaseTypes'] as List<dynamic>?)
               ?.map((e) => $enumDecode(_$DiseaseTypeEnumMap, e))
               .toList() ??
           const [],
@@ -45,7 +45,7 @@ Map<String, dynamic> _$$_ReviewDetailResponseDTOToJson(
     <String, dynamic>{
       'createdAt': const DateTimeConverter().toJson(instance.createdAt),
       'conimals': instance.conimals.map((e) => e.toJson()).toList(),
-      'diseaseTypeList': instance.diseaseTypeList
+      'diseaseTypes': instance.diseaseTypeList
           .map((e) => _$DiseaseTypeEnumMap[e]!)
           .toList(),
       'diseaseList': instance.diseaseList.map((e) => e.toJson()).toList(),

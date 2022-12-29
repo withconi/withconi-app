@@ -12,7 +12,7 @@ class PercentageGraph extends StatelessWidget {
     bool singleValidValue = false;
     var noneZeroList =
         graphDataList.where((element) => element.percent > 0).toList();
-    if (noneZeroList.length <= 1) {
+    if (noneZeroList.length == 1) {
       singleValidValue = true;
     }
     return PhysicalModel(
@@ -24,20 +24,19 @@ class PercentageGraph extends StatelessWidget {
           width: graphWidth ?? WcWidth - 40,
           height: 22,
           child: Row(
-            children: noneZeroList.map((noneZeroValue) {
-              return PercentageGraphData(
-                graphColor: noneZeroValue.graphColor,
-                percent:
-                    (noneZeroValue.percent > 0 && noneZeroValue.percent <= 10)
-                        ? 10
-                        : noneZeroValue.percent,
-                isLastIndex: (graphDataList.indexOf(noneZeroValue) ==
-                        noneZeroList.length - 1)
-                    ? true
-                    : false,
-              );
-            }).toList(),
-          )),
+              children: List.generate(
+                  noneZeroList.length,
+                  (index) => PercentageGraphData(
+                        graphColor: noneZeroList[index].graphColor,
+                        percent: (noneZeroList[index].percent > 0 &&
+                                noneZeroList[index].percent <= 10)
+                            ? 10
+                            : noneZeroList[index].percent,
+                        isLastIndex: (singleValidValue ||
+                                (index == noneZeroList.length - 1))
+                            ? true
+                            : false,
+                      )))),
     );
   }
 }

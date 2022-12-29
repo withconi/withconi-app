@@ -67,7 +67,7 @@ class EditUserPage extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          height: 15,
+                          height: 20,
                         ),
                         Obx(() {
                           return WcTextField(
@@ -145,7 +145,7 @@ class EditUserPage extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(
-                      height: 100,
+                      height: 120,
                     ),
                     Column(
                       children: [
@@ -153,7 +153,7 @@ class EditUserPage extends StatelessWidget {
                           child: GestureDetector(
                             onTap: _controller.signOut,
                             child: Container(
-                              width: 55,
+                              width: 60,
                               height: 30,
                               color: WcColors.white,
                               child: Column(
@@ -169,7 +169,7 @@ class EditUserPage extends StatelessWidget {
                                   Divider(
                                     thickness: 1,
                                     height: 5,
-                                    color: WcColors.grey120,
+                                    color: WcColors.grey100,
                                   )
                                 ],
                               ),
@@ -183,7 +183,7 @@ class EditUserPage extends StatelessWidget {
                           child: GestureDetector(
                             onTap: _controller.unregister,
                             child: Container(
-                              width: 55,
+                              width: 65,
                               height: 30,
                               color: WcColors.white,
                               child: Column(
@@ -199,7 +199,7 @@ class EditUserPage extends StatelessWidget {
                                   Divider(
                                     thickness: 1,
                                     height: 5,
-                                    color: WcColors.grey120,
+                                    color: WcColors.grey100,
                                   )
                                 ],
                               ),
@@ -237,8 +237,9 @@ class EmailVerificationButton extends StatelessWidget {
     return GestureDetector(
       onTap: (!isEmailVerified) ? onTap : null,
       child: Container(
-        height: 38,
-        width: 145,
+        padding: EdgeInsets.symmetric(horizontal: 3),
+        height: 40,
+        width: 150,
         decoration: BoxDecoration(
             color: (isEmailVerified) ? WcColors.blue20 : WcColors.red20,
             borderRadius: BorderRadius.circular(5)),

@@ -33,7 +33,7 @@ class SigninEmailPage extends StatelessWidget {
                     '로그인을 위해\n비밀번호를 입력해주세요',
                     style: TextStyle(
                         fontFamily: WcFontFamily.notoSans,
-                        fontSize: 24,
+                        fontSize: 25,
                         fontWeight: FontWeight.w600),
                   ),
                   const SizedBox(
@@ -53,7 +53,7 @@ class SigninEmailPage extends StatelessWidget {
                   ),
                   Obx(() {
                     return WcTextField(
-                      isEng: true,
+                      isEng: false,
                       errorText: _controller.passwordErrorText.value,
                       hintText: '비밀번호',
                       labelText: '비밀번호',

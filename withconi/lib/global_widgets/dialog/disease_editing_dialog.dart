@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:withconi/core/tools/helpers/calculator.dart';
 import 'package:withconi/data/model/dto/response_dto/conimal_response/conimal_response_dto.dart';
+import 'package:withconi/global_widgets/snackbar.dart';
 import 'package:withconi/module/theme/text_theme.dart';
 import 'package:withconi/global_widgets/button/wide_button.dart';
 import 'package:withconi/module/ui_model/conimal_ui_model.dart';
@@ -31,7 +32,7 @@ showDiseaseEditDialog(
   // Map<ConimalUIModel, List<DiseaseUIModel>> diseaseConimalMap = {};
 
   print(_editConimalList);
-  double maxVeticalPadding = (WcHeight - 245) / 2;
+  double maxVeticalPadding = (WcHeight - 330) / 2;
   return await showDialog(
       context: context,
       builder: (context) {
@@ -64,9 +65,11 @@ showDiseaseEditDialog(
                         SizedBox(
                           height: 15,
                         ),
-                        Column(
-                          children: _editConimalList
-                              .map((conimal) => SizedBox(
+                        Column(children: [
+                          ListView.builder(
+                              itemCount: _editConimalList.length,
+                              shrinkWrap: true,
+                              itemBuilder: (context, index) => SizedBox(
                                     height: 45,
                                     child: Row(
                                       mainAxisAlignment:
@@ -78,14 +81,18 @@ showDiseaseEditDialog(
                                               height: 26,
                                               width: 26,
                                               child: Image.asset(
-                                                  conimal.species!.imageSrc),
+                                                  _editConimalList[index]
+                                                      .species!
+                                                      .imageSrc),
                                             ),
                                             SizedBox(
                                               width: 10,
                                             ),
                                             SizedBox(
                                                 width: 45,
-                                                child: Text(conimal.name,
+                                                child: Text(
+                                                    _editConimalList[index]
+                                                        .name,
                                                     style: TextStyle(
                                                         fontFamily: WcFontFamily
                                                             .notoSans,
@@ -97,7 +104,8 @@ showDiseaseEditDialog(
                                             ),
                                             SizedBox(
                                               width: 55,
-                                              child: Text('만 ${conimal.age}살',
+                                              child: Text(
+                                                  '만 ${_editConimalList[index].age}살',
                                                   style: GoogleFonts.workSans(
                                                       fontSize: 15,
                                                       fontWeight:
@@ -105,62 +113,77 @@ showDiseaseEditDialog(
                                             ),
                                           ],
                                         ),
-                                        Row(
-                                          children: [
-                                            Text(
-                                                conimal.diseases.contains(
-                                                        currentDisease)
-                                                    ? "관리중"
-                                                    : "관리안함",
-                                                style: TextStyle(
-                                                    color: conimal.diseases
+                                        GestureDetector(
+                                            onTap: () {
+                                              setState(
+                                                () {
+                                                  if (originalList[index]
+                                                          .diseases
+                                                          .length >=
+                                                      3) {
+                                                    showCustomSnackbar(
+                                                        text:
+                                                            '이미 3개 이상의 질병을 관리중이에요');
+                                                    return;
+                                                  }
+
+                                                  if (_editConimalList[index]
+                                                      .diseases
+                                                      .contains(
+                                                          currentDisease)) {
+                                                    _editConimalList[index]
+                                                        .diseases
+                                                        .remove(currentDisease);
+                                                  } else {
+                                                    _editConimalList[index]
+                                                        .diseases
+                                                        .add(currentDisease);
+                                                  }
+                                                },
+                                              );
+                                            },
+                                            child: Row(
+                                              children: [
+                                                Text(
+                                                    _editConimalList[index]
+                                                            .diseases
                                                             .contains(
                                                                 currentDisease)
-                                                        ? WcColors.red100
-                                                        : WcColors.grey120,
-                                                    fontFamily:
-                                                        WcFontFamily.notoSans,
-                                                    fontSize: 15,
-                                                    fontWeight:
-                                                        FontWeight.w500)),
-                                            SizedBox(
-                                              width: 10,
-                                            ),
-                                            GestureDetector(
-                                              onTap: () {
-                                                setState(
-                                                  () {
-                                                    print(conimal);
-                                                    print(conimal.diseases);
-                                                    if (conimal.diseases
-                                                        .contains(
-                                                            currentDisease)) {
-                                                      conimal.diseases.remove(
-                                                          currentDisease);
-                                                    } else {
-                                                      conimal.diseases
-                                                          .add(currentDisease);
-                                                    }
-                                                  },
-                                                );
-                                              },
-                                              child: SvgPicture.asset(
-                                                'assets/icons/check_circle_filled.svg',
-                                                color: (conimal.diseases
-                                                        .contains(
-                                                            currentDisease))
-                                                    ? WcColors.red100
-                                                    : WcColors.grey110,
-                                                // color: WcColors.red100,
-                                              ),
-                                            )
-                                          ],
-                                        )
+                                                        ? "관리중"
+                                                        : "관리안함",
+                                                    style: TextStyle(
+                                                        color: _editConimalList[
+                                                                    index]
+                                                                .diseases
+                                                                .contains(
+                                                                    currentDisease)
+                                                            ? WcColors.red100
+                                                            : WcColors.grey120,
+                                                        fontFamily: WcFontFamily
+                                                            .notoSans,
+                                                        fontSize: 15,
+                                                        fontWeight:
+                                                            FontWeight.w500)),
+                                                SizedBox(
+                                                  width: 10,
+                                                ),
+                                                SvgPicture.asset(
+                                                  'assets/icons/check_circle_filled.svg',
+                                                  color: (_editConimalList[
+                                                              index]
+                                                          .diseases
+                                                          .contains(
+                                                              currentDisease))
+                                                      ? WcColors.red100
+                                                      : WcColors.grey110,
+                                                  // color: WcColors.red100,
+                                                )
+                                              ],
+                                            )),
                                       ],
                                     ),
                                   ))
-                              .toList(),
-                        ),
+                        ]),
                       ],
                     ),
                     Row(

@@ -17,7 +17,7 @@ class PostResponseDTO with _$PostResponseDTO {
     required String authorId,
     @Default('알수없음') String nickname,
     @Default(PostType.cat) PostType postType,
-    @Default(DiseaseType.dentistry) DiseaseType diseaseType,
+    @Default(DiseaseType.undefined) DiseaseType diseaseType,
     required String content,
     @DateTimeConverter() required DateTime createdAt,
     @Default(false) bool isLike,

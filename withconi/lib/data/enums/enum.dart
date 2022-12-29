@@ -646,6 +646,7 @@ enum CacheControllerKey {
   emailVerified,
   emailVerifySkipped,
   email,
+  appleEmail,
   appleIdToken,
   rawNonce,
 }

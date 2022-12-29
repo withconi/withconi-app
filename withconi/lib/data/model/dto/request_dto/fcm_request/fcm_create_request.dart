@@ -13,6 +13,7 @@ class UpdateFcmTokenRequest
     extends RequestConverter<UpdateFcmTokenRequest, String?>
     implements RequestDTO {
   final String? fcmToken;
+
   @override
   bool get requiresToken => true;
 

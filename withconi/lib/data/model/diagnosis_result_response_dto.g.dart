@@ -9,17 +9,17 @@ part of 'diagnosis_result_response_dto.dart';
 _$_DiagnosisResultResponseDTO _$$_DiagnosisResultResponseDTOFromJson(
         Map<String, dynamic> json) =>
     _$_DiagnosisResultResponseDTO(
-      diseaseId: json['diseaseId'] as String,
-      diseaseName: json['diseaseName'] as String,
-      posibility: $enumDecode(_$DiseasePosibilityEnumMap, json['posibility']),
+      diseaseId: json['_id'] as String? ?? '',
+      diseaseName: json['name'] as String,
+      posibility: $enumDecode(_$DiseasePosibilityEnumMap, json['status']),
     );
 
 Map<String, dynamic> _$$_DiagnosisResultResponseDTOToJson(
         _$_DiagnosisResultResponseDTO instance) =>
     <String, dynamic>{
-      'diseaseId': instance.diseaseId,
-      'diseaseName': instance.diseaseName,
-      'posibility': _$DiseasePosibilityEnumMap[instance.posibility]!,
+      '_id': instance.diseaseId,
+      'name': instance.diseaseName,
+      'status': _$DiseasePosibilityEnumMap[instance.posibility]!,
     };
 
 const _$DiseasePosibilityEnumMap = {

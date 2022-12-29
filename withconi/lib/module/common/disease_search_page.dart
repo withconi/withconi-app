@@ -101,7 +101,7 @@ class DiseaseSearchPage extends StatelessWidget {
                 diseaseIndex: index,
                 onDiseaseInfoTap: (disease) {
                   Get.toNamed(Routes.DICTIONARY_DETAIL,
-                      arguments: {'diseaseCode': disease.diseaseCode});
+                      arguments: {'diseaseId': disease.diseaseId});
                 },
               ),
             ),
@@ -111,9 +111,9 @@ class DiseaseSearchPage extends StatelessWidget {
                     child: Center(
                       child: Container(
                         width: WcWidth,
-                        padding: EdgeInsets.symmetric(vertical: 20),
-                        margin: EdgeInsets.symmetric(vertical: 20),
-                        child: Center(
+                        padding: const EdgeInsets.symmetric(vertical: 20),
+                        margin: const EdgeInsets.symmetric(vertical: 20),
+                        child: const Center(
                             child: SizedBox(
                           height: 20,
                           width: 20,

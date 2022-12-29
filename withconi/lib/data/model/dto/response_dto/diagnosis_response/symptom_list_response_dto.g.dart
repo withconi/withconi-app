@@ -38,4 +38,5 @@ const _$SymptomEnumMap = {
   Symptom.stomach: '복부',
   Symptom.skin: '피부',
   Symptom.urinary: '생식비뇨',
+  Symptom.ect: '기타',
 };

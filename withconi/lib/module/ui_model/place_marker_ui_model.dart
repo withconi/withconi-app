@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_naver_map/flutter_naver_map.dart';
 import 'package:geolocator/geolocator.dart';
@@ -11,22 +13,27 @@ class PlaceMarkerUIModel extends Marker {
   final PlaceType placeType;
   final String placeId;
 
+  final List<String> overlappedMarkerList;
+
   // the old way
   PlaceMarkerUIModel({
     required this.placeId,
     required this.placeType,
     required LatLngUIModel placeLocation,
+    required LatLngUIModel markerLocation,
     required String text,
+    required this.overlappedMarkerList,
     required int iconWidth,
     required int iconHeight,
     required void Function(Marker? marker, Map<String, int?> iconSize)?
         onTapMarker,
   }) : super(
           markerId: placeId,
-          position: placeLocation,
+          position: markerLocation,
           width: iconWidth,
           height: iconHeight,
           captionText: text,
+          zIndex: 0,
           onMarkerTab: onTapMarker,
         );
 
@@ -41,12 +48,39 @@ class PlaceMarkerUIModel extends Marker {
         iconWidth: 28,
         iconHeight: 28,
         onTapMarker: onTapMarker,
+        overlappedMarkerList: [],
+        markerLocation: LatLngUIModel(
+            lat: placePreview.placeLocation.lat,
+            lng: placePreview.placeLocation.lng),
         placeLocation: LatLngUIModel(
             lat: placePreview.placeLocation.lat,
             lng: placePreview.placeLocation.lng),
         placeType: placePreview.placeType,
       );
 
+  factory PlaceMarkerUIModel.fromMyOverlappedPlace({
+    required PlacePreviewUIModel placePreview,
+    required List<String> overlappedMarkerList,
+    required void Function(Marker? marker, Map<String, int?> iconSize)?
+        onTapMarker,
+  }) =>
+      PlaceMarkerUIModel(
+        placeId: placePreview.placeId,
+        text: placePreview.name,
+        iconWidth: 32,
+        iconHeight: 32,
+        onTapMarker: onTapMarker,
+        overlappedMarkerList: overlappedMarkerList,
+        placeLocation: LatLngUIModel(
+            lat: placePreview.placeLocation.lat,
+            lng: placePreview.placeLocation.lng),
+        markerLocation: LatLngUIModel(
+            lat: placePreview.placeLocation.lat +
+                _generateDoubleRandom(0.000002, 0.00002, 13),
+            lng: placePreview.placeLocation.lng +
+                _generateDoubleRandom(0.000003, 0.00007, 13)),
+        placeType: placePreview.placeType,
+      );
   Future<void> setMarkerImageIcon({
     required bool iconClicked,
   }) async {
@@ -56,8 +90,14 @@ class PlaceMarkerUIModel extends Marker {
           : placeType.unselectedImagePng,
     );
 
-    width = (iconClicked) ? 32 : 28;
-    height = (iconClicked) ? 46 : 28;
+    if (iconClicked) {
+      zIndex = 1;
+    } else {
+      zIndex = 0;
+    }
+
+    width = (iconClicked) ? 47 : 32;
+    height = (iconClicked) ? 60 : 32;
   }
 
   // void setOnMarkerTab(
@@ -66,4 +106,19 @@ class PlaceMarkerUIModel extends Marker {
   //   width = 50;
   //   height = 50;
   // }
+}
+
+double _generateDoubleRandom(double minValue, double maxValue, int precision) {
+  final random = Random(DateTime.now().microsecondsSinceEpoch);
+  final boolRandom = random.nextBool();
+  final doubleRandom = minValue + (maxValue - minValue) * random.nextDouble();
+  // return double.parse(doubleRandom.toStringAsFixed(precision));
+
+  if (boolRandom) {
+    return -double.parse(doubleRandom.toStringAsFixed(precision));
+  } else {
+    return double.parse(doubleRandom.toStringAsFixed(precision));
+  }
+
+  // return double.parse(doubleRandom.toStringAsFixed(precision));
 }

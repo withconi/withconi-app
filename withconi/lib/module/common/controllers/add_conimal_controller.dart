@@ -131,9 +131,12 @@ class AddConimalController extends GetxController {
 
   goToSearchDiseasePage() async {
     Get.focusScope!.unfocus();
-    List<DiseaseUIModel>? newDiseaseList = await Get.toNamed(
-        Routes.DISEASE_SEARCH,
-        arguments: newConimal.value.diseases) as List<DiseaseUIModel>?;
+    List<DiseaseUIModel>? newDiseaseList =
+        await Get.toNamed(Routes.DISEASE_SEARCH, arguments: {
+      'selectedDiseaseList': newConimal.value.diseases.toList(),
+      'maxDisease': 3
+    }) as List<DiseaseUIModel>?;
+
     if (newDiseaseList != null) {
       onDiseaseListChanged(newDiseaseList);
     }

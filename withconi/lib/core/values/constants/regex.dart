@@ -5,5 +5,5 @@ class Regex {
   static final password =
       RegExp(r"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$.!%*#?&]{8,}$");
   static final name = RegExp(r"^[ㄱ-ㅎ|가-힣|a-z|A-Z]{1,10}$");
-  static final nickName = RegExp(r"^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9]{1,10}$");
+  static final nickName = RegExp(r"^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{1,10}$");
 }

@@ -87,7 +87,7 @@ class WcTextField extends StatelessWidget {
           hintStyle: TextStyle(
               fontFamily: WcFontFamily.notoSans,
               color: WcColors.grey100,
-              fontSize: 16,
+              fontSize: 17,
               fontWeight: FontWeight.w400),
         ),
       ),

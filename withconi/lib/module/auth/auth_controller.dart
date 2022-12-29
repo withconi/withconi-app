@@ -31,7 +31,7 @@ class AuthController extends GetxController {
   UserUIModel? _userInfo;
   RxInt homeNavIndex = 0.obs;
   Uri? deepLink;
-  late bool _isVersionValid;
+  late bool? _isVersionValid;
 
   late bool _isUserInfoInDbAndAuth;
   // late bool _isFcmTokenValid = false;
@@ -42,26 +42,34 @@ class AuthController extends GetxController {
 
   bool get isUserValid =>
       (_isFirebaseAuthValid && _isUserInfoInDbAndAuth && _userInfo != null);
-  bool get isVersionValid => _isVersionValid;
+  bool get isVersionValid => _isVersionValid ?? false;
   bool get isEmailVerified => _userInfo!.isEmailVerified;
   bool get isVerifySkipped => _userInfo!.verificationSkipped;
   bool get _isFirebaseAuthValid => (firebaseAuth.currentUser != null);
 
   UserUIModel get userInfo => _userInfo!;
+  String get userId => userInfo.uid;
 
   @override
   Future<void> onInit() async {
     super.onInit();
     _isVersionValid = await _setVersionValid();
 
-    await setUserAuthInfo();
-
-    Get.offAllNamed(Routes.NAVIGATION);
+    if (_isVersionValid != null) {
+      if (isVersionValid) {
+        await setUserAuthInfo();
+        Get.offAllNamed(Routes.NAVIGATION);
+      } else {
+        await showUpdateDialog();
+      }
+    } else {
+      await showUpdateDialog();
+    }
   }
 
   setUserAuthInfo() async {
     _isUserInfoInDbAndAuth = await _checkUserInfoValid(_firebaseAuthEmail);
-    if (_isVersionValid && _isFirebaseAuthValid && _isUserInfoInDbAndAuth) {
+    if (isVersionValid && _isFirebaseAuthValid && _isUserInfoInDbAndAuth) {
       await _setUserDBInfo();
     } else if (_isFirebaseAuthValid && _isUserInfoInDbAndAuth) {
       await _setUserDBInfo();
@@ -107,13 +115,13 @@ class AuthController extends GetxController {
   //   }
   // }
 
-  Future<bool> _setVersionValid() async {
+  Future<bool?> _setVersionValid() async {
     Either<Failure, bool> checkVersionEither =
         await _appSettingRepository.checkAppVersion();
 
-    bool versionCheckResult = checkVersionEither.fold((l) {
+    bool? versionCheckResult = checkVersionEither.fold((l) {
       FailureInterpreter().mapFailureToDialog(l, 'checkAppVersion');
-      return false;
+      return null;
     }, (isVersionValid) => isVersionValid);
 
     return versionCheckResult;
@@ -150,25 +158,46 @@ class AuthController extends GetxController {
     return await showIconDialog(
         buttonText: '업데이트 하러가기',
         onButtonTap: () {
-          UrlLauncher().launchStore();
+          UrlLauncher.launchStore();
         },
         title: 'Withconi 최신버전 출시!',
         subtitle: '원활한 서비스 이용을 위해서는\n업데이트가 반드시 필요해요 :)');
   }
 
   signOut({bool goToStartPage = true, bool activeLoading = true}) async {
-    await showLoading(() async {
-      await NavigationBinding().closeBindings();
+    var result = await showLoading(() async {
+      // try {
+      //   await _signOutFirebase();
+      // } catch (e) {
+      //   await NavigationBinding().closeBindings();
+      //   if (goToStartPage) {
+      //     Get.offAllNamed(Routes.START);
+      //     return true;
+      //   }
+      //   return true;
+      // }
+      await NavigationBinding.closeBindings();
       await _signOutFirebase();
+
       if (goToStartPage) {
         Get.offAllNamed(Routes.START);
-        return;
+        return true;
       }
-      return;
+      return true;
     }, activeLoding: activeLoading);
+
+    return result;
+  }
+
+  unregister() async {
+    await NavigationBinding.closeBindings();
   }
 
   Future<void> _signOutFirebase() async {
-    await firebaseAuth.signOut();
+    try {
+      await firebaseAuth.signOut();
+    } catch (e) {
+      throw FirebaseAuthException(code: '400');
+    }
   }
 }

@@ -163,6 +163,8 @@ class CommunityNewPostController extends GetxController {
         (fail) =>
             FailureInterpreter().mapFailureToSnackbar(fail, 'createNewPostDB'),
         (addedPostDto) {
+      var addedPost = PostUIModel.fromDTO(addedPostDto);
+
       Get.back(result: PostUIModel.fromDTO(addedPostDto));
     });
   }

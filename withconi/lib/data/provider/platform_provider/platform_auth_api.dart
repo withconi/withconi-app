@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_naver_login/flutter_naver_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart' as kakao;
+import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart' as kakao;
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:withconi/core/error_handling/exceptions.dart';
 import 'package:withconi/import_basic.dart';
@@ -24,34 +24,64 @@ class PlatformAuthAPI extends GetxService {
       );
 
       String? email = appleCredential.email;
-      await CacheManager().saveCache(
+      String? idToken;
+      await CacheManager.saveCache(
           CacheControllerKey.accessToken, appleCredential.authorizationCode);
-      await CacheManager().saveCache(
+      await CacheManager.saveCache(
           CacheControllerKey.appleIdToken, appleCredential.identityToken);
 
       if (email != null) {
         log('애플에서 이메일 local storage 저장');
-        await CacheManager().saveCache(CacheControllerKey.email, email);
-        email = CacheManager().getCache(CacheControllerKey.email);
+        await CacheManager.saveCache(CacheControllerKey.appleEmail, email);
+        email = CacheManager.getCache(CacheControllerKey.appleEmail);
+        idToken = CacheManager.getCache(CacheControllerKey.appleIdToken);
         log('local storage 이메일 저장 결과 : $email');
+        log('local storage apple 토큰 저장 결과 : $idToken');
       } else {
         log('애플에서 이메일 가져올 수 없음, local storage 탐색');
-        email = CacheManager().getCache(CacheControllerKey.email);
+        email = CacheManager.getCache(CacheControllerKey.appleEmail);
         log('local storage 내 이메일 탐색 결과 : $email');
+        log('local storage apple 토큰 탐색 결과 : $idToken');
+
+        if (email == null) {
+          UserCredential userCredential = await FirebaseAuth.instance
+              .signInWithCredential(OAuthProvider("apple.com").credential(
+            idToken: appleCredential.identityToken,
+            accessToken: appleCredential.authorizationCode,
+          ));
+          email = userCredential.user?.email;
+        }
       }
 
-      return email;
+      if (email != null) {
+        await CacheManager.saveCache(CacheControllerKey.appleEmail, email);
+      }
+
+      return email ?? '';
     } catch (e) {
       throw PlatformException();
     }
   }
 
   Future<OAuthCredential> getAppleCredential() async {
-    String identityToken =
-        CacheManager().getCache(CacheControllerKey.appleIdToken);
+    String? identityToken =
+        CacheManager.getCache(CacheControllerKey.appleIdToken);
 
-    String accessToken =
-        CacheManager().getCache(CacheControllerKey.accessToken);
+    String? accessToken = CacheManager.getCache(CacheControllerKey.accessToken);
+
+    if (identityToken == null || accessToken == null) {
+      final AuthorizationCredentialAppleID appleCredential =
+          await SignInWithApple.getAppleIDCredential(
+        scopes: [
+          AppleIDAuthorizationScopes.email,
+          AppleIDAuthorizationScopes.fullName,
+        ],
+      );
+
+      identityToken = appleCredential.identityToken;
+      accessToken = appleCredential.authorizationCode;
+    }
+
     OAuthCredential oauthCredential = OAuthProvider("apple.com").credential(
       idToken: identityToken,
       accessToken: accessToken,
@@ -91,21 +121,43 @@ class PlatformAuthAPI extends GetxService {
   }
 
   Future<String> getKakaoUserEmail() async {
-    late String? _userEmail;
-    try {
-      kakao.OAuthToken token =
-          await kakao.UserApi.instance.loginWithKakaoTalk();
-      kakao.TokenManagerProvider.instance.manager.setToken(token);
-      print('로그인 성공 ${token.accessToken}');
-    } catch (error) {
-      print('로그인 실패 $error');
-    }
-    try {
-      var user = await kakao.UserApi.instance.me();
+    String? _userEmail;
 
-      _userEmail = user.kakaoAccount?.email;
-    } catch (e) {
-      print(e);
+    if (await kakao.isKakaoTalkInstalled()) {
+      try {
+        kakao.OAuthToken token =
+            await kakao.UserApi.instance.loginWithKakaoTalk();
+        kakao.TokenManagerProvider.instance.manager.setToken(token);
+        print('로그인 성공 ${token.accessToken}');
+        try {
+          var user = await kakao.UserApi.instance.me();
+          _userEmail = user.kakaoAccount?.email;
+        } catch (e) {
+          print(e);
+        }
+      } catch (e) {
+        try {
+          print('기기에 카카오톡 없음');
+          kakao.OAuthToken token =
+              await kakao.UserApi.instance.loginWithKakaoAccount();
+          kakao.TokenManagerProvider.instance.manager.setToken(token);
+          var user = await kakao.UserApi.instance.me();
+          _userEmail = user.kakaoAccount?.email;
+        } catch (e) {
+          print(e);
+        }
+      }
+    } else {
+      try {
+        print('기기에 카카오톡 없음');
+        kakao.OAuthToken token =
+            await kakao.UserApi.instance.loginWithKakaoAccount();
+        kakao.TokenManagerProvider.instance.manager.setToken(token);
+        var user = await kakao.UserApi.instance.me();
+        _userEmail = user.kakaoAccount?.email;
+      } catch (e) {
+        print(e);
+      }
     }
 
     return _userEmail!;

@@ -3,6 +3,7 @@ import 'package:withconi/core/values/constants/auth_variables.dart';
 import 'package:withconi/data/enums/enum.dart';
 
 import '../../../import_basic.dart';
+import '../../theme/text_theme.dart';
 
 showPickImageBottomSheet() {
   return Get.bottomSheet(
@@ -60,10 +61,11 @@ GestureDetector _imagePickSheetListTile(
               width: 12,
             ),
             Text(imagePickOption.displayName,
-                style: GoogleFonts.notoSans(
+                style: TextStyle(
+                    fontFamily: WcFontFamily.notoSans,
                     fontSize: 17,
                     color: WcColors.black,
-                    fontWeight: FontWeight.w500)),
+                    fontWeight: FontWeight.w400)),
           ],
         ),
       ),

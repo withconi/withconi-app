@@ -17,7 +17,7 @@ class SearchRefreshButton extends StatelessWidget {
       child: Container(
         // width: 150,
         // height: 35,
-        padding: EdgeInsets.fromLTRB(11, 8, 15, 8),
+        padding: EdgeInsets.fromLTRB(15, 8, 18, 8),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -37,9 +37,9 @@ class SearchRefreshButton extends StatelessWidget {
             Text('현 지도에서 검색',
                 style: TextStyle(
                     fontFamily: WcFontFamily.notoSans,
-                    color: WcColors.grey200,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 14,
+                    color: WcColors.black,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 13.5,
                     height: 1.3))
           ],
         ),

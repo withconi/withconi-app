@@ -607,6 +607,7 @@ class MapDetailPage extends StatelessWidget {
                                         radius: 30,
                                         showTitle: false);
                                   }).toList(),
+                            startDegreeOffset: 90,
                           ),
                         ),
                       ),
@@ -853,17 +854,20 @@ class MapDetailPage extends StatelessWidget {
                                   percent: chartData.percent.toInt()))
                               .toList(),
                         ),
-                        CustomCheckBox(
-                          value: _controller.onlyPhotoReview.value,
-                          isSelected: _controller.onlyPhotoReview.value,
-                          onChanged: (selected) {
-                            _controller.onOnlyVerifiedReviewChanged(!selected);
-                          },
-                          text: '사진인증된 리뷰만 보기',
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          iconHeight: 18,
-                          textSize: 15,
+                        SizedBox(
+                          height: 15,
                         ),
+                        // CustomCheckBox(
+                        //   value: _controller.onlyPhotoReview.value,
+                        //   isSelected: _controller.onlyPhotoReview.value,
+                        //   onChanged: (selected) {
+                        //     _controller.onOnlyVerifiedReviewChanged(!selected);
+                        //   },
+                        //   text: '사진인증된 리뷰만 보기',
+                        //   mainAxisAlignment: MainAxisAlignment.end,
+                        //   iconHeight: 18,
+                        //   textSize: 15,
+                        // ),
                       ],
                     ),
                   ),

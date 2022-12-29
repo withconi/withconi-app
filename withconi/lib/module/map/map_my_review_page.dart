@@ -45,7 +45,7 @@ class MapMyReviewPage extends StatelessWidget {
                           style: TextStyle(
                               fontFamily: WcFontFamily.notoSans,
                               color: WcColors.black,
-                              fontSize: 24,
+                              fontSize: 25,
                               fontWeight: FontWeight.bold,
                               height: 1.4),
                         ),
@@ -77,26 +77,29 @@ class MapMyReviewPage extends StatelessWidget {
                 Container(
                   width: WcWidth,
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 22, vertical: 15),
+                      const EdgeInsets.symmetric(horizontal: 22, vertical: 17),
                   child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Obx(
                         () => Text(
                           '${_controller.totalReviewNum}',
                           style: GoogleFonts.workSans(
                             color: WcColors.black,
-                            fontSize: 24,
+                            fontSize: 23,
                             height: 1,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                       ),
                       Text(
                         '개',
-                        style: GoogleFonts.workSans(
+                        style: TextStyle(
+                          fontFamily: WcFontFamily.notoSans,
                           color: WcColors.black,
-                          fontSize: 22,
-                          fontWeight: FontWeight.w600,
+                          fontSize: 21,
+                          height: 1,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ],
@@ -116,6 +119,7 @@ class MapMyReviewPage extends StatelessWidget {
                               _controller.goToPhotoVerificationPage(index),
                           review: _controller.myReviewList[index],
                           onTapReview: _controller.onReviewTap,
+                          authorId: _controller.authorId,
                         );
                       })),
                 )
@@ -135,6 +139,7 @@ class MyReviewListTile extends StatelessWidget {
       required this.index,
       required this.onTapReview,
       required this.review,
+      required this.authorId,
       required this.onTapVerificationButton})
       : super(key: key);
 
@@ -142,6 +147,7 @@ class MyReviewListTile extends StatelessWidget {
   void Function() onTapVerificationButton;
   void Function(ReviewDetailUIModel, MoreBottomSheetOption?)? onMoreTap;
   void Function(int) onTapReview;
+  String authorId;
   int index;
 
   @override
@@ -170,7 +176,7 @@ class MyReviewListTile extends StatelessWidget {
                       Text(review.placeName,
                           style: const TextStyle(
                               fontFamily: WcFontFamily.notoSans,
-                              fontSize: 17,
+                              fontSize: 17.5,
                               height: 1,
                               fontWeight: FontWeight.w500)),
                       const SizedBox(
@@ -181,7 +187,7 @@ class MyReviewListTile extends StatelessWidget {
                               fontFamily: WcFontFamily.notoSans,
                               color: WcColors.grey140,
                               fontSize: 14,
-                              height: 1,
+                              height: 1.3,
                               overflow: TextOverflow.ellipsis,
                               fontWeight: FontWeight.w400))
                     ],
@@ -270,7 +276,7 @@ class MyReviewListTile extends StatelessWidget {
                   onTap: () async {
                     MoreBottomSheetOption? selectedOption =
                         await showMoreBottomSheet(
-                            authorId: '',
+                            authorId: authorId,
                             authorName: '',
                             bottomSheetFor: BottomSheetFor.mapReview);
                     onMoreTap!.call(review, selectedOption);

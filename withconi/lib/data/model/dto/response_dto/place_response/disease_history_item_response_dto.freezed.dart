@@ -22,7 +22,7 @@ DiseaseHistoryItemResponseDTO _$DiseaseHistoryItemResponseDTOFromJson(
 /// @nodoc
 mixin _$DiseaseHistoryItemResponseDTO {
   String get diseaseName => throw _privateConstructorUsedError;
-  int get diseasePercent => throw _privateConstructorUsedError;
+  double get diseasePercent => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,7 +38,7 @@ abstract class $DiseaseHistoryItemResponseDTOCopyWith<$Res> {
       _$DiseaseHistoryItemResponseDTOCopyWithImpl<$Res,
           DiseaseHistoryItemResponseDTO>;
   @useResult
-  $Res call({String diseaseName, int diseasePercent});
+  $Res call({String diseaseName, double diseasePercent});
 }
 
 /// @nodoc
@@ -66,7 +66,7 @@ class _$DiseaseHistoryItemResponseDTOCopyWithImpl<$Res,
       diseasePercent: null == diseasePercent
           ? _value.diseasePercent
           : diseasePercent // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
     ) as $Val);
   }
 }
@@ -80,7 +80,7 @@ abstract class _$$_DiseaseHistoryResponseDTOCopyWith<$Res>
       __$$_DiseaseHistoryResponseDTOCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String diseaseName, int diseasePercent});
+  $Res call({String diseaseName, double diseasePercent});
 }
 
 /// @nodoc
@@ -107,7 +107,7 @@ class __$$_DiseaseHistoryResponseDTOCopyWithImpl<$Res>
       diseasePercent: null == diseasePercent
           ? _value.diseasePercent
           : diseasePercent // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
     ));
   }
 }
@@ -117,7 +117,7 @@ class __$$_DiseaseHistoryResponseDTOCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_DiseaseHistoryResponseDTO implements _DiseaseHistoryResponseDTO {
   _$_DiseaseHistoryResponseDTO(
-      {this.diseaseName = '구체적인 질병 없음', this.diseasePercent = 0});
+      {this.diseaseName = '구체적인 질병 없음', this.diseasePercent = 0.0});
 
   factory _$_DiseaseHistoryResponseDTO.fromJson(Map<String, dynamic> json) =>
       _$$_DiseaseHistoryResponseDTOFromJson(json);
@@ -127,7 +127,7 @@ class _$_DiseaseHistoryResponseDTO implements _DiseaseHistoryResponseDTO {
   final String diseaseName;
   @override
   @JsonKey()
-  final int diseasePercent;
+  final double diseasePercent;
 
   @override
   String toString() {
@@ -168,7 +168,7 @@ abstract class _DiseaseHistoryResponseDTO
     implements DiseaseHistoryItemResponseDTO {
   factory _DiseaseHistoryResponseDTO(
       {final String diseaseName,
-      final int diseasePercent}) = _$_DiseaseHistoryResponseDTO;
+      final double diseasePercent}) = _$_DiseaseHistoryResponseDTO;
 
   factory _DiseaseHistoryResponseDTO.fromJson(Map<String, dynamic> json) =
       _$_DiseaseHistoryResponseDTO.fromJson;
@@ -176,7 +176,7 @@ abstract class _DiseaseHistoryResponseDTO
   @override
   String get diseaseName;
   @override
-  int get diseasePercent;
+  double get diseasePercent;
   @override
   @JsonKey(ignore: true)
   _$$_DiseaseHistoryResponseDTOCopyWith<_$_DiseaseHistoryResponseDTO>

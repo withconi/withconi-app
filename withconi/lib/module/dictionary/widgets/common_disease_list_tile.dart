@@ -1,3 +1,5 @@
+import 'package:withconi/module/theme/text_theme.dart';
+
 import '../../../data/enums/enum.dart';
 import '../../../import_basic.dart';
 import '../../ui_model/disease_ui_model.dart';
@@ -24,10 +26,11 @@ class CommonDiseaseListTile extends StatelessWidget {
       },
       child: Container(
           alignment: Alignment.centerLeft,
-          height: 35,
+          height: 38,
           width: WcWidth,
           padding: EdgeInsets.symmetric(horizontal: 30),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
                 constraints: BoxConstraints(maxWidth: 25, minWidth: 10),
@@ -35,7 +38,7 @@ class CommonDiseaseListTile extends StatelessWidget {
                   '${index + 1}',
                   softWrap: false,
                   style: GoogleFonts.workSans(
-                      fontWeight: FontWeight.w600, fontSize: 16),
+                      height: 1.4, fontWeight: FontWeight.w600, fontSize: 16),
                 ),
               ),
               SizedBox(
@@ -45,8 +48,12 @@ class CommonDiseaseListTile extends StatelessWidget {
                 child: Text(
                   commonDisease.name,
                   softWrap: false,
+                  maxLines: 1,
                   overflow: TextOverflow.fade,
-                  style: GoogleFonts.notoSans(fontSize: 15),
+                  style: TextStyle(
+                      fontFamily: WcFontFamily.notoSans,
+                      height: 1.3,
+                      fontSize: 15),
                 ),
               ),
             ],

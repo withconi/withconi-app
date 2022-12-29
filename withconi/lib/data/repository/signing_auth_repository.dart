@@ -23,15 +23,20 @@ class PlatformAuthRepository extends GetxService {
 
       return Right(googleCredential);
     } on NoInternetConnectionException {
-      return Left(NoConnectionFailure());
-    } on PlatformException {
-      return Left(NoUserDataFailure());
+      return const Left(NoConnectionFailure());
+    } on DataParsingException {
+      return const Left(DataParsingFailure());
+    } on NotFoundException {
+      return const Left(NotFoundFailure());
+    } on UnauthorizedException {
+      return const Left(WrongTokenFailure());
     } catch (e) {
       return Left(NoUserDataFailure());
     }
   }
 
-  getAppleSignAuthInfo(String _email) async {
+  Future<Either<Failure, SigningAuthInfo>> getAppleSignAuthInfo(
+      String _email) async {
     try {
       OAuthCredential oAuthCredential =
           await _platformAuthApi.getAppleCredential();
@@ -40,9 +45,13 @@ class PlatformAuthRepository extends GetxService {
           provider: Provider.apple,
           email: _email));
     } on NoInternetConnectionException {
-      return Left(NoConnectionFailure());
-    } on PlatformException {
-      return Left(NoUserDataFailure());
+      return const Left(NoConnectionFailure());
+    } on DataParsingException {
+      return const Left(DataParsingFailure());
+    } on NotFoundException {
+      return const Left(NotFoundFailure());
+    } on UnauthorizedException {
+      return const Left(WrongTokenFailure());
     } catch (e) {
       return Left(NoUserDataFailure());
     }
@@ -64,9 +73,13 @@ class PlatformAuthRepository extends GetxService {
           provider: Provider.google,
           email: _email));
     } on NoInternetConnectionException {
-      return Left(NoConnectionFailure());
-    } on PlatformException {
-      return Left(NoUserDataFailure());
+      return const Left(NoConnectionFailure());
+    } on DataParsingException {
+      return const Left(DataParsingFailure());
+    } on NotFoundException {
+      return const Left(NotFoundFailure());
+    } on UnauthorizedException {
+      return const Left(WrongTokenFailure());
     } catch (e) {
       return Left(NoUserDataFailure());
     }
@@ -79,23 +92,32 @@ class PlatformAuthRepository extends GetxService {
       return Right(TokenSigningAuthInfo(
           platformToken: kakaoToken, provider: Provider.kakao, email: _email));
     } on NoInternetConnectionException {
-      return Left(NoConnectionFailure());
-    } on PlatformException {
-      return Left(NoUserDataFailure());
+      return const Left(NoConnectionFailure());
+    } on DataParsingException {
+      return const Left(DataParsingFailure());
+    } on NotFoundException {
+      return const Left(NotFoundFailure());
+    } on UnauthorizedException {
+      return const Left(WrongTokenFailure());
     } catch (e) {
       return Left(NoUserDataFailure());
     }
   }
 
-  getNaverSignAuthInfo(String _email) async {
+  Future<Either<Failure, SigningAuthInfo>> getNaverSignAuthInfo(
+      String _email) async {
     try {
       String naverToken = await _platformAuthApi.getNaverToken();
       return Right(TokenSigningAuthInfo(
           platformToken: naverToken, provider: Provider.naver, email: _email));
     } on NoInternetConnectionException {
-      return Left(NoConnectionFailure());
-    } on PlatformException {
-      return Left(NoUserDataFailure());
+      return const Left(NoConnectionFailure());
+    } on DataParsingException {
+      return const Left(DataParsingFailure());
+    } on NotFoundException {
+      return const Left(NotFoundFailure());
+    } on UnauthorizedException {
+      return const Left(WrongTokenFailure());
     } catch (e) {
       return Left(NoUserDataFailure());
     }
@@ -123,9 +145,13 @@ class PlatformAuthRepository extends GetxService {
 
       return Right(_userEmail);
     } on NoInternetConnectionException {
-      return Left(NoConnectionFailure());
-    } on PlatformException {
-      return Left(NoUserDataFailure());
+      return const Left(NoConnectionFailure());
+    } on DataParsingException {
+      return const Left(DataParsingFailure());
+    } on NotFoundException {
+      return const Left(NotFoundFailure());
+    } on UnauthorizedException {
+      return const Left(WrongTokenFailure());
     } catch (e) {
       return Left(NoUserDataFailure());
     }

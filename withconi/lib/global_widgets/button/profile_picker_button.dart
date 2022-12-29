@@ -26,9 +26,9 @@ class ProfileImagePickerButton extends StatelessWidget {
           Container(
             decoration: BoxDecoration(shape: BoxShape.circle, boxShadow: [
               BoxShadow(
-                  color: WcColors.black.withOpacity(0.2),
-                  blurRadius: 4,
-                  spreadRadius: -2)
+                  color: WcColors.grey160.withOpacity(0.2),
+                  blurRadius: 16,
+                  spreadRadius: -5)
             ]),
             child: CircleAvatar(
               radius: 50,
@@ -45,7 +45,7 @@ class ProfileImagePickerButton extends StatelessWidget {
               decoration: BoxDecoration(boxShadow: [
                 BoxShadow(
                   color: WcColors.grey100.withOpacity(0.5),
-                  spreadRadius: -2,
+                  spreadRadius: -4,
                   blurRadius: 8,
                   offset: const Offset(2, 4), // changes position of shadow
                 ),

@@ -20,11 +20,22 @@ class MapReviewDetailController extends GetxController {
   );
   late ReviewDetailUIModel reviewDetail;
 
-  goToReviewImagePage() {
-    Get.toNamed(Routes.MAP_IMAGE_VERIFICATION, arguments: {
-      'selectedImageList': reviewDetail.reviewImageList.toList(),
-      'editable': false,
-    });
+  // goToReviewImagePage() {
+  //   Get.toNamed(Routes.MAP_IMAGE_VERIFICATION, arguments: {
+  //     'selectedImageList': reviewDetail.reviewImageList.toList(),
+  //     'editable': false,
+  //   });
+  // }
+
+  onTapPhotoVerificationButton() {
+    if (reviewDetail.isPhotoReview) {
+      Get.toNamed(Routes.MAP_IMAGE_VERIFICATION, arguments: {
+        'selectedImageList': reviewDetail.reviewImageList.toList(),
+        'editable': false,
+      });
+    } else {
+      showCustomSnackbar(text: '등록된 인증 사진이 없습니다.');
+    }
   }
 
   // _initReviewToEdit(ReviewDetailUIModel _reviewDetail) {

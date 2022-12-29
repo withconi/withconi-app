@@ -26,6 +26,7 @@ mixin _$DiseaseUIModel {
   List<SymptomGroup> get symptomGroup => throw _privateConstructorUsedError;
   DiseaseType get diseaseType => throw _privateConstructorUsedError;
   String get boardId => throw _privateConstructorUsedError;
+  List<Species> get speciesList => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $DiseaseUIModelCopyWith<DiseaseUIModel> get copyWith =>
@@ -48,7 +49,8 @@ abstract class $DiseaseUIModelCopyWith<$Res> {
       String advice,
       List<SymptomGroup> symptomGroup,
       DiseaseType diseaseType,
-      String boardId});
+      String boardId,
+      List<Species> speciesList});
 }
 
 /// @nodoc
@@ -74,6 +76,7 @@ class _$DiseaseUIModelCopyWithImpl<$Res, $Val extends DiseaseUIModel>
     Object? symptomGroup = null,
     Object? diseaseType = null,
     Object? boardId = null,
+    Object? speciesList = null,
   }) {
     return _then(_value.copyWith(
       diseaseCode: null == diseaseCode
@@ -116,6 +119,10 @@ class _$DiseaseUIModelCopyWithImpl<$Res, $Val extends DiseaseUIModel>
           ? _value.boardId
           : boardId // ignore: cast_nullable_to_non_nullable
               as String,
+      speciesList: null == speciesList
+          ? _value.speciesList
+          : speciesList // ignore: cast_nullable_to_non_nullable
+              as List<Species>,
     ) as $Val);
   }
 }
@@ -138,7 +145,8 @@ abstract class _$$_DiseaseUIModelCopyWith<$Res>
       String advice,
       List<SymptomGroup> symptomGroup,
       DiseaseType diseaseType,
-      String boardId});
+      String boardId,
+      List<Species> speciesList});
 }
 
 /// @nodoc
@@ -162,6 +170,7 @@ class __$$_DiseaseUIModelCopyWithImpl<$Res>
     Object? symptomGroup = null,
     Object? diseaseType = null,
     Object? boardId = null,
+    Object? speciesList = null,
   }) {
     return _then(_$_DiseaseUIModel(
       diseaseCode: null == diseaseCode
@@ -204,6 +213,10 @@ class __$$_DiseaseUIModelCopyWithImpl<$Res>
           ? _value.boardId
           : boardId // ignore: cast_nullable_to_non_nullable
               as String,
+      speciesList: null == speciesList
+          ? _value._speciesList
+          : speciesList // ignore: cast_nullable_to_non_nullable
+              as List<Species>,
     ));
   }
 }
@@ -221,8 +234,10 @@ class _$_DiseaseUIModel extends _DiseaseUIModel {
       required this.advice,
       required final List<SymptomGroup> symptomGroup,
       required this.diseaseType,
-      required this.boardId})
+      required this.boardId,
+      required final List<Species> speciesList})
       : _symptomGroup = symptomGroup,
+        _speciesList = speciesList,
         super._();
 
   @override
@@ -250,6 +265,12 @@ class _$_DiseaseUIModel extends _DiseaseUIModel {
   final DiseaseType diseaseType;
   @override
   final String boardId;
+  final List<Species> _speciesList;
+  @override
+  List<Species> get speciesList {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_speciesList);
+  }
 
   @JsonKey(ignore: true)
   @override
@@ -269,7 +290,8 @@ abstract class _DiseaseUIModel extends DiseaseUIModel {
       required final String advice,
       required final List<SymptomGroup> symptomGroup,
       required final DiseaseType diseaseType,
-      required final String boardId}) = _$_DiseaseUIModel;
+      required final String boardId,
+      required final List<Species> speciesList}) = _$_DiseaseUIModel;
   _DiseaseUIModel._() : super._();
 
   @override
@@ -292,6 +314,8 @@ abstract class _DiseaseUIModel extends DiseaseUIModel {
   DiseaseType get diseaseType;
   @override
   String get boardId;
+  @override
+  List<Species> get speciesList;
   @override
   @JsonKey(ignore: true)
   _$$_DiseaseUIModelCopyWith<_$_DiseaseUIModel> get copyWith =>

@@ -189,9 +189,12 @@ class PostDetail extends StatelessWidget {
                 SizedBox(
                   height: 8,
                 ),
-                TextField(
-                    readOnly: true,
-                    controller: TextEditingController(text: post.content),
+                Padding(
+                  padding: EdgeInsets.only(top: 5, bottom: 10),
+                  child: Text(
+                    post.content,
+                    // readOnly: true,
+                    // controller: TextEditingController(text: post.content),
                     style: TextStyle(
                         fontFamily: WcFontFamily.notoSans,
                         color: WcColors.black,
@@ -199,10 +202,9 @@ class PostDetail extends StatelessWidget {
                         fontWeight: FontWeight.w400,
                         height: 1.6),
                     maxLines: 100,
-                    minLines: 1,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                    )),
+                    // minLines: 1,
+                  ),
+                ),
               ],
             ),
           ),

@@ -18,15 +18,15 @@ class CommunityMainController extends GetxController with WcStateMixin {
   RxList<BoardUIModel> searchedBoardList = RxList<BoardUIModel>();
   String boardKeyword = '';
 
-  static int hotPostListSize = 3;
+  static int hotPostListSize = 4;
 
   @override
   onInit() async {
     super.onInit();
     change(null, status: const PageStatus.init());
 
-    await _getBoardList();
-    await _getHotPostList();
+    _getBoardList();
+    _getHotPostList();
   }
 
   onBoardKeywordChanged(String keyword) {
@@ -56,7 +56,7 @@ class CommunityMainController extends GetxController with WcStateMixin {
 
   Future<void> _getBoardList() async {
     final boardListEither = await _repository.getBoardList();
-    change(null, status: PageStatus.loading());
+    change([], status: PageStatus.loading());
     boardListEither.fold((fail) {
       ErrorObject errorObject =
           ErrorObject.mapFailureToErrorMessage(failure: fail);
@@ -104,6 +104,7 @@ class CommunityMainController extends GetxController with WcStateMixin {
     Get.toNamed(Routes.COMMUNITY_POST_DETAIL, arguments: {
       'boardId': selectedHotPost.boardId,
       'postId': selectedHotPost.postId,
+      'fromRootPage': true,
     });
   }
 

@@ -76,6 +76,7 @@ class MapSearchController extends GetxController with WcStateMixin {
     super.onInit();
     change(null, status: const PageStatus.init());
     _onBaseLocationChanged(baseLat, baseLng);
+    await _setSearchArea();
     _currentLocation = await _getCurrentLocation();
   }
 
@@ -195,6 +196,7 @@ class MapSearchController extends GetxController with WcStateMixin {
     }, (dtoList) {
       if (dtoList.isEmpty) {
         change(null, status: const PageStatus.empty());
+        buttonStatus.value = PageStatus.success();
       } else {
         placeListSearched.assignAll(parseDtoToUiModel(dtoList));
         change(placeListSearched, status: const PageStatus.success());
@@ -209,7 +211,6 @@ class MapSearchController extends GetxController with WcStateMixin {
       if (latLng != null) {
         _onBaseLocationChanged(latLng.latitude, latLng.longitude);
         await _setSearchArea();
-        // isLocationChanged.value = true;
         update();
       }
     }
@@ -281,16 +282,12 @@ class MapSearchController extends GetxController with WcStateMixin {
         (value) => LatLngUIModel(lat: value.latitude, lng: value.longitude));
   }
 
-  onTapSearchPinButton() async {
-    if (status == PageStatus.init()) {
-      change([], status: PageStatus.success());
-
-      // isLocationChanged.value = true;
+  onTapSearchPinButton() {
+    if (status == const PageStatus.init()) {
+      buttonStatus.value = const PageStatus.success();
     } else {
-      change([], status: PageStatus.init());
-      // isLocationChanged.value = false;
+      change(placeListSearched, status: const PageStatus.init());
+      buttonStatus.value = const PageStatus.init();
     }
-
-    buttonStatus.value = status;
   }
 }

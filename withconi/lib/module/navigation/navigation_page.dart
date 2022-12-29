@@ -1,3 +1,4 @@
+import 'package:withconi/global_widgets/dialog/selection_dialog.dart';
 import 'package:withconi/import_basic.dart';
 import 'package:withconi/module/ui_model/nav_destination_ui_model.dart';
 import 'package:withconi/module/community/pages/community_main_page.dart';
@@ -12,54 +13,70 @@ class NavigationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     NavigationController _controller = Get.find();
-    return Scaffold(
-      bottomNavigationBar: Obx(
-        () => WcBottomNavBar(
-          currentNavIndex: _controller.pageIndex,
-          onTap: _controller.goToPage,
-          navList: allDestinations,
+
+    Future<bool> _isExitDesired() async {
+      return await showSelectionDialog(
+          subtitle: '진행중이던 작업이 모두 사라집니다.',
+          confirmText: '종료',
+          cancleText: '취소',
+          title: '앱을 종료할까요?');
+    }
+
+    return WillPopScope(
+      onWillPop: _isExitDesired,
+      child: Scaffold(
+        bottomNavigationBar: Obx(
+          () => WcBottomNavBar(
+            currentNavIndex: _controller.pageIndex,
+            onTap: _controller.goToPage,
+            navList: allDestinations,
+          ),
         ),
-      ),
-      body: Navigator(
-        initialRoute: Routes.HOME,
-        key: Get.nestedKey(NavigationController.NAVIGATOR_KEY),
-        onGenerateRoute: (settings) {
-          if (settings.name == Routes.HOME) {
-            return GetPageRoute(
-              settings: settings,
-              transition: Transition.noTransition,
-              page: () => const HomePage(),
-              routeName: Routes.HOME,
-            );
-          }
-          if (settings.name == Routes.MAP_MAIN) {
-            return GetPageRoute(
-              settings: settings,
-              transition: Transition.noTransition,
-              page: () => const MapMainPage(),
-              routeName: Routes.MAP_MAIN,
-            );
-          }
-          if (settings.name == Routes.COMMUNITY_MAIN) {
-            return GetPageRoute(
-              settings: settings,
-              transition: Transition.noTransition,
-              page: () => const CommunityMainPage(),
-              routeName: Routes.COMMUNITY_MAIN,
-            );
-          }
+        body: Navigator(
+          initialRoute: Routes.HOME,
+          key: Get.nestedKey(NavigationController.NAVIGATOR_KEY),
+          onGenerateRoute: (settings) {
+            if (settings.name == Routes.HOME) {
+              return GetPageRoute(
+                settings: settings,
+                transition: Transition.noTransition,
+                page: () => const HomePage(),
+                routeName: Routes.HOME,
+                popGesture: false,
+              );
+            }
+            if (settings.name == Routes.MAP_MAIN) {
+              return GetPageRoute(
+                settings: settings,
+                transition: Transition.noTransition,
+                page: () => const MapMainPage(),
+                routeName: Routes.MAP_MAIN,
+                popGesture: false,
+              );
+            }
+            if (settings.name == Routes.COMMUNITY_MAIN) {
+              return GetPageRoute(
+                settings: settings,
+                transition: Transition.noTransition,
+                page: () => const CommunityMainPage(),
+                routeName: Routes.COMMUNITY_MAIN,
+                popGesture: false,
+              );
+            }
 
-          if (settings.name == Routes.DICTIONARY_MAIN) {
-            return GetPageRoute(
-              settings: settings,
-              transition: Transition.noTransition,
-              page: () => const DictionaryMainPage(),
-              routeName: Routes.DICTIONARY_MAIN,
-            );
-          }
+            if (settings.name == Routes.DICTIONARY_MAIN) {
+              return GetPageRoute(
+                settings: settings,
+                transition: Transition.noTransition,
+                page: () => const DictionaryMainPage(),
+                routeName: Routes.DICTIONARY_MAIN,
+                popGesture: false,
+              );
+            }
 
-          return null;
-        },
+            return null;
+          },
+        ),
       ),
     );
   }

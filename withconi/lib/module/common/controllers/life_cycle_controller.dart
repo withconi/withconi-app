@@ -51,8 +51,8 @@ class LifeCycleController extends SuperController {
   }
 
   _checkMapPageStatus() async {
-    // if (Get.isRegistered<MapMainPageController>()) {
-    //   await Get.find<MapMainPageController>().setPermissionStatus();
-    // }
+    if (Get.isRegistered<MapMainPageController>()) {
+      await Get.find<MapMainPageController>().setPermissionStatus();
+    }
   }
 }

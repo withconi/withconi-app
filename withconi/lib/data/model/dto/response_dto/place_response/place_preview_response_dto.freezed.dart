@@ -394,12 +394,12 @@ class __$$PharmacyPreviewResponseDTOCopyWithImpl<$Res>
 class _$PharmacyPreviewResponseDTO implements PharmacyPreviewResponseDTO {
   const _$PharmacyPreviewResponseDTO(
       {@JsonKey(name: '_id') required this.placeId,
-      required this.address,
+      this.address = '',
       @JsonKey(name: 'isPhotoReview') this.isPhotoReview = false,
-      required this.isBookmarked,
+      this.isBookmarked = true,
       required this.coordinate,
-      required this.phone,
-      required this.name,
+      this.phone = '',
+      this.name = '',
       required this.openingStatus,
       this.thumbnail = '',
       @JsonKey(name: 'locType') required this.placeType,
@@ -415,17 +415,21 @@ class _$PharmacyPreviewResponseDTO implements PharmacyPreviewResponseDTO {
   @JsonKey(name: '_id')
   final String placeId;
   @override
+  @JsonKey()
   final String address;
   @override
   @JsonKey(name: 'isPhotoReview')
   final bool isPhotoReview;
   @override
+  @JsonKey()
   final bool isBookmarked;
   @override
   final LatLngResponseDTO coordinate;
   @override
+  @JsonKey()
   final String phone;
   @override
+  @JsonKey()
   final String name;
   @override
   final OpeningStatus openingStatus;
@@ -688,12 +692,12 @@ class _$PharmacyPreviewResponseDTO implements PharmacyPreviewResponseDTO {
 abstract class PharmacyPreviewResponseDTO implements PlacePreviewResponseDTO {
   const factory PharmacyPreviewResponseDTO(
       {@JsonKey(name: '_id') required final String placeId,
-      required final String address,
+      final String address,
       @JsonKey(name: 'isPhotoReview') final bool isPhotoReview,
-      required final bool isBookmarked,
+      final bool isBookmarked,
       required final LatLngResponseDTO coordinate,
-      required final String phone,
-      required final String name,
+      final String phone,
+      final String name,
       required final OpeningStatus openingStatus,
       final String thumbnail,
       @JsonKey(name: 'locType') required final PlaceType placeType,
@@ -847,12 +851,12 @@ class __$$HospitalPreviewResponseDTOCopyWithImpl<$Res>
 class _$HospitalPreviewResponseDTO implements HospitalPreviewResponseDTO {
   const _$HospitalPreviewResponseDTO(
       {@JsonKey(name: '_id') required this.placeId,
-      required this.address,
+      this.address = '',
       @JsonKey(name: 'isPhotoReview') this.isPhotoReview = false,
-      required this.isBookmarked,
+      this.isBookmarked = true,
       required this.coordinate,
-      required this.phone,
-      required this.name,
+      this.phone = '',
+      this.name = '',
       required this.openingStatus,
       this.thumbnail = '',
       @JsonKey(name: 'locType') required this.placeType,
@@ -868,17 +872,21 @@ class _$HospitalPreviewResponseDTO implements HospitalPreviewResponseDTO {
   @JsonKey(name: '_id')
   final String placeId;
   @override
+  @JsonKey()
   final String address;
   @override
   @JsonKey(name: 'isPhotoReview')
   final bool isPhotoReview;
   @override
+  @JsonKey()
   final bool isBookmarked;
   @override
   final LatLngResponseDTO coordinate;
   @override
+  @JsonKey()
   final String phone;
   @override
+  @JsonKey()
   final String name;
   @override
   final OpeningStatus openingStatus;
@@ -1141,12 +1149,12 @@ class _$HospitalPreviewResponseDTO implements HospitalPreviewResponseDTO {
 abstract class HospitalPreviewResponseDTO implements PlacePreviewResponseDTO {
   const factory HospitalPreviewResponseDTO(
       {@JsonKey(name: '_id') required final String placeId,
-      required final String address,
+      final String address,
       @JsonKey(name: 'isPhotoReview') final bool isPhotoReview,
-      required final bool isBookmarked,
+      final bool isBookmarked,
       required final LatLngResponseDTO coordinate,
-      required final String phone,
-      required final String name,
+      final String phone,
+      final String name,
       required final OpeningStatus openingStatus,
       final String thumbnail,
       @JsonKey(name: 'locType') required final PlaceType placeType,

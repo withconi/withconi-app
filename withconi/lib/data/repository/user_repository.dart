@@ -17,6 +17,7 @@ import '../../core/error_handling/failures.dart';
 import '../../core/tools/helpers/dynamic_link_manager.dart';
 import '../../routes/routes.dart';
 import '../model/dto/request_dto/auth_request/get_duplicated_email_check_request_dto.dart';
+import '../model/dto/request_dto/user_request/delete_user_request_dto.dart';
 import '../model/dto/response_dto/auth_response/email_duplication_check_response_dto.dart';
 
 class UserRepository extends GetxService {
@@ -39,15 +40,35 @@ class UserRepository extends GetxService {
         throw DataParsingException();
       }
     } on NoInternetConnectionException {
-      return Left(NoConnectionFailure());
+      return const Left(NoConnectionFailure());
     } on DataParsingException {
-      return Left(DataParsingFailure());
+      return const Left(DataParsingFailure());
     } on NotFoundException {
-      return Left(NotFoundFailure());
+      return const Left(NotFoundFailure());
     } on UnauthorizedException {
-      return Left(WrongTokenFailure());
+      return const Left(WrongTokenFailure());
     } catch (e) {
-      return Left(NoUserDataFailure());
+      return const Left(NoUserDataFailure());
+    }
+  }
+
+  Future<Either<Failure, bool>> deleteUser() async {
+    try {
+      var requestDTO = DeleteUserRequestDTO.fromData();
+      var apiCallDTO = ApiCallDTO.fromDTO(requestDTO);
+      Map<String, dynamic> data = await _api.deleteUser(apiCallDTO);
+
+      return const Right(true);
+    } on NoInternetConnectionException {
+      return const Left(NoConnectionFailure());
+    } on DataParsingException {
+      return const Left(DataParsingFailure());
+    } on NotFoundException {
+      return const Left(NotFoundFailure());
+    } on UnauthorizedException {
+      return const Left(WrongTokenFailure());
+    } catch (e) {
+      return const Left(NoUserDataFailure());
     }
   }
 
@@ -58,13 +79,17 @@ class UserRepository extends GetxService {
           UpdateUserInfoRequestDTO.fromData(data: user, photoRef: photoRef);
       var apiCallDTO = ApiCallDTO.fromDTO(requestDTO);
       Map<String, dynamic>? data = await _api.updateUser(apiCallDTO);
-      return Right(true);
+      return const Right(true);
     } on NoInternetConnectionException {
-      return Left(NoConnectionFailure());
+      return const Left(NoConnectionFailure());
+    } on DataParsingException {
+      return const Left(DataParsingFailure());
     } on NotFoundException {
-      return Left(NotFoundFailure());
+      return const Left(NotFoundFailure());
+    } on UnauthorizedException {
+      return const Left(WrongTokenFailure());
     } catch (e) {
-      return Left(UserInfoUpdateFailure());
+      return const Left(UserInfoUpdateFailure());
     }
   }
 
@@ -83,8 +108,13 @@ class UserRepository extends GetxService {
 
       return Right(responseDTO);
     } on NoInternetConnectionException {
-      print('NoInternetConnectionException');
-      return Left(NoConnectionFailure());
+      return const Left(NoConnectionFailure());
+    } on DataParsingException {
+      return const Left(DataParsingFailure());
+    } on NotFoundException {
+      return const Left(NotFoundFailure());
+    } on UnauthorizedException {
+      return const Left(WrongTokenFailure());
     } catch (e) {
       print('NoUserDataFailure');
       return Left(NoUserDataFailure());
@@ -128,6 +158,14 @@ class UserRepository extends GetxService {
       ApiCallDTO apiCallDTO = ApiCallDTO.fromDTO(requestDTO);
       var data = await _api.sendVerificationEmail(apiCallDTO);
       return Right(true);
+    } on NoInternetConnectionException {
+      return const Left(NoConnectionFailure());
+    } on DataParsingException {
+      return const Left(DataParsingFailure());
+    } on NotFoundException {
+      return const Left(NotFoundFailure());
+    } on UnauthorizedException {
+      return const Left(WrongTokenFailure());
     } catch (e) {
       return Left(SendVerificationEmailFailure());
     }
@@ -144,6 +182,14 @@ class UserRepository extends GetxService {
       ApiCallDTO apiCallDTO = ApiCallDTO.fromDTO(requestDTO);
       var data = await _api.checkEmailVerificationCode(apiCallDTO);
       return Right(data['isEqual']);
+    } on NoInternetConnectionException {
+      return const Left(NoConnectionFailure());
+    } on DataParsingException {
+      return const Left(DataParsingFailure());
+    } on NotFoundException {
+      return const Left(NotFoundFailure());
+    } on UnauthorizedException {
+      return const Left(WrongTokenFailure());
     } catch (e) {
       return Left(CheckVerificationFailure());
     }

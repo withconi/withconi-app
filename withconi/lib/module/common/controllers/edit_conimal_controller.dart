@@ -67,6 +67,9 @@ class EditConimalController extends GetxController {
 
   void onSpeicesChanged(Species species) {
     if (editConimal.value.species != species) {
+      if (editConimal.value.breed.isNotEmpty) {
+        showCustomSnackbar(text: '${species.displayName} 품종을 다시 선택해주세요');
+      }
       editConimal.value.breed = '';
     }
     editConimal.value.species = species;
@@ -154,9 +157,11 @@ class EditConimalController extends GetxController {
 
   selectDisease() async {
     Get.focusScope!.unfocus();
-    List<DiseaseUIModel>? newDiseaseList = await Get.toNamed(
-        Routes.DISEASE_SEARCH,
-        arguments: editConimal.value.diseases) as List<DiseaseUIModel>?;
+    List<DiseaseUIModel>? newDiseaseList =
+        await Get.toNamed(Routes.DISEASE_SEARCH, arguments: {
+      'selectedDiseaseList': editConimal.value.diseases.toList(),
+      'maxDisease': 3
+    }) as List<DiseaseUIModel>?;
     if (newDiseaseList != null) {
       onDiseaseListChanged(newDiseaseList.toList());
     }

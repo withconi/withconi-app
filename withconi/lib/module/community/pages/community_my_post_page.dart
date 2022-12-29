@@ -2,6 +2,7 @@ import 'package:withconi/module/community/controllers/community_my_post_controll
 import 'package:withconi/import_basic.dart';
 import '../../../global_widgets/appbar/appbar.dart';
 import '../../../global_widgets/listtile/post_list_tile.dart';
+import '../../theme/text_theme.dart';
 
 class CommunityMyPostPage extends StatelessWidget {
   CommunityMyPostPage({Key? key}) : super(key: key);
@@ -36,9 +37,10 @@ class CommunityMyPostPage extends StatelessWidget {
                           EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                       child: Text(
                         '내가 쓴 글',
-                        style: GoogleFonts.notoSans(
+                        style: TextStyle(
+                            fontFamily: WcFontFamily.notoSans,
                             color: WcColors.black,
-                            fontSize: 24,
+                            fontSize: 25,
                             fontWeight: FontWeight.bold,
                             height: 1.4),
                       ),
@@ -46,23 +48,27 @@ class CommunityMyPostPage extends StatelessWidget {
                     Container(
                       width: WcWidth,
                       padding:
-                          EdgeInsets.symmetric(horizontal: 22, vertical: 15),
+                          EdgeInsets.symmetric(horizontal: 22, vertical: 17),
                       child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
                             '${_controller.myPostList.length}',
                             style: GoogleFonts.workSans(
                               color: WcColors.black,
-                              fontSize: 22,
-                              fontWeight: FontWeight.w500,
+                              height: 1,
+                              fontSize: 23,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                           Text(
                             '개',
-                            style: GoogleFonts.workSans(
+                            style: TextStyle(
+                              fontFamily: WcFontFamily.notoSans,
                               color: WcColors.black,
-                              fontSize: 22,
-                              fontWeight: FontWeight.w600,
+                              fontSize: 21,
+                              height: 1,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
                         ],

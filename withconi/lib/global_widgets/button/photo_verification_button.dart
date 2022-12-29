@@ -40,11 +40,11 @@ class PhotoVerificationButton extends StatelessWidget {
             //   ),
 
             Text(
-              (isPhotoReview) ? '사진인증 완료' : '사진인증 하기',
+              (isPhotoReview) ? '사진인증 완료' : '사진인증 안함',
               style: TextStyle(
                   fontFamily: WcFontFamily.notoSans,
                   fontWeight: FontWeight.w600,
-                  fontSize: 12,
+                  fontSize: 11.5,
                   height: 1,
                   letterSpacing: 0.1,
                   color: (isPhotoReview) ? WcColors.blue100 : WcColors.red100),

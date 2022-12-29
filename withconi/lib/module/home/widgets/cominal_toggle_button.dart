@@ -8,14 +8,14 @@ class ConimalToggleButton extends StatelessWidget {
     required this.backgroundColor,
     required this.species,
     required this.index,
-    required this.selectedIndex,
+    required this.selected,
   }) : super(key: key);
 
   void Function() onTap;
   Color backgroundColor;
   Species species;
   int index;
-  int selectedIndex;
+  bool selected;
 
   @override
   Widget build(BuildContext context) {
@@ -29,15 +29,15 @@ class ConimalToggleButton extends StatelessWidget {
               offset: Offset(-0.6, 0.7))
         ]),
         child: CircleAvatar(
-          radius: (selectedIndex == index) ? 26 : 20.5,
+          radius: (selected) ? 26 : 20.5,
           backgroundColor: WcColors.white,
           child: CircleAvatar(
             backgroundColor:
                 (species == Species.cat) ? WcColors.grey110 : WcColors.green20,
-            radius: (selectedIndex == index) ? 22 : 20.5,
+            radius: (selected) ? 22 : 20.5,
             child: Image.asset(
               species.imageSrc,
-              height: (selectedIndex == index) ? 28 : 25,
+              height: (selected) ? 28 : 25,
             ),
           ),
         ),

@@ -8,27 +8,27 @@ part of 'symptom.dart';
 
 _$_SymptomGroup _$$_SymptomGroupFromJson(Map<String, dynamic> json) =>
     _$_SymptomGroup(
-      symptomType: $enumDecode(_$SymptomEnumMap, json['symptomType']),
-      symptomList: (json['symptomList'] as List<dynamic>)
-          .map((e) => e as String)
-          .toList(),
+      symptomType: $enumDecode(_$SymptomEnumMap, json['categoryName']),
+      symptomList:
+          (json['list'] as List<dynamic>).map((e) => e as String).toList(),
     );
 
 Map<String, dynamic> _$$_SymptomGroupToJson(_$_SymptomGroup instance) =>
     <String, dynamic>{
-      'symptomType': _$SymptomEnumMap[instance.symptomType]!,
-      'symptomList': instance.symptomList,
+      'categoryName': _$SymptomEnumMap[instance.symptomType]!,
+      'list': instance.symptomList,
     };
 
 const _$SymptomEnumMap = {
-  Symptom.action: 'action',
-  Symptom.bone: 'bone',
-  Symptom.eat: 'eat',
-  Symptom.eye: 'eye',
-  Symptom.lung: 'lung',
-  Symptom.mouth: 'mouth',
-  Symptom.nerve: 'nerve',
-  Symptom.stomach: 'stomach',
-  Symptom.skin: 'stomach',
-  Symptom.urinary: 'urinary',
+  Symptom.action: '행동변화',
+  Symptom.bone: '근골격',
+  Symptom.eat: '섭취이상',
+  Symptom.eye: '눈',
+  Symptom.lung: '호흡기',
+  Symptom.mouth: '구강',
+  Symptom.nerve: '신경이상',
+  Symptom.stomach: '복부',
+  Symptom.skin: '피부',
+  Symptom.urinary: '생식비뇨',
+  Symptom.ect: '기타',
 };

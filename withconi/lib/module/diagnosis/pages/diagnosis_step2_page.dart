@@ -56,7 +56,7 @@ class DiagnosisStep2Page extends StatelessWidget {
                       '관찰한 부위별\n증상을 골라주세요',
                       style: TextStyle(
                           fontFamily: WcFontFamily.notoSans,
-                          fontSize: 24,
+                          fontSize: 25,
                           fontWeight: FontWeight.w500),
                     ),
                   ),
@@ -65,12 +65,12 @@ class DiagnosisStep2Page extends StatelessWidget {
                   ),
                   Center(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 0),
                       child: Wrap(
                           direction: Axis.horizontal,
-                          spacing: 15,
+                          spacing: 18,
                           runSpacing: 20,
-                          children: Symptom.values
+                          children: _controller.symptomCategory
                               .map(
                                 (symptom) => Obx(
                                   () => SymptomButton(
@@ -106,7 +106,7 @@ class DiagnosisStep2Page extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 30,
                   )
                 ],
               ),

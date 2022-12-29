@@ -31,6 +31,14 @@ class SignUpRepository extends GetxService {
       ApiCallDTO apiCallDTO = ApiCallDTO.fromDTO(reqeustDTO);
       Map<String, dynamic> newUserId = await _api.signUpDB(apiCallDTO);
       return Right(newUserId);
+    } on NoInternetConnectionException {
+      return const Left(NoConnectionFailure());
+    } on DataParsingException {
+      return const Left(DataParsingFailure());
+    } on NotFoundException {
+      return const Left(NotFoundFailure());
+    } on UnauthorizedException {
+      return const Left(WrongTokenFailure());
     } catch (e) {
       return Left(SignInTokenFailure());
     }

@@ -8,9 +8,9 @@ part 'diagnosis_result_response_dto.g.dart';
 class DiagnosisResultResponseDTO with _$DiagnosisResultResponseDTO {
   @JsonSerializable(explicitToJson: true)
   factory DiagnosisResultResponseDTO({
-    required String diseaseId,
-    required String diseaseName,
-    required DiseasePosibility posibility,
+    @JsonKey(name: '_id') @Default('') String diseaseId,
+    @JsonKey(name: 'name') required String diseaseName,
+    @JsonKey(name: 'status') required DiseasePosibility posibility,
   }) = _DiagnosisResultResponseDTO;
 
   factory DiagnosisResultResponseDTO.fromJson(Map<String, dynamic> json) =>

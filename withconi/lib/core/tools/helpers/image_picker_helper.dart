@@ -10,71 +10,84 @@ import '../../error_handling/failures.dart';
 
 class ImagePickHelper {
   Future<Either<Failure, ImageItem?>> pickImage(ImageSource imageSource) async {
-    final ImagePicker _picker = ImagePicker();
-    final XFile? image = await _picker.pickImage(
-        source: imageSource, maxHeight: 800, imageQuality: 85);
+    try {
+      final ImagePicker _picker = ImagePicker();
+      final XFile? image = await _picker.pickImage(
+          source: imageSource, maxHeight: 800, imageQuality: 85);
 
-    if (image != null) {
-      Map<String, dynamic> pictureSizeMap =
-          getFileSizeMap(bytes: File(image.path).lengthSync());
-
-      if (pictureSizeMap['suffix'] == "GB" ||
-          pictureSizeMap['suffix'] == "TB") {
-        return const Left(MaxImageSizeFailure());
-      } else if (pictureSizeMap['suffix'] == "MB") {
-        if (pictureSizeMap['size'] > 2) {
-          return const Left(MaxImageSizeFailure());
-        }
-      } else {
-        ImageItem imageItem = ImageItem(
-            id: hashCode.toString(),
-            imageUrl: image.path,
-            imageType: ImageType.file);
-        return Right(imageItem);
-      }
-    }
-    return const Right(null);
-  }
-
-  Future<Either<Failure, List<ImageItem>>?> pickMultipleImages(
-      {required int maxImageNum, required int selectedImageNum}) async {
-    final ImagePicker _picker = ImagePicker();
-    final List<XFile>? _pickedImages =
-        await _picker.pickMultiImage(maxHeight: 800, imageQuality: 85);
-    List<File> _filteredImages = [];
-
-    if (_pickedImages != null) {
-      if (_pickedImages.length + selectedImageNum > maxImageNum) {
-        return Left(MaxImageNumFailure());
-      }
-      _pickedImages.forEach((image) {
+      if (image != null) {
         Map<String, dynamic> pictureSizeMap =
             getFileSizeMap(bytes: File(image.path).lengthSync());
 
         if (pictureSizeMap['suffix'] == "GB" ||
             pictureSizeMap['suffix'] == "TB") {
+          return const Left(MaxImageSizeFailure());
         } else if (pictureSizeMap['suffix'] == "MB") {
-          if (pictureSizeMap['size'] < 2) {
-            _filteredImages.add(File(image.path));
+          if (pictureSizeMap['size'] > 2) {
+            return const Left(MaxImageSizeFailure());
           }
         } else {
-          _filteredImages.add(File(image.path));
+          ImageItem imageItem = ImageItem(
+              id: hashCode.toString(),
+              imageUrl: image.path,
+              imageType: ImageType.file);
+          return Right(imageItem);
         }
-      });
-
-      if (_filteredImages.isEmpty) {
-        return Left(MaxImageSizeFailure());
-      } else {
-        List<ImageItem> filteredImageItems = _filteredImages
-            .map((e) => ImageItem(
-                id: hashCode.toString(),
-                imageUrl: e.path,
-                imageType: ImageType.file))
-            .toList();
-        return Right(filteredImageItems);
       }
-    } else {
-      return Right([]);
+      return const Right(null);
+    } catch (e) {
+      if (imageSource == ImageSource.camera) {
+        return const Left(CameraAccessDeniedFailure());
+      } else {
+        return const Left(GalleryAccessDeniedFailure());
+      }
+    }
+  }
+
+  Future<Either<Failure, List<ImageItem>>?> pickMultipleImages(
+      {required int maxImageNum, required int selectedImageNum}) async {
+    final ImagePicker _picker = ImagePicker();
+    try {
+      final List<XFile>? _pickedImages =
+          await _picker.pickMultiImage(maxHeight: 800, imageQuality: 85);
+
+      List<File> _filteredImages = [];
+
+      if (_pickedImages != null) {
+        if (_pickedImages.length + selectedImageNum > maxImageNum) {
+          return const Left(MaxImageNumFailure());
+        }
+        for (var image in _pickedImages) {
+          Map<String, dynamic> pictureSizeMap =
+              getFileSizeMap(bytes: File(image.path).lengthSync());
+
+          if (pictureSizeMap['suffix'] == "GB" ||
+              pictureSizeMap['suffix'] == "TB") {
+          } else if (pictureSizeMap['suffix'] == "MB") {
+            if (pictureSizeMap['size'] < 2) {
+              _filteredImages.add(File(image.path));
+            }
+          } else {
+            _filteredImages.add(File(image.path));
+          }
+        }
+
+        if (_filteredImages.isEmpty) {
+          return Left(MaxImageSizeFailure());
+        } else {
+          List<ImageItem> filteredImageItems = _filteredImages
+              .map((e) => ImageItem(
+                  id: hashCode.toString(),
+                  imageUrl: e.path,
+                  imageType: ImageType.file))
+              .toList();
+          return Right(filteredImageItems);
+        }
+      } else {
+        return Right([]);
+      }
+    } catch (e) {
+      return const Left(Failure.galleryAccessDeniedFailure());
     }
   }
 

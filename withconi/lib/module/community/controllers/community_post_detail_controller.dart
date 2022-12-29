@@ -25,12 +25,13 @@ import '../widgets/comment_bottom_sheet.dart';
 
 class CommunityPostDetailController extends GetxController
     implements AbstractPostUpdate {
-  CommunityPostDetailController(this._communityRepository, this._boardId,
-      this._postId, this._postAbstractController);
+  CommunityPostDetailController(this._communityRepository, this.fromRootPage,
+      this._boardId, this._postId, this._postAbstractController);
   final CommunityRepository _communityRepository;
 
   late Rx<PostUIModel> thisPost;
   RxList<CommentUIModel> commentList = <CommentUIModel>[].obs;
+  bool fromRootPage = false;
 
   final _paginationFilter = PaginationFilter(page: 1, listSize: 10).obs;
   final _lastPage = false.obs;
@@ -130,6 +131,13 @@ class CommunityPostDetailController extends GetxController
     }
   }
 
+  goToPostListPage() {
+    Get.offNamed(Routes.COMMUNITY_POST_LIST, arguments: {
+      'boardId': thisPost.value.boardId,
+      'boardName': thisPost.value.diseaseType.displayName
+    });
+  }
+
   // Future<void> _editComment(String comment) async {
   //   String? commentText = await showCommentBottomSheet(_nickname, comment);
   //   if (commentText != null && commentText.isNotEmpty) {
@@ -170,6 +178,10 @@ class CommunityPostDetailController extends GetxController
   }
 
   onLikeChanged(bool isLike) async {
+    if (thisPost.value.authorId == AuthController.to.userId) {
+      showCustomSnackbar(text: '내 글에는 좋아요를 누를 수 없어요');
+      return;
+    }
     _updatePostLikeUiChanges(isLike);
     var likePostsEither = await _communityRepository.updateLikePost(
         postId: thisPost.value.postId, isLiked: isLike);

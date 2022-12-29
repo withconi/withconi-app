@@ -28,6 +28,9 @@ class PharmacyPreviewUIModel extends Equatable implements PlacePreviewUIModel {
   String placeId;
 
   @override
+  List<String> overlappedPlaceList;
+
+  @override
   LatLngUIModel placeLocation;
 
   @override
@@ -38,6 +41,9 @@ class PharmacyPreviewUIModel extends Equatable implements PlacePreviewUIModel {
 
   @override
   bool isPhotoReview;
+
+  @override
+  bool isBookmarked;
 
   @override
   PlaceType get placeType => PlaceType.pharmacy;
@@ -60,8 +66,9 @@ class PharmacyPreviewUIModel extends Equatable implements PlacePreviewUIModel {
   PharmacyPreviewUIModel({
     required this.address,
     required this.phone,
-    // required this.baseLocation,
+    required this.isBookmarked,
     required this.mostVisitedDiseaseType,
+    this.overlappedPlaceList = const [],
     required this.name,
     required this.placeId,
     required this.placeLocation,
@@ -73,6 +80,7 @@ class PharmacyPreviewUIModel extends Equatable implements PlacePreviewUIModel {
   factory PharmacyPreviewUIModel.fromDTO(
       PharmacyPreviewResponseDTO placeDTO, LatLngUIModel baseLocation) {
     return PharmacyPreviewUIModel(
+      isBookmarked: placeDTO.isBookmarked,
       totalReviews: placeDTO.totalReviews,
       phone: placeDTO.phone,
       isPhotoReview: placeDTO.isPhotoReview,

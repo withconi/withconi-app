@@ -21,6 +21,7 @@ class DiseaseUIModel extends Equatable with _$DiseaseUIModel {
     required List<SymptomGroup> symptomGroup,
     required DiseaseType diseaseType,
     required String boardId,
+    required List<Species> speciesList,
   }) = _DiseaseUIModel;
 
   factory DiseaseUIModel.fromDTO(DiseaseResponseDTO responseDTO) {
@@ -33,6 +34,7 @@ class DiseaseUIModel extends Equatable with _$DiseaseUIModel {
         diagnosisTechnique: responseDTO.diagnosisTechnique,
         diseaseType: responseDTO.diseaseType,
         name: responseDTO.name,
+        speciesList: responseDTO.speciesList,
         symptomGroup: responseDTO.symptomGroupList,
         treatment: responseDTO.treatment);
   }

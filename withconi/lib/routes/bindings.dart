@@ -56,6 +56,7 @@ import 'package:withconi/module/signup/controllers/signup_pw_controller.dart';
 import 'package:withconi/module/signup/signup_data_storage.dart';
 import 'package:withconi/module/start/start_controller.dart';
 
+import '../core/values/constants/auth_variables.dart';
 import '../data/repository/image_repository.dart';
 import '../data/repository/map_repository.dart';
 import '../module/common/controllers/disease_search_controller.dart';
@@ -115,13 +116,12 @@ class NavigationBinding implements Bindings {
     FcmBinding().dependencies();
   }
 
-  Future<bool> closeBindings() async {
+  static Future<bool> closeBindings() async {
     await FcmBinding().closeBinding();
     HomeBinding().closeBinding();
     CommunityMainBinding().closeBinding();
     MapMainBinding().closeBinding();
     DictionaryMainBinding().closeBinding();
-
     return true;
   }
 }
@@ -343,6 +343,7 @@ class CommunityPostDetailBinding implements Bindings {
     Get.lazyPut<CommunityPostDetailController>(
       () => CommunityPostDetailController(
           Get.find<CommunityRepository>(),
+          Get.arguments['fromRootPage'],
           Get.arguments['boardId'],
           Get.arguments['postId'],
           Get.arguments['postAbstractController']),
@@ -506,11 +507,11 @@ class DictionaryMainBinding implements Bindings {
   void dependencies() {
     Get.lazyPut(() => DiseaseAPI());
     Get.lazyPut(() => DiseaseRepository(Get.find<DiseaseAPI>()));
-    Get.lazyPut<DictionaryMainController>(
-        () => DictionaryMainController(
-              Get.find<DiseaseRepository>(),
-            ),
-        fenix: true);
+    Get.put<DictionaryMainController>(
+        DictionaryMainController(
+          Get.find<DiseaseRepository>(),
+        ),
+        permanent: true);
   }
 
   closeBinding() {

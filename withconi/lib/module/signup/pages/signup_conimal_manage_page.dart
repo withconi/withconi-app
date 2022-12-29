@@ -73,9 +73,11 @@ class SignUpConimalManagePage extends StatelessWidget {
                             horizontal: 20, vertical: 10),
                         child: Text(
                           '<<  슬라이드하여 수정할 수 있어요',
-                          style: GoogleFonts.notoSans(
+                          style: TextStyle(
+                              fontFamily: WcFontFamily.notoSans,
                               fontSize: 15,
-                              fontWeight: FontWeight.w500,
+                              height: 1,
+                              fontWeight: FontWeight.w400,
                               color: WcColors.grey140),
                         ),
                       ),
@@ -126,12 +128,13 @@ class SignUpConimalManagePage extends StatelessWidget {
                         onTap: _controller.addConimal,
                         child: Container(
                           alignment: Alignment.center,
-                          width: 130,
+                          width: 138,
                           height: 40,
                           child: Text(
                             '코니멀 추가하기',
-                            style: GoogleFonts.notoSans(
-                                color: WcColors.grey180,
+                            style: TextStyle(
+                                fontFamily: WcFontFamily.notoSans,
+                                color: WcColors.grey160,
                                 fontSize: 15,
                                 fontWeight: FontWeight.w500),
                           ),
@@ -152,9 +155,9 @@ class SignUpConimalManagePage extends StatelessWidget {
                       active: _controller.isButtonValid.value,
                       activeButtonColor: WcColors.blue100,
                       activeTextColor: WcColors.white,
-                      buttonText: '회원가입',
+                      buttonText: '다음',
                       buttonWidth: WcWidth - 40,
-                      onTap: _controller.signUp,
+                      onTap: _controller.goToNextPage,
                     ),
                   ),
                 ),

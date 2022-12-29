@@ -13,12 +13,12 @@ class PlacePreviewResponseDTO
   @JsonSerializable(explicitToJson: true)
   const factory PlacePreviewResponseDTO.pharmacy({
     @JsonKey(name: '_id') required String placeId,
-    required String address,
+    @Default('') String address,
     @JsonKey(name: 'isPhotoReview') @Default(false) bool isPhotoReview,
-    required bool isBookmarked,
+    @Default(true) bool isBookmarked,
     required LatLngResponseDTO coordinate,
-    required String phone,
-    required String name,
+    @Default('') String phone,
+    @Default('') String name,
     required OpeningStatus openingStatus,
     @Default('') String thumbnail,
     @JsonKey(name: 'locType') required PlaceType placeType,
@@ -29,12 +29,12 @@ class PlacePreviewResponseDTO
 
   const factory PlacePreviewResponseDTO.hospital({
     @JsonKey(name: '_id') required String placeId,
-    required String address,
+    @Default('') String address,
     @JsonKey(name: 'isPhotoReview') @Default(false) bool isPhotoReview,
-    required bool isBookmarked,
+    @Default(true) bool isBookmarked,
     required LatLngResponseDTO coordinate,
-    required String phone,
-    required String name,
+    @Default('') String phone,
+    @Default('') String name,
     required OpeningStatus openingStatus,
     @Default('') String thumbnail,
     @JsonKey(name: 'locType') required PlaceType placeType,

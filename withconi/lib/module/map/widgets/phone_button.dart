@@ -14,7 +14,7 @@ class PhoneCallButton extends StatelessWidget {
     return GestureDetector(
       onTap: (phoneNumber.isNotEmpty)
           ? () {
-              UrlLauncher().launchCall(phoneNumber);
+              UrlLauncher.launchCall(phoneNumber);
             }
           : () {
               showCustomSnackbar(text: '등록된 번호가 없습니다');

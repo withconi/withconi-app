@@ -8,7 +8,7 @@ import 'package:withconi/data/model/dto/request_dto/map_request/get_review_histo
 import 'package:withconi/data/model/dto/response_dto/place_response/review_history_response_dto.dart';
 
 import 'package:withconi/data/repository/map_repository.dart';
-import 'package:withconi/module/map/abstract/map_update_abstract.dart';
+import 'package:withconi/module/map/abstract/map_review_update_abstract.dart';
 
 import 'package:withconi/module/ui_model/chart_data_ui_model.dart';
 import 'package:withconi/global_widgets/loading/loading_overlay.dart';
@@ -70,18 +70,28 @@ class MapDetailPageController extends GetxController
     super.onClose();
   }
 
-  onBookmarkTap(bool isBookMarked) async {
-    isBookmarked.value = isBookMarked;
-    await updateBookMark(isBookmarked: isBookmarked.value);
+  onBookmarkTap(bool bookmarked) async {
+    isBookmarked.value = bookmarked;
+    bool succeed = await _updateBookMark(bookmarked: bookmarked);
+
+    if (!succeed) {
+      isBookmarked.value = !isBookmarked.value;
+    }
   }
 
-  updateBookMark({required bool isBookmarked}) async {
-    var likePostsEither = await _mapRepository.updateBookmark(
-        placeId: _placeId, isBookmarked: isBookmarked);
+  _updateBookMark({required bool bookmarked}) async {
+    var updateBookmarkEither = await _mapRepository.updateBookmark(
+        placeId: _placeId, isBookmarked: bookmarked);
 
-    likePostsEither.fold(
-        (l) => FailureInterpreter().mapFailureToSnackbar(l, 'updateLikePost'),
-        (r) => {});
+    bool result = updateBookmarkEither.fold((l) {
+      FailureInterpreter().mapFailureToSnackbar(l, 'updateLikePost');
+      return false;
+    }, (r) {
+      updateBookmark(_placeId, bookmarked);
+      return true;
+    });
+
+    return result;
   }
 
   initData() async {
@@ -228,7 +238,7 @@ class MapDetailPageController extends GetxController
   @override
   Future<void> addReview(ReviewDetailUIModel newReview) async {
     if (placeId == newReview.placeId) {
-      await getPlaceDetailById(placeId: _placeId);
+      initData();
     }
     if (_mapReviewUpdateAbstract != null) {
       _mapReviewUpdateAbstract!.addReview(newReview);
@@ -238,10 +248,17 @@ class MapDetailPageController extends GetxController
   @override
   Future<void> deleteReview(String reviewId, String placeId) async {
     if (_placeId == placeId) {
-      await getPlaceDetailById(placeId: _placeId);
+      initData();
     }
     if (_mapReviewUpdateAbstract != null) {
       _mapReviewUpdateAbstract!.deleteReview(reviewId, placeId);
+    }
+  }
+
+  @override
+  void updateBookmark(String placeId, bool isBookmarked) {
+    if (_mapReviewUpdateAbstract != null) {
+      _mapReviewUpdateAbstract!.updateBookmark(placeId, isBookmarked);
     }
   }
 }

@@ -37,7 +37,8 @@ showCommentBottomSheet(String nickname, [String? comment]) {
                     color: Colors.transparent,
                     padding: EdgeInsets.only(left: 20),
                     child: Text('남기기',
-                        style: GoogleFonts.notoSans(
+                        style: TextStyle(
+                            fontFamily: WcFontFamily.notoSans,
                             fontSize: 16,
                             color: WcColors.blue100,
                             fontWeight: FontWeight.bold)),
@@ -57,10 +58,11 @@ showCommentBottomSheet(String nickname, [String? comment]) {
             child: TextField(
               autofocus: false,
               controller: textEditingController,
-              style: GoogleFonts.notoSans(
+              style: TextStyle(
+                  fontFamily: WcFontFamily.notoSans,
                   color: WcColors.black,
                   fontSize: 16,
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.w400,
                   height: 1.5),
               maxLines: 20,
               maxLength: 500,
@@ -69,10 +71,11 @@ showCommentBottomSheet(String nickname, [String? comment]) {
                   contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 10),
                   isDense: true,
                   border: InputBorder.none,
-                  hintStyle: GoogleFonts.notoSans(
+                  hintStyle: TextStyle(
+                      fontFamily: WcFontFamily.notoSans,
                       color: WcColors.grey120,
                       fontSize: 15,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w400,
                       height: 1.5),
                   hintText:
                       '욕설, 비방 등 상대방을 불쾌하게 하는 의견은 남기지 말아주세요. 신고를 당하면 커뮤니티 이용이 제한될 수 있습니다.'),

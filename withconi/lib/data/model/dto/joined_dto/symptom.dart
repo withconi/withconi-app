@@ -7,8 +7,8 @@ part 'symptom.g.dart';
 class SymptomGroup with _$SymptomGroup {
   @JsonSerializable(explicitToJson: true)
   factory SymptomGroup({
-    required Symptom symptomType,
-    required List<String> symptomList,
+    @JsonKey(name: 'categoryName') required Symptom symptomType,
+    @JsonKey(name: 'list') required List<String> symptomList,
   }) = _SymptomGroup;
 
   factory SymptomGroup.fromJson(Map<String, dynamic> json) =>

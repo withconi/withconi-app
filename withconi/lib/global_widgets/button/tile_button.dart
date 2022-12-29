@@ -1,6 +1,7 @@
 import 'package:flutter_svg/svg.dart';
 
 import '../../import_basic.dart';
+import '../../module/theme/text_theme.dart';
 
 class WcTileButton extends StatelessWidget {
   WcTileButton({
@@ -34,9 +35,10 @@ class WcTileButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(text,
-                style: GoogleFonts.notoSans(
+                style: TextStyle(
+                    fontFamily: WcFontFamily.notoSans,
                     fontSize: textSize,
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.w400,
                     color: textColor)),
             SvgPicture.asset('assets/icons/arrow_right.svg'),
           ],

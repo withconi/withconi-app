@@ -7,12 +7,20 @@ class HttpUrl {
   static const VERIFY_EMAIL = '/auth/verifyEmail';
   static const FCM_REFRESH = '/auth/refreshFCM';
   static const SIGN_IN = '/auth/signIn';
+
   static const SIGN_UP = '/auth/signUp';
   static const USER_GET = '/auth/getUser';
+
+  static const USER_DELETE = '/auth/deleteUser';
   static const USER_UPDATE = '/auth/updateUser';
+
+  static const DEVELOPER_INFO = '/comm/getDeveloperInfo';
+
+  static const INQUIRY_CREATE = '/comm/createSuggestion';
   static const CUSTOM_TOKEN_GET = '/auth/getCustomToken';
   static const DISEASE_LIST_GET = '/disease/listDiseases';
   static const DISEASE_DETAIL_GET = '/disease/getDisease';
+  static const DISEASE_COMMON_LIST = '/disease/listHighSpecies';
   static const CONIMAL_CREATE = '/auth/createConimal';
   static const CONIMAL_UPDATE = '/auth/updateConimal';
   static const CONIMAL_DELETE = '/auth/deleteConimal';
@@ -47,6 +55,9 @@ class HttpUrl {
   static const MAP_GET_MY_REVIEW_LIST = '/location/getMyReviewList';
   static const MAP_GET_MY_REVIEW_DETAIL = '/location/getMyReview';
   static const MAP_UPDATE_BOOKMARK = '/location/updateLocationBookmark';
+  static const MAP_DELETE_REVIEW = '/location/deleteLocationReview';
   static const SEND_VERIFICATION_EMAIL = '/auth/sendAuthMail';
   static const VERIFY_EMAIL_CODE = '/auth/verifyAuthMail';
+  static const GET_SYMPTOM_LIST = '/disease/listSymptom';
+  static const GET_DIAGNOSIS_RESULT = '/disease/getSelfDiagnosis';
 }

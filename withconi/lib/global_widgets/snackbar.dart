@@ -9,6 +9,7 @@ showCustomSnackbar(
         SnackPosition? snackPosition}) =>
     Get.showSnackbar(GetSnackBar(
       // snackStyle: SnackStyle.FLOATING,
+      dismissDirection: DismissDirection.none,
       backgroundColor: const Color.fromARGB(227, 41, 41, 41),
       barBlur: 10,
       forwardAnimationCurve: Curves.decelerate,
@@ -18,7 +19,7 @@ showCustomSnackbar(
       borderRadius: 10,
       titleText: Text(
         text,
-        style: TextStyle(
+        style: const TextStyle(
             fontFamily: WcFontFamily.notoSans,
             height: 1.5,
             fontSize: 16,

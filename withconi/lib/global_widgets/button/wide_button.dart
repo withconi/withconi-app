@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:withconi/module/theme/text_theme.dart';
 import '../../module/theme/colors.dart';
 import '../../module/theme/sizes.dart';
 
@@ -42,11 +43,13 @@ class WcWideButtonWidget extends StatelessWidget {
           child: Center(
             child: Text(
               buttonText,
-              style: GoogleFonts.notoSans(
+              style: TextStyle(
+                  fontFamily: WcFontFamily.notoSans,
                   color: (active) ? activeTextColor : inactiveTextColor,
                   fontSize: 16,
                   letterSpacing: 0.5,
-                  fontWeight: FontWeight.w500),
+                  height: 1,
+                  fontWeight: FontWeight.w400),
             ),
           ),
         ),

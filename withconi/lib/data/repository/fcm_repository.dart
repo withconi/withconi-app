@@ -14,18 +14,14 @@ import 'package:withconi/import_basic.dart';
 import '../../core/error_handling/exceptions.dart';
 import '../../core/network_handling/network_service.dart';
 import '../model/dto/api_call_dto.dart';
-import '../model/dto/request_dto/user_request/update_user_info_request_dto.dart';
 import 'local_notification_repository.dart';
 
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   print("Handling a background message: ${message.messageId}");
-  // if (Platform.isAndroid) {
-  // await firebaseInitialization;
   var jsonMap = jsonEncode(message.data);
   LocalNotificationService.onTapForegroundNotification(
-      1, 'android background에서 들어온 메세지', '메세지', jsonMap);
-  // }
+      1, 'background에서 들어온 메세지', '메세지', jsonMap);
 }
 
 class FcmRepository extends GetxService {
@@ -34,6 +30,14 @@ class FcmRepository extends GetxService {
 
   final FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
   final LocalNotificationService _notificationService;
+
+  static const AndroidNotificationChannel channel = AndroidNotificationChannel(
+    'high_importance_channel', // id
+    'High Importance Notifications', // title
+    description:
+        'This channel is used for important notifications.', // description
+    importance: Importance.high,
+  );
 
   Future<Either<Failure, String?>> getFcmToken() async {
     try {
@@ -74,14 +78,22 @@ class FcmRepository extends GetxService {
 
     NotificationSettings settings = await requestPermisstion();
 
-    if (Platform.isAndroid) {
-      FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-          FlutterLocalNotificationsPlugin();
-      flutterLocalNotificationsPlugin
-          .resolvePlatformSpecificImplementation<
-              AndroidFlutterLocalNotificationsPlugin>()
-          ?.requestPermission();
-    }
+    firebaseMessaging.setForegroundNotificationPresentationOptions(
+        alert: true, badge: true, sound: true);
+
+    // if (Platform.isAndroid) {
+    //   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    //       FlutterLocalNotificationsPlugin();
+    //   flutterLocalNotificationsPlugin
+    //       .resolvePlatformSpecificImplementation<
+    //           AndroidFlutterLocalNotificationsPlugin>()
+    //       ?.requestPermission();
+
+    //   await flutterLocalNotificationsPlugin
+    //       .resolvePlatformSpecificImplementation<
+    //           AndroidFlutterLocalNotificationsPlugin>()
+    //       ?.createNotificationChannel(channel);
+    // }
     RemoteMessage? initialMessage = await firebaseMessaging.getInitialMessage();
 
     // If the message also contains a data property with a "type" of "chat",
@@ -90,14 +102,26 @@ class FcmRepository extends GetxService {
       _handleMessage(initialMessage);
     }
 
-    FirebaseMessaging.onMessage.listen(_handleMessage,
-        onDone: () => print('FirebaseMessaging.onMessage ==> _handleMessage'));
+    FirebaseMessaging.onMessage.listen(
+      (RemoteMessage message) {
+        _handleMessage(message);
+      },
+    );
 
     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
     FirebaseMessaging.onMessageOpenedApp.listen((message) {
       _firebaseMessagingBackgroundHandler(message);
     });
+  }
+
+  Future<bool> deleteToken() async {
+    try {
+      await firebaseMessaging.deleteToken();
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 
   requestPermisstion() async {
@@ -114,18 +138,30 @@ class FcmRepository extends GetxService {
     return settings;
   }
 
-  void _handleMessage(RemoteMessage message) {
-    if (Platform.isAndroid)
+  static _handleMessage(RemoteMessage message) {
+    if (Platform.isAndroid) {
+      //foreground 메세지 안떠서 주석 취소함
+      //g8에서는 잘 뜸 ;;
+      // LocalNotificationService.showSampleNotification(
+      //     id: 1,
+      //     title: message.data['title'] ?? '위드코니',
+      //     message: message.data['message'] ?? '위드코니에서 보낸 메세지입니다.',
+      //     payload: message.data.toString());
+
       LocalNotificationService.showSampleNotification(
           id: 1,
-          title: message.data['title'] ?? '위드코니',
-          message: message.data['message'] ?? '위드코니에서 보낸 메세지입니다.',
+          title: message.notification?.title ?? '위드코니',
+          message: message.notification?.body ?? '위드코니에서 보낸 메세지입니다.',
           payload: message.data.toString());
-    else
-      LocalNotificationService.showSampleNotification(
-          id: 1,
-          title: message.data['title'] ?? '위드코니',
-          message: message.data['message'] ?? '새로운 댓글이 있습니다.',
-          payload: jsonEncode(message.data));
+    } else {
+      // LocalNotificationService.showSampleNotification(
+      //     id: 1,
+      //     title: message.data['title'] ?? '위드코니',
+      //     message: message.data['message'] ?? '위드코니에서 보낸 메세지입니다.',
+      //     payload: jsonEncode(message.data));
+      // String jsonMap = jsonEncode(message.data);
+      // LocalNotificationService.onTapForegroundNotification(
+      //     1, 'title', 'body', jsonMap);
+    }
   }
 }

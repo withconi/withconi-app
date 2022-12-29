@@ -21,8 +21,11 @@ DiagnosisResultResponseDTO _$DiagnosisResultResponseDTOFromJson(
 
 /// @nodoc
 mixin _$DiagnosisResultResponseDTO {
+  @JsonKey(name: '_id')
   String get diseaseId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'name')
   String get diseaseName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'status')
   DiseasePosibility get posibility => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,7 +42,9 @@ abstract class $DiagnosisResultResponseDTOCopyWith<$Res> {
           DiagnosisResultResponseDTO>;
   @useResult
   $Res call(
-      {String diseaseId, String diseaseName, DiseasePosibility posibility});
+      {@JsonKey(name: '_id') String diseaseId,
+      @JsonKey(name: 'name') String diseaseName,
+      @JsonKey(name: 'status') DiseasePosibility posibility});
 }
 
 /// @nodoc
@@ -87,7 +92,9 @@ abstract class _$$_DiagnosisResultResponseDTOCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String diseaseId, String diseaseName, DiseasePosibility posibility});
+      {@JsonKey(name: '_id') String diseaseId,
+      @JsonKey(name: 'name') String diseaseName,
+      @JsonKey(name: 'status') DiseasePosibility posibility});
 }
 
 /// @nodoc
@@ -129,18 +136,21 @@ class __$$_DiagnosisResultResponseDTOCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_DiagnosisResultResponseDTO implements _DiagnosisResultResponseDTO {
   _$_DiagnosisResultResponseDTO(
-      {required this.diseaseId,
-      required this.diseaseName,
-      required this.posibility});
+      {@JsonKey(name: '_id') this.diseaseId = '',
+      @JsonKey(name: 'name') required this.diseaseName,
+      @JsonKey(name: 'status') required this.posibility});
 
   factory _$_DiagnosisResultResponseDTO.fromJson(Map<String, dynamic> json) =>
       _$$_DiagnosisResultResponseDTOFromJson(json);
 
   @override
+  @JsonKey(name: '_id')
   final String diseaseId;
   @override
+  @JsonKey(name: 'name')
   final String diseaseName;
   @override
+  @JsonKey(name: 'status')
   final DiseasePosibility posibility;
 
   @override
@@ -184,19 +194,25 @@ class _$_DiagnosisResultResponseDTO implements _DiagnosisResultResponseDTO {
 abstract class _DiagnosisResultResponseDTO
     implements DiagnosisResultResponseDTO {
   factory _DiagnosisResultResponseDTO(
-          {required final String diseaseId,
-          required final String diseaseName,
-          required final DiseasePosibility posibility}) =
+          {@JsonKey(name: '_id')
+              final String diseaseId,
+          @JsonKey(name: 'name')
+              required final String diseaseName,
+          @JsonKey(name: 'status')
+              required final DiseasePosibility posibility}) =
       _$_DiagnosisResultResponseDTO;
 
   factory _DiagnosisResultResponseDTO.fromJson(Map<String, dynamic> json) =
       _$_DiagnosisResultResponseDTO.fromJson;
 
   @override
+  @JsonKey(name: '_id')
   String get diseaseId;
   @override
+  @JsonKey(name: 'name')
   String get diseaseName;
   @override
+  @JsonKey(name: 'status')
   DiseasePosibility get posibility;
   @override
   @JsonKey(ignore: true)

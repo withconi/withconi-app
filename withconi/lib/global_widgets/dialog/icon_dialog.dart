@@ -67,9 +67,11 @@ showIconDialog(
                       borderRadius: BorderRadius.circular(10)),
                   child: Text(
                     buttonText,
-                    style: GoogleFonts.notoSans(
+                    style: TextStyle(
+                        fontFamily: WcFontFamily.notoSans,
                         color: WcColors.white,
                         fontSize: 16,
+                        height: 1,
                         fontWeight: FontWeight.w500),
                   ),
                 ),

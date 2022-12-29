@@ -24,7 +24,7 @@ mixin _$ReviewDetailResponseDTO {
   @DateTimeConverter()
   DateTime get createdAt => throw _privateConstructorUsedError;
   List<ConimalResponseDTO> get conimals => throw _privateConstructorUsedError;
-  @JsonKey(name: 'diseaseTypeList')
+  @JsonKey(name: 'diseaseTypes')
   List<DiseaseType> get diseaseTypeList => throw _privateConstructorUsedError;
   @JsonKey(name: 'diseaseList')
   List<DiseaseResponseDTO> get diseaseList =>
@@ -65,7 +65,7 @@ abstract class $ReviewDetailResponseDTOCopyWith<$Res> {
   $Res call(
       {@DateTimeConverter() DateTime createdAt,
       List<ConimalResponseDTO> conimals,
-      @JsonKey(name: 'diseaseTypeList') List<DiseaseType> diseaseTypeList,
+      @JsonKey(name: 'diseaseTypes') List<DiseaseType> diseaseTypeList,
       @JsonKey(name: 'diseaseList') List<DiseaseResponseDTO> diseaseList,
       @JsonKey(name: 'name') String placeName,
       @JsonKey(name: 'status') ReviewRate reviewRate,
@@ -186,7 +186,7 @@ abstract class _$$_ReviewDetailResponseDTOCopyWith<$Res>
   $Res call(
       {@DateTimeConverter() DateTime createdAt,
       List<ConimalResponseDTO> conimals,
-      @JsonKey(name: 'diseaseTypeList') List<DiseaseType> diseaseTypeList,
+      @JsonKey(name: 'diseaseTypes') List<DiseaseType> diseaseTypeList,
       @JsonKey(name: 'diseaseList') List<DiseaseResponseDTO> diseaseList,
       @JsonKey(name: 'name') String placeName,
       @JsonKey(name: 'status') ReviewRate reviewRate,
@@ -302,7 +302,7 @@ class _$_ReviewDetailResponseDTO implements _ReviewDetailResponseDTO {
       {@DateTimeConverter()
           required this.createdAt,
       required final List<ConimalResponseDTO> conimals,
-      @JsonKey(name: 'diseaseTypeList')
+      @JsonKey(name: 'diseaseTypes')
           final List<DiseaseType> diseaseTypeList = const [],
       @JsonKey(name: 'diseaseList')
           final List<DiseaseResponseDTO> diseaseList = const [],
@@ -347,7 +347,7 @@ class _$_ReviewDetailResponseDTO implements _ReviewDetailResponseDTO {
 
   final List<DiseaseType> _diseaseTypeList;
   @override
-  @JsonKey(name: 'diseaseTypeList')
+  @JsonKey(name: 'diseaseTypes')
   List<DiseaseType> get diseaseTypeList {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_diseaseTypeList);
@@ -484,7 +484,7 @@ abstract class _ReviewDetailResponseDTO implements ReviewDetailResponseDTO {
   factory _ReviewDetailResponseDTO(
       {@DateTimeConverter() required final DateTime createdAt,
       required final List<ConimalResponseDTO> conimals,
-      @JsonKey(name: 'diseaseTypeList') final List<DiseaseType> diseaseTypeList,
+      @JsonKey(name: 'diseaseTypes') final List<DiseaseType> diseaseTypeList,
       @JsonKey(name: 'diseaseList') final List<DiseaseResponseDTO> diseaseList,
       @JsonKey(name: 'name') final String placeName,
       @JsonKey(name: 'status') required final ReviewRate reviewRate,
@@ -507,7 +507,7 @@ abstract class _ReviewDetailResponseDTO implements ReviewDetailResponseDTO {
   @override
   List<ConimalResponseDTO> get conimals;
   @override
-  @JsonKey(name: 'diseaseTypeList')
+  @JsonKey(name: 'diseaseTypes')
   List<DiseaseType> get diseaseTypeList;
   @override
   @JsonKey(name: 'diseaseList')

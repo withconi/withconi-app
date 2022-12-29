@@ -5,7 +5,7 @@ import 'package:withconi/core/values/constants/app_info.dart';
 
 class UrlLauncher {
   // launchURL() {}
-  launchCall(String phoneNumber) async {
+  static launchCall(String phoneNumber) async {
     final Uri launchUri = Uri(
       scheme: 'tel',
       path: phoneNumber,
@@ -13,7 +13,7 @@ class UrlLauncher {
     await launchUrl(launchUri);
   }
 
-  launchStore() {
+  static launchStore() {
     if (Platform.isAndroid || Platform.isIOS) {
       final appId =
           Platform.isAndroid ? AppInfo.androidAppId : AppInfo.iosAppId;
@@ -27,5 +27,13 @@ class UrlLauncher {
         mode: LaunchMode.externalApplication,
       );
     }
+  }
+
+  static launchLink(String link) {
+    final url = Uri.parse(link);
+    launchUrl(
+      url,
+      mode: LaunchMode.externalApplication,
+    );
   }
 }

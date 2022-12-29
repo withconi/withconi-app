@@ -152,7 +152,8 @@ class CommunityPostSearchController extends GetxController with WcStateMixin {
   onPostTap(int index) {
     Get.toNamed(Routes.COMMUNITY_POST_DETAIL, arguments: {
       'postId': postListSearched[index].postId,
-      'boardId': postListSearched[index].boardId
+      'boardId': postListSearched[index].boardId,
+      'fromRootPage': false,
     });
   }
 

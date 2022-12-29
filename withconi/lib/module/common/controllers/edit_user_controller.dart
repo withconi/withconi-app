@@ -1,7 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
+import 'package:withconi/core/values/constants/auth_variables.dart';
 import 'package:withconi/data/enums/enum.dart';
+import 'package:withconi/global_widgets/snackbar.dart';
 import 'package:withconi/module/auth/auth_controller.dart';
 import 'package:withconi/core/error_handling/failure_ui_interpreter.dart';
 import 'package:withconi/core/error_handling/failures.dart';
@@ -129,7 +130,7 @@ class EditUserController extends GetxController {
       nickNameErrorText.value = Strings.validator.nickname;
       return;
     }
-    final nicknameRegExp = Regex.name;
+    final nicknameRegExp = Regex.nickName;
 
     if (!nicknameRegExp.hasMatch(value)) {
       nickNameErrorText.value = Strings.validator.nickname;
@@ -232,15 +233,31 @@ class EditUserController extends GetxController {
         subtitle: '그래도 다시 돌아오실거죠?');
 
     if (confirm) {
-      bool reconfirm = await showSelectionDialog(
+      confirm = await showSelectionDialog(
           cancleText: '취소',
           confirmText: '탈퇴하기',
           title: '진짜진짜 탈퇴할까요?',
           subtitle: '꼭 다시 돌아오셔야 해요..');
+    }
 
-      if (reconfirm) {
-        print('진짜 탈퇴');
-      }
+    if (confirm) {
+      showLoading(() async {
+        await AuthController.to.unregister();
+        var deleteEither = await _userRepository.deleteUser();
+
+        bool result = deleteEither.fold((l) {
+          FailureInterpreter().mapFailureToSnackbar(l, 'unregister');
+          return false;
+        }, (r) => true);
+
+        if (result) {
+          firebaseAuth.signOut();
+          Get.offAllNamed(Routes.START);
+          return;
+        } else {
+          return;
+        }
+      });
     }
   }
 
@@ -262,6 +279,11 @@ class EditUserController extends GetxController {
     if (profileImage.value.imageUrl.isNotEmpty &&
         profileImage.value.imageType == ImageType.file) {
       imageRef = await uploadImageFileDB();
+    } else {
+      if (profileImage.value.imageUrl.isNotEmpty &&
+          profileImage.value.imageType == ImageType.network) {
+        imageRef = profileImage.value.imageRef;
+      }
     }
 
     await showLoading(() async {

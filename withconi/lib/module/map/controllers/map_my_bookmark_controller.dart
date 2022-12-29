@@ -1,17 +1,21 @@
 import 'package:withconi/data/model/dto/response_dto/place_response/place_preview_response_dto.dart';
 import 'package:withconi/data/repository/map_repository.dart';
+import 'package:withconi/module/map/abstract/map_review_update_abstract.dart';
 import 'package:withconi/module/ui_model/latlng_ui_model.dart';
 import 'package:withconi/global_widgets/loading/loading_overlay.dart';
 import 'package:withconi/module/ui_model/place_ui_model/hospital_preview_ui_model.dart';
 import 'package:withconi/module/ui_model/place_ui_model/pharmacy_preview_ui_model.dart';
+import 'package:withconi/module/ui_model/review_detail_ui_model.dart';
 
 import '../../../core/error_handling/failure_ui_interpreter.dart';
 import '../../../import_basic.dart';
 import '../../../core/tools/helpers/infinite_scroll.dart';
 import '../../ui_model/place_ui_model/abstract_class/place_preview_ui.dart';
 
-class MapMyBookmarkController extends GetxController {
+class MapMyBookmarkController extends GetxController
+    implements AbstractMapReviewUpdate {
   MapMyBookmarkController(this._mapRepository);
+  static MapMyBookmarkController get to => Get.find();
   final MapRepository _mapRepository;
   RxList<PlacePreviewUIModel> bookmarkedPlaceList = <PlacePreviewUIModel>[].obs;
   Rx<ScrollController> scrollController = ScrollController().obs;
@@ -110,26 +114,62 @@ class MapMyBookmarkController extends GetxController {
     });
   }
 
-  onBookmarkTap(PlacePreviewUIModel place) async {
-    bool succeedUpdate =
-        await updateBookmarkedPlace(postId: 'asdf', isBookmarked: true);
-    if (succeedUpdate) {
-      if (bookmarkedPlaceList.contains(place)) {
-        bookmarkedPlaceList.remove(place);
-      } else {
-        bookmarkedPlaceList.add(place);
+  onBookmarkTap(int index, bool isBookmarked) async {
+    await showLoading(() async {
+      bool succeedUpdate = await updateBookmarkedPlace(
+          placeId: bookmarkedPlaceList[index].placeId,
+          isBookmarked: isBookmarked);
+
+      if (succeedUpdate) {
+        bookmarkedPlaceList[index].isBookmarked = isBookmarked;
+        bookmarkedPlaceList.refresh();
       }
-      bookmarkedPlaceList.refresh();
-    }
+    });
   }
 
-  updateBookmarkedPlace(
-      {required String postId, required bool isBookmarked}) async {
-    // await _communityRepository.updateLikePost(
-    //     uid: AuthController.to.wcUser.value!.uid,
-    //     postId: postId,
-    //     isLiked: isLiked);
+  Future<bool> updateBookmarkedPlace(
+      {required String placeId, required bool isBookmarked}) async {
+    var likePostsEither = await _mapRepository.updateBookmark(
+        placeId: placeId, isBookmarked: isBookmarked);
 
-    return true;
+    bool succeed = likePostsEither.fold((l) {
+      FailureInterpreter().mapFailureToSnackbar(l, 'updateLikePost');
+      return false;
+    }, (r) {
+      return true;
+    });
+
+    return succeed;
+  }
+
+  onPlaceTap(int index) {
+    Get.toNamed(Routes.MAP_DETAIL, arguments: {
+      'placeId': bookmarkedPlaceList[index].placeId,
+      'placeType': bookmarkedPlaceList[index].placeType,
+      'lat': bookmarkedPlaceList[index].placeLocation.lat,
+      'lng': bookmarkedPlaceList[index].placeLocation.lng,
+      'mapReviewAbstract': MapMyBookmarkController.to,
+    });
+  }
+
+  @override
+  void addReview(ReviewDetailUIModel newReview) {
+    return;
+  }
+
+  @override
+  void deleteReview(String reviewId, String placeId) {
+    return;
+  }
+
+  @override
+  void updateBookmark(String placeId, bool isBookmarked) {
+    int index =
+        bookmarkedPlaceList.indexWhere((element) => element.placeId == placeId);
+
+    if (index >= 0) {
+      bookmarkedPlaceList[index].isBookmarked = isBookmarked;
+      bookmarkedPlaceList.refresh();
+    }
   }
 }

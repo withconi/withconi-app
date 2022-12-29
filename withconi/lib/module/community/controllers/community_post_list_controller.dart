@@ -16,6 +16,7 @@ import '../../../data/enums/enum.dart';
 import '../../../core/error_handling/failures.dart';
 import '../../../global_widgets/dialog/selection_dialog.dart';
 import '../../../global_widgets/photo_gallary/image_item.dart';
+import '../../../global_widgets/snackbar.dart';
 import '../../../import_basic.dart';
 import '../../../core/tools/helpers/infinite_scroll.dart';
 import '../abstract/post_model_abstract.dart';
@@ -82,6 +83,10 @@ class CommunityPostListController extends GetxController
   }
 
   onLikeChanged(int postIndex, bool isLiked) async {
+    if (postUIList[postIndex].authorId == AuthController.to.userId) {
+      showCustomSnackbar(text: '내 글에는 좋아요를 누를 수 없어요');
+      return;
+    }
     _updateLikeUiChanges(postIndex, isLiked);
 
     var likePostsEither = await _communityRepository.updateLikePost(
@@ -168,6 +173,7 @@ class CommunityPostListController extends GetxController
 
   onPostTap(int postIndex) async {
     Get.toNamed(Routes.COMMUNITY_POST_DETAIL, arguments: {
+      'fromRootPage': false,
       'boardId': _boardId,
       'postId': postUIList[postIndex].postId,
       'postAbstractController': CommunityPostListController.to,
@@ -236,7 +242,7 @@ class CommunityPostListController extends GetxController
     ) as PostUIModel?;
 
     if (editedPost != null) {
-      updateEditedPost(postUIList[postIndex]);
+      updateEditedPost(editedPost);
     }
   }
 

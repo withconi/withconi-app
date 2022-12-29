@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:withconi/core/error_handling/failure_ui_interpreter.dart';
+import 'package:withconi/data/model/dto/response_dto/disease_response/disease_common_list_response_dto.dart';
 import 'package:withconi/data/repository/community_repository.dart';
 import 'package:withconi/module/ui_model/board_ui_model.dart';
 import 'package:withconi/module/ui_model/disease_ui_model.dart';
@@ -45,25 +46,43 @@ class DictionaryMainController extends GetxController with WcStateMixin {
   @override
   onInit() async {
     super.onInit();
-    catDiseaseList
-        .assignAll(AuthController.to.userInfo.conimals[0].diseases.toList());
-    dogDiseaseList
-        .assignAll(AuthController.to.userInfo.conimals[0].diseases.toList());
+
+    await _getCommonDiseaseList();
 
     change(null, status: const PageStatus.init());
+  }
+
+  _getCommonDiseaseList() async {
+    var diseaseEither = await _diseaseRepository.getCommonDiseaseList();
+
+    DiseaseCommonListResponseDTO? result = diseaseEither.fold((fail) {
+      FailureInterpreter().mapFailureToSnackbar(fail, '_getCommonDiseaseList');
+      return null;
+    }, (responseDTO) => responseDTO);
+    try {
+      if (result != null) {
+        catDiseaseList.assignAll(_parseDtoToUiModel(result.catDiseaseList));
+        dogDiseaseList.assignAll(_parseDtoToUiModel(result.catDiseaseList));
+        change(null, status: const PageStatus.init());
+      } else {
+        change([], status: const PageStatus.empty());
+      }
+    } catch (e) {
+      change([], status: const PageStatus.empty());
+    }
   }
 
   goToDiseaseDetailPage(Species species, int diseaseIndex) {
     switch (species) {
       case Species.cat:
         Get.toNamed(Routes.DICTIONARY_DETAIL, arguments: {
-          'diseaseCode': catDiseaseList[diseaseIndex].diseaseCode
+          'diseaseId': catDiseaseList[diseaseIndex].diseaseId,
         });
         break;
 
       case Species.dog:
         Get.toNamed(Routes.DICTIONARY_DETAIL, arguments: {
-          'diseaseCode': dogDiseaseList[diseaseIndex].diseaseCode
+          'diseaseId': dogDiseaseList[diseaseIndex].diseaseId,
         });
         break;
       default:
@@ -118,7 +137,7 @@ class DictionaryMainController extends GetxController with WcStateMixin {
   }
 
   _getDiseaseList(_paginationFilter) async {
-    change([], status: const PageStatus.loading());
+    change(null, status: const PageStatus.loading());
     Either<Failure, List<DiseaseResponseDTO>> newResultListEither =
         await _diseaseRepository.getDiseaseList(
             keyword: diseaseKeywords, paginationFilter: _paginationFilter);
@@ -126,12 +145,12 @@ class DictionaryMainController extends GetxController with WcStateMixin {
     newResultListEither.fold((failure) {
       ErrorObject errorObject =
           ErrorObject.mapFailureToErrorMessage(failure: failure);
-      change([], status: PageStatus.error(errorObject.message));
+      change(null, status: PageStatus.error(errorObject.message));
     }, (dtoList) {
       if (dtoList.isEmpty) {
-        change([], status: const PageStatus.empty());
+        change(null, status: const PageStatus.empty());
       } else {
-        diseaseListSearched.assignAll(parseDtoToUiModel(dtoList));
+        diseaseListSearched.assignAll(_parseDtoToUiModel(dtoList));
         change(diseaseListSearched, status: const PageStatus.success());
       }
     });
@@ -160,7 +179,7 @@ class DictionaryMainController extends GetxController with WcStateMixin {
 
         change([], status: const PageStatus.emptyLastPage());
       } else {
-        diseaseListSearched.addAll(parseDtoToUiModel(dtoList));
+        diseaseListSearched.addAll(_parseDtoToUiModel(dtoList));
         // pageStatus.value = PageStatus.success();
         change(diseaseListSearched, status: const PageStatus.success());
       }
@@ -171,7 +190,7 @@ class DictionaryMainController extends GetxController with WcStateMixin {
     // }
   }
 
-  List<DiseaseUIModel> parseDtoToUiModel(List<DiseaseResponseDTO> dto) {
+  List<DiseaseUIModel> _parseDtoToUiModel(List<DiseaseResponseDTO> dto) {
     return dto.map((e) => DiseaseUIModel.fromDTO(e)).toList();
   }
 }

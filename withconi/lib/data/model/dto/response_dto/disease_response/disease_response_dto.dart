@@ -14,13 +14,19 @@ class DiseaseResponseDTO with _$DiseaseResponseDTO implements ResponseDTO {
     @DateTimeConverter() required DateTime createdAt,
     @JsonKey(name: '_id') required String diseaseId,
     @JsonKey(name: 'code') required String code,
-    @JsonKey(name: 'boardId') @Default(1) int boardId,
+    @JsonKey(name: 'boardId') @Default(0) int boardId,
+    //TODO: 여기 수정 후에 바꾸어야 해요~~~~ speciesList
+    @JsonKey(name: 'species')
+    @Default([Species.cat, Species.dog])
+        List<Species> speciesList,
     required String name,
     @Default('') String definition,
-    @Default('') String diagnosisTechnique,
-    @Default('') String treatment,
+    @JsonKey(name: 'detailDiagnosis') @Default('') String diagnosisTechnique,
+    @JsonKey(name: 'detailCure') @Default('') String treatment,
     @JsonKey(name: 'detailAdvice') @Default('') String advice,
-    @Default([]) List<SymptomGroup> symptomGroupList,
+    @JsonKey(name: 'detailSymptoms')
+    @Default([])
+        List<SymptomGroup> symptomGroupList,
     @Default(DiseaseType.undefined) DiseaseType diseaseType,
   }) = _DiseaseResponseDTO;
 

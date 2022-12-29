@@ -3,9 +3,11 @@ import 'package:app_settings/app_settings.dart';
 import 'package:flutter_naver_map/flutter_naver_map.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:withconi/core/error_handling/failure_ui_interpreter.dart';
+import 'package:withconi/core/error_handling/failures.dart';
 import 'package:withconi/core/tools/helpers/quick_sort.dart';
 import 'package:withconi/data/repository/map_repository.dart';
 import 'package:withconi/global_widgets/loading/loading_overlay.dart';
+import 'package:withconi/global_widgets/snackbar.dart';
 import 'package:withconi/module/ui_model/latlng_ui_model.dart';
 import 'package:withconi/module/ui_model/map_filter_ui_model.dart';
 import 'package:withconi/module/ui_model/place_ui_model/abstract_class/place_preview_ui.dart';
@@ -21,7 +23,8 @@ import '../../page_status.dart';
 import '../../ui_model/place_marker_ui_model.dart';
 import '../../../core/tools/helpers/infinite_scroll.dart';
 import '../../ui_model/review_preview_ui_model.dart';
-import '../abstract/map_update_abstract.dart';
+import '../abstract/map_review_update_abstract.dart';
+import '../widgets/map_overlapped_botton_sheet.dart';
 
 class MapMainPageController extends GetxController
     with WcStateMixin
@@ -72,6 +75,8 @@ class MapMainPageController extends GetxController
   ScrollController selectedPlaceScrollController = ScrollController();
   LatLngBounds? latLngBounds;
 
+  static const _maxPlacePreviewLength = 80;
+
   int get limit => _paginationFilter.value.listSize;
   int get _page => _paginationFilter.value.page;
 
@@ -97,13 +102,15 @@ class MapMainPageController extends GetxController
     if (await setPermissionStatus()) {
       _setSearchBaseLocation(
           locationSearchType: DistanceBaseType.currentLocation);
+    } else {
+      _setSearchBaseLocation(locationSearchType: DistanceBaseType.mapLocation);
     }
     _attchDragController();
   }
 
   _attchDragController() {
     selectedPlaceDragController.addListener(() {
-      if (selectedPlaceDragController.size >= 0.85) {
+      if (selectedPlaceDragController.size >= 0.8) {
         goToSelectedPlaceDetail();
         Future.delayed(const Duration(milliseconds: 200),
             () => selectedPlaceDragController.jumpTo(240 / WcHeight));
@@ -125,17 +132,11 @@ class MapMainPageController extends GetxController
   @override
   onReady() {
     super.onReady();
-
-    // ever(selectedPlacePreview, _onSelectedPlaceChanged);
     ever(_paginationFilter, getDataByPaginationFilter);
   }
 
   @override
   onClose() {
-    // selectedPlaceDragController.dispose();
-    // placeListDragController.dispose();
-    // placeListScrollController.dispose();
-    // selectedPlaceScrollController.dispose();
     placePreviewList.clear();
     placeMarkers.clear();
     placePreviewList.close();
@@ -154,26 +155,12 @@ class MapMainPageController extends GetxController
   double get nextPageTrigger =>
       0.8 * placeListScrollController.position.maxScrollExtent;
 
-  // void addPlaceListScrollListener() {
-  //   placeListDragController.addListener(() {
-  //     if (placeListDragController.size >= 1 &&
-  //         placePreviewList.isNotEmpty &&
-  //         showPlaceListBottomSheet.value) {
-  //       showMapButton.value = true;
-  //     } else {
-  //       showMapButton.value = false;
-  //     }
-  //   });
-  // }
-
   Future<void> onMapCreated(NaverMapController controller) async {
     // mapController = controller;
     if (mapController.isCompleted) mapController = Completer();
     mapController.complete(controller);
 
-    if (_currentLocation != null) {
-      // loadNewPage();
-    }
+    if (_currentLocation != null) {}
   }
 
   onShowMapButtonTap() async {
@@ -201,7 +188,7 @@ class MapMainPageController extends GetxController
     bool success = false;
 
     final _mapController = await mapController.future;
-    await _setCurrentLocation();
+    // await _setCurrentLocation();
     if (_currentLocation != null) {
       switch (locationSearchType) {
         case DistanceBaseType.mapLocation:
@@ -219,7 +206,14 @@ class MapMainPageController extends GetxController
       }
       success = true;
     } else {
-      success = false;
+      baseLocation.value = await _mapController.getCameraPosition().then(
+          (value) => LatLngUIModel(
+              lat: value.target.latitude, lng: value.target.longitude));
+      _currentLocation = LatLngUIModel(
+          lat: baseLocation.value.latitude, lng: baseLocation.value.longitude);
+      print('Lat - 현재 위도 : ${baseLocation.value.lat}');
+      print('Lng - 현재 경도 : ${baseLocation.value.lng}');
+      success = true;
     }
     // baseLocation.refresh();
     placePreviewList.refresh();
@@ -227,16 +221,18 @@ class MapMainPageController extends GetxController
     return success;
   }
 
-  _setCurrentLocation() async {
-    _currentLocation = await _getCurrentLocation();
-  }
+  // _setCurrentLocation() async {
+  //   _currentLocation = await _getCurrentLocation();
+  // }
 
   onCurrentLocationButtonTap() async {
     final _mapController = await mapController.future;
     _currentLocation = await _getCurrentLocation();
 
-    await _mapController.moveCamera(CameraUpdate.scrollTo(_currentLocation!),
-        animationDuration: 200);
+    if (_currentLocation != null) {
+      await _mapController.moveCamera(CameraUpdate.scrollTo(_currentLocation!),
+          animationDuration: 200);
+    }
 
     currentPosition.value = await _mapController.getCameraPosition();
   }
@@ -278,8 +274,10 @@ class MapMainPageController extends GetxController
           placePreviewUiModel?.placeId ?? selectedPlacePreview.value!.placeId,
       'placeType': placePreviewUiModel?.placeType ??
           selectedPlacePreview.value!.placeType,
-      'lat': baseLocation.value.lat,
-      'lng': baseLocation.value.lng,
+      // 'lat': baseLocation.value.lat,
+      // 'lng': baseLocation.value.lng,
+      'lat': 37.39606930508214,
+      'lng': 127.111603930644,
       'mapReviewAbstract': MapMainPageController.to,
     });
   }
@@ -289,6 +287,7 @@ class MapMainPageController extends GetxController
     if (changeReason == CameraChangeReason.gesture) {
       showRefreshButton.value = true;
       showPlaceListBottomSheet.value = true;
+      // setSelectedPlacePreview(null);
     }
   }
 
@@ -315,6 +314,30 @@ class MapMainPageController extends GetxController
 
   Future<void> _onMarkerTap(Marker? marker, Map<String, int?> iconSize) async {
     setSelectedPlacePreview(marker!.markerId);
+  }
+
+  Future<void> _onOverlappedMarkerTap(
+      Marker? marker, Map<String, int?> iconSize) async {
+    var overlappedPreviewList = placePreviewList
+        .where((preview) =>
+            preview.placeLocation.latitude == marker!.position!.latitude &&
+            preview.placeLocation.longitude == marker.position!.longitude)
+        .toList();
+
+    int selectedIndex = await showOverlappedPlaceBottomSheet(
+        placePreview: overlappedPreviewList);
+
+    setSelectedPlacePreview(overlappedPreviewList[selectedIndex].placeId);
+
+    // List<String> overlappedPreviewList = placeMarkers
+    //     .where((marker) => marker.overlappedMarkerList.contains(marker.placeId))
+    //     .map((marker) => )
+    //     .toList();
+
+    // int selectedIndex = await showOverlappedPlaceBottomSheet(
+    //     placePreview: );
+
+    // setSelectedPlacePreview(overlappedPreviewList[selectedIndex].placeId);
   }
 
   setSelectedPlacePreview(String? selectedPlaceId) {
@@ -428,20 +451,24 @@ class MapMainPageController extends GetxController
 
       if (previewListDto.isEmpty) {
         change(placePreviewList, status: const PageStatus.empty());
-        return;
+      } else {
+        change(placePreviewList, status: const PageStatus.success());
+        final _mapController = await mapController.future;
+        _mapController
+            .moveCamera(CameraUpdate.fitBounds(latLngBounds!, padding: 95));
       }
 
-      change(placePreviewList, status: const PageStatus.success());
-      final _mapController = await mapController.future;
-      _mapController
-          .moveCamera(CameraUpdate.fitBounds(latLngBounds!, padding: 90));
+      if (placeListDragController.size < 0.35) {
+        placeListDragController.animateTo(0.4,
+            duration: Duration(milliseconds: 200), curve: Curves.linear);
+      }
     }
   }
 
   _morePlacePreviewList(PaginationFilter paginationFilter) async {
     isMoreLoading.value = true;
 
-    if (placePreviewList.length > 100) {
+    if (placePreviewList.length > _maxPlacePreviewLength) {
       change(placePreviewList, status: const PageStatus.emptyLastPage());
       return;
     }
@@ -498,9 +525,11 @@ class MapMainPageController extends GetxController
   _onPlaceListAdded(List<PlacePreviewUIModel> newPlaceList) async {
     placePreviewList.addAll(newPlaceList);
 
-    if (placeMarkers.length < 30) {
-      await _addNewPlaceMarkers(newPlaceList);
-    }
+    // if (placeMarkers.length < 30) {
+    //   await _addPlaceMarkers(newPlaceList);
+    // }
+
+    _addPlaceMarkers(newPlaceList);
   }
 
   _onPlaceListAssigned(List<PlacePreviewUIModel> newPlaceList) async {
@@ -516,7 +545,7 @@ class MapMainPageController extends GetxController
     latLngBounds = _boundsFromLatLngList(
         placePreviewList.map((element) => element.placeLocation).toList());
 
-    await _makeNewPlaceMarkers(placePreviewList);
+    await _assignPlaceMarkers(placePreviewList);
   }
 
   List<PlacePreviewUIModel> _parsePlacePreviewListDTO(
@@ -534,23 +563,85 @@ class MapMainPageController extends GetxController
     return newPreviewUiList.toList();
   }
 
-  Future<void> _makeNewPlaceMarkers(
+  Future<void> _assignPlaceMarkers(
     List<PlacePreviewUIModel> placePreviewList,
   ) async {
-    var newPlaceMarkers = placePreviewList
-        .map((placePreview) => PlaceMarkerUIModel.fromMyPlace(
-              placePreview: placePreview,
+    // Map<int, int> map = {};
+
+    // for (int i = 0; i < placePreviewList.length; i++) {
+    //   for (int j = i + 1; j < placePreviewList.length; j++) {
+    //     if (map[i] != null && map[i]! > 0) break;
+    //     if (map[j] != null && map[j]! > 0) continue;
+    //     if (placePreviewList[i].placeLocation.lat ==
+    //             placePreviewList[j].placeLocation.lat &&
+    //         placePreviewList[i].placeLocation.lng ==
+    //             placePreviewList[j].placeLocation.lng) {
+    //       map[i] = 1;
+    //       map[j] = 1;
+    //     } else {
+    //       if (map[i] == null) map[i] = 0;
+    //       if (map[j] == null) map[j] = 0;
+    //     }
+    //   }
+    // }
+
+    //  var overlappedMarkers = map.entries
+    //       .where((entry) => entry.value > 0)
+    //       .map((e) => PlaceMarkerUIModel.fromMyOverlappedPlace(
+    //             placePreview: placePreviewList[e.key],
+    //             onTapMarker: _onMarkerTap,
+    //           ))
+    //       .toList();
+
+    //   var markers = map.entries
+    //       .where((entry) => entry.value <= 0)
+    //       .map((e) => PlaceMarkerUIModel.fromMyPlace(
+    //             placePreview: placePreviewList[e.key],
+    //             onTapMarker: _onMarkerTap,
+    //           ))
+    //       .toList();
+
+    Map<int, List<String>> map = {};
+
+    for (int i = 0; i < placePreviewList.length; i++) {
+      for (int j = i + 1; j < placePreviewList.length; j++) {
+        if (map[i] == null) map[i] = [];
+        if (map[j] == null) map[j] = [];
+        if (placePreviewList[i].placeLocation.lat ==
+                placePreviewList[j].placeLocation.lat &&
+            placePreviewList[i].placeLocation.lng ==
+                placePreviewList[j].placeLocation.lng) {
+          map[i]!.add(placePreviewList[j].placeId);
+          map[j]!.add(placePreviewList[i].placeId);
+        }
+      }
+    }
+
+    var overlappedMarkers = map.entries
+        .where((entry) => entry.value.isNotEmpty)
+        .map((e) => PlaceMarkerUIModel.fromMyOverlappedPlace(
+              overlappedMarkerList: map[e] ?? [],
+              placePreview: placePreviewList[e.key],
               onTapMarker: _onMarkerTap,
             ))
         .toList();
-    placeMarkers.assignAll(newPlaceMarkers);
+
+    var markers = map.entries
+        .where((entry) => entry.value.isEmpty)
+        .map((e) => PlaceMarkerUIModel.fromMyPlace(
+              placePreview: placePreviewList[e.key],
+              onTapMarker: _onMarkerTap,
+            ))
+        .toList();
+
+    placeMarkers.assignAll([...overlappedMarkers, ...markers]);
     for (var element in placeMarkers) {
       await element.setMarkerImageIcon(iconClicked: false);
     }
     placeMarkers.refresh();
   }
 
-  Future<void> _addNewPlaceMarkers(
+  Future<void> _addPlaceMarkers(
     List<PlacePreviewUIModel> placePreviewList,
   ) async {
     var newPlaceMarkers = placePreviewList
@@ -559,6 +650,7 @@ class MapMainPageController extends GetxController
               onTapMarker: _onMarkerTap,
             ))
         .toList();
+
     placeMarkers.addAll(newPlaceMarkers);
     for (var element in placeMarkers) {
       await element.setMarkerImageIcon(iconClicked: false);
@@ -586,9 +678,23 @@ class MapMainPageController extends GetxController
     return;
   }
 
-  Future<LatLngUIModel> _getCurrentLocation() async {
-    return await Geolocator.getCurrentPosition().then(
-        (value) => LatLngUIModel(lat: value.latitude, lng: value.longitude));
+  Future<LatLngUIModel?> _getCurrentLocation() async {
+    try {
+      LatLngUIModel currentLocation = await Geolocator.getCurrentPosition()
+          .then((value) =>
+              LatLngUIModel(lat: value.latitude, lng: value.longitude))
+          .onError((error, stackTrace) {
+        throw const LocationServiceDisabledException();
+      });
+
+      return currentLocation;
+    } on LocationServiceDisabledException {
+      FailureInterpreter().mapFailureToDialog(
+          const Failure.locationDisabledFailure(), '_getCurrentLocation');
+      return null;
+    } catch (e) {
+      return null;
+    }
   }
 
   Future<bool> setPermissionStatus() async {
@@ -599,6 +705,7 @@ class MapMainPageController extends GetxController
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
       gotPermission = false;
+      permission = await Geolocator.requestPermission();
     } else {
       permission = await Geolocator.checkPermission();
       if (permission == LocationPermission.denied) {
@@ -688,17 +795,18 @@ class MapMainPageController extends GetxController
   void addReview(ReviewDetailUIModel newReview) {
     int index = placePreviewList
         .indexWhere((element) => element.placeId == newReview.placeId);
-    if (placePreviewList[index].totalReviews == 0 ||
-        placePreviewList[index].mostVisitedDiseaseType ==
-            DiseaseType.undefined) {
-      placePreviewList[index].mostVisitedDiseaseType =
-          newReview.diseaseTypes[0];
+
+    if (index >= 0) {
+      if (placePreviewList[index].totalReviews == 0 ||
+          placePreviewList[index].mostVisitedDiseaseType ==
+              DiseaseType.undefined) {
+        placePreviewList[index].mostVisitedDiseaseType =
+            newReview.diseaseTypes[0];
+      }
+      placePreviewList[index].totalReviews += 1;
+      placePreviewList.refresh();
+      change(placePreviewList, status: PageStatus.success());
     }
-
-    placePreviewList[index].totalReviews += 1;
-    placePreviewList.refresh();
-
-    change(placePreviewList, status: PageStatus.success());
   }
 
   @override
@@ -706,12 +814,23 @@ class MapMainPageController extends GetxController
     int index =
         placePreviewList.indexWhere((element) => element.placeId == placeId);
 
-    if (index > 0) {
+    if (index >= 0) {
       if (placePreviewList[index].totalReviews == 1) {
         placePreviewList[index].mostVisitedDiseaseType = DiseaseType.undefined;
       }
       placePreviewList[index].totalReviews -= 0;
       placePreviewList.refresh();
+      change(placePreviewList, status: PageStatus.success());
+    }
+  }
+
+  @override
+  void updateBookmark(String placeId, bool isBookmarked) {
+    int index =
+        placePreviewList.indexWhere((element) => element.placeId == placeId);
+
+    if (index >= 0) {
+      placePreviewList[index].isBookmarked = isBookmarked;
       change(placePreviewList, status: PageStatus.success());
     }
   }

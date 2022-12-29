@@ -1,4 +1,5 @@
 import 'package:withconi/data/model/dto/joined_dto/symptom.dart';
+import 'package:withconi/data/model/dto/response_dto/diagnosis_response/symptom_list_response_dto.dart';
 import 'package:withconi/module/community/controllers/custom_state_mixin.dart';
 
 import '../../../core/error_handling/failure_ui_interpreter.dart';
@@ -13,7 +14,8 @@ class DiagnosisStep2Controller extends GetxController {
   RxDouble progressPercents = 0.6.obs;
   RxList<SymptomGroup> selectedSymptomGroupList = <SymptomGroup>[].obs;
   RxBool isButtonValid = false.obs;
-
+  List<Symptom> symptomCategory =
+      Symptom.values.where((element) => element != Symptom.ect).toList();
   RxList<SymptomGroup> symptomGroupList = RxList<SymptomGroup>();
 
   @override
@@ -24,13 +26,13 @@ class DiagnosisStep2Controller extends GetxController {
 
   _getSymptomList() async {
     var symptomEither = await _diagnosisRepository.getSymptomList();
-    var symptomGroupResult = symptomEither.fold(
-        (failure) =>
-            FailureInterpreter().mapFailureToDialog(failure, 'getSymptomList'),
-        (result) => result.symptomGroupList);
+    SymptomListResponseDTO? symptomGroupResult = symptomEither.fold((failure) {
+      FailureInterpreter().mapFailureToDialog(failure, 'getSymptomList');
+      return null;
+    }, (result) => result);
 
     if (symptomGroupResult != null) {
-      symptomGroupList.assignAll(symptomGroupResult);
+      symptomGroupList.assignAll(symptomGroupResult.symptomGroupList);
       symptomGroupList.refresh();
     }
   }

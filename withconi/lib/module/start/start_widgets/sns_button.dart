@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:withconi/module/theme/colors.dart';
 
 import '../../../data/enums/enum.dart';
+import '../../theme/text_theme.dart';
 
 class SnsButtonWidget extends StatelessWidget {
   SnsButtonWidget({
@@ -35,13 +36,15 @@ class SnsButtonWidget extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            height: 9,
+            height: 12,
           ),
           Text(
             provider.displayName,
-            style: GoogleFonts.notoSans(
+            style: TextStyle(
+                height: 1,
+                fontFamily: WcFontFamily.notoSans,
                 color: WcColors.black,
-                fontSize: 12,
+                fontSize: 13,
                 fontWeight: FontWeight.w500),
           )
         ],

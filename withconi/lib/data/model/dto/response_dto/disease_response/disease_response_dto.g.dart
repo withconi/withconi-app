@@ -12,13 +12,17 @@ _$_DiseaseResponseDTO _$$_DiseaseResponseDTOFromJson(
       createdAt: const DateTimeConverter().fromJson(json['createdAt'] as int),
       diseaseId: json['_id'] as String,
       code: json['code'] as String,
-      boardId: json['boardId'] as int? ?? 1,
+      boardId: json['boardId'] as int? ?? 0,
+      speciesList: (json['species'] as List<dynamic>?)
+              ?.map((e) => $enumDecode(_$SpeciesEnumMap, e))
+              .toList() ??
+          const [Species.cat, Species.dog],
       name: json['name'] as String,
       definition: json['definition'] as String? ?? '',
-      diagnosisTechnique: json['diagnosisTechnique'] as String? ?? '',
-      treatment: json['treatment'] as String? ?? '',
+      diagnosisTechnique: json['detailDiagnosis'] as String? ?? '',
+      treatment: json['detailCure'] as String? ?? '',
       advice: json['detailAdvice'] as String? ?? '',
-      symptomGroupList: (json['symptomGroupList'] as List<dynamic>?)
+      symptomGroupList: (json['detailSymptoms'] as List<dynamic>?)
               ?.map((e) => SymptomGroup.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
@@ -34,15 +38,22 @@ Map<String, dynamic> _$$_DiseaseResponseDTOToJson(
       '_id': instance.diseaseId,
       'code': instance.code,
       'boardId': instance.boardId,
+      'species': instance.speciesList.map((e) => _$SpeciesEnumMap[e]!).toList(),
       'name': instance.name,
       'definition': instance.definition,
-      'diagnosisTechnique': instance.diagnosisTechnique,
-      'treatment': instance.treatment,
+      'detailDiagnosis': instance.diagnosisTechnique,
+      'detailCure': instance.treatment,
       'detailAdvice': instance.advice,
-      'symptomGroupList':
+      'detailSymptoms':
           instance.symptomGroupList.map((e) => e.toJson()).toList(),
       'diseaseType': _$DiseaseTypeEnumMap[instance.diseaseType]!,
     };
+
+const _$SpeciesEnumMap = {
+  Species.all: 'all',
+  Species.cat: 'cat',
+  Species.dog: 'dog',
+};
 
 const _$DiseaseTypeEnumMap = {
   DiseaseType.all: 'all',

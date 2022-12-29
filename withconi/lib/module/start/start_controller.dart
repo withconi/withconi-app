@@ -99,9 +99,11 @@ class StartPageController extends GetxController with WcStateMixin<EmittedBy> {
 
     if (confirm) {
       pageLoading.value = true;
-      String newEmail = await _getSnsEmail(provider);
-      if (newEmail.isNotEmpty) {
+      String? newEmail = await _getSnsEmail(provider);
+      if (newEmail != null && newEmail.isNotEmpty) {
         _setSignState(newEmail, EmittedBy.logic);
+      } else {
+        showCustomSnackbar(text: '이메일을 직접 입력하여 시도해보세요');
       }
     }
   }
@@ -124,16 +126,22 @@ class StartPageController extends GetxController with WcStateMixin<EmittedBy> {
     return confirm;
   }
 
-  Future<String> _getSnsEmail(Provider provider) async {
+  Future<String?> _getSnsEmail(Provider provider) async {
     _selectedProvider.value = provider;
     var getEmailEither =
         await _platformAuthRepository.getEmailFromProvider(provider: provider);
 
-    String userEmail = getEmailEither.fold((failure) {
-      FailureInterpreter().mapFailureToSnackbar(failure, 'onChangeProvider');
+    String? userEmail = getEmailEither.fold((failure) {
+      FailureInterpreter().mapFailureToSnackbar(failure, '_getSnsEmail');
       pageLoading.value = false;
-      return '';
-    }, (email) => email);
+      return null;
+    }, (email) {
+      if (email.isEmpty) {
+        return null;
+      } else {
+        return email;
+      }
+    });
 
     return userEmail;
   }
@@ -183,17 +191,22 @@ class StartPageController extends GetxController with WcStateMixin<EmittedBy> {
 
       case EmittedBy.logic:
         if (provider.signMethod == SignMethod.sns) {
-          String newEmail = await _getSnsEmail(provider);
-          SigningAuthInfo? signingAuthInfo = await _getSnsAuthInfo(newEmail);
+          String? newEmail = await _getSnsEmail(provider);
+          if (newEmail != null && newEmail.isNotEmpty) {
+            SigningAuthInfo? signingAuthInfo = await _getSnsAuthInfo(newEmail);
 
-          if (signingAuthInfo != null) {
-            Get.toNamed(
-              Routes.SIGNUP_PROFILE,
-              arguments: {
-                'signingAuthInfo': signingAuthInfo,
-              },
-            );
+            if (signingAuthInfo != null) {
+              Get.toNamed(
+                Routes.SIGNUP_PROFILE,
+                arguments: {
+                  'signingAuthInfo': signingAuthInfo,
+                },
+              );
+            }
+          } else {
+            showCustomSnackbar(text: '이메일을 직접 입력하여 회원가입 해주세요');
           }
+
           _resetSignUserInfo();
         }
         break;
@@ -201,20 +214,25 @@ class StartPageController extends GetxController with WcStateMixin<EmittedBy> {
   }
 
   _signInSns(EmittedBy emitMethod, Provider provider) async {
-    String newEmail = await _getSnsEmail(provider);
-    switch (emitMethod) {
-      case EmittedBy.button:
-        SigningAuthInfo? signingAuthInfo = await _getSnsAuthInfo(newEmail);
+    String? newEmail = await _getSnsEmail(provider);
 
-        _signInWithAuthInfo(signingAuthInfo);
-        break;
+    if (newEmail != null && newEmail.isNotEmpty) {
+      switch (emitMethod) {
+        case EmittedBy.button:
+          SigningAuthInfo? signingAuthInfo = await _getSnsAuthInfo(newEmail);
 
-      case EmittedBy.logic:
-        SigningAuthInfo? signingAuthInfo = await _getSnsAuthInfo(newEmail);
+          _signInWithAuthInfo(signingAuthInfo);
+          break;
 
-        _signInWithAuthInfo(signingAuthInfo);
+        case EmittedBy.logic:
+          SigningAuthInfo? signingAuthInfo = await _getSnsAuthInfo(newEmail);
 
-        break;
+          _signInWithAuthInfo(signingAuthInfo);
+
+          break;
+      }
+    } else {
+      showCustomSnackbar(text: '이메일을 직접 입력하여 로그인 해주세요');
     }
   }
 

@@ -24,11 +24,14 @@ import '../../routes/routes.dart';
 
 class HomeController extends GetxController {
   HomeController(this._conimalRepository, this._communityRepository);
+
+  static HomeController get to => Get.find();
   final ConimalRepository _conimalRepository;
   final CommunityRepository _communityRepository;
   late Rx<UserUIModel> _userInfo;
   RxList<ConimalUIModel> conimalList = RxList<ConimalUIModel>();
-  RxInt selectedConimalIndex = 0.obs;
+  int _selectedConimalIndex = 0;
+  late Rx<ConimalUIModel> selectedConimal;
   // Set<DiseaseType> _diseaseTypeSet = {};
   // RxList<BoardUIModel> _diseaseBoardList = RxList<BoardUIModel>();
   RxSet<BoardUIModel> relatedBoardSet = RxSet<BoardUIModel>();
@@ -39,34 +42,24 @@ class HomeController extends GetxController {
   // ConimalUIModel get selectedConimal => conimals[selectedConimalIndex.value];
   RxBool isExpansionOneOpened = false.obs;
   RxBool isExpansionTwoOpened = false.obs;
-  static int hotPostListSize = 3;
+  static int hotPostListSize = 4;
   RxList<PostUIModel> hotPostList = RxList<PostUIModel>();
-
   RxBool isLoading = true.obs;
   late Worker worker;
 
   @override
-  onInit() {
+  onInit() async {
     super.onInit();
 
-    _setUserInfo();
+    setHomeUserInfo();
     _setRelatedBoardList();
-    _getHotPostList();
-    isLoading = false.obs;
+    await _getHotPostList();
   }
 
   @override
   onReady() {
     super.onReady();
     LocalNotificationService.requestNotificationPermission();
-
-    // worker = once(
-    //   _diseaseBoardList,
-    //   _setRelatedBoardList,
-    //   condition: () => _diseaseBoardList().isNotEmpty,
-    //   onDone: () => worker.dispose(),
-    // );
-    // 3.delay(worker.dispose);
   }
 
   // void _setConimalList() {
@@ -91,84 +84,81 @@ class HomeController extends GetxController {
   }
 
   Future<void> refreshPage() async {
-    // await getUserInfo();
-    _setUserInfo();
+    setHomeUserInfo();
     await _getHotPostList();
   }
 
-  _setUserInfo() {
+  setHomeUserInfo() {
     _userInfo = Rx<UserUIModel>(AuthController.to.userInfo.copyWith());
+    conimalList.assignAll(_userInfo.value.conimals.toList());
     int lastConimalIndex = ((_userInfo.value.conimals.length - 1) < 0)
         ? 0
         : _userInfo.value.conimals.length - 1;
-    if (selectedConimalIndex.value > lastConimalIndex) {
-      selectedConimalIndex.value = lastConimalIndex;
+    if (_selectedConimalIndex > lastConimalIndex) {
+      _selectedConimalIndex = lastConimalIndex;
     }
-    conimalList.assignAll(_userInfo.value.conimals.toList());
+    selectedConimal = conimalList[_selectedConimalIndex].obs;
+    conimalList.refresh();
     _setRelatedBoardList();
-    // _setAllDiseasesSet();
   }
-
-  // void _setAllDiseasesSet() {
-  //   relatedBoardSet.clear();
-  // }
-
-  // Future<void> getUserInfo() async {
-  //   Either<Failure, UserResponseDTO> wcUserEither =
-  //       await _userRepository.getUserInfo();
-
-  //   wcUserEither.fold((fail) {
-  //     FailureInterpreter().mapFailureToDialog(fail, 'updateUserInfo');
-  //   }, (userDto) {
-  //     _userInfo.value = _parseUserDto(userDto);
-  //     conimalList.assignAll(_userInfo.value.conimals.toList());
-  //     _userInfo.refresh();
-  //   });
-  // }
-
-  // _parseUserDto(UserResponseDTO dto) {
-  //   return UserUIModel.fromDTO(dto);
-  // }
 
   Future<void> _getHotPostList() async {
     final hotPostListEither =
         await _communityRepository.getHotPostList(hotPostListSize);
 
-    hotPostListEither.fold(
-        (fail) =>
-            FailureInterpreter().mapFailureToSnackbar(fail, '_getBoardList'),
-        (newHotPostList) {
-      hotPostList.assignAll(
-          newHotPostList.map((e) => PostUIModel.fromDTO(e)).toList());
-      hotPostList.refresh();
+    var hotPostResult = hotPostListEither.fold((fail) {
+      FailureInterpreter().mapFailureToSnackbar(fail, '_getBoardList');
+      return null;
+    }, (newHotPostList) {
+      return newHotPostList;
     });
-  }
-
-  void onSelectedConimalChanged(int index) {
-    selectedConimalIndex.value = index;
-  }
-
-  addDisease(int conimalIndex) async {
-    List<DiseaseUIModel>? addedDiseases =
-        await goToDiseaseSearchPage(conimalIndex);
-    if (addedDiseases != null) {
-      conimalList[conimalIndex].diseases.addAll(addedDiseases);
-      _updateConimalDiseaseById(conimalList[conimalIndex].conimalId,
-          conimalList[conimalIndex].diseases);
+    if (hotPostResult != null) {
+      hotPostList
+          .assignAll(hotPostResult.map((e) => PostUIModel.fromDTO(e)).toList());
+      hotPostList.refresh();
+      isLoading.value = false;
     }
   }
 
-  deleteDisease(int conimalIndex, DiseaseUIModel disease) async {
-    bool confirmed = await showSelectionDialog(
-        confirmText: '삭제', cancleText: '취소', title: '해당 질병을 삭제할까요?');
+  void onSelectedConimalChanged(int index) {
+    _selectedConimalIndex = index;
+    selectedConimal.value = conimalList[_selectedConimalIndex];
+    conimalList.refresh();
+  }
 
-    if (confirmed) {
-      await showLoading(() => _updateConimalDiseaseById(
-          conimalList[conimalIndex].conimalId,
-          conimalList[conimalIndex]
-              .diseases
-              .where((element) => element.diseaseId != disease.diseaseId)
-              .toList()));
+  addDisease(String conimalId) async {
+    int index =
+        conimalList.indexWhere((element) => element.conimalId == conimalId);
+    if (index >= 0) {
+      List<DiseaseUIModel>? addedDiseases =
+          await Get.toNamed(Routes.DISEASE_SEARCH, arguments: {
+        'selectedDiseaseList': _conimals[index].diseases.toList(),
+        'maxDisease': 3
+      }) as List<DiseaseUIModel>?;
+      if (addedDiseases != null) {
+        conimalList[index].diseases = addedDiseases;
+        _updateConimalDiseaseById(
+            conimalList[index].conimalId, conimalList[index].diseases);
+      }
+    }
+  }
+
+  deleteDisease(String conimalId, DiseaseUIModel disease) async {
+    int index =
+        conimalList.indexWhere((element) => element.conimalId == conimalId);
+
+    if (index >= 0) {
+      bool confirmed = await showSelectionDialog(
+          confirmText: '삭제', cancleText: '취소', title: '해당 질병을 삭제할까요?');
+
+      if (confirmed) {
+        await showLoading(() => _updateConimalDiseaseById(
+            conimalList[index].conimalId,
+            conimalList[index]
+                .diseases
+                .where((element) => element.diseaseId != disease.diseaseId)
+                .toList()));
+      }
     }
   }
 
@@ -188,21 +178,24 @@ class HomeController extends GetxController {
 
       if (editSucceed) {
         await AuthController.to.setUserAuthInfo();
-        await _setUserInfo();
+        await setHomeUserInfo();
         return;
       }
     });
   }
 
-  goToDiseaseSearchPage(int conimalIndex) async {
-    return await Get.toNamed(Routes.DISEASE_SEARCH,
-        arguments: _conimals[conimalIndex].diseases) as List<DiseaseUIModel>?;
-  }
+  // goToDiseaseSearchPage(int conimalIndex) async {
+  //   return await Get.toNamed(Routes.DISEASE_SEARCH, arguments: {
+  //     'selectedDiseaseList': _conimals[conimalIndex].diseases.toList(),
+  //     'maxDisease': 3
+  //   }) as List<DiseaseUIModel>?;
+  // }
 
   goToPostDetailPage(PostUIModel selectedHotPost) {
     Get.toNamed(Routes.COMMUNITY_POST_DETAIL, arguments: {
       'postId': selectedHotPost.postId,
-      'boardId': selectedHotPost.boardId
+      'boardId': selectedHotPost.boardId,
+      'fromRootPage': true,
     });
   }
 
@@ -213,14 +206,18 @@ class HomeController extends GetxController {
 
   goToDictionaryDetailPage(DiseaseUIModel disease) async {
     await Get.toNamed(Routes.DICTIONARY_DETAIL,
-        arguments: {'diseaseCode': disease.diseaseCode});
-    _setUserInfo();
+        arguments: {'diseaseId': disease.diseaseId});
+    setHomeUserInfo();
   }
 
   goToManageConimalPage() async {
     await Get.toNamed(Routes.CONIMAL_MANAGE,
         arguments: {'conimals': _conimals.toList()});
-    _setUserInfo();
+    setHomeUserInfo();
+  }
+
+  goToDiagnosisPage() {
+    Get.toNamed(Routes.DIAGNOSIS_MAIN);
   }
 
   // int daysBetween(DateTime from, DateTime to) {

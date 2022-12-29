@@ -1,13 +1,14 @@
 import 'dart:async';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
-import 'package:withconi/data/model/dto/request_dto/place_request/create_review_request_dto.dart';
-import 'package:withconi/data/model/dto/request_dto/place_request/get_my_review_detail_request.dart';
-import 'package:withconi/data/model/dto/request_dto/place_request/get_my_review_list_request.dart';
-import 'package:withconi/data/model/dto/request_dto/place_request/get_place_detail_request_dto.dart';
-import 'package:withconi/data/model/dto/request_dto/place_request/get_place_verification_request_dto.dart';
-import 'package:withconi/data/model/dto/request_dto/place_request/get_review_history_request.dart';
-import 'package:withconi/data/model/dto/request_dto/place_request/update_place_bookmark_request_dto.dart';
+import 'package:withconi/data/model/dto/request_dto/map_request/create_review_request_dto.dart';
+import 'package:withconi/data/model/dto/request_dto/map_request/delete_review_request_dto.dart';
+import 'package:withconi/data/model/dto/request_dto/map_request/get_my_review_detail_request.dart';
+import 'package:withconi/data/model/dto/request_dto/map_request/get_my_review_list_request.dart';
+import 'package:withconi/data/model/dto/request_dto/map_request/get_place_detail_request_dto.dart';
+import 'package:withconi/data/model/dto/request_dto/map_request/get_place_verification_request_dto.dart';
+import 'package:withconi/data/model/dto/request_dto/map_request/get_review_history_request.dart';
+import 'package:withconi/data/model/dto/request_dto/map_request/update_place_bookmark_request_dto.dart';
 import 'package:withconi/data/model/dto/response_dto/place_response/place_detail_response_dto.dart';
 import 'package:withconi/data/model/dto/api_call_dto.dart';
 import 'package:withconi/core/tools/helpers/infinite_scroll.dart';
@@ -23,15 +24,12 @@ import 'package:withconi/module/ui_model/review_detail_ui_model.dart';
 import '../../module/ui_model/map_filter_ui_model.dart';
 import '../enums/enum.dart';
 import '../../core/error_handling/failures.dart';
-import '../model/dto/request_dto/place_request/get_bookmarked_place_list_request.dart';
-import '../model/dto/request_dto/place_request/get_place_list_request_dto.dart';
+import '../model/dto/request_dto/map_request/get_bookmarked_place_list_request.dart';
+import '../model/dto/request_dto/map_request/get_place_list_request_dto.dart';
 import '../model/dto/response_dto/place_response/place_preview_list_response_dto.dart';
 import '../model/dto/response_dto/place_response/place_preview_response_dto.dart';
 
 class MapRepository extends GetxService {
-  // MapRepository._internal();
-  // static final _singleton = MapRepository._internal();
-  // factory MapRepository() => _singleton;
   MapRepository(this._api);
   final MapAPI _api;
 
@@ -69,12 +67,31 @@ class MapRepository extends GetxService {
     }
   }
 
-  // Either<Failure, List<PlacePreviewResponseDTO>> _parsePlacePreviewListDTO(
-  //     Map<String, dynamic> data) {
-  //   List<PlacePreviewResponseDTO> previewList =
-  //       PlacePreviewListResponseDTO.fromJson(data).list;
-  //   return Right(previewList);
-  // }
+  Future<Either<Failure, bool>> deleteMyReview(
+      {required String placeId, required String reviewId}) async {
+    try {
+      DeleteMyReviewRequestDTO requestDTO = DeleteMyReviewRequestDTO.fromData(
+          reviewId: reviewId, placeId: placeId);
+      ApiCallDTO apiCallDTO = ApiCallDTO.fromDTO(requestDTO);
+      Map<String, dynamic> data = await _api.deleteMyPlaceReview(apiCallDTO);
+
+      try {
+        // List<PlacePreviewResponseDTO> placePreviewListDto =
+        //     PlacePreviewListResponseDTO.fromJson(data).list;
+        return Right(true);
+      } catch (e) {
+        throw DataParsingException();
+      }
+    } on NoInternetConnectionException {
+      return Left(NoConnectionFailure());
+    } on DataParsingException {
+      return Left(DataParsingFailure());
+    } on NotFoundException {
+      return Left(NotFoundFailure());
+    } catch (e) {
+      return Left(NoUserDataFailure());
+    }
+  }
 
   Future<Either<Failure, List<PlacePreviewResponseDTO>>>
       getBookmarkedPlaceList() async {
@@ -120,22 +137,6 @@ class MapRepository extends GetxService {
       } catch (e) {
         throw (DataParsingException());
       }
-      //  late PlaceDetailResponseDTO placeDetailUiModel;
-      //   switch (placeType) {
-      //     case PlaceType.hospital:
-      //    data =
-      //       await _api.getHospitalDetailById(apiCallDTO);
-      //       placeDetailUiModel = HospitalDetailResponseDTO.fromJson(data);
-      //       break;
-      //    case PlaceType.pharmacy:
-      //        data =
-      //       await _api.getHospitalDetailById(apiCallDTO);
-      //              placeDetailUiModel = PharmacyDetailResponseDTO.fromJson(data);
-      //       break;
-      //     default:
-
-      //   }
-
     } on NoInternetConnectionException {
       return Left(NoConnectionFailure());
     } on DataParsingException {

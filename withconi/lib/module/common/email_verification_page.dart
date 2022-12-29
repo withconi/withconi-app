@@ -46,7 +46,7 @@ class EmailVerificationPage extends StatelessWidget {
                     height: 16,
                   ),
                   Text(
-                    '이메일 인증코드를\n입력해주세요',
+                    '이메일 인증을\n진행해주세요',
                     style: TextStyle(
                         fontFamily: WcFontFamily.notoSans,
                         fontSize: 25,
@@ -78,10 +78,14 @@ class EmailVerificationPage extends StatelessWidget {
                         TextSpan(
                           text: '으로\n6자리의 인증 코드가 전송되었어요.',
                         ),
+                        TextSpan(
+                          text: '\n회원정보 수정에는 이메일 인증이 반드시 필요해요.',
+                        ),
                       ],
                       style: TextStyle(
                           fontFamily: WcFontFamily.notoSans,
                           fontSize: 15,
+                          height: 1.7,
                           color: WcColors.black),
                     ),
                   ),
@@ -150,20 +154,29 @@ class EmailVerificationPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 23,
                   ),
                   Center(
                     child: GestureDetector(
                       onTap: _controller.skipEmailVerification,
                       child: Container(
-                        width: 80,
+                        width: 89,
                         height: 35,
                         color: WcColors.white,
                         child: Column(
                           children: [
-                            const Text('다음에 하기'),
+                            const Text(
+                              '다음에 하기',
+                              style: TextStyle(
+                                  fontFamily: WcFontFamily.notoSans,
+                                  color: WcColors.grey140,
+                                  fontSize: 14),
+                            ),
+                            SizedBox(
+                              height: 1,
+                            ),
                             Container(
-                              width: 70,
+                              width: 76,
                               height: 1,
                               color: WcColors.grey140,
                             )

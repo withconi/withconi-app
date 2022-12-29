@@ -16,6 +16,13 @@ class MapAPI {
     return mapListData;
   }
 
+  Future<Map<String, dynamic>> deleteMyPlaceReview(
+      ApiCallDTO apiCallDTO) async {
+    Map<String, dynamic> deleteResult = await _dio.apiCall(apiCallDTO);
+
+    return deleteResult;
+  }
+
   Future<Map<String, dynamic>> getHospitalDetailById(
       ApiCallDTO apiCallDTO) async {
     Map<String, dynamic> placeDetailData = await _dio.apiCall(apiCallDTO);

@@ -10,15 +10,17 @@ import 'image_item.dart';
 class PhotoView {
   void openPhotoView(final int index, List<ImageItem> galleryItems) {
     Get.to(
-      GalleryPhotoViewWrapper(
-        galleryItems: galleryItems,
-        backgroundDecoration: const BoxDecoration(
-          color: Colors.black,
+        GalleryPhotoViewWrapper(
+          galleryItems: galleryItems,
+          backgroundDecoration: const BoxDecoration(
+            color: Colors.black,
+          ),
+          initialIndex: index,
+          scrollDirection: Axis.horizontal,
         ),
-        initialIndex: index,
-        scrollDirection: Axis.horizontal,
-      ),
-    );
+        duration: Duration(milliseconds: 300),
+        transition: Transition.downToUp,
+        fullscreenDialog: true);
   }
 }
 
@@ -63,7 +65,7 @@ class _GalleryPhotoViewWrapperState extends State<GalleryPhotoViewWrapper> {
       backgroundColor: Colors.black,
       body: GestureDetector(
         onVerticalDragEnd: (DragEndDetails drag) {
-          if (drag.velocity.pixelsPerSecond.dy > 1000) {
+          if (drag.velocity.pixelsPerSecond.dy > 600) {
             Get.back();
           }
         },
@@ -128,16 +130,16 @@ class _GalleryPhotoViewWrapperState extends State<GalleryPhotoViewWrapper> {
   PhotoViewGalleryPageOptions _buildItem(BuildContext context, int index) {
     final ImageItem item = widget.galleryItems[index];
     return PhotoViewGalleryPageOptions.customChild(
+      childSize: Size(WcWidth, WcHeight - 300),
       child: Container(
-        width: 300,
-        height: 300,
+        width: WcWidth,
+        height: WcHeight - 300,
         decoration: BoxDecoration(
           image: DecorationImage(
-              fit: BoxFit.cover,
+              fit: BoxFit.contain,
               image: widget.galleryItems[index].getImageByType),
         ),
       ),
-      childSize: const Size(300, 300),
       initialScale: PhotoViewComputedScale.contained,
       minScale: PhotoViewComputedScale.contained * (0.5 + index / 10),
       maxScale: PhotoViewComputedScale.covered * 4.1,

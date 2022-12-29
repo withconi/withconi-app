@@ -23,6 +23,7 @@ class HotPostListTile extends StatelessWidget {
       },
       child: Container(
         // color: WcColors.white,
+        alignment: Alignment.center,
         height: 37,
         width: width,
         padding: padding,
@@ -32,21 +33,23 @@ class HotPostListTile extends StatelessWidget {
               '${hotPost.diseaseType.displayName} 게시판',
               style: TextStyle(
                   fontFamily: WcFontFamily.notoSans,
-                  fontSize: 14.5,
+                  fontSize: 14.4,
                   height: 1,
                   fontWeight: FontWeight.w500,
                   color: WcColors.black),
             ),
             SizedBox(
-              width: 10,
+              width: 12,
             ),
             Expanded(
               child: Text(
                 hotPost.content,
-                overflow: TextOverflow.ellipsis,
+                overflow: TextOverflow.fade,
+                softWrap: false,
+                maxLines: 1,
                 style: TextStyle(
                     fontFamily: WcFontFamily.notoSans,
-                    fontSize: 15,
+                    fontSize: 14.7,
                     height: 1,
                     fontWeight: FontWeight.w400,
                     color: WcColors.grey200),

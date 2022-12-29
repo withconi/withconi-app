@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:withconi/data/model/dto/request_dto/abstract_request/request_info_abstract.dart';
 
@@ -6,7 +8,9 @@ import '../../../core/values/constants/app_info.dart';
 
 final Map<String, dynamic> defaultHeader = {
   'Content-type': 'application/json',
-  'application': AppInfo().os + '_' + AppInfo.version,
+  'application': (Platform.isAndroid)
+      ? AppInfo().os + '_' + AppInfo.androidVersion
+      : AppInfo().os + '_' + AppInfo.iosVersion,
 };
 
 class ApiCallDTO {
@@ -70,11 +74,8 @@ class ApiCallDTO {
     Map<String, dynamic> header = defaultHeader;
 
     header['requiresToken'] = requestDTO.requiresToken;
-
-    // if (requestDTO.requestType == RequestType.POST_FORM_DATA) {
     header.remove('Content-Type');
     header['Content-Type'] = "multipart/form-data";
-    // }
 
     return ApiCallDTO._(
         url: requestDTO.url,

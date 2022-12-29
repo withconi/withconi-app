@@ -1,6 +1,7 @@
 import 'package:withconi/data/enums/enum.dart';
 import 'package:withconi/global_widgets/dialog/selection_dialog.dart';
 import 'package:withconi/data/repository/map_repository.dart';
+import 'package:withconi/global_widgets/snackbar.dart';
 import 'package:withconi/module/ui_model/review_detail_ui_model.dart';
 import 'package:withconi/module/ui_model/review_preview_ui_model.dart';
 import 'package:withconi/global_widgets/loading/loading_overlay.dart';
@@ -9,7 +10,8 @@ import '../../../global_widgets/photo_gallary/image_item.dart';
 import '../../../import_basic.dart';
 import '../../../core/tools/helpers/infinite_scroll.dart';
 import '../../../core/error_handling/failure_ui_interpreter.dart';
-import '../abstract/map_update_abstract.dart';
+import '../../auth/auth_controller.dart';
+import '../abstract/map_review_update_abstract.dart';
 
 class MapMyReviewController extends GetxController
     implements AbstractMapReviewUpdate {
@@ -42,6 +44,7 @@ class MapMyReviewController extends GetxController
   //   _lastPage.value = false;
   //   _changePaginationFilter(_page + 1, limit);
   // }
+  String get authorId => AuthController.to.userId;
 
   @override
   Future<void> onReady() async {
@@ -66,6 +69,8 @@ class MapMyReviewController extends GetxController
           'editable': false
         },
       );
+    } else {
+      showCustomSnackbar(text: '인증된 사진이 없네요');
     }
 
     // if (imageAdded != null) {
@@ -193,6 +198,13 @@ class MapMyReviewController extends GetxController
 
     if (_mapUpdateAbstract != null) {
       _mapUpdateAbstract!.deleteReview(reviewId, placeId);
+    }
+  }
+
+  @override
+  void updateBookmark(String placeId, bool isBookmarked) {
+    if (_mapUpdateAbstract != null) {
+      _mapUpdateAbstract!.deleteReview(placeId, placeId);
     }
   }
 }

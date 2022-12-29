@@ -84,7 +84,8 @@ class SearchBarWidget extends StatelessWidget {
               enabled: _isEditable,
               controller: _textController,
               onChanged: _onTextChanged,
-              style: GoogleFonts.notoSans(
+              style: TextStyle(
+                  fontFamily: WcFontFamily.notoSans,
                   color: WcColors.black,
                   fontSize: 16,
                   fontWeight: FontWeight.w500),

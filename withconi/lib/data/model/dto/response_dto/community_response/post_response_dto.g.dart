@@ -17,7 +17,7 @@ _$_PostResponseDTO _$$_PostResponseDTOFromJson(Map<String, dynamic> json) =>
           PostType.cat,
       diseaseType:
           $enumDecodeNullable(_$DiseaseTypeEnumMap, json['diseaseType']) ??
-              DiseaseType.dentistry,
+              DiseaseType.undefined,
       content: json['content'] as String,
       createdAt: const DateTimeConverter().fromJson(json['createdAt'] as int),
       isLike: json['isLike'] as bool? ?? false,

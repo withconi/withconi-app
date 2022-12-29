@@ -42,8 +42,8 @@ class ConimalManagePage extends StatelessWidget {
                     '내 코니멀 관리',
                     style: TextStyle(
                         fontFamily: WcFontFamily.notoSans,
-                        fontSize: 24,
-                        fontWeight: FontWeight.w500),
+                        fontSize: 25,
+                        fontWeight: FontWeight.w600),
                   ),
                 ),
                 Column(
@@ -62,9 +62,10 @@ class ConimalManagePage extends StatelessWidget {
                                 horizontal: 20, vertical: 5),
                             child: Text(
                               '<<  슬라이드하여 수정할 수 있어요',
-                              style: GoogleFonts.notoSans(
+                              style: TextStyle(
+                                  fontFamily: WcFontFamily.notoSans,
                                   fontSize: 15,
-                                  fontWeight: FontWeight.w500,
+                                  fontWeight: FontWeight.w400,
                                   color: WcColors.grey140),
                             ),
                           ),
@@ -119,12 +120,13 @@ class ConimalManagePage extends StatelessWidget {
                         onTap: _controller.addConimalPage,
                         child: Container(
                           alignment: Alignment.center,
-                          width: 130,
+                          width: 138,
                           height: 40,
                           child: Text(
                             '코니멀 추가하기',
-                            style: GoogleFonts.notoSans(
-                                color: WcColors.grey180,
+                            style: TextStyle(
+                                fontFamily: WcFontFamily.notoSans,
+                                color: WcColors.grey160,
                                 fontSize: 15,
                                 fontWeight: FontWeight.w500),
                           ),

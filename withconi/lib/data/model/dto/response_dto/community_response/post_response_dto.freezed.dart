@@ -286,7 +286,7 @@ class _$_PostResponseDTO implements _PostResponseDTO {
       required this.authorId,
       this.nickname = '알수없음',
       this.postType = PostType.cat,
-      this.diseaseType = DiseaseType.dentistry,
+      this.diseaseType = DiseaseType.undefined,
       required this.content,
       @DateTimeConverter()
           required this.createdAt,

@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:withconi/core/tools/helpers/calculator.dart';
+import 'package:withconi/global_widgets/snackbar.dart';
 import 'package:withconi/module/auth/auth_controller.dart';
 import 'package:withconi/core/error_handling/failure_ui_interpreter.dart';
 import 'package:withconi/data/repository/community_repository.dart';
@@ -118,7 +119,8 @@ class LikedPostController extends GetxController implements AbstractPostUpdate {
     Get.toNamed(Routes.COMMUNITY_POST_DETAIL, arguments: {
       'boardId': likedPostList[postIndex].boardId,
       'postId': likedPostList[postIndex].postId,
-      'postAbstractController': LikedPostController.to
+      'postAbstractController': LikedPostController.to,
+      'fromRootPage': false,
     });
   }
 
@@ -214,6 +216,10 @@ class LikedPostController extends GetxController implements AbstractPostUpdate {
   }
 
   onLikeChanged(int postIndex, bool isLiked) async {
+    if (likedPostList[postIndex].authorId == AuthController.to.userId) {
+      showCustomSnackbar(text: '내 글에는 좋아요를 누를 수 없어요');
+      return;
+    }
     _updateLikeUiChanges(postIndex, isLiked);
 
     var likePostsEither = await _communityRepository.updateLikePost(

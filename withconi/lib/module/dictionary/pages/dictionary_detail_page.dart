@@ -98,10 +98,10 @@ class DictionaryDetailPage extends StatelessWidget {
                               ),
                               Text(
                                 _controller.disease.diseaseType.displayName +
-                                    '질환',
+                                    ' 질환',
                                 style: TextStyle(
                                     fontFamily: WcFontFamily.notoSans,
-                                    fontSize: 15.5,
+                                    fontSize: 16,
                                     height: 1.3,
                                     color: WcColors.black,
                                     fontWeight: FontWeight.w500),
@@ -109,7 +109,7 @@ class DictionaryDetailPage extends StatelessWidget {
                             ],
                           ),
                           SizedBox(
-                            height: 13,
+                            height: 10,
                           ),
                           Text(
                             _controller.disease.name,
@@ -121,33 +121,27 @@ class DictionaryDetailPage extends StatelessWidget {
                                 fontWeight: FontWeight.w600),
                           ),
                           SizedBox(
-                            height: 17,
+                            height: 21,
                           ),
                           Row(
-                            children: [
-                              WcBadge(
-                                // width: 55,
-                                margin: EdgeInsets.only(right: 8),
-                                text: Species.dog.displayName,
-                                // textSize: 12,
-                                backgroundColor: Species.dog.backgroundColor,
-                                textColor: Species.dog.mainColor,
-                              ),
-                              WcBadge(
-                                // width: 55,
-                                margin: EdgeInsets.only(right: 8),
-                                text: Species.cat.displayName,
-                                // textSize: 12,
-                                backgroundColor: Species.cat.backgroundColor,
-                                textColor: Species.cat.mainColor,
-                              ),
-                            ],
-                          ),
+                              children: _controller.disease.speciesList
+                                  .map(
+                                    (species) => WcBadge(
+                                      // width: 55,
+                                      margin: EdgeInsets.only(right: 8),
+                                      text: species.displayName,
+                                      textSize: 12.8,
+                                      height: 26,
+                                      backgroundColor: species.backgroundColor,
+                                      textColor: species.mainColor,
+                                    ),
+                                  )
+                                  .toList()),
                         ],
                       ),
                     ),
                     SizedBox(
-                      height: 35,
+                      height: 25,
                     ),
                     SizedBox(
                       width: WcWidth - 40,
@@ -158,7 +152,7 @@ class DictionaryDetailPage extends StatelessWidget {
                             '정의',
                             style: TextStyle(
                                 fontFamily: WcFontFamily.notoSans,
-                                fontSize: 18.5,
+                                fontSize: 19,
                                 height: 1,
                                 color: WcColors.black,
                                 fontWeight: FontWeight.w500),
@@ -178,46 +172,53 @@ class DictionaryDetailPage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Divider(
-                      height: 70,
-                      thickness: 10,
-                      color: WcColors.grey40,
-                    ),
-                    SizedBox(
-                      width: WcWidth - 40,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            '관찰 가능한 증상',
-                            style: TextStyle(
-                                fontFamily: WcFontFamily.notoSans,
-                                fontSize: 18.5,
-                                height: 1,
-                                color: WcColors.black,
-                                fontWeight: FontWeight.w500),
+                    Offstage(
+                      offstage: _controller.disease.symptomGroup.isEmpty,
+                      child: Column(children: [
+                        Divider(
+                          height: 70,
+                          thickness: 15,
+                          color: WcColors.grey20,
+                        ),
+                        SizedBox(
+                          width: WcWidth - 40,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                '관찰 가능한 증상',
+                                style: TextStyle(
+                                    fontFamily: WcFontFamily.notoSans,
+                                    fontSize: 19,
+                                    height: 1,
+                                    color: WcColors.black,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Wrap(
+                                  spacing: 8,
+                                  runSpacing: 25,
+                                  children: _controller
+                                      .disease.symptomGroup.reversed
+                                      .map((e) =>
+                                          SymptomGroupWrap(symptomGroup: e))
+                                      .toList()),
+                            ],
                           ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Wrap(
-                              spacing: 10,
-                              runSpacing: 25,
-                              children: _controller.disease.symptomGroup
-                                  .map((e) => SymptomGroupWrap(symptomGroup: e))
-                                  .toList()),
-                        ],
-                      ),
-                    ),
-                    Divider(
-                      height: 80,
-                      thickness: 10,
-                      color: WcColors.grey40,
+                        ),
+                      ]),
                     ),
                     Offstage(
                       offstage: _controller.disease.diagnosisTechnique.isEmpty,
                       child: Column(
                         children: [
+                          Divider(
+                            height: 80,
+                            thickness: 15,
+                            color: WcColors.grey20,
+                          ),
                           SizedBox(
                             width: WcWidth - 40,
                             child: Column(
@@ -227,7 +228,7 @@ class DictionaryDetailPage extends StatelessWidget {
                                   '진단법',
                                   style: TextStyle(
                                       fontFamily: WcFontFamily.notoSans,
-                                      fontSize: 18.5,
+                                      fontSize: 19,
                                       height: 1,
                                       color: WcColors.black,
                                       fontWeight: FontWeight.w500),
@@ -247,11 +248,6 @@ class DictionaryDetailPage extends StatelessWidget {
                               ],
                             ),
                           ),
-                          Divider(
-                            height: 80,
-                            thickness: 10,
-                            color: WcColors.grey40,
-                          ),
                         ],
                       ),
                     ),
@@ -259,6 +255,11 @@ class DictionaryDetailPage extends StatelessWidget {
                       offstage: _controller.disease.treatment.isEmpty,
                       child: Column(
                         children: [
+                          Divider(
+                            height: 80,
+                            thickness: 15,
+                            color: WcColors.grey20,
+                          ),
                           SizedBox(
                             width: WcWidth - 40,
                             child: Column(
@@ -268,7 +269,7 @@ class DictionaryDetailPage extends StatelessWidget {
                                   '치료법',
                                   style: TextStyle(
                                       fontFamily: WcFontFamily.notoSans,
-                                      fontSize: 18.5,
+                                      fontSize: 19,
                                       height: 1,
                                       color: WcColors.black,
                                       fontWeight: FontWeight.w500),
@@ -288,42 +289,47 @@ class DictionaryDetailPage extends StatelessWidget {
                               ],
                             ),
                           ),
-                          Divider(
-                            height: 80,
-                            thickness: 10,
-                            color: WcColors.grey40,
-                          ),
                         ],
                       ),
                     ),
-                    SizedBox(
-                      width: WcWidth - 40,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            '보호자에 대한 조언',
-                            style: TextStyle(
-                                fontFamily: WcFontFamily.notoSans,
-                                fontSize: 18.5,
-                                height: 1,
-                                color: WcColors.black,
-                                fontWeight: FontWeight.w500),
+                    Offstage(
+                      offstage: _controller.disease.advice.isEmpty,
+                      child: Column(children: [
+                        Divider(
+                          height: 80,
+                          thickness: 15,
+                          color: WcColors.grey20,
+                        ),
+                        SizedBox(
+                          width: WcWidth - 40,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                '보호자에 대한 조언',
+                                style: TextStyle(
+                                    fontFamily: WcFontFamily.notoSans,
+                                    fontSize: 19,
+                                    height: 1,
+                                    color: WcColors.black,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                              SizedBox(
+                                height: 15,
+                              ),
+                              Text(
+                                _controller.disease.advice,
+                                style: TextStyle(
+                                    fontFamily: WcFontFamily.notoSans,
+                                    fontSize: 16,
+                                    height: 1.5,
+                                    color: WcColors.grey200,
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            ],
                           ),
-                          SizedBox(
-                            height: 15,
-                          ),
-                          Text(
-                            _controller.disease.advice,
-                            style: TextStyle(
-                                fontFamily: WcFontFamily.notoSans,
-                                fontSize: 16,
-                                height: 1.5,
-                                color: WcColors.grey200,
-                                fontWeight: FontWeight.w400),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ]),
                     ),
                     SizedBox(
                       height: 40,
@@ -401,7 +407,7 @@ class SymptomGroupWrap extends StatelessWidget {
         children: [
           Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
             Image.asset(
-              'assets/icons/diagnosis/symptoms_${symptomGroup.symptomType.code}.png',
+              'assets/icons/diagnosis/symptoms_${symptomGroup.symptomType.codeENG}.png',
               height: 27,
             ),
             SizedBox(
@@ -445,7 +451,7 @@ class SymptomItemBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.fromLTRB(10, 4, 10, 4),
+        padding: EdgeInsets.fromLTRB(10, 4, 10, 5),
         // height: 30,
         child: Text(
           symptomString,

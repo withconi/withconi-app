@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:withconi/module/start/start_controller.dart';
+import 'package:withconi/module/theme/text_theme.dart';
 import '../../module/theme/colors.dart';
 import '../../module/theme/sizes.dart';
 
@@ -55,7 +56,8 @@ class WcStateButtonWidget extends StatelessWidget {
                         )
                       : Text(
                           buttonText,
-                          style: GoogleFonts.notoSans(
+                          style: TextStyle(
+                              fontFamily: WcFontFamily.notoSans,
                               color: (buttonState == ButtonState.success)
                                   ? activeTextColor
                                   : inactiveTextColor,

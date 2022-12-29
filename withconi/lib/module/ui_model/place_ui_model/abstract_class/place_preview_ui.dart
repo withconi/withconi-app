@@ -13,7 +13,10 @@ abstract class PlacePreviewUIModel extends Equatable {
   late String name;
   final PlaceType placeType = PlaceType.all;
   late String phone;
+  late List<String> overlappedPlaceList;
   // late LatLngUIModel baseLocation;
+  late bool isBookmarked;
+
   late bool isPhotoReview;
   late int totalReviews;
 

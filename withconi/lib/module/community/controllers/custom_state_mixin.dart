@@ -172,7 +172,7 @@ extension StateExt<T> on WcStateMixin<T> {
                     height: WcHeight - 270,
                     image: Image.asset(
                       'assets/icons/no_result.png',
-                      height: 80,
+                      height: 76,
                     ),
                     title: empty.title ?? '검색 결과가 없습니다',
                     message: empty.message ?? '다른 검색어로 시도해주세요 :)',
@@ -187,7 +187,7 @@ extension StateExt<T> on WcStateMixin<T> {
                     height: WcHeight - 300,
                     image: Image.asset(
                       'assets/icons/no_result.png',
-                      height: 80,
+                      height: 76,
                     ),
                     title: error.message,
                     message: '',

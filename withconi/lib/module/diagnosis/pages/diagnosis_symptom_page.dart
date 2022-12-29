@@ -56,7 +56,7 @@ class DiagnosisSymptomPage extends StatelessWidget {
                               '${_controller.symptom.displayName}이상',
                               style: TextStyle(
                                   fontFamily: WcFontFamily.notoSans,
-                                  fontSize: 24,
+                                  fontSize: 25,
                                   fontWeight: FontWeight.w500),
                             ),
                             Text(

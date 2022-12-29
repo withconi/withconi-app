@@ -31,10 +31,10 @@ class DiagnosisMainPage extends StatelessWidget {
                       style: TextStyle(
                           fontFamily: WcFontFamily.notoSans,
                           fontWeight: FontWeight.w600,
-                          fontSize: 26)),
+                          fontSize: 27)),
                 ),
                 SizedBox(
-                  height: 8,
+                  height: 10,
                 ),
                 SizedBox(
                   width: WcWidth - 40,

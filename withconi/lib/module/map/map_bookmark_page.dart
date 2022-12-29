@@ -45,7 +45,7 @@ class MapBookmarkPage extends StatelessWidget {
                         style: TextStyle(
                             fontFamily: WcFontFamily.notoSans,
                             color: WcColors.black,
-                            fontSize: 24,
+                            fontSize: 25,
                             fontWeight: FontWeight.bold,
                             height: 1.4),
                       ),
@@ -53,23 +53,27 @@ class MapBookmarkPage extends StatelessWidget {
                     Container(
                       width: WcWidth,
                       padding:
-                          EdgeInsets.symmetric(horizontal: 22, vertical: 15),
+                          EdgeInsets.symmetric(horizontal: 22, vertical: 17),
                       child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
                             '${_controller.bookmarkedPlaceList.length}',
                             style: GoogleFonts.workSans(
                               color: WcColors.black,
-                              fontSize: 22,
-                              fontWeight: FontWeight.w500,
+                              fontSize: 23,
+                              height: 1,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                           Text(
                             '개',
-                            style: GoogleFonts.workSans(
+                            style: TextStyle(
+                              fontFamily: WcFontFamily.notoSans,
                               color: WcColors.black,
-                              fontSize: 22,
-                              fontWeight: FontWeight.w600,
+                              fontSize: 21,
+                              height: 1,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
                         ],
@@ -85,9 +89,11 @@ class MapBookmarkPage extends StatelessWidget {
                             PlacePreviewUIModel thisPlace =
                                 _controller.bookmarkedPlaceList[index];
                             return PlaceBookmarkListTile(
+                              onTap: _controller.onPlaceTap,
+                              index: index,
                               onBookmarkTap: _controller.onBookmarkTap,
-                              isBookmarked: _controller.bookmarkedPlaceList
-                                  .contains(thisPlace),
+                              isBookmarked: _controller
+                                  .bookmarkedPlaceList[index].isBookmarked,
                               place: thisPlace,
                             );
                           })),
@@ -108,19 +114,25 @@ class PlaceBookmarkListTile extends StatelessWidget {
     Key? key,
     required this.place,
     this.onBookmarkTap,
-    this.onTap,
+    required this.onTap,
+    required this.index,
     required this.isBookmarked,
+    this.showBookmark = true,
   }) : super(key: key);
 
   PlacePreviewUIModel place;
-  void Function()? onTap;
-  void Function(PlacePreviewUIModel)? onBookmarkTap;
+  void Function(int) onTap;
+  void Function(int, bool)? onBookmarkTap;
   bool isBookmarked;
+  int index;
+  bool showBookmark;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onTap,
+      onTap: () {
+        onTap.call(index);
+      },
       child: Container(
         padding: EdgeInsets.fromLTRB(20, 15, 0, 15),
         width: WcWidth,
@@ -130,14 +142,14 @@ class PlaceBookmarkListTile extends StatelessWidget {
                 Border(bottom: BorderSide(width: 1, color: WcColors.grey80))),
         child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Padding(
-            padding: EdgeInsets.only(top: 4),
+            padding: EdgeInsets.only(top: 3),
             child: Image.asset(
               place.placeType.unselectedImagePng,
               height: 23,
             ),
           ),
           SizedBox(
-            width: 13,
+            width: 12,
           ),
           Expanded(
             child: Column(
@@ -152,30 +164,34 @@ class PlaceBookmarkListTile extends StatelessWidget {
                 Text(place.address,
                     style: TextStyle(
                         fontFamily: WcFontFamily.notoSans,
-                        color: WcColors.grey120,
+                        color: WcColors.grey140.withOpacity(0.8),
                         fontSize: 14,
                         overflow: TextOverflow.ellipsis,
-                        height: 1.5,
-                        fontWeight: FontWeight.w500)),
+                        height: 1.6,
+                        fontWeight: FontWeight.w400)),
               ],
             ),
           ),
-          GestureDetector(
-            onTap: () {
-              onBookmarkTap!.call(place);
-              print('clicked');
-            },
-            child: Container(
-                width: 50,
-                height: 40,
-                padding: EdgeInsets.only(right: 20),
-                alignment: Alignment.topRight,
-                color: WcColors.white,
-                child: SvgPicture.asset(
-                  'assets/icons/bookmark.svg',
-                  width: 16,
-                  color: (isBookmarked) ? WcColors.blue100 : WcColors.grey110,
-                )),
+          Visibility(
+            replacement: SizedBox(width: 10),
+            visible: showBookmark,
+            child: GestureDetector(
+              onTap: () {
+                onBookmarkTap!.call(index, !isBookmarked);
+                print('clicked');
+              },
+              child: Container(
+                  width: 50,
+                  height: 40,
+                  padding: EdgeInsets.only(right: 20),
+                  alignment: Alignment.topRight,
+                  color: WcColors.white,
+                  child: SvgPicture.asset(
+                    'assets/icons/bookmark.svg',
+                    width: 15,
+                    color: (isBookmarked) ? WcColors.blue100 : WcColors.grey110,
+                  )),
+            ),
           )
         ]),
       ),

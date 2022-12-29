@@ -46,43 +46,58 @@ class StartPage extends StatelessWidget {
                         const SizedBox(
                           height: 75,
                         ),
-                        Image.asset(
-                          'assets/icons/withconi.png',
-                          height: 51,
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Image.asset(
+                                'assets/icons/withconi.png',
+                                height: 51,
+                              ),
+                              const SizedBox(
+                                height: 16,
+                              ),
+                              const Text(
+                                '함께 코니멀의\n질병관리를 시작해볼까요?',
+                                style: TextStyle(
+                                    fontFamily: WcFontFamily.notoSans,
+                                    fontSize: 26,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                            ],
+                          ),
                         ),
                         const SizedBox(
-                          height: 16,
+                          height: 70,
                         ),
-                        const Text(
-                          '함께 코니멀의\n질병관리를 시작해볼까요?',
-                          style: TextStyle(
-                              fontFamily: WcFontFamily.notoSans,
-                              fontSize: 24,
-                              fontWeight: FontWeight.w600),
-                        ),
-                        const SizedBox(
-                          height: 60,
-                        ),
-                        Obx(() => WcTextField(
-                              isEng: true,
-                              hintText: '이메일을 입력하여 진행해보세요',
-                              onChanged: _controller.onEmailTextFieldChanged,
-                              textController: _controller.emailTextController,
-                              keyboardType: TextInputType.emailAddress,
-                              errorText: _controller.emailErrorText.value,
-                            )),
-                        const SizedBox(
-                          height: 40,
-                        ),
-                        Obx(
-                          () => WcStateButtonWidget(
-                            activeButtonColor: WcColors.blue100,
-                            activeTextColor: WcColors.white,
-                            buttonText:
-                                _controller.signingState.value.displayName,
-                            buttonWidth: WcWidth - 40,
-                            onTap: _controller.onNextButtonTap,
-                            buttonState: _controller.buttonState.value,
+                        Expanded(
+                          child: Column(
+                            children: [
+                              Obx(() => WcTextField(
+                                    isEng: true,
+                                    hintText: '이메일을 입력하여 진행해보세요',
+                                    onChanged:
+                                        _controller.onEmailTextFieldChanged,
+                                    textController:
+                                        _controller.emailTextController,
+                                    keyboardType: TextInputType.emailAddress,
+                                    errorText: _controller.emailErrorText.value,
+                                  )),
+                              const SizedBox(
+                                height: 40,
+                              ),
+                              Obx(
+                                () => WcStateButtonWidget(
+                                  activeButtonColor: WcColors.blue100,
+                                  activeTextColor: WcColors.white,
+                                  buttonText: _controller
+                                      .signingState.value.displayName,
+                                  buttonWidth: WcWidth - 40,
+                                  onTap: _controller.onNextButtonTap,
+                                  buttonState: _controller.buttonState.value,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                         Expanded(

@@ -26,7 +26,7 @@ class WcColors {
   static const Color grey20 = Color(0xffF5F5F7);
   static const Color grey40 = Color.fromARGB(255, 242, 244, 246);
   static const Color grey60 = Color.fromARGB(255, 238, 240, 243);
-  static const Color grey80 = Color.fromARGB(255, 234, 236, 237);
+  static const Color grey80 = Color.fromARGB(255, 232, 235, 239);
   static const Color grey110 = Color(0xffE0E3E8);
   static const Color grey100 = Color.fromARGB(255, 200, 203, 207);
   static const Color grey120 = Color.fromARGB(255, 170, 171, 174);
@@ -44,16 +44,16 @@ class WcColors {
 
   static const Color cyan60 = Color(0xffD7EEF8);
   static const Color yellow100 = Color(0xffF99419);
-  static const Color mustardLight = Color.fromARGB(255, 215, 219, 0);
+  static const Color mustardLight = Color.fromARGB(255, 95, 211, 0);
   static const Color babyPinkLight = Color.fromARGB(255, 255, 181, 181);
   static const Color pinkLight = Color.fromARGB(255, 251, 99, 99);
   static const Color blueLight = Color(0xff3787FF);
-  static const Color yellowLight = Color.fromARGB(255, 255, 221, 0);
+  static const Color yellowLight = Color.fromARGB(255, 255, 200, 0);
   static const Color mintLight = Color(0xff00E7AE);
   static const Color purpleLight = Color(0xff976AF1);
   static const Color greyLight = Color(0xffDEDEDE);
-  static const Color beidgeLight = Color.fromARGB(255, 255, 203, 139);
-  static const Color greenLight = Color.fromARGB(255, 0, 165, 74);
+  static const Color beidgeLight = Color.fromARGB(255, 220, 148, 60);
+  static const Color greenLight = Color.fromARGB(255, 0, 155, 96);
   static const Color yellow20 = Color(0xffFEF2CE);
   static const Color pink20 = Color(0xffFFE5E5);
 }

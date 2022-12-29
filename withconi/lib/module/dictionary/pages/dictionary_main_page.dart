@@ -95,7 +95,7 @@ class DictionaryMainPage extends StatelessWidget {
                     width: WcWidth,
                     diseaseIndex: index,
                     onTap: (disease) => Get.toNamed(Routes.DICTIONARY_DETAIL,
-                        arguments: {'diseaseCode': disease.diseaseCode}),
+                        arguments: {'diseaseId': disease.diseaseId}),
                   ),
                 ),
               ),
@@ -137,7 +137,9 @@ class DictionaryMainPage extends StatelessWidget {
             Obx(() => ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: _controller.catDiseaseList.length,
+                itemCount: (_controller.catDiseaseList.length - 1 >= 0)
+                    ? _controller.catDiseaseList.length - 1
+                    : _controller.catDiseaseList.length,
                 itemBuilder: (context, index) => CommonDiseaseListTile(
                       commonDisease: _controller.catDiseaseList[index],
                       index: index,
@@ -177,7 +179,9 @@ class DictionaryMainPage extends StatelessWidget {
                   child: ListView.builder(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
-                      itemCount: _controller.dogDiseaseList.length,
+                      itemCount: (_controller.dogDiseaseList.length - 1 >= 0)
+                          ? _controller.dogDiseaseList.length - 1
+                          : _controller.dogDiseaseList.length,
                       itemBuilder: (context, index) => CommonDiseaseListTile(
                             commonDisease: _controller.dogDiseaseList[index],
                             index: index,

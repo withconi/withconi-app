@@ -8,6 +8,7 @@ import 'package:withconi/core/error_handling/failures.dart';
 import 'package:withconi/data/provider/remote_provider/signin_api.dart';
 import 'package:withconi/import_basic.dart';
 import 'package:withconi/module/auth/auth_controller.dart';
+import '../../core/error_handling/exceptions.dart';
 import '../../core/signing_auth_info.dart';
 import '../enums/enum.dart';
 import '../model/custom_token.dart';
@@ -62,6 +63,14 @@ class SignInRepository extends GetxController {
       } else {
         return const Left(NoUserDataFailure());
       }
+    } on NoInternetConnectionException {
+      return const Left(NoConnectionFailure());
+    } on DataParsingException {
+      return const Left(DataParsingFailure());
+    } on NotFoundException {
+      return const Left(NotFoundFailure());
+    } on UnauthorizedException {
+      return const Left(WrongTokenFailure());
     } catch (e) {
       return const Left(NoUserDataFailure());
     }
@@ -70,19 +79,25 @@ class SignInRepository extends GetxController {
   Future<Either<Failure, CustomTokenResponseDTO>> refreshFirebaseCustomToken(
       {required TokenSigningAuthInfo authInfo,
       required Provider provider}) async {
-    var requestDTO = CreateCustomTokenRequestDTO.fromData(
-        platformToken: authInfo.platformToken, provider: provider);
-    var apiDTO =
-        ApiCallDTO.fromDTOWithPlatformToken(requestDTO, authInfo.platformToken);
-    Map<String, dynamic> customTokenResult =
-        await _api.refreshFirebaseCustomToken(apiDTO);
+    try {
+      var requestDTO = CreateCustomTokenRequestDTO.fromData(
+          platformToken: authInfo.platformToken, provider: provider);
+      var apiDTO = ApiCallDTO.fromDTOWithPlatformToken(
+          requestDTO, authInfo.platformToken);
+      Map<String, dynamic> customTokenResult =
+          await _api.refreshFirebaseCustomToken(apiDTO);
 
-    return Right(CustomTokenResponseDTO.fromJson(customTokenResult));
+      return Right(CustomTokenResponseDTO.fromJson(customTokenResult));
+    } on NoInternetConnectionException {
+      return const Left(NoConnectionFailure());
+    } on DataParsingException {
+      return const Left(DataParsingFailure());
+    } on NotFoundException {
+      return const Left(NotFoundFailure());
+    } on UnauthorizedException {
+      return const Left(WrongTokenFailure());
+    } catch (e) {
+      return const Left(Failure.notFoundFailure());
+    }
   }
-
-  // saveProviderLocalStorage({
-  //   required Provider provider,
-  // }) async {
-  //   // await WcTokenManager().saveProvider(provider);
-  // }
 }

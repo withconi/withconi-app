@@ -1,4 +1,5 @@
 import '../../../import_basic.dart';
+import '../../theme/text_theme.dart';
 
 class IconBigButton extends StatelessWidget {
   IconBigButton(
@@ -32,9 +33,11 @@ class IconBigButton extends StatelessWidget {
                 ),
                 Text(
                   text,
-                  style: GoogleFonts.notoSans(
+                  style: TextStyle(
+                      fontFamily: WcFontFamily.notoSans,
                       color: WcColors.grey180,
                       fontSize: 15,
+                      height: 1,
                       fontWeight: FontWeight.w600),
                 )
               ],

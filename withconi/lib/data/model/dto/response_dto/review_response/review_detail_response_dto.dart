@@ -18,7 +18,7 @@ class ReviewDetailResponseDTO
   factory ReviewDetailResponseDTO({
     @DateTimeConverter() required DateTime createdAt,
     required List<ConimalResponseDTO> conimals,
-    @JsonKey(name: 'diseaseTypeList')
+    @JsonKey(name: 'diseaseTypes')
     @Default([])
         List<DiseaseType> diseaseTypeList,
     @JsonKey(name: 'diseaseList')

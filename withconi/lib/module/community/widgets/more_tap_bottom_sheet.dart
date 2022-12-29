@@ -5,25 +5,50 @@ import 'package:withconi/module/theme/text_theme.dart';
 
 import '../../../import_basic.dart';
 
-enum BottomSheetFor { post, comment }
+enum BottomSheetFor { post, comment, mapReview }
 
 showMoreBottomSheet(
     {required String authorId,
     required String authorName,
     required BottomSheetFor bottomSheetFor}) {
   List<MoreBottomSheetOption> optionList = [];
-  if (firebaseAuth.currentUser?.uid == authorId) {
-    if (bottomSheetFor == BottomSheetFor.comment) {
-      optionList = [MoreBottomSheetOption.delete];
-    } else {
-      optionList = [MoreBottomSheetOption.edit, MoreBottomSheetOption.delete];
-    }
-  } else {
-    optionList = [
-      MoreBottomSheetOption.report,
-      MoreBottomSheetOption.block,
-    ];
+  // if (firebaseAuth.currentUser?.uid == authorId) {
+  //   if (bottomSheetFor == BottomSheetFor.comment) {
+  //     optionList = [MoreBottomSheetOption.delete];
+  //   } else {
+  //     optionList = [MoreBottomSheetOption.edit, MoreBottomSheetOption.delete];
+  //   }
+
+  switch (bottomSheetFor) {
+    case BottomSheetFor.comment:
+      if (firebaseAuth.currentUser?.uid == authorId) {
+        optionList = [MoreBottomSheetOption.delete];
+      } else {
+        optionList = [
+          MoreBottomSheetOption.report,
+          MoreBottomSheetOption.block
+        ];
+      }
+      break;
+    case BottomSheetFor.post:
+      if (firebaseAuth.currentUser?.uid == authorId) {
+        optionList = [MoreBottomSheetOption.edit, MoreBottomSheetOption.delete];
+      } else {
+        optionList = [
+          MoreBottomSheetOption.report,
+          MoreBottomSheetOption.block
+        ];
+      }
+
+      break;
+    case BottomSheetFor.mapReview:
+      if (firebaseAuth.currentUser?.uid == authorId) {
+        optionList = [MoreBottomSheetOption.delete];
+      }
+      break;
+    default:
   }
+
   return Get.bottomSheet(
     Container(
       height: optionList.length * 85,

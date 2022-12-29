@@ -56,7 +56,7 @@ class DiagnosisStep1Page extends StatelessWidget {
                       '진단할 코니멀에 대한\n기본정보를 선택해주세요',
                       style: TextStyle(
                           fontFamily: WcFontFamily.notoSans,
-                          fontSize: 24,
+                          fontSize: 25,
                           fontWeight: FontWeight.w500),
                     ),
                   ),

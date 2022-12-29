@@ -1,8 +1,9 @@
 import 'dart:io';
 
 class AppInfo {
-  static const version = '1.0.0';
+  static const iosVersion = '1.0.1';
+  static const androidVersion = '1.0.1';
   final String os = Platform.operatingSystem;
-  static const androidAppId = 'com.kakao.talk';
-  static const iosAppId = 'id362057947';
+  static const androidAppId = 'co.yellowtoast.withconi';
+  static const iosAppId = '1661081614';
 }

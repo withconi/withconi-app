@@ -20,7 +20,9 @@ SymptomGroup _$SymptomGroupFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SymptomGroup {
+  @JsonKey(name: 'categoryName')
   Symptom get symptomType => throw _privateConstructorUsedError;
+  @JsonKey(name: 'list')
   List<String> get symptomList => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +37,9 @@ abstract class $SymptomGroupCopyWith<$Res> {
           SymptomGroup value, $Res Function(SymptomGroup) then) =
       _$SymptomGroupCopyWithImpl<$Res, SymptomGroup>;
   @useResult
-  $Res call({Symptom symptomType, List<String> symptomList});
+  $Res call(
+      {@JsonKey(name: 'categoryName') Symptom symptomType,
+      @JsonKey(name: 'list') List<String> symptomList});
 }
 
 /// @nodoc
@@ -75,7 +79,9 @@ abstract class _$$_SymptomGroupCopyWith<$Res>
       __$$_SymptomGroupCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Symptom symptomType, List<String> symptomList});
+  $Res call(
+      {@JsonKey(name: 'categoryName') Symptom symptomType,
+      @JsonKey(name: 'list') List<String> symptomList});
 }
 
 /// @nodoc
@@ -110,16 +116,19 @@ class __$$_SymptomGroupCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_SymptomGroup implements _SymptomGroup {
   _$_SymptomGroup(
-      {required this.symptomType, required final List<String> symptomList})
+      {@JsonKey(name: 'categoryName') required this.symptomType,
+      @JsonKey(name: 'list') required final List<String> symptomList})
       : _symptomList = symptomList;
 
   factory _$_SymptomGroup.fromJson(Map<String, dynamic> json) =>
       _$$_SymptomGroupFromJson(json);
 
   @override
+  @JsonKey(name: 'categoryName')
   final Symptom symptomType;
   final List<String> _symptomList;
   @override
+  @JsonKey(name: 'list')
   List<String> get symptomList {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_symptomList);
@@ -162,15 +171,18 @@ class _$_SymptomGroup implements _SymptomGroup {
 
 abstract class _SymptomGroup implements SymptomGroup {
   factory _SymptomGroup(
-      {required final Symptom symptomType,
-      required final List<String> symptomList}) = _$_SymptomGroup;
+          {@JsonKey(name: 'categoryName') required final Symptom symptomType,
+          @JsonKey(name: 'list') required final List<String> symptomList}) =
+      _$_SymptomGroup;
 
   factory _SymptomGroup.fromJson(Map<String, dynamic> json) =
       _$_SymptomGroup.fromJson;
 
   @override
+  @JsonKey(name: 'categoryName')
   Symptom get symptomType;
   @override
+  @JsonKey(name: 'list')
   List<String> get symptomList;
   @override
   @JsonKey(ignore: true)

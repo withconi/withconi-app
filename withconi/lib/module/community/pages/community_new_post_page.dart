@@ -112,7 +112,8 @@ class CommunityNewPostPage extends StatelessWidget {
                   margin: const EdgeInsets.only(left: 20, top: 20, bottom: 14),
                   child: Text(
                     '어떤 코니멀과 관련된 글인가요?',
-                    style: GoogleFonts.notoSans(
+                    style: TextStyle(
+                        fontFamily: WcFontFamily.notoSans,
                         color: WcColors.black,
                         fontSize: 17,
                         fontWeight: FontWeight.w500),
@@ -216,10 +217,11 @@ class CommunityNewPostPage extends StatelessWidget {
                   child: TextField(
                     controller: _controller.contentsTextController,
                     onChanged: _controller.onContentsChanged,
-                    style: GoogleFonts.notoSans(
+                    style: TextStyle(
+                        fontFamily: WcFontFamily.notoSans,
                         color: WcColors.black,
                         fontSize: 16,
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.w400,
                         height: 1.5),
                     // maxLength: 80,
                     maxLines: 80,
@@ -227,10 +229,11 @@ class CommunityNewPostPage extends StatelessWidget {
                     decoration: InputDecoration(
                         isDense: true,
                         border: InputBorder.none,
-                        hintStyle: GoogleFonts.notoSans(
+                        hintStyle: TextStyle(
+                            fontFamily: WcFontFamily.notoSans,
                             color: WcColors.grey120,
                             fontSize: 15,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.w400,
                             height: 1.5),
                         hintText:
                             '욕설, 비방 등 상대방을 불쾌하게 하는 의견은 남기지 말아주세요. 신고를 당하면 커뮤니티 이용이 제한될 수 있습니다.'),

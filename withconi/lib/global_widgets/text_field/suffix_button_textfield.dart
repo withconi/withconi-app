@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:withconi/module/theme/colors.dart';
 
+import '../../module/theme/text_theme.dart';
+
 class WcSuffixIconTextField extends StatelessWidget {
   WcSuffixIconTextField(
       {Key? key,
@@ -59,11 +61,13 @@ class WcSuffixIconTextField extends StatelessWidget {
               contentPadding: EdgeInsets.only(top: 11, bottom: 10),
               errorText: errorText,
               labelText: labelText,
-              labelStyle: GoogleFonts.notoSans(
+              labelStyle: TextStyle(
+                  fontFamily: WcFontFamily.notoSans,
                   color: WcColors.grey100,
                   fontSize: 17,
                   fontWeight: FontWeight.w300),
-              floatingLabelStyle: GoogleFonts.notoSans(
+              floatingLabelStyle: TextStyle(
+                  fontFamily: WcFontFamily.notoSans,
                   color: fontColor ?? WcColors.black,
                   fontSize: 17,
                   height: 0.55,
@@ -79,7 +83,8 @@ class WcSuffixIconTextField extends StatelessWidget {
                 borderSide: BorderSide(color: WcColors.blue100, width: 1.5),
               ),
               hintText: hintText,
-              hintStyle: GoogleFonts.notoSans(
+              hintStyle: TextStyle(
+                  fontFamily: WcFontFamily.notoSans,
                   color: WcColors.grey100,
                   fontSize: 17,
                   fontWeight: FontWeight.w400),

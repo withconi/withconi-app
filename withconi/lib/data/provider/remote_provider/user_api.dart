@@ -12,6 +12,12 @@ class UserAPI {
     return userData;
   }
 
+  Future<Map<String, dynamic>> deleteUser(ApiCallDTO apiCallDTO) async {
+    Map<String, dynamic> deleteResult = await _dio.apiCall(apiCallDTO);
+
+    return deleteResult;
+  }
+
   Future<Map<String, dynamic>> updateUser(ApiCallDTO apiCallDTO) async {
     Map<String, dynamic> data = await _dio.apiCall(apiCallDTO);
 

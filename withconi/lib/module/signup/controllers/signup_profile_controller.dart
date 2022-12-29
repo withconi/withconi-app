@@ -89,7 +89,7 @@ class SignupProfileController extends GetxController {
   }
 
   validateNickname(String value) {
-    final nicknameRegExp = Regex.name;
+    final nicknameRegExp = Regex.nickName;
     nameErrorText.value = null;
     if (!nicknameRegExp.hasMatch(value)) {
       nickNameErrorText.value = Strings.validator.nickname;

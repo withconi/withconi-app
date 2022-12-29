@@ -52,8 +52,10 @@ class CommunityPostListPage extends StatelessWidget {
                     color: WcColors.white,
                     child: Text(
                       '새로운 글을 남겨보세요',
-                      style: GoogleFonts.notoSans(
-                          fontSize: 15, color: WcColors.grey120),
+                      style: TextStyle(
+                          fontFamily: WcFontFamily.notoSans,
+                          fontSize: 15,
+                          color: WcColors.grey120),
                     ),
                   ),
                 ),
@@ -100,7 +102,7 @@ class CommunityPostListPage extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Text('${_controller.boardName} 질환\n게시판',
+                            Text('${_controller.boardName}\n게시판',
                                 style: const TextStyle(
                                     color: WcColors.black,
                                     fontSize: 23,
@@ -171,7 +173,7 @@ class CommunityPostListPage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Text('${_controller.boardName} 질환\n게시판',
+                              Text('${_controller.boardName}\n게시판',
                                   style: const TextStyle(
                                       color: WcColors.black,
                                       fontSize: 23,

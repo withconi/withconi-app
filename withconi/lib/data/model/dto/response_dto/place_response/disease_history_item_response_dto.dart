@@ -10,7 +10,7 @@ class DiseaseHistoryItemResponseDTO
   @JsonSerializable(explicitToJson: true)
   factory DiseaseHistoryItemResponseDTO({
     @Default('구체적인 질병 없음') String diseaseName,
-    @Default(0) int diseasePercent,
+    @Default(0.0) double diseasePercent,
   }) = _DiseaseHistoryResponseDTO;
 
   factory DiseaseHistoryItemResponseDTO.fromJson(Map<String, dynamic> json) =>

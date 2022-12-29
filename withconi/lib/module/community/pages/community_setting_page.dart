@@ -37,7 +37,7 @@ class CommunitySettingPage extends StatelessWidget {
                   //           fontWeight: FontWeight.w600, fontSize: 22)),
                   // ),
                   WcTileButton(
-                    text: '내 정보 수정',
+                    text: '내 정보 / 닉네임 수정',
                     onTap: _controller.goToEditUserInfoPage,
                   ),
 

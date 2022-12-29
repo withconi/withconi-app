@@ -4,4 +4,5 @@ abstract class AbstractMapReviewUpdate {
   // void updateReview(ReviewDetailUIModel updatedReview) {}
   void addReview(ReviewDetailUIModel newReview) {}
   void deleteReview(String reviewId, String placeId) {}
+  void updateBookmark(String placeId, bool isBookmarked) {}
 }

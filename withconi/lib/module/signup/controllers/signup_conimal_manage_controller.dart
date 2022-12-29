@@ -19,13 +19,10 @@ import '../../../global_widgets/snackbar.dart';
 import '../../../import_basic.dart';
 
 class SignupConimalManageController extends GetxController {
-  SignupConimalManageController(
-      this._signUpDataManager, this._signupRepository, this._imageRepository);
+  SignupConimalManageController(this._signUpDataManager);
 
   final SignUpDataStorage _signUpDataManager;
-  final ImageRepository _imageRepository;
-  final SignUpRepository _signupRepository;
-  // late final Provider _provider;
+
   RxList<ConimalUIModel> conimalList = RxList<ConimalUIModel>();
   String get userName => _signUpDataManager.name;
   RxBool isButtonValid = false.obs;
@@ -89,94 +86,92 @@ class SignupConimalManageController extends GetxController {
     conimalList.removeAt(index);
   }
 
-  Future<void> signUp() async {
+  void goToNextPage() {
     _signUpDataManager.storeConimals(conimalList.toList());
 
-    await showLoading(() async {
-      User? newUser = await _signUpDataManager.signUpDataModel.signingAuthInfo!
-          .map(
-              tokenAuthInfo: (value) => signUpTokenAuthInfo(value),
-              credentialAuthInfo: (value) => signUpCredentialAuthInfo(value),
-              emailPwdAuthInfo: (value) => signUpEmailPwdAuthInfo(value));
+    Get.toNamed(Routes.TERMS_AND_CONDITION);
 
-      if (newUser != null) {
-        await signUpDB(newUser);
-      } else {
-        return;
-      }
-    });
+    // await showLoading(() async {
+    //   User? newUser = await _signUpDataManager.signUpDataModel.signingAuthInfo!
+    //       .map(
+    //           tokenAuthInfo: (value) => signUpTokenAuthInfo(value),
+    //           credentialAuthInfo: (value) => signUpCredentialAuthInfo(value),
+    //           emailPwdAuthInfo: (value) => signUpEmailPwdAuthInfo(value));
+
+    //   if (newUser != null) {
+    //     await signUpDB(newUser);
+    //   } else {
+    //     return;
+    //   }
+    // });
   }
 
-  Future<User?> signUpCredentialAuthInfo(
-      CredentialSigningAuthInfo authInfo) async {
-    var signUpResult = await _signupRepository.signUpWithCredential(
-        oAuthCredential: authInfo.oAuthCredential);
+  // Future<User?> signUpCredentialAuthInfo(
+  //     CredentialSigningAuthInfo authInfo) async {
+  //   var signUpResult = await _signupRepository.signUpWithCredential(
+  //       oAuthCredential: authInfo.oAuthCredential);
 
-    if (signUpResult.isRight()) {
-      return signUpResult.fold((l) => null, (user) => user);
-    } else {
-      return null;
-    }
-  }
+  //   if (signUpResult.isRight()) {
+  //     return signUpResult.fold((l) => null, (user) => user);
+  //   } else {
+  //     return null;
+  //   }
+  // }
 
-  Future<User?> signUpEmailPwdAuthInfo(EmailPwdSigningAuthInfo authInfo) async {
-    var signUpResult = await _signupRepository.signUpWithEmailPwd(
-        email: authInfo.email, password: authInfo.password);
+  // Future<User?> signUpEmailPwdAuthInfo(EmailPwdSigningAuthInfo authInfo) async {
+  //   var signUpResult = await _signupRepository.signUpWithEmailPwd(
+  //       email: authInfo.email, password: authInfo.password);
 
-    if (signUpResult.isRight()) {
-      return signUpResult.fold((l) => null, (user) => user);
-    } else {
-      return null;
-    }
-  }
+  //   if (signUpResult.isRight()) {
+  //     return signUpResult.fold((l) => null, (user) => user);
+  //   } else {
+  //     return null;
+  //   }
+  // }
 
-  Future<User?> signUpTokenAuthInfo(TokenSigningAuthInfo tokenAuthInfo) async {
-    var customTokenResult = await _signupRepository.createFirebaseCustomToken(
-        platformToken: tokenAuthInfo.platformToken,
-        provider: tokenAuthInfo.provider);
+  // Future<User?> signUpTokenAuthInfo(TokenSigningAuthInfo tokenAuthInfo) async {
+  //   var customTokenResult = await _signupRepository.createFirebaseCustomToken(
+  //       platformToken: tokenAuthInfo.platformToken,
+  //       provider: tokenAuthInfo.provider);
 
-    if (customTokenResult.isRight()) {
-      return customTokenResult.fold((l) => null, (r) async {
-        Either<Failure, User?> _signUpResult = await _signupRepository
-            .signUpWithFirebaseToken(firebaseToken: r.accessToken);
-        return _signUpResult.fold((l) => null, (user) {
-          return user;
-        });
-      });
-    } else {
-      return null;
-    }
-  }
+  //   if (customTokenResult.isRight()) {
+  //     return customTokenResult.fold((l) => null, (r) async {
+  //       Either<Failure, User?> _signUpResult = await _signupRepository
+  //           .signUpWithFirebaseToken(firebaseToken: r.accessToken);
+  //       return _signUpResult.fold((l) => null, (user) {
+  //         return user;
+  //       });
+  //     });
+  //   } else {
+  //     return null;
+  //   }
+  // }
 
-  Future<void> signUpDB(firebaseUser) async {
-    print(_signUpDataManager.signUpDataModel.conimals);
-    bool finished = await showLoading(() async {
-      String? profileImageRef;
-      if (_signUpDataManager.signUpDataModel.profileImage != null) {
-        var uploadEither = await _imageRepository.uploadImageFile(
-            imageItem: _signUpDataManager.signUpDataModel.profileImage!);
+  // Future<void> signUpDB(firebaseUser) async {
+  //   String? profileImageRef;
+  //   if (_signUpDataManager.signUpDataModel.profileImage != null) {
+  //     var uploadEither = await _imageRepository.uploadImageFile(
+  //         imageItem: _signUpDataManager.signUpDataModel.profileImage!);
 
-        profileImageRef =
-            uploadEither.fold((l) => null, (imageRef) => imageRef);
-      }
+  //     profileImageRef = uploadEither.fold((l) => null, (imageRef) => imageRef);
+  //   }
 
-      Either<Failure, Map<String, dynamic>> dbUserEither =
-          await _signupRepository.signUpUserDB(
-              signUpData: _signUpDataManager.signUpDataModel,
-              firebaseUid: firebaseUser.uid,
-              profileUploadRef: profileImageRef);
+  //   Either<Failure, Map<String, dynamic>> dbUserEither =
+  //       await _signupRepository.signUpUserDB(
+  //           signUpData: _signUpDataManager.signUpDataModel,
+  //           firebaseUid: firebaseUser.uid,
+  //           profileUploadRef: profileImageRef);
 
-      bool success = dbUserEither.fold((l) {
-        FailureInterpreter().mapFailureToSnackbar(l, 'signUpDB');
-        return false;
-      }, (r) => true);
-      return success;
-    });
+  //   bool success = dbUserEither.fold((l) {
+  //     FailureInterpreter().mapFailureToSnackbar(l, 'signUpDB');
+  //     return false;
+  //   }, (r) => true);
+  //   // return success;
 
-    if (finished) {
-      await AuthController.to.setUserAuthInfo();
-      Get.offAllNamed(Routes.NAVIGATION);
-    }
-    return;
-  }
+  //   if (success) {
+  //     await AuthController.to.setUserAuthInfo();
+  //     Get.offAllNamed(Routes.NAVIGATION);
+  //   }
+  //   return;
+  // }
 }

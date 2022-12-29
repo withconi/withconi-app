@@ -10,13 +10,13 @@ _$PharmacyPreviewResponseDTO _$$PharmacyPreviewResponseDTOFromJson(
         Map<String, dynamic> json) =>
     _$PharmacyPreviewResponseDTO(
       placeId: json['_id'] as String,
-      address: json['address'] as String,
+      address: json['address'] as String? ?? '',
       isPhotoReview: json['isPhotoReview'] as bool? ?? false,
-      isBookmarked: json['isBookmarked'] as bool,
+      isBookmarked: json['isBookmarked'] as bool? ?? true,
       coordinate: LatLngResponseDTO.fromJson(
           json['coordinate'] as Map<String, dynamic>),
-      phone: json['phone'] as String,
-      name: json['name'] as String,
+      phone: json['phone'] as String? ?? '',
+      name: json['name'] as String? ?? '',
       openingStatus: $enumDecode(_$OpeningStatusEnumMap, json['openingStatus']),
       thumbnail: json['thumbnail'] as String? ?? '',
       placeType: $enumDecode(_$PlaceTypeEnumMap, json['locType']),
@@ -81,13 +81,13 @@ _$HospitalPreviewResponseDTO _$$HospitalPreviewResponseDTOFromJson(
         Map<String, dynamic> json) =>
     _$HospitalPreviewResponseDTO(
       placeId: json['_id'] as String,
-      address: json['address'] as String,
+      address: json['address'] as String? ?? '',
       isPhotoReview: json['isPhotoReview'] as bool? ?? false,
-      isBookmarked: json['isBookmarked'] as bool,
+      isBookmarked: json['isBookmarked'] as bool? ?? true,
       coordinate: LatLngResponseDTO.fromJson(
           json['coordinate'] as Map<String, dynamic>),
-      phone: json['phone'] as String,
-      name: json['name'] as String,
+      phone: json['phone'] as String? ?? '',
+      name: json['name'] as String? ?? '',
       openingStatus: $enumDecode(_$OpeningStatusEnumMap, json['openingStatus']),
       thumbnail: json['thumbnail'] as String? ?? '',
       placeType: $enumDecode(_$PlaceTypeEnumMap, json['locType']),

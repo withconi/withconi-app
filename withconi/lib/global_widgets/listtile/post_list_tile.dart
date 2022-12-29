@@ -131,7 +131,16 @@ class PostListTile extends StatelessWidget {
                                         width: WcWidth - 90,
                                         child: CarouselSlider(
                                           options: CarouselOptions(
-                                              enableInfiniteScroll: false,
+                                              autoPlayAnimationDuration:
+                                                  const Duration(
+                                                      milliseconds: 650),
+                                              autoPlayInterval: const Duration(
+                                                  milliseconds: 2500),
+                                              pauseAutoPlayOnTouch: true,
+                                              autoPlay: (post.images.length > 1)
+                                                  ? true
+                                                  : false,
+                                              enableInfiniteScroll: true,
                                               onPageChanged: (index, reason) {},
                                               height: 180.0,
                                               viewportFraction: 1),
@@ -188,23 +197,20 @@ class PostListTile extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            SizedBox(
+                            Container(
                               width: WcWidth - 40 - 46,
+                              padding: const EdgeInsets.only(top: 8, bottom: 9),
                               child: IgnorePointer(
                                 ignoring: true,
-                                child: TextField(
-                                  decoration: const InputDecoration(
-                                      border: InputBorder.none, isDense: true),
-                                  controller:
-                                      TextEditingController(text: post.content),
-                                  readOnly: true,
+                                child: Text(
+                                  post.content,
                                   maxLines: 4,
-                                  minLines: 1,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontFamily: WcFontFamily.notoSans,
                                       fontSize: 14.5,
                                       fontWeight: FontWeight.w400,
                                       height: 1.5),
+                                  overflow: TextOverflow.ellipsis,
                                 ),
                               ),
                             ),

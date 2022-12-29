@@ -1,3 +1,5 @@
+import 'package:withconi/module/theme/text_theme.dart';
+
 import '../../import_basic.dart';
 
 class WcTextRadioButton extends StatelessWidget {
@@ -43,7 +45,8 @@ class WcTextRadioButton extends StatelessWidget {
               alignment: Alignment.center,
               child: Text(
                 text,
-                style: GoogleFonts.notoSans(
+                style: TextStyle(
+                    fontFamily: WcFontFamily.notoSans,
                     color: (selectedValue == null)
                         ? WcColors.grey200
                         : (selectedValue == value)

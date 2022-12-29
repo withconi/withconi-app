@@ -32,12 +32,12 @@ class SettingPageController extends GetxController {
   }
 
   goToRequestPage() {
-    return;
+    // return;
     Get.toNamed(Routes.REQUEST);
   }
 
   goToDeveloperInfoPage() {
-    return;
+    // return;
     Get.toNamed(Routes.DEVELOPER_INFO);
   }
 }

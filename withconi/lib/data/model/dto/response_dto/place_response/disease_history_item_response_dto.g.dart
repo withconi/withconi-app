@@ -10,7 +10,7 @@ _$_DiseaseHistoryResponseDTO _$$_DiseaseHistoryResponseDTOFromJson(
         Map<String, dynamic> json) =>
     _$_DiseaseHistoryResponseDTO(
       diseaseName: json['diseaseName'] as String? ?? '구체적인 질병 없음',
-      diseasePercent: json['diseasePercent'] as int? ?? 0,
+      diseasePercent: (json['diseasePercent'] as num?)?.toDouble() ?? 0.0,
     );
 
 Map<String, dynamic> _$$_DiseaseHistoryResponseDTOToJson(

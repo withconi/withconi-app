@@ -9,6 +9,7 @@ import 'package:withconi/data/repository/community_repository.dart';
 import 'package:withconi/data/repository/conimal_repository.dart';
 import 'package:withconi/global_widgets/loading/loading_overlay.dart';
 import 'package:withconi/module/community/controllers/custom_state_mixin.dart';
+import 'package:withconi/module/home/home_controller.dart';
 import 'package:withconi/module/page_status.dart';
 import 'package:withconi/module/ui_model/conimal_ui_model.dart';
 import 'package:withconi/module/ui_model/disease_ui_model.dart';
@@ -23,17 +24,14 @@ import '../../auth/auth_controller.dart';
 
 class DictionaryDetailController extends GetxController {
   DictionaryDetailController(
-    this._conimalRepository,
-    this._diseaseRepository,
-    this._diseaseCode,
-  );
+      this._conimalRepository, this._diseaseRepository, this._diseaseId);
   final ConimalRepository _conimalRepository;
   final DiseaseRepository _diseaseRepository;
   // CommunityRepository _communityRepository = Get.find();
   RxList<BoardResponseDTO> _boardList = RxList<BoardResponseDTO>();
   List<BoardResponseDTO> get boardList => _boardList.toList();
   late DiseaseUIModel disease;
-  late final String _diseaseCode;
+  late final String _diseaseId;
   RxBool isDiseaseManaged = false.obs;
   RxList<ConimalUIModel> _conimalList = RxList<ConimalUIModel>();
 
@@ -74,7 +72,7 @@ class DictionaryDetailController extends GetxController {
 // # liothyronine(합성 T3): 적어도 2가지 이상의 L-thyroxine으로 치료해보고 정상 혈청 T4 농도에  도달하지 못했을 때만 사용, 거의 대부분이 위에서 흡수됨, 초기 용량은 4-6mg/kg으로 하루에 세번으로 나누어 경구투여, 환축의 치료에대한 반응과 혈청 T3 농도에 따라 치료용량 결정''');
 
     pageStatus.value = PageStatus.loading();
-    await _getDiseaseDetail(diseaseCode: _diseaseCode);
+    await _getDiseaseDetail(diseaseCode: _diseaseId);
 
     if (AuthController.to.isUserValid) {
       _conimalList.assignAll(AuthController.to.userInfo.conimals.toList());
@@ -84,7 +82,7 @@ class DictionaryDetailController extends GetxController {
 
   _getDiseaseDetail({required String diseaseCode}) async {
     Either<Failure, DiseaseResponseDTO> diseaseDetailEither =
-        await _diseaseRepository.getDiseaseDetail(diseaseCode: diseaseCode);
+        await _diseaseRepository.getDiseaseDetail(diseaseId: diseaseCode);
 
     diseaseDetailEither.fold((failure) {
       ErrorObject errorObject =
@@ -98,6 +96,7 @@ class DictionaryDetailController extends GetxController {
 
   onDiseaseManagementChanged() async {
     await AuthController.to.setUserAuthInfo();
+    HomeController.to.setHomeUserInfo();
     isDiseaseManaged.value = _checkDiseaseMangingStatus();
     return;
   }
@@ -138,7 +137,7 @@ class DictionaryDetailController extends GetxController {
   goToRelatedCommunity() {
     Get.toNamed(Routes.COMMUNITY_POST_LIST, arguments: {
       'boardId': disease.boardId,
-      'boardName': disease.diseaseType.displayName
+      'boardName': disease.diseaseType.displayName + ' 질환'
     });
   }
 

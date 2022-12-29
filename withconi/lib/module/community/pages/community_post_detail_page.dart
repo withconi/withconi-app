@@ -1,27 +1,16 @@
-import 'package:carousel_indicator/carousel_indicator.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:withconi/import_basic.dart';
 import 'package:withconi/module/theme/text_theme.dart';
-import 'package:withconi/global_widgets/button/icon_button.dart';
-import 'package:withconi/global_widgets/button/like_button.dart';
+
 import 'package:withconi/global_widgets/listtile/comment_list_tile.dart';
 import 'package:withconi/global_widgets/loading/loading_page.dart';
-import 'package:withconi/global_widgets/photo_gallary/image_item.dart';
+
 import 'package:withconi/module/ui_model/comment_ui_model.dart';
-import 'package:withconi/module/ui_model/post_ui_model.dart';
-import '../../../data/enums/enum.dart';
-import '../../../core/tools/helpers/calculator.dart';
-import '../../../global_widgets/listtile/post_list_tile.dart';
-import '../../auth/auth_controller.dart';
+
 import '../controllers/community_post_detail_controller.dart';
 import '../widgets/community_post_detail_widget.dart';
-import '../widgets/more_tap_bottom_sheet.dart';
 
 import '../../../global_widgets/appbar/appbar.dart';
-import '../../../global_widgets/badge/badge.dart';
-import '../../../global_widgets/button/icon_text_button.dart';
-import '../../../global_widgets/photo_gallary/photo_gallary.dart';
 
 class CommunityPostDetailPage extends StatelessWidget {
   CommunityPostDetailPage({Key? key}) : super(key: key);
@@ -74,8 +63,10 @@ class CommunityPostDetailPage extends StatelessWidget {
                             color: WcColors.white,
                             child: Text(
                               '댓글을 남겨보세요',
-                              style: GoogleFonts.notoSans(
-                                  fontSize: 15, color: WcColors.grey120),
+                              style: TextStyle(
+                                  fontFamily: WcFontFamily.notoSans,
+                                  fontSize: 15,
+                                  color: WcColors.grey120),
                             ),
                           ),
                         ),
@@ -85,14 +76,22 @@ class CommunityPostDetailPage extends StatelessWidget {
                 )
               ],
               appBar: WcAppBar(
-                title: '커뮤니티',
+                title:
+                    _controller.thisPost.value.diseaseType.displayName + ' 게시판',
+                // '커뮤니티',
                 leading: SvgPicture.asset(
                   'assets/icons/arrow_back.svg',
                   color: WcColors.grey200,
                 ),
-                onLeadingTap: () {
-                  Get.back();
-                },
+                onActionTap: (_controller.fromRootPage)
+                    ? _controller.goToPostListPage
+                    : null,
+                action: (_controller.fromRootPage)
+                    ? Icon(
+                        Icons.list,
+                        size: 27,
+                      )
+                    : null,
               ),
               backgroundColor: WcColors.white,
               body: RefreshIndicator(

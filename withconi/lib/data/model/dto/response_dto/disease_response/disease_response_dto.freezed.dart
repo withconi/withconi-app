@@ -27,13 +27,19 @@ mixin _$DiseaseResponseDTO {
   @JsonKey(name: 'code')
   String get code => throw _privateConstructorUsedError;
   @JsonKey(name: 'boardId')
-  int get boardId => throw _privateConstructorUsedError;
+  int get boardId =>
+      throw _privateConstructorUsedError; //TODO: 여기 수정 후에 바꾸어야 해요~~~~ speciesList
+  @JsonKey(name: 'species')
+  List<Species> get speciesList => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get definition => throw _privateConstructorUsedError;
+  @JsonKey(name: 'detailDiagnosis')
   String get diagnosisTechnique => throw _privateConstructorUsedError;
+  @JsonKey(name: 'detailCure')
   String get treatment => throw _privateConstructorUsedError;
   @JsonKey(name: 'detailAdvice')
   String get advice => throw _privateConstructorUsedError;
+  @JsonKey(name: 'detailSymptoms')
   List<SymptomGroup> get symptomGroupList => throw _privateConstructorUsedError;
   DiseaseType get diseaseType => throw _privateConstructorUsedError;
 
@@ -54,12 +60,13 @@ abstract class $DiseaseResponseDTOCopyWith<$Res> {
       @JsonKey(name: '_id') String diseaseId,
       @JsonKey(name: 'code') String code,
       @JsonKey(name: 'boardId') int boardId,
+      @JsonKey(name: 'species') List<Species> speciesList,
       String name,
       String definition,
-      String diagnosisTechnique,
-      String treatment,
+      @JsonKey(name: 'detailDiagnosis') String diagnosisTechnique,
+      @JsonKey(name: 'detailCure') String treatment,
       @JsonKey(name: 'detailAdvice') String advice,
-      List<SymptomGroup> symptomGroupList,
+      @JsonKey(name: 'detailSymptoms') List<SymptomGroup> symptomGroupList,
       DiseaseType diseaseType});
 }
 
@@ -80,6 +87,7 @@ class _$DiseaseResponseDTOCopyWithImpl<$Res, $Val extends DiseaseResponseDTO>
     Object? diseaseId = null,
     Object? code = null,
     Object? boardId = null,
+    Object? speciesList = null,
     Object? name = null,
     Object? definition = null,
     Object? diagnosisTechnique = null,
@@ -105,6 +113,10 @@ class _$DiseaseResponseDTOCopyWithImpl<$Res, $Val extends DiseaseResponseDTO>
           ? _value.boardId
           : boardId // ignore: cast_nullable_to_non_nullable
               as int,
+      speciesList: null == speciesList
+          ? _value.speciesList
+          : speciesList // ignore: cast_nullable_to_non_nullable
+              as List<Species>,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -150,12 +162,13 @@ abstract class _$$_DiseaseResponseDTOCopyWith<$Res>
       @JsonKey(name: '_id') String diseaseId,
       @JsonKey(name: 'code') String code,
       @JsonKey(name: 'boardId') int boardId,
+      @JsonKey(name: 'species') List<Species> speciesList,
       String name,
       String definition,
-      String diagnosisTechnique,
-      String treatment,
+      @JsonKey(name: 'detailDiagnosis') String diagnosisTechnique,
+      @JsonKey(name: 'detailCure') String treatment,
       @JsonKey(name: 'detailAdvice') String advice,
-      List<SymptomGroup> symptomGroupList,
+      @JsonKey(name: 'detailSymptoms') List<SymptomGroup> symptomGroupList,
       DiseaseType diseaseType});
 }
 
@@ -174,6 +187,7 @@ class __$$_DiseaseResponseDTOCopyWithImpl<$Res>
     Object? diseaseId = null,
     Object? code = null,
     Object? boardId = null,
+    Object? speciesList = null,
     Object? name = null,
     Object? definition = null,
     Object? diagnosisTechnique = null,
@@ -199,6 +213,10 @@ class __$$_DiseaseResponseDTOCopyWithImpl<$Res>
           ? _value.boardId
           : boardId // ignore: cast_nullable_to_non_nullable
               as int,
+      speciesList: null == speciesList
+          ? _value._speciesList
+          : speciesList // ignore: cast_nullable_to_non_nullable
+              as List<Species>,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -236,18 +254,29 @@ class __$$_DiseaseResponseDTOCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_DiseaseResponseDTO implements _DiseaseResponseDTO {
   _$_DiseaseResponseDTO(
-      {@DateTimeConverter() required this.createdAt,
-      @JsonKey(name: '_id') required this.diseaseId,
-      @JsonKey(name: 'code') required this.code,
-      @JsonKey(name: 'boardId') this.boardId = 1,
+      {@DateTimeConverter()
+          required this.createdAt,
+      @JsonKey(name: '_id')
+          required this.diseaseId,
+      @JsonKey(name: 'code')
+          required this.code,
+      @JsonKey(name: 'boardId')
+          this.boardId = 0,
+      @JsonKey(name: 'species')
+          final List<Species> speciesList = const [Species.cat, Species.dog],
       required this.name,
       this.definition = '',
-      this.diagnosisTechnique = '',
-      this.treatment = '',
-      @JsonKey(name: 'detailAdvice') this.advice = '',
-      final List<SymptomGroup> symptomGroupList = const [],
+      @JsonKey(name: 'detailDiagnosis')
+          this.diagnosisTechnique = '',
+      @JsonKey(name: 'detailCure')
+          this.treatment = '',
+      @JsonKey(name: 'detailAdvice')
+          this.advice = '',
+      @JsonKey(name: 'detailSymptoms')
+          final List<SymptomGroup> symptomGroupList = const [],
       this.diseaseType = DiseaseType.undefined})
-      : _symptomGroupList = symptomGroupList;
+      : _speciesList = speciesList,
+        _symptomGroupList = symptomGroupList;
 
   factory _$_DiseaseResponseDTO.fromJson(Map<String, dynamic> json) =>
       _$$_DiseaseResponseDTOFromJson(json);
@@ -264,23 +293,33 @@ class _$_DiseaseResponseDTO implements _DiseaseResponseDTO {
   @override
   @JsonKey(name: 'boardId')
   final int boardId;
+//TODO: 여기 수정 후에 바꾸어야 해요~~~~ speciesList
+  final List<Species> _speciesList;
+//TODO: 여기 수정 후에 바꾸어야 해요~~~~ speciesList
+  @override
+  @JsonKey(name: 'species')
+  List<Species> get speciesList {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_speciesList);
+  }
+
   @override
   final String name;
   @override
   @JsonKey()
   final String definition;
   @override
-  @JsonKey()
+  @JsonKey(name: 'detailDiagnosis')
   final String diagnosisTechnique;
   @override
-  @JsonKey()
+  @JsonKey(name: 'detailCure')
   final String treatment;
   @override
   @JsonKey(name: 'detailAdvice')
   final String advice;
   final List<SymptomGroup> _symptomGroupList;
   @override
-  @JsonKey()
+  @JsonKey(name: 'detailSymptoms')
   List<SymptomGroup> get symptomGroupList {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_symptomGroupList);
@@ -292,7 +331,7 @@ class _$_DiseaseResponseDTO implements _DiseaseResponseDTO {
 
   @override
   String toString() {
-    return 'DiseaseResponseDTO(createdAt: $createdAt, diseaseId: $diseaseId, code: $code, boardId: $boardId, name: $name, definition: $definition, diagnosisTechnique: $diagnosisTechnique, treatment: $treatment, advice: $advice, symptomGroupList: $symptomGroupList, diseaseType: $diseaseType)';
+    return 'DiseaseResponseDTO(createdAt: $createdAt, diseaseId: $diseaseId, code: $code, boardId: $boardId, speciesList: $speciesList, name: $name, definition: $definition, diagnosisTechnique: $diagnosisTechnique, treatment: $treatment, advice: $advice, symptomGroupList: $symptomGroupList, diseaseType: $diseaseType)';
   }
 
   @override
@@ -306,6 +345,8 @@ class _$_DiseaseResponseDTO implements _DiseaseResponseDTO {
                 other.diseaseId == diseaseId) &&
             (identical(other.code, code) || other.code == code) &&
             (identical(other.boardId, boardId) || other.boardId == boardId) &&
+            const DeepCollectionEquality()
+                .equals(other._speciesList, _speciesList) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.definition, definition) ||
                 other.definition == definition) &&
@@ -328,6 +369,7 @@ class _$_DiseaseResponseDTO implements _DiseaseResponseDTO {
       diseaseId,
       code,
       boardId,
+      const DeepCollectionEquality().hash(_speciesList),
       name,
       definition,
       diagnosisTechnique,
@@ -353,16 +395,26 @@ class _$_DiseaseResponseDTO implements _DiseaseResponseDTO {
 
 abstract class _DiseaseResponseDTO implements DiseaseResponseDTO {
   factory _DiseaseResponseDTO(
-      {@DateTimeConverter() required final DateTime createdAt,
-      @JsonKey(name: '_id') required final String diseaseId,
-      @JsonKey(name: 'code') required final String code,
-      @JsonKey(name: 'boardId') final int boardId,
+      {@DateTimeConverter()
+          required final DateTime createdAt,
+      @JsonKey(name: '_id')
+          required final String diseaseId,
+      @JsonKey(name: 'code')
+          required final String code,
+      @JsonKey(name: 'boardId')
+          final int boardId,
+      @JsonKey(name: 'species')
+          final List<Species> speciesList,
       required final String name,
       final String definition,
-      final String diagnosisTechnique,
-      final String treatment,
-      @JsonKey(name: 'detailAdvice') final String advice,
-      final List<SymptomGroup> symptomGroupList,
+      @JsonKey(name: 'detailDiagnosis')
+          final String diagnosisTechnique,
+      @JsonKey(name: 'detailCure')
+          final String treatment,
+      @JsonKey(name: 'detailAdvice')
+          final String advice,
+      @JsonKey(name: 'detailSymptoms')
+          final List<SymptomGroup> symptomGroupList,
       final DiseaseType diseaseType}) = _$_DiseaseResponseDTO;
 
   factory _DiseaseResponseDTO.fromJson(Map<String, dynamic> json) =
@@ -380,18 +432,24 @@ abstract class _DiseaseResponseDTO implements DiseaseResponseDTO {
   @override
   @JsonKey(name: 'boardId')
   int get boardId;
+  @override //TODO: 여기 수정 후에 바꾸어야 해요~~~~ speciesList
+  @JsonKey(name: 'species')
+  List<Species> get speciesList;
   @override
   String get name;
   @override
   String get definition;
   @override
+  @JsonKey(name: 'detailDiagnosis')
   String get diagnosisTechnique;
   @override
+  @JsonKey(name: 'detailCure')
   String get treatment;
   @override
   @JsonKey(name: 'detailAdvice')
   String get advice;
   @override
+  @JsonKey(name: 'detailSymptoms')
   List<SymptomGroup> get symptomGroupList;
   @override
   DiseaseType get diseaseType;

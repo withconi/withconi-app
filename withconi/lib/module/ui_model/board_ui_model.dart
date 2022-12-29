@@ -9,10 +9,15 @@ class BoardUIModel extends Equatable {
   final DiseaseType diseaseType;
 
   factory BoardUIModel.fromDto(BoardResponseDTO _dto) {
+    String boardTitle = '';
+
+    if (_dto.name.contains('질환')) {
+      boardTitle = '${_dto.name} ';
+    } else {
+      boardTitle = _dto.name;
+    }
     return BoardUIModel(
-        boardId: _dto.id,
-        title: _dto.diseaseType.displayName,
-        diseaseType: _dto.diseaseType);
+        boardId: _dto.id, title: boardTitle, diseaseType: _dto.diseaseType);
   }
 
   const BoardUIModel(
