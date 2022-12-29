@@ -19,7 +19,7 @@ class UrlLauncher {
           Platform.isAndroid ? AppInfo.androidAppId : AppInfo.iosAppId;
       final url = Uri.parse(
         Platform.isAndroid
-            ? "market://details?id=$appId"
+            ? "https://play.google.com/store/apps/details?id=$appId"
             : "https://apps.apple.com/app/id$appId",
       );
       launchUrl(
