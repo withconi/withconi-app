@@ -16,7 +16,7 @@ class SnsButtonWidget extends StatelessWidget {
   }) : super(key: key);
 
   void Function(Provider) onTap;
-  double height = 90;
+  double height = 70;
   double iconHeight = 58;
   Provider provider;
 
@@ -35,18 +35,16 @@ class SnsButtonWidget extends StatelessWidget {
               height: iconHeight,
             ),
           ),
-          const SizedBox(
-            height: 12,
-          ),
-          Text(
-            provider.displayName,
-            style: TextStyle(
-                height: 1,
-                fontFamily: WcFontFamily.notoSans,
-                color: WcColors.black,
-                fontSize: 13,
-                fontWeight: FontWeight.w500),
-          )
+
+          // Text(
+          //   provider.displayName,
+          //   style: TextStyle(
+          //       height: 1,
+          //       fontFamily: WcFontFamily.notoSans,
+          //       color: WcColors.black,
+          //       fontSize: 13,
+          //       fontWeight: FontWeight.w500),
+          // )
         ],
       ),
     );
