@@ -5,7 +5,7 @@ import '../../../data/enums/enum.dart';
 class CacheManager {
   static Future<bool> saveCache(
     CacheControllerKey cacheControllerKey,
-    String? value,
+    dynamic value,
   ) async {
     final box = GetStorage();
     await box.write(cacheControllerKey.toString(), value);
@@ -16,6 +16,16 @@ class CacheManager {
     final box = GetStorage();
     String? cacheResult = box.read(cacheControllerKey.toString());
     return cacheResult;
+  }
+
+  static bool getAppInitedCache() {
+    final box = GetStorage();
+    bool? appInited = box.read<bool?>(CacheControllerKey.appInited.toString());
+    if (appInited == null) {
+      return false;
+    } else {
+      return appInited;
+    }
   }
 
   static Future<void> removeCache(CacheControllerKey cacheControllerKey) async {
