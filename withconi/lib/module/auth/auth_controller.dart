@@ -2,6 +2,9 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+import 'package:withconi/core/tools/helpers/cache_manager.dart';
 import 'package:withconi/data/enums/enum.dart';
 import 'package:withconi/core/tools/helpers/dynamic_link_manager.dart';
 import 'package:withconi/core/tools/helpers/url_launcher.dart';
@@ -10,6 +13,7 @@ import 'package:withconi/core/error_handling/failure_ui_interpreter.dart';
 import 'package:withconi/core/error_handling/failures.dart';
 import 'package:withconi/data/model/dto/response_dto/auth_response/user_response_dto.dart';
 import 'package:withconi/data/provider/remote_provider/app_config_api.dart';
+import 'package:withconi/data/provider/remote_provider/user_api.dart';
 import 'package:withconi/data/repository/app_setting_repository.dart';
 import 'package:withconi/data/repository/user_repository.dart';
 import 'package:withconi/module/common/controllers/fcm_controller.dart';
@@ -32,8 +36,8 @@ class AuthController extends GetxController {
   RxInt homeNavIndex = 0.obs;
   Uri? deepLink;
   late bool? _isVersionValid;
-
   late bool _isUserInfoInDbAndAuth;
+  late bool _appInited;
   // late bool _isFcmTokenValid = false;
 
   String get _firebaseAuthEmail => (firebaseAuth.currentUser == null)
@@ -46,6 +50,7 @@ class AuthController extends GetxController {
   bool get isEmailVerified => _userInfo!.isEmailVerified;
   bool get isVerifySkipped => _userInfo!.verificationSkipped;
   bool get _isFirebaseAuthValid => (firebaseAuth.currentUser != null);
+  bool get appInited => _appInited;
 
   UserUIModel get userInfo => _userInfo!;
   String get userId => userInfo.uid;
@@ -54,6 +59,7 @@ class AuthController extends GetxController {
   Future<void> onInit() async {
     super.onInit();
     _isVersionValid = await _setVersionValid();
+    _appInited = CacheManager.getAppInitedCache();
 
     if (_isVersionValid != null) {
       if (isVersionValid) {
@@ -166,16 +172,7 @@ class AuthController extends GetxController {
 
   signOut({bool goToStartPage = true, bool activeLoading = true}) async {
     var result = await showLoading(() async {
-      // try {
-      //   await _signOutFirebase();
-      // } catch (e) {
-      //   await NavigationBinding().closeBindings();
-      //   if (goToStartPage) {
-      //     Get.offAllNamed(Routes.START);
-      //     return true;
-      //   }
-      //   return true;
-      // }
+      await signOutPlatform(AuthController.to.userInfo.provider);
       await NavigationBinding.closeBindings();
       await _signOutFirebase();
 
@@ -189,7 +186,21 @@ class AuthController extends GetxController {
     return result;
   }
 
+  signOutPlatform(Provider provider) async {
+    switch (provider) {
+      case Provider.google:
+        await googleSignIn.signOut();
+        break;
+      case Provider.kakao:
+        await UserApi.instance.logout();
+        break;
+
+      default:
+    }
+  }
+
   unregister() async {
+    await signOutPlatform(AuthController.to.userInfo.provider);
     await NavigationBinding.closeBindings();
   }
 
