@@ -1,6 +1,7 @@
 // ignore_for_file: unused_local_variable
 import 'dart:async';
 import 'package:dartz/dartz.dart';
+import 'package:withconi/core/values/constants/auth_variables.dart';
 import 'package:withconi/data/enums/enum.dart';
 import 'package:withconi/data/model/dto/response_dto/auth_response/email_duplication_check_response_dto.dart';
 import 'package:withconi/data/repository/signin_respository.dart';
@@ -136,12 +137,10 @@ class StartPageController extends GetxController with WcStateMixin<EmittedBy> {
       pageLoading.value = false;
       return null;
     }, (email) {
-      if (email.isEmpty) {
-        return null;
-      } else {
-        return email;
-      }
+      if (email == null || email.isEmpty) return null;
+      return email;
     });
+    _userEmail.value = userEmail ?? '';
 
     return userEmail;
   }
@@ -191,8 +190,12 @@ class StartPageController extends GetxController with WcStateMixin<EmittedBy> {
 
       case EmittedBy.logic:
         if (provider.signMethod == SignMethod.sns) {
-          String? newEmail = await _getSnsEmail(provider);
-          if (newEmail != null && newEmail.isNotEmpty) {
+          String newEmail = _userEmail.value;
+          if (newEmail.isEmpty) {
+            newEmail = await _getSnsEmail(provider) ?? '';
+          }
+
+          if (newEmail.isNotEmpty) {
             SigningAuthInfo? signingAuthInfo = await _getSnsAuthInfo(newEmail);
 
             if (signingAuthInfo != null) {
@@ -206,7 +209,6 @@ class StartPageController extends GetxController with WcStateMixin<EmittedBy> {
           } else {
             showCustomSnackbar(text: '이메일을 직접 입력하여 회원가입 해주세요');
           }
-
           _resetSignUserInfo();
         }
         break;
@@ -214,9 +216,13 @@ class StartPageController extends GetxController with WcStateMixin<EmittedBy> {
   }
 
   _signInSns(EmittedBy emitMethod, Provider provider) async {
-    String? newEmail = await _getSnsEmail(provider);
+    String newEmail = _userEmail.value;
 
-    if (newEmail != null && newEmail.isNotEmpty) {
+    if (newEmail.isEmpty) {
+      newEmail = await _getSnsEmail(provider) ?? '';
+    }
+
+    if (newEmail.isNotEmpty) {
       switch (emitMethod) {
         case EmittedBy.button:
           SigningAuthInfo? signingAuthInfo = await _getSnsAuthInfo(newEmail);
@@ -343,8 +349,12 @@ class StartPageController extends GetxController with WcStateMixin<EmittedBy> {
     } else if (!userExistenceDTO.isAuth && !userExistenceDTO.isDB) {
       _changeSignState(SigningState.signUp, emitBy);
     } else {
+      if (firebaseAuth.currentUser != null) {
+        await firebaseAuth.currentUser!.delete();
+      }
       showCustomSnackbar(text: '이전에 가입이 완료되지 않은 이메일입니다');
-      _changeSignState(SigningState.none, emitBy);
+
+      _resetSignUserInfo();
     }
   }
 
