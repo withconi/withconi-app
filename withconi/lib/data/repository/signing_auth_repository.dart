@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:withconi/core/signing_auth_info.dart';
+import 'package:withconi/core/tools/helpers/cache_manager.dart';
 import 'package:withconi/data/provider/platform_provider/platform_auth_api.dart';
 import 'package:withconi/data/provider/remote_provider/user_api.dart';
 import 'package:withconi/import_basic.dart';
@@ -123,10 +124,10 @@ class PlatformAuthRepository extends GetxService {
     }
   }
 
-  Future<Either<Failure, String>> getEmailFromProvider(
+  Future<Either<Failure, String?>> getEmailFromProvider(
       {required Provider provider}) async {
     try {
-      late String _userEmail;
+      late String? _userEmail;
       switch (provider) {
         case Provider.google:
           _userEmail = await _platformAuthApi.getGoogleUserEmail();
