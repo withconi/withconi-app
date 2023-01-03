@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:dartz/dartz.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:withconi/core/signing_auth_info.dart';
+import 'package:withconi/core/tools/helpers/cache_manager.dart';
 import 'package:withconi/data/enums/enum.dart';
 import 'package:withconi/module/community/widgets/pick_image_bottom_sheet.dart';
 import 'package:withconi/module/signup/signup_data_storage.dart';
@@ -47,10 +48,16 @@ class SignupProfileController extends GetxController {
     super.onReady();
 
     _signUpDataManager.storeAuthInfo(_signingAuthInfo);
+    _getUsernameStorage();
 
     debounce(_name, validateName, time: const Duration(milliseconds: 200));
     debounce(_nickName, validateNickname,
         time: const Duration(milliseconds: 200));
+  }
+
+  _getUsernameStorage() {
+    _name.value = CacheManager.getCache(CacheControllerKey.name) ?? '';
+    nameTextController.text = _name.value;
   }
 
   void onNameChanged(String val) {
