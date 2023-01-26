@@ -15,7 +15,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.1+2
+version: 1.0.1+6
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
@@ -37,18 +37,18 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   get: 4.6.1
   google_fonts: ^2.3.1
-  firebase_messaging: ^11.2.13
+  firebase_messaging: ^14.2.1
   flutter_svg: ^1.0.3
   kakao_flutter_sdk_user: ^1.3.0
-  firebase_auth: ^3.3.14
+  firebase_auth: ^4.2.5
   google_sign_in: ^5.3.0
-  firebase_analytics: ^9.1.5
-  firebase_core: ^1.14.1
+  firebase_analytics: ^10.1.0
+  firebase_core: ^2.4.1
   get_storage: ^2.0.3
   dio: ^4.0.6
-  sign_in_with_apple: ^3.3.0
+  sign_in_with_apple: ^4.3.0
   crypto: ^3.0.2
-  flutter_naver_login: ^1.6.0
+  flutter_naver_login: ^1.7.0
   intl: ^0.17.0
   equatable: ^2.0.3
   dartz: ^0.10.1
@@ -58,14 +58,13 @@ dependencies:
   flutter_spinkit: ^5.1.0
   flutter_slidable: ^1.3.0
   image_picker: ^0.8.5+3
-  firebase_storage: ^10.2.18
   dropdown_button2: ^1.6.3
   carousel_slider: ^4.1.1
   carousel_indicator: ^1.0.6
   photo_view: ^0.14.0
   http_parser: ^4.0.1
   geolocator: ^8.2.1
-  firebase_dynamic_links: ^4.3.4
+  firebase_dynamic_links: ^5.0.11
   flutter_naver_map: 
     git: 
       url: https://github.com/note11g/flutter_naver_map.git
@@ -78,6 +77,7 @@ dependencies:
   dart_jsonwebtoken: ^2.5.1
   pin_code_fields: ^7.4.0
   skeletons: ^0.0.3
+  firebase_crashlytics: ^3.0.11
   # lazy_load_scrollview: ^1.3.0
   # zefyr: ^0.12.0
   # rich_editor: ^0.0.5

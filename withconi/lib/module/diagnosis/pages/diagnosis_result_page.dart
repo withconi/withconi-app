@@ -1,5 +1,6 @@
 import 'package:flutter_svg/svg.dart';
 import 'package:lottie/lottie.dart';
+import 'package:withconi/core/tools/helpers/url_launcher.dart';
 import 'package:withconi/data/model/diagnosis_result_response_dto.dart';
 
 import 'package:withconi/import_basic.dart';
@@ -73,20 +74,65 @@ class DiagnosisResultPage extends StatelessWidget {
                                   '자가진단 결과',
                                   style: TextStyle(
                                       fontFamily: WcFontFamily.notoSans,
-                                      fontSize: 25,
+                                      fontSize: 26,
                                       fontWeight: FontWeight.w600),
                                 ),
                                 SizedBox(
-                                  height: 15,
+                                  height: 13,
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      '* [동물질병/증상 공공데이터] 활용',
+                                      style: TextStyle(
+                                          fontFamily: WcFontFamily.notoSans,
+                                          fontSize: 14,
+                                          height: 1.3,
+                                          color: WcColors.grey180,
+                                          fontWeight: FontWeight.w400),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    GestureDetector(
+                                      onTap: () {
+                                        UrlLauncher.launchLink(
+                                            'https://www.data.go.kr/data/15050441/fileData.do');
+                                      },
+                                      child: Container(
+                                        height: 24,
+                                        alignment: Alignment.center,
+                                        padding:
+                                            EdgeInsets.symmetric(horizontal: 8),
+                                        decoration: BoxDecoration(
+                                            color: WcColors.grey80,
+                                            borderRadius:
+                                                BorderRadius.circular(5)),
+                                        child: Text(
+                                          '데이터 링크',
+                                          style: TextStyle(
+                                              color: WcColors.grey200,
+                                              fontFamily: WcFontFamily.notoSans,
+                                              fontSize: 13,
+                                              height: 1.3),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+
+                                SizedBox(
+                                  height: 25,
                                 ),
                                 Text(
                                   '자가진단 결과는 정확한 진단이 아닙니다.\n정확한 진단과 치료를 위해\n반드시 병원에 내원하실 것을 권고합니다.',
                                   style: TextStyle(
                                       fontFamily: WcFontFamily.notoSans,
                                       fontSize: 15,
-                                      height: 1.5,
+                                      height: 1.6,
                                       fontWeight: FontWeight.w400),
                                 ),
+
                                 SizedBox(
                                   height: 40,
                                 ),
@@ -172,10 +218,10 @@ class DiseaseResultListTile extends StatelessWidget {
             color: WcColors.white,
             boxShadow: [
               BoxShadow(
-                  color: WcColors.black.withOpacity(0.17),
-                  offset: Offset(0, 1.5),
-                  blurRadius: 10,
-                  spreadRadius: -3)
+                  color: WcColors.black.withOpacity(0.15),
+                  offset: Offset(0, 2),
+                  blurRadius: 12,
+                  spreadRadius: -3.5)
             ]),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

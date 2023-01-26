@@ -1,15 +1,10 @@
 // ignore_for_file: prefer_const_constructors_in_immutables
 
 import 'dart:io';
-
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:withconi/data/enums/enum.dart';
 import 'package:withconi/import_basic.dart';
 import 'package:withconi/module/start/start_controller.dart';
 import 'package:withconi/module/start/start_widgets/sns_button.dart';
-import 'package:withconi/module/theme/colors.dart';
-import 'package:withconi/module/theme/sizes.dart';
 import 'package:withconi/module/theme/text_theme.dart';
 import '../../global_widgets/button/state_button.dart';
 import '../../global_widgets/text_field/textfield.dart';

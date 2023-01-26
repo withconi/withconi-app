@@ -1,14 +1,10 @@
 import 'package:flutter_svg/svg.dart';
-import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:withconi/data/enums/enum.dart';
 import 'package:withconi/import_basic.dart';
 import 'package:withconi/module/common/my_lazy_load_scroll_view.dart';
 import 'package:withconi/module/community/controllers/custom_state_mixin.dart';
 import 'package:withconi/module/theme/text_theme.dart';
-import 'package:withconi/module/ui_model/post_ui_model.dart';
 import '../../../global_widgets/error_widget/error_widget.dart';
-import '../../../global_widgets/loading/loading_page.dart';
 import '../../page_status.dart';
 import '../controllers/community_post_list_controller.dart';
 import '../../../global_widgets/appbar/appbar.dart';
@@ -102,7 +98,7 @@ class CommunityPostListPage extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Text('${_controller.boardName}\n게시판',
+                            Text(_controller.boardName,
                                 style: const TextStyle(
                                     color: WcColors.black,
                                     fontSize: 23,
@@ -173,7 +169,7 @@ class CommunityPostListPage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Text('${_controller.boardName}\n게시판',
+                              Text(_controller.boardName,
                                   style: const TextStyle(
                                       color: WcColors.black,
                                       fontSize: 23,

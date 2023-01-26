@@ -649,4 +649,6 @@ enum CacheControllerKey {
   appleEmail,
   appleIdToken,
   rawNonce,
+  name,
+  appInited,
 }

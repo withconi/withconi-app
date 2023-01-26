@@ -47,7 +47,7 @@ class WcWideButtonWidget extends StatelessWidget {
                   fontFamily: WcFontFamily.notoSans,
                   color: (active) ? activeTextColor : inactiveTextColor,
                   fontSize: 16,
-                  letterSpacing: 0.5,
+                  letterSpacing: 0.3,
                   height: 1,
                   fontWeight: FontWeight.w400),
             ),

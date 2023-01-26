@@ -224,7 +224,7 @@ class CommunityNewPostPage extends StatelessWidget {
                         fontWeight: FontWeight.w400,
                         height: 1.5),
                     // maxLength: 80,
-                    maxLines: 80,
+                    maxLines: 200,
                     minLines: 20,
                     decoration: InputDecoration(
                         isDense: true,

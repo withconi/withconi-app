@@ -26,13 +26,16 @@ class CommunityPostListController extends GetxController
     implements AbstractPostUpdate {
   static CommunityPostListController get to => Get.find();
   CommunityPostListController(
-      this._communityRepository, this._boardId, this.boardName);
+      this._communityRepository, this._boardId, this._boardName);
   final CommunityRepository _communityRepository;
 
   late Rx<PostListFilterUIModel> postListFilter;
   RxList<PostUIModel> postUIList = <PostUIModel>[].obs;
 
-  String boardName = '';
+  final String _boardName;
+
+  String get boardName =>
+      (_boardName.length < 3) ? "$_boardName 게시판" : "$_boardName\n게시판";
   ImageItem get userProfileImage => AuthController.to.userInfo.profileImage;
   late final String _boardId;
 

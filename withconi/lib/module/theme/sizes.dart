@@ -9,4 +9,3 @@ import '../../import_basic.dart';
 final double WcWidth = Get.width;
 final double WcHeight = Get.height;
 // final double WcSafePaddingTop = WidgetsBinding.instance.window.padding.top;
-double safeAreaTop(bool isNeedSafeArea) => (isNeedSafeArea) ? 152 : 135;

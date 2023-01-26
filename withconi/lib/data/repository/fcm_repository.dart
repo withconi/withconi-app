@@ -55,7 +55,9 @@ class FcmRepository extends GetxService {
     }
   }
 
-  Future<Either<Failure, bool>> saveFcmTokenDB(String? fcmToken) async {
+  Future<Either<Failure, bool>> saveFcmTokenDB(
+    String? fcmToken,
+  ) async {
     try {
       UpdateFcmTokenRequest requestDTO =
           UpdateFcmTokenRequest.fromData(fcmToken);

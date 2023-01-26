@@ -3,6 +3,7 @@
 abstract class Routes {
   static const SPLASH = '/';
   static const START = '/start';
+  static const AGREEMENT = '/agreement';
   static const NAVIGATION = '/navigation';
   static const HOME = '/home';
   static const SIGNUP_PW = '/signup/name_pw';
@@ -13,14 +14,9 @@ abstract class Routes {
   static const SIGNIN_EMAIL = '/signin/email';
   static const REQUEST = '/request';
   static const DEVELOPER_INFO = '/developerInfo';
-
   static const CHANGE_PASSWORD = '/change_password1';
-  // static const PASSWORD_CHANGE_2 = '/change_password2';
-
   static const DISEASE_SEARCH = '/disease/add';
-
   static const BREED_SEARCH = '/breed/search';
-
   static const CONIMAL_MANAGE = '/conimal/manage';
   static const CONIMAL_ADD = '/conimal/manage/add';
   static const CONIMAL_EDIT = '/conimal/manage/edit';
@@ -32,9 +28,7 @@ abstract class Routes {
   static const COMMUNITY_POST_SEARCH = '/community/search';
   static const COMMUNITY_REPORT = '/community/report';
   static const COMMUNITY_SETTING = '/community/setting';
-
   static const DICTIONARY_MAIN = '/dictionary';
-
   static const DICTIONARY_DETAIL = '/dictionary/detail';
   static const DIAGNOSIS_MAIN = '/diagnosis/main';
   static const DIAGNOSIS_STEP1 = '/disease/main/step1';

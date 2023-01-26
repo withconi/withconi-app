@@ -5,6 +5,7 @@ import 'package:withconi/module/setting/app_setting/developer_info_page.dart';
 import 'package:withconi/module/setting/app_setting/inquiry_page.dart';
 import 'package:withconi/module/map/map_edit_review_page.dart';
 import 'package:withconi/module/map/map_review_detail_page.dart';
+import 'package:withconi/module/start/agreement_page.dart';
 import 'package:withconi/routes/bindings.dart';
 import 'package:withconi/module/common/add_conimal_page.dart';
 import 'package:withconi/module/common/conimal_manage_page.dart';
@@ -109,6 +110,10 @@ class WcPages {
       name: Routes.START,
       page: () => StartPage(),
       binding: StartPageBinding(),
+    ),
+    GetPage(
+      name: Routes.AGREEMENT,
+      page: () => AgreementPage(),
     ),
     GetPage(
       name: Routes.SIGNUP_PW,

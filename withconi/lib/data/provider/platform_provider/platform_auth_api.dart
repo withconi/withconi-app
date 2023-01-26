@@ -6,6 +6,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart' as kakao;
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:withconi/core/error_handling/exceptions.dart';
+import 'package:withconi/core/error_handling/failures.dart';
 import 'package:withconi/import_basic.dart';
 
 import '../../../core/values/constants/auth_variables.dart';
@@ -24,32 +25,39 @@ class PlatformAuthAPI extends GetxService {
       );
 
       String? email = appleCredential.email;
-      String? idToken;
+      String? name = appleCredential.givenName;
       await CacheManager.saveCache(
           CacheControllerKey.accessToken, appleCredential.authorizationCode);
       await CacheManager.saveCache(
           CacheControllerKey.appleIdToken, appleCredential.identityToken);
 
+      if (name != null) {
+        await CacheManager.saveCache(CacheControllerKey.name, name);
+      }
       if (email != null) {
         log('애플에서 이메일 local storage 저장');
         await CacheManager.saveCache(CacheControllerKey.appleEmail, email);
-        email = CacheManager.getCache(CacheControllerKey.appleEmail);
-        idToken = CacheManager.getCache(CacheControllerKey.appleIdToken);
+        await CacheManager.saveCache(CacheControllerKey.name, name);
+        // email = CacheManager.getCache(CacheControllerKey.appleEmail);
+        // idToken = CacheManager.getCache(CacheControllerKey.appleIdToken);
         log('local storage 이메일 저장 결과 : $email');
-        log('local storage apple 토큰 저장 결과 : $idToken');
+        // log('local storage apple 토큰 저장 결과 : $idToken');
       } else {
         log('애플에서 이메일 가져올 수 없음, local storage 탐색');
         email = CacheManager.getCache(CacheControllerKey.appleEmail);
+        name = CacheManager.getCache(CacheControllerKey.name);
         log('local storage 내 이메일 탐색 결과 : $email');
-        log('local storage apple 토큰 탐색 결과 : $idToken');
+        log('local storage 내 이름 탐색 결과 : $name');
 
-        if (email == null) {
+        if (email == null || name == null) {
           UserCredential userCredential = await FirebaseAuth.instance
               .signInWithCredential(OAuthProvider("apple.com").credential(
             idToken: appleCredential.identityToken,
             accessToken: appleCredential.authorizationCode,
           ));
           email = userCredential.user?.email;
+          name = userCredential.user?.displayName;
+          await CacheManager.saveCache(CacheControllerKey.name, name);
         }
       }
 
@@ -92,13 +100,39 @@ class PlatformAuthAPI extends GetxService {
 
   Future<OAuthCredential> getGoogleCredential() async {
     try {
-      final GoogleSignInAuthentication? googleAuth =
-          await googleSignIn.currentUser!.authentication;
+      late GoogleSignInAuthentication? googleAuth;
+      GoogleSignInAccount? googleSignInAccount = googleSignIn.currentUser;
+      if (googleSignInAccount != null) {
+        googleAuth = await googleSignIn.currentUser!.authentication;
+      } else {
+        googleSignInAccount = await googleSignIn.signIn();
+        if (googleSignInAccount != null) {
+          googleAuth = await googleSignIn.currentUser!.authentication;
+        } else {
+          throw (NoUserException());
+        }
+      }
+
+      String? name = googleSignIn.currentUser!.displayName;
+      if (name != null) {
+        await CacheManager.saveCache(CacheControllerKey.name, name);
+      }
+
+      // if (googleSignInAccount != null && googleAuth != null) {
+
+      // }
+
+      // if (googleSignIn.currentUser != null) {
+      //   String? name = googleSignIn.currentUser!.displayName;
+      //   if (name != null) {
+      //     await CacheManager.saveCache(CacheControllerKey.name, name);
+      //   }
+      // }
 
       // Create a new credential
       OAuthCredential credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth?.accessToken,
-        idToken: googleAuth?.idToken,
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
       );
 
       return credential;
@@ -110,20 +144,26 @@ class PlatformAuthAPI extends GetxService {
   Future<String> getGoogleUserEmail() async {
     try {
       // Trigger the authentication flow
-      final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+      late final String? email;
 
-      String? email = googleUser?.email;
+      if (await googleSignIn.isSignedIn()) {
+        email = googleSignIn.currentUser!.email;
+      } else {
+        final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+        email = googleUser!.email;
+      }
 
-      return email!;
+      return email;
     } catch (e) {
       rethrow;
     }
   }
 
-  Future<String> getKakaoUserEmail() async {
+  Future<String?> getKakaoUserEmail() async {
     String? _userEmail;
+    bool kakaoInstalled = await kakao.isKakaoTalkInstalled();
 
-    if (await kakao.isKakaoTalkInstalled()) {
+    if (kakaoInstalled) {
       try {
         kakao.OAuthToken token =
             await kakao.UserApi.instance.loginWithKakaoTalk();
@@ -133,7 +173,7 @@ class PlatformAuthAPI extends GetxService {
           var user = await kakao.UserApi.instance.me();
           _userEmail = user.kakaoAccount?.email;
         } catch (e) {
-          print(e);
+          return null;
         }
       } catch (e) {
         try {
@@ -144,7 +184,7 @@ class PlatformAuthAPI extends GetxService {
           var user = await kakao.UserApi.instance.me();
           _userEmail = user.kakaoAccount?.email;
         } catch (e) {
-          print(e);
+          return null;
         }
       }
     } else {
@@ -156,11 +196,11 @@ class PlatformAuthAPI extends GetxService {
         var user = await kakao.UserApi.instance.me();
         _userEmail = user.kakaoAccount?.email;
       } catch (e) {
-        print(e);
+        return null;
       }
     }
 
-    return _userEmail!;
+    return _userEmail;
   }
 
   Future<String> getKakaoToken() async {

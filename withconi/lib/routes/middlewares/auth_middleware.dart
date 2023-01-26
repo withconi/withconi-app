@@ -15,7 +15,11 @@ class AuthMiddleware extends GetMiddleware {
       //버전 페이지 이동
       routeSettings = null;
     } else if (!AuthController.to.isUserValid) {
-      routeSettings = const RouteSettings(name: Routes.START);
+      if (AuthController.to.appInited) {
+        routeSettings = const RouteSettings(name: Routes.START);
+      } else {
+        routeSettings = const RouteSettings(name: Routes.AGREEMENT);
+      }
     } else if (AuthController.to.isUserValid &&
         !AuthController.to.isEmailVerified &&
         !AuthController.to.isVerifySkipped &&
