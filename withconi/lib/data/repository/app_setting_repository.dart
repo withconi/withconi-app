@@ -2,7 +2,6 @@ import 'package:dartz/dartz.dart';
 import 'package:withconi/core/error_handling/exceptions.dart';
 import 'package:withconi/core/error_handling/failures.dart';
 import 'package:withconi/data/model/dto/api_call_dto.dart';
-import 'package:withconi/data/model/dto/request_dto/image_request/create_image_request_dto.dart';
 import 'package:withconi/data/model/dto/request_dto/inquiry_request/create_inquiry_request_dto.dart';
 import 'package:withconi/data/model/dto/response_dto/setting_response/developer_info_list_response_dto.dart';
 import 'package:withconi/data/provider/remote_provider/app_config_api.dart';

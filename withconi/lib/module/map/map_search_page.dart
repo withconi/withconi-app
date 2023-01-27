@@ -69,6 +69,7 @@ class MapSearchPage extends StatelessWidget {
           alignment: Alignment.center,
           children: [
             MyNaverMapView(
+              isCurrentLocationValid: true,
               baseSearchLocation: _controller.baseLocation,
               onMapCreated: _controller.onMapCreated,
               onCameraChange: _controller.onCameraChange,

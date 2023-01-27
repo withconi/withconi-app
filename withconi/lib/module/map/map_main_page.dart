@@ -47,6 +47,8 @@ class MapMainPage extends StatelessWidget {
                   onMapCreated: _controller.onMapCreated,
                   onMapTap: _controller.onMapTap,
                   placeMarkers: _controller.placeMarkers,
+                  isCurrentLocationValid:
+                      _controller.isCurrentLocationValid.value,
                 ),
                 Positioned(
                   top: safeAreaPaddingTop,
@@ -526,6 +528,7 @@ class MyNaverMapView extends StatelessWidget {
     required this.onMapCreated,
     this.initialCameraPosition,
     required this.baseSearchLocation,
+    required this.isCurrentLocationValid,
     this.searchAreaCircleRadius = 0,
   }) : super(key: key);
 
@@ -536,6 +539,7 @@ class MyNaverMapView extends StatelessWidget {
   final CameraPosition? initialCameraPosition;
   final LatLngUIModel baseSearchLocation;
   final double searchAreaCircleRadius;
+  final bool isCurrentLocationValid;
 
   @override
   Widget build(BuildContext context) {
@@ -543,12 +547,14 @@ class MyNaverMapView extends StatelessWidget {
       width: WcWidth,
       height: WcHeight,
       child: NaverMap(
-        useSurface: kReleaseMode,
+        // useSurface: kReleaseMode,
         initialCameraPosition: initialCameraPosition,
         onMapCreated: onMapCreated,
         mapType: MapType.Basic,
         locationButtonEnable: false,
-        initLocationTrackingMode: LocationTrackingMode.Follow,
+        initLocationTrackingMode: (isCurrentLocationValid)
+            ? LocationTrackingMode.Follow
+            : LocationTrackingMode.None,
         markers: placeMarkers ?? [],
         onMapTap: onMapTap,
         logoClickEnabled: false,

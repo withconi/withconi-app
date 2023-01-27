@@ -37,6 +37,7 @@ class MapMainPageController extends GetxController
   RxBool hasLocationPermission = false.obs;
   Completer<NaverMapController> mapController = Completer();
   RxBool isMoreLoading = false.obs;
+  RxBool isCurrentLocationValid = true.obs;
   MapType mapType = MapType.Basic;
   Rxn<CameraPosition> currentPosition = Rxn<CameraPosition>();
   RxList<PlaceMarkerUIModel> placeMarkers = RxList<PlaceMarkerUIModel>();
@@ -56,7 +57,8 @@ class MapMainPageController extends GetxController
   RxBool showPlaceListBottomSheet = true.obs;
   RxBool showMapButton = false.obs;
   RxBool showRefreshButton = false.obs;
-  Rx<LatLngUIModel> baseLocation = LatLngUIModel(lat: 0.0, lng: 0.0).obs;
+  Rx<LatLngUIModel> baseLocation =
+      LatLngUIModel(lat: 37.3584879, lng: 127.105037).obs;
   LatLngUIModel? _currentLocation;
   RxDouble searchAreaCircleRadius = 0.0.obs;
   final Rx<PaginationFilter> _paginationFilter = PaginationFilter(
@@ -680,12 +682,21 @@ class MapMainPageController extends GetxController
 
   Future<LatLngUIModel?> _getCurrentLocation() async {
     try {
-      LatLngUIModel currentLocation = await Geolocator.getCurrentPosition()
+      LatLngUIModel currentLocation = await Geolocator.getCurrentPosition(
+        forceAndroidLocationManager: true,
+      )
           .then((value) =>
               LatLngUIModel(lat: value.latitude, lng: value.longitude))
           .onError((error, stackTrace) {
         throw const LocationServiceDisabledException();
       });
+
+      if (currentLocation.lat < 0.0 || currentLocation.lng < 0.0) {
+        isCurrentLocationValid.value = false;
+        return LatLngUIModel(lat: 37.3584879, lng: 127.105037);
+      }
+
+      isCurrentLocationValid.value = true;
 
       return currentLocation;
     } on LocationServiceDisabledException {

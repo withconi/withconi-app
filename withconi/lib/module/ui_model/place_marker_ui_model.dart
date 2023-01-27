@@ -114,11 +114,7 @@ double _generateDoubleRandom(double minValue, double maxValue, int precision) {
   final doubleRandom = minValue + (maxValue - minValue) * random.nextDouble();
   // return double.parse(doubleRandom.toStringAsFixed(precision));
 
-  if (boolRandom) {
-    return -double.parse(doubleRandom.toStringAsFixed(precision));
-  } else {
-    return double.parse(doubleRandom.toStringAsFixed(precision));
-  }
+  return double.parse(doubleRandom.toStringAsFixed(precision));
 
   // return double.parse(doubleRandom.toStringAsFixed(precision));
 }
