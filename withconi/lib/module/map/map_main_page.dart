@@ -178,11 +178,10 @@ class MapMainPage extends StatelessWidget {
                               scrollController;
 
                           return MyLazyLoadScrollView(
-                            isLoading:
-                                (_controller.status != PageStatus.success()),
+                            isLoading: (_controller.status !=
+                                const PageStatus.success()),
                             onEndOfPage: _controller.loadNextPage,
                             child: SingleChildScrollView(
-                              // physics: NeverScrollableScrollPhysics(),
                               controller: _controller.placeListScrollController,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -404,8 +403,7 @@ class MapMainPage extends StatelessWidget {
                                                       padding:
                                                           const EdgeInsets.all(
                                                               0),
-                                                      physics:
-                                                          const NeverScrollableScrollPhysics(),
+                                                      primary: false,
                                                       shrinkWrap: true,
                                                       itemCount: _controller
                                                           .placePreviewList
