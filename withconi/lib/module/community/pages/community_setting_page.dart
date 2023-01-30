@@ -21,7 +21,7 @@ class CommunitySettingPage extends StatelessWidget {
           bottom: false,
           child: Center(
             child: SizedBox(
-              width: WcWidth,
+              width: WcWidth(context),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -31,7 +31,7 @@ class CommunitySettingPage extends StatelessWidget {
                   // Container(
                   //   alignment: Alignment.centerLeft,
                   //   height: 55,
-                  //   width: WcWidth - 40,
+                  //   width: WcWidth(context) - 40,
                   //   child: Text('내 정보',
                   //       style: GoogleFonts.notoSans(
                   //           fontWeight: FontWeight.w600, fontSize: 22)),
@@ -55,7 +55,7 @@ class CommunitySettingPage extends StatelessWidget {
                   Container(
                     height: 18,
                     color: WcColors.grey40,
-                    width: WcWidth,
+                    width: WcWidth(context),
                   ),
                   const SizedBox(
                     height: 10,
@@ -63,7 +63,7 @@ class CommunitySettingPage extends StatelessWidget {
                   // Container(
                   //   alignment: Alignment.centerLeft,
                   //   height: 55,
-                  //   width: WcWidth - 40,
+                  //   width: WcWidth(context) - 40,
                   //   child: Text('앱 관련',
                   //       style: GoogleFonts.notoSans(
                   //           fontWeight: FontWeight.w600, fontSize: 22)),

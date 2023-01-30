@@ -40,8 +40,8 @@ class MapSearchPage extends StatelessWidget {
         bottom: false,
         child: Center(
           child: SizedBox(
-            width: WcWidth,
-            height: WcHeight,
+            width: WcWidth(context),
+            height: WcHeight(context),
             child: Stack(fit: StackFit.loose, children: [
               _getWidgetByState(_controller),
               Positioned(
@@ -112,7 +112,7 @@ class MapSearchPage extends StatelessWidget {
                       bottom: 0,
                       child: Center(
                         child: Container(
-                          width: WcWidth,
+                          width: WcWidth(),
                           padding: EdgeInsets.symmetric(vertical: 20),
                           margin: EdgeInsets.symmetric(vertical: 20),
                           child: Center(
@@ -153,7 +153,7 @@ class SetLocationButton extends StatelessWidget {
       },
       child: Container(
         alignment: Alignment.center,
-        width: (pageStatus == PageStatus.init()) ? WcWidth - 40 : 210,
+        width: (pageStatus == PageStatus.init()) ? WcWidth(context) - 40 : 210,
         height: 53,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -234,7 +234,7 @@ class PlaceSimpleListTile extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.fromLTRB(20, 12, 20, 0),
         height: 75,
-        width: WcWidth,
+        width: WcWidth(context),
         decoration: BoxDecoration(
             color: WcColors.white,
             border:

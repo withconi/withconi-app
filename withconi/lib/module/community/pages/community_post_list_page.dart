@@ -23,7 +23,7 @@ class CommunityPostListPage extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 5),
           height: 45,
           color: WcColors.white,
-          width: WcWidth,
+          width: WcWidth(context),
           child: Row(
             children: [
               GestureDetector(
@@ -86,12 +86,12 @@ class CommunityPostListPage extends StatelessWidget {
             child: SafeArea(
               bottom: false,
               child: ConstrainedBox(
-                constraints: BoxConstraints(minHeight: WcHeight),
+                constraints: BoxConstraints(minHeight: WcHeight(context)),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      width: WcWidth,
+                      width: WcWidth(context),
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 15),
                       child: Row(
@@ -131,7 +131,7 @@ class CommunityPostListPage extends StatelessWidget {
                       height: 15,
                     ),
                     WcErrorWidget(
-                      height: WcHeight - 300,
+                      height: WcHeight(context) - 300,
                       image: Image.asset(
                         'assets/icons/no_result.png',
                         height: 80,
@@ -157,12 +157,12 @@ class CommunityPostListPage extends StatelessWidget {
               child: SafeArea(
                 bottom: false,
                 child: ConstrainedBox(
-                  constraints: BoxConstraints(minHeight: WcHeight),
+                  constraints: BoxConstraints(minHeight: WcHeight(context)),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        width: WcWidth,
+                        width: WcWidth(context),
                         padding: const EdgeInsets.symmetric(
                             horizontal: 20, vertical: 15),
                         child: Row(

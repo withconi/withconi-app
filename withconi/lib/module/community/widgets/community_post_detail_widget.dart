@@ -34,11 +34,11 @@ class PostDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      // width: WcWidth - 40,
+      // width: WcWidth(context) - 40,
       child: Column(
         children: [
           SizedBox(
-            width: WcWidth - 40,
+            width: WcWidth(context) - 40,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -109,7 +109,7 @@ class PostDetail extends StatelessWidget {
                             },
                             child: SizedBox(
                               height: 180,
-                              width: WcWidth - 40,
+                              width: WcWidth(context) - 40,
                               child: CarouselSlider(
                                 options: CarouselOptions(
                                     enableInfiniteScroll: false,
@@ -120,7 +120,7 @@ class PostDetail extends StatelessWidget {
                                     viewportFraction: 1),
                                 items: post.images.map((image) {
                                   return Container(
-                                    width: WcWidth - 40,
+                                    width: WcWidth(context) - 40,
                                     foregroundDecoration: const BoxDecoration(
                                       gradient: LinearGradient(
                                           begin: Alignment.topCenter,
@@ -167,7 +167,7 @@ class PostDetail extends StatelessWidget {
                               bottom: 15,
                               child: Container(
                                 alignment: Alignment.center,
-                                width: WcWidth - 40,
+                                width: WcWidth(context) - 40,
                                 child: CarouselIndicator(
                                   animationDuration: 200,
                                   color: Color.fromARGB(119, 255, 255, 255),

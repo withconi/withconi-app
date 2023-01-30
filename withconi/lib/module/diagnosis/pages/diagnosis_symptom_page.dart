@@ -95,7 +95,7 @@ class DiagnosisSymptomPage extends StatelessWidget {
                             //   activeButtonColor: WcColors.blue100,
                             //   activeTextColor: WcColors.white,
                             //   buttonText: '선택완료',
-                            //   buttonWidth: WcWidth - 40,
+                            //   buttonWidth: WcWidth(context) - 40,
                             //   onTap: () {},
                             // ),
                             const SizedBox(

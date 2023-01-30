@@ -31,7 +31,7 @@ class StartPage extends StatelessWidget {
             children: [
               SafeArea(
                 child: SizedBox(
-                  height: WcHeight,
+                  height: WcHeight(context),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Column(
@@ -87,7 +87,7 @@ class StartPage extends StatelessWidget {
                                   activeTextColor: WcColors.white,
                                   buttonText: _controller
                                       .signingState.value.displayName,
-                                  buttonWidth: WcWidth - 40,
+                                  buttonWidth: WcWidth(context) - 40,
                                   onTap: _controller.onNextButtonTap,
                                   buttonState: _controller.buttonState.value,
                                 ),

@@ -20,14 +20,14 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final HomeController _controller = Get.find();
-    final double _heightSection1 = (WcHeight / 7) * 2.67;
+    final double _heightSection1 = (WcHeight(context) / 7) * 2.67;
 
     return Scaffold(
       backgroundColor: WcColors.white,
       body: SafeArea(
         top: true,
         child: Container(
-          height: WcHeight,
+          height: WcHeight(context),
           color: Color.fromARGB(255, 249, 251, 253),
           child: RefreshIndicator(
             strokeWidth: 2.5,
@@ -47,7 +47,7 @@ class HomePage extends StatelessWidget {
                           height: (_heightSection1 > _maxSection1Height)
                               ? _maxSection1Height - 35
                               : _heightSection1 - 35,
-                          width: WcWidth,
+                          width: WcWidth(context),
                           decoration: const BoxDecoration(
                             color: WcColors.white,
                             borderRadius: BorderRadius.vertical(
@@ -301,7 +301,7 @@ class HomePage extends StatelessWidget {
                     ]),
                   ),
                   Container(
-                    width: WcWidth - 40,
+                    width: WcWidth(context) - 40,
                     margin: const EdgeInsets.fromLTRB(20, 7, 20, 3),
                     decoration: BoxDecoration(
                       color: WcColors.white,
@@ -586,7 +586,8 @@ class HomePage extends StatelessWidget {
                                                 child: ListTile(
                                                   title: GestureDetector(
                                                     child: SizedBox(
-                                                      width: (WcWidth - 40),
+                                                      width: (WcWidth(context) -
+                                                          40),
                                                       child: Padding(
                                                         padding:
                                                             const EdgeInsets
@@ -805,7 +806,7 @@ class HomePage extends StatelessWidget {
                     alignment: Alignment.topLeft,
                     margin: const EdgeInsets.only(bottom: 20),
                     padding: const EdgeInsets.fromLTRB(0, 20, 0, 10),
-                    width: WcWidth - 40,
+                    width: WcWidth(context) - 40,
                     decoration: BoxDecoration(
                       color: WcColors.white,
                       borderRadius: BorderRadius.circular(10),
@@ -883,8 +884,8 @@ class HomePage extends StatelessWidget {
                                           style: SkeletonLineStyle(
                                               randomLength: true,
                                               height: 13,
-                                              maxLength: WcWidth - 160,
-                                              minLength: WcWidth / 2.3,
+                                              maxLength: WcWidth(context) - 160,
+                                              minLength: WcWidth(context) / 2.3,
                                               borderRadius:
                                                   BorderRadius.circular(8)),
                                         ),
@@ -938,7 +939,7 @@ class SelfDiagnosisButton extends StatelessWidget {
         margin: const EdgeInsets.symmetric(vertical: 20),
         padding: const EdgeInsets.symmetric(horizontal: 15),
         height: 60,
-        width: WcWidth - 40,
+        width: WcWidth(context) - 40,
         decoration: BoxDecoration(
           color: WcColors.white,
           borderRadius: BorderRadius.circular(10),

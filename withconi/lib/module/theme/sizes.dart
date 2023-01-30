@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 
 import '../../import_basic.dart';
 
-final double WcWidth = Get.width;
-final double WcHeight = Get.height;
-// final double WcSafePaddingTop = WidgetsBinding.instance.window.padding.top;
+double WcWidth([BuildContext? context]) =>
+    MediaQuery.of(context ?? Get.context!).size.width;
+double WcHeight([BuildContext? context]) =>
+    MediaQuery.of(context ?? Get.context!).size.height;

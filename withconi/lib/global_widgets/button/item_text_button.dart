@@ -30,7 +30,7 @@ class ItemListValueButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: WcWidth - 40,
+      width: WcWidth(context) - 40,
       height: 45,
       padding: EdgeInsets.only(bottom: 5),
       decoration: BoxDecoration(
@@ -45,7 +45,7 @@ class ItemListValueButton extends StatelessWidget {
             onTap: onTapButton,
             child: Container(
               color: Colors.transparent,
-              width: WcWidth - 40,
+              width: WcWidth(context) - 40,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -73,11 +73,11 @@ class ItemListValueButton extends StatelessWidget {
                                         minWidth: 50,
                                         minHeight: 35,
                                         maxHeight: 35,
-                                        maxWidth: ((WcWidth - 85) /
+                                        maxWidth: ((WcWidth(context) - 85) /
                                                     itemTextList.length >
                                                 170)
                                             ? 170
-                                            : (WcWidth - 85) /
+                                            : (WcWidth(context) - 85) /
                                                 itemTextList.length),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8),

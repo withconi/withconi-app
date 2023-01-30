@@ -20,7 +20,7 @@ class SettingPage extends StatelessWidget {
           bottom: false,
           child: Center(
             child: SizedBox(
-              width: WcWidth,
+              width: WcWidth(context),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -30,7 +30,7 @@ class SettingPage extends StatelessWidget {
                   Container(
                     alignment: Alignment.centerLeft,
                     height: 55,
-                    width: WcWidth - 40,
+                    width: WcWidth(context) - 40,
                     child: Text('내 정보',
                         style: TextStyle(
                             fontFamily: WcFontFamily.notoSans,
@@ -51,7 +51,7 @@ class SettingPage extends StatelessWidget {
                   Container(
                     height: 18,
                     color: WcColors.grey40,
-                    width: WcWidth,
+                    width: WcWidth(context),
                   ),
                   const SizedBox(
                     height: 10,
@@ -59,7 +59,7 @@ class SettingPage extends StatelessWidget {
                   Container(
                     alignment: Alignment.centerLeft,
                     height: 55,
-                    width: WcWidth - 40,
+                    width: WcWidth(context) - 40,
                     child: Text('커뮤니티',
                         style: TextStyle(
                             fontFamily: WcFontFamily.notoSans,
@@ -80,7 +80,7 @@ class SettingPage extends StatelessWidget {
                   Container(
                     height: 18,
                     color: WcColors.grey40,
-                    width: WcWidth,
+                    width: WcWidth(context),
                   ),
                   const SizedBox(
                     height: 10,
@@ -88,7 +88,7 @@ class SettingPage extends StatelessWidget {
                   Container(
                     alignment: Alignment.centerLeft,
                     height: 55,
-                    width: WcWidth - 40,
+                    width: WcWidth(context) - 40,
                     child: Text('앱',
                         style: TextStyle(
                             fontFamily: WcFontFamily.notoSans,

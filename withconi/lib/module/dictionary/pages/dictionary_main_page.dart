@@ -21,8 +21,8 @@ class DictionaryMainPage extends StatelessWidget {
       backgroundColor: WcColors.white,
       body: Container(
         constraints: BoxConstraints(
-          minHeight: WcHeight,
-          minWidth: WcWidth,
+          minHeight: WcHeight(context),
+          minWidth: WcWidth(context),
         ),
         child: SafeArea(
           bottom: false,
@@ -41,7 +41,7 @@ class DictionaryMainPage extends StatelessWidget {
                       height: 20,
                     ),
                     SizedBox(
-                      width: WcWidth - 40,
+                      width: WcWidth(context) - 40,
                       height: 50,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -92,7 +92,7 @@ class DictionaryMainPage extends StatelessWidget {
                   itemBuilder: (context, index) => DictionaryListTile(
                     disease: _controller.diseaseListSearched[index],
                     searchKeyword: _controller.diseaseKeywords,
-                    width: WcWidth,
+                    width: WcWidth(context),
                     diseaseIndex: index,
                     onTap: (disease) => Get.toNamed(Routes.DICTIONARY_DETAIL,
                         arguments: {'diseaseId': disease.diseaseId}),

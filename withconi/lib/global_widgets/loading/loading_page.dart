@@ -14,9 +14,9 @@ class LoadingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: WcColors.white,
-      height: height ?? WcHeight - 150,
+      height: height ?? WcHeight(context) - 150,
       child: SizedBox(
-        height: WcHeight - 100,
+        height: WcHeight(context) - 100,
         child: OverflowBox(
           minHeight: 125,
           maxHeight: 125,

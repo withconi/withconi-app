@@ -27,7 +27,7 @@ class CommonDiseaseListTile extends StatelessWidget {
       child: Container(
           alignment: Alignment.centerLeft,
           height: 38,
-          width: WcWidth,
+          width: WcWidth(context),
           padding: EdgeInsets.symmetric(horizontal: 30),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,

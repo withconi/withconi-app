@@ -239,7 +239,8 @@ class MapEditReviewPage extends StatelessWidget {
                                                   const EdgeInsets.symmetric(
                                                       horizontal: 20.0),
                                               child: SizedBox(
-                                                width: (WcWidth / 2) - 40,
+                                                width:
+                                                    (WcWidth(context) / 2) - 40,
                                                 child: CustomCheckBox(
                                                   value: disease,
                                                   isSelected: _controller

@@ -223,7 +223,7 @@ class CommunityEditMyPostPage extends StatelessWidget {
                             : const SizedBox.shrink(),
                       ),
                       Container(
-                        width: WcWidth - 40,
+                        width: WcWidth(context) - 40,
                         margin: const EdgeInsets.symmetric(
                             horizontal: 20, vertical: 6),
                         child: TextField(

@@ -33,7 +33,7 @@ class ConimalAddPage extends StatelessWidget {
         body: SingleChildScrollView(
           child: SafeArea(
             child: SizedBox(
-              width: WcWidth,
+              width: WcWidth(context),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
@@ -208,7 +208,7 @@ class ConimalAddPage extends StatelessWidget {
                         activeButtonColor: WcColors.blue100,
                         activeTextColor: WcColors.white,
                         buttonText: '추가하기',
-                        buttonWidth: WcWidth - 40,
+                        buttonWidth: WcWidth(context) - 40,
                         onTap: _controller.createConimal,
                       ),
                     ),

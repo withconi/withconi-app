@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:get/get.dart';
 import 'package:get/get_instance/src/lifecycle.dart';
 import 'package:get/get_state_manager/src/simple/list_notifier.dart';
 import 'package:get/get_state_manager/src/simple/simple_builder.dart';
@@ -160,7 +161,8 @@ extension StateExt<T> on WcStateMixin<T> {
             ? (value != null)
                 ? onSuccess(value)
                 : LoadingPage(
-                    height: loading.loadingHeight ?? WcHeight - 270,
+                    height:
+                        loading.loadingHeight ?? WcHeight(Get.context!) - 270,
                   )
             : onLoading,
         // loadingMore: (value) => onMoreLoading ?? Size,
@@ -169,7 +171,7 @@ extension StateExt<T> on WcStateMixin<T> {
             ? (value != null)
                 ? onSuccess(value)
                 : WcErrorWidget(
-                    height: WcHeight - 270,
+                    height: WcHeight(Get.context!) - 270,
                     image: Image.asset(
                       'assets/icons/no_result.png',
                       height: 76,
@@ -184,7 +186,7 @@ extension StateExt<T> on WcStateMixin<T> {
             ? (value != null)
                 ? onSuccess(value)
                 : WcErrorWidget(
-                    height: WcHeight - 300,
+                    height: WcHeight(Get.context!) - 300,
                     image: Image.asset(
                       'assets/icons/no_result.png',
                       height: 76,

@@ -6,7 +6,6 @@ import 'package:geolocator/geolocator.dart';
 import 'package:withconi/data/enums/enum.dart';
 import 'package:withconi/data/model/dto/response_dto/place_response/place_preview_response_dto.dart';
 import 'package:withconi/core/error_handling/error_message_object.dart';
-import 'package:withconi/global_widgets/snackbar.dart';
 import 'package:withconi/module/community/controllers/custom_state_mixin.dart';
 import 'package:withconi/module/page_status.dart';
 import 'package:withconi/module/ui_model/latlng_ui_model.dart';
@@ -127,7 +126,7 @@ class MapSearchController extends GetxController with WcStateMixin {
   Future<void> _setSearchArea() async {
     final _mapController = await mapController.future;
     double totalMeterPerPx =
-        (WcHeight - 200) * await _mapController.getMeterPerPx();
+        (WcHeight() - 200) * await _mapController.getMeterPerPx();
 
     // int detanceKilometer = (totalMeterPerPx / 1000).round();
     double detanceKilometer = (totalMeterPerPx / 1000);

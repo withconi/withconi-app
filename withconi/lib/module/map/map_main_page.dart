@@ -55,7 +55,7 @@ class MapMainPage extends StatelessWidget {
                   left: 11,
                   child: Center(
                     child: SearchBarWidget(
-                      width: WcWidth - 40 - 40,
+                      width: WcWidth(context) - 40 - 40,
                       onTextChanged: (_) {},
                       onTapClear: () {},
                       textController: null,
@@ -169,8 +169,8 @@ class MapMainPage extends StatelessWidget {
                   () => Visibility(
                     visible: (_controller.showPlaceListBottomSheet.value),
                     child: DraggableScrollableSheet(
-                        initialChildSize: 225 / WcHeight,
-                        minChildSize: 88 / WcHeight,
+                        initialChildSize: 225 / WcHeight(context),
+                        minChildSize: 88 / WcHeight(context),
                         maxChildSize: 1,
                         controller: _controller.placeListDragController,
                         builder: (BuildContext context, scrollController) {
@@ -192,7 +192,7 @@ class MapMainPage extends StatelessWidget {
                                   ),
                                   Container(
                                     constraints: BoxConstraints(
-                                      minHeight: WcHeight,
+                                      minHeight: WcHeight(context),
                                     ),
                                     decoration: const BoxDecoration(
                                         color: WcColors.white,
@@ -438,7 +438,8 @@ class MapMainPage extends StatelessWidget {
                                                               .loadingMore())
                                                       ? Container(
                                                           color: WcColors.white,
-                                                          width: WcWidth,
+                                                          width:
+                                                              WcWidth(context),
                                                           padding:
                                                               const EdgeInsets
                                                                       .symmetric(
@@ -474,11 +475,11 @@ class MapMainPage extends StatelessWidget {
                     visible: (_controller.selectedPlacePreview.value != null),
                     child: DraggableScrollableSheet(
                         controller: _controller.selectedPlaceDragController,
-                        minChildSize: 250 / WcHeight,
-                        initialChildSize: 250 / WcHeight,
+                        minChildSize: 250 / WcHeight(context),
+                        initialChildSize: 250 / WcHeight(context),
                         maxChildSize: 0.8,
                         // snap: true,
-                        // snapSizes: [250 / WcHeight, 0.8],
+                        // snapSizes: [250 / WcHeight(context), 0.8],
                         builder: (BuildContext context, scrollController) {
                           _controller.selectedPlaceScrollController =
                               scrollController;
@@ -542,8 +543,8 @@ class MyNaverMapView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: WcWidth,
-      height: WcHeight,
+      width: WcWidth(context),
+      height: WcHeight(context),
       child: NaverMap(
         // useSurface: kReleaseMode,
         initialCameraPosition: initialCameraPosition,
@@ -575,7 +576,7 @@ class EmptyPlaceListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: WcWidth,
+      width: WcWidth(context),
       height: 210,
       decoration: BoxDecoration(color: WcColors.white),
       child: Column(
@@ -629,7 +630,7 @@ class LocationPermissionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: SizedBox(
-        height: WcHeight,
+        height: WcHeight(context),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
@@ -679,7 +680,7 @@ class LocationPermissionWidget extends StatelessWidget {
                 activeButtonColor: WcColors.blue100,
                 activeTextColor: WcColors.white,
                 buttonText: '위치정보 권한 설정하기',
-                buttonWidth: WcWidth - 40,
+                buttonWidth: WcWidth(context) - 40,
                 onTap: _controller.openAppLocationSetting,
               ),
               const SizedBox(
@@ -974,7 +975,7 @@ class PlacePreviewListTile extends StatelessWidget {
               color: (_hasDivider) ? WcColors.grey60 : Colors.transparent,
             ))),
         height: 122,
-        width: WcWidth,
+        width: WcWidth(context),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -998,8 +999,8 @@ class PlacePreviewListTile extends StatelessWidget {
                           child: Row(
                             children: [
                               Container(
-                                constraints:
-                                    BoxConstraints(maxWidth: WcWidth - 215),
+                                constraints: BoxConstraints(
+                                    maxWidth: WcWidth(context) - 215),
                                 child: Text(
                                   _place.name,
                                   style: TextStyle(
@@ -1180,8 +1181,8 @@ class SelectedPlacePreview extends StatelessWidget {
                   offset: Offset(0, 0),
                   spreadRadius: -6)
             ]),
-        height: WcHeight,
-        width: WcWidth,
+        height: WcHeight(context),
+        width: WcWidth(context),
         child: Column(
           children: [
             Container(
@@ -1203,7 +1204,7 @@ class SelectedPlacePreview extends StatelessWidget {
               },
             ),
             Container(
-              width: WcWidth - 30,
+              width: WcWidth(context) - 30,
               height: 50,
               child: Row(
                 children: [
@@ -1218,7 +1219,7 @@ class SelectedPlacePreview extends StatelessWidget {
                       onTap: () {
                         _onReviewTap.call(_place);
                       },
-                      buttonWidth: WcWidth - 30 - 60,
+                      buttonWidth: WcWidth(context) - 30 - 60,
                       activeButtonColor: WcColors.blue100,
                       active: true,
                       activeTextColor: WcColors.white),

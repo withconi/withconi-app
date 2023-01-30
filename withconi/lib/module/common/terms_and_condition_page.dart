@@ -32,7 +32,7 @@ class TermsAndConditionPage extends StatelessWidget {
         body: SingleChildScrollView(
           child: SafeArea(
             child: SizedBox(
-              height: WcHeight,
+              height: WcHeight(context),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
@@ -70,7 +70,7 @@ class TermsAndConditionPage extends StatelessWidget {
                                       ? WcColors.white
                                       : WcColors.grey200,
                               buttonText: '네, 모두 동의합니다.',
-                              buttonWidth: WcWidth - 80,
+                              buttonWidth: WcWidth(context) - 80,
                               onTap: () {
                                 _controller.onAllConfirmButtonTap(!(_controller
                                         .privacyPolicyConfirmed.value &&
@@ -124,7 +124,7 @@ class TermsAndConditionPage extends StatelessWidget {
                         activeButtonColor: WcColors.blue100,
                         activeTextColor: WcColors.white,
                         buttonText: '회원가입',
-                        buttonWidth: WcWidth - 40,
+                        buttonWidth: WcWidth(context) - 40,
                         onTap: _controller.signUp,
                       );
                     }),
@@ -243,7 +243,7 @@ class TermsAndConditionWidget extends StatelessWidget {
             ),
           ),
           Container(
-            width: WcWidth - 40,
+            width: WcWidth(context) - 40,
             height: 100,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),

@@ -39,7 +39,7 @@ class DiseaseSeletionButton extends StatelessWidget {
       },
       child: Container(
         padding: padding,
-        width: WcWidth,
+        width: WcWidth(context),
         alignment: Alignment.center,
         height: height,
         color: Colors.transparent,

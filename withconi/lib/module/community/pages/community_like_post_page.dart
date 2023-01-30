@@ -26,12 +26,12 @@ class CommunityLikePostPage extends StatelessWidget {
             child: SafeArea(
               bottom: false,
               child: ConstrainedBox(
-                constraints: BoxConstraints(minHeight: WcHeight),
+                constraints: BoxConstraints(minHeight: WcHeight(context)),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      width: WcWidth,
+                      width: WcWidth(context),
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 15),
                       child: Text(
@@ -45,7 +45,7 @@ class CommunityLikePostPage extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      width: WcWidth,
+                      width: WcWidth(context),
                       padding: const EdgeInsets.symmetric(
                           horizontal: 22, vertical: 17),
                       child: Row(

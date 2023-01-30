@@ -18,7 +18,7 @@ class DiagnosisMainPage extends StatelessWidget {
         bottom: false,
         child: Center(
           child: SizedBox(
-            width: WcWidth,
+            width: WcWidth(context),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -26,7 +26,7 @@ class DiagnosisMainPage extends StatelessWidget {
                   height: 45,
                 ),
                 SizedBox(
-                  width: WcWidth - 40,
+                  width: WcWidth(context) - 40,
                   child: Text('자가진단',
                       style: TextStyle(
                           fontFamily: WcFontFamily.notoSans,
@@ -37,7 +37,7 @@ class DiagnosisMainPage extends StatelessWidget {
                   height: 10,
                 ),
                 SizedBox(
-                  width: WcWidth - 40,
+                  width: WcWidth(context) - 40,
                   child: Text('간단한 증상을 입력하면\n의심되는 질병을 보여줘요.',
                       style: TextStyle(
                           fontFamily: WcFontFamily.notoSans,
@@ -66,7 +66,7 @@ class DiagnosisMainPage extends StatelessWidget {
                           Get.toNamed(Routes.DIAGNOSIS_STEP1);
                         },
                         active: true,
-                        buttonWidth: WcWidth - 40,
+                        buttonWidth: WcWidth(context) - 40,
                       ),
                     ),
                   ],

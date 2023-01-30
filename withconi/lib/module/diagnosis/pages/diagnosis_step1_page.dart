@@ -30,7 +30,7 @@ class DiagnosisStep1Page extends StatelessWidget {
         body: SingleChildScrollView(
           child: SafeArea(
             child: SizedBox(
-              width: WcWidth,
+              width: WcWidth(context),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -228,7 +228,7 @@ class DiagnosisStep1Page extends StatelessWidget {
                         activeButtonColor: WcColors.blue100,
                         activeTextColor: WcColors.white,
                         buttonText: '다음',
-                        buttonWidth: WcWidth - 40,
+                        buttonWidth: WcWidth(context) - 40,
                         onTap: _controller.goToNextStep,
                       ),
                     ),

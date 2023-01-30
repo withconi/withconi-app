@@ -32,13 +32,13 @@ class WcStateButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 50,
-      width: WcWidth - 40,
+      width: WcWidth(context) - 40,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10),
         child: Material(
           child: Ink(
             height: 50,
-            width: WcWidth - 40,
+            width: WcWidth(context) - 40,
             decoration: BoxDecoration(
                 color: (buttonState == ButtonState.success)
                     ? activeButtonColor

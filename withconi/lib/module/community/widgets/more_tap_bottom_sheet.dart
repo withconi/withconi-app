@@ -91,7 +91,7 @@ GestureDetector _moreSheetListTile(
     },
     child: Container(
       height: 50,
-      width: WcWidth,
+      width: WcWidth(Get.context!),
       color: Colors.transparent,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),

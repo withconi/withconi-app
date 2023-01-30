@@ -10,7 +10,7 @@ Future<dynamic> showLoading(Future<dynamic> Function() asyncFunction,
       loadingWidget: (activeLoding)
           ? loadingWidget ??
               SizedBox(
-                height: WcHeight - 380,
+                height: WcHeight(Get.context!) - 380,
                 child: SizedBox(
                   child: OverflowBox(
                     minHeight: 125,

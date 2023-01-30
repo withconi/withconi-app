@@ -55,7 +55,7 @@ class MapImageVerificationPage extends StatelessWidget {
                         padding: EdgeInsets.symmetric(horizontal: 15),
                         margin: EdgeInsets.symmetric(vertical: 15),
                         alignment: Alignment.centerLeft,
-                        width: WcWidth - 40,
+                        width: WcWidth(context) - 40,
                         height: 50,
                         decoration: BoxDecoration(
                             color: WcColors.grey40,
@@ -123,7 +123,7 @@ class MapImageVerificationPage extends StatelessWidget {
                     child: GestureDetector(
                       onTap: () => _controller.onTapPickImageButton(),
                       child: Container(
-                        height: WcHeight - 400,
+                        height: WcHeight(context) - 400,
                         alignment: Alignment.center,
                         child: CircleAvatar(
                           radius: 55,
@@ -142,7 +142,7 @@ class MapImageVerificationPage extends StatelessWidget {
                       itemCount: _controller.selectedPhotoList.length,
                       itemBuilder: (context, index) {
                         return Container(
-                          height: (WcHeight - 70) / 2,
+                          height: (WcHeight(context) - 70) / 2,
                           margin: const EdgeInsets.fromLTRB(20, 0, 20, 10),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(10),

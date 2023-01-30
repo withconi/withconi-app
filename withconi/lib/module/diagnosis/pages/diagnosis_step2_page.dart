@@ -30,7 +30,7 @@ class DiagnosisStep2Page extends StatelessWidget {
           bottom: false,
           child: SingleChildScrollView(
             child: SizedBox(
-              width: WcWidth,
+              width: WcWidth(context),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -100,7 +100,7 @@ class DiagnosisStep2Page extends StatelessWidget {
                         activeButtonColor: WcColors.blue100,
                         activeTextColor: WcColors.white,
                         buttonText: '분석하기',
-                        buttonWidth: WcWidth - 40,
+                        buttonWidth: WcWidth(context) - 40,
                         onTap: _controller.goToDiagnosisResultPage,
                       ),
                     ),

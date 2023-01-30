@@ -32,7 +32,7 @@ showDiseaseEditDialog(
   // Map<ConimalUIModel, List<DiseaseUIModel>> diseaseConimalMap = {};
 
   print(_editConimalList);
-  double maxVeticalPadding = (WcHeight - 330) / 2;
+  double maxVeticalPadding = (WcHeight(context) - 330) / 2;
   return await showDialog(
       context: context,
       builder: (context) {
@@ -45,7 +45,7 @@ showDiseaseEditDialog(
               borderRadius: BorderRadius.circular(15),
               child: Container(
                 padding: const EdgeInsets.fromLTRB(23, 23, 23, 23),
-                width: WcWidth,
+                width: WcWidth(context),
                 color: WcColors.white,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -190,7 +190,8 @@ showDiseaseEditDialog(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         WcWideButtonWidget(
-                            buttonWidth: (WcWidth - (48 + 46 + 10)) / 2,
+                            buttonWidth:
+                                (WcWidth(context) - (48 + 46 + 10)) / 2,
                             buttonText: '취소',
                             onTap: () {
                               Get.back();
@@ -199,7 +200,8 @@ showDiseaseEditDialog(
                             activeTextColor: WcColors.grey140,
                             active: true),
                         WcWideButtonWidget(
-                            buttonWidth: (WcWidth - (48 + 46 + 10)) / 2,
+                            buttonWidth:
+                                (WcWidth(context) - (48 + 46 + 10)) / 2,
                             buttonText: '수정하기',
                             onTap: () {
                               Get.back(result: _editConimalList);

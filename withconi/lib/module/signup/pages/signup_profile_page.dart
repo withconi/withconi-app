@@ -29,7 +29,7 @@ class SignupProfilePage extends StatelessWidget {
         resizeToAvoidBottomInset: false,
         body: SafeArea(
           child: SizedBox(
-            height: WcHeight,
+            height: WcHeight(context),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
@@ -86,7 +86,7 @@ class SignupProfilePage extends StatelessWidget {
                       activeButtonColor: WcColors.blue100,
                       activeTextColor: WcColors.white,
                       buttonText: '다음',
-                      buttonWidth: WcWidth - 40,
+                      buttonWidth: WcWidth(context) - 40,
                       onTap: (_controller.isButtonValid.value)
                           ? _controller.nextStep
                           : null,

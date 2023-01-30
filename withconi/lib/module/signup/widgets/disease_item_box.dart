@@ -31,8 +31,8 @@ class DiseaseItemBox extends StatelessWidget {
             padding: const EdgeInsets.only(left: 10),
             child: ConstrainedBox(
               constraints:
-                  // BoxConstraints(maxWidth: (WcWidth - 40 - (8 * 3)) / 3),
-                  BoxConstraints(maxWidth: WcWidth / 3.1),
+                  // BoxConstraints(maxWidth: (WcWidth(context) - 40 - (8 * 3)) / 3),
+                  BoxConstraints(maxWidth: WcWidth(context) / 3.1),
               child: Text(
                 diseaseName,
                 style: TextStyle(

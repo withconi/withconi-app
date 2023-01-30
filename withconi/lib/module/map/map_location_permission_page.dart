@@ -18,7 +18,7 @@ class MapLocationPermissionPage extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: SizedBox(
-          height: WcHeight,
+          height: WcHeight(context),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
@@ -69,7 +69,7 @@ class MapLocationPermissionPage extends StatelessWidget {
                   activeButtonColor: WcColors.blue100,
                   activeTextColor: WcColors.white,
                   buttonText: '위치정보 권한 설정하기',
-                  buttonWidth: WcWidth - 40,
+                  buttonWidth: WcWidth(context) - 40,
                   onTap: _controller.openAppLocationSetting,
                 ),
                 const SizedBox(

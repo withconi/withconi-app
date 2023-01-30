@@ -32,12 +32,12 @@ class MapBookmarkPage extends StatelessWidget {
             child: SafeArea(
               bottom: false,
               child: SizedBox(
-                height: WcHeight,
+                height: WcHeight(context),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      width: WcWidth,
+                      width: WcWidth(context),
                       padding:
                           EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                       child: Text(
@@ -51,7 +51,7 @@ class MapBookmarkPage extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      width: WcWidth,
+                      width: WcWidth(context),
                       padding:
                           EdgeInsets.symmetric(horizontal: 22, vertical: 17),
                       child: Row(
@@ -135,7 +135,7 @@ class PlaceBookmarkListTile extends StatelessWidget {
       },
       child: Container(
         padding: EdgeInsets.fromLTRB(20, 15, 0, 15),
-        width: WcWidth,
+        width: WcWidth(context),
         decoration: BoxDecoration(
             color: WcColors.white,
             border:

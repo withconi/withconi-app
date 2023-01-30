@@ -29,7 +29,7 @@ class WcTileButton extends StatelessWidget {
         color: Colors.white,
         alignment: Alignment.centerLeft,
         height: height,
-        width: WcWidth,
+        width: WcWidth(context),
         padding: EdgeInsets.symmetric(horizontal: paddingHorizontal),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

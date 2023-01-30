@@ -56,7 +56,7 @@ class MapNewReviewPage extends StatelessWidget {
                           padding: EdgeInsets.symmetric(horizontal: 15),
                           margin: EdgeInsets.symmetric(vertical: 15),
                           alignment: Alignment.centerLeft,
-                          width: WcWidth - 40,
+                          width: WcWidth(context) - 40,
                           height: 50,
                           decoration: BoxDecoration(
                               color: WcColors.grey40,
@@ -85,7 +85,7 @@ class MapNewReviewPage extends StatelessWidget {
                             child: Container(
                               margin: const EdgeInsets.only(bottom: 15),
                               height: 60,
-                              width: WcWidth - 40,
+                              width: WcWidth(context) - 40,
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -297,7 +297,7 @@ class MapNewReviewPage extends StatelessWidget {
                                         padding: const EdgeInsets.symmetric(
                                             horizontal: 20.0),
                                         child: SizedBox(
-                                          width: (WcWidth / 2) - 40,
+                                          width: (WcWidth(context) / 2) - 40,
                                           child: CustomCheckBox(
                                             value: disease,
                                             isSelected: _controller

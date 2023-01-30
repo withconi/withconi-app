@@ -36,8 +36,8 @@ class DeveloperInfoPage extends StatelessWidget {
           child: Center(
             child: Container(
               alignment: Alignment.center,
-              width: WcWidth,
-              height: WcHeight,
+              width: WcWidth(context),
+              height: WcHeight(context),
 
               // margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
               child: Column(
@@ -47,7 +47,7 @@ class DeveloperInfoPage extends StatelessWidget {
                     height: 25,
                   ),
                   SizedBox(
-                    width: WcWidth - 40,
+                    width: WcWidth(context) - 40,
                     height: 480,
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -170,7 +170,7 @@ class DeveloperInfoCard extends StatelessWidget {
           height: 15,
         ),
         Container(
-          width: (WcWidth - 40 - 15) / 2,
+          width: (WcWidth(context) - 40 - 15) / 2,
           height: 95,
           decoration: BoxDecoration(
               color: WcColors.grey20.withOpacity(0.8),
@@ -192,14 +192,14 @@ class DeveloperInfoCard extends StatelessWidget {
         ),
         Container(
           padding: const EdgeInsets.fromLTRB(16, 17, 16, 0),
-          width: (WcWidth - 40 - 15) / 2,
+          width: (WcWidth(context) - 40 - 15) / 2,
           constraints: const BoxConstraints(minHeight: 105),
           decoration: BoxDecoration(
               color: WcColors.grey20.withOpacity(0.8),
               borderRadius: BorderRadius.circular(10)),
           child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
             SizedBox(
-              width: (WcWidth - 40 - 15) / 2,
+              width: (WcWidth(context) - 40 - 15) / 2,
 
               // color: WcColors.black,
               child: Row(
@@ -233,7 +233,7 @@ class DeveloperInfoCard extends StatelessWidget {
               height: 12,
             ),
             SizedBox(
-              width: (WcWidth - 40 - 15) / 2,
+              width: (WcWidth(context) - 40 - 15) / 2,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -267,7 +267,7 @@ class DeveloperInfoCard extends StatelessWidget {
             ),
 
             // SizedBox(
-            //   width: (WcWidth - 40 - 15) / 2,
+            //   width: (WcWidth(context) - 40 - 15) / 2,
 
             //   // color: WcColors.black,
             //   child: Row(
@@ -294,7 +294,7 @@ class DeveloperInfoCard extends StatelessWidget {
             UrlLauncher.launchLink(developerInfo.buymeacoffee);
           },
           child: SizedBox(
-              width: (WcWidth - 40 - 15) / 2,
+              width: (WcWidth(context) - 40 - 15) / 2,
               child: Image.asset('assets/images/buy_me_a_coffee.png')),
         ),
       ],

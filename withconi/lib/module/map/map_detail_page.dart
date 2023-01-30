@@ -22,9 +22,14 @@ class MapDetailPage extends StatelessWidget {
     Key? key,
   }) : super(key: key);
   int touchedIndex = -1;
+
+  late final _myWidth;
+
   @override
   Widget build(BuildContext context) {
     MapDetailPageController _controller = Get.find();
+
+    _myWidth = WcWidth(context);
 
     return Obx(
       () => (!_controller.dataInitialized.value)
@@ -59,7 +64,7 @@ class MapDetailPage extends StatelessWidget {
       padding: EdgeInsets.only(left: 10),
       height: 70,
       color: WcColors.white,
-      width: WcWidth,
+      width: _myWidth,
       child: Row(
         children: [
           PhoneCallButton(phoneNumber: _controller.placeDetail.value.phone),
@@ -69,7 +74,7 @@ class MapDetailPage extends StatelessWidget {
           WcWideButtonWidget(
               buttonText: '이 장소 리뷰쓰기',
               onTap: () => _controller.goToNewReviewPage(placeSelected: true),
-              buttonWidth: WcWidth - 30 - 60,
+              buttonWidth: -30 - 60,
               activeButtonColor: WcColors.blue100,
               active: true,
               activeTextColor: WcColors.white),
@@ -80,14 +85,14 @@ class MapDetailPage extends StatelessWidget {
 
   SizedBox _getPlaceDescription(MapDetailPageController _controller) {
     return SizedBox(
-      width: WcWidth,
+      width: _myWidth,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Stack(
             children: [
               Container(
-                width: WcWidth,
+                width: _myWidth,
                 height: 190,
                 decoration: BoxDecoration(
                     image: DecorationImage(
@@ -148,7 +153,7 @@ class MapDetailPage extends StatelessWidget {
                   height: 20,
                 ),
                 SizedBox(
-                  width: WcWidth - 40,
+                  width: _myWidth - 40,
                   child: Text(
                     _controller.placeDetail.value.name,
                     style: TextStyle(
@@ -288,7 +293,7 @@ class MapDetailPage extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        width: WcWidth - 40,
+                        width: _myWidth - 40,
                         padding: EdgeInsets.only(top: 7),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -310,7 +315,7 @@ class MapDetailPage extends StatelessWidget {
                                   children: [
                                     Container(
                                         constraints: BoxConstraints(
-                                            maxWidth: WcWidth - 148),
+                                            maxWidth: _myWidth - 148),
                                         child: Text(
                                           _controller.placeDetail.value.address,
                                           softWrap: (_controller
@@ -477,12 +482,12 @@ class MapDetailPage extends StatelessWidget {
                   alignment: Alignment.center,
                   children: [
                     SizedBox(
-                      width: WcWidth,
+                      width: _myWidth,
                       height: 55,
                     ),
                     Obx(
                       () => PercentageGraph(
-                        graphWidth: WcWidth - 70,
+                        graphWidth: _myWidth - 70,
                         graphDataList: _controller
                             .placeDetail.value.speciesChartData
                             .map((chartData) => PercentageGraphData(
@@ -553,7 +558,7 @@ class MapDetailPage extends StatelessWidget {
           ),
           Container(
             height: 15,
-            width: WcWidth,
+            width: _myWidth,
             color: WcColors.grey40,
           ),
           Container(
@@ -1215,7 +1220,7 @@ class MapDetailPage extends StatelessWidget {
                     top: 0,
                     child: Container(
                       height: 380,
-                      width: WcWidth,
+                      width: _myWidth,
                       color: Colors.transparent,
                       child: BackdropFilter(
                         filter: ImageFilter.blur(sigmaX: 10, sigmaY: -6),
@@ -1235,7 +1240,7 @@ class MapDetailPage extends StatelessWidget {
                   child: Positioned(
                     top: 35,
                     child: Container(
-                        width: WcWidth,
+                        width: _myWidth,
                         color: Colors.transparent,
                         child: Column(
                           children: [

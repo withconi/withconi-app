@@ -30,7 +30,7 @@ class ChangePasswordPage extends StatelessWidget {
             resizeToAvoidBottomInset: false,
             body: SafeArea(
               child: SizedBox(
-                height: WcHeight,
+                height: WcHeight(context),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Column(
@@ -102,7 +102,7 @@ class ChangePasswordPage extends StatelessWidget {
                           activeButtonColor: WcColors.blue100,
                           activeTextColor: WcColors.white,
                           buttonText: '비밀번호 재설정하기',
-                          buttonWidth: WcWidth - 40,
+                          buttonWidth: WcWidth(context) - 40,
                           onTap: _controller.sendVerificationEmail,
                         ),
                       ),
@@ -115,7 +115,7 @@ class ChangePasswordPage extends StatelessWidget {
                           activeButtonColor: WcColors.blue100,
                           activeTextColor: WcColors.white,
                           buttonText: '다시 로그인하기',
-                          buttonWidth: WcWidth - 40,
+                          buttonWidth: WcWidth(context) - 40,
                           onTap: _controller.goToStartPage,
                         ),
                       ),

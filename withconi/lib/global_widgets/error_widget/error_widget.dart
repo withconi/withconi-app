@@ -21,7 +21,7 @@ class WcErrorWidget extends StatelessWidget {
     return (height != null)
         ? Container(
             height: height,
-            width: WcWidth,
+            width: WcWidth(context),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

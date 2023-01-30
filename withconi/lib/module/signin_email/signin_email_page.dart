@@ -19,7 +19,7 @@ class SigninEmailPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: SafeArea(
           child: SizedBox(
-            height: WcHeight,
+            height: WcHeight(context),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
@@ -75,7 +75,7 @@ class SigninEmailPage extends StatelessWidget {
                       activeButtonColor: WcColors.blue100,
                       activeTextColor: WcColors.white,
                       buttonText: '로그인',
-                      buttonWidth: WcWidth - 40,
+                      buttonWidth: WcWidth(context) - 40,
                       onTap: (_controller.isButtonValid.value)
                           ? _controller.nextStep
                           : null,

@@ -21,7 +21,7 @@ class CommunityMainPage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Center(
             child: SizedBox(
-              width: WcWidth,
+              width: WcWidth(context),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -29,7 +29,7 @@ class CommunityMainPage extends StatelessWidget {
                     height: 20,
                   ),
                   SizedBox(
-                    width: WcWidth - 40,
+                    width: WcWidth(context) - 40,
                     height: 50,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -77,7 +77,7 @@ class CommunityMainPage extends StatelessWidget {
                   height: 40,
                 ),
                 SizedBox(
-                  width: WcWidth - 40,
+                  width: WcWidth(Get.context!) - 40,
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -137,8 +137,8 @@ class CommunityMainPage extends StatelessWidget {
                                   style: SkeletonLineStyle(
                                       randomLength: true,
                                       height: 14,
-                                      maxLength: WcWidth - 130,
-                                      minLength: WcWidth / 2,
+                                      maxLength: WcWidth(context) - 130,
+                                      minLength: WcWidth(context) / 2,
                                       borderRadius: BorderRadius.circular(8)),
                                 ),
                               ],
@@ -150,7 +150,7 @@ class CommunityMainPage extends StatelessWidget {
                           physics: const NeverScrollableScrollPhysics(),
                           itemCount: _controller.hotPostList.length,
                           itemBuilder: (context, index) => HotPostListTile(
-                                width: WcWidth - 40,
+                                width: WcWidth(context) - 40,
                                 padding:
                                     const EdgeInsets.only(left: 30, right: 15),
                                 hotPost: _controller.hotPostList[index],
@@ -161,7 +161,7 @@ class CommunityMainPage extends StatelessWidget {
                   height: 30,
                 ),
                 SizedBox(
-                  width: WcWidth - 40,
+                  width: WcWidth(Get.context!) - 40,
                   child: const Text('전체 게시판',
                       style: TextStyle(
                           fontFamily: WcFontFamily.notoSans,
@@ -196,8 +196,8 @@ class CommunityMainPage extends StatelessWidget {
                                   style: SkeletonLineStyle(
                                       randomLength: true,
                                       height: 18,
-                                      maxLength: WcWidth - 130,
-                                      minLength: WcWidth / 2,
+                                      maxLength: WcWidth(context) - 130,
+                                      minLength: WcWidth(context) / 2,
                                       borderRadius: BorderRadius.circular(8)),
                                 ),
                               ],
@@ -216,7 +216,7 @@ class CommunityMainPage extends StatelessWidget {
                                 child: Container(
                                   alignment: Alignment.centerLeft,
                                   height: 48,
-                                  width: WcWidth,
+                                  width: WcWidth(context),
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 30),
                                   child: Row(

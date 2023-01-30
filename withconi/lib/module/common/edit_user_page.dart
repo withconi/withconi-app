@@ -45,7 +45,7 @@ class EditUserPage extends StatelessWidget {
         body: SingleChildScrollView(
           child: SafeArea(
             child: SizedBox(
-              width: WcWidth,
+              width: WcWidth(context),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
@@ -119,7 +119,7 @@ class EditUserPage extends StatelessWidget {
                           height: 24,
                         ),
                         WcSuffixIconTextField(
-                          width: WcWidth - 40,
+                          width: WcWidth(context) - 40,
                           errorText: _controller.nickNameErrorText.value,
                           labelText: '아이디 (이메일)',
                           hintText: '아이디',

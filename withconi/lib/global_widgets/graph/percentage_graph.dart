@@ -21,7 +21,7 @@ class PercentageGraph extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       child: Container(
           color: WcColors.grey60,
-          width: graphWidth ?? WcWidth - 40,
+          width: graphWidth ?? WcWidth(context) - 40,
           height: 22,
           child: Row(
               children: List.generate(

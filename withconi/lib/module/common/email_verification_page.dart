@@ -26,7 +26,7 @@ class EmailVerificationPage extends StatelessWidget {
         resizeToAvoidBottomInset: false,
         body: SafeArea(
           child: SizedBox(
-            height: WcHeight,
+            height: WcHeight(context),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
@@ -137,7 +137,7 @@ class EmailVerificationPage extends StatelessWidget {
                   //   activeButtonColor: WcColors.blue100,
                   //   activeTextColor: WcColors.white,
                   //   buttonText: '이메일 인증완료',
-                  //   buttonWidth: WcWidth - 40,
+                  //   buttonWidth: WcWidth(context) - 40,
                   //   onTap: null,
                   // ),
                   const SizedBox(
@@ -149,7 +149,7 @@ class EmailVerificationPage extends StatelessWidget {
                       activeButtonColor: WcColors.blue100,
                       activeTextColor: WcColors.white,
                       buttonText: '인증메일 재전송',
-                      buttonWidth: WcWidth - 40,
+                      buttonWidth: WcWidth(context) - 40,
                       onTap: _controller.resendVerificationEmail,
                     ),
                   ),

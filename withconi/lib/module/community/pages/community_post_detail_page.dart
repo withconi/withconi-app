@@ -40,7 +40,7 @@ class CommunityPostDetailPage extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 8),
                   height: 50,
-                  width: WcWidth,
+                  width: WcWidth(context),
                   child: Row(
                     children: [
                       CircleAvatar(
@@ -104,7 +104,7 @@ class CommunityPostDetailPage extends StatelessWidget {
                   child: SafeArea(
                     bottom: false,
                     child: ConstrainedBox(
-                      constraints: BoxConstraints(minHeight: WcHeight),
+                      constraints: BoxConstraints(minHeight: WcHeight(context)),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -113,7 +113,7 @@ class CommunityPostDetailPage extends StatelessWidget {
                                 border: Border(
                                     bottom: BorderSide(
                                         width: 1, color: WcColors.grey80))),
-                            width: WcWidth,
+                            width: WcWidth(context),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [

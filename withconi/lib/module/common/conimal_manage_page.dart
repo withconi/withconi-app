@@ -28,7 +28,7 @@ class ConimalManagePage extends StatelessWidget {
         ),
         body: SafeArea(
           child: SizedBox(
-            width: WcWidth,
+            width: WcWidth(context),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -148,7 +148,7 @@ class ConimalManagePage extends StatelessWidget {
                       activeButtonColor: WcColors.blue100,
                       activeTextColor: WcColors.white,
                       buttonText: '수정완료',
-                      buttonWidth: WcWidth - 40,
+                      buttonWidth: WcWidth(context) - 40,
                       onTap: _controller.onEditButtonTap,
                     ),
                   ),

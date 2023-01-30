@@ -130,10 +130,10 @@ class _GalleryPhotoViewWrapperState extends State<GalleryPhotoViewWrapper> {
   PhotoViewGalleryPageOptions _buildItem(BuildContext context, int index) {
     final ImageItem item = widget.galleryItems[index];
     return PhotoViewGalleryPageOptions.customChild(
-      childSize: Size(WcWidth, WcHeight - 300),
+      childSize: Size(WcWidth(context), WcHeight(context) - 300),
       child: Container(
-        width: WcWidth,
-        height: WcHeight - 300,
+        width: WcWidth(context),
+        height: WcHeight(context) - 300,
         decoration: BoxDecoration(
           image: DecorationImage(
               fit: BoxFit.contain,

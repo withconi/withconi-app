@@ -34,7 +34,7 @@ class DictionaryDetailPage extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   height: 50,
                   color: WcColors.white,
-                  width: WcWidth,
+                  width: WcWidth(context),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -63,7 +63,7 @@ class DictionaryDetailPage extends StatelessWidget {
         body: Obx(() => _controller.pageStatus.value.maybeMap(
               orElse: () => SizedBox.shrink(),
               error: (errorObject) => WcErrorWidget(
-                height: WcHeight - 300,
+                height: WcHeight(context) - 300,
                 image: Image.asset(
                   'assets/icons/no_result.png',
                   height: 80,
@@ -72,7 +72,7 @@ class DictionaryDetailPage extends StatelessWidget {
                 message: '',
               ),
               loading: (value) => LoadingPage(
-                height: WcHeight - 150,
+                height: WcHeight(context) - 150,
               ),
               success: (value) => SingleChildScrollView(
                 child: Column(
@@ -144,7 +144,7 @@ class DictionaryDetailPage extends StatelessWidget {
                       height: 25,
                     ),
                     SizedBox(
-                      width: WcWidth - 40,
+                      width: WcWidth(context) - 40,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -181,7 +181,7 @@ class DictionaryDetailPage extends StatelessWidget {
                           color: WcColors.grey20,
                         ),
                         SizedBox(
-                          width: WcWidth - 40,
+                          width: WcWidth(context) - 40,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -220,7 +220,7 @@ class DictionaryDetailPage extends StatelessWidget {
                             color: WcColors.grey20,
                           ),
                           SizedBox(
-                            width: WcWidth - 40,
+                            width: WcWidth(context) - 40,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -261,7 +261,7 @@ class DictionaryDetailPage extends StatelessWidget {
                             color: WcColors.grey20,
                           ),
                           SizedBox(
-                            width: WcWidth - 40,
+                            width: WcWidth(context) - 40,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -301,7 +301,7 @@ class DictionaryDetailPage extends StatelessWidget {
                           color: WcColors.grey20,
                         ),
                         SizedBox(
-                          width: WcWidth - 40,
+                          width: WcWidth(context) - 40,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -400,7 +400,7 @@ class SymptomGroupWrap extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: (WcWidth - 50) / 2,
+      width: (WcWidth(context) - 50) / 2,
       // color: WcColors.blue40,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

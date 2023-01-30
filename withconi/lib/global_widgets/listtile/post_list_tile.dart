@@ -54,7 +54,7 @@ class PostListTile extends StatelessWidget {
             color: WcColors.white,
             border:
                 Border(bottom: BorderSide(width: 1, color: WcColors.grey80))),
-        width: WcWidth,
+        width: WcWidth(context),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -128,7 +128,7 @@ class PostListTile extends StatelessWidget {
                                     children: [
                                       SizedBox(
                                         height: 180,
-                                        width: WcWidth - 90,
+                                        width: WcWidth(context) - 90,
                                         child: CarouselSlider(
                                           options: CarouselOptions(
                                               autoPlayAnimationDuration:
@@ -146,7 +146,7 @@ class PostListTile extends StatelessWidget {
                                               viewportFraction: 1),
                                           items: post.images.map((image) {
                                             return Container(
-                                              width: WcWidth - 90,
+                                              width: WcWidth(context) - 90,
                                               foregroundDecoration:
                                                   const BoxDecoration(
                                                 gradient: LinearGradient(
@@ -198,7 +198,7 @@ class PostListTile extends StatelessWidget {
                               ),
                             ),
                             Container(
-                              width: WcWidth - 40 - 46,
+                              width: WcWidth(context) - 40 - 46,
                               padding: const EdgeInsets.only(top: 8, bottom: 9),
                               child: IgnorePointer(
                                 ignoring: true,

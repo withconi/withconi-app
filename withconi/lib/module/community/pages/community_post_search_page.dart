@@ -30,7 +30,7 @@ class CommunityPostSearchPage extends StatelessWidget {
         bottom: false,
         child: Center(
           child: SizedBox(
-            width: WcWidth,
+            width: WcWidth(context),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [

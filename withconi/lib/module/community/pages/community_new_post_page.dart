@@ -212,7 +212,7 @@ class CommunityNewPostPage extends StatelessWidget {
                       : SizedBox.shrink(),
                 ),
                 Container(
-                  width: WcWidth - 40,
+                  width: WcWidth(context) - 40,
                   margin: EdgeInsets.symmetric(horizontal: 20, vertical: 6),
                   child: TextField(
                     controller: _controller.contentsTextController,

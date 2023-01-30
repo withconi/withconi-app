@@ -24,7 +24,7 @@ class AgreementPage extends StatelessWidget {
         resizeToAvoidBottomInset: false,
         body: SafeArea(
           child: Container(
-            constraints: BoxConstraints(minHeight: WcHeight),
+            constraints: BoxConstraints(minHeight: WcHeight(context)),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(

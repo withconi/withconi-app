@@ -57,7 +57,7 @@ class ConimalEditPage extends StatelessWidget {
               : SingleChildScrollView(
                   child: SafeArea(
                     child: SizedBox(
-                      width: WcWidth,
+                      width: WcWidth(context),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: Column(
@@ -235,7 +235,7 @@ class ConimalEditPage extends StatelessWidget {
                             //     activeButtonColor: WcColors.blue100,
                             //     activeTextColor: WcColors.white,
                             //     buttonText: '수정하기',
-                            //     buttonWidth: WcWidth - 40,
+                            //     buttonWidth: WcWidth(context) - 40,
                             //     onTap: _controller.onEditButtonTap,
                             //   ),
                             // ),

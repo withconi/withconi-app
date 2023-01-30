@@ -1,3 +1,5 @@
+import 'dart:js';
+
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 import 'package:withconi/module/common/controllers/breed_search_controller.dart';
 import 'package:withconi/module/common/widgets/breed_list_tile.dart';
@@ -30,7 +32,7 @@ class BreedSearchPage extends StatelessWidget {
         bottom: false,
         child: Center(
           child: SizedBox(
-            width: WcWidth,
+            width: WcWidth(context),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -60,7 +62,7 @@ class BreedSearchPage extends StatelessWidget {
                 ),
                 Obx(() => Expanded(
                       child: _getWidgetByState(
-                          _controller.pageStatus.value, _controller),
+                          _controller.pageStatus.value, _controller, context),
                     )),
               ],
             ),
@@ -70,21 +72,14 @@ class BreedSearchPage extends StatelessWidget {
     );
   }
 
-  Widget _getWidgetByState(
-      PageStatus status, BreedSearchController _controller) {
+  Widget _getWidgetByState(PageStatus status, BreedSearchController _controller,
+      BuildContext context) {
     return status.maybeWhen(
       // init: () => SizedBox.shrink(),
       loading: (value) => LoadingPage(
-        height: WcHeight - 300,
+        height: WcHeight(context) - 300,
       ),
-      // empty: () => WcErrorWidget(
-      //   image: Image.asset(
-      //     'assets/icons/no_result.png',
-      //     height: 90,
-      //   ),
-      //   title: '검색 결과가 없습니다',
-      //   message: '다른 검색어로 시도해주세요 :)',
-      // ),
+
       error: (message) => WcErrorWidget(
         image: Image.asset(
           'assets/icons/no_result.png',
@@ -102,7 +97,7 @@ class BreedSearchPage extends StatelessWidget {
               breed: _controller.searchedBreedList[index],
               diseaseIndex: index,
               onTap: _controller.onBreedSelected,
-              width: WcWidth,
+              width: WcWidth(context),
               searchKeyword: _controller.searchKeyword,
             );
           }),

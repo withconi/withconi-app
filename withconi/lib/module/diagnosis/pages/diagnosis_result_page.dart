@@ -172,7 +172,7 @@ class DiagnosisResultPage extends StatelessWidget {
                                 //   activeButtonColor: WcColors.blue100,
                                 //   activeTextColor: WcColors.white,
                                 //   buttonText: '선택완료',
-                                //   buttonWidth: WcWidth - 40,
+                                //   buttonWidth: WcWidth(context) - 40,
                                 //   onTap: () {},
                                 // ),
                                 const SizedBox(
@@ -212,7 +212,7 @@ class DiseaseResultListTile extends StatelessWidget {
         padding: EdgeInsets.fromLTRB(15, 13, 15, 15),
         margin: EdgeInsets.only(bottom: 17),
         height: 76,
-        width: WcWidth - 40,
+        width: WcWidth(context) - 40,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             color: WcColors.white,

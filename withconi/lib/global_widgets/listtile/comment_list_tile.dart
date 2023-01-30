@@ -50,7 +50,7 @@ class WcCommentListTile extends StatelessWidget {
         decoration: BoxDecoration(
             border:
                 Border(bottom: BorderSide(width: 1, color: WcColors.grey80))),
-        width: WcWidth,
+        width: WcWidth(context),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -109,7 +109,7 @@ class WcCommentListTile extends StatelessWidget {
                                 Container(
                                   // color: WcColors.babyPinkLight,
                                   padding: EdgeInsets.only(top: 10),
-                                  width: WcWidth - 40 - 46,
+                                  width: WcWidth(context) - 40 - 46,
                                   child: Text(
                                     comment.content,
                                     maxLines: 20,
@@ -132,7 +132,7 @@ class WcCommentListTile extends StatelessWidget {
                 ),
                 Container(
                   height: 33,
-                  width: WcWidth - 65,
+                  width: WcWidth(context) - 65,
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

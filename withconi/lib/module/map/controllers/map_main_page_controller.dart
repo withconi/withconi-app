@@ -7,7 +7,6 @@ import 'package:withconi/core/error_handling/failures.dart';
 import 'package:withconi/core/tools/helpers/quick_sort.dart';
 import 'package:withconi/data/repository/map_repository.dart';
 import 'package:withconi/global_widgets/loading/loading_overlay.dart';
-import 'package:withconi/global_widgets/snackbar.dart';
 import 'package:withconi/module/ui_model/latlng_ui_model.dart';
 import 'package:withconi/module/ui_model/map_filter_ui_model.dart';
 import 'package:withconi/module/ui_model/place_ui_model/abstract_class/place_preview_ui.dart';
@@ -22,7 +21,6 @@ import '../../community/controllers/custom_state_mixin.dart';
 import '../../page_status.dart';
 import '../../ui_model/place_marker_ui_model.dart';
 import '../../../core/tools/helpers/infinite_scroll.dart';
-import '../../ui_model/review_preview_ui_model.dart';
 import '../abstract/map_review_update_abstract.dart';
 import '../widgets/map_overlapped_botton_sheet.dart';
 
@@ -114,8 +112,10 @@ class MapMainPageController extends GetxController
     selectedPlaceDragController.addListener(() {
       if (selectedPlaceDragController.size >= 0.8) {
         goToSelectedPlaceDetail();
-        Future.delayed(const Duration(milliseconds: 200),
-            () => selectedPlaceDragController.jumpTo(240 / WcHeight));
+        Future.delayed(
+            const Duration(milliseconds: 200),
+            () => selectedPlaceDragController
+                .jumpTo(240 / WcHeight(Get.context!)));
         selectedPlaceScrollController.jumpTo(0.0);
       }
     });
@@ -415,12 +415,9 @@ class MapMainPageController extends GetxController
 
   _setSearchDistance() async {
     final _mapController = await mapController.future;
-    // LatLngBounds latLngBounds = await _mapController.getVisibleRegion();
-    // Map<String, int?> mapSize = await _mapController.getSize();
 
     double searchDistanceMeter =
-        (WcWidth) * await _mapController.getMeterPerPx();
-    print(searchDistanceMeter);
+        (WcWidth()) * await _mapController.getMeterPerPx();
     double searchDistanceKilometer = (searchDistanceMeter / 1000);
     if (searchDistanceKilometer >= _maxSearchDistanceKilometer) {
       _searchDistanceKilometer = _maxSearchDistanceKilometer;

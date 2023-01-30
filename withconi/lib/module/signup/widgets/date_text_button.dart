@@ -29,7 +29,7 @@ class DateTextButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         color: Colors.transparent,
-        width: WcWidth - 40,
+        width: WcWidth(context) - 40,
         height: 50,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -33,7 +33,7 @@ class SearchBarWidget extends StatelessWidget {
               ),
             ],
         _margin = margin ?? EdgeInsets.fromLTRB(0, 0, 0, 0),
-        _width = width ?? WcWidth - 40,
+        _width = width ?? Get.width - 40,
         _activeAction = activeAction ?? true,
         _textController = textController,
         super();

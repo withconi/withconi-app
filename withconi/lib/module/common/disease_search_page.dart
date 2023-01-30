@@ -24,7 +24,7 @@ class DiseaseSearchPage extends StatelessWidget {
         activeButtonColor: WcColors.blue100,
         activeTextColor: WcColors.white,
         buttonText: '완료',
-        buttonWidth: WcWidth - 40,
+        buttonWidth: WcWidth(context) - 40,
         onTap: () {
           _controller.saveDiseases();
         },
@@ -32,8 +32,8 @@ class DiseaseSearchPage extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: SafeArea(
         bottom: false,
-        child: Container(
-          width: WcWidth,
+        child: SizedBox(
+          width: WcWidth(context),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -50,7 +50,7 @@ class DiseaseSearchPage extends StatelessWidget {
                 height: 20,
               ),
               SizedBox(
-                  width: WcWidth - 40,
+                  width: WcWidth(context) - 40,
                   child: Obx(() => Wrap(
                       runSpacing: 8,
                       spacing: 8,
@@ -97,7 +97,7 @@ class DiseaseSearchPage extends StatelessWidget {
                 searchKeyword: _controller.diseaseKeywords,
                 selected: _controller.diseaseListSelected.any((element) =>
                     element.diseaseId == diseaseList[index].diseaseId),
-                width: WcWidth,
+                width: WcWidth(context),
                 diseaseIndex: index,
                 onDiseaseInfoTap: (disease) {
                   Get.toNamed(Routes.DICTIONARY_DETAIL,
@@ -110,7 +110,7 @@ class DiseaseSearchPage extends StatelessWidget {
                     bottom: 0,
                     child: Center(
                       child: Container(
-                        width: WcWidth,
+                        width: WcWidth(Get.context!),
                         padding: const EdgeInsets.symmetric(vertical: 20),
                         margin: const EdgeInsets.symmetric(vertical: 20),
                         child: const Center(
