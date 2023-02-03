@@ -6,6 +6,8 @@ import '../../../core/network_handling/network_service.dart';
 class DiagnosisAPI {
   final Api _dio = Api();
 
+
+
   // Future<Map<String, dynamic>> getDiseaseList(ApiCallDTO apiCallDTO) async {
   //   Map<String, dynamic> diseaseListData = await _dio.apiCall(apiCallDTO);
 
