@@ -74,7 +74,7 @@ class MapDetailPage extends StatelessWidget {
           WcWideButtonWidget(
               buttonText: '이 장소 리뷰쓰기',
               onTap: () => _controller.goToNewReviewPage(placeSelected: true),
-              buttonWidth: -30 - 60,
+              buttonWidth: _myWidth - 30 - 60,
               activeButtonColor: WcColors.blue100,
               active: true,
               activeTextColor: WcColors.white),
