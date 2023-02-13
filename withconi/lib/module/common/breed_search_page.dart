@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 import 'package:withconi/module/common/controllers/breed_search_controller.dart';
 import 'package:withconi/module/common/widgets/breed_list_tile.dart';

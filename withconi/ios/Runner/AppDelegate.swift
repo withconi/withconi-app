@@ -10,7 +10,7 @@ import NaverThirdPartyLogin
     ) -> Bool {
 
         if #available(iOS 10.0, *) {
-        UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
+        UNUserNotificationCenter.current().delegate = self as UNUserNotificationCenterDelegate
         }
 
                 

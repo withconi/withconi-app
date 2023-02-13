@@ -565,41 +565,6 @@ class MapMainPageController extends GetxController
   Future<void> _assignPlaceMarkers(
     List<PlacePreviewUIModel> placePreviewList,
   ) async {
-    // Map<int, int> map = {};
-
-    // for (int i = 0; i < placePreviewList.length; i++) {
-    //   for (int j = i + 1; j < placePreviewList.length; j++) {
-    //     if (map[i] != null && map[i]! > 0) break;
-    //     if (map[j] != null && map[j]! > 0) continue;
-    //     if (placePreviewList[i].placeLocation.lat ==
-    //             placePreviewList[j].placeLocation.lat &&
-    //         placePreviewList[i].placeLocation.lng ==
-    //             placePreviewList[j].placeLocation.lng) {
-    //       map[i] = 1;
-    //       map[j] = 1;
-    //     } else {
-    //       if (map[i] == null) map[i] = 0;
-    //       if (map[j] == null) map[j] = 0;
-    //     }
-    //   }
-    // }
-
-    //  var overlappedMarkers = map.entries
-    //       .where((entry) => entry.value > 0)
-    //       .map((e) => PlaceMarkerUIModel.fromMyOverlappedPlace(
-    //             placePreview: placePreviewList[e.key],
-    //             onTapMarker: _onMarkerTap,
-    //           ))
-    //       .toList();
-
-    //   var markers = map.entries
-    //       .where((entry) => entry.value <= 0)
-    //       .map((e) => PlaceMarkerUIModel.fromMyPlace(
-    //             placePreview: placePreviewList[e.key],
-    //             onTapMarker: _onMarkerTap,
-    //           ))
-    //       .toList();
-
     Map<int, List<String>> map = {};
 
     for (int i = 0; i < placePreviewList.length; i++) {

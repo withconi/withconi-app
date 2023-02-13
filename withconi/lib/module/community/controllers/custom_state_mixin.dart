@@ -10,8 +10,6 @@ import 'package:withconi/global_widgets/loading/loading_page.dart';
 import 'package:withconi/module/page_status.dart';
 import 'package:withconi/module/theme/sizes.dart';
 
-import '../../theme/colors.dart';
-
 mixin WcStateMixin<T> on ListNotifierMixin {
   T? _value;
   PageStatus? _status;
