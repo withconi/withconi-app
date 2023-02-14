@@ -8,8 +8,8 @@ class NavigationController extends GetxController {
 
   final _pages = [
     Routes.HOME,
-    Routes.MAP_MAIN,
     Routes.COMMUNITY_MAIN,
+    Routes.MAP_MAIN,
     Routes.DICTIONARY_MAIN
   ];
 

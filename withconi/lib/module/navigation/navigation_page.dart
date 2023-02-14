@@ -45,21 +45,22 @@ class NavigationPage extends StatelessWidget {
                 popGesture: false,
               );
             }
-            if (settings.name == Routes.MAP_MAIN) {
-              return GetPageRoute(
-                settings: settings,
-                transition: Transition.noTransition,
-                page: () => const MapMainPage(),
-                routeName: Routes.MAP_MAIN,
-                popGesture: false,
-              );
-            }
             if (settings.name == Routes.COMMUNITY_MAIN) {
               return GetPageRoute(
                 settings: settings,
                 transition: Transition.noTransition,
                 page: () => const CommunityMainPage(),
                 routeName: Routes.COMMUNITY_MAIN,
+                popGesture: false,
+              );
+            }
+
+            if (settings.name == Routes.MAP_MAIN) {
+              return GetPageRoute(
+                settings: settings,
+                transition: Transition.noTransition,
+                page: () => const MapMainPage(),
+                routeName: Routes.MAP_MAIN,
                 popGesture: false,
               );
             }
