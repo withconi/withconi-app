@@ -299,12 +299,14 @@ class WcLikeButton extends StatelessWidget {
     required this.onLikeTap,
     required this.likeNum,
     this.iconSize = 20,
+    this.padding = const EdgeInsets.fromLTRB(0, 5, 20, 4),
   }) : super(key: key);
 
   bool isLikeOn;
   void Function(bool) onLikeTap;
   double iconSize;
   int likeNum;
+  EdgeInsets padding;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -314,8 +316,8 @@ class WcLikeButton extends StatelessWidget {
             onLikeTap.call(!isLikeOn);
           },
           child: Container(
-            padding: const EdgeInsets.fromLTRB(0, 5, 20, 4),
-            color: Colors.white,
+            padding: padding,
+            color: Colors.transparent,
             child: Row(
               children: [
                 Icon(
