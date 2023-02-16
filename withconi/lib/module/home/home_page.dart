@@ -823,81 +823,87 @@ class HomePage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 15),
-                            child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Text('이번주 커뮤니티 인기글',
-                                      style: TextStyle(
-                                          fontFamily: WcFontFamily.notoSans,
-                                          fontSize: 17,
-                                          height: 1,
-                                          fontWeight: FontWeight.w600,
-                                          color: WcColors.black)),
-                                  Container(
-                                    margin: EdgeInsets.only(left: 8),
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 9, vertical: 4),
-                                    alignment: Alignment.center,
-                                    decoration: BoxDecoration(
-                                        color: WcColors.red20,
-                                        borderRadius:
-                                            BorderRadius.circular(20)),
-                                    child: Text(
-                                      'HOT',
-                                      style: GoogleFonts.openSans(
-                                          height: 1.2,
-                                          fontSize: 12,
-                                          letterSpacing: 0.1,
-                                          color: const Color.fromARGB(
-                                              255, 213, 25, 0),
-                                          fontWeight: FontWeight.w700),
-                                    ),
-                                  )
-                                ])),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Obx(
-                          () => (_controller.isLoading.value ||
-                                  _controller.hotPostList.isEmpty)
-                              ? ListView.builder(
-                                  shrinkWrap: true,
-                                  itemCount: 5,
-                                  itemBuilder: (context, index) => Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 7, horizontal: 15),
-                                    child: SkeletonItem(
-                                        child: Row(
-                                      children: [
-                                        SkeletonLine(
-                                          style: SkeletonLineStyle(
-                                              height: 13,
-                                              width: 40,
-                                              borderRadius:
-                                                  BorderRadius.circular(8)),
-                                        ),
-                                        const SizedBox(
-                                          width: 8,
-                                        ),
-                                        SkeletonLine(
-                                          style: SkeletonLineStyle(
-                                              randomLength: true,
-                                              height: 13,
-                                              maxLength: WcWidth(context) - 160,
-                                              minLength: WcWidth(context) / 2.3,
-                                              borderRadius:
-                                                  BorderRadius.circular(8)),
-                                        ),
-                                      ],
-                                    )),
+                          padding: const EdgeInsets.symmetric(horizontal: 15),
+                          child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                const Text(
+                                  '이번주 커뮤니티 인기글',
+                                  style: TextStyle(
+                                      fontFamily: WcFontFamily.notoSans,
+                                      fontSize: 17,
+                                      height: 1,
+                                      fontWeight: FontWeight.w600,
+                                      color: WcColors.black),
+                                ),
+                                Container(
+                                  margin: const EdgeInsets.only(left: 8),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 9, vertical: 4),
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                      color: WcColors.red20,
+                                      borderRadius: BorderRadius.circular(20)),
+                                  child: Text(
+                                    'HOT',
+                                    style: GoogleFonts.openSans(
+                                        height: 1.2,
+                                        fontSize: 12,
+                                        letterSpacing: 0.1,
+                                        color: const Color.fromARGB(
+                                            255, 213, 25, 0),
+                                        fontWeight: FontWeight.w700),
                                   ),
                                 )
-                              : Padding(
-                                  padding: EdgeInsets.fromLTRB(2, 2, 3, 2),
-                                  child: ListView.builder(
-                                      physics:
-                                          const NeverScrollableScrollPhysics(),
+                              ]),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Obx(() => (_controller.isLoading.value ||
+                                _controller.hotPostList.isEmpty)
+                            ? ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: 5,
+                                itemBuilder: (context, index) => Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 7, horizontal: 15),
+                                  child: SkeletonItem(
+                                      child: Row(
+                                    children: [
+                                      SkeletonLine(
+                                        style: SkeletonLineStyle(
+                                            height: 13,
+                                            width: 40,
+                                            borderRadius:
+                                                BorderRadius.circular(8)),
+                                      ),
+                                      const SizedBox(
+                                        width: 8,
+                                      ),
+                                      SkeletonLine(
+                                        style: SkeletonLineStyle(
+                                            randomLength: true,
+                                            height: 13,
+                                            maxLength: WcWidth(context) - 160,
+                                            minLength: WcWidth(context) / 2.3,
+                                            borderRadius:
+                                                BorderRadius.circular(8)),
+                                      ),
+                                    ],
+                                  )),
+                                ),
+                              )
+                            : SizedBox(
+                                height: 145,
+                                child: Padding(
+                                  padding: EdgeInsets.fromLTRB(15, 2, 15, 10),
+                                  child: ListView.separated(
+                                      separatorBuilder: (context, index) =>
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                      scrollDirection: Axis.horizontal,
                                       itemCount: _controller.hotPostList.length,
                                       shrinkWrap: true,
                                       itemBuilder: (context, index) =>
@@ -908,7 +914,7 @@ class HomePage extends StatelessWidget {
                                                 _controller.goToPostDetailPage,
                                           )),
                                 ),
-                        )
+                              ))
                       ],
                     ),
                   ),
