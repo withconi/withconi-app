@@ -23,7 +23,7 @@ class WcColors {
   static const Color purple20 = Color(0xffF0E4FF);
   static const Color purple100 = Color(0xff6000DB);
 
-  static const Color grey20 = Color(0xffF5F5F7);
+  static const Color grey20 = Color.fromARGB(232, 245, 245, 247);
   static const Color grey40 = Color.fromARGB(255, 242, 244, 246);
   static const Color grey60 = Color.fromARGB(255, 238, 240, 243);
   static const Color grey80 = Color.fromARGB(255, 232, 235, 239);
