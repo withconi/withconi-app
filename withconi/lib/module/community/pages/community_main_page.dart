@@ -5,6 +5,8 @@ import 'package:withconi/module/community/controllers/custom_state_mixin.dart';
 import 'package:withconi/module/theme/text_theme.dart';
 import 'package:withconi/global_widgets/searchbar/search_bar.dart';
 import '../../../global_widgets/button/icon_button.dart';
+import '../../../global_widgets/button/icon_text_button.dart';
+import '../../../global_widgets/listtile/post_list_tile.dart';
 import '../../home/widgets/hot_post_listtile.dart';
 
 class CommunityMainPage extends StatelessWidget {
@@ -113,49 +115,72 @@ class CommunityMainPage extends StatelessWidget {
                 const SizedBox(
                   height: 12,
                 ),
-                Obx(
-                  () => (_controller.hotPostList.isEmpty)
-                      ? ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: 5,
-                          itemBuilder: (context, index) => Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 30, vertical: 9),
-                            child: SkeletonItem(
-                                child: Row(
-                              children: [
-                                SkeletonLine(
-                                  style: SkeletonLineStyle(
-                                      height: 14,
-                                      width: 55,
-                                      borderRadius: BorderRadius.circular(6)),
+                Obx(() => (_controller.hotPostList.isEmpty)
+                    ? ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: 5,
+                        itemBuilder: (context, index) => Padding(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 30, vertical: 9),
+                          child: SkeletonItem(
+                              child: Row(
+                            children: [
+                              SkeletonLine(
+                                style: SkeletonLineStyle(
+                                    height: 14,
+                                    width: 55,
+                                    borderRadius: BorderRadius.circular(6)),
+                              ),
+                              SizedBox(
+                                width: 8,
+                              ),
+                              SkeletonLine(
+                                style: SkeletonLineStyle(
+                                    randomLength: true,
+                                    height: 14,
+                                    maxLength: WcWidth(context) - 130,
+                                    minLength: WcWidth(context) / 2,
+                                    borderRadius: BorderRadius.circular(8)),
+                              ),
+                            ],
+                          )),
+                        ),
+                      )
+                    : SizedBox(
+                        height: 130,
+                        child: ListView.separated(
+                            separatorBuilder: (context, index) => SizedBox(
+                                  width: 10,
                                 ),
-                                SizedBox(
-                                  width: 8,
-                                ),
-                                SkeletonLine(
-                                  style: SkeletonLineStyle(
-                                      randomLength: true,
-                                      height: 14,
-                                      maxLength: WcWidth(context) - 130,
-                                      minLength: WcWidth(context) / 2,
-                                      borderRadius: BorderRadius.circular(8)),
-                                ),
-                              ],
-                            )),
-                          ),
-                        )
-                      : ListView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemCount: _controller.hotPostList.length,
-                          itemBuilder: (context, index) => HotPostListTile(
-                                width: WcWidth(context) - 40,
-                                padding:
-                                    const EdgeInsets.only(left: 30, right: 15),
-                                hotPost: _controller.hotPostList[index],
-                                onPostTap: _controller.goToPostDetailPage,
-                              )),
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            itemCount: _controller.hotPostList.length,
+                            itemBuilder: (context, index) {
+                              var hotPost = _controller.hotPostList[index];
+                              return Container(
+                                margin: EdgeInsets.only(
+                                    right: (index ==
+                                            _controller.hotPostList.length - 1)
+                                        ? 17
+                                        : 0,
+                                    left: (index == 0) ? 17 : 0),
+                                child: HotPostListTile(
+                                    hotPost: hotPost,
+                                    onPostTap: _controller.goToPostDetailPage),
+                              );
+                            }),
+                      )),
+                const SizedBox(
+                  height: 30,
+                ),
+                SizedBox(
+                  width: WcWidth(Get.context!) - 40,
+                  child: const Text('즐겨찾는 게시판',
+                      style: TextStyle(
+                          fontFamily: WcFontFamily.notoSans,
+                          fontWeight: FontWeight.w500,
+                          height: 1,
+                          fontSize: 19)),
                 ),
                 const SizedBox(
                   height: 30,
@@ -172,88 +197,84 @@ class CommunityMainPage extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                Obx(
-                  () => (_controller.boardList.isEmpty)
-                      ? ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: 10,
-                          itemBuilder: (context, index) => Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 30, vertical: 13),
-                            child: SkeletonItem(
-                                child: Row(
-                              children: [
-                                SkeletonLine(
-                                  style: SkeletonLineStyle(
-                                      height: 18,
-                                      width: 55,
-                                      borderRadius: BorderRadius.circular(5)),
-                                ),
-                                SizedBox(
-                                  width: 8,
-                                ),
-                                SkeletonLine(
-                                  style: SkeletonLineStyle(
-                                      randomLength: true,
-                                      height: 18,
-                                      maxLength: WcWidth(context) - 130,
-                                      minLength: WcWidth(context) / 2,
-                                      borderRadius: BorderRadius.circular(8)),
-                                ),
-                              ],
-                            )),
-                          ),
-                        )
-                      : ListView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemCount: _controller.searchedBoardList.length,
-                          itemBuilder: (context, index) => InkWell(
-                                onTap: () {
-                                  _controller.goToBoardDetailPage(
-                                      boardIndex: index);
-                                },
+                Obx(() => (_controller.boardList.isEmpty)
+                    ? ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: 10,
+                        itemBuilder: (context, index) => Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 30, vertical: 13),
+                          child: SkeletonItem(
+                              child: Row(
+                            children: [
+                              SkeletonLine(
+                                style: SkeletonLineStyle(
+                                    height: 18,
+                                    width: 55,
+                                    borderRadius: BorderRadius.circular(5)),
+                              ),
+                              SizedBox(
+                                width: 8,
+                              ),
+                              SkeletonLine(
+                                style: SkeletonLineStyle(
+                                    randomLength: true,
+                                    height: 18,
+                                    maxLength: WcWidth(context) - 130,
+                                    minLength: WcWidth(context) / 2,
+                                    borderRadius: BorderRadius.circular(8)),
+                              ),
+                            ],
+                          )),
+                        ),
+                      )
+                    : Container(
+                        margin: EdgeInsets.symmetric(horizontal: 17),
+                        child: GridView.builder(
+                            shrinkWrap: true,
+                            itemCount: _controller.searchedBoardList.length,
+                            physics: NeverScrollableScrollPhysics(),
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 3, //1 개의 행에 보여줄 item 개수
+                              childAspectRatio:
+                                  1.4 / 1.3, //item 의 가로 1, 세로 2 의 비율
+                              mainAxisSpacing: 10, //수평 Padding
+                              crossAxisSpacing: 10, //수직 Padding
+                            ),
+                            itemBuilder: (context, index) {
+                              var board = _controller.searchedBoardList[index];
+                              return GestureDetector(
+                                onTap: () => _controller.goToBoardDetailPage(
+                                    boardIndex: index),
                                 child: Container(
-                                  alignment: Alignment.centerLeft,
-                                  height: 48,
-                                  width: WcWidth(context),
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 30),
-                                  child: Row(
+                                  decoration: BoxDecoration(
+                                      color: WcColors.grey20,
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
                                     children: [
-                                      Container(
-                                        height: 10,
-                                        width: 10,
-                                        decoration: BoxDecoration(
-                                            color: _controller
-                                                .searchedBoardList[index]
-                                                .diseaseType
-                                                .color,
-                                            borderRadius:
-                                                BorderRadius.circular(2)),
+                                      Image.asset(
+                                        board.diseaseType.iconUrl,
+                                        height: 38,
                                       ),
-                                      const SizedBox(
-                                        width: 10,
+                                      SizedBox(
+                                        height: 12,
                                       ),
-                                      Text(
-                                          _controller
-                                              .searchedBoardList[index].title,
-                                          style: const TextStyle(
-                                              fontFamily: WcFontFamily.notoSans,
-                                              height: 1,
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 16)),
-                                      const Text('게시판',
+                                      Text(board.diseaseType.displayName,
                                           style: TextStyle(
-                                              height: 1,
                                               fontFamily: WcFontFamily.notoSans,
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 16)),
+                                              fontWeight: FontWeight.w500,
+                                              height: 1,
+                                              fontSize: 15)),
                                     ],
                                   ),
                                 ),
-                              )),
-                ),
+                              );
+                            }),
+                      )),
                 const SizedBox(
                   height: 30,
                 )
