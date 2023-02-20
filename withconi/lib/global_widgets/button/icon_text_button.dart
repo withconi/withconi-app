@@ -11,6 +11,7 @@ class WcIconTextButton extends StatelessWidget {
       required this.activeIconColor,
       required this.inactiveIconColor,
       required this.text,
+      this.padding = const EdgeInsets.fromLTRB(0, 5, 10, 4),
       this.iconWidth = 19,
       this.iconHeight = 19})
       : super(key: key);
@@ -23,14 +24,15 @@ class WcIconTextButton extends StatelessWidget {
   bool active;
   double iconHeight;
   double iconWidth;
+  EdgeInsets padding;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.fromLTRB(0, 5, 10, 4),
-        color: WcColors.white,
+        padding: padding,
+        color: Colors.transparent,
         child: Row(
           children: [
             SvgPicture.asset(
