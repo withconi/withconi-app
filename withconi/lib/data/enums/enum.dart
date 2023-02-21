@@ -576,31 +576,44 @@ enum PlaceType {
 }
 
 enum DiseaseType {
-  all('all', '', WcColors.grey20),
-  oncology('oncology', '암/종양혈액', Color.fromARGB(255, 0, 87, 193)), //암,종양혈액질환
-  endocrinology('endocrinology', '대사/면역', WcColors.green100), //내분비,호르몬
-  urinary('urinary', '비뇨/신장', WcColors.yellowLight), // 비뇨신장
-  cardiovacular(
-      'cardiovacular', '심혈관', Color.fromARGB(255, 255, 90, 173)), //심혈관
-  digestive('digestive', '소화기/간담췌', WcColors.mintLight), //소화기,간담췌
-  infectiousDisease('infectiousDisease', '감염성', WcColors.greenLight), //감염성
-  musculoskeletal('musculoskeletal', '근골격', WcColors.grey160), // 근골격
-  brainNeurology(
-      'brainNeurology', '뇌/신경정신', Color.fromARGB(255, 22, 166, 255)), // 뇌신경정신질환
-  dermatology('dermatology', '피부과', WcColors.beidgeLight), //피부과
-  otorhinolaryngology(
-      'otorhinolaryngology', '이비인후', WcColors.mustardLight), // 이비인후
-  respiratory('respiratory', '호흡기', WcColors.purpleLight), // 호흡기
-  dentistry('dentistry', '치과', WcColors.babyPinkLight), //치과
-  ophthalmology('ophthalmology', '안과', Color.fromARGB(255, 0, 119, 231)), // 안과
-  emergency('emergency', '응급', Color.fromARGB(255, 233, 27, 0)),
+  all('all', '', WcColors.grey20, ''),
+  oncology('oncology', '암/종양혈액', Color.fromARGB(255, 0, 87, 193),
+      'assets/icons/disease_type/oncology.png'), //암,종양혈액질환
+  endocrinology('endocrinology', '대사/면역', WcColors.green100,
+      'assets/icons/disease_type/endocrinology.png'), //내분비,호르몬
+  urinary('urinary', '비뇨/신장', WcColors.yellowLight,
+      'assets/icons/disease_type/urinary.png'), // 비뇨신장
+  cardiovacular('cardiovacular', '심혈관', Color.fromARGB(255, 255, 90, 173),
+      'assets/icons/disease_type/cardiovacular.png'), //심혈관
+  digestive('digestive', '소화기/간담췌', WcColors.mintLight,
+      'assets/icons/disease_type/digestive.png'), //소화기,간담췌
+  infectiousDisease('infectiousDisease', '감염성', WcColors.greenLight,
+      'assets/icons/disease_type/infectiousDisease.png'), //감염성
+  musculoskeletal('musculoskeletal', '근골격', WcColors.grey160,
+      'assets/icons/disease_type/musculoskeletal.png'), // 근골격
+  brainNeurology('brainNeurology', '뇌/신경정신', Color.fromARGB(255, 22, 166, 255),
+      'assets/icons/disease_type/brainNeurology.png'), // 뇌신경정신질환
+  dermatology('dermatology', '피부과', WcColors.beidgeLight,
+      'assets/icons/disease_type/dermatology.png'), //피부과
+  otorhinolaryngology('otorhinolaryngology', '이비인후', WcColors.mustardLight,
+      'assets/icons/disease_type/otorhinolaryngology.png'), // 이비인후
+  respiratory('respiratory', '호흡기', WcColors.purpleLight,
+      'assets/icons/disease_type/respiratory.png'), // 호흡기
+  dentistry('dentistry', '치과', WcColors.babyPinkLight,
+      'assets/icons/disease_type/dentistry.png'), //치과
+  ophthalmology('ophthalmology', '안과', Color.fromARGB(255, 0, 119, 231),
+      'assets/icons/disease_type/ophthalmology.png'), // 안과
+  emergency('emergency', '응급', Color.fromARGB(255, 233, 27, 0),
+      'assets/icons/disease_type/emergency.png'),
   @JsonValue("")
-  undefined('undefined', '', WcColors.grey110); //응급
+  undefined('undefined', '', WcColors.grey110,
+      'assets/icons/disease_type/free.png'); //응급
 
-  const DiseaseType(this.code, this.displayName, this.color);
+  const DiseaseType(this.code, this.displayName, this.color, this.iconUrl);
   final String code;
   final String displayName;
   final Color color;
+  final String iconUrl;
 
   factory DiseaseType.getByCode(String code) {
     return DiseaseType.values.firstWhere((value) => value.code == code,
