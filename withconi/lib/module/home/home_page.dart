@@ -53,7 +53,7 @@ class HomePage extends StatelessWidget {
                             borderRadius: BorderRadius.vertical(
                               bottom: Radius.circular(23),
                             ),
-                            boxShadow: const [
+                            boxShadow: [
                               BoxShadow(
                                 color: Color.fromARGB(15, 0, 0, 0),
                                 spreadRadius: 0,
