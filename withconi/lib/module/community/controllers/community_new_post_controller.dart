@@ -33,11 +33,14 @@ class CommunityNewPostController extends GetxController {
     content: '',
     postType: null,
     images: [],
+    conimals: [],
+    species: Species.all,
+    title: '',
   ).obs;
   late final String _boardId;
   final RxBool validatePostButton = false.obs;
   TextEditingController contentsTextController = TextEditingController();
-
+  TextEditingController titleTextController = TextEditingController();
   void onPostTypeChanged(PostType postType) {
     newPost.value.postType = postType;
     newPost.refresh();
@@ -45,6 +48,10 @@ class CommunityNewPostController extends GetxController {
 
   void onContentsChanged(String contentsText) {
     newPost.value.content = contentsText;
+  }
+
+  void onTitleChanged(String title) {
+    newPost.value.title = title;
   }
 
   deleteImage(int imageIndex) {
