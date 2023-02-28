@@ -77,10 +77,13 @@ class PostDetail extends StatelessWidget {
                       width: 4,
                     ),
                     WcBadge(
-                      text: '고양이',
+                      text: post.postType?.displayName ??
+                          PostType.life.displayName,
                       textSize: 13,
-                      backgroundColor: WcColors.blue40,
-                      textColor: WcColors.blue100,
+                      backgroundColor: post.postType?.backgroundColor ??
+                          PostType.life.backgroundColor,
+                      textColor:
+                          post.postType?.textColor ?? PostType.life.textColor,
                       width: 60,
                       height: 26,
                     ),
