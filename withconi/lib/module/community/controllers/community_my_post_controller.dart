@@ -62,11 +62,11 @@ class MyPostPageController extends GetxController with AbstractPostUpdate {
 
   Color badgeBackgroundColor(int postIndex) {
     switch (myPostList[postIndex].postType) {
-      case PostType.all:
+      case PostType.info:
         return WcColors.purple20;
-      case PostType.cat:
+      case PostType.inquiry:
         return WcColors.blue60;
-      case PostType.dog:
+      case PostType.life:
         return WcColors.green40;
       default:
         return Colors.transparent;
@@ -75,11 +75,11 @@ class MyPostPageController extends GetxController with AbstractPostUpdate {
 
   Color badgeTextColor(int postIndex) {
     switch (myPostList[postIndex].postType) {
-      case PostType.all:
+      case PostType.info:
         return WcColors.purple100;
-      case PostType.cat:
+      case PostType.inquiry:
         return WcColors.blue100;
-      case PostType.dog:
+      case PostType.life:
         return WcColors.green100;
 
       default:

@@ -2,7 +2,8 @@
 
 class HttpUrl {
   static const WITHCONI_API_BASE_URL =
-      'https://asia-northeast3-withconi.cloudfunctions.net/api';
+      'https://asia-northeast3-withconi.cloudfunctions.net/api2';
+  // 'http://localhost:5001/withconi/asia-northeast3/api';
   static const VERSION_CHECK = '/comm/getVersion';
   static const VERIFY_EMAIL = '/auth/verifyEmail';
   static const FCM_REFRESH = '/auth/refreshFCM';

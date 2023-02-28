@@ -33,12 +33,12 @@ enum Gender {
 }
 
 enum PostType {
-  @JsonValue("all")
-  all('all', '모두', WcColors.green100, WcColors.green40),
-  @JsonValue('cat')
-  cat('cat', '고양이', WcColors.blue100, WcColors.blue60),
-  @JsonValue("dog")
-  dog('dog', '강아지', WcColors.orange100, WcColors.orange20);
+  @JsonValue("info")
+  info('info', '정보', WcColors.green100, WcColors.green40),
+  @JsonValue('inquiry')
+  inquiry('inquiry', '질문', WcColors.blue100, WcColors.blue60),
+  @JsonValue("life")
+  life('life', '일상', WcColors.orange100, WcColors.orange20);
 
   const PostType(
       this.code, this.displayName, this.textColor, this.backgroundColor);
@@ -55,10 +55,6 @@ enum PostType {
 }
 
 enum Sorting {
-  // @JsonValue("recent")
-  // recent('recent', '최신순'),
-  // @JsonValue("popular")
-  // popular('popular', '인기순'),
   @JsonValue("nearest")
   nearest('nearest', '거리순'),
   @JsonValue("visiting")
@@ -80,7 +76,7 @@ enum Species {
   @JsonValue("all")
   all(
     'all',
-    '모두',
+    '전체',
     WcColors.white,
     WcColors.white,
     '',

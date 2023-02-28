@@ -8,17 +8,20 @@ import 'package:withconi/module/ui_model/post_ui_model.dart';
 import 'package:withconi/module/ui_model/ui_model_abstract/ui_model.dart';
 
 import '../../../../../global_widgets/photo_gallary/image_item.dart';
+import '../../../../../module/ui_model/conimal_ui_model.dart';
 import '../../../../enums/enum.dart';
 import '../abstract_request/request_dto_abstract.dart';
 
 class CreatePostRequestDTO
     extends RequestConverter<CreatePostRequestDTO, NewPostUIModel>
     implements RequestDTO {
-  String content;
-  // final String authorId;
-  final String boardId;
+  final String _content;
+  final String _title;
+  final List<ConimalUIModel> _conimals;
+  final String _boardId;
   final List<String> _imageRefList;
-  final PostType postType;
+  final PostType _postType;
+  final Species _species;
 
   @override
   bool get requiresToken => true;
@@ -30,22 +33,28 @@ class CreatePostRequestDTO
   String get url => HttpUrl.POST_CREATE;
 
   CreatePostRequestDTO.fromData(
-      NewPostUIModel postUiModel, String _boardId, List<String> imageRefList)
-      : content = postUiModel.content,
-        // authorId = postUiModel.authorId,
-        boardId = _boardId,
+    NewPostUIModel postUiModel,
+    String boardId,
+    List<String> imageRefList,
+  )   : _content = postUiModel.content,
+        _species = postUiModel.species,
+        _title = postUiModel.title,
+        _conimals = postUiModel.conimals,
+        _boardId = boardId,
         _imageRefList = imageRefList,
-        postType = postUiModel.postType!,
+        _postType = postUiModel.postType!,
         super.fromData(postUiModel);
 
   @override
   Map<String, dynamic> get dataMap {
     return {
-      'content': content,
-      // 'authorId': authorId,
-      'postType': postType.code,
-      'boardId': boardId,
+      'content': _content,
+      'conimals': _conimals.toList(),
+      'title': _title,
+      'postType': _postType.code,
+      'boardId': _boardId,
       'postImageRefs': _imageRefList,
+      'species': _species.code,
     };
   }
 }

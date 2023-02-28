@@ -37,7 +37,7 @@ Map<String, dynamic> _$$PharmacyPreviewResponseDTOToJson(
       'coordinate': instance.coordinate.toJson(),
       'phone': instance.phone,
       'name': instance.name,
-      'openingStatus': _$OpeningStatusEnumMap[instance.openingStatus]!,
+      'openingStatus': _$OpeningStatusEnumMap[instance.openingStatus],
       'thumbnail': instance.thumbnail,
       'locType': _$PlaceTypeEnumMap[instance.placeType]!,
       'mostVisitedDiseaseType':
@@ -108,7 +108,7 @@ Map<String, dynamic> _$$HospitalPreviewResponseDTOToJson(
       'coordinate': instance.coordinate,
       'phone': instance.phone,
       'name': instance.name,
-      'openingStatus': _$OpeningStatusEnumMap[instance.openingStatus]!,
+      'openingStatus': _$OpeningStatusEnumMap[instance.openingStatus],
       'thumbnail': instance.thumbnail,
       'locType': _$PlaceTypeEnumMap[instance.placeType]!,
       'mostVisitedDiseaseType':

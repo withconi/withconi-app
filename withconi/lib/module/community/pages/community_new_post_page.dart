@@ -111,10 +111,10 @@ class CommunityNewPostPage extends StatelessWidget {
                 Container(
                   margin: const EdgeInsets.only(left: 20, top: 20, bottom: 14),
                   child: Text(
-                    '어떤 코니멀과 관련된 글인가요?',
+                    '어떤 주제의 글인지 선택해 주세요.',
                     style: TextStyle(
                         fontFamily: WcFontFamily.notoSans,
-                        color: WcColors.black,
+                        color: WcColors.grey180,
                         fontSize: 17,
                         fontWeight: FontWeight.w500),
                   ),
@@ -125,7 +125,7 @@ class CommunityNewPostPage extends StatelessWidget {
                     child: Row(
                         children: PostType.values
                             .map((postType) => WcTextRadioButton(
-                                  height: 35,
+                                  height: 33,
                                   onTap: (value) {
                                     _controller
                                         .onPostTypeChanged(value as PostType);
@@ -138,11 +138,78 @@ class CommunityNewPostPage extends StatelessWidget {
                             .toList()),
                   ),
                 ),
+                GestureDetector(
+                  onTap: () {},
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 13),
+                    margin: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+                    alignment: Alignment.centerLeft,
+                    width: WcWidth(context) - 40,
+                    height: 45,
+                    decoration: BoxDecoration(
+                        color: WcColors.grey40,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          '글과 관련된 반려동물 추가하기',
+                          style: TextStyle(
+                              fontFamily: WcFontFamily.notoSans,
+                              color: WcColors.grey160,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w400),
+                        ),
+                        CircleAvatar(
+                          radius: 11,
+                          backgroundColor: WcColors.grey100,
+                          child: Icon(
+                            Icons.add_rounded,
+                            size: 17,
+                            color: WcColors.white,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  width: WcWidth(context) - 40,
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
+                  child: TextField(
+                    controller: _controller.titleTextController,
+                    onChanged: _controller.onContentsChanged,
+                    style: const TextStyle(
+                        fontFamily: WcFontFamily.notoSans,
+                        color: WcColors.black,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w500,
+                        height: 1.5),
+                    // maxLength: 80,
+                    maxLines: 1,
+
+                    decoration: const InputDecoration(
+                        isDense: true,
+                        border: InputBorder.none,
+                        hintStyle: TextStyle(
+                            fontFamily: WcFontFamily.notoSans,
+                            color: WcColors.grey120,
+                            fontSize: 17,
+                            fontWeight: FontWeight.w500,
+                            height: 1),
+                        hintText: '제목'),
+                  ),
+                ),
                 Obx(
                   () => (_controller.newPost.value.images.isNotEmpty)
                       ? Container(
                           height: 110,
-                          margin: EdgeInsets.only(left: 20),
+                          margin:
+                              EdgeInsets.only(left: 20, top: 10, bottom: 10),
                           child: ListView.builder(
                             scrollDirection: Axis.horizontal,
                             shrinkWrap: true,
@@ -213,11 +280,11 @@ class CommunityNewPostPage extends StatelessWidget {
                 ),
                 Container(
                   width: WcWidth(context) - 40,
-                  margin: EdgeInsets.symmetric(horizontal: 20, vertical: 6),
+                  margin: EdgeInsets.symmetric(horizontal: 20, vertical: 0),
                   child: TextField(
                     controller: _controller.contentsTextController,
                     onChanged: _controller.onContentsChanged,
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontFamily: WcFontFamily.notoSans,
                         color: WcColors.black,
                         fontSize: 16,
@@ -226,7 +293,7 @@ class CommunityNewPostPage extends StatelessWidget {
                     // maxLength: 80,
                     maxLines: 200,
                     minLines: 20,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                         isDense: true,
                         border: InputBorder.none,
                         hintStyle: TextStyle(

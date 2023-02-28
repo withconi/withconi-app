@@ -14,7 +14,9 @@ _$_PostResponseDTO _$$_PostResponseDTOFromJson(Map<String, dynamic> json) =>
       authorId: json['authorId'] as String,
       nickname: json['nickname'] as String? ?? '알수없음',
       postType: $enumDecodeNullable(_$PostTypeEnumMap, json['postType']) ??
-          PostType.cat,
+          PostType.info,
+      species:
+          $enumDecodeNullable(_$SpeciesEnumMap, json['species']) ?? Species.all,
       diseaseType:
           $enumDecodeNullable(_$DiseaseTypeEnumMap, json['diseaseType']) ??
               DiseaseType.undefined,
@@ -36,6 +38,7 @@ Map<String, dynamic> _$$_PostResponseDTOToJson(_$_PostResponseDTO instance) =>
       'authorId': instance.authorId,
       'nickname': instance.nickname,
       'postType': _$PostTypeEnumMap[instance.postType]!,
+      'species': _$SpeciesEnumMap[instance.species]!,
       'diseaseType': _$DiseaseTypeEnumMap[instance.diseaseType]!,
       'content': instance.content,
       'createdAt': const DateTimeConverter().toJson(instance.createdAt),
@@ -46,9 +49,15 @@ Map<String, dynamic> _$$_PostResponseDTOToJson(_$_PostResponseDTO instance) =>
     };
 
 const _$PostTypeEnumMap = {
-  PostType.all: 'all',
-  PostType.cat: 'cat',
-  PostType.dog: 'dog',
+  PostType.info: 'info',
+  PostType.inquiry: 'inquiry',
+  PostType.life: 'life',
+};
+
+const _$SpeciesEnumMap = {
+  Species.all: 'all',
+  Species.cat: 'cat',
+  Species.dog: 'dog',
 };
 
 const _$DiseaseTypeEnumMap = {

@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'post_response_dto.dart';
 
@@ -28,6 +28,7 @@ mixin _$PostResponseDTO {
   String get authorId => throw _privateConstructorUsedError;
   String get nickname => throw _privateConstructorUsedError;
   PostType get postType => throw _privateConstructorUsedError;
+  Species get species => throw _privateConstructorUsedError;
   DiseaseType get diseaseType => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
   @DateTimeConverter()
@@ -62,6 +63,7 @@ abstract class $PostResponseDTOCopyWith<$Res> {
       String authorId,
       String nickname,
       PostType postType,
+      Species species,
       DiseaseType diseaseType,
       String content,
       @DateTimeConverter()
@@ -95,6 +97,7 @@ class _$PostResponseDTOCopyWithImpl<$Res, $Val extends PostResponseDTO>
     Object? authorId = null,
     Object? nickname = null,
     Object? postType = null,
+    Object? species = null,
     Object? diseaseType = null,
     Object? content = null,
     Object? createdAt = null,
@@ -128,6 +131,10 @@ class _$PostResponseDTOCopyWithImpl<$Res, $Val extends PostResponseDTO>
           ? _value.postType
           : postType // ignore: cast_nullable_to_non_nullable
               as PostType,
+      species: null == species
+          ? _value.species
+          : species // ignore: cast_nullable_to_non_nullable
+              as Species,
       diseaseType: null == diseaseType
           ? _value.diseaseType
           : diseaseType // ignore: cast_nullable_to_non_nullable
@@ -177,6 +184,7 @@ abstract class _$$_PostResponseDTOCopyWith<$Res>
       String authorId,
       String nickname,
       PostType postType,
+      Species species,
       DiseaseType diseaseType,
       String content,
       @DateTimeConverter()
@@ -208,6 +216,7 @@ class __$$_PostResponseDTOCopyWithImpl<$Res>
     Object? authorId = null,
     Object? nickname = null,
     Object? postType = null,
+    Object? species = null,
     Object? diseaseType = null,
     Object? content = null,
     Object? createdAt = null,
@@ -241,6 +250,10 @@ class __$$_PostResponseDTOCopyWithImpl<$Res>
           ? _value.postType
           : postType // ignore: cast_nullable_to_non_nullable
               as PostType,
+      species: null == species
+          ? _value.species
+          : species // ignore: cast_nullable_to_non_nullable
+              as Species,
       diseaseType: null == diseaseType
           ? _value.diseaseType
           : diseaseType // ignore: cast_nullable_to_non_nullable
@@ -285,7 +298,8 @@ class _$_PostResponseDTO implements _PostResponseDTO {
           required this.postId,
       required this.authorId,
       this.nickname = '알수없음',
-      this.postType = PostType.cat,
+      this.postType = PostType.info,
+      this.species = Species.all,
       this.diseaseType = DiseaseType.undefined,
       required this.content,
       @DateTimeConverter()
@@ -321,6 +335,9 @@ class _$_PostResponseDTO implements _PostResponseDTO {
   final PostType postType;
   @override
   @JsonKey()
+  final Species species;
+  @override
+  @JsonKey()
   final DiseaseType diseaseType;
   @override
   final String content;
@@ -341,13 +358,14 @@ class _$_PostResponseDTO implements _PostResponseDTO {
   @ImageItemConverter()
   @JsonKey(name: 'postImageUrls')
   List<ImageItem> get images {
+    if (_images is EqualUnmodifiableListView) return _images;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_images);
   }
 
   @override
   String toString() {
-    return 'PostResponseDTO(profileImageUrl: $profileImageUrl, boardId: $boardId, postId: $postId, authorId: $authorId, nickname: $nickname, postType: $postType, diseaseType: $diseaseType, content: $content, createdAt: $createdAt, isLike: $isLike, likeNum: $likeNum, commentNum: $commentNum, images: $images)';
+    return 'PostResponseDTO(profileImageUrl: $profileImageUrl, boardId: $boardId, postId: $postId, authorId: $authorId, nickname: $nickname, postType: $postType, species: $species, diseaseType: $diseaseType, content: $content, createdAt: $createdAt, isLike: $isLike, likeNum: $likeNum, commentNum: $commentNum, images: $images)';
   }
 
   @override
@@ -365,6 +383,7 @@ class _$_PostResponseDTO implements _PostResponseDTO {
                 other.nickname == nickname) &&
             (identical(other.postType, postType) ||
                 other.postType == postType) &&
+            (identical(other.species, species) || other.species == species) &&
             (identical(other.diseaseType, diseaseType) ||
                 other.diseaseType == diseaseType) &&
             (identical(other.content, content) || other.content == content) &&
@@ -387,6 +406,7 @@ class _$_PostResponseDTO implements _PostResponseDTO {
       authorId,
       nickname,
       postType,
+      species,
       diseaseType,
       content,
       createdAt,
@@ -419,6 +439,7 @@ abstract class _PostResponseDTO implements PostResponseDTO {
       required final String authorId,
       final String nickname,
       final PostType postType,
+      final Species species,
       final DiseaseType diseaseType,
       required final String content,
       @DateTimeConverter()
@@ -449,6 +470,8 @@ abstract class _PostResponseDTO implements PostResponseDTO {
   String get nickname;
   @override
   PostType get postType;
+  @override
+  Species get species;
   @override
   DiseaseType get diseaseType;
   @override
